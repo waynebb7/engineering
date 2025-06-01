@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Degrees to Radians Converter</title>
+    <script type="text/javascript" async 
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: auto;
+            text-align: center;
+        }
+        .math-container {
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+        .input-container {
+            display: grid;
+            grid-template-columns: 150px 120px 70px;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        label {
+            font-size: 16px;
+            text-align: right;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            width: 100px;
+            text-align: right;
+        }
+        .unit {
+            font-size: 16px;
+            text-align: left;
+        }
+        button {
+            padding: 10px;
+            font-size: 18px;
+            margin-top: 20px;
+            cursor: pointer;
+            background-color: #2E3A87;
+            color: white;
+            border: none;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #1B246E;
+        }
+    </style>
+</head>
+<body>
+    <h1>Degrees to Radians Converter</h1>
+
+    <h2>Enter Angle in Degrees</h2>
+    
+    <div class="input-container">
+        <label for="degrees">Degrees (°):</label>
+        <input type="number" id="degrees" value="180">
+        <span class="unit">°</span>
+    </div>
+
+    <button onclick="convertToRadians()">Convert to Radians</button>
+
+    <h2>Conversion Formula</h2>
+    <div class="math-container">
+        $$ \text{Radians} = \text{Degrees} \times \frac{\pi}{180} $$
+    </div>
+
+    <h2>Converted Radians</h2>
+    <p id="radiansResult"></p>
+
+    <script>
+        function convertToRadians() {
+            let degrees = parseFloat(document.getElementById("degrees").value);
+            let radians = degrees * (Math.PI / 180);
+
+            document.getElementById("radiansResult").innerHTML = `Converted Radians: <strong>${radians.toFixed(6)}</strong>`;
+        }
+    </script>
+</body>
+</html>
