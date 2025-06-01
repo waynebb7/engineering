@@ -93,7 +93,7 @@
         function saveTasks() {
             let tasks = [];
             document.querySelectorAll("#taskList li").forEach(taskItem => {
-                tasks.push(taskItem.innerText.replace(" Remove", ""));
+                tasks.push(taskItem.childNodes[0].nodeValue.trim()); // Stores only task text, excludes "Remove"
             });
             localStorage.setItem("tasks", JSON.stringify(tasks));
         }
