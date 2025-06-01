@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Power Factor Calculator</title>
+    <title>AC Power Calculator</title>
     <script type="text/javascript" async 
       src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
     </script>
@@ -56,38 +56,42 @@
     </style>
 </head>
 <body>
-    <h1>Power Factor Calculator</h1>
+    <h1>AC Power Calculator</h1>
 
     <h2>Enter Electrical Values</h2>
         
     <div class="input-container">
-        <label for="truePower">True Power (P):</label>
-        <input type="number" id="truePower" value="1000">
-        <span class="unit">Watts</span>
+        <label for="voltage">Voltage (V):</label>
+        <input type="number" id="voltage" value="230">
+        <span class="unit">Volts</span>
 
-        <label for="reactivePower">Reactive Power (Q):</label>
-        <input type="number" id="reactivePower" value="500">
-        <span class="unit">VAR</span>
+        <label for="current">Current (I):</label>
+        <input type="number" id="current" value="10">
+        <span class="unit">Amps</span>
+
+        <label for="powerFactor">Power Factor (PF):</label>
+        <input type="number" id="powerFactor" step="0.01" value="0.9">
+        <span class="unit">Unitless</span>
     </div>
 
-    <button onclick="calculatePowerFactor()">Calculate Power Factor</button>
+    <button onclick="calculateACPower()">Calculate AC Power</button>
 
-    <h2>Power Factor Formula</h2>
+    <h2>AC Power Formula</h2>
     <div class="math-container">
-        $$ PF = \cos(\theta) = \frac{P}{S} \quad \text{where} \quad S = \sqrt{P^2 + Q^2} $$
+        $$ P = V \times I \times \cos(\theta) $$
     </div>
 
-    <h2>Calculated Power Factor</h2>
-    <p id="pfResult"></p>
+    <h2>Calculated AC Power</h2>
+    <p id="acPowerResult"></p>
 
     <script>
-        function calculatePowerFactor() {
-            let P = parseFloat(document.getElementById("truePower").value);
-            let Q = parseFloat(document.getElementById("reactivePower").value);
-            let S = Math.sqrt(P * P + Q * Q);
-            let PF = P / S;
+        function calculateACPower() {
+            let V = parseFloat(document.getElementById("voltage").value);
+            let I = parseFloat(document.getElementById("current").value);
+            let PF = parseFloat(document.getElementById("powerFactor").value);
+            let P = V * I * PF;
 
-            document.getElementById("pfResult").innerHTML = `Calculated Power Factor: <strong>${PF.toFixed(3)}</strong>`;
+            document.getElementById("acPowerResult").innerHTML = `Calculated AC Power: <strong>${P.toFixed(3)} W</strong>`;
         }
     </script>
 </body>
