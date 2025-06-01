@@ -32,6 +32,15 @@
             max-width: 100%;
             box-sizing: border-box;
         }
+        .feedback-container input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+        }
         .feedback-container input[type="submit"] {
             background-color: #2E3A87;
             color: white;
@@ -59,16 +68,21 @@
     <h1>Aerospace Engineering Website Feedback</h1>
     <div class="feedback-container">
         <p class="description">We appreciate your feedback! Please let us know your thoughts below:</p>
+        
         <!-- Form for sending feedback -->
         <form action="mailto:waynebb7@gmail.com" method="post" enctype="text/plain">
+            
+            <!-- Subject input field -->
+            <input type="text" name="subject" placeholder="Enter the subject of your email" required>
+
             <!-- Feedback Textarea -->
             <textarea name="feedback" maxlength="255" placeholder="Enter your feedback here (max 255 characters)" required></textarea>
             <br>
-            <!-- Hidden Input for Subject -->
-            <input type="hidden" name="subject" value="Aerospace Engineering Website Feedback">
+            
             <!-- Submit Button -->
             <input type="submit" value="Send Feedback">
         </form>
+        
         <p class="note">Note: Your feedback will be sent directly to waynebb7@gmail.com.</p>
     </div>
 </body>
