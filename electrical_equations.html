@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electrical Engineering Equations</title>
+    <script type="text/javascript">
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\
+
+\[', '\\]
+
+']]
+            }
+        };
+    </script>
+    <script type="text/javascript" async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: auto;
+            text-align: center;
+        }
+        h1 {
+            color: #2E3A87;
+        }
+        .equation-container {
+            display: grid;
+            grid-template-columns: 350px 400px;
+            gap: 40px;
+            align-items: center;
+            justify-content: center;
+        }
+        .equation {
+            font-size: 24px;
+            text-align: center;
+            font-style: italic;
+            font-family: "Cambria Math", "Times New Roman", serif;
+            display: block;
+        }
+        .description {
+            font-size: 16px;
+            text-align: left;
+        }
+        .unit {
+            display: block;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+            text-align: left;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Electrical Engineering Equations</h1>
+    <div class="equation-container">
+        <span class="equation">\( P = V \times I \)</span> <span class="description">DC Power Formula<span class="unit">(Watts, W)</span></span>
+        <span class="equation">\( P = V \times I \times \cos(\theta) \)</span> <span class="description">Single-Phase AC Power<span class="unit">(Watts, W)</span></span>
+        <span class="equation">\( P = \sqrt{3} \times V_L \times I_L \times \cos(\theta) \)</span> <span class="description">Three-Phase AC Power<span class="unit">(Watts, W)</span></span>
+        <span class="equation">\( S = \sqrt{P^2 + Q^2} \)</span> <span class="description">Apparent Power Calculation<span class="unit">(Volt-Amps, VA)</span></span>
+        <span class="equation">\( Q = V \times I \times \sin(\theta) \)</span> <span class="description">Reactive Power Formula<span class="unit">(Volt-Amps Reactive, VAR)</span></span>
+        <span class="equation">\( R = \frac{V}{I} \)</span> <span class="description">Ohm's Law (Resistance Calculation)<span class="unit">(Ohms, Ω)</span></span>
+        <span class="equation">\( Z = \sqrt{R^2 + X^2} \)</span> <span class="description">Impedance Formula<span class="unit">(Ohms, Ω)</span></span>
+        <span class="equation">\( X_L = 2\pi f L \)</span> <span class="description">Inductive Reactance<span class="unit">(Ohms, Ω)</span></span>
+        <span class="equation">\( X_C = \frac{1}{2\pi f C} \)</span> <span class="description">Capacitive Reactance<span class="unit">(Ohms, Ω)</span></span>
+    </div>
+</body>
+</html>
