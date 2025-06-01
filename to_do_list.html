@@ -33,7 +33,7 @@
         button:hover {
             background-color: #1B246E;
         }
-        ul {
+        ol {
             list-style-type: decimal;
             padding: 0;
             text-align: left;
@@ -44,12 +44,17 @@
             padding: 5px;
             display: flex;
             justify-content: space-between;
+            align-items: center;
         }
         .delete-btn {
             background-color: red;
             color: white;
             border: none;
             padding: 5px;
+            cursor: pointer;
+        }
+        .task-checkbox {
+            margin-right: 10px;
             cursor: pointer;
         }
     </style>
@@ -65,7 +70,7 @@
     </div>
 
     <h2>Your Tasks</h2>
-    <ul id="taskList"></ul>
+    <ol id="taskList"></ol>
 
     <script>
         document.addEventListener("DOMContentLoaded", loadTasks);
@@ -77,7 +82,9 @@
 
             let taskList = document.getElementById("taskList");
             let taskItem = document.createElement("li");
-            taskItem.innerHTML = `${taskText} <button class="delete-btn" onclick="removeTask(this)">Remove</button>`;
+            taskItem.innerHTML = `<input type="checkbox" class="task-checkbox" onchange="toggleTaskCompletion(this)">
+                                  <span>${taskText}</span> 
+                                  <button class="delete-btn" onclick="removeTask(this)">Remove</button>`;
             taskList.appendChild(taskItem);
 
             saveTasks();
@@ -90,10 +97,16 @@
             saveTasks();
         }
 
+        function toggleTaskCompletion(checkbox) {
+            saveTasks();
+        }
+
         function saveTasks() {
             let tasks = [];
             document.querySelectorAll("#taskList li").forEach(taskItem => {
-                tasks.push(taskItem.childNodes[0].nodeValue.trim()); // Stores only task text, excludes "Remove"
+                let taskText = taskItem.querySelector("span").textContent.trim();
+                let completed = taskItem.querySelector(".task-checkbox").checked;
+                tasks.push({ text: taskText, completed: completed });
             });
             localStorage.setItem("tasks", JSON.stringify(tasks));
         }
@@ -101,9 +114,13 @@
         function loadTasks() {
             let storedTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
             let taskList = document.getElementById("taskList");
-            storedTasks.forEach(taskText => {
+            taskList.innerHTML = ""; // Clear existing list
+            storedTasks.forEach(task => {
                 let taskItem = document.createElement("li");
-                taskItem.innerHTML = `${taskText} <button class="delete-btn" onclick="removeTask(this)">Remove</button>`;
+                taskItem.innerHTML = `<input type="checkbox" class="task-checkbox" ${task.completed ? "checked" : ""}
+                                      onchange="toggleTaskCompletion(this)">
+                                      <span>${task.text}</span> 
+                                      <button class="delete-btn" onclick="removeTask(this)">Remove</button>`;
                 taskList.appendChild(taskItem);
             });
         }
