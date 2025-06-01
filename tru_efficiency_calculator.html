@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRU Efficiency Calculator</title>
+    <script type="text/javascript" async 
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: auto;
+            text-align: center;
+        }
+        .math-container {
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+        .input-container {
+            display: grid;
+            grid-template-columns: 150px 120px 70px;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        label {
+            font-size: 16px;
+            text-align: right;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            width: 100px;
+            text-align: right;
+        }
+        .unit {
+            font-size: 16px;
+            text-align: left;
+        }
+        button {
+            padding: 10px;
+            font-size: 18px;
+            margin-top: 20px;
+            cursor: pointer;
+            background-color: #2E3A87;
+            color: white;
+            border: none;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #1B246E;
+        }
+    </style>
+</head>
+<body>
+    <h1>TRU Efficiency Calculator</h1>
+
+    <h2>Enter Power Values</h2>
+        
+    <div class="input-container">
+        <label for="powerIn">Power In (P<sub>in</sub>):</label>
+        <input type="number" id="powerIn" value="500">
+        <span class="unit">Watts</span>
+
+        <label for="powerOut">Power Out (P<sub>out</sub>):</label>
+        <input type="number" id="powerOut" value="450">
+        <span class="unit">Watts</span>
+    </div>
+
+    <button onclick="calculateEfficiency()">Calculate Efficiency</button>
+
+    <h2>Efficiency Formula</h2>
+    <div class="math-container">
+        $$ \eta = \frac{P_{\text{out}}}{P_{\text{in}}} \times 100 $$
+    </div>
+
+    <h2>Calculated Efficiency</h2>
+    <p id="efficiencyResult"></p>
+
+    <script>
+        function calculateEfficiency() {
+            let P_in = parseFloat(document.getElementById("powerIn").value);
+            let P_out = parseFloat(document.getElementById("powerOut").value);
+            let efficiency = (P_out / P_in) * 100;
+
+            document.getElementById("efficiencyResult").innerHTML = `Calculated Efficiency: <strong>${efficiency.toFixed(2)}%</strong>`;
+        }
+    </script>
+</body>
+</html>
