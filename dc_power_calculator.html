@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DC Power Calculator</title>
+    <script type="text/javascript" async 
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: auto;
+            text-align: center;
+        }
+        .math-container {
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+        button, input {
+            padding: 10px;
+            font-size: 16px;
+            margin: 5px;
+        }
+        button {
+            cursor: pointer;
+            background-color: #2E3A87;
+            color: white;
+            border: none;
+        }
+        button:hover {
+            background-color: #1B246E;
+        }
+    </style>
+</head>
+<body>
+    <h1>DC Power Calculator</h1>
+
+    <h2>Enter Electrical Values</h2>
+    <p>Enter Voltage \( V \) (volts) and Current \( I \) (amps) to calculate **DC Power**:</p>
+    
+    <label>Voltage (V): <input type="number" id="voltage" value="12"></label>
+    <label>Current (I): <input type="number" id="current" value="5"></label>
+    <button onclick="calculateDCPower()">Calculate DC Power</button>
+
+    <h2>DC Power Formula</h2>
+    <div class="math-container">
+        $$ P = V \times I $$
+    </div>
+
+    <h2>Calculated DC Power</h2>
+    <p id="dcPowerResult"></p>
+
+    <script>
+        function calculateDCPower() {
+            let V = parseFloat(document.getElementById("voltage").value);
+            let I = parseFloat(document.getElementById("current").value);
+            let P = V * I;
+
+            document.getElementById("dcPowerResult").innerHTML = `Calculated DC Power: <strong>${P.toFixed(3)} W</strong>`;
+        }
+    </script>
+</body>
+</html>
