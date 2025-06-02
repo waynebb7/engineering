@@ -9,11 +9,9 @@
       font-family: Arial, sans-serif;
       background: #f9f9f9;
       color: #333;
-      margin: 20px;
+      margin: 20px auto;
       line-height: 1.6;
       max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
       padding: 10px;
     }
     h1 {
@@ -53,6 +51,23 @@
       padding-left: 1em;
       background: #f0f8ff;
     }
+
+    /* Class for negated variables */
+    .neg {
+      display: inline-block;
+      position: relative;
+      padding-top: 3px;
+      margin: 0 1px;
+    }
+    .neg::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: black;
+    }
   </style>
 </head>
 <body>
@@ -64,10 +79,11 @@
   <p>There are two key statements in De Morgan’s Theorem:</p>
   <ul>
     <li><strong>The complement of a conjunction is the disjunction of the complements.</strong><br />
-      Symbolically: <code>¬(A · B) = ¬A + ¬B</code><br />
+      Symbolically: <code> <span class="neg">A</span> (AND) <span class="neg">B</span> </code><br />
+      Or more precisely: <code><span class="neg"> (A · B) </span> = <span class="neg">A</span> + <span class="neg">B</span></code><br />
       This means that the negation of (A AND B) is equivalent to (NOT A) OR (NOT B).</li>
     <li><strong>The complement of a disjunction is the conjunction of the complements.</strong><br />
-      Symbolically: <code>¬(A + B) = ¬A · ¬B</code><br />
+      Symbolically: <code> <span class="neg">(A + B)</span> = <span class="neg">A</span> · <span class="neg">B</span></code><br />
       This means that the negation of (A OR B) is equivalent to (NOT A) AND (NOT B).</li>
   </ul>
 
@@ -87,10 +103,10 @@
         <th>A</th>
         <th>B</th>
         <th>A · B</th>
-        <th>¬(A · B)</th>
-        <th>¬A</th>
-        <th>¬B</th>
-        <th>¬A + ¬B</th>
+        <th><span class="neg">(A · B)</span></th>
+        <th><span class="neg">A</span></th>
+        <th><span class="neg">B</span></th>
+        <th><span class="neg">A</span> + <span class="neg">B</span></th>
       </tr>
     </thead>
     <tbody>
@@ -109,8 +125,8 @@
   </ul>
 
   <h2>Example</h2>
-  <p>Suppose you have the expression <code>¬(X + Y)</code>, which means NOT (X OR Y). Using De Morgan’s Theorem:</p>
-  <p><code>¬(X + Y) = ¬X · ¬Y</code></p>
+  <p>Suppose you have the expression <code><span class="neg">(X + Y)</span></code>, which means NOT (X OR Y). Using De Morgan’s Theorem:</p>
+  <p><code><span class="neg">(X + Y)</span> = <span class="neg">X</span> · <span class="neg">Y</span></code></p>
   <p>This means instead of directly negating the OR operation, you can negate each input and then AND them together.</p>
 </body>
 </html>
