@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Boolean Algebra Explained</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9fafc;
+      color: #2c3e50;
+      margin: 20px;
+      line-height: 1.6;
+      max-width: 800px;
+    }
+    h1 {
+      color: #2980b9;
+      text-align: center;
+      margin-bottom: 0.5em;
+    }
+    h2 {
+      color: #3498db;
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 6px;
+      margin-top: 1.5em;
+    }
+    table {
+      border-collapse: collapse;
+      margin: 1em 0;
+      width: 100%;
+      max-width: 400px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 6px 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #2980b9;
+      color: white;
+    }
+    code {
+      background: #e3e3e3;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <h1>Boolean Algebra: An In-Depth Explanation</h1>
+
+  <p><strong>Boolean Algebra</strong> is a branch of algebra centered on variables that have only two possible values: typically denoted as <code>0</code> (false) and <code>1</code> (true). Unlike classical algebra that works with real numbers, Boolean algebra operates on logical values and is fundamental to digital electronics, computer science, and mathematical logic.</p>
+
+  <h2>1. Basic Concepts</h2>
+  <p>
+    <strong>Variables:</strong> Represent logical statements or signals which can be either TRUE (<code>1</code>) or FALSE (<code>0</code>).<br />
+    <strong>Operations:</strong> The primary operations in Boolean algebra are:<br />
+    <ul>
+      <li><strong>AND (<code>·</code>):</strong> The output is TRUE only if <em>both</em> inputs are TRUE.</li>
+      <li><strong>OR (<code>+</code>):</strong> The output is TRUE if <em>at least one</em> input is TRUE.</li>
+      <li><strong>NOT (<code>¬</code> or <code>'</code>):</strong> The output is the <em>inverse</em> of the input (TRUE becomes FALSE, and vice versa).</li>
+    </ul>
+  </p>
+  <p>Example: <code>A · B</code> (A AND B), <code>A + B</code> (A OR B), <code>A'</code> (NOT A)</p>
+
+  <h2>2. Truth Tables</h2>
+  <p>Each Boolean operation can be expressed with a truth table showing every possible input combination and corresponding output:</p>
+  <table>
+    <thead>
+      <tr><th>A</th><th>B</th><th>A · B</th><th>A + B</th><th>A'</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+      <tr><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+      <tr><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+      <tr><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+    </tbody>
+  </table>
+
+  <h2>3. Fundamental Laws</h2>
+  <p>Boolean algebra follows specific laws and properties, which allow simplification of complex logical expressions:</p>
+  <ul>
+    <li><strong>Commutative Laws:</strong> <code>A + B = B + A</code>, <code>A · B = B · A</code></li>
+    <li><strong>Associative Laws:</strong> <code>(A + B) + C = A + (B + C)</code>, <code>(A · B) · C = A · (B · C)</code></li>
+    <li><strong>Distributive Laws:</strong> <code>A · (B + C) = (A · B) + (A · C)</code>, <code>A + (B · C) = (A + B) · (A + C)</code></li>
+    <li><strong>Identity Laws:</strong> <code>A + 0 = A</code>, <code>A · 1 = A</code></li>
+    <li><strong>Null Laws:</strong> <code>A + 1 = 1</code>, <code>A · 0 = 0</code></li>
+    <li><strong>Idempotent Laws:</strong> <code>A + A = A</code>, <code>A · A = A</code></li>
+    <li><strong>Inverse Laws:</strong> <code>A + A' = 1</code>, <code>A · A' = 0</code></li>
+  </ul>
+
+  <h2>4. DeMorgan’s Theorems</h2>
+  <p>These two key theorems provide rules for simplifying expressions involving NOT of ANDs or ORs:</p>
+  <ul>
+    <li><code>(A · B)' = A' + B'</code></li>
+    <li><code>(A + B)' = A' · B'</code></li>
+  </ul>
+  <p>They are crucial for designing circuits using only NAND or NOR gates.</p>
+
+  <h2>5. Applications</h2>
+  <ul>
+    <li><strong>Digital Circuit Design:</strong> Boolean algebra is the language for designing and analyzing logic circuits, such as those in CPUs, memory, and digital communication.</li>
+    <li><strong>Logic Simplification:</strong> By applying laws of Boolean algebra, engineers reduce the number of logic gates in circuits, minimizing cost and complexity.</li>
+    <li><strong>Computer Algorithms:</strong> Used in control flow, search algorithms, and optimization.</li>
+    <li><strong>Set Theory and Logic:</strong> Boolean algebra corresponds to operations on sets and logical propositions.</li>
+  </ul>
+
+  <h2>6. Example of Simplification</h2>
+  <p>Simplify:</p>
+  <p><code>F = A · B + A · B'</code></p>
+  <p>Using distributive law:</p>
+  <p><code>F = A · (B + B')</code></p>
+  <p>Since <code>B + B' = 1</code>,</p>
+  <p><code>F = A · 1 = A</code></p>
+  <p>So the complex expression simplifies to just <code>A</code>.</p>
+
+  <h2>Summary</h2>
+  <p>Boolean algebra provides a mathematical framework to describe and manipulate logical variables and expressions. It forms the theoretical foundation for modern digital technology and enables the design of efficient logic circuits by simplifying complex logical relationships.</p>
+</body>
+</html>
