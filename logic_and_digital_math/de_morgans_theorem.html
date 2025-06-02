@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>De Morgan's Theorem Explained</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      color: #333;
+      margin: 20px;
+      line-height: 1.6;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 10px;
+    }
+    h1 {
+      color: #2c3e50;
+      text-align: center;
+      margin-bottom: 0.5em;
+    }
+    h2 {
+      color: #3498db;
+      margin-top: 1.5em;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1em 0;
+    }
+    th, td {
+      border: 1px solid #bbb;
+      padding: 8px 12px;
+      text-align: center;
+    }
+    th {
+      background-color: #3498db;
+      color: white;
+    }
+    code {
+      background-color: #eee;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+    blockquote {
+      font-style: italic;
+      color: #666;
+      border-left: 4px solid #3498db;
+      margin: 1em 0;
+      padding-left: 1em;
+      background: #f0f8ff;
+    }
+  </style>
+</head>
+<body>
+  <h1>De Morgan's Theorem Explained</h1>
+
+  <p>De Morgan's Theorems are fundamental rules in Boolean algebra that describe how logical operations <strong>AND</strong> and <strong>OR</strong> relate to each other through negation (NOT). These theorems provide a way to simplify complex logical expressions and are widely used in digital logic design, computer science, and mathematics.</p>
+
+  <h2>The Two Theorems</h2>
+  <p>There are two key statements in De Morgan’s Theorem:</p>
+  <ul>
+    <li><strong>The complement of a conjunction is the disjunction of the complements.</strong><br />
+      Symbolically: <code>¬(A · B) = ¬A + ¬B</code><br />
+      This means that the negation of (A AND B) is equivalent to (NOT A) OR (NOT B).</li>
+    <li><strong>The complement of a disjunction is the conjunction of the complements.</strong><br />
+      Symbolically: <code>¬(A + B) = ¬A · ¬B</code><br />
+      This means that the negation of (A OR B) is equivalent to (NOT A) AND (NOT B).</li>
+  </ul>
+
+  <h2>Intuitive Understanding</h2>
+  <blockquote>
+    Think of it like this:  
+    <ul>
+      <li>If it's <em>not true</em> that both A and B are true together, then either A is not true or B is not true.</li>
+      <li>If it's <em>not true</em> that either A or B is true, then both A is not true and B is not true.</li>
+    </ul>
+  </blockquote>
+
+  <h2>Truth Table</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>A</th>
+        <th>B</th>
+        <th>A · B</th>
+        <th>¬(A · B)</th>
+        <th>¬A</th>
+        <th>¬B</th>
+        <th>¬A + ¬B</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+      <tr><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+      <tr><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+      <tr><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Applications</h2>
+  <ul>
+    <li><strong>Simplifying Logic Circuits:</strong> De Morgan's Theorems allow logic engineers to transform AND gates into OR gates and vice versa by applying negations, which can reduce the number of components.</li>
+    <li><strong>Implementing NOT-AND and NOT-OR gates:</strong> Sometimes, only NAND or NOR gates are available, and these theorems help in rewriting logic expressions to use only those gates.</li>
+    <li><strong>Boolean Expression Manipulation:</strong> Essential in digital design and computer algorithms to optimize and simplify logical conditions.</li>
+  </ul>
+
+  <h2>Example</h2>
+  <p>Suppose you have the expression <code>¬(X + Y)</code>, which means NOT (X OR Y). Using De Morgan’s Theorem:</p>
+  <p><code>¬(X + Y) = ¬X · ¬Y</code></p>
+  <p>This means instead of directly negating the OR operation, you can negate each input and then AND them together.</p>
+</body>
+</html>
