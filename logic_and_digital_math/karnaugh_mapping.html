@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Karnaugh Mapping Explained</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+      background: #fdfdfd;
+      color: #333;
+      line-height: 1.6;
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    h2 {
+      margin-top: 1.5em;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 5px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1em 0;
+    }
+    th, td {
+      border: 1px solid #aaa;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #3498db;
+      color: white;
+    }
+    code {
+      background: #f4f4f4;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+    ul {
+      margin: 0.5em 0 0.5em 1.5em;
+    }
+    .note {
+      background: #f0f8ff;
+      padding: 10px;
+      border-left: 4px solid #3498db;
+      margin: 1em 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Karnaugh Mapping (K-map)</h1>
+
+  <p>A <strong>Karnaugh map</strong> is a diagram used to simplify Boolean algebra expressions. It is a powerful tool in digital logic design, enabling the reduction of logical expressions with minimal reliance on algebraic manipulation.</p>
+
+  <h2>What is a Karnaugh Map?</h2>
+  <p>Karnaugh Maps organize the output values of a truth table into a grid. Each cell corresponds to a unique combination of input variable values and represents a minterm.</p>
+
+  <h2>Why Use Karnaugh Maps?</h2>
+  <ul>
+    <li>Simplify complex logic expressions</li>
+    <li>Identify patterns and redundancies visually</li>
+    <li>Minimize logic gates in circuits</li>
+  </ul>
+
+  <h2>K-map Sizes</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Variables</th>
+        <th>K-map Size</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>2</td><td>2×2 (4 cells)</td></tr>
+      <tr><td>3</td><td>2×4 (8 cells)</td></tr>
+      <tr><td>4</td><td>4×4 (16 cells)</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Example 2-variable K-map</h2>
+  <table>
+    <thead>
+      <tr><th></th><th>B=0</th><th>B=1</th></tr>
+    </thead>
+    <tbody>
+      <tr><th>A=0</th><td>0</td><td>1</td></tr>
+      <tr><th>A=1</th><td>1</td><td>0</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Grouping Rules</h2>
+  <ul>
+    <li>Group 1s (SOP) or 0s (POS)</li>
+    <li>Each group must be a power of 2: 1, 2, 4, 8...</li>
+    <li>Groups must be rectangular</li>
+    <li>Groups can wrap around edges</li>
+    <li>Use the largest groups possible to simplify most</li>
+  </ul>
+
+  <h2>3-variable K-map Example</h2>
+  <p>Given: <code>f(A, B, C) = Σ(1, 3, 5, 7)</code></p>
+  <table>
+    <thead>
+      <tr><th>AB \ C</th><th>0</th><th>1</th></tr>
+    </thead>
+    <tbody>
+      <tr><th>00</th><td>0</td><td>1</td></tr>
+      <tr><th>01</th><td>0</td><td>1</td></tr>
+      <tr><th>11</th><td>0</td><td>1</td></tr>
+      <tr><th>10</th><td>0</td><td>1</td></tr>
+    </tbody>
+  </table>
+  <p>Group all 1s in column <code>C=1</code> → Simplified expression: <code>C</code></p>
+
+  <h2>Conclusion</h2>
+  <div class="note">
+    Karnaugh maps are intuitive tools for reducing Boolean expressions. With practice, they become essential in the design of efficient digital circuits.
+  </div>
+</body>
+</html>
