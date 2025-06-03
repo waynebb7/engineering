@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Real-World Applications of Calculus</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -22,11 +24,10 @@
       padding: 1rem;
       box-shadow: 0 0 5px rgba(0,0,0,0.1);
     }
-    code, pre {
+    code {
       background: #eef;
-      padding: 0.5rem;
-      display: block;
-      overflow-x: auto;
+      padding: 0.2rem 0.5rem;
+      font-family: monospace;
     }
   </style>
 </head>
@@ -36,49 +37,43 @@
   <div class="example">
     <h2>1. Engineering – Suspension Bridge Design</h2>
     <p>Calculating the bending moment for a uniformly distributed load:</p>
-    <pre><code>M(x) = (w/2) * x * (L - x)</code></pre>
+    <p>\[ M(x) = \frac{w}{2}x(L - x) \]</p>
     <p>Used to determine structural load and stress points.</p>
   </div>
 
   <div class="example">
     <h2>2. Physics – Spacecraft Landing on Mars</h2>
-    <p>Using integration to calculate velocity and position:</p>
-    <pre><code>v(t) = -3.71t + v₀
-s(t) = -1.855t² + v₀t + s₀</code></pre>
-    <p>Models motion under Martian gravity.</p>
+    <p>Using integration to calculate velocity and position under Martian gravity:</p>
+    <p>\[ v(t) = -3.71t + v_0 \]</p>
+    <p>\[ s(t) = -1.855t^2 + v_0t + s_0 \]</p>
   </div>
 
   <div class="example">
     <h2>3. Economics – Profit Maximization</h2>
-    <p>Find maximum profit where marginal cost equals marginal revenue:</p>
-    <pre><code>P(x) = -2x² + 100x - 500
-P'(x) = -4x + 100 → x = 25</code></pre>
-    <p>Calculus helps identify optimal production levels.</p>
+    <p>Finding the maximum profit point by setting the derivative of profit to zero:</p>
+    <p>\[ P(x) = -2x^2 + 100x - 500 \]</p>
+    <p>\[ P'(x) = -4x + 100 \Rightarrow x = 25 \]</p>
   </div>
 
   <div class="example">
     <h2>4. Environmental Science – Rainwater Runoff</h2>
-    <p>Total rainwater accumulation over time:</p>
-    <pre><code>r(t) = 5t
-∫₀² 5t dt = 10 liters</code></pre>
-    <p>Used to forecast flood levels and drainage needs.</p>
+    <p>Total rainwater accumulation over 2 hours from a linear rate:</p>
+    <p>\[ r(t) = 5t \]</p>
+    <p>\[ \int_0^2 5t \, dt = 10 \text{ liters} \]</p>
   </div>
 
   <div class="example">
     <h2>5. Computer Science – Simulating Object Movement</h2>
-    <p>Physics engine using calculus:</p>
-    <pre><code>a(t) = -9.8
-v(t) = -9.8t + v₀
-s(t) = -4.9t² + v₀t + s₀</code></pre>
-    <p>Simulates realistic motion in games or simulations.</p>
+    <p>Physics simulation under gravity:</p>
+    <p>\[ a(t) = -9.8 \Rightarrow v(t) = -9.8t + v_0 \]</p>
+    <p>\[ s(t) = -4.9t^2 + v_0t + s_0 \]</p>
   </div>
 
   <div class="example">
     <h2>6. Biology/Medicine – Drug Absorption</h2>
-    <p>Modeling exponential decay of drug concentration:</p>
-    <pre><code>C(t) = C₀ * e^(-kt)
-AUC = ∫₀^∞ C₀ * e^(-kt) dt = C₀ / k</code></pre>
-    <p>Calculates total exposure to a drug over time.</p>
+    <p>Modeling drug concentration over time with exponential decay:</p>
+    <p>\[ C(t) = C_0 e^{-kt} \]</p>
+    <p>\[ \text{AUC} = \int_0^\infty C_0 e^{-kt} dt = \frac{C_0}{k} \]</p>
   </div>
 
 </body>
