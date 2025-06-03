@@ -11,9 +11,10 @@
 <style>
   body {
     font-family: Arial, sans-serif;
-    margin: 20px;
+    margin: 20px auto;
     max-width: 900px;
     line-height: 1.6;
+    color: #222;
   }
   h1, h2 {
     color: #004080;
@@ -39,148 +40,154 @@
 <ol>
   <li>
     <strong>State-Space System Modes</strong><br />
-    For the system:
-    <br />
-    \( \dot{\mathbf{x}} = \mathbf{A} \mathbf{x} \)
-    <br />
+    Consider the system:
+    \[
+      \dot{\mathbf{x}} = \mathbf{A} \mathbf{x}
+    \]
     Eigenvectors \(\mathbf{v}_i\) satisfy:
-    <br />
-    \( \mathbf{A} \mathbf{v}_i = \lambda_i \mathbf{v}_i \)
-    <br />
-    They define directions along which system states evolve, crucial for stability and control design.
+    \[
+      \mathbf{A} \mathbf{v}_i = \lambda_i \mathbf{v}_i
+    \]
+    These eigenvectors define directions along which the system states evolve, essential for analyzing stability and control.
   </li>
 
   <li>
     <strong>Modal Analysis of RLC Circuits</strong><br />
-    The circuit equations form a matrix \(\mathbf{A}\), whose eigenvectors describe the mode shapes of voltages and currents:
-    <br />
-    \( \mathbf{A} \mathbf{v} = \lambda \mathbf{v} \)
+    Circuit differential equations can be written as:
+    \[
+      \mathbf{A} \mathbf{v} = \lambda \mathbf{v}
+    \]
+    where \(\mathbf{v}\) are eigenvectors describing mode shapes of voltages and currents.
   </li>
 
   <li>
     <strong>Vibration Modes in Electric Machines</strong><br />
-    Mechanical vibration problem:
-    <br />
-    \( (\mathbf{K} - \omega^2 \mathbf{M}) \mathbf{Q} = 0 \)
-    <br />
-    Eigenvectors \(\mathbf{Q}\) represent vibration mode shapes, helping avoid mechanical resonances.
+    The vibration problem is:
+    \[
+      (\mathbf{K} - \omega^2 \mathbf{M}) \mathbf{Q} = \mathbf{0}
+    \]
+    Eigenvectors \(\mathbf{Q}\) represent vibration mode shapes used to avoid resonances.
   </li>
 
   <li>
     <strong>Principal Component Analysis (PCA) in Signal Processing</strong><br />
-    Covariance matrix \(\mathbf{C}\):
-    <br />
-    \( \mathbf{C} \mathbf{v}_i = \lambda_i \mathbf{v}_i \)
-    <br />
-    Eigenvectors are principal components extracting key features from signals.
+    The covariance matrix \(\mathbf{C}\) satisfies:
+    \[
+      \mathbf{C} \mathbf{v}_i = \lambda_i \mathbf{v}_i
+    \]
+    Eigenvectors \(\mathbf{v}_i\) are principal components extracting key signal features.
   </li>
 
   <li>
     <strong>Power System Oscillation Modes</strong><br />
-    Jacobian matrix \(\mathbf{J}\) linearizes grid dynamics:
-    <br />
-    \( \mathbf{J} \mathbf{v} = \lambda \mathbf{v} \)
-    <br />
-    Eigenvectors show oscillation patterns of grid components.
+    The Jacobian matrix \(\mathbf{J}\) linearizes the power grid:
+    \[
+      \mathbf{J} \mathbf{v} = \lambda \mathbf{v}
+    \]
+    Eigenvectors \(\mathbf{v}\) describe oscillation modes of the grid components.
   </li>
 
   <li>
     <strong>Electromagnetic Waveguide Modes</strong><br />
-    Solve Helmholtz equation:
-    <br />
-    \( \nabla^2 \mathbf{E} + k^2 \mathbf{E} = 0 \)
-    <br />
-    Eigenvectors \(\mathbf{E}\) define field distributions inside waveguides.
+    The Helmholtz equation for the electric field \(\mathbf{E}\):
+    \[
+      \nabla^2 \mathbf{E} + k^2 \mathbf{E} = 0
+    \]
+    Eigenvectors \(\mathbf{E}\) define the modal field distributions.
   </li>
 
   <li>
     <strong>Antenna Radiation Patterns</strong><br />
     Eigenvalue problem for antenna impedance matrix \(\mathbf{Z}\):
-    <br />
-    \( \mathbf{Z} \mathbf{v} = \lambda \mathbf{v} \)
-    <br />
-    Eigenvectors \(\mathbf{v}\) describe radiation modes for efficient design.
+    \[
+      \mathbf{Z} \mathbf{v} = \lambda \mathbf{v}
+    \]
+    Eigenvectors \(\mathbf{v}\) describe radiation modes for antenna efficiency optimization.
   </li>
 
   <li>
     <strong>Image Compression in Electrical Engineering</strong><br />
-    Eigenvectors from covariance matrix of images:
-    <br />
-    \( \mathbf{C} \mathbf{v}_i = \lambda_i \mathbf{v}_i \)
-    <br />
-    Used for compressing images in instrumentation or diagnostics.
+    Eigenvectors of the covariance matrix \(\mathbf{C}\):
+    \[
+      \mathbf{C} \mathbf{v}_i = \lambda_i \mathbf{v}_i
+    \]
+    are used for compressing diagnostic images.
   </li>
 
   <li>
     <strong>Electric Motor Fault Diagnosis</strong><br />
-    Eigenvectors from vibration data covariance highlight fault patterns.
+    Eigenvectors from vibration data covariance matrices highlight fault-related signal modes.
   </li>
 
   <li>
     <strong>Stability of Power Electronics Converters</strong><br />
-    State matrix \(\mathbf{A}\) eigenvectors indicate mode shapes of current/voltage perturbations:
-    <br />
-    \( \mathbf{A} \mathbf{v} = \lambda \mathbf{v} \)
+    State matrix \(\mathbf{A}\):
+    \[
+      \mathbf{A} \mathbf{v} = \lambda \mathbf{v}
+    \]
+    Eigenvectors indicate mode shapes of voltage and current perturbations.
   </li>
 
   <li>
     <strong>Filter Design via Modal Decomposition</strong><br />
-    Eigenvectors reveal frequency response modes of filter matrices.
+    Eigenvectors reveal frequency response modes of filter system matrices.
   </li>
 
   <li>
     <strong>Wireless Communication MIMO Channels</strong><br />
-    Channel matrix \(\mathbf{H}\):
-    <br />
-    \( \mathbf{H}^H \mathbf{H} \mathbf{v} = \lambda \mathbf{v} \)
-    <br />
+    For the channel matrix \(\mathbf{H}\):
+    \[
+      \mathbf{H}^H \mathbf{H} \mathbf{v} = \lambda \mathbf{v}
+    \]
     Eigenvectors determine optimal transmission directions.
   </li>
 
   <li>
     <strong>Quantum Electrical Systems</strong><br />
-    Hamiltonian \(\mathbf{H}\) defines quantum states:
-    <br />
-    \( \mathbf{H} \mathbf{v} = E \mathbf{v} \)
+    The Hamiltonian \(\mathbf{H}\):
+    \[
+      \mathbf{H} \mathbf{v} = E \mathbf{v}
+    \]
+    Eigenvectors \(\mathbf{v}\) define quantum states in nanoscale electronics.
   </li>
 
   <li>
     <strong>Vibration Suppression in Transformers</strong><br />
-    Mode shapes from eigenvectors assist damping design.
+    Mode shapes from eigenvectors guide the design of damping mechanisms.
   </li>
 
   <li>
     <strong>System Identification</strong><br />
-    Eigenvectors extracted from data matrices characterize system modes.
+    Eigenvectors extracted from data covariance matrices characterize system modes.
   </li>
 
   <li>
     <strong>Acoustic Noise Control in Electric Machines</strong><br />
-    Eigenmodes of acoustic fields help develop noise suppression techniques.
+    Eigenmodes of acoustic pressure fields help develop noise suppression techniques.
   </li>
 
   <li>
     <strong>Thermal Analysis of Electronic Components</strong><br />
-    Thermal system matrix \(\mathbf{K}\):
-    <br />
-    \( \mathbf{K} \mathbf{v} = \lambda \mathbf{v} \)
-    <br />
+    Thermal matrix \(\mathbf{K}\) satisfies:
+    \[
+      \mathbf{K} \mathbf{v} = \lambda \mathbf{v}
+    \]
     Eigenvectors give heat distribution patterns.
   </li>
 
   <li>
     <strong>Signal Decomposition in ECG and EEG Processing</strong><br />
-    Eigenvectors represent dominant waveform modes extracted from covariance matrices.
+    Eigenvectors from covariance matrices represent dominant waveform modes.
   </li>
 
   <li>
     <strong>Mechanical-Electrical Coupled System Analysis</strong><br />
-    Eigenvectors describe coupled modes in systems with mechanical and electrical parts.
+    Eigenvectors describe coupled mode shapes in electromechanical systems.
   </li>
 
   <li>
     <strong>Robust Control Design</strong><br />
-    Eigenvectors reveal modal structure guiding controller tuning.
+    Eigenvectors reveal modal structures guiding control system tuning.
   </li>
 </ol>
 
