@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Power Calculations in Electrical Engineering</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2em;
+      line-height: 1.6;
+      color: #222;
+    }
+    h1 {
+      color: #003366;
+    }
+    h2 {
+      margin-top: 1.5em;
+      color: #00509e;
+    }
+    p {
+      max-width: 800px;
+    }
+    .equation {
+      background: #f9f9f9;
+      border-left: 4px solid #00509e;
+      padding: 1em;
+      margin: 1em 0;
+      font-size: 1.1em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Power Calculations in Electrical Engineering</h1>
+
+  <h2>Overview</h2>
+  <p>
+    Power calculation involves determining how much energy is transferred or converted in an electrical circuit over time. When voltage and current vary with time (as in AC circuits), the instantaneous power also varies. Calculus, specifically integration, helps compute the average power delivered over a time period.
+  </p>
+
+  <h2>Instantaneous Power</h2>
+  <p>
+    At any instant \( t \), the power \( p(t) \) delivered to a load is the product of the instantaneous voltage \( v(t) \) and current \( i(t) \):
+  </p>
+  <div class="equation">
+    \[
+      p(t) = v(t) \times i(t)
+    \]
+  </div>
+
+  <h2>Average Power</h2>
+  <p>
+    The average power over a time period \( T \) is the integral of instantaneous power over that time, divided by \( T \):
+  </p>
+  <div class="equation">
+    \[
+      \bar{P} = \frac{1}{T} \int_0^T v(t) \, i(t) \, dt
+    \]
+  </div>
+
+  <h2>Example: Sinusoidal Voltage and Current</h2>
+  <p>
+    Suppose the voltage and current are sinusoidal:
+  </p>
+  <div class="equation">
+    \[
+      v(t) = V_m \sin(\omega t)
+    \]
+  </div>
+  <div class="equation">
+    \[
+      i(t) = I_m \sin(\omega t + \phi)
+    \]
+  </div>
+  <p>
+    where \( V_m \) and \( I_m \) are peak voltage and current, \( \omega = 2\pi f \) is angular frequency, and \( \phi \) is the phase difference.
+  </p>
+  <p>
+    The instantaneous power becomes:
+  </p>
+  <div class="equation">
+    \[
+      p(t) = V_m \sin(\omega t) \times I_m \sin(\omega t + \phi)
+    \]
+  </div>
+  <p>
+    Using the trigonometric identity \( \sin A \sin B = \frac{1}{2}[\cos(A-B) - \cos(A+B)] \), we get:
+  </p>
+  <div class="equation">
+    \[
+      p(t) = \frac{V_m I_m}{2} \left[ \cos(\phi) - \cos(2\omega t + \phi) \right]
+    \]
+  </div>
+  <p>
+    Integrating over one full period \( T = \frac{2\pi}{\omega} \):
+  </p>
+  <div class="equation">
+    \[
+      \bar{P} = \frac{1}{T} \int_0^T p(t) \, dt = \frac{V_m I_m}{2} \cos(\phi)
+    \]
+  </div>
+  <p>
+    The second term averages to zero over a full period.
+  </p>
+
+  <h2>Key Points</h2>
+  <ul>
+    <li>The average power depends on the phase difference \( \phi \). Maximum power transfer occurs when voltage and current are in phase (\( \phi = 0 \)).</li>
+    <li>If voltage and current are 90° out of phase (\( \phi = \pm \frac{\pi}{2} \)), the average power is zero (purely reactive circuit).</li>
+    <li>Calculus (integration) enables accurate power calculations for time-varying signals in electrical engineering.</li>
+  </ul>
+
+</body>
+</html>
