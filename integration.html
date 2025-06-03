@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Integration in Electrical Engineering</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+    h1, h2 {
+      color: #2E3A87;
+    }
+    .section {
+      background-color: #ffffff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #e8ecf7;
+    }
+  </style>
+</head>
+<body>
+  <h1>Integration in Electrical Engineering</h1>
+
+  <div class="section">
+    <h2>1. Capacitors and Inductors</h2>
+    <p>
+      The behavior of capacitors and inductors involves time integrals:
+    </p>
+    <ul>
+      <li>Capacitor voltage:
+        \( V_C(t) = \frac{1}{C} \int i(t)\,dt + V_0 \)
+      </li>
+      <li>Inductor current:
+        \( i_L(t) = \frac{1}{L} \int v(t)\,dt + i_0 \)
+      </li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>2. Energy Calculations</h2>
+    <p>
+      Electrical energy is obtained by integrating power:
+    </p>
+    <p>
+      \( E = \int P(t)\,dt \)
+    </p>
+    <p>
+      Capacitor and inductor stored energy:
+      \[
+      E_C = \frac{1}{2}CV^2, \quad E_L = \frac{1}{2}LI^2
+      \]
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>3. Signal Processing</h2>
+    <p>
+      Integration is used in:
+    </p>
+    <ul>
+      <li>Analog integrators (e.g., op-amp circuits):
+        \( V_{out} = -\frac{1}{RC} \int V_{in}(t)\,dt \)
+      </li>
+      <li>Smoothing signals and low-pass filtering</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>4. Control Systems</h2>
+    <p>
+      In PID controllers, the integral term reduces steady-state error:
+    </p>
+    <p>
+      \( u(t) = K_p e(t) + K_i \int e(t)\,dt + K_d \frac{de(t)}{dt} \)
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>5. Electromagnetics and Fields</h2>
+    <p>
+      Surface and volume integrals are fundamental in field theory:
+    </p>
+    <ul>
+      <li>Gauss’s Law:
+        \[
+        \oint_S \vec{D} \cdot d\vec{A} = Q_{\text{enclosed}}
+        \]
+      </li>
+      <li>Faraday’s Law (integral form):
+        \[
+        \oint_C \vec{E} \cdot d\vec{l} = -\frac{d\Phi_B}{dt}
+        \]
+      </li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>6. System Modeling & Simulation</h2>
+    <p>
+      System equations often include integrals. Example (RLC circuit):
+    </p>
+    <p>
+      \( L \frac{d^2i}{dt^2} + R \frac{di}{dt} + \frac{1}{C} i(t) = V(t) \)
+    </p>
+    <p>
+      Simulation tools (e.g., SPICE, MATLAB) use numerical integration to solve circuit behavior over time.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>7. Embedded & Real-Time Systems</h2>
+    <p>
+      Microcontrollers integrate sensor data to compute:
+    </p>
+    <ul>
+      <li>Velocity from acceleration</li>
+      <li>Position from velocity</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>8. Power Systems</h2>
+    <p>
+      Energy metering involves integration of instantaneous power:
+      \[
+      E = \int_0^T P(t)\,dt
+      \]
+    </p>
+    <p>
+      This is how utility meters calculate energy usage.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>Summary Table</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Application Area</th>
+          <th>Use of Integration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Capacitors & Inductors</td>
+          <td>Accumulate current/voltage over time</td>
+        </tr>
+        <tr>
+          <td>Energy Calculations</td>
+          <td>Energy from power or stored in components</td>
+        </tr>
+        <tr>
+          <td>Signal Processing</td>
+          <td>Op-amp integrators, filtering, smoothing</td>
+        </tr>
+        <tr>
+          <td>Control Systems</td>
+          <td>Integral action in PID control</td>
+        </tr>
+        <tr>
+          <td>Electromagnetics</td>
+          <td>Surface and volume integrals in field theory</td>
+        </tr>
+        <tr>
+          <td>System Simulation</td>
+          <td>Solving integral-differential equations</td>
+        </tr>
+        <tr>
+          <td>Embedded Systems</td>
+          <td>Sensor fusion: motion, velocity, distance</td>
+        </tr>
+        <tr>
+          <td>Power Systems</td>
+          <td>Energy consumption from power data</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
