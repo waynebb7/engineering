@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculus in Electrical Engineering</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; }
+    h1, h2 { color: #003366; }
+    .example { margin-bottom: 30px; }
+  </style>
+</head>
+<body>
+  <h1>Real-World Calculus Applications in Electrical Engineering</h1>
+
+  <div class="example">
+    <h2>1. AC Circuit Analysis</h2>
+    <p>\[ V(t) = V_0 \sin(\omega t + \phi) \]</p>
+  </div>
+
+  <div class="example">
+    <h2>2. Capacitor Charging and Discharging</h2>
+    <p>\[ V(t) = V_0(1 - e^{-t/RC}) \]</p>
+  </div>
+
+  <div class="example">
+    <h2>3. Inductor Current Response</h2>
+    <p>\[ V_L(t) = L \frac{di}{dt} \]</p>
+  </div>
+
+  <div class="example">
+    <h2>4. Transient Analysis of RLC Circuits</h2>
+    <p>\[ L \frac{d^2i}{dt^2} + R \frac{di}{dt} + \frac{i}{C} = V(t) \]</p>
+  </div>
+
+  <div class="example">
+    <h2>5. Power Calculations</h2>
+    <p>\[ \bar{P} = \frac{1}{T} \int_0^T v(t)i(t) \, dt \]</p>
+  </div>
+
+  <div class="example">
+    <h2>6. PID Controller Design</h2>
+    <p>\[ u(t) = K_p e(t) + K_i \int e(t)\,dt + K_d \frac{de(t)}{dt} \]</p>
+  </div>
+
+  <div class="example">
+    <h2>7. Fourier Transform in Signal Processing</h2>
+    <p>\[ X(f) = \int_{-\infty}^{\infty} x(t)e^{-j2\pi ft} dt \]</p>
+  </div>
+
+  <div class="example">
+    <h2>8. Laplace Transform in Control Systems</h2>
+    <p>\[ \mathcal{L}\{f(t)\} = \int_0^\infty e^{-st} f(t) dt \]</p>
+  </div>
+
+  <div class="example">
+    <h2>9. Frequency Response of Filters</h2>
+    <p>\[ H(j\omega) = \frac{V_{out}(j\omega)}{V_{in}(j\omega)} \]</p>
+  </div>
+
+  <div class="example">
+    <h2>10. Transmission Line Modeling</h2>
+    <p>\[ \frac{\partial^2 V}{\partial x^2} = LC \frac{\partial^2 V}{\partial t^2} \]</p>
+  </div>
+
+  <div class="example">
+    <h2>11. Antenna Radiation Patterns</h2>
+    <p>\[ E(\theta) = \int I(z) e^{-jkz\cos\theta} dz \]</p>
+  </div>
+
+  <div class="example">
+    <h2>12. Signal Convolution</h2>
+    <p>\[ y(t) = \int_{-\infty}^{\infty} x(\tau)h(t-\tau)d\tau \]</p>
+  </div>
+
+  <div class="example">
+    <h2>13. Current and Voltage Phase Relationships</h2>
+    <p>\[ i(t) = C \frac{dV}{dt} \]</p>
+  </div>
+
+  <div class="example">
+    <h2>14. Switching Loss Calculations</h2>
+    <p>\[ E_{loss} = \int_{t_1}^{t_2} V(t)I(t)\,dt \]</p>
+  </div>
+
+  <div class="example">
+    <h2>15. DSP Filters and Transform Techniques</h2>
+    <p>Use Z-transforms (discrete analog of Laplace) to solve systems derived from difference equations.</p>
+  </div>
+
+  <div class="example">
+    <h2>16. Maxwell’s Equations for EM Fields</h2>
+    <p>
+      \[ \nabla \cdot \vec{E} = \frac{\rho}{\epsilon_0}, \quad \nabla \times \vec{B} = \mu_0 \vec{J} + \mu_0\epsilon_0 \frac{\partial \vec{E}}{\partial t} \]
+    </p>
+  </div>
+
+  <div class="example">
+    <h2>17. Battery Modeling and Energy Estimation</h2>
+    <p>\[ E = \int_0^T V(t)I(t)\,dt \]</p>
+  </div>
+
+  <div class="example">
+    <h2>18. Noise Analysis in Circuits</h2>
+    <p>\[ \text{Noise Power} = \int_{f_1}^{f_2} S_n(f) \, df \]</p>
+  </div>
+
+  <div class="example">
+    <h2>19. Mutual Inductance and Coupled Coils</h2>
+    <p>\[ V_2(t) = M \frac{di_1}{dt} \]</p>
+  </div>
+
+  <div class="example">
+    <h2>20. Thermoelectric and Heat Dissipation Calculations</h2>
+    <p>\[ \frac{dQ}{dt} = I^2 R(t) \quad \Rightarrow \quad Q(t) = \int I^2 R(t)\,dt \]</p>
+  </div>
+
+</body>
+</html>
