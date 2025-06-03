@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Differentiation in Electrical Engineering</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+      line-height: 1.6;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+    h1, h2 {
+      color: #2E3A87;
+    }
+    .section {
+      background-color: #ffffff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #e8ecf7;
+    }
+    code {
+      background: #eee;
+      padding: 2px 5px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Differentiation in Electrical Engineering</h1>
+
+  <div class="section">
+    <h2>1. Circuit Analysis</h2>
+    <p>
+      Differentiation appears when analyzing capacitors and inductors in dynamic circuits:
+    </p>
+    <ul>
+      <li>Inductor: \( V_L = L \frac{di}{dt} \)</li>
+      <li>Capacitor: \( I_C = C \frac{dv}{dt} \)</li>
+    </ul>
+    <p>
+      These equations are used in transient and AC circuit analysis.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>2. Signal Processing</h2>
+    <p>
+      Differentiation is used to:
+    </p>
+    <ul>
+      <li>Detect fast changes (edges) in signals</li>
+      <li>Design filters, especially high-pass filters</li>
+      <li>Analyze waveforms and perform frequency-domain transformations</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>3. Control Systems</h2>
+    <p>
+      In feedback systems like PID controllers:
+    </p>
+    <p>
+      \( u(t) = K_p e(t) + K_i \int e(t)\,dt + K_d \frac{de(t)}{dt} \)
+    </p>
+    <p>
+      The derivative term helps predict future error trends, enhancing stability.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>4. Electromagnetics</h2>
+    <p>
+      Time derivatives are found in Maxwell’s equations:
+    </p>
+    <ul>
+      <li>\( \nabla \times E = -\frac{\partial B}{\partial t} \)</li>
+      <li>\( \nabla \times H = \frac{\partial D}{\partial t} + J \)</li>
+    </ul>
+    <p>
+      These equations describe how electric and magnetic fields change with time.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>5. System Modeling & Simulation</h2>
+    <p>
+      Electrical systems often use differential equations for simulation:
+    </p>
+    <p>
+      Example (RLC circuit): \( L \frac{d^2i}{dt^2} + R \frac{di}{dt} + \frac{i}{C} = V(t) \)
+    </p>
+    <p>
+      Tools like MATLAB, Simulink, and SPICE rely heavily on these models.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>6. Embedded and Real-Time Systems</h2>
+    <p>
+      Differentiation is used to compute:
+    </p>
+    <ul>
+      <li>Velocity from position sensors</li>
+      <li>Acceleration from velocity data</li>
+    </ul>
+    <p>
+      Often implemented numerically on microcontrollers.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>7. Power Systems & Fault Detection</h2>
+    <p>
+      Differentiation helps detect sudden faults:
+    </p>
+    <ul>
+      <li>Rapid current or voltage changes indicate transient events</li>
+      <li>Protective relays use derivatives for quicker fault detection</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Summary Table</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Application Area</th>
+          <th>Use of Differentiation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Circuit Analysis</td>
+          <td>\( \frac{di}{dt}, \frac{dv}{dt} \) in inductors and capacitors</td>
+        </tr>
+        <tr>
+          <td>Signal Processing</td>
+          <td>Filtering, edge detection, waveform analysis</td>
+        </tr>
+        <tr>
+          <td>Control Systems</td>
+          <td>Predicts trends in error signal (PID controller)</td>
+        </tr>
+        <tr>
+          <td>Electromagnetics</td>
+          <td>Time-varying field equations (Maxwell's)</td>
+        </tr>
+        <tr>
+          <td>Modeling & Simulation</td>
+          <td>Differential equations for system behavior</td>
+        </tr>
+        <tr>
+          <td>Embedded Systems</td>
+          <td>Numerical differentiation of sensor data</td>
+        </tr>
+        <tr>
+          <td>Power Systems</td>
+          <td>Transient and fault detection algorithms</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</body>
+</html>
