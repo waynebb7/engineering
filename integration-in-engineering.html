@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Integration in Electrical and Aircraft Engineering</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+    h1, h2 {
+      color: #2E3A87;
+    }
+    .section {
+      background-color: #ffffff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #e8ecf7;
+    }
+  </style>
+</head>
+<body>
+  <h1>Integration in Electrical and Aircraft Engineering</h1>
+
+  <div class="section">
+    <h2>🔌 Integration in Electrical Engineering</h2>
+
+    <h3>1. Capacitors and Inductors</h3>
+    <p>
+      The behavior of capacitors and inductors involves time integrals:
+      <br>
+      \( V_C(t) = \frac{1}{C} \int i(t)\,dt + V_0 \)
+      <br>
+      \( i_L(t) = \frac{1}{L} \int v(t)\,dt + i_0 \)
+    </p>
+
+    <h3>2. Energy Calculations</h3>
+    <p>
+      Electrical energy is obtained by integrating power:
+      \( E = \int P(t)\,dt \)
+      <br>
+      Capacitor and inductor stored energy:
+      \[
+      E_C = \frac{1}{2}CV^2, \quad E_L = \frac{1}{2}LI^2
+      \]
+    </p>
+
+    <h3>3. Signal Processing</h3>
+    <ul>
+      <li>Op-amp integrators: \( V_{out} = -\frac{1}{RC} \int V_{in}(t)\,dt \)</li>
+      <li>Filtering and smoothing signals</li>
+    </ul>
+
+    <h3>4. Control Systems</h3>
+    <p>
+      PID controllers use integration for the integral control term:
+      \[
+      u(t) = K_p e(t) + K_i \int e(t)\,dt + K_d \frac{de(t)}{dt}
+      \]
+    </p>
+
+    <h3>5. Electromagnetics</h3>
+    <ul>
+      <li>Gauss’s Law:
+        \[
+        \oint_S \vec{D} \cdot d\vec{A} = Q_{\text{enclosed}}
+        \]
+      </li>
+      <li>Faraday’s Law:
+        \[
+        \oint_C \vec{E} \cdot d\vec{l} = -\frac{d\Phi_B}{dt}
+        \]
+      </li>
+    </ul>
+
+    <h3>6. System Simulation</h3>
+    <p>
+      Simulation tools solve integral-differential equations such as:
+      \[
+      L \frac{d^2i}{dt^2} + R \frac{di}{dt} + \frac{1}{C} i(t) = V(t)
+      \]
+    </p>
+
+    <h3>7. Embedded Systems</h3>
+    <ul>
+      <li>Velocity from acceleration</li>
+      <li>Distance from velocity</li>
+    </ul>
+
+    <h3>8. Power Systems</h3>
+    <p>
+      Utility meters calculate energy as:
+      \[
+      E = \int_0^T P(t)\,dt
+      \]
+    </p>
+
+    <h3>Summary Table</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Application Area</th>
+          <th>Use of Integration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Capacitors & Inductors</td><td>Accumulate current/voltage over time</td></tr>
+        <tr><td>Energy Calculations</td><td>Energy from power or stored in components</td></tr>
+        <tr><td>Signal Processing</td><td>Filtering and op-amp integration</td></tr>
+        <tr><td>Control Systems</td><td>Integral action in PID control</td></tr>
+        <tr><td>Electromagnetics</td><td>Surface and volume field integrals</td></tr>
+        <tr><td>Simulation</td><td>Numerical integration for circuit modeling</td></tr>
+        <tr><td>Embedded Systems</td><td>Motion calculations from sensors</td></tr>
+        <tr><td>Power Systems</td><td>Energy usage from instantaneous power</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>✈️ Integration in Aircraft Engineering and Flight</h2>
+
+    <h3>1. Flight Dynamics and Navigation</h3>
+    <p>
+      Calculate velocity and position:
+      \[
+      v(t) = \int a(t)\,dt, \quad s(t) = \int v(t)\,dt
+      \]
+      Essential in inertial navigation systems (INS).
+    </p>
+
+    <h3>2. Aerodynamic Forces</h3>
+    <p>
+      Total lift and drag from pressure:
+      \[
+      L = \int_A p(x, y)\,dA
+      \]
+    </p>
+
+    <h3>3. Structural Analysis</h3>
+    <p>
+      Beam deflection from moment:
+      \[
+      y(x) = \int \int \frac{M(x)}{EI}\,dx^2
+      \]
+    </p>
+
+    <h3>4. Fuel and Range Estimation</h3>
+    <p>
+      Total fuel used:
+      \[
+      F = \int_0^t \dot{F}(t)\,dt
+      \]
+    </p>
+
+    <h3>5. Flight Control Systems</h3>
+    <p>
+      Same PID control structure as in electrical systems:
+      \[
+      u(t) = K_p e(t) + K_i \int e(t)\,dt + K_d \frac{de(t)}{dt}
+      \]
+    </p>
+
+    <h3>6. Propulsion and Thermodynamics</h3>
+    <p>
+      Mass flow and energy:
+      \[
+      \dot{m} = \int_A \rho v\,dA
+      \]
+    </p>
+
+    <h3>7. Vibration Analysis</h3>
+    <p>
+      Integration of angular velocity:
+      \[
+      x(t) = \int \omega(t)\,dt
+      \]
+    </p>
+
+    <h3>8. Flight Simulation</h3>
+    <p>
+      Solving nonlinear equations of motion with numerical integration (e.g., Runge-Kutta).
+    </p>
+
+    <h3>Summary Table</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Application Area</th>
+          <th>Use of Integration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Flight Dynamics</td><td>Velocity and position from acceleration</td></tr>
+        <tr><td>Navigation</td><td>INS computations of movement</td></tr>
+        <tr><td>Aerodynamics</td><td>Surface pressure to lift/drag</td></tr>
+        <tr><td>Structures</td><td>Deflection from bending moment</td></tr>
+        <tr><td>Fuel Estimation</td><td>Total consumption over time</td></tr>
+        <tr><td>Control Systems</td><td>PID controller integration</td></tr>
+        <tr><td>Propulsion</td><td>Mass flow and work calculation</td></tr>
+        <tr><td>Vibration</td><td>Response over time from angular motion</td></tr>
+        <tr><td>Simulation</td><td>Numerical integration of flight equations</td></tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
