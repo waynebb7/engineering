@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Eigenvalues in Electrical Engineering</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2em;
+      line-height: 1.6;
+      color: #222;
+      max-width: 900px;
+    }
+    h1 {
+      color: #003366;
+    }
+    h2 {
+      margin-top: 1.5em;
+      color: #00509e;
+    }
+    p {
+      margin-bottom: 1em;
+    }
+    .equation {
+      background: #f9f9f9;
+      border-left: 4px solid #00509e;
+      padding: 1em;
+      margin: 1em 0;
+      font-size: 1.1em;
+      overflow-x: auto;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 1.5em;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 0.5em 1em;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #e6f0ff;
+    }
+  </style>
+</head>
+<body>
+  <h1>Eigenvalues in Electrical Engineering</h1>
+
+  <h2>1. Stability Analysis of Linear Systems</h2>
+  <p>
+    Electrical systems like circuits or control systems can often be modeled as <em>linear time-invariant (LTI) systems</em> using a state-space representation:
+  </p>
+  <div class="equation">
+    \[
+      \dot{\mathbf{x}}(t) = \mathbf{A}\mathbf{x}(t) + \mathbf{B}\mathbf{u}(t)
+    \]
+  </div>
+  <p>
+    Where:<br/>
+    - \(\mathbf{x}(t)\) is the state vector (e.g., voltages, currents)<br/>
+    - \(\mathbf{A}\) is the system matrix (describes system dynamics)<br/>
+    - \(\mathbf{u}(t)\) is the input vector<br/>
+    - \(\mathbf{B}\) is the input matrix
+  </p>
+  <p>
+    The eigenvalues of matrix \(\mathbf{A}\) determine the system's behavior:
+  </p>
+  <div class="equation">
+    \[
+      \det(\mathbf{A} - \lambda \mathbf{I}) = 0
+    \]
+  </div>
+  <p>
+    - If all eigenvalues have negative real parts (\(\Re(\lambda_i) < 0\)), the system returns to equilibrium after disturbance (stable).<br/>
+    - If any eigenvalue has a positive real part, the system response grows unbounded (unstable).
+  </p>
+
+  <h3>Real-World Example: RLC Circuit Stability</h3>
+  <p>
+    Consider an RLC circuit modeled as:
+  </p>
+  <div class="equation">
+    \[
+      \mathbf{A} = \begin{bmatrix}
+      0 & 1 \\
+      -\frac{1}{LC} & -\frac{R}{L}
+      \end{bmatrix}
+    \]
+  </div>
+  <p>
+    Eigenvalues \(\lambda\) satisfy the quadratic equation:
+  </p>
+  <div class="equation">
+    \[
+      \lambda^2 + \frac{R}{L} \lambda + \frac{1}{LC} = 0
+    \]
+  </div>
+  <p>
+    The roots \(\lambda\) correspond to system poles and dictate if the circuit is overdamped, underdamped, or unstable.
+  </p>
+
+  <h2>2. Power System Stability</h2>
+  <p>
+    Power grids are modeled by differential-algebraic equations. Small-signal stability examines eigenvalues of the Jacobian matrix \(\mathbf{J}\) derived from linearizing the system around an operating point:
+  </p>
+  <div class="equation">
+    \[
+      \dot{\mathbf{x}} = \mathbf{J}\mathbf{x}
+    \]
+  </div>
+  <p>
+    Eigenvalues of \(\mathbf{J}\) determine if oscillations damp out or grow.
+  </p>
+
+  <h2>3. Modal Analysis in Transmission Lines and Antennas</h2>
+  <p>
+    Electromagnetic fields can be expressed as eigenvalue problems. For example, the wave equation for a waveguide leads to:
+  </p>
+  <div class="equation">
+    \[
+      \nabla^2 \mathbf{E} + k^2 \mathbf{E} = 0
+    \]
+  </div>
+  <p>
+    Subject to boundary conditions, solving this eigenvalue problem yields discrete propagation constants \(k_n\) (eigenvalues) and corresponding modes \( \mathbf{E}_n \) (eigenvectors).
+  </p>
+
+  <h2>4. Signal Processing: PCA and SVD</h2>
+  <p>
+    Given a data covariance matrix \(\mathbf{C}\), eigenvalue decomposition is:
+  </p>
+  <div class="equation">
+    \[
+      \mathbf{C} \mathbf{v}_i = \lambda_i \mathbf{v}_i
+    \]
+  </div>
+  <p>
+    - Eigenvalues \(\lambda_i\) represent variance along principal components \(\mathbf{v}_i\).<br/>
+    - This reduces dimensionality by focusing on components with largest \(\lambda_i\), enhancing signal detection and noise reduction.
+  </p>
+
+  <h2>5. Vibration Analysis of Electrical Machines</h2>
+  <p>
+    Mechanical vibrations modeled as:
+  </p>
+  <div class="equation">
+    \[
+      \mathbf{M}\ddot{\mathbf{q}} + \mathbf{K} \mathbf{q} = 0
+    \]
+  </div>
+  <p>
+    - \(\mathbf{M}\): Mass matrix<br/>
+    - \(\mathbf{K}\): Stiffness matrix<br/>
+    - \(\mathbf{q}\): Displacement vector
+  </p>
+  <p>
+    Assuming solutions of the form \(\mathbf{q} = \mathbf{Q} e^{j \omega t}\), this leads to the eigenvalue problem:
+  </p>
+  <div class="equation">
+    \[
+      (\mathbf{K} - \omega^2 \mathbf{M}) \mathbf{Q} = 0
+    \]
+  </div>
+  <p>
+    Solving for eigenvalues \(\omega^2\) gives natural frequencies, crucial for avoiding resonance.
+  </p>
+
+  <h2>Summary Table</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Application</th>
+        <th>Matrix</th>
+        <th>Eigenvalue Meaning</th>
+        <th>Real-World Insight</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>System Stability</td>
+        <td>\(\mathbf{A}\)</td>
+        <td>Poles of system</td>
+        <td>Predict stable/unstable circuits</td>
+      </tr>
+      <tr>
+        <td>Power Grid Stability</td>
+        <td>\(\mathbf{J}\)</td>
+        <td>Modes of oscillation</td>
+        <td>Ensure grid reliability</td>
+      </tr>
+      <tr>
+        <td>Modal Analysis</td>
+        <td>Wave Eq. operator</td>
+        <td>Propagation constants</td>
+        <td>Design antennas, waveguides</td>
+      </tr>
+      <tr>
+        <td>Signal Processing (PCA)</td>
+        <td>Covariance matrix</td>
+        <td>Variance explained by components</td>
+        <td>Noise filtering, data compression</td>
+      </tr>
+      <tr>
+        <td>Mechanical Vibrations</td>
+        <td>\(\mathbf{K}, \mathbf{M}\)</td>
+        <td>Natural frequencies</td>
+        <td>Avoid motor resonance and failure</td>
+      </tr>
+    </tbody>
+  </table>
+
+</body>
+</html>
