@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Differentiation in Electrical and Aircraft Engineering</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+      background-color: #f9fafc;
+      color: #222;
+    }
+    h1, h2 {
+      color: #2E3A87;
+    }
+    .section {
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgb(0 0 0 / 0.05);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+    th {
+      background-color: #e8ecf7;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Differentiation in Electrical and Aircraft Engineering</h1>
+
+  <div class="section">
+    <h2>📐 Differentiation in Electrical Engineering</h2>
+
+    <h3>1. Rate of Change of Current and Voltage</h3>
+    <p>
+      For inductors and capacitors, voltage or current depends on derivatives:
+      <br>
+      \( V_L = L \frac{dI}{dt} \), &nbsp; \( I_C = C \frac{dV}{dt} \)
+    </p>
+
+    <h3>2. Signal Analysis</h3>
+    <ul>
+      <li>Finding instantaneous rates of change in voltage or current</li>
+      <li>Derivative operations in filters and signal processing</li>
+    </ul>
+
+    <h3>3. Control Systems</h3>
+    <p>
+      The derivative term in PID control enhances system response:
+      \[
+      u(t) = K_p e(t) + K_i \int e(t) dt + K_d \frac{de(t)}{dt}
+      \]
+    </p>
+
+    <h3>4. Transient Analysis</h3>
+    <p>
+      Describing how circuits respond to sudden changes requires differential equations.
+    </p>
+
+    <h3>5. Electromagnetics</h3>
+    <p>
+      Maxwell’s equations involve derivatives of fields:
+      \[
+      \nabla \times \mathbf{E} = - \frac{\partial \mathbf{B}}{\partial t}
+      \]
+    </p>
+
+    <h3>6. Power and Energy Rates</h3>
+    <p>
+      Power \( P = \frac{dE}{dt} \), rate of energy transfer or consumption.
+    </p>
+
+    <h3>7. Waveforms and Oscillations</h3>
+    <p>
+      Differentiation describes changes in AC signals and waveforms.
+    </p>
+
+    <h3>Summary Table</h3>
+    <table>
+      <thead>
+        <tr><th>Application Area</th><th>Use of Differentiation</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Inductors & Capacitors</td><td>Voltage-current relationships</td></tr>
+        <tr><td>Signal Processing</td><td>Instantaneous change analysis</td></tr>
+        <tr><td>Control Systems</td><td>PID derivative term</td></tr>
+        <tr><td>Transient Response</td><td>Dynamic circuit behavior</td></tr>
+        <tr><td>Electromagnetics</td><td>Field changes over time and space</td></tr>
+        <tr><td>Power</td><td>Energy rate</td></tr>
+        <tr><td>Oscillations</td><td>Waveform slope and frequency</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>✈️ Differentiation in Aircraft Engineering and Flight</h2>
+
+    <h3>1. Flight Dynamics</h3>
+    <p>
+      Velocity and acceleration are derivatives of position:
+      \[
+      v(t) = \frac{ds(t)}{dt}, \quad a(t) = \frac{dv(t)}{dt}
+      \]
+    </p>
+
+    <h3>2. Aerodynamics</h3>
+    <p>
+      Change rates of lift/drag coefficients with respect to angle of attack:
+      \[
+      \frac{dC_L}{d\alpha}, \quad \frac{dC_D}{d\alpha}
+      \]
+    </p>
+
+    <h3>3. Structural Dynamics</h3>
+    <p>
+      Strain as spatial derivative of displacement:
+      \[
+      \varepsilon = \frac{du}{dx}
+      \]
+      Vibration frequencies are related to derivatives of displacement.
+    </p>
+
+    <h3>4. Control Systems</h3>
+    <p>
+      Derivative control term in flight control:
+      \[
+      u(t) = K_p e(t) + K_i \int e(t) dt + K_d \frac{de(t)}{dt}
+      \]
+    </p>
+
+    <h3>5. Propulsion</h3>
+    <p>
+      Engine RPM changes as derivative of rotational position:
+      \[
+      \frac{d\theta}{dt} = \omega
+      \]
+    </p>
+
+    <h3>6. Navigation</h3>
+    <p>
+      Angular velocity and rate of change of orientation from gyroscopes.
+    </p>
+
+    <h3>7. Flight Simulation</h3>
+    <p>
+      Equations of motion involve derivatives of velocity and position.
+    </p>
+
+    <h3>8. Instruments</h3>
+    <p>
+      Vertical Speed Indicator measures \( \frac{dh}{dt} \), rate of climb or descent.
+    </p>
+
+    <h3>Summary Table</h3>
+    <table>
+      <thead>
+        <tr><th>Application Area</th><th>Use of Differentiation</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Flight Dynamics</td><td>Velocity and acceleration from position</td></tr>
+        <tr><td>Aerodynamics</td><td>Lift/drag changes with angle</td></tr>
+        <tr><td>Structural Dynamics</td><td>Strain and vibration analysis</td></tr>
+        <tr><td>Control Systems</td><td>Derivative action in flight controllers</td></tr>
+        <tr><td>Propulsion</td><td>RPM and torque changes</td></tr>
+        <tr><td>Navigation</td><td>Orientation rates from sensors</td></tr>
+        <tr><td>Flight Simulation</td><td>Dynamic modeling of motion</td></tr>
+        <tr><td>Instruments</td><td>Vertical speed measurement</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</body>
+</html>
