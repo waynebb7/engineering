@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real-World Applications of Calculus</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 2rem;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    .example {
+      background: #fff;
+      border-left: 5px solid #3498db;
+      margin: 1.5rem 0;
+      padding: 1rem;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    code, pre {
+      background: #eef;
+      padding: 0.5rem;
+      display: block;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Real-World Applications of Calculus</h1>
+
+  <div class="example">
+    <h2>1. Engineering – Suspension Bridge Design</h2>
+    <p>Calculating the bending moment for a uniformly distributed load:</p>
+    <pre><code>M(x) = (w/2) * x * (L - x)</code></pre>
+    <p>Used to determine structural load and stress points.</p>
+  </div>
+
+  <div class="example">
+    <h2>2. Physics – Spacecraft Landing on Mars</h2>
+    <p>Using integration to calculate velocity and position:</p>
+    <pre><code>v(t) = -3.71t + v₀
+s(t) = -1.855t² + v₀t + s₀</code></pre>
+    <p>Models motion under Martian gravity.</p>
+  </div>
+
+  <div class="example">
+    <h2>3. Economics – Profit Maximization</h2>
+    <p>Find maximum profit where marginal cost equals marginal revenue:</p>
+    <pre><code>P(x) = -2x² + 100x - 500
+P'(x) = -4x + 100 → x = 25</code></pre>
+    <p>Calculus helps identify optimal production levels.</p>
+  </div>
+
+  <div class="example">
+    <h2>4. Environmental Science – Rainwater Runoff</h2>
+    <p>Total rainwater accumulation over time:</p>
+    <pre><code>r(t) = 5t
+∫₀² 5t dt = 10 liters</code></pre>
+    <p>Used to forecast flood levels and drainage needs.</p>
+  </div>
+
+  <div class="example">
+    <h2>5. Computer Science – Simulating Object Movement</h2>
+    <p>Physics engine using calculus:</p>
+    <pre><code>a(t) = -9.8
+v(t) = -9.8t + v₀
+s(t) = -4.9t² + v₀t + s₀</code></pre>
+    <p>Simulates realistic motion in games or simulations.</p>
+  </div>
+
+  <div class="example">
+    <h2>6. Biology/Medicine – Drug Absorption</h2>
+    <p>Modeling exponential decay of drug concentration:</p>
+    <pre><code>C(t) = C₀ * e^(-kt)
+AUC = ∫₀^∞ C₀ * e^(-kt) dt = C₀ / k</code></pre>
+    <p>Calculates total exposure to a drug over time.</p>
+  </div>
+
+</body>
+</html>
