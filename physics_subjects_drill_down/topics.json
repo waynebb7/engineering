@@ -1,0 +1,138 @@
+{
+  "levels": ["KS2", "KS3", "GCSE", "A-Level", "BSc", "MSc"],
+  "domains": ["Foundations", "Mechanics", "Waves", "Electricity & Magnetism", "Thermal", "Modern Physics", "Space", "Maths Methods", "Measurement", "Computation"],
+  "topics": [
+    {
+      "id": "forces_basics",
+      "title": "Forces (Basics)",
+      "level": "KS2",
+      "domain": "Foundations",
+      "summary": "Pushes and pulls, contact and non-contact forces, balanced and unbalanced forces.",
+      "required": [],
+      "recommended": [],
+      "resources": [
+        { "label": "Forces basics page", "url": "forces-basics.html" }
+      ]
+    },
+    {
+      "id": "motion_basics",
+      "title": "Motion (Basics)",
+      "level": "KS2",
+      "domain": "Foundations",
+      "summary": "Speed, direction, distance, time, simple graphs.",
+      "required": [],
+      "recommended": ["forces_basics"],
+      "resources": []
+    },
+    {
+      "id": "energy_basics",
+      "title": "Energy (Basics)",
+      "level": "KS2",
+      "domain": "Foundations",
+      "summary": "Energy stores and transfers, simple everyday examples.",
+      "required": [],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "ks3_energy",
+      "title": "Energy (KS3)",
+      "level": "KS3",
+      "domain": "Thermal",
+      "summary": "Work done, simple power, heating and cooling ideas, efficiency introduction.",
+      "required": ["energy_basics"],
+      "recommended": ["motion_basics"],
+      "resources": []
+    },
+    {
+      "id": "gcse_kinematics",
+      "title": "Kinematics (GCSE)",
+      "level": "GCSE",
+      "domain": "Mechanics",
+      "summary": "Speed, velocity, acceleration, distance-time and velocity-time graphs.",
+      "required": ["motion_basics"],
+      "recommended": ["forces_basics"],
+      "resources": []
+    },
+    {
+      "id": "gcse_newton",
+      "title": "Forces and Newton's Laws (GCSE)",
+      "level": "GCSE",
+      "domain": "Mechanics",
+      "summary": "Resultant force, Newton's laws, friction and drag, weight and mass.",
+      "required": ["forces_basics", "gcse_kinematics"],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "gcse_circuits",
+      "title": "Electric Circuits (GCSE)",
+      "level": "GCSE",
+      "domain": "Electricity & Magnetism",
+      "summary": "Current, voltage, resistance, series and parallel circuits, power basics.",
+      "required": [],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "al_vectors",
+      "title": "Vectors for Physics (A-Level)",
+      "level": "A-Level",
+      "domain": "Maths Methods",
+      "summary": "Vector components, resultant vectors, basic vector arithmetic for mechanics and fields.",
+      "required": ["gcse_kinematics"],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "al_fields",
+      "title": "Electric Fields and Potential (A-Level)",
+      "level": "A-Level",
+      "domain": "Electricity & Magnetism",
+      "summary": "Field lines, electric potential, capacitance link-in.",
+      "required": ["gcse_circuits"],
+      "recommended": ["al_vectors"],
+      "resources": []
+    },
+    {
+      "id": "bsc_em",
+      "title": "Electromagnetism (Maxwell level) (BSc)",
+      "level": "BSc",
+      "domain": "Electricity & Magnetism",
+      "summary": "Maxwell equations, EM waves, boundary conditions, applications.",
+      "required": ["al_fields", "al_vectors"],
+      "recommended": ["bsc_vector_calculus"],
+      "resources": []
+    },
+    {
+      "id": "bsc_vector_calculus",
+      "title": "Vector Calculus (BSc)",
+      "level": "BSc",
+      "domain": "Maths Methods",
+      "summary": "Gradient, divergence, curl, line and surface integrals, Gauss and Stokes.",
+      "required": ["al_vectors"],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "bsc_special_relativity",
+      "title": "Special Relativity (BSc)",
+      "level": "BSc",
+      "domain": "Modern Physics",
+      "summary": "Lorentz transformations, time dilation, relativistic momentum and energy.",
+      "required": ["gcse_kinematics"],
+      "recommended": ["al_vectors"],
+      "resources": []
+    },
+    {
+      "id": "msc_gr",
+      "title": "General Relativity (MSc)",
+      "level": "MSc",
+      "domain": "Space",
+      "summary": "Curved spacetime, tensors, geodesics, Einstein field equations.",
+      "required": ["bsc_special_relativity"],
+      "recommended": ["bsc_vector_calculus"],
+      "resources": []
+    }
+  ]
+}

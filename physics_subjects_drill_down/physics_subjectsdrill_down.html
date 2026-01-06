@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Physics Topic Map</title>
+  <style>
+    :root {
+      --bg: #f2f4f8;
+      --card: #ffffff;
+      --text: #2c3e50;
+      --muted: #5b6b7a;
+      --border: #d7dde6;
+      --accent: #3498db;
+      --req: #1f77b4;
+      --rec: #2ca02c;
+      --down: #ff7f0e;
+      --warn: #b03a2e;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      margin: 0;
+      color: var(--text);
+    }
+
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 18px 16px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.4em;
+    }
+
+    header .sub {
+      margin-top: 6px;
+      opacity: 0.9;
+      font-size: 0.95em;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px;
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--card);
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      padding: 14px;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px 10px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.92em;
+      color: var(--muted);
+      margin: 10px 0 0 0;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 4px 10px;
+      background: #fbfcfe;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      display: inline-block;
+    }
+
+    .dot.req { background: var(--req); }
+    .dot.rec { background: var(--rec); }
+    .dot.down { background: var(--down); }
+
+    .topic-list {
+      margin-top: 12px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .topic {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px;
+      background: #ffffff;
+      cursor: pointer;
+      transition: transform 0.03s ease-in-out;
+    }
+
+    .topic:hover { transform: translateY(-1px); }
+
+    .topic .title {
+      font-weight: 700;
+      margin: 0;
+      font-size: 0.98em;
+    }
+
+    .topic .meta {
+      margin-top: 4px;
+      font-size: 0.88em;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pill {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 2px 8px;
+      background: #fbfcfe;
+    }
+
+    .topic.selected {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(52,152,219,0.15);
+    }
+
+    .topic.dim { opacity: 0.35; }
+
+    .topic.req { border-left: 6px solid var(--req); }
+    .topic.rec { border-left: 6px solid var(--rec); }
+    .topic.down { border-left: 6px solid var(--down); }
+
+    .detail h2 {
+      margin: 0 0 8px 0;
+      font-size: 1.2em;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 8px;
+    }
+
+    .detail .summary {
+      margin: 0 0 10px 0;
+      color: var(--text);
+    }
+
+    .detail .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .box {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px;
+      background: #fbfcfe;
+      min-height: 120px;
+    }
+
+    .box h3 {
+      margin: 0 0 8px 0;
+      font-size: 1.0em;
+    }
+
+    .tree {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--text);
+      font-size: 0.95em;
+    }
+
+    .tree li { margin: 4px 0; }
+
+    .resources a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .resources a:hover {
+      color: #2980b9;
+      text-decoration: underline;
+    }
+
+    .status {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: #fbfcfe;
+      color: var(--muted);
+      font-size: 0.95em;
+    }
+
+    .warning {
+      border-color: rgba(176,58,46,0.4);
+      background: rgba(176,58,46,0.06);
+      color: var(--warn);
+    }
+
+    @media (max-width: 980px) {
+      main { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Physics Topic Map</h1>
+    <div class="sub">Click a topic to highlight prerequisites and downstream unlocks. Data source: topics.json</div>
+  </header>
+
+  <main>
+    <section class="panel">
+      <div class="controls">
+        <input id="search" type="text" placeholder="Search topics by title or summary" />
+        <select id="levelFilter"></select>
+        <select id="domainFilter"></select>
+      </div>
+
+      <div class="legend">
+        <span class="badge"><span class="dot req"></span>Required prerequisites</span>
+        <span class="badge"><span class="dot rec"></span>Recommended prerequisites</span>
+        <span class="badge"><span class="dot down"></span>Downstream unlocks</span>
+      </div>
+
+      <div id="cycleWarning" class="status warning" style="display:none;"></div>
+      <div id="topicList" class="topic-list"></div>
+    </section>
+
+    <section class="panel detail">
+      <h2 id="detailTitle">Select a topic</h2>
+      <p id="detailSummary" class="summary">A topic selection will display prerequisites and downstream topics.</p>
+
+      <div class="status" id="detailMeta"></div>
+
+      <div class="grid">
+        <div class="box">
+          <h3>Required prerequisites</h3>
+          <ul id="reqTree" class="tree"></ul>
+        </div>
+        <div class="box">
+          <h3>Recommended prerequisites</h3>
+          <ul id="recTree" class="tree"></ul>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="box">
+          <h3>Unlocked downstream topics</h3>
+          <ul id="downList" class="tree"></ul>
+        </div>
+        <div class="box resources">
+          <h3>Resources</h3>
+          <ul id="resList" class="tree"></ul>
+        </div>
+      </div>
+
+      <div class="status" id="statusLine">
+        Tip: Add or edit topics by updating topics.json. Refresh the page to load changes.
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const ui = {
+      search: document.getElementById("search"),
+      levelFilter: document.getElementById("levelFilter"),
+      domainFilter: document.getElementById("domainFilter"),
+      topicList: document.getElementById("topicList"),
+      cycleWarning: document.getElementById("cycleWarning"),
+
+      detailTitle: document.getElementById("detailTitle"),
+      detailSummary: document.getElementById("detailSummary"),
+      detailMeta: document.getElementById("detailMeta"),
+      reqTree: document.getElementById("reqTree"),
+      recTree: document.getElementById("recTree"),
+      downList: document.getElementById("downList"),
+      resList: document.getElementById("resList")
+    };
+
+    let DB = null;
+    let topicById = new Map();
+    let selectedId = null;
+
+    function escapeHtml(s) {
+      return String(s)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function levelIndex(level) {
+      const levels = DB?.levels ?? [];
+      const idx = levels.indexOf(level);
+      return idx >= 0 ? idx : 999;
+    }
+
+    function setFilters() {
+      const levelOptions = ["All levels"].concat(DB.levels);
+      ui.levelFilter.innerHTML = levelOptions.map((l, i) =>
+        `<option value="${i === 0 ? "" : escapeHtml(l)}">${escapeHtml(l)}</option>`
+      ).join("");
+
+      const domainOptions = ["All domains"].concat(DB.domains);
+      ui.domainFilter.innerHTML = domainOptions.map((d, i) =>
+        `<option value="${i === 0 ? "" : escapeHtml(d)}">${escapeHtml(d)}</option>`
+      ).join("");
+    }
+
+    function normalizeArray(a) {
+      if (!Array.isArray(a)) return [];
+      return a.filter(Boolean);
+    }
+
+    function validateIds(topics) {
+      const ids = new Set(topics.map(t => t.id));
+      const missing = [];
+
+      for (const t of topics) {
+        for (const r of normalizeArray(t.required)) {
+          if (!ids.has(r)) missing.push({ from: t.id, missing: r, type: "required" });
+        }
+        for (const r of normalizeArray(t.recommended)) {
+          if (!ids.has(r)) missing.push({ from: t.id, missing: r, type: "recommended" });
+        }
+      }
+      return missing;
+    }
+
+    function detectCycles(topics) {
+      const graph = new Map();
+      for (const t of topics) graph.set(t.id, normalizeArray(t.required));
+
+      const visited = new Set();
+      const stack = new Set();
+      const cycles = [];
+
+      function dfs(node, path) {
+        if (stack.has(node)) {
+          const idx = path.indexOf(node);
+          cycles.push(path.slice(idx).concat(node));
+          return;
+        }
+        if (visited.has(node)) return;
+
+        visited.add(node);
+        stack.add(node);
+
+        const next = graph.get(node) || [];
+        for (const n of next) dfs(n, path.concat(n));
+
+        stack.delete(node);
+      }
+
+      for (const t of topics) dfs(t.id, [t.id]);
+      return cycles;
+    }
+
+    function getAncestors(startId, mode) {
+      const seen = new Set();
+      const stack = [startId];
+
+      while (stack.length) {
+        const id = stack.pop();
+        const t = topicById.get(id);
+        if (!t) continue;
+
+        const next = normalizeArray(mode === "required" ? t.required : t.recommended);
+        for (const n of next) {
+          if (!seen.has(n)) {
+            seen.add(n);
+            stack.push(n);
+          }
+        }
+      }
+      return seen;
+    }
+
+    function isUnlocked(topicId, completedSet) {
+      const t = topicById.get(topicId);
+      if (!t) return false;
+      const req = normalizeArray(t.required);
+      return req.every(r => completedSet.has(r));
+    }
+
+    function getDownstreamUnlocked(selected) {
+      if (!selected) return [];
+      const reqAnc = getAncestors(selected, "required");
+      reqAnc.add(selected);
+
+      const result = [];
+      for (const t of DB.topics) {
+        if (t.id === selected) continue;
+        const req = new Set(normalizeArray(t.required));
+        const allReqCovered = [...req].every(x => reqAnc.has(x));
+        const dependsOnSelectedOrAnc = [...req].some(x => x === selected || reqAnc.has(x));
+        if (req.size > 0 && allReqCovered && dependsOnSelectedOrAnc) result.push(t.id);
+      }
+      return result;
+    }
+
+    function buildTree(rootId, mode) {
+      const t = topicById.get(rootId);
+      if (!t) return document.createElement("ul");
+      const roots = normalizeArray(mode === "required" ? t.required : t.recommended);
+
+      const ul = document.createElement("ul");
+      ul.className = "tree";
+      const visited = new Set();
+
+      function addNode(parentUl, id) {
+        const node = topicById.get(id);
+        if (!node) return;
+
+        const li = document.createElement("li");
+        li.innerHTML = `<span>${escapeHtml(node.title)} <span style="color:var(--muted);">(${escapeHtml(node.level)}, ${escapeHtml(node.domain)})</span></span>`;
+        parentUl.appendChild(li);
+
+        if (visited.has(id)) return;
+        visited.add(id);
+
+        const children = normalizeArray(mode === "required" ? node.required : node.recommended);
+        if (children.length) {
+          const childUl = document.createElement("ul");
+          childUl.className = "tree";
+          li.appendChild(childUl);
+          children.forEach(c => addNode(childUl, c));
+        }
+      }
+
+      roots.forEach(r => addNode(ul, r));
+      return ul;
+    }
+
+    function renderList() {
+      const q = ui.search.value.trim().toLowerCase();
+      const level = ui.levelFilter.value;
+      const domain = ui.domainFilter.value;
+
+      const items = DB.topics
+        .filter(t => !level || t.level === level)
+        .filter(t => !domain || t.domain === domain)
+        .filter(t => {
+          if (!q) return true;
+          const hay = (t.title + " " + (t.summary || "")).toLowerCase();
+          return hay.includes(q);
+        })
+        .sort((a, b) => {
+          const li = levelIndex(a.level) - levelIndex(b.level);
+          if (li !== 0) return li;
+          return a.title.localeCompare(b.title);
+        });
+
+      const reqSet = selectedId ? getAncestors(selectedId, "required") : new Set();
+      const recSet = selectedId ? getAncestors(selectedId, "recommended") : new Set();
+      const down = selectedId ? new Set(getDownstreamUnlocked(selectedId)) : new Set();
+
+      ui.topicList.innerHTML = "";
+
+      for (const t of items) {
+        const div = document.createElement("div");
+        div.className = "topic";
+        div.dataset.id = t.id;
+
+        if (t.id === selectedId) div.classList.add("selected");
+
+        // Highlight logic
+        const isReq = selectedId && reqSet.has(t.id);
+        const isRec = selectedId && recSet.has(t.id) && !isReq;
+        const isDown = selectedId && down.has(t.id);
+
+        if (selectedId) {
+          const active = (t.id === selectedId) || isReq || isRec || isDown;
+          if (!active) div.classList.add("dim");
+          if (isReq) div.classList.add("req");
+          if (isRec) div.classList.add("rec");
+          if (isDown) div.classList.add("down");
+        }
+
+        div.innerHTML = `
+          <div class="title">${escapeHtml(t.title)}</div>
+          <div class="meta">
+            <span class="pill">${escapeHtml(t.level)}</span>
+            <span class="pill">${escapeHtml(t.domain)}</span>
+          </div>
+        `;
+
+        div.addEventListener("click", () => selectTopic(t.id));
+        ui.topicList.appendChild(div);
+      }
+    }
+
+    function clearChildren(el) {
+      while (el.firstChild) el.removeChild(el.firstChild);
+    }
+
+    function renderDetail(id) {
+      const t = topicById.get(id);
+      if (!t) return;
+
+      ui.detailTitle.textContent = t.title;
+      ui.detailSummary.textContent = t.summary || "";
+
+      const req = normalizeArray(t.required);
+      const rec = normalizeArray(t.recommended);
+
+      ui.detailMeta.innerHTML = `
+        <strong>Level:</strong> ${escapeHtml(t.level)} &nbsp; | &nbsp;
+        <strong>Domain:</strong> ${escapeHtml(t.domain)} &nbsp; | &nbsp;
+        <strong>Required direct prerequisites:</strong> ${req.length} &nbsp; | &nbsp;
+        <strong>Recommended direct prerequisites:</strong> ${rec.length}
+      `;
+
+      clearChildren(ui.reqTree);
+      clearChildren(ui.recTree);
+
+      const reqTree = buildTree(id, "required");
+      const recTree = buildTree(id, "recommended");
+
+      // reqTree and recTree are UL elements; move their children into target ULs
+      while (reqTree.firstChild) ui.reqTree.appendChild(reqTree.firstChild);
+      while (recTree.firstChild) ui.recTree.appendChild(recTree.firstChild);
+
+      clearChildren(ui.downList);
+      const down = getDownstreamUnlocked(id)
+        .map(x => topicById.get(x))
+        .filter(Boolean)
+        .sort((a, b) => levelIndex(a.level) - levelIndex(b.level) || a.title.localeCompare(b.title));
+
+      if (down.length === 0) {
+        const li = document.createElement("li");
+        li.textContent = "None in current dataset.";
+        ui.downList.appendChild(li);
+      } else {
+        for (const d of down) {
+          const li = document.createElement("li");
+          li.textContent = `${d.title} (${d.level}, ${d.domain})`;
+          ui.downList.appendChild(li);
+        }
+      }
+
+      clearChildren(ui.resList);
+      const res = Array.isArray(t.resources) ? t.resources : [];
+      if (res.length === 0) {
+        const li = document.createElement("li");
+        li.textContent = "No resources attached.";
+        ui.resList.appendChild(li);
+      } else {
+        for (const r of res) {
+          const li = document.createElement("li");
+          const a = document.createElement("a");
+          a.href = r.url;
+          a.textContent = r.label || r.url;
+          a.target = "_blank";
+          a.rel = "noopener";
+          li.appendChild(a);
+          ui.resList.appendChild(li);
+        }
+      }
+    }
+
+    function selectTopic(id) {
+      selectedId = id;
+      renderDetail(id);
+      renderList();
+    }
+
+    async function init() {
+      const resp = await fetch("./topics.json", { cache: "no-store" });
+      DB = await resp.json();
+
+      topicById = new Map(DB.topics.map(t => [t.id, t]));
+
+      // Basic validation
+      const missing = validateIds(DB.topics);
+      const cycles = detectCycles(DB.topics);
+
+      if (missing.length || cycles.length) {
+        const parts = [];
+        if (missing.length) {
+          const lines = missing.slice(0, 12).map(m => `${m.type}: ${m.from} references missing id ${m.missing}`);
+          parts.push("Missing prerequisite IDs:\n" + lines.join("\n") + (missing.length > 12 ? "\n..." : ""));
+        }
+        if (cycles.length) {
+          const lines = cycles.slice(0, 6).map(c => c.join(" -> "));
+          parts.push("Cycle detected in required prerequisites:\n" + lines.join("\n") + (cycles.length > 6 ? "\n..." : ""));
+        }
+        ui.cycleWarning.style.display = "block";
+        ui.cycleWarning.textContent = parts.join("\n\n");
+      }
+
+      setFilters();
+      renderList();
+
+      ui.search.addEventListener("input", renderList);
+      ui.levelFilter.addEventListener("change", renderList);
+      ui.domainFilter.addEventListener("change", renderList);
+
+      // Default selection
+      selectTopic(DB.topics[0]?.id);
+    }
+
+    init().catch(err => {
+      ui.cycleWarning.style.display = "block";
+      ui.cycleWarning.textContent = "Failed to load topics.json. Use a local web server rather than opening the file directly.\n\n" + String(err);
+    });
+  </script>
+</body>
+</html>
