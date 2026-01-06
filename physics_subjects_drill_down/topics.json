@@ -1,7 +1,48 @@
 {
-  "levels": ["KS2", "KS3", "GCSE", "A-Level", "BSc", "MSc"],
-  "domains": ["Foundations", "Mechanics", "Waves", "Electricity & Magnetism", "Thermal", "Modern Physics", "Space", "Maths Methods", "Measurement", "Computation"],
+  "levels": ["KS2", "KS3", "GCSE", "A-Level", "BSc", "MSc", "Frontier"],
+  "domains": [
+    "Foundations",
+    "Measurement",
+    "Maths Methods",
+    "Mechanics",
+    "Waves",
+    "Optics",
+    "Electricity & Magnetism",
+    "Thermal",
+    "Fluids",
+    "Plasma",
+    "Modern Physics",
+    "Quantum",
+    "Atomic & Molecular",
+    "Nuclear",
+    "Particle",
+    "Condensed Matter",
+    "Relativity & Gravitation",
+    "Astrophysics & Space",
+    "Computation",
+    "Instrumentation"
+  ],
   "topics": [
+    {
+      "id": "units_si",
+      "title": "Units and SI (Basics)",
+      "level": "KS2",
+      "domain": "Measurement",
+      "summary": "Common units, measuring length, time, mass, temperature; introduction to standard units.",
+      "required": [],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "graphs_basics",
+      "title": "Graphs and Data (Basics)",
+      "level": "KS2",
+      "domain": "Measurement",
+      "summary": "Reading simple charts, axes, scales, and basic interpretation of trends.",
+      "required": [],
+      "recommended": [],
+      "resources": []
+    },
     {
       "id": "forces_basics",
       "title": "Forces (Basics)",
@@ -9,19 +50,17 @@
       "domain": "Foundations",
       "summary": "Pushes and pulls, contact and non-contact forces, balanced and unbalanced forces.",
       "required": [],
-      "recommended": [],
-      "resources": [
-        { "label": "Forces basics page", "url": "forces-basics.html" }
-      ]
+      "recommended": ["units_si"],
+      "resources": []
     },
     {
       "id": "motion_basics",
       "title": "Motion (Basics)",
       "level": "KS2",
       "domain": "Foundations",
-      "summary": "Speed, direction, distance, time, simple graphs.",
-      "required": [],
-      "recommended": ["forces_basics"],
+      "summary": "Distance, time, speed as a simple rate; direction as a concept.",
+      "required": ["units_si"],
+      "recommended": ["graphs_basics"],
       "resources": []
     },
     {
@@ -29,8 +68,99 @@
       "title": "Energy (Basics)",
       "level": "KS2",
       "domain": "Foundations",
-      "summary": "Energy stores and transfers, simple everyday examples.",
+      "summary": "Energy in everyday contexts; simple storage and transfer ideas.",
       "required": [],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "materials_basics",
+      "title": "Materials (Basics)",
+      "level": "KS2",
+      "domain": "Foundations",
+      "summary": "Simple material properties: hard/soft, rigid/flexible, rough/smooth; basic testing ideas.",
+      "required": [],
+      "recommended": ["units_si"],
+      "resources": []
+    },
+    {
+      "id": "electricity_basics",
+      "title": "Electricity (Basics)",
+      "level": "KS2",
+      "domain": "Foundations",
+      "summary": "Simple circuits, batteries, bulbs, switches; safe handling and basic vocabulary.",
+      "required": ["units_si"],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "magnetism_basics",
+      "title": "Magnetism (Basics)",
+      "level": "KS2",
+      "domain": "Foundations",
+      "summary": "Magnets, attraction/repulsion, magnetic materials, simple field visualisation.",
+      "required": [],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "waves_basics",
+      "title": "Waves (Basics)",
+      "level": "KS2",
+      "domain": "Foundations",
+      "summary": "Vibrations, sound as a wave, light as something that travels; basic reflection ideas.",
+      "required": [],
+      "recommended": ["motion_basics"],
+      "resources": []
+    },
+
+    {
+      "id": "ks3_units_prefixes",
+      "title": "SI Units, Prefixes, and Conversions",
+      "level": "KS3",
+      "domain": "Measurement",
+      "summary": "SI base units, prefixes (milli, kilo, mega), conversions and dimensional checking.",
+      "required": ["units_si"],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "ks3_uncertainty_intro",
+      "title": "Measurement Uncertainty (Intro)",
+      "level": "KS3",
+      "domain": "Measurement",
+      "summary": "Repeat readings, range, resolution, basic uncertainty statements.",
+      "required": ["ks3_units_prefixes"],
+      "recommended": ["graphs_basics"],
+      "resources": []
+    },
+    {
+      "id": "ks3_graphs",
+      "title": "Graphs and Relationships (KS3)",
+      "level": "KS3",
+      "domain": "Measurement",
+      "summary": "Line graphs, gradients as rates, proportionality and interpreting real data.",
+      "required": ["graphs_basics"],
+      "recommended": ["ks3_units_prefixes"],
+      "resources": []
+    },
+    {
+      "id": "ks3_forces",
+      "title": "Forces (KS3)",
+      "level": "KS3",
+      "domain": "Mechanics",
+      "summary": "Resultant force idea, friction and drag, weight as a force, simple free-body diagrams.",
+      "required": ["forces_basics", "ks3_units_prefixes"],
+      "recommended": ["ks3_graphs"],
+      "resources": []
+    },
+    {
+      "id": "ks3_motion",
+      "title": "Motion (KS3)",
+      "level": "KS3",
+      "domain": "Mechanics",
+      "summary": "Speed and velocity language, acceleration concept, simple motion graphs.",
+      "required": ["motion_basics", "ks3_graphs"],
       "recommended": [],
       "resources": []
     },
@@ -39,38 +169,254 @@
       "title": "Energy (KS3)",
       "level": "KS3",
       "domain": "Thermal",
-      "summary": "Work done, simple power, heating and cooling ideas, efficiency introduction.",
-      "required": ["energy_basics"],
-      "recommended": ["motion_basics"],
+      "summary": "Energy stores and transfers, work done concept, simple power concept, efficiency intro.",
+      "required": ["energy_basics", "ks3_units_prefixes"],
+      "recommended": ["ks3_graphs", "ks3_motion"],
       "resources": []
     },
+    {
+      "id": "ks3_pressure_density",
+      "title": "Pressure and Density (KS3)",
+      "level": "KS3",
+      "domain": "Fluids",
+      "summary": "Density concept, pressure in fluids, simple qualitative buoyancy reasoning.",
+      "required": ["ks3_units_prefixes"],
+      "recommended": ["ks3_forces"],
+      "resources": []
+    },
+    {
+      "id": "ks3_electricity",
+      "title": "Electricity (KS3)",
+      "level": "KS3",
+      "domain": "Electricity & Magnetism",
+      "summary": "Current and voltage ideas, series/parallel basics, resistance as opposition.",
+      "required": ["electricity_basics", "ks3_units_prefixes"],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "ks3_magnetism_em",
+      "title": "Magnetism and Electromagnets (KS3)",
+      "level": "KS3",
+      "domain": "Electricity & Magnetism",
+      "summary": "Magnetic fields, electromagnets, motors and generators overview.",
+      "required": ["magnetism_basics", "ks3_electricity"],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "ks3_waves",
+      "title": "Waves (KS3)",
+      "level": "KS3",
+      "domain": "Waves",
+      "summary": "Amplitude, frequency, wavelength, wave speed relation, basic reflection/refraction.",
+      "required": ["waves_basics", "ks3_units_prefixes"],
+      "recommended": ["ks3_graphs"],
+      "resources": []
+    },
+    {
+      "id": "ks3_light_sound",
+      "title": "Light and Sound (KS3)",
+      "level": "KS3",
+      "domain": "Waves",
+      "summary": "Sound transmission, pitch and loudness, light rays, shadows, simple lenses overview.",
+      "required": ["ks3_waves"],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "ks3_space",
+      "title": "Space (KS3)",
+      "level": "KS3",
+      "domain": "Astrophysics & Space",
+      "summary": "Solar system overview, gravity as attraction, day/year, basic observational ideas.",
+      "required": ["ks3_forces"],
+      "recommended": ["ks3_units_prefixes"],
+      "resources": []
+    },
+
+    {
+      "id": "gcse_math_graphs_rearranging",
+      "title": "Physics Maths Skills for GCSE",
+      "level": "GCSE",
+      "domain": "Maths Methods",
+      "summary": "Rearranging equations, proportionality, standard form, graph gradients and areas.",
+      "required": ["ks3_graphs", "ks3_units_prefixes"],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "gcse_uncertainty",
+      "title": "Uncertainty and Error (GCSE)",
+      "level": "GCSE",
+      "domain": "Measurement",
+      "summary": "Random vs systematic error, percentage uncertainty, combining uncertainties (intro).",
+      "required": ["ks3_uncertainty_intro", "gcse_math_graphs_rearranging"],
+      "recommended": [],
+      "resources": []
+    },
+
     {
       "id": "gcse_kinematics",
       "title": "Kinematics (GCSE)",
       "level": "GCSE",
       "domain": "Mechanics",
-      "summary": "Speed, velocity, acceleration, distance-time and velocity-time graphs.",
-      "required": ["motion_basics"],
-      "recommended": ["forces_basics"],
-      "resources": []
-    },
-    {
-      "id": "gcse_newton",
-      "title": "Forces and Newton's Laws (GCSE)",
-      "level": "GCSE",
-      "domain": "Mechanics",
-      "summary": "Resultant force, Newton's laws, friction and drag, weight and mass.",
-      "required": ["forces_basics", "gcse_kinematics"],
+      "summary": "Distance-time and velocity-time graphs, acceleration, SUVAT-type reasoning (intro).",
+      "required": ["ks3_motion", "gcse_math_graphs_rearranging"],
       "recommended": [],
       "resources": []
     },
+    {
+      "id": "gcse_newtons_laws",
+      "title": "Forces and Newton's Laws (GCSE)",
+      "level": "GCSE",
+      "domain": "Mechanics",
+      "summary": "Resultant force, Newton's laws conceptually, friction/drag, terminal velocity intro.",
+      "required": ["ks3_forces", "gcse_kinematics"],
+      "recommended": ["gcse_uncertainty"],
+      "resources": []
+    },
+    {
+      "id": "gcse_moments",
+      "title": "Moments and Levers (GCSE)",
+      "level": "GCSE",
+      "domain": "Mechanics",
+      "summary": "Turning effect, torque concept, balance condition, simple structural examples.",
+      "required": ["ks3_forces", "gcse_math_graphs_rearranging"],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "gcse_energy_work_power",
+      "title": "Energy, Work, Power, Efficiency (GCSE)",
+      "level": "GCSE",
+      "domain": "Thermal",
+      "summary": "Work done, power, energy transfers, Sankey diagrams, efficiency calculations.",
+      "required": ["ks3_energy", "gcse_math_graphs_rearranging"],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "gcse_thermal_transfer",
+      "title": "Thermal Transfer (GCSE)",
+      "level": "GCSE",
+      "domain": "Thermal",
+      "summary": "Conduction, convection, radiation; insulation and practical implications.",
+      "required": ["ks3_energy"],
+      "recommended": ["gcse_energy_work_power"],
+      "resources": []
+    },
+    {
+      "id": "gcse_particle_model",
+      "title": "Particle Model of Matter (GCSE)",
+      "level": "GCSE",
+      "domain": "Thermal",
+      "summary": "States of matter, internal energy concept, specific heat capacity (intro).",
+      "required": ["ks3_units_prefixes", "ks3_energy"],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "gcse_pressure_density",
+      "title": "Pressure and Density (GCSE)",
+      "level": "GCSE",
+      "domain": "Fluids",
+      "summary": "Pressure in fluids, density calculations, basic buoyancy reasoning.",
+      "required": ["ks3_pressure_density", "gcse_math_graphs_rearranging"],
+      "recommended": [],
+      "resources": []
+    },
+
+    {
+      "id": "gcse_waves",
+      "title": "Waves (GCSE)",
+      "level": "GCSE",
+      "domain": "Waves",
+      "summary": "Wave speed equation, reflection/refraction, sound and light basics, EM spectrum intro.",
+      "required": ["ks3_waves", "gcse_math_graphs_rearranging"],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "gcse_light_optics",
+      "title": "Light and Optics (GCSE)",
+      "level": "GCSE",
+      "domain": "Optics",
+      "summary": "Reflection, refraction, lenses (intro), ray diagrams, basic image formation.",
+      "required": ["ks3_light_sound", "gcse_waves"],
+      "recommended": [],
+      "resources": []
+    },
+
     {
       "id": "gcse_circuits",
       "title": "Electric Circuits (GCSE)",
       "level": "GCSE",
       "domain": "Electricity & Magnetism",
-      "summary": "Current, voltage, resistance, series and parallel circuits, power basics.",
-      "required": [],
+      "summary": "Current, voltage, resistance, series/parallel, power and energy in circuits.",
+      "required": ["ks3_electricity", "gcse_math_graphs_rearranging"],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "gcse_electricity_household",
+      "title": "Household Electricity and Safety (GCSE)",
+      "level": "GCSE",
+      "domain": "Electricity & Magnetism",
+      "summary": "Mains AC basics, fuses, earthing, power ratings, safety logic.",
+      "required": ["gcse_circuits"],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "gcse_magnetism_em",
+      "title": "Magnetism and Electromagnetism (GCSE)",
+      "level": "GCSE",
+      "domain": "Electricity & Magnetism",
+      "summary": "Motor effect, generators, transformers (intro), electromagnetic induction (intro).",
+      "required": ["ks3_magnetism_em", "gcse_circuits"],
+      "recommended": [],
+      "resources": []
+    },
+
+    {
+      "id": "gcse_atomic_structure",
+      "title": "Atomic Structure (GCSE)",
+      "level": "GCSE",
+      "domain": "Modern Physics",
+      "summary": "Atoms, isotopes, electron shells (qualitative), basic atomic vocabulary.",
+      "required": ["ks3_units_prefixes"],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "gcse_radioactivity",
+      "title": "Radioactivity and Half-life (GCSE)",
+      "level": "GCSE",
+      "domain": "Nuclear",
+      "summary": "Alpha, beta, gamma, penetration, half-life concept and simple calculations.",
+      "required": ["gcse_atomic_structure", "gcse_math_graphs_rearranging"],
+      "recommended": ["gcse_uncertainty"],
+      "resources": []
+    },
+    {
+      "id": "gcse_space",
+      "title": "Space Physics (GCSE)",
+      "level": "GCSE",
+      "domain": "Astrophysics & Space",
+      "summary": "Orbits overview, redshift idea, life cycle of stars (intro), gravity in space contexts.",
+      "required": ["ks3_space", "gcse_math_graphs_rearranging"],
+      "recommended": ["gcse_waves"],
+      "resources": []
+    },
+
+    {
+      "id": "al_math_methods",
+      "title": "Mathematical Methods for Physics (A-Level)",
+      "level": "A-Level",
+      "domain": "Maths Methods",
+      "summary": "Algebraic manipulation, trig usage in physics, exponentials/logs in physical contexts.",
+      "required": ["gcse_math_graphs_rearranging"],
       "recommended": [],
       "resources": []
     },
@@ -79,29 +425,225 @@
       "title": "Vectors for Physics (A-Level)",
       "level": "A-Level",
       "domain": "Maths Methods",
-      "summary": "Vector components, resultant vectors, basic vector arithmetic for mechanics and fields.",
-      "required": ["gcse_kinematics"],
+      "summary": "Components, resultant vectors, resolving forces, vector representation of quantities.",
+      "required": ["gcse_kinematics", "al_math_methods"],
       "recommended": [],
       "resources": []
     },
     {
-      "id": "al_fields",
-      "title": "Electric Fields and Potential (A-Level)",
+      "id": "al_calculus_intro",
+      "title": "Calculus Concepts for Physics (A-Level)",
       "level": "A-Level",
-      "domain": "Electricity & Magnetism",
-      "summary": "Field lines, electric potential, capacitance link-in.",
-      "required": ["gcse_circuits"],
-      "recommended": ["al_vectors"],
+      "domain": "Maths Methods",
+      "summary": "Rate of change, gradients and areas as physical quantities, integration as accumulation.",
+      "required": ["al_math_methods", "ks3_graphs"],
+      "recommended": [],
+      "resources": []
+    },
+
+    {
+      "id": "al_mechanics",
+      "title": "Mechanics (A-Level)",
+      "level": "A-Level",
+      "domain": "Mechanics",
+      "summary": "Newtonian mechanics with vector resolution; momentum and impulse.",
+      "required": ["gcse_newtons_laws", "al_vectors"],
+      "recommended": ["al_calculus_intro"],
       "resources": []
     },
     {
-      "id": "bsc_em",
-      "title": "Electromagnetism (Maxwell level) (BSc)",
-      "level": "BSc",
+      "id": "al_momentum",
+      "title": "Momentum and Collisions (A-Level)",
+      "level": "A-Level",
+      "domain": "Mechanics",
+      "summary": "Conservation of momentum, impulse, collision models, energy considerations.",
+      "required": ["al_mechanics"],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "al_circular_motion",
+      "title": "Circular Motion (A-Level)",
+      "level": "A-Level",
+      "domain": "Mechanics",
+      "summary": "Centripetal acceleration, orbital motion basics, link to gravitational orbits.",
+      "required": ["al_mechanics"],
+      "recommended": ["al_calculus_intro"],
+      "resources": []
+    },
+    {
+      "id": "al_shm",
+      "title": "Simple Harmonic Motion (A-Level)",
+      "level": "A-Level",
+      "domain": "Waves",
+      "summary": "Oscillations, restoring force idea, energy in oscillations, phase.",
+      "required": ["al_mechanics", "gcse_waves"],
+      "recommended": ["al_calculus_intro"],
+      "resources": []
+    },
+
+    {
+      "id": "al_waves",
+      "title": "Waves and Superposition (A-Level)",
+      "level": "A-Level",
+      "domain": "Waves",
+      "summary": "Superposition, standing waves, interference, diffraction concepts.",
+      "required": ["gcse_waves", "al_math_methods"],
+      "recommended": ["al_calculus_intro"],
+      "resources": []
+    },
+    {
+      "id": "al_optics",
+      "title": "Optics (A-Level)",
+      "level": "A-Level",
+      "domain": "Optics",
+      "summary": "Interference and diffraction, diffraction grating, resolving power basics.",
+      "required": ["al_waves", "gcse_light_optics"],
+      "recommended": [],
+      "resources": []
+    },
+
+    {
+      "id": "al_circuits",
+      "title": "Electric Circuits (A-Level)",
+      "level": "A-Level",
       "domain": "Electricity & Magnetism",
-      "summary": "Maxwell equations, EM waves, boundary conditions, applications.",
-      "required": ["al_fields", "al_vectors"],
-      "recommended": ["bsc_vector_calculus"],
+      "summary": "Circuit laws, internal resistance, power, more detailed component behaviour.",
+      "required": ["gcse_circuits", "al_math_methods"],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "al_electric_fields",
+      "title": "Electric Fields and Potential (A-Level)",
+      "level": "A-Level",
+      "domain": "Electricity & Magnetism",
+      "summary": "Field models, potential difference meaning, capacitors introduction.",
+      "required": ["al_circuits", "al_vectors"],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "al_capacitance",
+      "title": "Capacitors (A-Level)",
+      "level": "A-Level",
+      "domain": "Electricity & Magnetism",
+      "summary": "Capacitance concepts, charging/discharging behaviour (intro), energy stored.",
+      "required": ["al_electric_fields"],
+      "recommended": ["al_calculus_intro"],
+      "resources": []
+    },
+    {
+      "id": "al_magnetic_fields",
+      "title": "Magnetic Fields (A-Level)",
+      "level": "A-Level",
+      "domain": "Electricity & Magnetism",
+      "summary": "Magnetic field models, forces on conductors/charges, basic flux ideas.",
+      "required": ["gcse_magnetism_em", "al_vectors"],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "al_em_induction",
+      "title": "Electromagnetic Induction (A-Level)",
+      "level": "A-Level",
+      "domain": "Electricity & Magnetism",
+      "summary": "Faraday/Lenz concepts, transformers, generators, induced emf reasoning.",
+      "required": ["al_magnetic_fields", "al_circuits"],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "al_ac",
+      "title": "Alternating Current (A-Level)",
+      "level": "A-Level",
+      "domain": "Electricity & Magnetism",
+      "summary": "AC waveforms, rms ideas, simple impedance concepts (intro).",
+      "required": ["al_circuits", "al_waves"],
+      "recommended": ["al_calculus_intro"],
+      "resources": []
+    },
+
+    {
+      "id": "al_thermal",
+      "title": "Thermal Physics (A-Level)",
+      "level": "A-Level",
+      "domain": "Thermal",
+      "summary": "Gas laws, internal energy, specific heat, latent heat, thermal processes.",
+      "required": ["gcse_particle_model", "al_math_methods"],
+      "recommended": ["al_calculus_intro"],
+      "resources": []
+    },
+
+    {
+      "id": "al_nuclear",
+      "title": "Nuclear Physics (A-Level)",
+      "level": "A-Level",
+      "domain": "Nuclear",
+      "summary": "Nuclear structure, decay equations, activity, nuclear energy and binding (intro).",
+      "required": ["gcse_radioactivity", "al_math_methods"],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "al_quantum_intro",
+      "title": "Quantum Physics (A-Level Intro)",
+      "level": "A-Level",
+      "domain": "Quantum",
+      "summary": "Photons, photoelectric effect concept, wave-particle duality, basic quantisation.",
+      "required": ["al_waves", "al_math_methods"],
+      "recommended": ["gcse_atomic_structure"],
+      "resources": []
+    },
+    {
+      "id": "al_particles_intro",
+      "title": "Particle Physics (A-Level Intro)",
+      "level": "A-Level",
+      "domain": "Particle",
+      "summary": "Standard Model overview, antiparticles, interactions, detectors conceptually.",
+      "required": ["al_nuclear"],
+      "recommended": ["al_quantum_intro"],
+      "resources": []
+    },
+    {
+      "id": "al_astrophysics",
+      "title": "Astrophysics (A-Level)",
+      "level": "A-Level",
+      "domain": "Astrophysics & Space",
+      "summary": "Orbits, stellar spectra basics, luminosity ideas, cosmology intro.",
+      "required": ["gcse_space", "al_mechanics", "al_waves"],
+      "recommended": [],
+      "resources": []
+    },
+
+    {
+      "id": "bsc_linear_algebra",
+      "title": "Linear Algebra for Physics (BSc)",
+      "level": "BSc",
+      "domain": "Maths Methods",
+      "summary": "Vectors and matrices, eigenvalues/eigenvectors as physics tools.",
+      "required": ["al_vectors", "al_math_methods"],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "bsc_ode",
+      "title": "Differential Equations (ODEs) (BSc)",
+      "level": "BSc",
+      "domain": "Maths Methods",
+      "summary": "First and second order ODEs, driven/undriven oscillators, physical modelling.",
+      "required": ["al_calculus_intro", "al_shm"],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "bsc_pde",
+      "title": "Partial Differential Equations (PDEs) (BSc)",
+      "level": "BSc",
+      "domain": "Maths Methods",
+      "summary": "Wave equation, diffusion equation, Laplace equation as physics foundations.",
+      "required": ["bsc_ode", "al_waves"],
+      "recommended": [],
       "resources": []
     },
     {
@@ -109,29 +651,518 @@
       "title": "Vector Calculus (BSc)",
       "level": "BSc",
       "domain": "Maths Methods",
-      "summary": "Gradient, divergence, curl, line and surface integrals, Gauss and Stokes.",
-      "required": ["al_vectors"],
+      "summary": "Gradient, divergence, curl; line and surface integrals; Gauss and Stokes theorems.",
+      "required": ["bsc_linear_algebra", "al_calculus_intro"],
       "recommended": [],
       "resources": []
     },
     {
-      "id": "bsc_special_relativity",
-      "title": "Special Relativity (BSc)",
+      "id": "bsc_complex",
+      "title": "Complex Variables (BSc)",
       "level": "BSc",
-      "domain": "Modern Physics",
-      "summary": "Lorentz transformations, time dilation, relativistic momentum and energy.",
-      "required": ["gcse_kinematics"],
-      "recommended": ["al_vectors"],
+      "domain": "Maths Methods",
+      "summary": "Complex numbers, Euler relation, residues (intro) for waves and quantum tools.",
+      "required": ["al_math_methods"],
+      "recommended": [],
       "resources": []
     },
     {
-      "id": "msc_gr",
+      "id": "bsc_fourier",
+      "title": "Fourier Methods (BSc)",
+      "level": "BSc",
+      "domain": "Maths Methods",
+      "summary": "Fourier series and transforms for signals, waves and quantum representations.",
+      "required": ["bsc_pde", "bsc_complex"],
+      "recommended": [],
+      "resources": []
+    },
+
+    {
+      "id": "bsc_classical_mech",
+      "title": "Classical Mechanics (Lagrangian) (BSc)",
+      "level": "BSc",
+      "domain": "Mechanics",
+      "summary": "Generalised coordinates, Lagrange equations, conservation laws, constraints.",
+      "required": ["al_mechanics", "bsc_ode", "bsc_linear_algebra"],
+      "recommended": ["al_calculus_intro"],
+      "resources": []
+    },
+    {
+      "id": "bsc_hamiltonian",
+      "title": "Hamiltonian Mechanics (BSc)",
+      "level": "BSc",
+      "domain": "Mechanics",
+      "summary": "Phase space, Hamilton equations, canonical transformations (intro).",
+      "required": ["bsc_classical_mech"],
+      "recommended": ["bsc_complex"],
+      "resources": []
+    },
+    {
+      "id": "bsc_continuum",
+      "title": "Continuum Mechanics (BSc)",
+      "level": "BSc",
+      "domain": "Mechanics",
+      "summary": "Stress, strain, constitutive models; linkage to materials and fluids.",
+      "required": ["al_mechanics", "bsc_linear_algebra"],
+      "recommended": [],
+      "resources": []
+    },
+
+    {
+      "id": "bsc_em_intro",
+      "title": "Electromagnetism I (Fields) (BSc)",
+      "level": "BSc",
+      "domain": "Electricity & Magnetism",
+      "summary": "Electrostatics and magnetostatics in field form; boundary conditions (intro).",
+      "required": ["al_electric_fields", "al_magnetic_fields", "bsc_vector_calculus"],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "bsc_em_maxwell",
+      "title": "Electromagnetism II (Maxwell Equations) (BSc)",
+      "level": "BSc",
+      "domain": "Electricity & Magnetism",
+      "summary": "Maxwell equations, EM waves, energy flow, material response (intro).",
+      "required": ["bsc_em_intro", "bsc_pde"],
+      "recommended": ["bsc_fourier"],
+      "resources": []
+    },
+    {
+      "id": "bsc_circuits_signals",
+      "title": "Signals and Linear Systems (BSc)",
+      "level": "BSc",
+      "domain": "Electricity & Magnetism",
+      "summary": "Transfer functions, filters, frequency response; engineering interface to physics signals.",
+      "required": ["al_ac", "bsc_fourier"],
+      "recommended": [],
+      "resources": []
+    },
+
+    {
+      "id": "bsc_optics",
+      "title": "Optics and Photonics (BSc)",
+      "level": "BSc",
+      "domain": "Optics",
+      "summary": "Wave optics, polarization, interferometry fundamentals, diffraction theory (intro).",
+      "required": ["al_optics", "bsc_fourier"],
+      "recommended": ["bsc_em_maxwell"],
+      "resources": []
+    },
+    {
+      "id": "bsc_lasers",
+      "title": "Lasers (BSc)",
+      "level": "BSc",
+      "domain": "Optics",
+      "summary": "Stimulated emission, gain, cavities, coherence; engineering implications.",
+      "required": ["bsc_optics", "al_quantum_intro"],
+      "recommended": ["bsc_complex"],
+      "resources": []
+    },
+
+    {
+      "id": "bsc_thermo",
+      "title": "Thermodynamics (BSc)",
+      "level": "BSc",
+      "domain": "Thermal",
+      "summary": "Laws of thermodynamics, state functions, cycles, entropy concept (formal).",
+      "required": ["al_thermal", "bsc_ode"],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "bsc_statmech",
+      "title": "Statistical Mechanics (BSc)",
+      "level": "BSc",
+      "domain": "Thermal",
+      "summary": "Microstates, ensembles (intro), partition functions conceptually and computationally.",
+      "required": ["bsc_thermo", "bsc_linear_algebra"],
+      "recommended": ["bsc_complex"],
+      "resources": []
+    },
+
+    {
+      "id": "bsc_fluids",
+      "title": "Fluid Mechanics (BSc)",
+      "level": "BSc",
+      "domain": "Fluids",
+      "summary": "Continuity, momentum in fluids (intro), Bernoulli, viscosity concepts.",
+      "required": ["gcse_pressure_density", "bsc_classical_mech"],
+      "recommended": ["bsc_pde"],
+      "resources": []
+    },
+    {
+      "id": "bsc_navier_stokes",
+      "title": "Navier-Stokes and Viscous Flow (BSc)",
+      "level": "BSc",
+      "domain": "Fluids",
+      "summary": "Viscous flow equations (intro), laminar vs turbulent, boundary layers overview.",
+      "required": ["bsc_fluids", "bsc_pde"],
+      "recommended": [],
+      "resources": []
+    },
+
+    {
+      "id": "bsc_qm1",
+      "title": "Quantum Mechanics I (BSc)",
+      "level": "BSc",
+      "domain": "Quantum",
+      "summary": "Wavefunction, operators, Schrödinger equation, simple potentials, measurement postulates.",
+      "required": ["al_quantum_intro", "bsc_linear_algebra", "bsc_ode"],
+      "recommended": ["bsc_complex"],
+      "resources": []
+    },
+    {
+      "id": "bsc_qm2",
+      "title": "Quantum Mechanics II (BSc)",
+      "level": "BSc",
+      "domain": "Quantum",
+      "summary": "Angular momentum, perturbation theory (intro), identical particles concept.",
+      "required": ["bsc_qm1"],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "bsc_amo",
+      "title": "Atomic, Molecular and Optical Physics (BSc)",
+      "level": "BSc",
+      "domain": "Atomic & Molecular",
+      "summary": "Atomic structure (formal), spectra, selection rules conceptually, light-matter interaction.",
+      "required": ["bsc_qm1", "bsc_optics"],
+      "recommended": ["bsc_qm2"],
+      "resources": []
+    },
+
+    {
+      "id": "bsc_solid_state",
+      "title": "Solid State Physics (BSc)",
+      "level": "BSc",
+      "domain": "Condensed Matter",
+      "summary": "Crystal structures, phonons concept, electrons in solids (intro), band concepts (intro).",
+      "required": ["bsc_statmech", "bsc_qm1"],
+      "recommended": ["bsc_linear_algebra"],
+      "resources": []
+    },
+    {
+      "id": "bsc_semiconductors",
+      "title": "Semiconductor Physics (BSc)",
+      "level": "BSc",
+      "domain": "Condensed Matter",
+      "summary": "Band structure implications, doping, p-n junction overview, device linkages.",
+      "required": ["bsc_solid_state"],
+      "recommended": ["bsc_circuits_signals"],
+      "resources": []
+    },
+
+    {
+      "id": "bsc_nuclear",
+      "title": "Nuclear Physics (BSc)",
+      "level": "BSc",
+      "domain": "Nuclear",
+      "summary": "Nuclear models (intro), decay, reactions, cross sections conceptually.",
+      "required": ["al_nuclear", "bsc_qm1"],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "bsc_particle",
+      "title": "Particle Physics (BSc)",
+      "level": "BSc",
+      "domain": "Particle",
+      "summary": "Relativistic kinematics, interactions, detectors, Standard Model structure (formal intro).",
+      "required": ["al_particles_intro", "bsc_special_relativity", "bsc_qm1"],
+      "recommended": [],
+      "resources": []
+    },
+
+    {
+      "id": "bsc_special_relativity",
+      "title": "Special Relativity (BSc)",
+      "level": "BSc",
+      "domain": "Relativity & Gravitation",
+      "summary": "Lorentz transforms, four-vectors, relativistic dynamics and EM covariance (intro).",
+      "required": ["al_mechanics", "bsc_linear_algebra"],
+      "recommended": ["bsc_em_intro"],
+      "resources": []
+    },
+
+    {
+      "id": "bsc_astrophysics",
+      "title": "Astrophysics (BSc)",
+      "level": "BSc",
+      "domain": "Astrophysics & Space",
+      "summary": "Stellar structure (intro), radiative processes (intro), galactic dynamics (intro).",
+      "required": ["al_astrophysics", "bsc_thermo", "bsc_optics"],
+      "recommended": ["bsc_special_relativity"],
+      "resources": []
+    },
+    {
+      "id": "bsc_orbital_mech",
+      "title": "Orbital Mechanics (BSc)",
+      "level": "BSc",
+      "domain": "Astrophysics & Space",
+      "summary": "Two-body problem, orbital elements, transfers (intro), mission analysis concepts.",
+      "required": ["al_circular_motion", "bsc_classical_mech"],
+      "recommended": [],
+      "resources": []
+    },
+
+    {
+      "id": "bsc_computation_intro",
+      "title": "Computational Physics (BSc Intro)",
+      "level": "BSc",
+      "domain": "Computation",
+      "summary": "Numerical error, stability, integration methods, simple simulations and data handling.",
+      "required": ["bsc_ode", "gcse_uncertainty"],
+      "recommended": ["bsc_linear_algebra"],
+      "resources": []
+    },
+    {
+      "id": "bsc_data_analysis",
+      "title": "Data Analysis for Physics (BSc)",
+      "level": "BSc",
+      "domain": "Computation",
+      "summary": "Regression, uncertainty propagation (applied), residual analysis, reproducible workflows.",
+      "required": ["bsc_computation_intro", "gcse_uncertainty"],
+      "recommended": [],
+      "resources": []
+    },
+
+    {
+      "id": "bsc_instrumentation",
+      "title": "Electronics and Instrumentation (BSc)",
+      "level": "BSc",
+      "domain": "Instrumentation",
+      "summary": "Sensors, amplifiers (intro), ADC/DAC basics, noise concepts, experimental integration.",
+      "required": ["al_circuits", "gcse_uncertainty"],
+      "recommended": ["bsc_circuits_signals"],
+      "resources": []
+    },
+    {
+      "id": "bsc_noise",
+      "title": "Noise and Signal Integrity (BSc)",
+      "level": "BSc",
+      "domain": "Instrumentation",
+      "summary": "Noise sources, bandwidth, SNR, grounding/shielding concepts, measurement limits.",
+      "required": ["bsc_instrumentation", "bsc_circuits_signals"],
+      "recommended": [],
+      "resources": []
+    },
+
+    {
+      "id": "msc_gr_math",
+      "title": "Tensor Calculus and Differential Geometry (MSc)",
+      "level": "MSc",
+      "domain": "Relativity & Gravitation",
+      "summary": "Manifolds (intro), tensors, covariant derivatives, curvature concepts.",
+      "required": ["bsc_vector_calculus", "bsc_linear_algebra"],
+      "recommended": ["bsc_complex"],
+      "resources": []
+    },
+    {
+      "id": "msc_general_relativity",
       "title": "General Relativity (MSc)",
       "level": "MSc",
-      "domain": "Space",
-      "summary": "Curved spacetime, tensors, geodesics, Einstein field equations.",
-      "required": ["bsc_special_relativity"],
-      "recommended": ["bsc_vector_calculus"],
+      "domain": "Relativity & Gravitation",
+      "summary": "Spacetime curvature, geodesics, Einstein field equations (intro), classic solutions overview.",
+      "required": ["msc_gr_math", "bsc_special_relativity"],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "msc_gravitational_waves",
+      "title": "Gravitational Waves (MSc)",
+      "level": "MSc",
+      "domain": "Relativity & Gravitation",
+      "summary": "Wave generation and detection concepts, interferometry link, basic waveform reasoning.",
+      "required": ["msc_general_relativity", "bsc_optics"],
+      "recommended": ["bsc_data_analysis"],
+      "resources": []
+    },
+
+    {
+      "id": "msc_em_advanced",
+      "title": "Advanced Electrodynamics (MSc)",
+      "level": "MSc",
+      "domain": "Electricity & Magnetism",
+      "summary": "Radiation (intro), waveguides (intro), advanced boundary problems and potentials.",
+      "required": ["bsc_em_maxwell", "bsc_fourier"],
+      "recommended": ["bsc_complex"],
+      "resources": []
+    },
+    {
+      "id": "msc_rf_microwave",
+      "title": "RF and Microwave Physics (MSc)",
+      "level": "MSc",
+      "domain": "Electricity & Magnetism",
+      "summary": "Transmission lines, impedance matching, scattering parameters (intro), resonators.",
+      "required": ["msc_em_advanced", "bsc_circuits_signals"],
+      "recommended": [],
+      "resources": []
+    },
+
+    {
+      "id": "msc_qm_advanced",
+      "title": "Advanced Quantum Mechanics (MSc)",
+      "level": "MSc",
+      "domain": "Quantum",
+      "summary": "Approximation methods (intro), scattering (intro), symmetry and angular momentum deeper.",
+      "required": ["bsc_qm2", "bsc_complex"],
+      "recommended": ["bsc_fourier"],
+      "resources": []
+    },
+    {
+      "id": "msc_qft_intro",
+      "title": "Quantum Field Theory (Intro) (MSc)",
+      "level": "MSc",
+      "domain": "Quantum",
+      "summary": "Fields as operators (intro), quantisation conceptually, particles as excitations (intro).",
+      "required": ["msc_qm_advanced", "bsc_special_relativity"],
+      "recommended": ["bsc_em_maxwell"],
+      "resources": []
+    },
+    {
+      "id": "msc_particle_theory",
+      "title": "Particle Theory and Standard Model (MSc)",
+      "level": "MSc",
+      "domain": "Particle",
+      "summary": "Standard Model structure (deeper), symmetries conceptually, collider processes overview.",
+      "required": ["msc_qft_intro", "bsc_particle"],
+      "recommended": [],
+      "resources": []
+    },
+
+    {
+      "id": "msc_condensed_advanced",
+      "title": "Advanced Condensed Matter (MSc)",
+      "level": "MSc",
+      "domain": "Condensed Matter",
+      "summary": "Band theory (deeper), transport (intro), collective phenomena (intro).",
+      "required": ["bsc_solid_state", "msc_qm_advanced"],
+      "recommended": ["bsc_statmech"],
+      "resources": []
+    },
+    {
+      "id": "msc_superconductivity",
+      "title": "Superconductivity (Intro) (MSc)",
+      "level": "MSc",
+      "domain": "Condensed Matter",
+      "summary": "Phenomenology and microscopic ideas (intro), flux quantisation concepts, applications.",
+      "required": ["msc_condensed_advanced"],
+      "recommended": ["msc_em_advanced"],
+      "resources": []
+    },
+
+    {
+      "id": "msc_plasma_intro",
+      "title": "Plasma Physics (MSc Intro)",
+      "level": "MSc",
+      "domain": "Plasma",
+      "summary": "Plasma parameters, Debye shielding, waves (intro), particle motion in fields.",
+      "required": ["bsc_em_maxwell", "bsc_fluids", "bsc_pde"],
+      "recommended": ["msc_em_advanced"],
+      "resources": []
+    },
+    {
+      "id": "msc_mhd",
+      "title": "Magnetohydrodynamics (MHD) (MSc)",
+      "level": "MSc",
+      "domain": "Plasma",
+      "summary": "Fluid description of plasmas, MHD waves, stability concepts (intro).",
+      "required": ["msc_plasma_intro", "bsc_vector_calculus"],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "msc_fusion_intro",
+      "title": "Fusion Physics (Intro) (MSc)",
+      "level": "MSc",
+      "domain": "Plasma",
+      "summary": "Confinement concepts, tokamak and stellarator overview, basic performance metrics.",
+      "required": ["msc_mhd"],
+      "recommended": ["bsc_nuclear"],
+      "resources": []
+    },
+
+    {
+      "id": "msc_cosmology",
+      "title": "Cosmology (MSc)",
+      "level": "MSc",
+      "domain": "Astrophysics & Space",
+      "summary": "Expanding universe models (intro), redshift-distance relations, CMB conceptually.",
+      "required": ["msc_general_relativity", "bsc_astrophysics"],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "msc_comp_rel",
+      "title": "Computational Relativity (MSc)",
+      "level": "MSc",
+      "domain": "Computation",
+      "summary": "Numerical methods for relativistic systems, discretisation and stability considerations.",
+      "required": ["msc_general_relativity", "bsc_computation_intro", "bsc_pde"],
+      "recommended": [],
+      "resources": []
+    },
+
+    {
+      "id": "frontier_quantum_gravity",
+      "title": "Quantum Gravity (Frontier Overview)",
+      "level": "Frontier",
+      "domain": "Relativity & Gravitation",
+      "summary": "Motivation and major approaches; conceptual landscape only, not a single settled theory.",
+      "required": ["msc_general_relativity", "msc_qft_intro"],
+      "recommended": ["msc_cosmology"],
+      "resources": []
+    },
+    {
+      "id": "frontier_string_theory",
+      "title": "String Theory (Frontier Overview)",
+      "level": "Frontier",
+      "domain": "Relativity & Gravitation",
+      "summary": "Strings as fundamental objects (intro), extra dimensions conceptually, motivations and limits.",
+      "required": ["frontier_quantum_gravity"],
+      "recommended": ["msc_particle_theory"],
+      "resources": []
+    },
+    {
+      "id": "frontier_loop_qg",
+      "title": "Loop Quantum Gravity (Frontier Overview)",
+      "level": "Frontier",
+      "domain": "Relativity & Gravitation",
+      "summary": "Quantisation of geometry conceptually, spin network idea (overview).",
+      "required": ["frontier_quantum_gravity"],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "frontier_dark_matter",
+      "title": "Dark Matter (Frontier Overview)",
+      "level": "Frontier",
+      "domain": "Astrophysics & Space",
+      "summary": "Evidence lines, candidate classes (overview), observational and collider constraints (overview).",
+      "required": ["msc_cosmology", "msc_particle_theory"],
+      "recommended": [],
+      "resources": []
+    },
+    {
+      "id": "frontier_dark_energy",
+      "title": "Dark Energy (Frontier Overview)",
+      "level": "Frontier",
+      "domain": "Astrophysics & Space",
+      "summary": "Accelerated expansion evidence and model classes (overview), observational strategies.",
+      "required": ["msc_cosmology"],
+      "recommended": ["msc_general_relativity"],
+      "resources": []
+    },
+    {
+      "id": "frontier_high_energy_density",
+      "title": "High Energy Density Physics (Frontier Overview)",
+      "level": "Frontier",
+      "domain": "Plasma",
+      "summary": "Extreme states of matter, laser-plasma interactions (overview), applications and constraints.",
+      "required": ["msc_plasma_intro", "bsc_lasers"],
+      "recommended": [],
       "resources": []
     }
   ]
