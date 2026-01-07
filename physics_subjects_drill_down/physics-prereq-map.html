@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Physics Prerequisite Map (Horizontal)</title>
+  <style>
+    :root {
+      --bg: #f2f4f8;
+      --card: #ffffff;
+      --text: #2c3e50;
+      --muted: #5b6b7a;
+      --border: #d7dde6;
+      --accent: #3498db;
+      --line: #8aa3b8;
+      --highlight: #ff7f0e;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 16px 16px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.25em;
+    }
+
+    header .sub {
+      margin-top: 6px;
+      opacity: 0.9;
+      font-size: 0.95em;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 12px 16px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+    }
+
+    .toolbar input, .toolbar select, .toolbar button {
+      font-size: 14px;
+      padding: 9px 10px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #ffffff;
+      color: var(--text);
+    }
+
+    .toolbar button {
+      cursor: pointer;
+    }
+
+    .toolbar .note {
+      color: var(--muted);
+      font-size: 0.92em;
+    }
+
+    .viewport {
+      position: relative;
+      height: calc(100vh - 124px);
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 16px;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      white-space: nowrap;
+    }
+
+    .stage {
+      position: relative;
+      display: inline-flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding-bottom: 40px;
+      min-height: 100%;
+      box-sizing: border-box;
+    }
+
+    .level {
+      width: 360px;
+      background: rgba(255,255,255,0.6);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+      box-sizing: border-box;
+    }
+
+    .level h2 {
+      margin: 0 0 10px 0;
+      font-size: 1.05em;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 8px;
+    }
+
+    .node {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 10px;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .node:hover {
+      border-color: rgba(52,152,219,0.8);
+    }
+
+    .node .title {
+      font-weight: 700;
+      font-size: 0.95em;
+      margin: 0;
+      line-height: 1.25;
+    }
+
+    .node .meta {
+      margin-top: 6px;
+      font-size: 0.86em;
+      color: var(--muted);
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 2px 8px;
+      background: #fbfcfe;
+    }
+
+    .node.selected {
+      border-color: var(--highlight);
+      box-shadow: 0 0 0 3px rgba(255,127,14,0.18);
+    }
+
+    .node.dim {
+      opacity: 0.25;
+    }
+
+    .node.upstream {
+      border-left: 6px solid var(--accent);
+    }
+
+    .node.downstream {
+      border-left: 6px solid var(--highlight);
+    }
+
+    .panel {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 360px;
+      max-height: calc(100vh - 160px);
+      overflow: auto;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+      padding: 12px;
+    }
+
+    .panel h3 {
+      margin: 0 0 10px 0;
+      font-size: 1.05em;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 8px;
+    }
+
+    .panel .line {
+      font-size: 0.92em;
+      color: var(--muted);
+      margin: 8px 0;
+    }
+
+    .panel ul {
+      margin: 8px 0 0 18px;
+      padding: 0;
+      font-size: 0.95em;
+    }
+
+    .panel li {
+      margin: 4px 0;
+    }
+
+    .panel a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .panel a:hover {
+      color: #2980b9;
+      text-decoration: underline;
+    }
+
+    /* SVG overlay for connectors */
+    svg#links {
+      position: absolute;
+      left: 0;
+      top: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Physics Prerequisite Map (Horizontal)</h1>
+    <div class="sub">Left is foundational. Right is advanced. Lines indicate prerequisite dependency.</div>
+  </header>
+
+  <div class="toolbar">
+    <input id="search" type="text" placeholder="Search topics" />
+    <select id="focusSelect"></select>
+    <button id="resetBtn" type="button">Reset view</button>
+    <button id="redrawBtn" type="button">Redraw lines</button>
+    <span class="note">Click a topic to highlight prerequisites (upstream) and dependent topics (downstream).</span>
+  </div>
+
+  <div id="viewport" class="viewport">
+    <svg id="links"></svg>
+    <div id="stage" class="stage"></div>
+
+    <div id="detailPanel" class="panel" style="display:none;">
+      <h3 id="panelTitle">Topic</h3>
+      <div id="panelMeta" class="line"></div>
+      <div class="line"><strong>Direct prerequisites:</strong></div>
+      <ul id="panelReq"></ul>
+      <div class="line"><strong>All prerequisites (transitive):</strong></div>
+      <ul id="panelReqAll"></ul>
+      <div class="line"><strong>Direct dependents:</strong></div>
+      <ul id="panelDep"></ul>
+    </div>
+  </div>
+
+  <script>
+    /*
+      Page design:
+      - Topics arranged in columns by level (left to right).
+      - Edges define prerequisites (from prereq -> topic).
+      - Clicking topic highlights:
+        - upstream prerequisites (direct + transitive)
+        - downstream dependents (direct + transitive)
+      - Horizontal scrolling is native via the viewport.
+
+      Data model:
+      - nodes: { id, title, level }
+      - edges: { from, to } where "from" is prerequisite and "to" is dependent.
+    */
+
+    const LEVELS = ["KS2", "KS3", "GCSE", "A-Level", "BSc", "MSc", "Frontier"];
+
+    // Node list for the provided topics.
+    // IDs are slugged forms to keep filenames and references consistent.
+    const NODES = [
+      { id:"units_si_basics", title:"Units and SI (Basics)", level:"KS2" },
+      { id:"graphs_data_basics", title:"Graphs and Data (Basics)", level:"KS2" },
+      { id:"forces_basics", title:"Forces (Basics)", level:"KS2" },
+      { id:"motion_basics", title:"Motion (Basics)", level:"KS2" },
+      { id:"energy_basics", title:"Energy (Basics)", level:"KS2" },
+      { id:"materials_basics", title:"Materials (Basics)", level:"KS2" },
+      { id:"electricity_basics", title:"Electricity (Basics)", level:"KS2" },
+      { id:"magnetism_basics", title:"Magnetism (Basics)", level:"KS2" },
+      { id:"waves_basics", title:"Waves (Basics)", level:"KS2" },
+
+      { id:"si_prefixes_conversions", title:"SI Units, Prefixes, and Conversions", level:"KS3" },
+      { id:"measurement_uncertainty_intro", title:"Measurement Uncertainty (Intro)", level:"KS3" },
+      { id:"graphs_relationships_ks3", title:"Graphs and Relationships (KS3)", level:"KS3" },
+      { id:"forces_ks3", title:"Forces (KS3)", level:"KS3" },
+      { id:"motion_ks3", title:"Motion (KS3)", level:"KS3" },
+      { id:"energy_ks3", title:"Energy (KS3)", level:"KS3" },
+      { id:"pressure_density_ks3", title:"Pressure and Density (KS3)", level:"KS3" },
+      { id:"electricity_ks3", title:"Electricity (KS3)", level:"KS3" },
+      { id:"magnetism_electromagnets_ks3", title:"Magnetism and Electromagnets (KS3)", level:"KS3" },
+      { id:"waves_ks3", title:"Waves (KS3)", level:"KS3" },
+      { id:"light_sound_ks3", title:"Light and Sound (KS3)", level:"KS3" },
+      { id:"space_ks3", title:"Space (KS3)", level:"KS3" },
+
+      { id:"physics_maths_gcse", title:"Physics Maths Skills for GCSE", level:"GCSE" },
+      { id:"uncertainty_error_gcse", title:"Uncertainty and Error (GCSE)", level:"GCSE" },
+      { id:"kinematics_gcse", title:"Kinematics (GCSE)", level:"GCSE" },
+      { id:"newtons_laws_gcse", title:"Forces and Newton's Laws (GCSE)", level:"GCSE" },
+      { id:"moments_levers_gcse", title:"Moments and Levers (GCSE)", level:"GCSE" },
+      { id:"energy_work_power_eff_gcse", title:"Energy, Work, Power, Efficiency (GCSE)", level:"GCSE" },
+      { id:"thermal_transfer_gcse", title:"Thermal Transfer (GCSE)", level:"GCSE" },
+      { id:"particle_model_gcse", title:"Particle Model of Matter (GCSE)", level:"GCSE" },
+      { id:"pressure_density_gcse", title:"Pressure and Density (GCSE)", level:"GCSE" },
+      { id:"waves_gcse", title:"Waves (GCSE)", level:"GCSE" },
+      { id:"light_optics_gcse", title:"Light and Optics (GCSE)", level:"GCSE" },
+      { id:"circuits_gcse", title:"Electric Circuits (GCSE)", level:"GCSE" },
+      { id:"household_electricity_gcse", title:"Household Electricity and Safety (GCSE)", level:"GCSE" },
+      { id:"magnetism_em_gcse", title:"Magnetism and Electromagnetism (GCSE)", level:"GCSE" },
+      { id:"atomic_structure_gcse", title:"Atomic Structure (GCSE)", level:"GCSE" },
+      { id:"radioactivity_halflife_gcse", title:"Radioactivity and Half-life (GCSE)", level:"GCSE" },
+      { id:"space_physics_gcse", title:"Space Physics (GCSE)", level:"GCSE" },
+
+      { id:"math_methods_alevel", title:"Mathematical Methods for Physics (A-Level)", level:"A-Level" },
+      { id:"vectors_alevel", title:"Vectors for Physics (A-Level)", level:"A-Level" },
+      { id:"calculus_concepts_alevel", title:"Calculus Concepts for Physics (A-Level)", level:"A-Level" },
+      { id:"mechanics_alevel", title:"Mechanics (A-Level)", level:"A-Level" },
+      { id:"momentum_collisions_alevel", title:"Momentum and Collisions (A-Level)", level:"A-Level" },
+      { id:"circular_motion_alevel", title:"Circular Motion (A-Level)", level:"A-Level" },
+      { id:"shm_alevel", title:"Simple Harmonic Motion (A-Level)", level:"A-Level" },
+      { id:"waves_superposition_alevel", title:"Waves and Superposition (A-Level)", level:"A-Level" },
+      { id:"optics_alevel", title:"Optics (A-Level)", level:"A-Level" },
+      { id:"circuits_alevel", title:"Electric Circuits (A-Level)", level:"A-Level" },
+      { id:"electric_fields_potential_alevel", title:"Electric Fields and Potential (A-Level)", level:"A-Level" },
+      { id:"capacitors_alevel", title:"Capacitors (A-Level)", level:"A-Level" },
+      { id:"magnetic_fields_alevel", title:"Magnetic Fields (A-Level)", level:"A-Level" },
+      { id:"em_induction_alevel", title:"Electromagnetic Induction (A-Level)", level:"A-Level" },
+      { id:"ac_alevel", title:"Alternating Current (A-Level)", level:"A-Level" },
+      { id:"thermal_physics_alevel", title:"Thermal Physics (A-Level)", level:"A-Level" },
+      { id:"nuclear_physics_alevel", title:"Nuclear Physics (A-Level)", level:"A-Level" },
+      { id:"quantum_intro_alevel", title:"Quantum Physics (A-Level Intro)", level:"A-Level" },
+      { id:"particle_intro_alevel", title:"Particle Physics (A-Level Intro)", level:"A-Level" },
+      { id:"astrophysics_alevel", title:"Astrophysics (A-Level)", level:"A-Level" },
+
+      { id:"linear_algebra_bsc", title:"Linear Algebra for Physics (BSc)", level:"BSc" },
+      { id:"odes_bsc", title:"Differential Equations (ODEs) (BSc)", level:"BSc" },
+      { id:"pdes_bsc", title:"Partial Differential Equations (PDEs) (BSc)", level:"BSc" },
+      { id:"vector_calculus_bsc", title:"Vector Calculus (BSc)", level:"BSc" },
+      { id:"complex_variables_bsc", title:"Complex Variables (BSc)", level:"BSc" },
+      { id:"fourier_methods_bsc", title:"Fourier Methods (BSc)", level:"BSc" },
+      { id:"classical_mech_lagrangian_bsc", title:"Classical Mechanics (Lagrangian) (BSc)", level:"BSc" },
+      { id:"hamiltonian_mech_bsc", title:"Hamiltonian Mechanics (BSc)", level:"BSc" },
+      { id:"continuum_mech_bsc", title:"Continuum Mechanics (BSc)", level:"BSc" },
+      { id:"em_fields_bsc", title:"Electromagnetism I (Fields) (BSc)", level:"BSc" },
+      { id:"em_maxwell_bsc", title:"Electromagnetism II (Maxwell Equations) (BSc)", level:"BSc" },
+      { id:"signals_linear_systems_bsc", title:"Signals and Linear Systems (BSc)", level:"BSc" },
+      { id:"optics_photonics_bsc", title:"Optics and Photonics (BSc)", level:"BSc" },
+      { id:"lasers_bsc", title:"Lasers (BSc)", level:"BSc" },
+      { id:"thermodynamics_bsc", title:"Thermodynamics (BSc)", level:"BSc" },
+      { id:"stat_mech_bsc", title:"Statistical Mechanics (BSc)", level:"BSc" },
+      { id:"fluid_mech_bsc", title:"Fluid Mechanics (BSc)", level:"BSc" },
+      { id:"navier_stokes_bsc", title:"Navier-Stokes and Viscous Flow (BSc)", level:"BSc" },
+      { id:"qm1_bsc", title:"Quantum Mechanics I (BSc)", level:"BSc" },
+      { id:"qm2_bsc", title:"Quantum Mechanics II (BSc)", level:"BSc" },
+      { id:"amo_bsc", title:"Atomic, Molecular and Optical Physics (BSc)", level:"BSc" },
+      { id:"solid_state_bsc", title:"Solid State Physics (BSc)", level:"BSc" },
+      { id:"semiconductor_bsc", title:"Semiconductor Physics (BSc)", level:"BSc" },
+      { id:"nuclear_physics_bsc", title:"Nuclear Physics (BSc)", level:"BSc" },
+      { id:"particle_physics_bsc", title:"Particle Physics (BSc)", level:"BSc" },
+      { id:"special_relativity_bsc", title:"Special Relativity (BSc)", level:"BSc" },
+      { id:"astrophysics_bsc", title:"Astrophysics (BSc)", level:"BSc" },
+      { id:"orbital_mechanics_bsc", title:"Orbital Mechanics (BSc)", level:"BSc" },
+      { id:"computational_physics_bsc", title:"Computational Physics (BSc Intro)", level:"BSc" },
+      { id:"data_analysis_bsc", title:"Data Analysis for Physics (BSc)", level:"BSc" },
+      { id:"electronics_instrumentation_bsc", title:"Electronics and Instrumentation (BSc)", level:"BSc" },
+      { id:"noise_signal_integrity_bsc", title:"Noise and Signal Integrity (BSc)", level:"BSc" },
+
+      { id:"tensor_calc_diff_geom_msc", title:"Tensor Calculus and Differential Geometry (MSc)", level:"MSc" },
+      { id:"general_relativity_msc", title:"General Relativity (MSc)", level:"MSc" },
+      { id:"gravitational_waves_msc", title:"Gravitational Waves (MSc)", level:"MSc" },
+      { id:"advanced_electrodynamics_msc", title:"Advanced Electrodynamics (MSc)", level:"MSc" },
+      { id:"rf_microwave_msc", title:"RF and Microwave Physics (MSc)", level:"MSc" },
+      { id:"advanced_qm_msc", title:"Advanced Quantum Mechanics (MSc)", level:"MSc" },
+      { id:"qft_intro_msc", title:"Quantum Field Theory (Intro) (MSc)", level:"MSc" },
+      { id:"particle_theory_sm_msc", title:"Particle Theory and Standard Model (MSc)", level:"MSc" },
+      { id:"advanced_condensed_matter_msc", title:"Advanced Condensed Matter (MSc)", level:"MSc" },
+      { id:"superconductivity_msc", title:"Superconductivity (Intro) (MSc)", level:"MSc" },
+      { id:"plasma_physics_msc", title:"Plasma Physics (MSc Intro)", level:"MSc" },
+      { id:"mhd_msc", title:"Magnetohydrodynamics (MHD) (MSc)", level:"MSc" },
+      { id:"fusion_physics_msc", title:"Fusion Physics (Intro) (MSc)", level:"MSc" },
+      { id:"cosmology_msc", title:"Cosmology (MSc)", level:"MSc" },
+      { id:"computational_relativity_msc", title:"Computational Relativity (MSc)", level:"MSc" },
+
+      { id:"quantum_gravity_frontier", title:"Quantum Gravity (Frontier Overview)", level:"Frontier" },
+      { id:"string_theory_frontier", title:"String Theory (Frontier Overview)", level:"Frontier" },
+      { id:"loop_qg_frontier", title:"Loop Quantum Gravity (Frontier Overview)", level:"Frontier" },
+      { id:"dark_matter_frontier", title:"Dark Matter (Frontier Overview)", level:"Frontier" },
+      { id:"dark_energy_frontier", title:"Dark Energy (Frontier Overview)", level:"Frontier" },
+      { id:"high_energy_density_frontier", title:"High Energy Density Physics (Frontier Overview)", level:"Frontier" }
+    ];
+
+    /*
+      Edges (prerequisites) are necessarily a model.
+      The set below is deliberately structured to:
+      - keep the graph readable
+      - give clear prerequisite chains for high-level topics (notably String Theory)
+      - remain easy to extend by adding more edges
+
+      To extend: add { from:"prereq_id", to:"topic_id" } entries.
+    */
+    const EDGES = [
+      // KS2 foundations -> KS3 structure
+      { from:"units_si_basics", to:"si_prefixes_conversions" },
+      { from:"graphs_data_basics", to:"graphs_relationships_ks3" },
+      { from:"si_prefixes_conversions", to:"measurement_uncertainty_intro" },
+      { from:"forces_basics", to:"forces_ks3" },
+      { from:"motion_basics", to:"motion_ks3" },
+      { from:"energy_basics", to:"energy_ks3" },
+      { from:"electricity_basics", to:"electricity_ks3" },
+      { from:"magnetism_basics", to:"magnetism_electromagnets_ks3" },
+      { from:"waves_basics", to:"waves_ks3" },
+      { from:"waves_ks3", to:"light_sound_ks3" },
+      { from:"forces_ks3", to:"pressure_density_ks3" },
+      { from:"forces_ks3", to:"space_ks3" },
+
+      // KS3 -> GCSE
+      { from:"graphs_relationships_ks3", to:"physics_maths_gcse" },
+      { from:"si_prefixes_conversions", to:"physics_maths_gcse" },
+      { from:"measurement_uncertainty_intro", to:"uncertainty_error_gcse" },
+      { from:"physics_maths_gcse", to:"uncertainty_error_gcse" },
+
+      { from:"motion_ks3", to:"kinematics_gcse" },
+      { from:"physics_maths_gcse", to:"kinematics_gcse" },
+
+      { from:"forces_ks3", to:"newtons_laws_gcse" },
+      { from:"kinematics_gcse", to:"newtons_laws_gcse" },
+
+      { from:"forces_ks3", to:"moments_levers_gcse" },
+      { from:"physics_maths_gcse", to:"moments_levers_gcse" },
+
+      { from:"energy_ks3", to:"energy_work_power_eff_gcse" },
+      { from:"physics_maths_gcse", to:"energy_work_power_eff_gcse" },
+
+      { from:"energy_ks3", to:"thermal_transfer_gcse" },
+      { from:"energy_work_power_eff_gcse", to:"thermal_transfer_gcse" },
+
+      { from:"si_prefixes_conversions", to:"particle_model_gcse" },
+      { from:"energy_ks3", to:"particle_model_gcse" },
+
+      { from:"pressure_density_ks3", to:"pressure_density_gcse" },
+      { from:"physics_maths_gcse", to:"pressure_density_gcse" },
+
+      { from:"waves_ks3", to:"waves_gcse" },
+      { from:"physics_maths_gcse", to:"waves_gcse" },
+      { from:"light_sound_ks3", to:"light_optics_gcse" },
+      { from:"waves_gcse", to:"light_optics_gcse" },
+
+      { from:"electricity_ks3", to:"circuits_gcse" },
+      { from:"physics_maths_gcse", to:"circuits_gcse" },
+      { from:"circuits_gcse", to:"household_electricity_gcse" },
+
+      { from:"magnetism_electromagnets_ks3", to:"magnetism_em_gcse" },
+      { from:"circuits_gcse", to:"magnetism_em_gcse" },
+
+      { from:"si_prefixes_conversions", to:"atomic_structure_gcse" },
+      { from:"atomic_structure_gcse", to:"radioactivity_halflife_gcse" },
+
+      { from:"space_ks3", to:"space_physics_gcse" },
+      { from:"physics_maths_gcse", to:"space_physics_gcse" },
+      { from:"waves_gcse", to:"space_physics_gcse" },
+
+      // GCSE -> A-Level maths tools
+      { from:"physics_maths_gcse", to:"math_methods_alevel" },
+      { from:"kinematics_gcse", to:"vectors_alevel" },
+      { from:"math_methods_alevel", to:"vectors_alevel" },
+      { from:"math_methods_alevel", to:"calculus_concepts_alevel" },
+      { from:"graphs_relationships_ks3", to:"calculus_concepts_alevel" },
+
+      // A-Level mechanics chain
+      { from:"newtons_laws_gcse", to:"mechanics_alevel" },
+      { from:"vectors_alevel", to:"mechanics_alevel" },
+      { from:"calculus_concepts_alevel", to:"mechanics_alevel" },
+
+      { from:"mechanics_alevel", to:"momentum_collisions_alevel" },
+      { from:"mechanics_alevel", to:"circular_motion_alevel" },
+      { from:"mechanics_alevel", to:"shm_alevel" },
+      { from:"waves_gcse", to:"shm_alevel" },
+
+      // A-Level waves and optics
+      { from:"waves_gcse", to:"waves_superposition_alevel" },
+      { from:"math_methods_alevel", to:"waves_superposition_alevel" },
+      { from:"waves_superposition_alevel", to:"optics_alevel" },
+      { from:"light_optics_gcse", to:"optics_alevel" },
+
+      // A-Level E and M
+      { from:"circuits_gcse", to:"circuits_alevel" },
+      { from:"math_methods_alevel", to:"circuits_alevel" },
+
+      { from:"circuits_alevel", to:"electric_fields_potential_alevel" },
+      { from:"vectors_alevel", to:"electric_fields_potential_alevel" },
+
+      { from:"electric_fields_potential_alevel", to:"capacitors_alevel" },
+      { from:"calculus_concepts_alevel", to:"capacitors_alevel" },
+
+      { from:"magnetism_em_gcse", to:"magnetic_fields_alevel" },
+      { from:"vectors_alevel", to:"magnetic_fields_alevel" },
+
+      { from:"magnetic_fields_alevel", to:"em_induction_alevel" },
+      { from:"circuits_alevel", to:"em_induction_alevel" },
+
+      { from:"waves_superposition_alevel", to:"ac_alevel" },
+      { from:"circuits_alevel", to:"ac_alevel" },
+      { from:"calculus_concepts_alevel", to:"ac_alevel" },
+
+      // A-Level thermal, nuclear, modern
+      { from:"particle_model_gcse", to:"thermal_physics_alevel" },
+      { from:"math_methods_alevel", to:"thermal_physics_alevel" },
+      { from:"calculus_concepts_alevel", to:"thermal_physics_alevel" },
+
+      { from:"radioactivity_halflife_gcse", to:"nuclear_physics_alevel" },
+      { from:"math_methods_alevel", to:"nuclear_physics_alevel" },
+
+      { from:"waves_superposition_alevel", to:"quantum_intro_alevel" },
+      { from:"math_methods_alevel", to:"quantum_intro_alevel" },
+      { from:"nuclear_physics_alevel", to:"particle_intro_alevel" },
+      { from:"quantum_intro_alevel", to:"particle_intro_alevel" },
+
+      { from:"space_physics_gcse", to:"astrophysics_alevel" },
+      { from:"mechanics_alevel", to:"astrophysics_alevel" },
+      { from:"waves_superposition_alevel", to:"astrophysics_alevel" },
+
+      // A-Level -> BSc maths core
+      { from:"vectors_alevel", to:"linear_algebra_bsc" },
+      { from:"calculus_concepts_alevel", to:"odes_bsc" },
+      { from:"shm_alevel", to:"odes_bsc" },
+      { from:"odes_bsc", to:"pdes_bsc" },
+      { from:"linear_algebra_bsc", to:"vector_calculus_bsc" },
+      { from:"calculus_concepts_alevel", to:"vector_calculus_bsc" },
+      { from:"math_methods_alevel", to:"complex_variables_bsc" },
+      { from:"pdes_bsc", to:"fourier_methods_bsc" },
+      { from:"complex_variables_bsc", to:"fourier_methods_bsc" },
+
+      // BSc mechanics and fields
+      { from:"mechanics_alevel", to:"classical_mech_lagrangian_bsc" },
+      { from:"odes_bsc", to:"classical_mech_lagrangian_bsc" },
+      { from:"linear_algebra_bsc", to:"classical_mech_lagrangian_bsc" },
+
+      { from:"classical_mech_lagrangian_bsc", to:"hamiltonian_mech_bsc" },
+      { from:"linear_algebra_bsc", to:"continuum_mech_bsc" },
+
+      { from:"electric_fields_potential_alevel", to:"em_fields_bsc" },
+      { from:"magnetic_fields_alevel", to:"em_fields_bsc" },
+      { from:"vector_calculus_bsc", to:"em_fields_bsc" },
+
+      { from:"em_fields_bsc", to:"em_maxwell_bsc" },
+      { from:"pdes_bsc", to:"em_maxwell_bsc" },
+      { from:"fourier_methods_bsc", to:"signals_linear_systems_bsc" },
+      { from:"ac_alevel", to:"signals_linear_systems_bsc" },
+
+      // BSc optics, lasers
+      { from:"optics_alevel", to:"optics_photonics_bsc" },
+      { from:"fourier_methods_bsc", to:"optics_photonics_bsc" },
+      { from:"em_maxwell_bsc", to:"optics_photonics_bsc" },
+
+      { from:"optics_photonics_bsc", to:"lasers_bsc" },
+      { from:"quantum_intro_alevel", to:"lasers_bsc" },
+
+      // BSc thermal and stat mech
+      { from:"thermal_physics_alevel", to:"thermodynamics_bsc" },
+      { from:"odes_bsc", to:"thermodynamics_bsc" },
+      { from:"thermodynamics_bsc", to:"stat_mech_bsc" },
+      { from:"linear_algebra_bsc", to:"stat_mech_bsc" },
+
+      // BSc fluids
+      { from:"pressure_density_gcse", to:"fluid_mech_bsc" },
+      { from:"classical_mech_lagrangian_bsc", to:"fluid_mech_bsc" },
+      { from:"fluid_mech_bsc", to:"navier_stokes_bsc" },
+      { from:"pdes_bsc", to:"navier_stokes_bsc" },
+
+      // BSc quantum chain
+      { from:"quantum_intro_alevel", to:"qm1_bsc" },
+      { from:"linear_algebra_bsc", to:"qm1_bsc" },
+      { from:"odes_bsc", to:"qm1_bsc" },
+      { from:"qm1_bsc", to:"qm2_bsc" },
+      { from:"qm1_bsc", to:"amo_bsc" },
+      { from:"optics_photonics_bsc", to:"amo_bsc" },
+
+      // BSc condensed matter chain
+      { from:"stat_mech_bsc", to:"solid_state_bsc" },
+      { from:"qm1_bsc", to:"solid_state_bsc" },
+      { from:"solid_state_bsc", to:"semiconductor_bsc" },
+      { from:"signals_linear_systems_bsc", to:"semiconductor_bsc" },
+
+      // BSc nuclear/particle/relativity/space
+      { from:"nuclear_physics_alevel", to:"nuclear_physics_bsc" },
+      { from:"qm1_bsc", to:"nuclear_physics_bsc" },
+
+      { from:"particle_intro_alevel", to:"particle_physics_bsc" },
+      { from:"qm1_bsc", to:"particle_physics_bsc" },
+
+      { from:"mechanics_alevel", to:"special_relativity_bsc" },
+      { from:"linear_algebra_bsc", to:"special_relativity_bsc" },
+      { from:"em_fields_bsc", to:"special_relativity_bsc" },
+
+      { from:"astrophysics_alevel", to:"astrophysics_bsc" },
+      { from:"thermodynamics_bsc", to:"astrophysics_bsc" },
+      { from:"optics_photonics_bsc", to:"astrophysics_bsc" },
+      { from:"special_relativity_bsc", to:"astrophysics_bsc" },
+
+      { from:"circular_motion_alevel", to:"orbital_mechanics_bsc" },
+      { from:"classical_mech_lagrangian_bsc", to:"orbital_mechanics_bsc" },
+
+      // BSc computation and instrumentation
+      { from:"odes_bsc", to:"computational_physics_bsc" },
+      { from:"uncertainty_error_gcse", to:"computational_physics_bsc" },
+      { from:"computational_physics_bsc", to:"data_analysis_bsc" },
+      { from:"uncertainty_error_gcse", to:"data_analysis_bsc" },
+
+      { from:"circuits_alevel", to:"electronics_instrumentation_bsc" },
+      { from:"uncertainty_error_gcse", to:"electronics_instrumentation_bsc" },
+      { from:"electronics_instrumentation_bsc", to:"noise_signal_integrity_bsc" },
+      { from:"signals_linear_systems_bsc", to:"noise_signal_integrity_bsc" },
+
+      // MSc chain for GR and advanced physics
+      { from:"vector_calculus_bsc", to:"tensor_calc_diff_geom_msc" },
+      { from:"linear_algebra_bsc", to:"tensor_calc_diff_geom_msc" },
+
+      { from:"tensor_calc_diff_geom_msc", to:"general_relativity_msc" },
+      { from:"special_relativity_bsc", to:"general_relativity_msc" },
+
+      { from:"general_relativity_msc", to:"gravitational_waves_msc" },
+      { from:"optics_photonics_bsc", to:"gravitational_waves_msc" },
+      { from:"data_analysis_bsc", to:"gravitational_waves_msc" },
+
+      { from:"em_maxwell_bsc", to:"advanced_electrodynamics_msc" },
+      { from:"fourier_methods_bsc", to:"advanced_electrodynamics_msc" },
+
+      { from:"advanced_electrodynamics_msc", to:"rf_microwave_msc" },
+      { from:"signals_linear_systems_bsc", to:"rf_microwave_msc" },
+
+      { from:"qm2_bsc", to:"advanced_qm_msc" },
+      { from:"complex_variables_bsc", to:"advanced_qm_msc" },
+      { from:"fourier_methods_bsc", to:"advanced_qm_msc" },
+
+      { from:"advanced_qm_msc", to:"qft_intro_msc" },
+      { from:"special_relativity_bsc", to:"qft_intro_msc" },
+      { from:"em_maxwell_bsc", to:"qft_intro_msc" },
+
+      { from:"qft_intro_msc", to:"particle_theory_sm_msc" },
+      { from:"particle_physics_bsc", to:"particle_theory_sm_msc" },
+
+      { from:"solid_state_bsc", to:"advanced_condensed_matter_msc" },
+      { from:"advanced_qm_msc", to:"advanced_condensed_matter_msc" },
+      { from:"advanced_condensed_matter_msc", to:"superconductivity_msc" },
+      { from:"advanced_electrodynamics_msc", to:"superconductivity_msc" },
+
+      { from:"em_maxwell_bsc", to:"plasma_physics_msc" },
+      { from:"fluid_mech_bsc", to:"plasma_physics_msc" },
+      { from:"pdes_bsc", to:"plasma_physics_msc" },
+      { from:"plasma_physics_msc", to:"mhd_msc" },
+      { from:"vector_calculus_bsc", to:"mhd_msc" },
+      { from:"mhd_msc", to:"fusion_physics_msc" },
+      { from:"nuclear_physics_bsc", to:"fusion_physics_msc" },
+
+      { from:"general_relativity_msc", to:"cosmology_msc" },
+      { from:"astrophysics_bsc", to:"cosmology_msc" },
+
+      { from:"general_relativity_msc", to:"computational_relativity_msc" },
+      { from:"computational_physics_bsc", to:"computational_relativity_msc" },
+      { from:"pdes_bsc", to:"computational_relativity_msc" },
+
+      // Frontier: prerequisite chains
+      { from:"general_relativity_msc", to:"quantum_gravity_frontier" },
+      { from:"qft_intro_msc", to:"quantum_gravity_frontier" },
+      { from:"cosmology_msc", to:"quantum_gravity_frontier" },
+
+      { from:"quantum_gravity_frontier", to:"string_theory_frontier" },
+      { from:"particle_theory_sm_msc", to:"string_theory_frontier" },
+      { from:"quantum_gravity_frontier", to:"loop_qg_frontier" },
+
+      { from:"cosmology_msc", to:"dark_matter_frontier" },
+      { from:"particle_theory_sm_msc", to:"dark_matter_frontier" },
+
+      { from:"cosmology_msc", to:"dark_energy_frontier" },
+      { from:"general_relativity_msc", to:"dark_energy_frontier" },
+
+      { from:"plasma_physics_msc", to:"high_energy_density_frontier" },
+      { from:"lasers_bsc", to:"high_energy_density_frontier" }
+    ];
+
+    const byId = new Map(NODES.map(n => [n.id, n]));
+    const edgesFrom = new Map();
+    const edgesTo = new Map();
+
+    for (const e of EDGES) {
+      if (!edgesFrom.has(e.from)) edgesFrom.set(e.from, []);
+      if (!edgesTo.has(e.to)) edgesTo.set(e.to, []);
+      edgesFrom.get(e.from).push(e.to);
+      edgesTo.get(e.to).push(e.from);
+    }
+
+    const viewport = document.getElementById("viewport");
+    const stage = document.getElementById("stage");
+    const svg = document.getElementById("links");
+
+    const searchEl = document.getElementById("search");
+    const focusSelect = document.getElementById("focusSelect");
+    const resetBtn = document.getElementById("resetBtn");
+    const redrawBtn = document.getElementById("redrawBtn");
+
+    const detailPanel = document.getElementById("detailPanel");
+    const panelTitle = document.getElementById("panelTitle");
+    const panelMeta = document.getElementById("panelMeta");
+    const panelReq = document.getElementById("panelReq");
+    const panelReqAll = document.getElementById("panelReqAll");
+    const panelDep = document.getElementById("panelDep");
+
+    let selectedId = null;
+    let nodeEls = new Map();
+
+    function escapeHtml(s) {
+      return String(s)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function createLevelColumn(level) {
+      const col = document.createElement("div");
+      col.className = "level";
+      col.dataset.level = level;
+      col.innerHTML = `<h2>${escapeHtml(level)}</h2>`;
+      return col;
+    }
+
+    function renderColumns() {
+      stage.innerHTML = "";
+      nodeEls.clear();
+
+      const columns = new Map();
+      for (const level of LEVELS) {
+        const col = createLevelColumn(level);
+        columns.set(level, col);
+        stage.appendChild(col);
+      }
+
+      // Populate topics in each column
+      for (const node of NODES) {
+        const col = columns.get(node.level);
+        if (!col) continue;
+
+        const el = document.createElement("div");
+        el.className = "node";
+        el.id = `node_${node.id}`;
+        el.dataset.id = node.id;
+
+        const prereqCount = (edgesTo.get(node.id) || []).length;
+        const depCount = (edgesFrom.get(node.id) || []).length;
+
+        el.innerHTML = `
+          <div class="title">${escapeHtml(node.title)}</div>
+          <div class="meta">
+            <span class="pill">Prereqs: ${prereqCount}</span>
+            <span class="pill">Dependents: ${depCount}</span>
+          </div>
+        `;
+
+        el.addEventListener("click", () => select(node.id));
+        col.appendChild(el);
+        nodeEls.set(node.id, el);
+      }
+    }
+
+    function buildFocusSelect() {
+      const opts = [`<option value="">Focus topic (jump)</option>`].concat(
+        NODES
+          .slice()
+          .sort((a,b) => a.title.localeCompare(b.title))
+          .map(n => `<option value="${escapeHtml(n.id)}">${escapeHtml(n.title)}</option>`)
+      );
+      focusSelect.innerHTML = opts.join("");
+      focusSelect.addEventListener("change", () => {
+        const id = focusSelect.value;
+        if (!id) return;
+        select(id);
+        jumpTo(id);
+      });
+    }
+
+    function jumpTo(id) {
+      const el = nodeEls.get(id);
+      if (!el) return;
+
+      const vpRect = viewport.getBoundingClientRect();
+      const elRect = el.getBoundingClientRect();
+      const currentScroll = viewport.scrollLeft;
+
+      // Center the selected node in the viewport horizontally
+      const elCenter = (elRect.left - vpRect.left) + (elRect.width / 2);
+      const target = currentScroll + elCenter - (vpRect.width / 2);
+      viewport.scrollLeft = Math.max(0, target);
+    }
+
+    function getAllPrereqs(startId) {
+      const seen = new Set();
+      const stack = [...(edgesTo.get(startId) || [])];
+
+      while (stack.length) {
+        const id = stack.pop();
+        if (seen.has(id)) continue;
+        seen.add(id);
+        for (const p of (edgesTo.get(id) || [])) stack.push(p);
+      }
+      return seen;
+    }
+
+    function getAllDependents(startId) {
+      const seen = new Set();
+      const stack = [...(edgesFrom.get(startId) || [])];
+
+      while (stack.length) {
+        const id = stack.pop();
+        if (seen.has(id)) continue;
+        seen.add(id);
+        for (const d of (edgesFrom.get(id) || [])) stack.push(d);
+      }
+      return seen;
+    }
+
+    function clearPanelList(ul) {
+      while (ul.firstChild) ul.removeChild(ul.firstChild);
+    }
+
+    function addListItem(ul, id) {
+      const n = byId.get(id);
+      const li = document.createElement("li");
+      if (!n) {
+        li.textContent = id;
+        ul.appendChild(li);
+        return;
+      }
+      const a = document.createElement("a");
+      a.href = "#";
+      a.textContent = n.title;
+      a.addEventListener("click", (ev) => {
+        ev.preventDefault();
+        select(n.id);
+        jumpTo(n.id);
+      });
+      li.appendChild(a);
+      ul.appendChild(li);
+    }
+
+    function renderPanel(id) {
+      const n = byId.get(id);
+      if (!n) return;
+
+      detailPanel.style.display = "block";
+      panelTitle.textContent = n.title;
+
+      const directReq = (edgesTo.get(id) || []).slice().map(x => byId.get(x)).filter(Boolean);
+      const directDep = (edgesFrom.get(id) || []).slice().map(x => byId.get(x)).filter(Boolean);
+      const allReq = [...getAllPrereqs(id)].map(x => byId.get(x)).filter(Boolean);
+
+      panelMeta.textContent = `Level: ${n.level} | Direct prerequisites: ${directReq.length} | Direct dependents: ${directDep.length}`;
+
+      clearPanelList(panelReq);
+      clearPanelList(panelReqAll);
+      clearPanelList(panelDep);
+
+      directReq
+        .sort((a,b) => a.title.localeCompare(b.title))
+        .forEach(x => addListItem(panelReq, x.id));
+
+      allReq
+        .sort((a,b) => a.title.localeCompare(b.title))
+        .forEach(x => addListItem(panelReqAll, x.id));
+
+      directDep
+        .sort((a,b) => a.title.localeCompare(b.title))
+        .forEach(x => addListItem(panelDep, x.id));
+    }
+
+    function applyHighlight(id) {
+      for (const el of nodeEls.values()) {
+        el.classList.remove("selected", "dim", "upstream", "downstream");
+      }
+
+      if (!id) {
+        redrawLines(null);
+        detailPanel.style.display = "none";
+        return;
+      }
+
+      const prereqs = getAllPrereqs(id);
+      const deps = getAllDependents(id);
+
+      for (const [nid, el] of nodeEls.entries()) {
+        const isSelected = nid === id;
+        const isUp = prereqs.has(nid);
+        const isDown = deps.has(nid);
+
+        if (isSelected) el.classList.add("selected");
+        if (isUp) el.classList.add("upstream");
+        if (isDown) el.classList.add("downstream");
+
+        const isActive = isSelected || isUp || isDown;
+        if (!isActive) el.classList.add("dim");
+      }
+
+      redrawLines({ focusId: id, prereqs, deps });
+    }
+
+    function select(id) {
+      selectedId = id;
+      renderPanel(id);
+      applyHighlight(id);
+    }
+
+    function filterNodes(query) {
+      const q = query.trim().toLowerCase();
+      if (!q) {
+        for (const el of nodeEls.values()) el.style.display = "";
+        redrawLines(selectedId ? { focusId: selectedId, prereqs: getAllPrereqs(selectedId), deps: getAllDependents(selectedId) } : null);
+        return;
+      }
+
+      const visible = new Set();
+      for (const n of NODES) {
+        const hit = (n.title || "").toLowerCase().includes(q);
+        const el = nodeEls.get(n.id);
+        if (!el) continue;
+        el.style.display = hit ? "" : "none";
+        if (hit) visible.add(n.id);
+      }
+
+      redrawLines(selectedId ? { focusId: selectedId, prereqs: getAllPrereqs(selectedId), deps: getAllDependents(selectedId), visible } : { visible });
+    }
+
+    function svgClear() {
+      while (svg.firstChild) svg.removeChild(svg.firstChild);
+    }
+
+    function getElBoxInViewportSpace(el) {
+      // Coordinates relative to the viewport scroll container content (not the window)
+      const vpRect = viewport.getBoundingClientRect();
+      const r = el.getBoundingClientRect();
+
+      const x = (r.left - vpRect.left) + viewport.scrollLeft;
+      const y = (r.top - vpRect.top) + viewport.scrollTop;
+      return { x, y, w: r.width, h: r.height };
+    }
+
+    function redrawLines(context) {
+      // Set SVG canvas to cover full scrollable content width and viewport height
+      const contentWidth = stage.scrollWidth + 32;
+      const contentHeight = Math.max(stage.scrollHeight + 32, viewport.clientHeight);
+
+      svg.setAttribute("width", String(contentWidth));
+      svg.setAttribute("height", String(contentHeight));
+      svg.style.width = contentWidth + "px";
+      svg.style.height = contentHeight + "px";
+
+      svgClear();
+
+      // Arrowhead marker
+      const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+      const marker = document.createElementNS("http://www.w3.org/2000/svg", "marker");
+      marker.setAttribute("id", "arrow");
+      marker.setAttribute("viewBox", "0 0 10 10");
+      marker.setAttribute("refX", "9");
+      marker.setAttribute("refY", "5");
+      marker.setAttribute("markerWidth", "7");
+      marker.setAttribute("markerHeight", "7");
+      marker.setAttribute("orient", "auto-start-reverse");
+
+      const arrowPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      arrowPath.setAttribute("d", "M 0 0 L 10 5 L 0 10 z");
+      arrowPath.setAttribute("fill", "var(--line)");
+      marker.appendChild(arrowPath);
+      defs.appendChild(marker);
+      svg.appendChild(defs);
+
+      const visibleSet = context?.visible instanceof Set ? context.visible : null;
+
+      // Draw all edges, but optionally dim non-focus edges
+      for (const e of EDGES) {
+        const fromEl = nodeEls.get(e.from);
+        const toEl = nodeEls.get(e.to);
+        if (!fromEl || !toEl) continue;
+
+        // Skip edges if either end is hidden by search filter
+        if (fromEl.style.display === "none" || toEl.style.display === "none") continue;
+        if (visibleSet && (!visibleSet.has(e.from) || !visibleSet.has(e.to))) {
+          // If search filter is active and only a subset is visible, omit hidden edges
+          continue;
+        }
+
+        const a = getElBoxInViewportSpace(fromEl);
+        const b = getElBoxInViewportSpace(toEl);
+
+        // start at right-middle of prereq node, end at left-middle of dependent node
+        const x1 = a.x + a.w;
+        const y1 = a.y + (a.h / 2);
+        const x2 = b.x;
+        const y2 = b.y + (b.h / 2);
+
+        // Bezier control points for a smooth curve
+        const dx = Math.max(60, (x2 - x1) * 0.45);
+        const c1x = x1 + dx;
+        const c1y = y1;
+        const c2x = x2 - dx;
+        const c2y = y2;
+
+        const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        path.setAttribute("d", `M ${x1} ${y1} C ${c1x} ${c1y}, ${c2x} ${c2y}, ${x2} ${y2}`);
+        path.setAttribute("fill", "none");
+
+        // Styling based on focus
+        let stroke = "var(--line)";
+        let width = 1.4;
+        let opacity = 0.65;
+
+        if (context?.focusId) {
+          const focusId = context.focusId;
+          const onUpstreamPath = (e.to === focusId) || (context.prereqs && context.prereqs.has(e.to) && (context.prereqs.has(e.from) || e.from === focusId));
+          const onDownstreamPath = (e.from === focusId) || (context.deps && context.deps.has(e.from) && (context.deps.has(e.to) || e.to === focusId));
+
+          if (onUpstreamPath || onDownstreamPath) {
+            stroke = "var(--highlight)";
+            width = 2.4;
+            opacity = 0.95;
+          } else {
+            opacity = 0.12;
+          }
+        }
+
+        path.setAttribute("stroke", stroke);
+        path.setAttribute("stroke-width", String(width));
+        path.setAttribute("opacity", String(opacity));
+        path.setAttribute("marker-end", "url(#arrow)");
+
+        svg.appendChild(path);
+      }
+    }
+
+    function resetView() {
+      selectedId = null;
+      focusSelect.value = "";
+      searchEl.value = "";
+      for (const el of nodeEls.values()) {
+        el.style.display = "";
+      }
+      applyHighlight(null);
+      redrawLines(null);
+    }
+
+    function init() {
+      renderColumns();
+      buildFocusSelect();
+
+      redrawLines(null);
+
+      // Redraw lines on scroll and resize so lines stay aligned with nodes
+      viewport.addEventListener("scroll", () => {
+        const ctx = selectedId ? { focusId: selectedId, prereqs: getAllPrereqs(selectedId), deps: getAllDependents(selectedId) } : null;
+        redrawLines(ctx);
+      });
+
+      window.addEventListener("resize", () => {
+        const ctx = selectedId ? { focusId: selectedId, prereqs: getAllPrereqs(selectedId), deps: getAllDependents(selectedId) } : null;
+        redrawLines(ctx);
+      });
+
+      searchEl.addEventListener("input", () => filterNodes(searchEl.value));
+      resetBtn.addEventListener("click", resetView);
+      redrawBtn.addEventListener("click", () => {
+        const ctx = selectedId ? { focusId: selectedId, prereqs: getAllPrereqs(selectedId), deps: getAllDependents(selectedId) } : null;
+        redrawLines(ctx);
+      });
+
+      // Default focus on String Theory as the example requested
+      select("string_theory_frontier");
+      jumpTo("string_theory_frontier");
+    }
+
+    init();
+  </script>
+</body>
+</html>
