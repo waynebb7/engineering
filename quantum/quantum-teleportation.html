@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/corporate.css">
+  <script src="../js/site-layout.js" defer></script>
+  <title>Quantum Teleportation</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+<body class="content-page">
+  <div class="page-container">
+    <div class="content-hero">
+      <nav class="page-hero-breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">&larr; Back to Hub</a>
+      </nav>
+      <h1>Quantum Teleportation</h1>
+      <p>Quantum guide. Transfer an unknown qubit using shared entanglement and two classical bits — no faster-than-light signalling, and the original state is destroyed.</p>
+      <div class="content-nav">
+        <a href="../quantum_subjects.html">&larr; Quantum Subjects Catalog</a>
+      </div>
+    </div>
+
+    <div class="content-body">
+
+    <div class="card">
+      <h2>1) What is quantum teleportation?</h2>
+      <p>
+        <strong>Quantum teleportation</strong> (Bennett et al., 1993) transfers the quantum state \(|\psi\rangle = \alpha|0\rangle + \beta|1\rangle\)
+        from Alice to Bob using:
+      </p>
+      <ul>
+        <li>One pair of qubits in a Bell state (shared entanglement)</li>
+        <li>Two classical bits of communication</li>
+        <li>Local quantum operations only</li>
+      </ul>
+      <div class="callout">
+        <strong>Key idea:</strong> Teleportation moves quantum information, not matter. It requires the
+        <a href="no-cloning-theorem.html">no-cloning theorem</a> — Alice's qubit is destroyed in the process.
+      </div>
+      <p class="mini">
+        Prerequisite: <a href="qubits-and-bloch-sphere.html">Qubits</a>,
+        <a href="quantum-gates.html">Quantum Gates</a>,
+        <a href="entanglement-and-bell.html">Entanglement</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>2) Setup: three qubits</h2>
+      <p>
+        <strong>Qubit 1</strong> (Alice): unknown state \(|\psi\rangle_1 = \alpha|0\rangle + \beta|1\rangle\).<br>
+        <strong>Qubits 2 &amp; 3</strong> (Alice &amp; Bob): shared Bell state
+        \[
+        |\Phi^+\rangle_{23} = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)
+        \]
+      </p>
+      <p>
+        Initial joint state:
+        \[
+        |\Psi\rangle = |\psi\rangle_1 \otimes |\Phi^+\rangle_{23}
+        = \frac{1}{\sqrt{2}}\bigl(\alpha|0\rangle|00\rangle + \beta|1\rangle|11\rangle\bigr)
+        \]
+      </p>
+      <div class="callout">
+        <strong>Resources:</strong> 1 ebit (entanglement bit) + 2 cbits (classical bits). No quantum channel
+        needed after entanglement is distributed.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>3) Bell measurement on Alice's pair</h2>
+      <p>
+        Alice applies CNOT\(_{1,2}\) then \(H_1\), and measures qubits 1 and 2 in the computational basis,
+        obtaining outcomes \(m_1, m_2 \in \{0,1\}\).
+      </p>
+      <p>
+        The four Bell states form a measurement basis. Rewriting \(|\Psi\rangle\) in the Bell basis of qubits 1–2:
+        \[
+        |\Psi\rangle = \frac{1}{2}\sum_{m_1,m_2} |\beta_{m_1 m_2}\rangle_{12} \otimes X^{m_2} Z^{m_1}|\psi\rangle_3
+        \]
+        where \(|\beta_{00}\rangle = |\Phi^+\rangle\), etc.
+      </p>
+      <div class="warning">
+        <strong>After measurement:</strong> Qubits 1 and 2 collapse to \(|\beta_{m_1 m_2}\rangle\). Bob's qubit 3
+        holds \(X^{m_2} Z^{m_1}|\psi\rangle\) — the original state with Pauli corrections applied.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>4) Classical correction at Bob</h2>
+      <p>
+        Alice sends \((m_1, m_2)\) to Bob over a classical channel. Bob applies:
+      </p>
+      <ul>
+        <li>\(Z^{m_1}\) if \(m_1 = 1\)</li>
+        <li>\(X^{m_2}\) if \(m_2 = 1\)</li>
+      </ul>
+      <p>
+        Result: Bob's qubit is in state \(|\psi\rangle = \alpha|0\rangle + \beta|1\rangle\).
+      </p>
+      <div class="callout">
+        <strong>Gate reference:</strong> Pauli matrices from
+        <a href="quantum-gates.html">Quantum Gates</a> —
+        \(X = \begin{pmatrix}0&1\\1&0\end{pmatrix}\),
+        \(Z = \begin{pmatrix}1&0\\0&-1\end{pmatrix}\).
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>5) Circuit diagram (conceptual)</h2>
+      <p>
+        In circuit notation (time flows left to right):
+      </p>
+      <ul>
+        <li>Wire 1: \(|\psi\rangle\) → CNOT target → \(H\) → measure → \(m_1\)</li>
+        <li>Wire 2: Bell pair with wire 3 → CNOT control → measure → \(m_2\)</li>
+        <li>Wire 3: at Bob → \(Z^{m_1}\) → \(X^{m_2}\) → \(|\psi\rangle\)</li>
+      </ul>
+      <p class="mini">
+        Full circuit conventions: <a href="quantum-circuits.html">Quantum Circuits</a>.
+        Multi-qubit gates: <a href="multi-qubit-systems.html">Multi-Qubit Systems</a>.
+      </p>
+      <div class="warning">
+        <strong>No-communication theorem:</strong> Before Alice sends \((m_1,m_2)\), Bob's reduced state is the
+        maximally mixed state \(\frac{I}{2}\) — he has zero information about \(|\psi\rangle\).
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>6) Why this is not faster-than-light</h2>
+      <p>
+        Entanglement alone cannot transmit information. Bob needs the classical bits, which travel at most at the
+        speed of light. The protocol consumes one Bell pair per teleportation.
+      </p>
+      <p>
+        Teleportation is a primitive in <strong>quantum networks</strong> and <strong>distributed quantum computing</strong>,
+        enabling qubit routing between processors.
+      </p>
+      <div class="callout">
+        <strong>Resource accounting:</strong> Teleporting one qubit costs 1 ebit + 2 cbits. This is optimal for
+        faithful transfer of an arbitrary unknown qubit.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>7) Experimental realisations and variants</h2>
+      <ul>
+        <li><strong>Photonic:</strong> Polarisation-entangled photons; first demonstrations in the late 1990s.</li>
+        <li><strong>Ion traps:</strong> Deterministic Bell measurements with high fidelity.</li>
+        <li><strong>Continuous-variable:</strong> Teleportation of coherent states in optical modes.</li>
+        <li><strong>Port-based teleportation:</strong> Reduces correction to local isometries at the cost of more entanglement.</li>
+      </ul>
+      <p class="mini">
+        Related: <a href="quantum-channels.html">Quantum Channels</a>,
+        <a href="trapped-ion-quantum.html">Trapped-Ion Systems</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>8) Quick knowledge check</h2>
+      <div class="quiz">
+        <ol>
+          <li>What three resources does the standard qubit teleportation protocol consume?</li>
+          <li>Write the initial state \(|\psi\rangle \otimes |\Phi^+\rangle\) explicitly for \(\alpha = 1/\sqrt{2}, \beta = 1/\sqrt{2}\).</li>
+          <li>Why does Bob apply \(X^{m_2} Z^{m_1}\) after receiving classical bits?</li>
+          <li>What is Bob's reduced state before he receives \((m_1, m_2)\)?</li>
+          <li>Explain why teleportation does not violate relativity.</li>
+          <li>How does teleportation relate to the no-cloning theorem?</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>9) Next topics</h2>
+      <ul>
+        <li><a href="no-cloning-theorem.html">No-Cloning Theorem</a> — why copying fails</li>
+        <li><a href="entanglement-and-bell.html">Entanglement and Bell Inequalities</a> — Bell states</li>
+        <li><a href="quantum-circuits.html">Quantum Circuits</a> — circuit model</li>
+        <li><a href="quantum-gates.html">Quantum Gates</a> — CNOT, H, Pauli</li>
+        <li><a href="quantum-key-distribution.html">Quantum Key Distribution</a> — quantum communication</li>
+        <li><a href="multi-qubit-systems.html">Multi-Qubit Systems</a> — tensor products</li>
+        <li><a href="../quantum_subjects.html">Quantum Subjects Catalog</a></li>
+        <li><a href="../index.html">Engineering Knowledge Hub</a></li>
+      </ul>
+    </div>
+
+    <p class="page-footer-note">Quantum physics and computing content.</p>
+    </div>
+  </div>
+</body>
+</html>

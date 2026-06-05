@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/corporate.css">
+  <script src="../js/site-layout.js" defer></script>
+  <title>Quantum Key Distribution</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+<body class="content-page">
+  <div class="page-container">
+    <div class="content-hero">
+      <nav class="page-hero-breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">&larr; Back to Hub</a>
+      </nav>
+      <h1>Quantum Key Distribution (QKD)</h1>
+      <p>Quantum guide. BB84 and E91 protocols, information-theoretic security, privacy amplification, decoy-state methods, and deploying fibre and satellite QKD links in real communication networks.</p>
+      <div class="content-nav">
+        <a href="../quantum_subjects.html">&larr; Quantum Subjects Catalog</a>
+      </div>
+    </div>
+
+    <div class="content-body">
+
+    <div class="card">
+      <h2>1) What QKD provides</h2>
+      <p>
+        <strong>Quantum key distribution</strong> allows two parties (Alice and Bob) to establish a shared secret key
+        with security guaranteed by the laws of quantum mechanics, not computational hardness. Any eavesdropper (Eve)
+        attempting to learn the key inevitably introduces detectable disturbances.
+      </p>
+      <ul>
+        <li>Security is <strong>information-theoretic</strong> — unconditional against unlimited computing power.</li>
+        <li>QKD distributes keys; encryption uses standard symmetric ciphers (AES) with the shared key.</li>
+        <li>Does <em>not</em> by itself provide authentication — classical authentication is needed to prevent
+          man-in-the-middle attacks.</li>
+        <li>Commercial systems: ID Quantique, Toshiba, QuantumCTek; standards: ETSI, ITU-T.</li>
+      </ul>
+      <div class="callout">
+        <strong>Key idea:</strong> Quantum states cannot be copied (<a href="no-cloning-theorem.html">No-Cloning Theorem</a>)
+        and measurement disturbs the state — Eve's presence is revealed through increased error rates.
+      </div>
+      <p class="mini">
+        Prerequisites: <a href="no-cloning-theorem.html">No-Cloning Theorem</a>,
+        <a href="entanglement-and-bell.html">Entanglement and Bell Inequalities</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>2) BB84 protocol</h2>
+      <p>
+        Bennett and Brassard (1984) encode bits in photon polarisations across two <strong>conjugate bases</strong>:
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Basis</th><th>Bit 0</th><th>Bit 1</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Rectilinear (+)</td><td>\(|0\rangle \equiv |H\rangle\)</td><td>\(|1\rangle \equiv |V\rangle\)</td></tr>
+            <tr><td>Diagonal (×)</td><td>\(|0\rangle \equiv |D\rangle = \tfrac{1}{\sqrt{2}}(|H\rangle+|V\rangle)\)</td><td>\(|1\rangle \equiv |A\rangle = \tfrac{1}{\sqrt{2}}(|H\rangle-|V\rangle)\)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ol>
+        <li>Alice randomly chooses basis and bit; sends encoded photons.</li>
+        <li>Bob randomly chooses measurement basis and records outcomes.</li>
+        <li>Public discussion: keep bits where bases matched; discard the rest.</li>
+        <li>Estimate error rate \(Q\) on a sacrificed subset; if \(Q\) exceeds threshold, abort.</li>
+        <li>Apply <strong>privacy amplification</strong> to distil a shorter, unconditionally secure key.</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2>3) Security and the error threshold</h2>
+      <p>
+        For BB84 with single-photon sources, the secure key rate \(R\) (bits per pulse) depends on the quantum bit
+        error rate (QBER) \(Q\). In the asymptotic limit with ideal single-photon sources:
+      </p>
+      <p style="text-align:center;">
+        \(R = 1 - h(Q) - Q\,h\!\left(\frac{f}{Q}\right)\)
+      </p>
+      <p>
+        where \(h(x) = -x\log_2 x - (1-x)\log_2(1-x)\) is the binary entropy and \(f\) is the error-correction
+        efficiency. Security holds for \(Q \lesssim 11\%\) against individual attacks; improved proofs extend this.
+      </p>
+      <div class="callout">
+        <strong>Eavesdropping bound:</strong> In intercept-resend attacks, Eve's wrong-basis measurements cause
+        \(\sim 25\%\) QBER — easily detected. Coherent attacks are handled by complete security proofs (Renner, Shor–Preskill).
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>4) E91 entanglement-based QKD</h2>
+      <p>
+        Ekert (1991) uses entangled photon pairs (e.g. Bell state \(|\Phi^+\rangle = \tfrac{1}{\sqrt{2}}(|HH\rangle + |VV\rangle)\)).
+        Alice and Bob measure in random bases; correlations violate Bell inequalities when no eavesdropper is present.
+      </p>
+      <p>
+        The CHSH Bell parameter \(S\) satisfies \(|S| \leq 2\) classically but \(|S| \leq 2\sqrt{2}\) quantumly.
+        Observing \(S &gt; 2\) certifies entanglement and bounds Eve's information.
+      </p>
+      <div class="callout">
+        <strong>Device-independent QKD:</strong> If Bell violation is certified, security does not depend on device
+        models — the strongest form of QKD security, demonstrated in laboratory settings.
+      </div>
+      <p class="mini">
+        Related: <a href="entanglement-and-bell.html">Entanglement and Bell Inequalities</a>,
+        <a href="photonic-quantum-computing.html">Photonic Quantum Computing</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>5) Practical challenges: losses and decoy states</h2>
+      <p>
+        Real fibres attenuate photons exponentially: transmission \(\eta = 10^{-\alpha L/10}\) for length \(L\) and
+        loss \(\alpha\) (dB/km). At 100 km, \(\eta \sim 10^{-2}\) — most pulses are lost.
+      </p>
+      <p>
+        <strong>Multi-photon problem:</strong> Weak coherent pulses (WCP) sources occasionally emit two or more
+        photons; Eve can perform photon-number splitting (PNS) attacks. The <strong>decoy-state method</strong>
+        (Lo, Ma, Chen, 2005) inserts pulses of varying intensity so that multi-photon contributions can be bounded:
+      </p>
+      <ul>
+        <li>Signal states: mean photon number \(\mu \sim 0.5\).</li>
+        <li>Decoy states: weaker intensity \(\nu \sim 0.1\).</li>
+        <li>Vacuum states: estimate background counts.</li>
+      </ul>
+      <div class="warning">
+        <strong>Rate-distance trade-off:</strong> Secure key rate decreases exponentially with distance. Quantum
+        repeaters (entanglement swapping) are needed for intercontinental QKD without trusted nodes.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>6) QKD network architectures</h2>
+      <div class="two-col">
+        <div>
+          <h3>Point-to-point</h3>
+          <ul>
+            <li>Direct fibre link between two parties</li>
+            <li>Range: ~100–150 km (without repeater)</li>
+            <li>Simplest deployment model</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Trusted relay</h3>
+          <ul>
+            <li>Intermediate nodes regenerate keys</li>
+            <li>Extends range but trusts relay operators</li>
+            <li>Used in Chinese quantum backbone network</li>
+          </ul>
+        </div>
+      </div>
+      <p>
+        <strong>Satellite QKD:</strong> Micius satellite demonstrated intercontinental key distribution by reducing
+        atmospheric path length. Free-space links connect ground stations via low-Earth-orbit relays.
+      </p>
+      <p>
+        <strong>MDI-QKD (measurement-device-independent):</strong> Alice and Bob send photons to a central untrusted
+        measurement station; security does not depend on detector side-channel freeness.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>7) Post-processing pipeline</h2>
+      <ol>
+        <li><strong>Sifting:</strong> retain matching-basis outcomes.</li>
+        <li><strong>Error estimation:</strong> compute QBER from test bits.</li>
+        <li><strong>Error correction:</strong> reconcile keys using Cascade, LDPC, or polar codes; leak
+          \(\ell_{\text{EC}}\) bits classically.</li>
+        <li><strong>Privacy amplification:</strong> apply universal hash function to shorten key by
+          \(\ell_{\text{PA}}\) bits, removing Eve's information.</li>
+      </ol>
+      <p>
+        Final secure key length (asymptotic, single-photon):
+      </p>
+      <p style="text-align:center;">
+        \(\ell_{\text{key}} = n\bigl[1 - h(Q) - f\,h(Q)\bigr] - \ell_{\text{EC}} - \ell_{\text{PA}}\)
+      </p>
+      <p class="mini">
+        Finite-size effects reduce key rates for short blocks; modern security proofs account for statistical fluctuations.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>8) QKD vs post-quantum cryptography</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Property</th><th>QKD</th><th>Post-quantum crypto (PQC)</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Security basis</td>
+              <td>Quantum physics (information-theoretic)</td>
+              <td>Computational hardness (lattice, hash, etc.)</td>
+            </tr>
+            <tr>
+              <td>Infrastructure</td>
+              <td>Dedicated optical links, specialised hardware</td>
+              <td>Standard internet, software upgrade</td>
+            </tr>
+            <tr>
+              <td>Range</td>
+              <td>Limited without repeaters</td>
+              <td>Global (internet-scale)</td>
+            </tr>
+            <tr>
+              <td>Authentication</td>
+              <td>Requires pre-shared classical key</td>
+              <td>Built into protocol (signatures)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        QKD and PQC are <strong>complementary</strong>: QKD protects key exchange on dedicated links; PQC protects
+        general internet traffic against future quantum computers.
+      </p>
+      <p class="mini">
+        Related: <a href="post-quantum-cryptography.html">Post-Quantum Cryptography</a>,
+        <a href="../cryptography.html">Cryptography</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>9) Next topics</h2>
+      <ul>
+        <li><a href="post-quantum-cryptography.html">Post-Quantum Cryptography</a> — classical PQC algorithms</li>
+        <li><a href="no-cloning-theorem.html">No-Cloning Theorem</a> — security foundation</li>
+        <li><a href="entanglement-and-bell.html">Entanglement and Bell Inequalities</a> — E91 and DI-QKD</li>
+        <li><a href="photonic-quantum-computing.html">Photonic Quantum Computing</a> — photon sources and detectors</li>
+        <li><a href="quantum-teleportation.html">Quantum Teleportation</a> — quantum repeaters</li>
+        <li><a href="quantum-channels.html">Quantum Channels and Decoherence</a> — channel models</li>
+        <li><a href="../cryptography.html">Cryptography</a> — classical crypto foundations</li>
+        <li><a href="../quantum_subjects.html">Quantum Subjects Catalog</a></li>
+        <li><a href="../index.html">Engineering Knowledge Hub</a></li>
+      </ul>
+    </div>
+
+    <p class="page-footer-note">Quantum physics and computing content.</p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/corporate.css">
+  <script src="../js/site-layout.js" defer></script>
+  <title>Shor's Factoring Algorithm</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+<body class="content-page">
+  <div class="page-container">
+    <div class="content-hero">
+      <nav class="page-hero-breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">&larr; Back to Hub</a>
+      </nav>
+      <h1>Shor's Factoring Algorithm</h1>
+      <p>Quantum guide. Polynomial-time factoring via quantum period finding — reduction to order-finding, the QFT, and implications for RSA cryptography.</p>
+      <div class="content-nav">
+        <a href="../quantum_subjects.html">&larr; Quantum Subjects Catalog</a>
+      </div>
+    </div>
+
+    <div class="content-body">
+
+    <div class="card">
+      <h2>1) The factoring problem</h2>
+      <p>
+        Given composite integer \(N\), find non-trivial factors. Classically, the best known algorithms
+        (general number field sieve) run in sub-exponential time. <strong>Shor (1994)</strong> solves factoring in
+        \(O((\log N)^3)\) quantum gates — polynomial in the bit length.
+      </p>
+      <div class="callout">
+        <strong>Key idea:</strong> Factoring reduces to <strong>period finding</strong> (order finding) in modular
+        arithmetic, which quantum phase estimation solves efficiently.
+      </div>
+      <p class="mini">
+        Prerequisite: <a href="quantum-circuits.html">Quantum Circuits</a>,
+        <a href="../cryptography.html">Cryptography</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>2) Reduction: factoring to order finding</h2>
+      <p>
+        Pick random \(a < N\) with \(\gcd(a, N) = 1\). The <strong>order</strong> \(r\) is the smallest positive integer with:
+        \[
+        a^r \equiv 1 \pmod{N}
+        \]
+      </p>
+      <p>
+        If \(r\) is even and \(a^{r/2} \not\equiv -1 \pmod{N}\), then:
+        \[
+        \gcd(a^{r/2} \pm 1, N)
+        \]
+        gives non-trivial factors of \(N\) with high probability.
+      </p>
+      <div class="warning">
+        <strong>Lucky case:</strong> If \(\gcd(a, N) > 1\) initially, you already found a factor — no quantum step needed.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>3) Quantum period finding</h2>
+      <p>
+        The function \(f(x) = a^x \bmod N\) is periodic with period \(r\). Create superposition over \(x\):
+        \[
+        \frac{1}{\sqrt{Q}}\sum_{x=0}^{Q-1}|x\rangle|a^x \bmod N\rangle
+        \]
+        Measuring the second register collapses to states where \(x\) differs by multiples of \(r\).
+      </p>
+      <p>
+        Apply the <strong>inverse Quantum Fourier Transform (QFT)</strong> to the first register and measure to extract
+        frequency information revealing \(r\).
+      </p>
+      <div class="callout">
+        <strong>QFT:</strong> <a href="quantum-fourier-transform.html">Quantum Fourier Transform</a> — \(O(n^2)\) gates for \(n\) qubits.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>4) The Quantum Fourier Transform</h2>
+      <p>
+        The QFT on \(n\) qubits maps basis state \(|j\rangle\) to:
+        \[
+        \mathrm{QFT}|j\rangle = \frac{1}{\sqrt{2^n}}\sum_{k=0}^{2^n-1} e^{2\pi i jk / 2^n}|k\rangle
+        \]
+      </p>
+      <p>
+        Measuring the output gives \(k\) with probability related to the period \(r\):
+        \[
+        \frac{k}{2^n} \approx \frac{c}{r} \quad \text{for integer } c
+        \]
+      </p>
+      <div class="callout">
+        <strong>Continued fractions:</strong> Classical post-processing extracts \(r\) from the measured fraction \(k/2^n\).
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>5) Shor's circuit overview</h2>
+      <ol>
+        <li>Choose \(Q = 2^q\) with \(N^2 \leq Q < 2N^2\) (first register size)</li>
+        <li>Prepare \(|0\rangle^{\otimes q}|1\rangle^{\otimes t}\) where \(t = \lceil\log_2 N\rceil\)</li>
+        <li>Apply \(H^{\otimes q}\) to first register</li>
+        <li>Controlled modular exponentiation: \(|x\rangle|1\rangle \to |x\rangle|a^x \bmod N\rangle\)</li>
+        <li>Apply \(\mathrm{QFT}^{-1}\) to first register</li>
+        <li>Measure first register; continued fractions yield candidate \(r\)</li>
+        <li>Classical post-processing: compute \(\gcd(a^{r/2} \pm 1, N)\)</li>
+      </ol>
+      <p class="mini">
+        Modular arithmetic circuits: largest resource cost in fault-tolerant implementations.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>6) Complexity and resources</h2>
+      <p>
+        <strong>Gate complexity:</strong> \(O((\log N)^3)\) for the full algorithm with efficient modular exponentiation.
+      </p>
+      <p>
+        <strong>Qubits:</strong> Roughly \(2\log N\) for the main registers; fault-tolerant implementations need
+        millions of physical qubits for cryptographically relevant \(N\) (2048-bit RSA).
+      </p>
+      <div class="warning">
+        <strong>Not yet practical:</strong> No quantum computer has factored RSA-scale integers. Record demonstrations
+        factor small numbers (e.g. 21 = 3 × 7).
+      </div>
+      <p class="mini">
+        <a href="fault-tolerant-quantum-computing.html">Fault-Tolerant Computing</a>,
+        <a href="post-quantum-cryptography.html">Post-Quantum Cryptography</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>7) Impact on cryptography</h2>
+      <p>
+        RSA and Diffie–Hellman security relies on the hardness of factoring and discrete logarithms. Shor breaks both
+        in polynomial quantum time.
+      </p>
+      <ul>
+        <li><strong>RSA:</strong> Public key \(N = pq\) — factoring \(N\) recovers private key.</li>
+        <li><strong>Discrete log:</strong> Shor generalises to \(\mathbb{Z}_p^*\) and elliptic curve groups.</li>
+        <li><strong>Response:</strong> NIST post-quantum standards (CRYSTALS-Kyber, Dilithium) use lattice problems.</li>
+      </ul>
+      <div class="callout">
+        <strong>Symmetric crypto:</strong> Grover halves effective key length — AES-256 remains safe; AES-128 may not.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>8) Quick knowledge check</h2>
+      <div class="quiz">
+        <ol>
+          <li>How does order finding \(a^r \equiv 1 \pmod{N}\) lead to factors of \(N\)?</li>
+          <li>What role does the QFT play in period extraction?</li>
+          <li>Why is continued fraction expansion needed after measurement?</li>
+          <li>What is the polynomial gate complexity of Shor's algorithm in \(\log N\)?</li>
+          <li>Why can't Grover factor integers efficiently?</li>
+          <li>Name two post-quantum cryptographic approaches replacing RSA.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>9) Next topics</h2>
+      <ul>
+        <li><a href="quantum-fourier-transform.html">Quantum Fourier Transform</a> — core subroutine</li>
+        <li><a href="grovers-algorithm.html">Grover's Algorithm</a> — quadratic search</li>
+        <li><a href="deutsch-jozsa-algorithm.html">Deutsch–Jozsa</a> — oracle algorithms</li>
+        <li><a href="post-quantum-cryptography.html">Post-Quantum Cryptography</a> — migration path</li>
+        <li><a href="fault-tolerant-quantum-computing.html">Fault-Tolerant Computing</a> — scale requirements</li>
+        <li><a href="quantum-algorithms-overview.html">Quantum Algorithms Overview</a></li>
+        <li><a href="../quantum_subjects.html">Quantum Subjects Catalog</a></li>
+        <li><a href="../index.html">Engineering Knowledge Hub</a></li>
+      </ul>
+    </div>
+
+    <p class="page-footer-note">Quantum physics and computing content.</p>
+    </div>
+  </div>
+</body>
+</html>

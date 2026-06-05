@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="css/corporate.css">
   <script src="js/site-layout.js" defer></script>
-  <title>One Time Pad Decryption</title>
+  <title>One-Time Pad Decryption - Exploratory</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
 </head>
 
 <body class="content-page">
@@ -14,31 +17,153 @@
       <nav class="page-hero-breadcrumb" aria-label="Breadcrumb">
         <a href="index.html">&larr; Back to Hub</a>
       </nav>
-      <h1>One Time Pad Decryption</h1>
-      <p>Mathematics topic page. Content is being developed.</p>
+      <h1>One-Time Pad Decryption</h1>
+      <p>Exploratory guide. The one-time pad (Vernam cipher) — perfectly secret encryption when used correctly, and why "decryption" is trivial only if you hold the key.</p>
       <div class="content-nav">
         <a href="pure_math_subjects.html">&larr; Pure Math Subjects Catalog</a>
       </div>
     </div>
 
     <div class="content-body">
-      <div class="card">
-        <h2>Overview</h2>
-        <p>
-          This page is a placeholder for <strong>One Time Pad Decryption</strong>. It is linked from the
-          <a href="pure_math_subjects.html">Pure Math Subjects Catalog</a> and will be expanded with explanations,
-          worked examples, and engineering applications.
-        </p>
-      </div>
 
-      <div class="card">
-        <h2>Coming soon</h2>
-        <ul>
-          <li>Key definitions and notation</li>
-          <li>Step-by-step examples</li>
-          <li>Links to related calculators and reference material</li>
-        </ul>
+    <div class="card">
+      <h2>1) About this topic (read first)</h2>
+      <p>
+        Unlike other entries in the <strong>AI Only</strong> catalog section, the <strong>one-time pad (OTP)</strong> is
+        <em>real, rigorous cryptography</em>. It was proved <strong>information-theoretically secure</strong> by Shannon (1949).
+        It appears in this section likely because the catalog title emphasises "decryption" in a sensational way — but the
+        mathematics is standard and taught in security courses.
+      </p>
+      <div class="callout">
+        <strong>Placement note:</strong> For digital logic context see
+        <a href="logic_and_digital_math/boolean-algebra.html">Boolean Algebra</a> and
+        <a href="cryptography.html">Cryptography</a> (postgraduate page).
       </div>
+    </div>
+
+    <div class="card">
+      <h2>2) How the one-time pad works</h2>
+      <p>
+        Represent plaintext and key as bit strings of equal length \(n\). Encryption:
+        \[
+        c_i = p_i \oplus k_i \quad \text{for } i = 1,\ldots,n
+        \]
+        where \(\oplus\) is XOR (addition mod 2). <strong>Decryption</strong> uses the same operation:
+        \[
+        p_i = c_i \oplus k_i.
+        \]
+        XOR is self-inverse: \((p \oplus k) \oplus k = p\).
+      </p>
+      <div class="two-col">
+        <div>
+          <h3>Example</h3>
+          <p class="mini">\(p = 1011\), \(k = 0110\) → \(c = 1101\). Decrypt: \(1101 \oplus 0110 = 1011\).</p>
+        </div>
+        <div>
+          <h3>Key requirement</h3>
+          <p class="mini">Key must be random, as long as the message, and <strong>never reused</strong>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>3) Why decryption without the key is impossible</h2>
+      <p>
+        If \(k\) is uniform over \(\{0,1\}^n\), then for any fixed ciphertext \(c\), every plaintext \(p\) is equally likely
+        (because \(k = c \oplus p\) is equally likely). An attacker learns <strong>zero Shannon information</strong> about \(p\)
+        from \(c\) alone.
+      </p>
+      <div class="warning">
+        <strong>Not computational hardness:</strong> OTP security does not rely on "hard maths problems" like factoring.
+        Even an infinitely powerful computer cannot break OTP without the key — if the pad rules are followed.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>4) Shannon's perfect secrecy definition</h2>
+      <p>
+        A cipher has <strong>perfect secrecy</strong> if for all plaintexts \(p_1, p_2\) and all ciphertexts \(c\):
+        \[
+        \Pr[P = p_1 \mid C = c] = \Pr[P = p_2 \mid C = c].
+        \]
+        OTP with a uniform one-time key achieves this. No other cipher can be perfectly secure with a shorter key than the message.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>5) The two-time pad catastrophe (key reuse)</h2>
+      <p>
+        If the same key encrypts two messages \(p_1\) and \(p_2\):
+        \[
+        c_1 \oplus c_2 = p_1 \oplus p_2.
+        \]
+        The key cancels. Partial knowledge of one message (language redundancy) often reveals the other — this broke Soviet
+        OTP traffic in the VENONA project.
+      </p>
+      <div class="callout">
+        <strong>Lesson:</strong> "One-time" is not optional. Reuse turns perfect security into a solvable puzzle.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>6) Practical limitations (why OTP is rare online)</h2>
+      <ul>
+        <li><strong>Key distribution:</strong> You need \(n\) random key bits per \(n\) message bits — securely delivered in advance.</li>
+        <li><strong>Synchronisation:</strong> Sender and receiver must agree on key index; loss of alignment destroys decryption.</li>
+        <li><strong>No authentication:</strong> OTP does not stop tampering; combine with MACs in real systems.</li>
+        <li><strong>True randomness:</strong> Pseudorandom keys reduce security to computational assumptions — no longer perfect secrecy.</li>
+      </ul>
+      <p class="mini">
+        Modern TLS uses computational cryptography (AES, ECDH) because OTP key logistics are impractical at internet scale.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>7) Worked example: decrypt a 5-bit message</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Position</th><th>Ciphertext</th><th>Key</th><th>Plaintext (c ⊕ k)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+            <tr><td>2</td><td>1</td><td>0</td><td>1</td></tr>
+            <tr><td>3</td><td>1</td><td>1</td><td>0</td></tr>
+            <tr><td>4</td><td>0</td><td>0</td><td>0</td></tr>
+            <tr><td>5</td><td>1</td><td>1</td><td>0</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="mini">Plaintext bits 11000 — interpret via agreed encoding (ASCII, Baudot, etc.).</p>
+    </div>
+
+    <div class="card">
+      <h2>8) Quick knowledge check</h2>
+      <div class="quiz">
+        <ol>
+          <li>Write the OTP encryption and decryption formulas using XOR.</li>
+          <li>Why is OTP perfectly secret if the key is random and one-time?</li>
+          <li>What happens cryptographically if a key is reused twice?</li>
+          <li>Name one practical reason OTP is not used for everyday HTTPS.</li>
+          <li>Does OTP provide integrity against ciphertext modification?</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>9) Next topics</h2>
+      <ul>
+        <li><a href="cryptography.html">Cryptography</a> — broader modern theory</li>
+        <li><a href="logic_and_digital_math/binary-arithmetic.html">Binary Arithmetic</a> — XOR at the bit level</li>
+        <li><a href="logic_and_digital_math/boolean-algebra.html">Boolean Algebra</a> — logic behind XOR gates</li>
+        <li><a href="system-entropy-deconvolution.html">System Entropy Deconvolution</a> — another catalog topic in this section</li>
+        <li><a href="random-sequence-extrapolation.html">Random Sequence Extrapolation</a> — why keys must be truly unpredictable</li>
+        <li><a href="pure_math_subjects.html">Pure Math Subjects Catalog</a></li>
+        <li><a href="index.html">Engineering Knowledge Hub</a></li>
+      </ul>
+    </div>
+
+    <p class="page-footer-note">Catalogued as speculative section, but OTP cryptography itself is established and rigorous.</p>
     </div>
   </div>
 </body>

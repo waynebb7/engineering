@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/corporate.css">
+  <script src="../js/site-layout.js" defer></script>
+  <title>Measurement in Quantum Computing</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+<body class="content-page">
+  <div class="page-container">
+    <div class="content-hero">
+      <nav class="page-hero-breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">&larr; Back to Hub</a>
+      </nav>
+      <h1>Measurement in Quantum Computing</h1>
+      <p>Quantum guide. Projective measurement, observables, Born rule, collapse, and how readout works in quantum algorithms and hardware.</p>
+      <div class="content-nav">
+        <a href="../quantum_subjects.html">&larr; Quantum Subjects Catalog</a>
+      </div>
+    </div>
+
+    <div class="content-body">
+
+    <div class="card">
+      <h2>1) The measurement postulate</h2>
+      <p>
+        Measuring observable \(M\) with spectral decomposition \(M = \sum_m m\, P_m\) on state \(|\psi\rangle\):
+      </p>
+      <ul>
+        <li><strong>Outcome \(m\)</strong> with probability \(P(m) = \langle\psi|P_m|\psi\rangle\) (Born rule)</li>
+        <li><strong>Post-measurement state:</strong> \(\frac{P_m|\psi\rangle}{\|P_m|\psi\rangle\|}\) (projective / Lüders)</li>
+      </ul>
+      <div class="callout">
+        <strong>Key idea:</strong> Measurement is probabilistic and generally disturbs the state — unlike classical readout.
+      </div>
+      <p class="mini">
+        Foundations: <a href="quantum-postulates.html">Postulates of Quantum Mechanics</a>,
+        <a href="superposition-and-measurement.html">Superposition and Measurement</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>2) Computational basis measurement</h2>
+      <p>
+        The standard readout in quantum computing measures the Pauli \(Z\) observable:
+        \[
+        Z = |0\rangle\langle 0| - |1\rangle\langle 1|
+        \]
+        For \(|\psi\rangle = \alpha|0\rangle + \beta|1\rangle\):
+        \[
+        P(0) = |\alpha|^2,\quad P(1) = |\beta|^2
+        \]
+      </p>
+      <p>
+        In circuits, the meter symbol on a wire performs this measurement and stores a classical bit.
+      </p>
+      <div class="callout">
+        <strong>Bloch view:</strong> \(Z\) measurement distinguishes northern (\(|0\rangle\)) from southern (\(|1\rangle\)) hemispheres.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>3) Measuring in other bases</h2>
+      <p>
+        To measure in basis \(\{|+\rangle, |-\rangle\}\), apply \(H\) then measure in \(Z\):
+        \[
+        H|\psi\rangle \to \text{measure } Z \to \text{outcome } \pm 1
+        \]
+      </p>
+      <p>
+        General recipe: rotate the desired eigenbasis to computational basis with unitary \(U\), measure, interpret.
+      </p>
+      <div class="warning">
+        <strong>Basis matters:</strong> Measuring \(|\psi\rangle = |+\rangle\) in \(Z\) gives 0 or 1 with 50% probability each —
+        not deterministic.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>4) Observables and expectation values</h2>
+      <p>
+        The <strong>expectation value</strong> of observable \(M\):
+        \[
+        \langle M \rangle = \langle\psi|M|\psi\rangle = \sum_m m\, P(m)
+        \]
+      </p>
+      <p>
+        For Pauli operators on the Bloch sphere:
+        \[
+        \langle X \rangle = r_x,\quad \langle Y \rangle = r_y,\quad \langle Z \rangle = r_z
+        \]
+      </p>
+      <div class="callout">
+        <strong>Quantum algorithms:</strong> Many algorithms estimate \(\langle\psi|H|\psi\rangle\) for a Hamiltonian \(H\)
+        via repeated measurement — basis of VQE and QAOA.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>5) Multi-qubit measurement</h2>
+      <p>
+        Measuring all qubits projects onto \(|x_1 x_2 \cdots x_n\rangle\) with probability
+        \(|\langle x_1\cdots x_n|\psi\rangle|^2\).
+      </p>
+      <p>
+        <strong>Partial measurement:</strong> Measuring qubit 1 of an entangled pair collapses the joint state.
+        For \(|\Phi^+\rangle\), measuring qubit 1 as 0 projects to \(|00\rangle\).
+      </p>
+      <div class="callout">
+        <strong>Joint vs marginal:</strong> Marginal probabilities need not factor for entangled states.
+        See <a href="multi-qubit-systems.html">Multi-Qubit Systems</a>.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>6) POVMs and generalised measurement</h2>
+      <p>
+        A <strong>POVM</strong> (positive operator-valued measure) \(\{E_m\}\) satisfies \(\sum_m E_m = I\), \(E_m \geq 0\),
+        with \(P(m) = \langle\psi|E_m|\psi\rangle\).
+      </p>
+      <p>
+        POVMs are more general than projective measurements — they model realistic detectors with non-unit efficiency,
+        loss, and readout errors.
+      </p>
+      <div class="callout">
+        <strong>Hardware:</strong> Superconducting qubits use dispersive readout; photonic systems use photon detection.
+        Both implement imperfect POVMs, not ideal projectors.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>7) Measurement in algorithms</h2>
+      <ul>
+        <li><strong>Deutsch–Jozsa:</strong> Single final measurement determines if \(f\) is constant or balanced.</li>
+        <li><strong>Grover:</strong> Measure after \(O(\sqrt{N})\) iterations to find the marked item.</li>
+        <li><strong>Shor:</strong> Measure the period-register in the computational basis; continued fractions extract \(r\).</li>
+        <li><strong>Teleportation:</strong> Bell measurement on Alice's qubits; classical outcomes steer Bob's correction.</li>
+      </ul>
+      <p class="mini">
+        Most algorithms require <strong>repeated runs</strong> (shots) to estimate outcome statistics.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>8) Quick knowledge check</h2>
+      <div class="quiz">
+        <ol>
+          <li>State the Born rule for projector \(P_m\).</li>
+          <li>What are \(P(0)\) and \(P(1)\) for \(|{+i}\rangle\) measured in \(Z\)?</li>
+          <li>How do you measure in the \(X\) basis using \(H\) and \(Z\) measurement?</li>
+          <li>What happens when you measure one qubit of \(|\Phi^+\rangle\)?</li>
+          <li>Define a POVM and explain why it generalises projective measurement.</li>
+          <li>Why do quantum algorithms run many shots on hardware?</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>9) Next topics</h2>
+      <ul>
+        <li><a href="qubits-and-bloch-sphere.html">Qubits and Bloch Sphere</a> — state geometry</li>
+        <li><a href="multi-qubit-systems.html">Multi-Qubit Systems</a> — partial trace</li>
+        <li><a href="density-matrices.html">Density Matrices</a> — mixed-state measurement</li>
+        <li><a href="quantum-circuits.html">Quantum Circuits</a> — measurement symbols</li>
+        <li><a href="quantum-channels.html">Quantum Channels</a> — decoherence as noise</li>
+        <li><a href="quantum-postulates.html">Quantum Postulates</a> — full formalism</li>
+        <li><a href="../quantum_subjects.html">Quantum Subjects Catalog</a></li>
+        <li><a href="../index.html">Engineering Knowledge Hub</a></li>
+      </ul>
+    </div>
+
+    <p class="page-footer-note">Quantum physics and computing content.</p>
+    </div>
+  </div>
+</body>
+</html>

@@ -20,6 +20,7 @@
     { href: 'dc_power_calculator.html', label: 'Calculators' },
     { href: 'pure_math_subjects.html', label: 'Mathematics' },
     { href: 'physics_subjects.html', label: 'Physics' },
+    { href: 'quantum_subjects.html', label: 'Quantum' },
     { href: 'logic_and_digital_math/boolean-algebra.html', label: 'Digital Logic' },
     { href: 'feedback.html', label: 'Feedback' }
   ];
@@ -53,7 +54,12 @@
         file.indexOf('divergence') !== -1;
     }
     if (href === 'physics_subjects.html') {
-      return path.indexOf('physics') !== -1 || path.indexOf('basic_physics') !== -1;
+      var physicsQuantumFile = /^(quantum-mechanics|quantum-physics|quantum-field|quantum-gravity|quantum-optics|quantum-information|loop-quantum)/.test(file);
+      return (path.indexOf('physics') !== -1 || path.indexOf('basic_physics') !== -1 || physicsQuantumFile) &&
+        path.indexOf('/quantum/') === -1 && file !== 'quantum_subjects.html';
+    }
+    if (href === 'quantum_subjects.html') {
+      return file === 'quantum_subjects.html' || path.indexOf('/quantum/') !== -1;
     }
     return file === href;
   }

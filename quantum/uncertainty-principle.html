@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/corporate.css">
+  <script src="../js/site-layout.js" defer></script>
+  <title>Uncertainty Principle</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+<body class="content-page">
+  <div class="page-container">
+    <div class="content-hero">
+      <nav class="page-hero-breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">&larr; Back to Hub</a>
+      </nav>
+      <h1>Uncertainty Principle</h1>
+      <p>Quantum guide. Fundamental limits on simultaneous knowledge of non-commuting observables — from wave spreading to measurement disturbance.</p>
+      <div class="content-nav">
+        <a href="../quantum_subjects.html">&larr; Quantum Subjects Catalog</a>
+      </div>
+    </div>
+
+    <div class="content-body">
+
+    <div class="card">
+      <h2>1) What uncertainty means in QM</h2>
+      <p>
+        The <strong>uncertainty</strong> \(\Delta A\) of observable \(A\) in state \(|\psi\rangle\) is the standard
+        deviation of measurement outcomes:
+      </p>
+      <p style="text-align:center;">\[(\Delta A)^2 = \langle A^2\rangle - \langle A\rangle^2\]</p>
+      <p>
+        It is not merely experimental imprecision — for incompatible observables, no quantum state can make both
+        uncertainties arbitrarily small simultaneously.
+      </p>
+      <div class="callout">
+        <strong>Not a measurement flaw alone:</strong> Uncertainty is a property of the state, though measurement
+        can disturb subsequent statistics — see
+        <a href="superposition-and-measurement.html">Superposition and Measurement</a>.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>2) Robertson–Schrödinger relation</h2>
+      <p>
+        For any two Hermitian operators \(A\) and \(B\):
+      </p>
+      <p style="text-align:center;">\[\Delta A\,\Delta B \geq \frac{1}{2}\left|\langle[A,B]\rangle\right|\]</p>
+      <p>
+        The commutator \([A,B] = AB - BA\) quantifies incompatibility. When \([A,B] = 0\), a common eigenbasis
+        exists and both can have zero uncertainty simultaneously.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>3) Position–momentum uncertainty</h2>
+      <p>
+        The canonical commutation relation \([\hat{x},\hat{p}] = i\hbar\) gives the famous Heisenberg form:
+      </p>
+      <p style="text-align:center;">\[\Delta x\,\Delta p \geq \frac{\hbar}{2}\]</p>
+      <p>
+        A localised wave packet (small \(\Delta x\)) requires many momentum components (large \(\Delta p\)) — the
+        wave origin of uncertainty from <a href="wave-particle-duality.html">Wave–Particle Duality</a>.
+      </p>
+      <div class="callout">
+        <strong>Gaussian minimum:</strong> A Gaussian wave packet saturates \(\Delta x\,\Delta p = \hbar/2\).
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>4) Energy–time uncertainty</h2>
+      <p>
+        A widely used (but subtly interpreted) relation:
+      </p>
+      <p style="text-align:center;">\[\Delta E\,\Delta t \gtrsim \frac{\hbar}{2}\]</p>
+      <p>
+        \(\Delta t\) is not an operator in standard QM; interpretations include: lifetime of a resonance (width
+        \(\Gamma \sim \hbar/\tau\)), or time to distinguish energy levels by evolution. Short-lived states have
+        broad energy distributions.
+      </p>
+      <p class="mini">
+        Enables <a href="quantum-tunneling.html">Quantum Tunneling</a> through barriers with ill-defined energy.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>5) Spin uncertainty example</h2>
+      <p>
+        Pauli matrices satisfy \([\sigma_x,\sigma_z] = 2i\sigma_y\). For spin along distinct axes:
+      </p>
+      <p style="text-align:center;">
+        \[\Delta S_x\,\Delta S_z \geq \frac{\hbar}{2}|\langle S_y\rangle|\]
+      </p>
+      <p>
+        In eigenstate \(|{\uparrow z}\rangle\), \(\langle S_y\rangle = 0\) so the bound is trivially satisfied,
+        but \(\Delta S_x = \hbar/2\) and \(\Delta S_z = 0\) — you cannot prepare a state with both \(\Delta S_x\)
+        and \(\Delta S_z\) arbitrarily small unless \(\langle S_y\rangle \neq 0\).
+      </p>
+      <p class="mini">
+        Details: <a href="spin-and-pauli-matrices.html">Spin and Pauli Matrices</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>6) Harmonic oscillator ground state</h2>
+      <p>
+        The ground state \(|0\rangle\) of \(\hat{H} = \hat{p}^2/2m + \tfrac{1}{2}m\omega^2\hat{x}^2\) has
+        \(\Delta x = \sqrt{\hbar/2m\omega}\) and \(\Delta p = \sqrt{\hbar m\omega/2}\), giving
+        \(\Delta x\,\Delta p = \hbar/2\). Zero-point energy \(E_0 = \tfrac{1}{2}\hbar\omega\) follows from
+        non-zero \(\Delta x\) even at minimum energy.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>7) Engineering implications</h2>
+      <ul>
+        <li><strong>Quantum metrology:</strong> shot-noise limits and squeezed states trade one uncertainty for another</li>
+        <li><strong>Electron microscopes:</strong> higher momentum (shorter \(\lambda\)) can localize better but increase energy spread</li>
+        <li><strong>Superconducting qubits:</strong> charge–phase uncertainty constrains device parameters</li>
+        <li><strong>Security proofs:</strong> QKD protocols exploit measurement disturbance tied to non-commutation</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>8) Quick knowledge check</h2>
+      <div class="quiz">
+        <ol>
+          <li>Define \(\Delta A\) in terms of expectation values.</li>
+          <li>State the Robertson–Schrödinger inequality.</li>
+          <li>Derive \(\Delta x\,\Delta p \geq \hbar/2\) from \([\hat{x},\hat{p}]=i\hbar\).</li>
+          <li>Why does a narrow wave packet have large momentum spread?</li>
+          <li>What is zero-point energy and how does uncertainty explain it?</li>
+          <li>Are \(\hat{x}\) and \(\hat{p}\) simultaneously diagonalisable?</li>
+          <li>Why is energy–time uncertainty subtler than position–momentum?</li>
+        </ol>
+      </div>
+      <p class="mini">
+        Answers: \(\sqrt{\langle A^2\rangle-\langle A\rangle^2}\); \(\Delta A\Delta B \geq \tfrac{1}{2}|\langle[A,B]\rangle|\);
+        substitute commutator; Fourier relationship — localisation requires superposition of many \(p\); minimum energy
+        with unavoidable \(\Delta x\); no; time is not a Hermitian operator in standard QM.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>9) Next topics</h2>
+      <ul>
+        <li><a href="quantum-postulates.html">Postulates of Quantum Mechanics</a> — commutators and observables</li>
+        <li><a href="wave-particle-duality.html">Wave–Particle Duality</a> — wave-packet spreading</li>
+        <li><a href="superposition-and-measurement.html">Superposition and Measurement</a> — disturbance</li>
+        <li><a href="dirac-notation.html">Dirac Notation</a> — \(\langle A^2\rangle\) calculations</li>
+        <li><a href="quantum-tunneling.html">Quantum Tunneling</a> — barrier penetration</li>
+        <li><a href="spin-and-pauli-matrices.html">Spin and Pauli Matrices</a></li>
+        <li><a href="../statistics.html">Statistics and Probability</a></li>
+        <li><a href="../quantum_subjects.html">Quantum Subjects Catalog</a></li>
+        <li><a href="../index.html">Engineering Knowledge Hub</a></li>
+      </ul>
+    </div>
+
+    <p class="page-footer-note">Quantum physics and computing content.</p>
+    </div>
+  </div>
+</body>
+</html>

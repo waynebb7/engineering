@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/corporate.css">
+  <script src="../js/site-layout.js" defer></script>
+  <title>Surface Codes</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+<body class="content-page">
+  <div class="page-container">
+    <div class="content-hero">
+      <nav class="page-hero-breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">&larr; Back to Hub</a>
+      </nav>
+      <h1>Surface Codes</h1>
+      <p>Quantum guide. Two-dimensional stabilizer codes with local checks on a lattice — the leading architecture for fault-tolerant quantum computing on superconducting and similar platforms.</p>
+      <div class="content-nav">
+        <a href="../quantum_subjects.html">&larr; Quantum Subjects Catalog</a>
+      </div>
+    </div>
+
+    <div class="content-body">
+
+    <div class="card">
+      <h2>1) Why surface codes?</h2>
+      <p>
+        The <strong>surface code</strong> is a topological <a href="stabilizer-codes.html">stabilizer code</a> defined
+        on a 2D square lattice of physical qubits. All stabiliser measurements involve only nearest neighbours — matching
+        the connectivity of <a href="superconducting-qubits.html">Superconducting Qubits</a> and enabling scalable layouts.
+      </p>
+      <ul>
+        <li>High fault-tolerance <strong>threshold</strong> (\(\sim 10^{-3}\) gate error, model-dependent)</li>
+        <li>2D geometry: data and ancilla qubits on a chip plane</li>
+        <li>Mature decoding algorithms (matching, union-find)</li>
+      </ul>
+      <div class="callout">
+        <strong>Key idea:</strong> Logical information is stored non-locally; local errors create syndromes at lattice
+        boundaries without immediately corrupting the logical qubit.
+      </div>
+      <p class="mini">
+        Background: <a href="quantum-error-correction.html">Quantum Error Correction</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>2) Lattice structure</h2>
+      <p>
+        On an \(L \times L\) patch with boundaries, physical qubits sit on edges (or vertices, by convention).
+        <strong>Plaquette stabilisers</strong> (\(Z\)-type) and <strong>star stabilisers</strong> (\(X\)-type) tile the
+        surface. A distance-\(d\) code uses roughly \(d^2\) data qubits; logical operators are strings connecting boundaries.
+      </p>
+      <div class="two-col">
+        <div>
+          <h3>Open boundary</h3>
+          <p class="mini">Planar code with smooth and rough boundaries; logical \(X\) and \(Z\) as string operators
+          between opposite boundary types.</p>
+        </div>
+        <div>
+          <h3>Toric code</h3>
+          <p class="mini">Periodic boundaries — 2 logical qubits on a torus; pedagogical model for topology.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>3) Syndrome cycles</h2>
+      <p>
+        One <strong>syndrome round</strong> measures all \(X\) and \(Z\) stabilisers using ancilla qubits:
+      </p>
+      <ol>
+        <li>Reset ancillas to \(|0\rangle\)</li>
+        <li>CNOT (or CZ) from data neighbours into ancilla</li>
+        <li>Measure ancilla → one syndrome bit per stabiliser</li>
+        <li>Repeat every \(\sim 1\,\mu\mathrm{s}\) on superconducting systems</li>
+      </ol>
+      <p>
+        Non-trivial syndromes form <strong>defect chains</strong>. Decoders infer the most likely error chain connecting
+        defects (minimum-weight matching in 2D).
+      </p>
+      <div class="warning">
+        <strong>Hook errors:</strong> Faulty syndrome circuits can convert \(X\) into effective \(Z\) errors — circuits
+        must be designed fault-tolerantly.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>4) Distance and logical error rate</h2>
+      <p>
+        Code <strong>distance</strong> \(d\) scales with lattice size. Logical error per round roughly scales as:
+      </p>
+      <p style="text-align:center;">\[
+        p_L \sim \left(\frac{p}{p_{\mathrm{th}}}\right)^{(d+1)/2}
+      \]</p>
+      <p>
+        where \(p\) is physical error rate and \(p_{\mathrm{th}}\) is the threshold. Increasing \(d\) suppresses \(p_L\)
+        exponentially if \(p < p_{\mathrm{th}}\) — the promise of
+        <a href="fault-tolerant-quantum-computing.html">Fault-Tolerant Quantum Computing</a>.
+      </p>
+      <div class="callout">
+        <strong>Overhead:</strong> A single high-fidelity logical qubit may require thousands of physical qubits and
+        continuous syndrome processing.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>5) Lattice surgery and logical gates</h2>
+      <p>
+        Logical Clifford gates are performed by <strong>lattice surgery</strong>: merge and split code patches,
+        measuring joint stabilisers to enact CNOT-like operations. Non-Clifford \(T\) gates need
+        <strong>magic state distillation</strong> injected into the surface code.
+      </p>
+      <p class="mini">
+        Universal computation combines transversal Clifford operations on patches with distilled \(|T\rangle\) states.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>6) Experimental milestones</h2>
+      <ul>
+        <li><strong>Below-threshold demonstrations:</strong> increasing code distance reduces logical error rate</li>
+        <li><strong>Google Willow (2024):</strong> exponential suppression of logical errors with larger surface codes</li>
+        <li><strong>Real-time decoding:</strong> microsecond-scale classical processing paired with fast measurements</li>
+        <li><strong>Connectivity engineering:</strong> tunable couplers and readout optimisation on planar chips</li>
+      </ul>
+      <div class="callout">
+        <strong>Status:</strong> Logical qubits exist in labs; large-scale fault-tolerant algorithms (e.g. Shor at
+        cryptographic size) remain years away by most estimates.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>7) Alternatives and research frontiers</h2>
+      <ul>
+        <li><strong>Quantum LDPC codes:</strong> potentially \(\sim 10\times\) less overhead, non-local checks</li>
+        <li><strong>3D surface / colour codes:</strong> different transversal gate sets</li>
+        <li><strong>Bosonic codes:</strong> cat codes, GKP — encode in oscillators instead of many two-level systems</li>
+      </ul>
+      <p class="mini">
+        Near-term without full QEC: <a href="nisq-computing.html">NISQ Era Computing</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>8) Quick knowledge check</h2>
+      <div class="quiz">
+        <ol>
+          <li>Why are surface codes attractive for 2D hardware?</li>
+          <li>What do plaquette and star stabilisers detect?</li>
+          <li>How does distance \(d\) relate to correctable errors?</li>
+          <li>What decoder is common for 2D surface codes?</li>
+          <li>What is lattice surgery?</li>
+          <li>Why are \(T\) gates special on surface codes?</li>
+          <li>What trend confirms the threshold theorem experimentally?</li>
+        </ol>
+      </div>
+      <p class="mini">
+        Answers: nearest-neighbour stabilisers fit chip layout; \(X\) and \(Z\) errors respectively (by convention);
+        corrects \(\lfloor(d-1)/2\rfloor\) errors; minimum-weight matching; patch merge/split for logical gates;
+        not transversal — need magic states; logical error decreases when increasing \(d\) at fixed \(p < p_{\mathrm{th}}\).
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>9) Next topics</h2>
+      <ul>
+        <li><a href="stabilizer-codes.html">Stabilizer Codes</a></li>
+        <li><a href="fault-tolerant-quantum-computing.html">Fault-Tolerant Quantum Computing</a></li>
+        <li><a href="quantum-error-correction.html">Quantum Error Correction</a></li>
+        <li><a href="superconducting-qubits.html">Superconducting Qubits</a></li>
+        <li><a href="quantum-control-calibration.html">Quantum Control and Calibration</a></li>
+        <li><a href="shors-algorithm.html">Shor's Factoring Algorithm</a> — long-term target workload</li>
+        <li><a href="nisq-computing.html">NISQ Era Computing</a></li>
+        <li><a href="../quantum_subjects.html">Quantum Subjects Catalog</a></li>
+        <li><a href="../index.html">Engineering Knowledge Hub</a></li>
+      </ul>
+    </div>
+
+    <p class="page-footer-note">Quantum physics and computing content.</p>
+    </div>
+  </div>
+</body>
+</html>

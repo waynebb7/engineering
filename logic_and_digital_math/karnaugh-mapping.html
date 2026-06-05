@@ -2,83 +2,202 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="../css/corporate.css">
-    <script src="../js/site-layout.js" defer></script>
-  <title>Karnaugh Mapping Explained</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/corporate.css">
+  <script src="../js/site-layout.js" defer></script>
+  <title>Karnaugh Mapping</title>
 </head>
-<body>
-  
-    <div class="page-container">
-        <a href="../index.html" class="back-link">&larr; Back to Hub</a>
-<h1>Karnaugh Mapping (K-map)</h1>
 
-  <p>A <strong>Karnaugh map</strong> is a diagram used to simplify Boolean algebra expressions. It is a powerful tool in digital logic design, enabling the reduction of logical expressions with minimal reliance on algebraic manipulation.</p>
-
-  <h2>What is a Karnaugh Map?</h2>
-  <p>Karnaugh Maps organize the output values of a truth table into a grid. Each cell corresponds to a unique combination of input variable values and represents a minterm.</p>
-
-  <h2>Why Use Karnaugh Maps?</h2>
-  <ul>
-    <li>Simplify complex logic expressions</li>
-    <li>Identify patterns and redundancies visually</li>
-    <li>Minimize logic gates in circuits</li>
-  </ul>
-
-  <h2>K-map Sizes</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Variables</th>
-        <th>K-map Size</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>2</td><td>2×2 (4 cells)</td></tr>
-      <tr><td>3</td><td>2×4 (8 cells)</td></tr>
-      <tr><td>4</td><td>4×4 (16 cells)</td></tr>
-    </tbody>
-  </table>
-
-  <h2>Example 2-variable K-map</h2>
-  <table>
-    <thead>
-      <tr><th></th><th>B=0</th><th>B=1</th></tr>
-    </thead>
-    <tbody>
-      <tr><th>A=0</th><td>0</td><td>1</td></tr>
-      <tr><th>A=1</th><td>1</td><td>0</td></tr>
-    </tbody>
-  </table>
-
-  <h2>Grouping Rules</h2>
-  <ul>
-    <li>Group 1s (SOP) or 0s (POS)</li>
-    <li>Each group must be a power of 2: 1, 2, 4, 8...</li>
-    <li>Groups must be rectangular</li>
-    <li>Groups can wrap around edges</li>
-    <li>Use the largest groups possible to simplify most</li>
-  </ul>
-
-  <h2>3-variable K-map Example</h2>
-  <p>Given: <code>f(A, B, C) = Σ(1, 3, 5, 7)</code></p>
-  <table>
-    <thead>
-      <tr><th>AB \ C</th><th>0</th><th>1</th></tr>
-    </thead>
-    <tbody>
-      <tr><th>00</th><td>0</td><td>1</td></tr>
-      <tr><th>01</th><td>0</td><td>1</td></tr>
-      <tr><th>11</th><td>0</td><td>1</td></tr>
-      <tr><th>10</th><td>0</td><td>1</td></tr>
-    </tbody>
-  </table>
-  <p>Group all 1s in column <code>C=1</code> → Simplified expression: <code>C</code></p>
-
-  <h2>Conclusion</h2>
-  <div class="note">
-    Karnaugh maps are intuitive tools for reducing Boolean expressions. With practice, they become essential in the design of efficient digital circuits.
-  </div>
+<body class="content-page">
+  <div class="page-container">
+    <div class="content-hero">
+      <nav class="page-hero-breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">&larr; Back to Hub</a>
+      </nav>
+      <h1>Karnaugh Mapping</h1>
+      <p>Digital logic guide. Karnaugh maps for 2–4 variables, grouping rules, and don't-care minimisation.</p>
+      <div class="content-nav">
+        <a href="../pure_math_subjects.html">&larr; Pure Math Subjects Catalog</a>
+      </div>
     </div>
+
+    <div class="content-body">
+
+    <div class="card">
+      <h2>1) What is a Karnaugh map?</h2>
+      <p>
+        A <strong>Karnaugh map (K-map)</strong> is a grid layout of a truth table arranged so that
+        adjacent cells differ in exactly one input variable (Gray-code order). That adjacency makes
+        redundant literals visible as rectangular groups.
+      </p>
+      <ul>
+        <li>Purpose: simplify <a href="combinational-logic.html">sum-of-products</a> or product-of-sums expressions</li>
+        <li>Alternative to long algebraic manipulation with <a href="boolean-algebra.html">Boolean algebra</a></li>
+        <li>Best suited to hand minimisation of functions with up to about six variables</li>
+      </ul>
+      <div class="callout">
+        <strong>Key idea:</strong> Grouping adjacent 1s (or 0s) merges minterms and eliminates variables that change within the group.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>2) Two-variable K-map</h2>
+      <p>For <code>F(A, B)</code>, the map has four cells. Row/column labels use Gray code so neighbours differ by one bit.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th></th><th>B = 0</th><th>B = 1</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>A = 0</th><td>m₀ (A'B')</td><td>m₁ (A'B)</td></tr>
+            <tr><th>A = 1</th><td>m₂ (AB')</td><td>m₃ (AB)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>Example:</strong> <code>F = Σ(1, 3)</code> — 1s in the entire right column.</p>
+      <p>Group the two 1s → <code>B</code> changes within the group, <code>A</code> is redundant → <code>F = B</code>.</p>
+      <p>Edges wrap: in a 2×2 map, all four corners are mutually adjacent (one group of four gives <code>F = 1</code>).</p>
+    </div>
+
+    <div class="card">
+      <h2>3) Three-variable K-map</h2>
+      <p>
+        A 3-variable map is <strong>2 rows × 4 columns</strong> (8 cells).
+        One variable (often <code>A</code>) labels the rows; <code>BC</code> labels columns in Gray order: 00, 01, 11, 10.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>A \ BC</th><th>00</th><th>01</th><th>11</th><th>10</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>0</th><td>m₀</td><td>m₁</td><td>m₃</td><td>m₂</td></tr>
+            <tr><th>1</th><td>m₄</td><td>m₅</td><td>m₇</td><td>m₆</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>Example:</strong> <code>F = Σ(1, 3, 5, 7)</code> — all 1s in columns where <code>C = 1</code>.</p>
+      <p>One group of four 1s spans both rows → <code>F = C</code>.</p>
+      <p>Left and right column edges are adjacent (wrap-around), like a cylinder.</p>
+    </div>
+
+    <div class="card">
+      <h2>4) Four-variable K-map</h2>
+      <p>
+        A 4-variable map is <strong>4 × 4</strong> (16 cells).
+        Rows use Gray-ordered <code>AB</code>; columns use Gray-ordered <code>CD</code>.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>AB \ CD</th><th>00</th><th>01</th><th>11</th><th>10</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>00</th><td>m₀</td><td>m₁</td><td>m₃</td><td>m₂</td></tr>
+            <tr><th>01</th><td>m₄</td><td>m₅</td><td>m₇</td><td>m₆</td></tr>
+            <tr><th>11</th><td>m₁₂</td><td>m₁₃</td><td>m₁₅</td><td>m₁₄</td></tr>
+            <tr><th>10</th><td>m₈</td><td>m₉</td><td>m₁₁</td><td>m₁₀</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Adjacency wraps on <em>both</em> horizontal and vertical edges, and at corners — the map behaves like a torus.
+        Groups can be 1, 2, 4, 8, or 16 cells.
+      </p>
+      <p><strong>Example:</strong> <code>F = Σ(0, 2, 8, 10)</code> — four corners are all 1 → single group → <code>F = B'D'</code>.</p>
+    </div>
+
+    <div class="card">
+      <h2>5) Grouping rules</h2>
+      <p>Follow these rules when circling 1s for SOP minimisation (use 0s instead for POS):</p>
+      <ol>
+        <li>Groups must contain <strong>1, 2, 4, 8, …</strong> cells (powers of two only)</li>
+        <li>Groups must be <strong>rectangular</strong> (width and height are powers of two)</li>
+        <li>Make each group as <strong>large as possible</strong></li>
+        <li>Cover every 1 at least once; use the <strong>fewest groups</strong> needed</li>
+        <li>A group of <code>2<sup>k</sup></code> cells eliminates <code>k</code> variables from the product term</li>
+        <li>Edge and corner wrap-around counts as adjacency</li>
+      </ol>
+      <div class="warning">
+        <strong>Common mistake:</strong> Making groups of three or six cells. Invalid groups do not correspond to legal product terms.
+      </div>
+      <p>
+        Each group yields one <strong>implicant</strong> (product term).
+        The OR of all group terms is the minimised SOP.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>6) Don't cares (X)</h2>
+      <p>
+        A <strong>don't care</strong> condition marks input combinations that never occur or whose output is irrelevant.
+        On a K-map, don't cares are written as <code>X</code> and may be treated as 0 or 1 — whichever yields larger groups.
+      </p>
+      <p><strong>Example:</strong> BCD-to-7-segment displays: invalid codes 10–15 are don't cares.</p>
+      <ul>
+        <li>Include <code>X</code> in a group only when it helps enlarge a valid group of 1s</li>
+        <li>Never create a group consisting only of Xs with no required 1</li>
+        <li>Don't cares can reduce term count but the simplified function is valid only for specified care conditions</li>
+      </ul>
+      <div class="callout">
+        <strong>Notation:</strong> <code>F = Σ(1, 3) + d(2, 5)</code> means minterms 1 and 3 are required 1s; 2 and 5 are don't cares.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>7) Worked example (4 variables)</h2>
+      <p>Simplify <code>F(A, B, C, D) = Σ(1, 3, 7, 11, 15) + d(0, 2, 5)</code>.</p>
+      <p>Place 1s at the listed minterms; mark X at 0, 2, 5. One possible grouping:</p>
+      <ul>
+        <li>Group of 4 covering m₀, m₁, m₃, m₂ (use X at m₀, m₂) → term <code>B'D</code></li>
+        <li>Group of 4 covering m₇, m₅, m₁₅, m₁₃ (use X at m₅) → term <code>BD</code></li>
+        <li>Group of 2 covering m₁₁, m₁₅ → term <code>ACD</code></li>
+      </ul>
+      <p>Minimised result: <code>F = B'D + BD + ACD</code> (other minimal covers may exist — compare group choices).</p>
+      <p>
+        For systematic multi-output or large-variable minimisation, use the
+        <a href="quine-mccluskey.html">Quine–McCluskey method</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>8) SOP vs POS on K-maps</h2>
+      <p>
+        <strong>SOP:</strong> group 1s, write product terms for each group, OR them together.
+      </p>
+      <p>
+        <strong>POS:</strong> group 0s instead, write sum terms for each group, AND them together.
+        Complementing the map of 0s gives the dual form.
+      </p>
+      <p>
+        Choose whichever form needs fewer literals for your gate library.
+        NAND-only designs often start from SOP then apply <a href="de-morgans-theorems.html">De Morgan's theorems</a>.
+      </p>
+      <div class="quiz">
+        <ol>
+          <li>Why are K-map columns ordered 00, 01, 11, 10 instead of 00, 01, 10, 11?</li>
+          <li>How many variables does a group of eight 1s eliminate in a 4-variable map?</li>
+          <li>When is a don't care treated as a 1?</li>
+          <li>Minimise <code>F = Σ(0, 1, 2, 3)</code> on a 2-variable map.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>9) Next topics</h2>
+      <ul>
+        <li><a href="combinational-logic.html">Combinational Logic</a> — SOP design flow</li>
+        <li><a href="quine-mccluskey.html">Quine–McCluskey Method</a> — algorithmic minimisation</li>
+        <li><a href="gray-code.html">Gray Code</a> — ordering behind K-map adjacency</li>
+        <li><a href="truth-tables.html">Truth Tables</a> — building the map from specifications</li>
+        <li><a href="boolean-algebra.html">Boolean Algebra</a> — verifying simplified results</li>
+        <li><a href="../pure_math_subjects.html">Pure Math Subjects Catalog</a></li>
+        <li><a href="../index.html">Engineering Knowledge Hub</a></li>
+      </ul>
+    </div>
+
+    <p class="page-footer-note">Logic and digital mathematics content.</p>
+    </div>
+  </div>
 </body>
 </html>

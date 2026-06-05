@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/corporate.css">
+  <script src="../js/site-layout.js" defer></script>
+  <title>Quantum Algorithms Overview</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+<body class="content-page">
+  <div class="page-container">
+    <div class="content-hero">
+      <nav class="page-hero-breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">&larr; Back to Hub</a>
+      </nav>
+      <h1>Quantum Algorithms Overview</h1>
+      <p>Quantum guide. A map of quantum algorithm families — oracle models, complexity classes, proven speedups, and what is realistic on today's hardware versus fault-tolerant machines.</p>
+      <div class="content-nav">
+        <a href="../quantum_subjects.html">&larr; Quantum Subjects Catalog</a>
+      </div>
+    </div>
+
+    <div class="content-body">
+
+    <div class="card">
+      <h2>1) What makes an algorithm quantum?</h2>
+      <p>
+        A <strong>quantum algorithm</strong> is a sequence of unitary operations and measurements on qubits that solves
+        a computational problem. Advantage appears when quantum interference, entanglement, or phase estimation
+        reduce resources (time, queries, samples) below classical baselines for the same task.
+      </p>
+      <ul>
+        <li><strong>Input:</strong> classical data encoded into quantum states (or oracle access)</li>
+        <li><strong>Computation:</strong> gates from <a href="quantum-gates.html">Quantum Gates</a> composed in
+          <a href="quantum-circuits.html">Quantum Circuits</a></li>
+        <li><strong>Output:</strong> classical bit strings from <a href="quantum-measurement.html">Measurement</a></li>
+      </ul>
+      <div class="callout">
+        <strong>Key idea:</strong> Speedup is problem-specific. There is no single quantum program that accelerates
+        all classical workloads.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>2) Oracle and query models</h2>
+      <p>
+        Many algorithms are analysed with a <strong>black-box oracle</strong> \(O_f\) that implements
+        \(f:\{0,1\}^n \to \{0,1\}\) or phase oracles \(O_f|x\rangle = (-1)^{f(x)}|x\rangle\).
+        <strong>Query complexity</strong> counts oracle calls.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Algorithm</th><th>Problem</th><th>Quantum queries</th><th>Classical (typical)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><a href="deutsch-jozsa-algorithm.html">Deutsch–Jozsa</a></td><td>Constant vs balanced \(f\)</td><td>1</td><td>\(2^{n-1}+1\) worst case</td></tr>
+            <tr><td><a href="grovers-algorithm.html">Grover search</a></td><td>Find \(f(x)=1\)</td><td>\(O(\sqrt{N})\)</td><td>\(O(N)\)</td></tr>
+            <tr><td>Simon</td><td>Hidden period in \(f\)</td><td>\(O(n)\)</td><td>Exponential</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="mini">
+        Oracles abstract problem structure; real algorithms replace oracles with explicit circuits (e.g. modular
+        arithmetic in <a href="shors-algorithm.html">Shor's algorithm</a>).
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>3) Complexity class BQP</h2>
+      <p>
+        <strong>BQP</strong> (bounded-error quantum polynomial time) is the class of problems solvable by quantum
+        computers in polynomial time with error \(\leq 1/3\). Known containments:
+      </p>
+      <p style="text-align:center;">\[
+        \mathrm{P} \subseteq \mathrm{BQP} \subseteq \mathrm{PSPACE}
+      \]</p>
+      <p>
+        Whether \(\mathrm{BQP} \supsetneq \mathrm{P}\) is open in full generality, but <strong>concrete problems</strong>
+        (integer factoring, discrete log) have quantum polynomial algorithms believed super-polynomial classically.
+      </p>
+      <div class="warning">
+        <strong>Common mistake:</strong> Confusing BQP with "all NP problems." Factoring is in NP∩coNP; NP-complete
+        problems are not known to be in BQP.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>4) Exponential-speedup algorithms</h2>
+      <p>
+        Algorithms with exponential separation (under standard assumptions):
+      </p>
+      <ul>
+        <li><strong><a href="shors-algorithm.html">Shor's algorithm</a>:</strong> factoring and discrete logarithm via
+          <a href="quantum-fourier-transform.html">Quantum Fourier Transform</a> and period finding</li>
+        <li><strong>Simon:</strong> finds hidden XOR masks; inspired Shor</li>
+        <li><strong>Quantum phase estimation:</strong> eigenvalue phases for unitaries</li>
+        <li><strong>HHL (simplified):</strong> linear systems under strict data-access assumptions</li>
+      </ul>
+      <div class="callout">
+        <strong>Requirement:</strong> These need long coherent circuits and
+        <a href="fault-tolerant-quantum-computing.html">fault tolerance</a> at scale — not yet practical for
+        cryptographically large instances on <a href="nisq-computing.html">NISQ devices</a>.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>5) Quadratic and polynomial speedups</h2>
+      <ul>
+        <li><strong><a href="grovers-algorithm.html">Grover</a>:</strong> unstructured search — \(O(\sqrt{N})\)</li>
+        <li><strong>Amplitude amplification:</strong> generalises Grover for broader success criteria</li>
+        <li><strong>Quantum walk algorithms:</strong> some graph problems gain polynomial factors</li>
+        <li><strong>Hamiltonian simulation:</strong> simulating quantum dynamics with precision \(\epsilon\) in
+          poly\((\log(1/\epsilon), n)\) time under sparsity assumptions</li>
+      </ul>
+      <p class="mini">
+        Quadratic speedups still matter for large search spaces but may be overwhelmed by constant overheads on hardware.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>6) Variational and NISQ-era algorithms</h2>
+      <p>
+        Near-term algorithms trade proven asymptotic advantage for shallow circuits and hybrid loops:
+      </p>
+      <ul>
+        <li><strong><a href="variational-quantum-eigensolver.html">VQE</a>:</strong> ground-state energies</li>
+        <li><strong><a href="quantum-approximate-optimization.html">QAOA</a>:</strong> combinatorial optimisation</li>
+        <li><strong>Quantum machine learning ansätze:</strong> heuristic feature maps — advantage debated</li>
+      </ul>
+      <div class="callout">
+        <strong>Status:</strong> These are engineering workflows with problem-dependent utility, not proven exponential
+        speedups like Shor.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>7) Choosing an algorithm: decision guide</h2>
+      <div class="two-col">
+        <div>
+          <h3>Problem structure</h3>
+          <p class="mini">Periodicity → QFT/Shor; unstructured search → Grover; ground energy → VQE;
+          graph cut → QAOA; dynamics → Hamiltonian simulation.</p>
+        </div>
+        <div>
+          <h3>Hardware era</h3>
+          <p class="mini">NISQ: low depth, error mitigation; fault-tolerant era: magic states, error correction,
+          millions of physical qubits.</p>
+        </div>
+      </div>
+      <p>
+        Also consider <strong>data encoding cost</strong>: loading classical vectors into quantum states can erase
+        theoretical speedups if not structured (e.g. QRAM assumptions).
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>8) Quick knowledge check</h2>
+      <div class="quiz">
+        <ol>
+          <li>Define BQP informally.</li>
+          <li>Which algorithm gives exponential speedup for factoring?</li>
+          <li>What is Grover's query complexity for \(N\) items?</li>
+          <li>What subroutine links Shor to the QFT?</li>
+          <li>Name two variational NISQ algorithms.</li>
+          <li>Does quantum computing solve all NP-complete problems in polynomial time?</li>
+          <li>What is an oracle in algorithm analysis?</li>
+        </ol>
+      </div>
+      <p class="mini">
+        Answers: polynomial-time quantum with bounded error; Shor; \(O(\sqrt{N})\); period finding / phase estimation;
+        VQE and QAOA; not known — unlikely for all; black-box access to \(f\) counting queries to \(O_f\).
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>9) Next topics</h2>
+      <ul>
+        <li><a href="deutsch-jozsa-algorithm.html">Deutsch–Jozsa Algorithm</a></li>
+        <li><a href="grovers-algorithm.html">Grover's Search Algorithm</a></li>
+        <li><a href="shors-algorithm.html">Shor's Factoring Algorithm</a></li>
+        <li><a href="quantum-fourier-transform.html">Quantum Fourier Transform</a></li>
+        <li><a href="variational-quantum-eigensolver.html">VQE</a> · <a href="quantum-approximate-optimization.html">QAOA</a></li>
+        <li><a href="nisq-computing.html">NISQ Era Computing</a></li>
+        <li><a href="fault-tolerant-quantum-computing.html">Fault-Tolerant Quantum Computing</a></li>
+        <li><a href="../quantum_subjects.html">Quantum Subjects Catalog</a></li>
+        <li><a href="../index.html">Engineering Knowledge Hub</a></li>
+      </ul>
+    </div>
+
+    <p class="page-footer-note">Quantum physics and computing content.</p>
+    </div>
+  </div>
+</body>
+</html>

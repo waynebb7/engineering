@@ -27,6 +27,7 @@ SKIP_PREFIXES = (
 CATALOG_PAGES = {
     "pure_math_subjects.html",
     "physics_subjects.html",
+    "quantum_subjects.html",
     "physics_subjects_drill_down/physics_subjects_drill_down_list.html",
     "tree.html",
     "logic_and_digital_math/digital_math_classification.html",

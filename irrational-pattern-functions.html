@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="css/corporate.css">
   <script src="js/site-layout.js" defer></script>
-  <title>Irrational Pattern Functions</title>
+  <title>Irrational Pattern Functions - Exploratory</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
 </head>
 
 <body class="content-page">
@@ -15,30 +18,169 @@
         <a href="index.html">&larr; Back to Hub</a>
       </nav>
       <h1>Irrational Pattern Functions</h1>
-      <p>Mathematics topic page. Content is being developed.</p>
+      <p>Exploratory guide. How irrational numbers create quasiperiodic patterns — and what is real mathematics behind this non-standard label.</p>
       <div class="content-nav">
         <a href="pure_math_subjects.html">&larr; Pure Math Subjects Catalog</a>
       </div>
     </div>
 
     <div class="content-body">
-      <div class="card">
-        <h2>Overview</h2>
-        <p>
-          This page is a placeholder for <strong>Irrational Pattern Functions</strong>. It is linked from the
-          <a href="pure_math_subjects.html">Pure Math Subjects Catalog</a> and will be expanded with explanations,
-          worked examples, and engineering applications.
-        </p>
-      </div>
 
-      <div class="card">
-        <h2>Coming soon</h2>
-        <ul>
-          <li>Key definitions and notation</li>
-          <li>Step-by-step examples</li>
-          <li>Links to related calculators and reference material</li>
-        </ul>
+    <div class="card">
+      <h2>1) About this topic (read first)</h2>
+      <p>
+        <strong>Irrational pattern functions</strong> is <em>not</em> a standard term in university mathematics textbooks.
+        This catalog section flags topics that may be speculative, AI-generated labels, or informal names for ideas that
+        exist elsewhere under proper terminology.
+      </p>
+      <div class="warning">
+        <strong>Critical reading:</strong> Treat this page as a bridge from the informal label to <strong>established
+        mathematics</strong>: quasiperiodic functions, Beatty sequences, Kronecker's theorem, and irrational rotations on the circle.
       </div>
+      <p class="mini">
+        Related standard topics: <a href="irrational-numbers.html">Irrational Numbers</a>,
+        <a href="trigonometry.html">Trigonometry</a>, <a href="fractals.html">Fractals</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>2) Irrational numbers and repeating patterns</h2>
+      <p>
+        An <strong>irrational number</strong> cannot be written as a fraction \(p/q\) of integers. Its decimal expansion
+        never settles into a repeating block. That lack of periodicity in digits does <em>not</em> mean "no pattern at all" —
+        many constructions using irrationals produce highly structured, non-repeating patterns.
+      </p>
+      <div class="callout">
+        <strong>Example:</strong> The sequence \(\lfloor n\sqrt{2} \rfloor \bmod 2\) (parity of integer parts of multiples of
+        \(\sqrt{2}\)) looks irregular but is governed by deep Diophantine approximation theory.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>3) Beatty sequences (a precise pattern from irrationals)</h2>
+      <p>
+        If \(\alpha &gt; 1\) is irrational, the <strong>Beatty sequence</strong> is
+        \(B_\alpha = \{\lfloor n\alpha \rfloor : n = 1, 2, 3, \ldots\}\).
+      </p>
+      <p>
+        <strong>Rayleigh–Beatty theorem:</strong> If \(\alpha, \beta &gt; 1\) are irrationals with \(\frac{1}{\alpha} + \frac{1}{\beta} = 1\),
+        then the Beatty sequences \(B_\alpha\) and \(B_\beta\) partition the positive integers (every positive integer appears in exactly one sequence).
+      </p>
+      <div class="two-col">
+        <div>
+          <h3>Example</h3>
+          <p class="mini">\(\alpha = \sqrt{2}\): sequence begins 1, 2, 4, 5, 7, 8, 10, 11, …</p>
+        </div>
+        <div>
+          <h3>Partner sequence</h3>
+          <p class="mini">\(\beta = 2 + \sqrt{2}\) fills the gaps — together they cover all \(\mathbb{Z}^+\).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>4) Quasiperiodic functions (the function viewpoint)</h2>
+      <p>
+        A function \(f : \mathbb{R} \to \mathbb{R}\) is <strong>quasiperiodic</strong> if it is a sum (or composition) of
+        periodic functions with <strong>incommensurate</strong> frequencies — periods whose ratios are irrational.
+      </p>
+      <p>
+        Classic example:
+        \[
+        f(x) = \sin(x) + \sin(\sqrt{2}\,x)
+        \]
+        is not periodic (no \(T \neq 0\) with \(f(x+T)=f(x)\) for all \(x\)), yet it is built from periodic parts.
+        Such functions appear in phyllotaxis (plant leaf arrangements) and quasicrystal models.
+      </p>
+      <div class="callout">
+        <strong>Informal link to this catalog label:</strong> "Irrational pattern functions" likely refers to functions whose
+        structure is driven by irrational frequencies or slopes, producing non-repeating but ordered behaviour.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>5) Irrational rotation on the circle</h2>
+      <p>
+        Map \(n \mapsto \{n\alpha\}\) (fractional part of \(n\alpha\)) for irrational \(\alpha\) distributes points on \([0,1)\)
+        <strong>uniformly</strong> — a consequence of <strong>equidistribution theory</strong> (Weyl's theorem).
+      </p>
+      <p>
+        Graphing \(\{n\alpha\}\) against \(n\) produces a "staircase with irrational slope" whose gaps encode \(\alpha\).
+        Computer musicians use similar ideas for <strong>rhythmic patterns</strong> that never exactly repeat.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>6) Engineering and signal contexts</h2>
+      <div class="two-col">
+        <div>
+          <h3>Where patterns matter</h3>
+          <ul>
+            <li>Frequency synthesis with incommensurate tones</li>
+            <li>Quasicrystal diffraction patterns</li>
+            <li>Low-discrepancy sequences (Halton, Sobol) in Monte Carlo simulation</li>
+          </ul>
+        </div>
+        <div>
+          <h3>What to avoid</h3>
+          <ul>
+            <li>Claiming irrationals "encode hidden messages" in noise without evidence</li>
+            <li>Confusing non-repeating with random</li>
+            <li>Using non-standard terms in formal reports</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>7) Worked example: floor function pattern</h2>
+      <p>For \(\alpha = \sqrt{3}\), compute the first few values of \(\lfloor n\alpha \rfloor - \lfloor (n-1)\alpha \rfloor\) (first differences):</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>\(n\)</th><th>\(\lfloor n\sqrt{3} \rfloor\)</th><th>Difference</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>1</td><td>—</td></tr>
+            <tr><td>2</td><td>3</td><td>2</td></tr>
+            <tr><td>3</td><td>5</td><td>2</td></tr>
+            <tr><td>4</td><td>6</td><td>1</td></tr>
+            <tr><td>5</td><td>8</td><td>2</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="mini">
+        Differences alternate in a constrained way related to the continued fraction of \(\sqrt{3}\). This is rigorous
+        mathematics — not a separate "irrational pattern function" theory.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>8) Quick knowledge check</h2>
+      <div class="quiz">
+        <ol>
+          <li>Is "irrational pattern functions" a standard textbook chapter title?</li>
+          <li>State the Rayleigh–Beatty condition on \(\alpha\) and \(\beta\).</li>
+          <li>Why is \(\sin(x) + \sin(\sqrt{2}\,x)\) not periodic?</li>
+          <li>What does equidistribution of \(\{n\alpha\}\) mean informally?</li>
+          <li>Name one real application of quasiperiodic structure.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>9) Next topics</h2>
+      <ul>
+        <li><a href="irrational-numbers.html">Irrational Numbers</a> — GCSE foundation for this page</li>
+        <li><a href="fractals.html">Fractals</a> — another type of non-repeating geometric pattern</li>
+        <li><a href="chaos-theory.html">Chaos Theory</a> — deterministic systems with complex orbits</li>
+        <li><a href="random-sequence-extrapolation.html">Random Sequence Extrapolation</a> — when patterns cannot be extended</li>
+        <li><a href="pure_math_subjects.html">Pure Math Subjects Catalog</a></li>
+        <li><a href="index.html">Engineering Knowledge Hub</a></li>
+      </ul>
+    </div>
+
+    <p class="page-footer-note">Speculative / non-standard topic — mapped to established mathematics where possible.</p>
     </div>
   </div>
 </body>

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../css/corporate.css">
   <script src="../js/site-layout.js" defer></script>
-  <title>Quine Mccluskey</title>
+  <title>Quine–McCluskey Method</title>
 </head>
 
 <body class="content-page">
@@ -14,31 +14,221 @@
       <nav class="page-hero-breadcrumb" aria-label="Breadcrumb">
         <a href="../index.html">&larr; Back to Hub</a>
       </nav>
-      <h1>Quine Mccluskey</h1>
-      <p>Mathematics topic page. Content is being developed.</p>
+      <h1>Quine–McCluskey Method</h1>
+      <p>Digital logic guide. Prime implicants, the prime implicant chart, and an introduction to the Petrick method.</p>
       <div class="content-nav">
         <a href="../pure_math_subjects.html">&larr; Pure Math Subjects Catalog</a>
       </div>
     </div>
 
     <div class="content-body">
-      <div class="card">
-        <h2>Overview</h2>
-        <p>
-          This page is a placeholder for <strong>Quine Mccluskey</strong>. It is linked from the
-          <a href="../pure_math_subjects.html">Pure Math Subjects Catalog</a> and will be expanded with explanations,
-          worked examples, and engineering applications.
-        </p>
-      </div>
 
-      <div class="card">
-        <h2>Coming soon</h2>
-        <ul>
-          <li>Key definitions and notation</li>
-          <li>Step-by-step examples</li>
-          <li>Links to related calculators and reference material</li>
-        </ul>
+    <div class="card">
+      <h2>1) Why Quine–McCluskey?</h2>
+      <p>
+        The <strong>Quine–McCluskey (Q-M) method</strong> is a systematic tabular procedure for minimising Boolean functions.
+        Unlike <a href="karnaugh-mapping.html">Karnaugh maps</a>, it scales to many variables and multiple outputs without relying on spatial grouping.
+      </p>
+      <ul>
+        <li>Guarantees finding all <strong>prime implicants</strong></li>
+        <li>Suitable for computer implementation and homework verification</li>
+        <li>Two phases: (1) generate prime implicants, (2) select a minimal cover</li>
+      </ul>
+      <div class="callout">
+        <strong>When to use it:</strong> More than four variables, many don't cares, or when you need a provably minimal SOP cover.
       </div>
+    </div>
+
+    <div class="card">
+      <h2>2) Minterm table and combining</h2>
+      <p>Start by listing all minterms (and don't cares treated as 1s) grouped by the number of 1-bits in their binary code.</p>
+      <p><strong>Example:</strong> <code>F = Σ(0, 1, 2, 8, 9, 10, 11)</code></p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Group (# of 1s)</th><th>Minterm</th><th>Binary (ABCD)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>0</td><td>m₀</td><td>0000</td></tr>
+            <tr><td>1</td><td>m₁, m₂, m₈</td><td>0001, 0010, 1000</td></tr>
+            <tr><td>2</td><td>m₉, m₁₀</td><td>1001, 1010</td></tr>
+            <tr><td>3</td><td>m₁₁</td><td>1011</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        <strong>Combine</strong> terms that differ in exactly one bit; replace the differing bit with <code>−</code> (dash).
+        Repeat until no further combinations are possible. Uncombined terms are <strong>prime implicants</strong>.
+      </p>
+      <p>Example combine: m₀(0000) + m₁(0001) → <code>000−</code> which is <code>A'B'C'</code>.</p>
+    </div>
+
+    <div class="card">
+      <h2>3) Prime implicants</h2>
+      <p>
+        A <strong>prime implicant</strong> is a product term that cannot be merged further — it covers a maximal group of minterms.
+        The Q-M combine table produces every prime implicant for the function.
+      </p>
+      <ul>
+        <li><strong>Implicant:</strong> any product term that covers some 1s of <code>F</code></li>
+        <li><strong>Prime implicant:</strong> an implicant that is not contained in a larger implicant</li>
+        <li><strong>Essential prime implicant:</strong> a prime implicant that is the <em>only</em> cover for at least one minterm</li>
+      </ul>
+      <p>
+        Essential prime implicants must appear in every valid minimal cover — always include them first.
+      </p>
+      <div class="callout">
+        <strong>Notation:</strong> A dash <code>−</code> in a combined term means that variable is eliminated (can be 0 or 1).
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>4) Prime implicant (PI) chart</h2>
+      <p>
+        The <strong>PI chart</strong> (coverage table) lists prime implicants as rows and minterms as columns.
+        Mark an <code>×</code> where a prime implicant covers a minterm.
+      </p>
+      <p>From the chart you can:</p>
+      <ol>
+        <li>Identify <strong>essential</strong> prime implicants (sole × in a column)</li>
+        <li>Cross off minterms they cover</li>
+        <li>Resolve remaining choices for a minimal cover</li>
+      </ol>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Prime implicant</th>
+              <th>m₀</th>
+              <th>m₁</th>
+              <th>m₂</th>
+              <th>m₈</th>
+              <th>…</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><code>A'B'C'</code></td><td>×</td><td>×</td><td></td><td></td><td></td></tr>
+            <tr><td><code>A'B'D'</code></td><td></td><td></td><td>×</td><td></td><td></td></tr>
+            <tr><td><code>AB'</code></td><td></td><td></td><td></td><td>×</td><td>×</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        A column with a single × identifies an essential prime implicant — include it and remove covered columns.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>5) Selecting a minimal cover</h2>
+      <p>
+        After essential prime implicants are chosen, some minterms may remain uncovered.
+        The remaining problem is a <strong>set-cover</strong> question: pick the fewest prime implicants that cover all remaining 1s.
+      </p>
+      <ul>
+        <li>Try inspection on small charts: branch on choices and compare total term count</li>
+        <li>Multiple minimal covers may tie — compare literal count if gate cost differs</li>
+        <li>Don't cares expand prime implicants but are not required to be covered unless needed for minimisation</li>
+      </ul>
+      <div class="warning">
+        <strong>Important:</strong> A minimal cover uses the fewest <em>prime implicants</em>. Fewer literals may require secondary optimisation.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>6) Petrick method (introduction)</h2>
+      <p>
+        When the PI chart has no essential prime implicants left, the <strong>Petrick method</strong> solves the cover problem algebraically.
+      </p>
+      <ol>
+        <li>For each remaining minterm <code>m<sub>j</sub></code>, form a sum of the prime implicants that cover it: <code>(P<sub>a</sub> + P<sub>b</sub> + …)</code></li>
+        <li>Multiply these sums together (logical AND of ORs): <code>(P<sub>a</sub> + P<sub>b</sub>)(P<sub>c</sub> + P<sub>d</sub>)…</code></li>
+        <li>Expand using distributive law: <code>(A + B)(A + C) = A + BC</code></li>
+        <li>Choose the product term with the <strong>fewest literals</strong> (fewest prime implicants)</li>
+      </ol>
+      <p><strong>Example fragment:</strong> If m₃ is covered by <code>P₁</code> or <code>P₂</code>, and m₇ by <code>P₂</code> or <code>P₃</code>:</p>
+      <p><code>(P₁ + P₂)(P₂ + P₃) = P₂ + P₁P₃</code></p>
+      <p>Minimal cover: <code>P₂</code> alone if it covers all remaining minterms; otherwise <code>P₁</code> and <code>P₃</code>.</p>
+      <div class="callout">
+        <strong>Role of Petrick:</strong> Removes guesswork when several prime implicants tie. Often taught as the formal finish after Q-M tabulation.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>7) Worked example (outline)</h2>
+      <p>Minimise <code>F = Σ(0, 1, 2, 5, 6, 7)</code> with three variables <code>A, B, C</code>.</p>
+      <p><strong>Step 1 — Combine:</strong></p>
+      <ul>
+        <li>m₀ + m₁ → <code>A'B'</code></li>
+        <li>m₀ + m₂ → <code>A'C'</code></li>
+        <li>m₅ + m₇ → <code>BC</code></li>
+        <li>m₂ + m₆ → <code>BC'</code></li>
+        <li>m₁ + m₅ → <code>B'C</code> (if in set)</li>
+        <li>m₃ + m₇ → further merges as applicable</li>
+      </ul>
+      <p><strong>Step 2 — PI chart:</strong> Mark coverage; find essentials.</p>
+      <p><strong>Step 3 — Result:</strong> Typical minimal SOP: <code>F = A'B' + BC + A'C'</code> (verify against your combine table).</p>
+      <p>Cross-check with a 3-variable <a href="karnaugh-mapping.html">K-map</a> to confirm the same minimum.</p>
+    </div>
+
+    <div class="card">
+      <h2>8) Q-M vs K-maps</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Aspect</th>
+              <th>K-map</th>
+              <th>Quine–McCluskey</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Best for</td>
+              <td>2–4 variables, quick hand work</td>
+              <td>Many variables, algorithmic certainty</td>
+            </tr>
+            <tr>
+              <td>Prime implicants</td>
+              <td>Found visually</td>
+              <td>Listed explicitly in table</td>
+            </tr>
+            <tr>
+              <td>Multiple outputs</td>
+              <td>Separate maps per function</td>
+              <td>Shared implicants easier to spot</td>
+            </tr>
+            <tr>
+              <td>Computer tools</td>
+              <td>Less common</td>
+              <td>Basis of many minimisers</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="quiz">
+        <ol>
+          <li>What condition allows two terms to combine in the Q-M table?</li>
+          <li>How do you recognise an essential prime implicant on a PI chart?</li>
+          <li>What problem does the Petrick method solve?</li>
+          <li>Why treat don't cares as 1s during implicant generation?</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>9) Next topics</h2>
+      <ul>
+        <li><a href="karnaugh-mapping.html">Karnaugh Mapping</a> — visual alternative</li>
+        <li><a href="combinational-logic.html">Combinational Logic</a> — implementing minimised SOP</li>
+        <li><a href="circuit-complexity.html">Circuit Complexity</a> — cost of Boolean functions</li>
+        <li><a href="boolean-algebra.html">Boolean Algebra</a> — laws used in Petrick expansion</li>
+        <li><a href="truth-tables.html">Truth Tables</a> — starting point for minterm lists</li>
+        <li><a href="../pure_math_subjects.html">Pure Math Subjects Catalog</a></li>
+        <li><a href="../index.html">Engineering Knowledge Hub</a></li>
+      </ul>
+    </div>
+
+    <p class="page-footer-note">Logic and digital mathematics content.</p>
     </div>
   </div>
 </body>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/corporate.css">
+  <script src="../js/site-layout.js" defer></script>
+  <title>Density Matrices</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+<body class="content-page">
+  <div class="page-container">
+    <div class="content-hero">
+      <nav class="page-hero-breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">&larr; Back to Hub</a>
+      </nav>
+      <h1>Density Matrices</h1>
+      <p>Quantum guide. Mixed states, the density operator \(\rho\), partial trace, purity, and statistical ensembles beyond pure kets.</p>
+      <div class="content-nav">
+        <a href="../quantum_subjects.html">&larr; Quantum Subjects Catalog</a>
+      </div>
+    </div>
+
+    <div class="content-body">
+
+    <div class="card">
+      <h2>1) Why density matrices?</h2>
+      <p>
+        Not every quantum system is in a definite pure state \(|\psi\rangle\). Thermal ensembles, uncontrolled
+        interactions, and ignorance of preparation details require a <strong>mixed state</strong> — a statistical
+        mixture of pure states described by a density operator \(\rho\).
+      </p>
+      <div class="callout">
+        <strong>Pure vs mixed:</strong> Pure \(\rho = |\psi\rangle\langle\psi|\) has \(\mathrm{Tr}(\rho^2)=1\);
+        mixed states have \(\mathrm{Tr}(\rho^2) < 1\). Measurement of mixed ensembles:
+        <a href="superposition-and-measurement.html">Superposition and Measurement</a>.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>2) Definition and axioms</h2>
+      <p>
+        A density operator \(\rho\) on Hilbert space \(\mathcal{H}\) satisfies:
+      </p>
+      <ul>
+        <li><strong>Hermitian:</strong> \(\rho = \rho^\dagger\)</li>
+        <li><strong>Positive semidefinite:</strong> \(\langle\phi|\rho|\phi\rangle \geq 0\) for all \(|\phi\rangle\)</li>
+        <li><strong>Normalised:</strong> \(\mathrm{Tr}(\rho) = 1\)</li>
+      </ul>
+      <p>
+        Expectation value of observable \(A\): \(\langle A \rangle = \mathrm{Tr}(\rho A)\).
+      </p>
+      <p class="mini">
+        Bra–ket machinery: <a href="dirac-notation.html">Dirac Notation</a>;
+        postulate extension: <a href="quantum-postulates.html">Postulates of Quantum Mechanics</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>3) Ensemble interpretation</h2>
+      <p>
+        If a system is prepared in state \(|\psi_i\rangle\) with probability \(p_i\) (\(\sum_i p_i = 1\)):
+      </p>
+      <p style="text-align:center;">\[\rho = \sum_i p_i\,|\psi_i\rangle\langle\psi_i|\]</p>
+      <p>
+        Off-diagonal elements (coherences) in a given basis encode superposition within ensemble members; diagonal
+        elements encode classical probabilities in that basis.
+      </p>
+      <div class="callout">
+        <strong>Maximally mixed qubit:</strong> \(\rho = I/2\) — complete ignorance; \(\langle\sigma_i\rangle = 0\)
+        for all Pauli directions.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>4) Purity and von Neumann entropy</h2>
+      <p>
+        <strong>Purity:</strong> \(\gamma = \mathrm{Tr}(\rho^2)\). For qubits, \(0.5 \leq \gamma \leq 1\).
+      </p>
+      <p>
+        <strong>Von Neumann entropy:</strong> \(S(\rho) = -\mathrm{Tr}(\rho\log_2\rho)\) bits (or nats with
+        \(\ln\)). Pure states have \(S=0\); maximally mixed single qubit has \(S=1\) bit.
+      </p>
+      <div class="two-col">
+        <div>
+          <h3>Spectral form</h3>
+          <p class="mini">\(\rho = \sum_k \lambda_k |k\rangle\langle k|\) with eigenvalues \(\lambda_k \geq 0\),
+          \(\sum \lambda_k = 1\).</p>
+        </div>
+        <div>
+          <h3>Entropy</h3>
+          <p class="mini">\(S = -\sum_k \lambda_k \log_2 \lambda_k\) — Shannon entropy of eigenvalue distribution.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>5) Reduced states and partial trace</h2>
+      <p>
+        For composite system \(AB\) in state \(\rho_{AB}\), the reduced state of subsystem \(A\) is:
+      </p>
+      <p style="text-align:center;">\[\rho_A = \mathrm{Tr}_B(\rho_{AB})\]</p>
+      <p>
+        Tracing out an unobserved partner generically produces a mixed state even when \(\rho_{AB}\) is pure —
+        the mathematical signature of <a href="entanglement-and-bell.html">Entanglement</a>.
+      </p>
+      <div class="callout">
+        <strong>Example:</strong> For \(|\Phi^+\rangle = (|00\rangle+|11\rangle)/\sqrt{2}\),
+        \(\rho_A = \mathrm{Tr}_B(|\Phi^+\rangle\langle\Phi^+|) = I/2\) — maximally mixed marginal.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>6) Bloch vector picture (qubit)</h2>
+      <p>
+        Any qubit \(\rho\) can be written \(\rho = \dfrac{1}{2}(I + \mathbf{r}\cdot\boldsymbol{\sigma})\) where
+        \(|\mathbf{r}| \leq 1\). Pure states lie on the Bloch sphere surface (\(|\mathbf{r}|=1\)); mixed states
+        lie inside. See <a href="spin-and-pauli-matrices.html">Spin and Pauli Matrices</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>7) Quantum operations on \(\rho\)</h2>
+      <p>
+        Unitary evolution: \(\rho \to U\rho U^\dagger\). General open-system evolution (noise, decoherence) is
+        described by completely positive trace-preserving (CPTP) maps — see
+        <a href="quantum-channels.html">Quantum Channels</a>.
+      </p>
+      <ul>
+        <li><strong>Depolarising channel:</strong> \(\rho \to (1-p)\rho + p\,I/d\)</li>
+        <li><strong>Amplitude damping:</strong> energy relaxation to ground state</li>
+        <li><strong>Phase damping:</strong> loss of coherences without energy change</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>8) Quick knowledge check</h2>
+      <div class="quiz">
+        <ol>
+          <li>State three conditions \(\rho\) must satisfy.</li>
+          <li>How do you compute \(\langle A\rangle\) from \(\rho\)?</li>
+          <li>Write \(\rho\) for equal mixture of \(|0\rangle\) and \(|1\rangle\).</li>
+          <li>What is purity of the maximally mixed qubit?</li>
+          <li>Define the partial trace \(\mathrm{Tr}_B\).</li>
+          <li>Why is the reduced state of one half of \(|\Phi^+\rangle\) mixed?</li>
+          <li>How does von Neumann entropy measure mixedness?</li>
+        </ol>
+      </div>
+      <p class="mini">
+        Answers: Hermitian, PSD, unit trace; \(\mathrm{Tr}(\rho A)\); \(\tfrac{1}{2}(|0\rangle\langle 0|+|1\rangle\langle 1|)=I/2\);
+        \(\mathrm{Tr}(\rho^2)=0.5\); sum over partner basis \(\sum_j \langle j|_B\rho|j\rangle_B\); entanglement —
+        marginal is \(I/2\); \(S=0\) pure, maximal when \(\rho=I/d\).
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>9) Next topics</h2>
+      <ul>
+        <li><a href="quantum-channels.html">Quantum Channels and Decoherence</a> — CPTP maps on \(\rho\)</li>
+        <li><a href="entanglement-and-bell.html">Entanglement and Bell Inequalities</a> — partial trace</li>
+        <li><a href="superposition-and-measurement.html">Superposition and Measurement</a> — POVMs on \(\rho\)</li>
+        <li><a href="spin-and-pauli-matrices.html">Spin and Pauli Matrices</a> — Bloch ball</li>
+        <li><a href="dirac-notation.html">Dirac Notation</a></li>
+        <li><a href="quantum-postulates.html">Postulates of Quantum Mechanics</a></li>
+        <li><a href="../statistics.html">Statistics and Probability</a> · <a href="../matrices.html">Matrices</a></li>
+        <li><a href="../quantum_subjects.html">Quantum Subjects Catalog</a></li>
+        <li><a href="../index.html">Engineering Knowledge Hub</a></li>
+      </ul>
+    </div>
+
+    <p class="page-footer-note">Quantum physics and computing content.</p>
+    </div>
+  </div>
+</body>
+</html>
