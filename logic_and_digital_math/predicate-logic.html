@@ -199,15 +199,36 @@
           <li>Express "Not all circuits are fault-free" using ∃.</li>
         </ol>
       </div>
-      <p class="mini">
+      <details class="quiz-answers">
+        <summary class="quiz-answers__summary">Show answers</summary>
+        <ol class="quiz-answers__list">
+          <li>See the worked example: ∀x (x + 0 = x) over real numbers — true (additive identity). ∀x (x &lt; 5) over integers — false (take x = 10 ).</li>
+          <li>See the worked example: ∃x (x² = 2) over real numbers — true ( x = √2 ). ∃x (x² = −1) over real numbers — false; true over complex numbers.</li>
+          <li>See the worked example: Negate "Every student passed the exam." Formal: ∀x (S(x) → E(x)) where S(x) = student, E(x) = passed. Negation: ∃x (S(x) ∧ ¬E(x)) — "Some student did not pass."</li>
+          <li>See the worked example: ∀ε ∃δ P(ε, δ) (analysis flavour) — for every tolerance ε, a δ exists. Reversing to ∃δ ∀ε P(ε, δ) asserts a single δ works for all ε — a much stronger (usually false) claim.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+        </ol>
+      </details>
+<p class="mini">
         Answers: (1) predicate; (2) <code>∃x (x ≤ 0)</code>; (3) <code>∃x (Prime(x) ∧ x &gt; 100)</code>;
         (4) true over ℤ, false on finite sets; (5) only <code>P(x)</code> — <code>Q(x)</code> has free <code>x</code>;
         (6) <code>∃x (Circuit(x) ∧ ¬FaultFree(x))</code>.
       </p>
     </div>
 
-    <div class="card">
-      <h2>9) Next topics</h2>
+        <div class="card progression-card prerequisites-card">
+      <h2>9) Pre-requisites</h2>
+      <p>If you are struggling with this topic, review these subjects first.</p>
+      <ul>
+        <li><a href="propositional-logic.html">Propositional Logic</a> — study before this topic — from logic &amp; digital mathematics</li>
+        <li><a href="gray-code.html">Gray Code</a> — study before this topic — from logic &amp; digital mathematics</li>
+      </ul>
+      <p class="mini">See the <a href="../math/math-prereq-map.html">Mathematics prerequisite map</a> for the wider dependency graph.</p>
+    </div>
+
+<div class="card">
+      <h2>10) Next topics</h2>
       <ul>
         <li><a href="propositional-logic.html">Propositional Logic</a> — connectives without quantifiers</li>
         <li><a href="set-theory-basics.html">Set Theory Basics</a> — domains, subsets, ∀/∃ over sets</li>

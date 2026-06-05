@@ -242,14 +242,36 @@
           <li>State Taylor's theorem with the Lagrange form of the remainder.</li>
         </ol>
       </div>
-      <p class="mini">
+      <details class="quiz-answers">
+        <summary class="quiz-answers__summary">Show answers</summary>
+        <ol class="quiz-answers__list">
+          <li>See the worked example: Maclaurin series for \(f(x) = e^x\). \(f^{(n)}(x) = e^x\), so \(f^{(n)}(0) = 1\) for all \(n\). \(e^x = \displaystyle\sum_{n=0}^{\infty} \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots\)</li>
+          <li>See the worked example: For \(f(x) = e^x\) near \(x = 0\) with \(n = 2\): \(P_2(x) = 1 + x + \dfrac{x^2}{2}\). At \(x = 0.1\): \(R_2(0.1) = \dfrac{e^c}{6}(0.1)^3\) for some \(c \in (0, 0.1)\). Since \(e^c &lt; e^{0.1}\), \(|R_2| &lt; \dfrac{e^{0.1}}{6000} \approx 0.00018\).</li>
+          <li>See the worked example: Approximate \(\sqrt{1.02}\) using the binomial series. \(\sqrt{1+x} = (1+x)^{1/2} \approx 1 + \dfrac{x}{2} - \dfrac{x^2}{8}\) with \(x = 0.02\). \(= 1 + 0.01 - 0.00005 = 1.00995\) (true value \(\approx 1.00995\)).</li>
+          <li>See the worked example: Evaluate \(\displaystyle\lim_{x\to 0} \frac{e^x - 1 - x}{x^2}\). Using \(e^x = 1 + x + \dfrac{x^2}{2} + \dfrac{x^3}{6} + \cdots\): Numerator \(= \dfrac{x^2}{2} + \dfrac{x^3}{6} + \cdots\), so the limit \(= \dfrac{1}{2}\).</li>
+          <li>See the worked example: Approximate \(\displaystyle\int_0^{0.5} e^{-x^2}\,dx\). \(e^{-x^2} = 1 - x^2 + \dfrac{x^4}{2} - \cdots\). Integrating term by term: \(\approx \left[x - \dfrac{x^3}{3} + \dfrac{x^5}{10}\right]_0^{0.5} \approx 0.4648\).</li>
+          <li>See the worked example: The period of a simple pendulum of length \(L\) for small angle \(\theta\) is \(T \approx 2\pi\sqrt{L/g}\), obtained by expanding \(\sin\theta \approx \theta\) in the equation of motion \(\ddot{\theta} + (g/L)\sin\theta = 0\).</li>
+          <li>See the worked example: Find the radius of convergence of \(\displaystyle\sum_{n=1}^{\infty} \frac{x^n}{n}\). \(\left|\dfrac{c_{n+1}}{c_n}\right| = \dfrac{n}{n+1} \to 1\), so \(R = 1\). At \(x = 1\) the series is the harmonic series (diverges); at \(x = -1\) it is alternating (converges). See Convergence for endpoint analysis.</li>
+        </ol>
+      </details>
+<p class="mini">
         For marking: state the expansion point, show derivative calculations, include factorial denominators,
         and justify convergence when integrating or differentiating term by term.
       </p>
     </div>
 
-    <div class="card">
-      <h2>9) Next topics</h2>
+        <div class="card progression-card prerequisites-card">
+      <h2>9) Pre-requisites</h2>
+      <p>If you are struggling with this topic, review these subjects first.</p>
+      <ul>
+        <li><a href="series.html">Series</a> — undergraduate background from undergraduate (engineering or mathematics degree)</li>
+        <li><a href="inverse-chain-rule.html">Inverse chain rule</a> — undergraduate background from undergraduate (engineering or mathematics degree)</li>
+      </ul>
+      <p class="mini">See the <a href="math/math-prereq-map.html">Mathematics prerequisite map</a> for the wider dependency graph.</p>
+    </div>
+
+<div class="card">
+      <h2>10) Next topics</h2>
       <ul>
         <li><a href="series.html">Series</a> — sequences, sigma notation, and geometric sums</li>
         <li><a href="convergence.html">Convergence</a> — tests for series convergence</li>

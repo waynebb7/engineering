@@ -259,14 +259,36 @@
           <li>Explain in one sentence the difference between Dirichlet and Neumann boundary conditions.</li>
         </ol>
       </div>
-      <p class="mini">
+      <details class="quiz-answers">
+        <summary class="quiz-answers__summary">Show answers</summary>
+        <ol class="quiz-answers__list">
+          <li>See the worked example: Classify \(3u_{xx} + 2u_{xy} - u_{yy} = 0\). \(A = 3\), \(B = 2\), \(C = -1\). \(\Delta = 4 - 4(3)(-1) = 16 &gt; 0\) — hyperbolic .</li>
+          <li>See the worked example: On the rectangle \(0 \leq x \leq a\), \(0 \leq y \leq b\), with \(u(0,y) = u(a,y) = 0\), \(u(x,0) = 0\), \(u(x,b) = f(x)\), separation of variables yields sine-series solutions in \(x\).</li>
+          <li>See the worked example: \(u_t = k u_{xx}\), \(u(0,t) = u(L,t) = 0\), \(u(x,0) = f(x)\). Let \(u = X(x)T(t)\): \(\dfrac{T'}{kT} = \dfrac{X''}{X} = -\lambda\). With BCs: \(X_n(x) = \sin\dfrac{n\pi x}{L}\), \(\lambda_n = \left(\dfrac{n\pi}{L}\right)^2\). \(T_n(t) = e^{-k\lambda_n t}\). Solution: \(u(x,t) = \sum_{n=1}^{\infty} B_n \sin\dfrac{n\pi x}{L}\, e^{-k(n\pi/L)^2 t}\).</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+        </ol>
+      </details>
+<p class="mini">
         For marking: compute \(\Delta = B^2 - 4AC\) for classification, state BCs and ICs explicitly, and write separated
         solutions as products of spatial and temporal factors.
       </p>
     </div>
 
-    <div class="card">
-      <h2>9) Next topics</h2>
+        <div class="card progression-card prerequisites-card">
+      <h2>9) Pre-requisites</h2>
+      <p>If you are struggling with this topic, review these subjects first.</p>
+      <ul>
+        <li><a href="differential-equations.html">Differential Equations</a> — undergraduate background from undergraduate (engineering or mathematics degree)</li>
+        <li><a href="vector-calculus.html">Vector Calculus</a> — undergraduate background from undergraduate (engineering or mathematics degree)</li>
+      </ul>
+      <p class="mini">See the <a href="math/math-prereq-map.html">Mathematics prerequisite map</a> for the wider dependency graph.</p>
+    </div>
+
+<div class="card">
+      <h2>10) Next topics</h2>
       <ul>
         <li><a href="sl-problems.html">Sturm–Liouville Problems</a> — eigenvalues underpinning separation of variables</li>
         <li><a href="differential-equations.html">Differential Equations</a> — ODEs arising from separation</li>

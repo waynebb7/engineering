@@ -233,14 +233,36 @@
           <li>What matrix \(\mathbf{P}\) is formed from eigenvectors, and what does \(\mathbf{P}^{-1}\mathbf{x}\) represent?</li>
         </ol>
       </div>
-      <p class="mini">
+      <details class="quiz-answers">
+        <summary class="quiz-answers__summary">Show answers</summary>
+        <ol class="quiz-answers__list">
+          <li>See the worked example: For \(\mathbf{A} = \begin{bmatrix} 0 & 1 \\ -4 & -3 \end{bmatrix}\) with \(\lambda = -1\): \((\mathbf{A} + \mathbf{I})\mathbf{v} = \mathbf{0}\) gives \(v_2 = -v_1\). Eigenvector: \(\mathbf{v} = \begin{bmatrix} 1 \\ -1 \end{bmatrix}\) (or any scalar multiple).</li>
+          <li>See the worked example: \(\mathbf{x}(0) = [2,\, 0]^T\), eigenvectors \(\mathbf{v}_1 = [1,\,1]^T\), \(\mathbf{v}_2 = [1,\,-1]^T\). Solve \(\mathbf{x}(0) = c_1\mathbf{v}_1 + c_2\mathbf{v}_2\) → \(c_1 = 1\), \(c_2 = 1\). Response combines both modes with weights 1.</li>
+          <li>See the worked example: \(\mathbf{A} = \begin{bmatrix} 0 & 1 \\ -100 & -10 \end{bmatrix}\), \(\lambda = -5 \pm j5\sqrt{3}\). For \(\lambda = -5 + j5\sqrt{3}\): \((\mathbf{A} - \lambda\mathbf{I})\mathbf{v} = \mathbf{0}\) yields \(v_2 = (-5 + j5\sqrt{3})\,v_1\). The ratio \(i/q\) in that mode is complex — charge and current are 90° out of phase in the oscillatory part.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+        </ol>
+      </details>
+<p class="mini">
         For marking: show \((\mathbf{A} - \lambda\mathbf{I})\mathbf{v} = \mathbf{0}\), state a valid eigenvector, and
         interpret it in context.
       </p>
     </div>
 
-    <div class="card">
-      <h2>9) Next topics</h2>
+        <div class="card progression-card prerequisites-card">
+      <h2>9) Pre-requisites</h2>
+      <p>If you are struggling with this topic, review these subjects first.</p>
+      <ul>
+        <li><a href="eigenvectors.html">Eigenvectors</a> — undergraduate background from undergraduate (engineering or mathematics degree)</li>
+        <li><a href="eigenvalues-electrical-engineering.html">Eigenvalues (Electrical Engineering)</a> — undergraduate background from undergraduate (engineering or mathematics degree)</li>
+      </ul>
+      <p class="mini">See the <a href="math/math-prereq-map.html">Mathematics prerequisite map</a> for the wider dependency graph.</p>
+    </div>
+
+<div class="card">
+      <h2>10) Next topics</h2>
       <ul>
         <li><a href="eigenvalues-electrical-engineering.html">Eigenvalues (Electrical Engineering)</a> — poles and stability</li>
         <li><a href="eigenvectors.html">Eigenvectors</a> — general theory and orthogonality</li>

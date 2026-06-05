@@ -179,13 +179,35 @@
           <li>Distinguish homeomorphism from homotopy equivalence with an example.</li>
         </ol>
       </div>
-      <p class="mini">
+      <details class="quiz-answers">
+        <summary class="quiz-answers__summary">Show answers</summary>
+        <ol class="quiz-answers__list">
+          <li>See the worked example: \(\mathbb{R}\) is homotopy equivalent to a point \(\{*\}\). Define \(f : \mathbb{R} \to \{*\}\), \(g(*) = 0\). Then \(g \circ f\) collapses \(\mathbb{R}\) to \(0\), homotopic to identity via \(H(x,t) = (1-t)x\).</li>
+          <li>See the worked example: The circle \(S^1\) is not homotopy equivalent to a point — it has nontrivial fundamental group \(\pi_1(S^1) \cong \mathbb{Z}\).</li>
+          <li>See the worked example: \(\pi_1(S^1, x_0) \cong \mathbb{Z}\). The winding number of a loop classifies homotopy classes. The map \(t \mapsto e^{2\pi i t}\) generates the group.</li>
+          <li>See the worked example: The inclusion \(S^1 \hookrightarrow \mathbb{R}^2 \setminus \{0\}\) induces isomorphism on \(\pi_1\) — both have \(\mathbb{Z}\). The punctured plane deformation-retracts onto \(S^1\).</li>
+          <li>See the worked example: \(\mathbb{R} \to S^1\), \(t \mapsto e^{2\pi i t}\), is the universal cover. Lifting loops to \(\mathbb{R}\) recovers the winding number as endpoint displacement.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+        </ol>
+      </details>
+<p class="mini">
         For marking: define maps and homotopies explicitly; use functoriality of \(\pi_1\) to prove non-equivalence.
       </p>
     </div>
 
-    <div class="card">
-      <h2>9) Next topics</h2>
+        <div class="card progression-card prerequisites-card">
+      <h2>9) Pre-requisites</h2>
+      <p>If you are struggling with this topic, review these subjects first.</p>
+      <ul>
+        <li><a href="complex-functions.html">Complex Functions</a> — advanced background from postgraduate / research-level (masters/phd)</li>
+        <li><a href="calculus-of-variations.html">Calculus of variations</a> — advanced background from postgraduate / research-level (masters/phd)</li>
+      </ul>
+      <p class="mini">See the <a href="math/math-prereq-map.html">Mathematics prerequisite map</a> for the wider dependency graph.</p>
+    </div>
+
+<div class="card">
+      <h2>10) Next topics</h2>
       <ul>
         <li><a href="topology.html">Topology</a> — spaces and continuity</li>
         <li><a href="homeomorphicism.html">Homeomorphism</a> — stronger than homotopy equivalence</li>

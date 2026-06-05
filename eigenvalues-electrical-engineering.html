@@ -232,14 +232,36 @@
           <li>A closed-loop pole has real part \(+0.1\). What does this imply about the step response?</li>
         </ol>
       </div>
-      <p class="mini">
+      <details class="quiz-answers">
+        <summary class="quiz-answers__summary">Show answers</summary>
+        <ol class="quiz-answers__list">
+          <li>See the worked example: For \(\mathbf{A} = \begin{bmatrix} 0 & 1 \\ -4 & -3 \end{bmatrix}\), \(\det(\mathbf{A} - \lambda\mathbf{I}) = \lambda^2 + 3\lambda + 4 = 0\). Eigenvalues: \(\lambda = \dfrac{-3 \pm j\sqrt{7}}{2}\) (complex conjugate pair — underdamped response).</li>
+          <li>See the worked example: \(R = 10\,\Omega\), \(L = 0.1\,\text{H}\), \(C = 100\,\mu\text{F}\). \(\dfrac{R}{L} = 100\), \(\dfrac{1}{LC} = 10^5\). Discriminant \(= 10^4 - 4 \times 10^5 &lt; 0\) → underdamped. Natural frequency \(\omega_n = 1/\sqrt{LC} = 316\,\text{rad/s}\); damping ratio \(\zeta = \dfrac{R}{2}\sqrt{\dfrac{C}{L}} \approx 0.16\).</li>
+          <li>See the worked example: \(\mathbf{A} = \begin{bmatrix} -2 & 5 \\ -1 & -2 \end{bmatrix}\). \(\text{tr} = -4\), \(\det = 4 + 5 = 9\). So \(\lambda^2 + 4\lambda + 9 = 0\). \(\lambda = -2 \pm j\sqrt{5}\). Real part \(-2\) → stable; imaginary part \(\sqrt{5}\) → oscillation at \(\sqrt{5}\,\text{rad/s}\).</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+        </ol>
+      </details>
+<p class="mini">
         For marking: show the characteristic equation, solve for \(\lambda\), and state stability with reference to
         \(\Re(\lambda)\).
       </p>
     </div>
 
-    <div class="card">
-      <h2>9) Next topics</h2>
+        <div class="card progression-card prerequisites-card">
+      <h2>9) Pre-requisites</h2>
+      <p>If you are struggling with this topic, review these subjects first.</p>
+      <ul>
+        <li><a href="eigenvalues.html">Eigenvalues</a> — undergraduate background from undergraduate (engineering or mathematics degree)</li>
+        <li><a href="jordan-normal-form.html">Jordan Normal Form</a> — undergraduate background from undergraduate (engineering or mathematics degree)</li>
+      </ul>
+      <p class="mini">See the <a href="math/math-prereq-map.html">Mathematics prerequisite map</a> for the wider dependency graph.</p>
+    </div>
+
+<div class="card">
+      <h2>10) Next topics</h2>
       <ul>
         <li><a href="eigenvectors-electrical-engineering.html">Eigenvectors (Electrical Engineering)</a> — mode shapes and decoupling</li>
         <li><a href="eigenvalues.html">Eigenvalues</a> — general theory and diagonalisation</li>

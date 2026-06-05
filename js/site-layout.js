@@ -22,6 +22,7 @@
     { href: 'physics_subjects.html', label: 'Physics' },
     { href: 'quantum_subjects.html', label: 'Quantum' },
     { href: 'logic_and_digital_math/boolean-algebra.html', label: 'Digital Logic' },
+    { href: 'progress.html', label: 'Progress' },
     { href: 'feedback.html', label: 'Feedback' }
   ];
 
@@ -60,6 +61,9 @@
     }
     if (href === 'quantum_subjects.html') {
       return file === 'quantum_subjects.html' || path.indexOf('/quantum/') !== -1;
+    }
+    if (href === 'progress.html') {
+      return file === 'progress.html';
     }
     return file === href;
   }
@@ -114,6 +118,12 @@
   });
 
   body.appendChild(footer);
+
+  if (body.classList.contains('content-page')) {
+    var topicProgressScript = document.createElement('script');
+    topicProgressScript.src = base + 'js/topic-progress.js';
+    document.head.appendChild(topicProgressScript);
+  }
 
   if (body.classList.contains('calculator-page') && body.hasAttribute('data-calc')) {
     var registryScript = document.createElement('script');

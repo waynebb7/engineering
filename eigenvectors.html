@@ -188,14 +188,36 @@
           <li>If \(\mathbf{A}\mathbf{v} = 3\mathbf{v}\), what is \(\mathbf{A}^2\mathbf{v}\)?</li>
         </ol>
       </div>
-      <p class="mini">
+      <details class="quiz-answers">
+        <summary class="quiz-answers__summary">Show answers</summary>
+        <ol class="quiz-answers__list">
+          <li>See the worked example: For \(\mathbf{A} = \begin{pmatrix} 4 & 1 \\ 2 & 3 \end{pmatrix}\), eigenvalues \(\lambda = 2\) and \(\lambda = 5\). For \(\lambda = 2\): \((\mathbf{A} - 2\mathbf{I})\mathbf{v} = \mathbf{0}\) gives \(\begin{pmatrix} 2 & 1 \\ 2 & 1 \end{pmatrix}\mathbf{v} = \mathbf{0}\), so \(2x + y = 0\). Eigenvector: \(\mathbf{v} = t(-1, 2)^T\), e.g. \((-1, 2)^T\). For \(\lambda = 5\): \(\begin{pmatrix} -1 & 1 \\ 2 & -2 \end{pmatrix}\mathbf{v} = \mathbf{0}\) gives \(-x + y = 0\). Eigenvector: \((1, 1)^T\).</li>
+          <li>See the worked example: For \(\mathbf{A} = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 2 \end{pmatrix}\): \(E_1 = \text{span}\{(1,0,0)^T, (0,1,0)^T\}\) — the \(xy\)-plane, dimension 2 \(E_2 = \text{span}\{(0,0,1)^T\}\) — the \(z\)-axis, dimension 1</li>
+          <li>See the worked example: Projection onto the \(x\)-axis: \(\mathbf{A} = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}\). Eigenvalues \(1\) and \(0\). Eigenvector \((1,0)^T\) for \(\lambda = 1\) stays fixed; \((0,1)^T\) for \(\lambda = 0\) is collapsed to the origin.</li>
+          <li>See the worked example: Using \(\mathbf{A} = \begin{pmatrix} 4 & 1 \\ 2 & 3 \end{pmatrix}\) from section 2: \[ \mathbf{P} = \begin{pmatrix} -1 & 1 \\ 2 & 1 \end{pmatrix}, \quad \mathbf{D} = \begin{pmatrix} 2 & 0 \\ 0 & 5 \end{pmatrix} \] Verify: \(\mathbf{A}\mathbf{P} = \mathbf{P}\mathbf{D}\). Columns of \(\mathbf{P}\) are eigenvectors; \(\mathbf{D}\) lists matching eigenvalues on the diagonal.</li>
+          <li>See the worked example: For the diagonalisable matrix above, \(\mathbf{A}^2 = \mathbf{P}\mathbf{D}^2\mathbf{P}^{-1}\) with \(\mathbf{D}^2 = \text{diag}(4, 25)\). Repeated application scales each eigenvector direction by \(\lambda_i^k\) — the dominant eigenvalue (largest \(|\lambda|\)) governs long-term growth.</li>
+          <li>See the worked example: \(\mathbf{A} = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}\) has eigenvectors \(\mathbf{v}_1 = (1,-1)^T\) (\(\lambda = 1\)) and \(\mathbf{v}_2 = (1,1)^T\) (\(\lambda = 3\)). These are orthogonal. Unit vectors: \(\mathbf{q}_1 = \frac{1}{\sqrt{2}}(1,-1)^T\), \(\mathbf{q}_2 = \frac{1}{\sqrt{2}}(1,1)^T\).</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+        </ol>
+      </details>
+<p class="mini">
         For marking: solve \((\mathbf{A} - \lambda \mathbf{I})\mathbf{v} = \mathbf{0}\) systematically; verify by
         checking \(\mathbf{A}\mathbf{v} = \lambda \mathbf{v}\).
       </p>
     </div>
 
-    <div class="card">
-      <h2>9) Next topics</h2>
+        <div class="card progression-card prerequisites-card">
+      <h2>9) Pre-requisites</h2>
+      <p>If you are struggling with this topic, review these subjects first.</p>
+      <ul>
+        <li><a href="eigenvalues-electrical-engineering.html">Eigenvalues (Electrical Engineering)</a> — undergraduate background from undergraduate (engineering or mathematics degree)</li>
+        <li><a href="eigenvalues.html">Eigenvalues</a> — undergraduate background from undergraduate (engineering or mathematics degree)</li>
+      </ul>
+      <p class="mini">See the <a href="math/math-prereq-map.html">Mathematics prerequisite map</a> for the wider dependency graph.</p>
+    </div>
+
+<div class="card">
+      <h2>10) Next topics</h2>
       <ul>
         <li><a href="eigenvalues.html">Eigenvalues</a> — characteristic equation and multiplicities</li>
         <li><a href="jordan-normal-form.html">Jordan Normal Form</a> — generalised eigenvectors when needed</li>

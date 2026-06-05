@@ -299,14 +299,35 @@
           <li>Explain why changing limits avoids back-substitution in definite integrals.</li>
         </ol>
       </div>
-      <p class="mini">
+      <details class="quiz-answers">
+        <summary class="quiz-answers__summary">Show answers</summary>
+        <ol class="quiz-answers__list">
+          <li>See the worked example: Evaluate \(\displaystyle\int 2x\cos(x^2)\,dx\). Let \(u = x^2\), so \(du = 2x\,dx\). The integrand is \(\cos(u)\,du\). \(= \sin(x^2) + C\).</li>
+          <li>See the worked example: Evaluate \(\displaystyle\int x\sqrt{x^2 + 1}\,dx\). Let \(u = x^2 + 1\), so \(du = 2x\,dx\) and \(x\,dx = \dfrac{du}{2}\). \(= \dfrac{1}{2}\displaystyle\int u^{1/2}\,du = \dfrac{1}{3}(x^2+1)^{3/2} + C\).</li>
+          <li>See the worked example: Evaluate \(\displaystyle\int \dfrac{3x^2}{x^3 + 1}\,dx\). Numerator is (up to factor 3) the derivative of \(x^3 + 1\). \(= \ln|x^3 + 1| + C\).</li>
+          <li>See the worked example: Evaluate \(\displaystyle\int_0^1 \dfrac{2x}{x^2 + 1}\,dx\). Let \(u = x^2 + 1\): limits change from \(x = 0 \to 1\) to \(u = 1 \to 2\). \(= \displaystyle\int_1^2 \dfrac{du}{u} = [\ln u]_1^2 = \ln 2\).</li>
+          <li>See the worked example: Evaluate \(\displaystyle\int \dfrac{dx}{\sqrt{4 - x^2}}\). Let \(x = 2\sin\theta\), \(dx = 2\cos\theta\,d\theta\). \(= \displaystyle\int d\theta = \theta + C = \sin^{-1}\!\left(\dfrac{x}{2}\right) + C\).</li>
+          <li>See the worked example: A current \(i(t) = I_0\sin(\omega t)\) flows for half a cycle. Charge transferred: \(Q = \displaystyle\int_0^{\pi/\omega} I_0\sin(\omega t)\,dt\). Let \(u = \omega t\): \(Q = \dfrac{I_0}{\omega}[-\cos u]_0^{\pi} = \dfrac{2I_0}{\omega}\).</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+        </ol>
+      </details>
+<p class="mini">
         For marking: state the substitution explicitly, show the change of \(dx\), and include \(+C\) for
         indefinite integrals. For definite integrals, show limit changes or back-substitution clearly.
       </p>
     </div>
 
-    <div class="card">
-      <h2>9) Next topics</h2>
+        <div class="card progression-card prerequisites-card">
+      <h2>9) Pre-requisites</h2>
+      <p>If you are struggling with this topic, review these subjects first.</p>
+      <ul>
+        <li><a href="hyperbolic-functions.html">Hyperbolic Functions</a> — undergraduate background from undergraduate (engineering or mathematics degree)</li>
+      </ul>
+      <p class="mini">See the <a href="math/math-prereq-map.html">Mathematics prerequisite map</a> for the wider dependency graph.</p>
+    </div>
+
+<div class="card">
+      <h2>10) Next topics</h2>
       <ul>
         <li><a href="hyperbolic-functions.html">Hyperbolic Functions</a> — definitions, identities, and integrals</li>
         <li><a href="series.html">Series</a> — summation and convergence</li>

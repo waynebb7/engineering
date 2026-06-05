@@ -246,14 +246,36 @@
           <li>State the chain rule for \(z = f(x,y)\) where \(x\) and \(y\) depend on \(t\).</li>
         </ol>
       </div>
-      <p class="mini">
+      <details class="quiz-answers">
+        <summary class="quiz-answers__summary">Show answers</summary>
+        <ol class="quiz-answers__list">
+          <li>See the worked example: For \(f(x,y) = x^2 + y^2\), level curves \(f = c\) are circles centred at the origin. The surface is a paraboloid opening upward.</li>
+          <li>See the worked example: For \(f(x,y) = x^3 y^2 + 2xy\): \(\dfrac{\partial f}{\partial x} = 3x^2 y^2 + 2y\), \quad \(\dfrac{\partial f}{\partial y} = 2x^3 y + 2x\).</li>
+          <li>See the worked example: For \(f(x,y) = x^2 + y^2\), \(\nabla f = (2x, 2y)\). At \((1, 2)\): \(\nabla f = (2, 4)\), \(|\nabla f| = \sqrt{20} = 2\sqrt{5}\). Steepest ascent direction: unit vector \(\dfrac{1}{\sqrt{5}}(1, 2)\).</li>
+          <li>See the worked example: For \(f(x,y) = xy\) at \((2, 1)\) in direction \(\mathbf{u} = (1/\sqrt{2}, 1/\sqrt{2})\): \(\nabla f = (y, x) = (1, 2)\) at \((2,1)\). \(D_{\mathbf{u}} f = (1, 2) \cdot (1/\sqrt{2}, 1/\sqrt{2}) = 3/\sqrt{2}\).</li>
+          <li>See the worked example: Let \(z = x^2 y\), \(x = t^2\), \(y = t^3\). Find \(dz/dt\). \(\dfrac{dz}{dt} = 2xy \cdot 2t + x^2 \cdot 3t^2 = 4t^5 + 3t^6\). (Check: \(z = t^7\), so \(dz/dt = 7t^6\) — agrees.)</li>
+          <li>See the worked example: Classify critical points of \(f(x,y) = x^2 - y^2\). \(\nabla f = (2x, -2y) = (0,0)\) at origin. \(f_{xx} = 2\), \(f_{yy} = -2\), \(f_{xy} = 0\). \(D = 2(-2) - 0 = -4 &lt; 0\) → saddle point at \((0,0)\).</li>
+          <li>See the worked example: A temperature field \(T(x,y) = 100 - x^2 - 2y^2\) (°C) on a plate. \(\nabla T = (-2x, -4y)\). At \((1, 2)\): \(\nabla T = (-2, -8)\), so heat flows toward increasing \(x\) and \(y\) (toward cooler regions). Maximum rate of change: \(|\nabla T| = \sqrt{68}\) °C/unit.</li>
+        </ol>
+      </details>
+<p class="mini">
         For marking: use correct partial derivative notation, normalise direction vectors, show the Hessian
         determinant for classification, and include units in applied problems.
       </p>
     </div>
 
-    <div class="card">
-      <h2>9) Next topics</h2>
+        <div class="card progression-card prerequisites-card">
+      <h2>9) Pre-requisites</h2>
+      <p>If you are struggling with this topic, review these subjects first.</p>
+      <ul>
+        <li><a href="taylor-series.html">Taylor Series</a> — undergraduate background from undergraduate (engineering or mathematics degree)</li>
+        <li><a href="series.html">Series</a> — undergraduate background from undergraduate (engineering or mathematics degree)</li>
+      </ul>
+      <p class="mini">See the <a href="math/math-prereq-map.html">Mathematics prerequisite map</a> for the wider dependency graph.</p>
+    </div>
+
+<div class="card">
+      <h2>10) Next topics</h2>
       <ul>
         <li><a href="triple-integrals.html">Triple Integrals</a> — integration over volumes in \(\mathbb{R}^3\)</li>
         <li><a href="vector-calculus.html">Vector Calculus</a> — divergence, curl, and line integrals</li>

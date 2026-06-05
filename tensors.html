@@ -226,14 +226,36 @@
           <li>Write the traction vector on a surface with normal \(\mathbf{n}\) in terms of the stress tensor.</li>
         </ol>
       </div>
-      <p class="mini">
+      <details class="quiz-answers">
+        <summary class="quiz-answers__summary">Show answers</summary>
+        <ol class="quiz-answers__list">
+          <li>See the worked example: Temperature at a point: \(T = 300\,\text{K}\) Mass: \(m = 5\,\text{kg}\) Trace of a matrix (in Cartesian coordinates): \(\text{tr}(\mathbf{A}) = A_{ii}\)</li>
+          <li>See the worked example: Under a rotation of coordinates, the scalar \(s = x^2 + y^2\) in 2D remains the same value (it equals \(r^2\) in polar coordinates). Rank-0 tensors need no index subscript.</li>
+          <li>See the worked example: The displacement vector \(\mathbf{d} = (3, 4)\) has magnitude \(\|\mathbf{d}\| = \sqrt{d_i d_i} = 5\). The magnitude is a rank-0 tensor built from a rank-1 tensor via the dot product (contraction).</li>
+          <li>See the worked example: For \[ T = \begin{pmatrix} 2 & 1 \\ 3 & 4 \end{pmatrix}, \quad T_{11} = 2,\; T_{12} = 1,\; T_{21} = 3,\; T_{22} = 4 \] The trace is \(T_{ii} = 2 + 4 = 6\).</li>
+          <li>See the worked example: Matrix-vector product in index form: \[ y_i = A_{ij} x_j \] For a \(2 \times 2\) matrix, \(y_1 = A_{11}x_1 + A_{12}x_2\) and \(y_2 = A_{21}x_1 + A_{22}x_2\).</li>
+          <li>See the worked example: If \(\mathbf{T}\) represents stress and the coordinate system rotates by \(Q\), the new components are \(T'_{ij} = Q_{ik} Q_{jl} T_{kl}\). The physical stress state is unchanged; only the numbers in the matrix depend on the axes chosen.</li>
+          <li>See the worked example: For a uniaxial tension \(\sigma_{11} = 100\,\text{MPa}\) with all other components zero, a face normal to the \(x\)-axis (\(n_1 = 1\)) has traction \(t_1 = 100\,\text{MPa}\). A face normal to \(y\) (\(n_2 = 1\)) has \(t_1 = \sigma_{12} = 0\) — no shear on that face in this case.</li>
+        </ol>
+      </details>
+<p class="mini">
         For marking: state rank clearly, use correct index conventions, and distinguish scalars from
         component arrays.
       </p>
     </div>
 
-    <div class="card">
-      <h2>9) Next topics</h2>
+        <div class="card progression-card prerequisites-card">
+      <h2>9) Pre-requisites</h2>
+      <p>If you are struggling with this topic, review these subjects first.</p>
+      <ul>
+        <li><a href="sl-problems.html">Sturm–Liouville (S-L) Problems</a> — undergraduate background from undergraduate (engineering or mathematics degree)</li>
+        <li><a href="divergence-theorem.html">Divergence Theorem</a> — undergraduate background from undergraduate (engineering or mathematics degree)</li>
+      </ul>
+      <p class="mini">See the <a href="math/math-prereq-map.html">Mathematics prerequisite map</a> for the wider dependency graph.</p>
+    </div>
+
+<div class="card">
+      <h2>10) Next topics</h2>
       <ul>
         <li><a href="vectors.html">Vectors</a> — rank-1 tensors in \(\mathbb{R}^n\)</li>
         <li><a href="matrices.html">Matrices</a> — rank-2 tensors and linear maps</li>

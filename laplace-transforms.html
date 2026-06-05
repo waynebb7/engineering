@@ -250,13 +250,35 @@
           <li>Decompose \(\dfrac{1}{s(s+1)}\) by partial fractions and state the inverse transform.</li>
         </ol>
       </div>
-      <p class="mini">
+      <details class="quiz-answers">
+        <summary class="quiz-answers__summary">Show answers</summary>
+        <ol class="quiz-answers__list">
+          <li>See the worked example: Unit step \(f(t) = 1\) for \(t \geq 0\): \[ F(s) = \int_0^{\infty} e^{-st}\,dt = \frac{1}{s}, \quad s &gt; 0 \]</li>
+          <li>See the worked example: \(\mathcal{L}\{\cos(2t)\} = \dfrac{s}{s^2 + 4}\). \(\mathcal{L}\{t^2\} = \dfrac{2!}{s^3} = \dfrac{2}{s^3}\).</li>
+          <li>See the worked example: \(y'' + 4y = 0\), \(y(0) = 1\), \(y'(0) = 0\). \(s^2 Y - s + 4Y = 0 \Rightarrow Y = \dfrac{s}{s^2 + 4}\). \(y(t) = \cos(2t)\).</li>
+          <li>See the worked example: Find \(\mathcal{L}\{u(t-1)\cdot\sin(t-1)\}\). Let \(f(t) = \sin t\), so \(F(s) = \dfrac{1}{s^2+1}\). By time shift with \(a = 1\): \(\mathcal{L}\{u(t-1)\sin(t-1)\} = e^{-s}\dfrac{1}{s^2+1}\).</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+        </ol>
+      </details>
+<p class="mini">
         For marking: show \(\mathcal{L}\) steps, include initial conditions, and give the final \(y(t)\) in closed form.
       </p>
     </div>
 
-    <div class="card">
-      <h2>9) Next topics</h2>
+        <div class="card progression-card prerequisites-card">
+      <h2>9) Pre-requisites</h2>
+      <p>If you are struggling with this topic, review these subjects first.</p>
+      <ul>
+        <li><a href="convergence.html">Convergence</a> — undergraduate background from undergraduate (engineering or mathematics degree)</li>
+        <li><a href="fourier-series.html">Fourier Series</a> — undergraduate background from undergraduate (engineering or mathematics degree)</li>
+      </ul>
+      <p class="mini">See the <a href="math/math-prereq-map.html">Mathematics prerequisite map</a> for the wider dependency graph.</p>
+    </div>
+
+<div class="card">
+      <h2>10) Next topics</h2>
       <ul>
         <li><a href="eigenvalues-electrical-engineering.html">Eigenvalues (Electrical Engineering)</a> — poles and stability</li>
         <li><a href="integration.html">Integration</a> — defining the Laplace integral</li>

@@ -191,13 +191,35 @@
           <li>Why add intermediate columns when evaluating complex expressions?</li>
         </ol>
       </div>
-      <p class="mini">
+      <details class="quiz-answers">
+        <summary class="quiz-answers__summary">Show answers</summary>
+        <ol class="quiz-answers__list">
+          <li>See the worked example: F = A AND (NOT B) — two inputs, four rows. Row 0: A=0,B=0 → NOT B=1 → F=0 · Row 1: A=0,B=1 → F=0 Row 2: A=1,B=0 → F=1 · Row 3: A=1,B=1 → F=0 Output column: 0, 0, 1, 0</li>
+          <li>See the worked example: F = 1 on rows (0,1) and (1,0) for inputs A,B. Row (0,1): A'B · Row (1,0): AB' · F = A'B + AB' (XOR)</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+        </ol>
+      </details>
+<p class="mini">
         Answers: 16; standard OR table; NAND gate; F = A; 0; build 4-row table with matching columns; reduces errors.
       </p>
     </div>
 
-    <div class="card">
-      <h2>9) Next topics</h2>
+        <div class="card progression-card prerequisites-card">
+      <h2>9) Pre-requisites</h2>
+      <p>If you are struggling with this topic, review these subjects first.</p>
+      <ul>
+        <li><a href="boolean-algebra.html">Boolean Algebra</a> — study before this topic — from logic &amp; digital mathematics</li>
+        <li><a href="binary-arithmetic.html">Binary Arithmetic</a> — study before this topic — from logic &amp; digital mathematics</li>
+      </ul>
+      <p class="mini">See the <a href="../math/math-prereq-map.html">Mathematics prerequisite map</a> for the wider dependency graph.</p>
+    </div>
+
+<div class="card">
+      <h2>10) Next topics</h2>
       <ul>
         <li><a href="boolean-algebra.html">Boolean Algebra</a> — simplify expressions from tables</li>
         <li><a href="de-morgans-theorems.html">De Morgan's Theorems</a> — prove with truth tables</li>

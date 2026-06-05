@@ -308,15 +308,36 @@
           <li>State the equation of a catenary curve and explain the physical meaning of the parameter \(a\).</li>
         </ol>
       </div>
-      <p class="mini">
+      <details class="quiz-answers">
+        <summary class="quiz-answers__summary">Show answers</summary>
+        <ol class="quiz-answers__list">
+          <li>See the worked example: Simplify \(\cosh^2 x + \sinh^2 x\). Using \(\cosh^2 x - \sinh^2 x = 1\), add \(2\sinh^2 x\) to both sides: \(\cosh^2 x + \sinh^2 x = 1 + 2\sinh^2 x = 2\cosh^2 x - 1\).</li>
+          <li>See the worked example: Differentiate \(y = \sinh(3x^2)\). By the chain rule: \(\dfrac{dy}{dx} = \cosh(3x^2) \cdot 6x = 6x\cosh(3x^2)\).</li>
+          <li>See the worked example: Differentiate \(y = \tanh x \cdot \cosh x\). Product rule: \(\dfrac{dy}{dx} = \operatorname{sech}^2 x \cdot \cosh x + \tanh x \cdot \sinh x = \operatorname{sech} x + \sinh^2 x \operatorname{sech} x\).</li>
+          <li>See the worked example: Evaluate \(\sinh^{-1}(1)\). \(\sinh^{-1}(1) = \ln(1 + \sqrt{2}) \approx 0.881\).</li>
+          <li>See the worked example: Evaluate \(\displaystyle\int_0^1 \cosh(2x)\,dx\). \(= \left[\dfrac{\sinh(2x)}{2}\right]_0^1 = \dfrac{\sinh 2}{2} \approx 1.919\).</li>
+          <li>See the worked example: A cable of length \(L\) between supports at the same height satisfies \(y = a\cosh(x/a)\). The horizontal tension \(T\) and weight per unit length \(w\) are related by \(a = T/w\). Engineers use this to compute sag and maximum stress.</li>
+          <li>See the worked example: From \(\cos(2x) = 2\cos^2 x - 1\), Osborn's rule gives \(\cosh(2x) = 2\cosh^2 x - 1\). From \(\sin(2x) = 2\sin x \cos x\) (a product of sines), we get \(\sinh(2x) = 2\sinh x \cosh x\) (no sign change needed here since only one sine appears).</li>
+        </ol>
+      </details>
+<p class="mini">
         For marking: show exponential definitions when proving identities, include \(+C\) for indefinite
         integrals, and express ODE solutions in terms of \(\sinh\) and \(\cosh\) with constants determined
         from initial conditions.
       </p>
     </div>
 
-    <div class="card">
-      <h2>9) Next topics</h2>
+        <div class="card progression-card prerequisites-card">
+      <h2>9) Pre-requisites</h2>
+      <p>If you are struggling with this topic, review these subjects first.</p>
+      <ul>
+        <li><a href="statistics.html">Statistics and Probability</a> — A-Level preparation relevant to this topic</li>
+      </ul>
+      <p class="mini">See the <a href="math/math-prereq-map.html">Mathematics prerequisite map</a> for the wider dependency graph.</p>
+    </div>
+
+<div class="card">
+      <h2>10) Next topics</h2>
       <ul>
         <li><a href="inverse-chain-rule.html">Inverse Chain Rule</a> — integration by substitution and standard integrals</li>
         <li><a href="series.html">Series</a> — sequences, sigma notation, and convergence</li>

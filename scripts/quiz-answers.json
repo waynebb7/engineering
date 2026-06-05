@@ -1,0 +1,1588 @@
+{
+  "addition.html": [
+    "See the worked example: 47 + 38 Units: 7 + 8 = 15 \u2192 write 5, carry 1 Tens: 4 + 3 + 1 = 8 \u2192 answer 85",
+    "See the worked example: 3.6 + 2.45 = 6.05 Write as 3.60 + 2.45 so both have two decimal places.",
+    "See the worked example: A shop has 24 red pens and 17 blue pens. How many pens altogether? 24 + 17 = 41 pens.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "algebraic-geometry.html": [
+    "See the worked example: Affine line \\(\\mathbb{A}^1\\), plane conics, cubics (elliptic curves) Projective line \\(\\mathbb{P}^1\\), projective plane curves Link to Riemann Surfaces for complex curves",
+    "See the worked example: The node \\(y^2 = x^2(x+1)\\) and cusp \\(y^2 = x^3\\) have singular points at the origin where the Jacobian matrix of defining equations has rank deficiency.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "algebraic-number-theory.html": [
+    "See the worked example: For \\(K = \\mathbb{Q}(\\sqrt{-5})\\), \\(\\mathcal{O}_K = \\mathbb{Z}[\\sqrt{-5}]\\). The element \\(6\\) factors as \\(2 \\cdot 3\\) and as \\((1+\\sqrt{-5})(1-\\sqrt{-5})\\), illustrating failure of unique factorisation in the ring.",
+    "See the worked example: In \\(\\mathbb{Q}(i)\\), \\(\\mathcal{O}_K = \\mathbb{Z}[i]\\). \\((2) = (1+i)^2\\), \\((5) = (2+i)(2-i)\\), and inert/split behaviour depends on \\(p \\bmod 4\\).",
+    "See the worked example: Units in \\(\\mathbb{Z}[\\sqrt{2}]\\) are \\(\\pm(1+\\sqrt{2})^n\\). The fundamental unit generates the infinite part of \\(\\mathcal{O}_K^\\times\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "algebraic-topology.html": [
+    "See the worked example: \\(\\mathbb{R}^n\\) is contractible: \\(\\mathbb{R}^n \\simeq \\{*\\}\\). A coffee cup (genus 1) is homotopy equivalent to a torus but not to a sphere.",
+    "See the worked example: \\(H_n(S^n) \\cong \\mathbb{Z}\\) for \\(n = n\\), else 0. \\(H_1(T^2) \\cong \\mathbb{Z}^2\\). \\(H_2(T^2) \\cong \\mathbb{Z}\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "automorphic-forms.html": [
+    "See the worked example: The Eisenstein series \\(E_k(z)\\) of weight \\(k \\geq 4\\) even is a modular form with \\(a_0 \\neq 0\\); the discriminant \\(\\Delta(z) = q\\prod(1-q^n)^{24}\\) is a weight-12 cusp form.",
+    "See the worked example: The Ramanujan \\(\\tau(n)\\) coefficients of \\(\\Delta(z)\\) satisfy \\(\\tau(mn) = \\tau(m)\\tau(n)\\) for \\((m,n)=1\\) and \\(\\tau(p^{r+1}) = \\tau(p)\\tau(p^r) - p^{11}\\tau(p^{r-1})\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "banach-spaces.html": [
+    "See the worked example: \\(\\mathbb{R}^n\\) with \\(\\|x\\|_p = \\left(\\sum |x_i|^p\\right)^{1/p}\\), \\(1 \\leq p \\leq \\infty\\) \\(C([a,b])\\) with \\(\\|f\\|_\\infty = \\sup_{t \\in [a,b]} |f(t)|\\) \\(L^p(X,\\mu)\\) from Measure Theory",
+    "See the worked example: Integration \\(T(f) = \\int_a^b f(t)\\,dt\\) is a bounded linear functional on \\((C([a,b]), \\|\\cdot\\|_\\infty)\\) with \\(\\|T\\| = b - a\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "basic-geometry.html": [
+    "See the worked example: Rectangle 8 cm by 5 cm Perimeter = 8 + 5 + 8 + 5 = 26 cm Or 2 \u00d7 (8 + 5) = 26 cm",
+    "See the worked example: Cuboid 4 cm \u00d7 3 cm \u00d7 2 cm \u2192 volume = 4 \u00d7 3 \u00d7 2 = 24 cm\u00b3 .",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "basic_physics/forces-basics.html": [
+    "See the worked example: Pushing a shopping trolley has a direction (forward). Gravity acts downward.",
+    "See the worked example: A book resting on a table. Gravity pulls down, the table pushes up.",
+    "See the worked example: A kicked football speeds up because the kick force is larger than friction for a short time.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "beyond-standard-model.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "birch-and-swinnerton-dyer-conjecture.html": [
+    "See the worked example: For \\(E : y^2 = x^3 - x\\), \\(E(\\mathbb{Q})_{\\mathrm{tors}} \\cong \\mathbb{Z}/2\\mathbb{Z} \\times \\mathbb{Z}/2\\mathbb{Z}\\) and \\(r = 0\\). For \\(y^2 = x^3 - 2x\\), the rank is 1 with generator \\((-1, 1)\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "boolean-algebra.html": [
+    "See the worked example: The Boolean algebra \\(\\mathcal{P}(\\{1,2,3\\})\\) has Stone space the discrete three-point space. Filters correspond to ultrafilter convergence \u2014 a bridge to topology and logic.",
+    "See the worked example: \\(\\mathcal{P}(X)\\) is complete. The algebra of regular open sets of a topological space forms a complete Boolean algebra under suitable operations.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "calculus-electrical-engineering.html": [
+    "See the worked example: A resistor carries \\( i(t) = 2\\sin(\\omega t) \\) A and has \\( R = 10 \\) \u03a9. Then \\( v = 20\\sin(\\omega t) \\) V and \\( p = 200\\sin^2(\\omega t) \\) W. Average over a cycle: \\( \\bar{P} = 100 \\) W (using \\( \\overline{\\sin^2} = 1/2 \\)).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "calculus-of-variations.html": [
+    "See the worked example: Minimise arc length \\(J[y] = \\int_a^b \\sqrt{1 + (y')^2}\\,dx\\). Here \\(F = \\sqrt{1+(y')^2}\\) is independent of \\(y\\), so \\(\\partial F/\\partial y = 0\\) and E\u2013L gives \\(y'' = 0\\). Extremisers are straight lines \\(y = mx + c\\).",
+    "See the worked example: Minimise travel time under gravity. With appropriate parametrisation, the solution is a cycloid \u2014 historically the problem that launched the field (Johann Bernoulli, 1696).",
+    "See the worked example: Among closed curves of length \\(L\\), the circle encloses maximum area. The variational setup with constraint \\(\\int \\sqrt{1+y'^2}\\,dx = L\\) yields circular arcs as extremisers; closure gives a full circle.",
+    "See the worked example: \\(L = \\tfrac{1}{2}m\\dot{x}^2 - \\tfrac{1}{2}kx^2\\). E\u2013L gives \\(m\\ddot{x} + kx = 0\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "calculus-power-calculations.html": [
+    "See the worked example: If \\( v(t) = 230\\sqrt{2}\\sin(100\\pi t) \\) V and \\( i(t) = 10\\sin(100\\pi t) \\) A (resistive load, in phase): \\[ p(t) = 2300\\sqrt{2}\\sin^2(100\\pi t) \\text{ W} \\] Power pulsates at twice the supply frequency \u2014 it is never negative for a pure resistor.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "calculus-real-world-problems.html": [
+    "See the worked example: A vehicle decelerates from 25 m s\u207b\u00b9 at \\( a = -5 \\) m s\u207b\u00b2. Time to stop: \\( 0 = 25 - 5t \\Rightarrow t = 5 \\) s. Distance: \\( s = 25(5) + \\tfrac{1}{2}(-5)(25) = 62.5 \\) m.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "calculus.html": [
+    "See the worked example: Evaluate \\(\\int_0^2 3x^2\\,dx\\). Antiderivative: \\(F(x) = x^3\\). So \\(\\int_0^2 3x^2\\,dx = F(2) - F(0) = 8 - 0 = 8\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "cartesian-coordinates.html": [
+    "See the worked example: 1. Start at the origin (0, 0) 2. Move 3 units right along the x-axis 3. Move 2 units up parallel to the y-axis 4. Mark the point and label it (3, 2)",
+    "See the worked example: (1, 1) , (5, 1) , (5, 4) , (1, 4) Width = 5 \u2212 1 = 4 units. Height = 4 \u2212 1 = 3 units. Area = 4 \u00d7 3 = 12 square units.",
+    "Gradient <code>m = -0.6</code> (rise -3, run 5).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Gradient <code>m = 0</code> (rise 0, run 3)."
+  ],
+  "chaos-theory.html": [
+    "See the worked example: At \\(r = 2\\), the stable fixed point is \\(x^* = 1 - 1/r = 1/2\\). At \\(r = 3.2\\), a period-2 cycle appears. The Feigenbaum constant \\(\\delta \\approx 4.669\\) governs the ratio of successive bifurcation intervals.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "clifford-algebra.html": [
+    "See the worked example: \\(\\mathrm{Cl}(\\mathbb{R}^n, -\\|\\cdot\\|^2) \\cong \\mathbb{C}l_n\\) \u2014 complex Clifford algebra. \\(\\mathrm{Cl}(\\mathbb{R}, x^2) \\cong \\mathbb{R} \\oplus \\mathbb{R}\\) (split). \\(\\mathrm{Cl}(\\mathbb{R}^2, -\\|\\cdot\\|^2) \\cong \\mathbb{H}\\) \u2014 the quaternions.",
+    "See the worked example: \\(\\mathrm{Spin}(3) \\cong \\mathrm{SU}(2)\\), explaining the double-cover relationship in quantum mechanics for spin-\\(\\tfrac{1}{2}\\) particles.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "cohomology.html": [
+    "See the worked example: For \\(S^1\\) covered by two open arcs \\(U, V\\) with \\(U \\cap V\\) disconnected, \\(\\check{H}^1(\\mathcal{U}, \\mathbb{R}) \\cong \\mathbb{R}\\), detecting the hole.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "combinatorics.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "complex-analysis.html": [
+    "See the worked example: \\(f(z) = z^2 = (x^2 - y^2) + i(2xy)\\). Check: \\(u_x = 2x = v_y\\), \\(u_y = -2y = -v_x\\). Holomorphic everywhere.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "complex-functions.html": [
+    "See the worked example: \\(f(z) = z^2 = (x^2 - y^2) + i(2xy)\\). Then \\(u_x = 2x = v_y\\) and \\(u_y = -2y = -v_x\\). Holomorphic on \\(\\mathbb{C}\\).",
+    "See the worked example: \\(\\oint_{|z|=2} \\dfrac{1}{z^2 + 1}\\,dz\\). Poles at \\(z = \\pm i\\) lie inside. By residue calculus (below): \\(\\dfrac{1}{2i} - \\dfrac{1}{-2i} = \\pi i\\) (verify with partial fractions).",
+    "See the worked example: \\(\\displaystyle \\int_{-\\infty}^{\\infty} \\frac{1}{1+x^4}\\,dx\\). Close contour in upper half-plane; poles at \\(e^{i\\pi/4}\\), \\(e^{3i\\pi/4}\\). Residue sum gives \\(\\displaystyle \\frac{\\pi}{\\sqrt{2}}\\).",
+    "See the worked example: The Cayley map \\(z \\mapsto (z-i)/(z+i)\\) sends the upper half-plane \\(\\mathbb{H}\\) conformally onto the unit disk \\(\\mathbb{D}\\) \u2014 central to Non Euclidean Geometry .",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "complex-kleinian-groups.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "complex-numbers.html": [
+    "See the worked example: For \\(z = 3 + 4i\\): \\(|z| = \\sqrt{9 + 16} = 5\\). \\(\\arg(z) = \\tan^{-1}\\!\\left(\\dfrac{4}{3}\\right) \\approx 0.927\\) rad (\u2248 53.1\u00b0).",
+    "See the worked example: Solve \\(x^2 + 4x + 13 = 0\\). \\(\\Delta = 16 - 52 = -36\\). \\(x = \\dfrac{-4 \\pm \\sqrt{-36}}{2} = \\dfrac{-4 \\pm 6i}{2} = -2 \\pm 3i\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "control-theory.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "convergence.html": [
+    "See the worked example: \\(a_n = \\dfrac{3n + 1}{n + 2} \\to 3\\) as \\(n \\to \\infty\\) (divide numerator and denominator by \\(n\\)).",
+    "See the worked example: Test \\(\\sum_{n=1}^{\\infty} \\dfrac{1}{n^2 + 1}\\). Compare with \\(\\sum \\dfrac{1}{n^2}\\) (convergent \\(p\\)-series, \\(p = 2\\)). \\(\\dfrac{a_n}{b_n} = \\dfrac{n^2}{n^2+1} \\to 1\\). Limit comparison \u2192 converges.",
+    "See the worked example: \\(\\sum_{n=1}^{\\infty} \\dfrac{n!}{3^n}\\). \\(\\dfrac{a_{n+1}}{a_n} = \\dfrac{(n+1)!/3^{n+1}}{n!/3^n} = \\dfrac{n+1}{3} \\to \\infty\\). Ratio test \u2192 diverges.",
+    "See the worked example: Test \\(\\sum_{n=2}^{\\infty} \\dfrac{1}{n\\ln n}\\). \\(\\int_2^{\\infty} \\dfrac{dx}{x\\ln x} = \\lim_{b\\to\\infty}[\\ln(\\ln x)]_2^b = \\infty\\). Integral diverges \u2192 series diverges.",
+    "See the worked example: \\(\\sum_{n=1}^{\\infty} \\dfrac{(-1)^{n+1}}{n}\\) (alternating harmonic). Converges by alternating series test. But \\(\\sum \\dfrac{1}{n}\\) diverges \u2192 conditionally convergent.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "counting.html": [
+    "Counting answers <strong>\u201chow many?\u201d</strong> \u2014 the total number of objects.",
+    "So each object is counted <strong>once</strong> (one-to-one matching) and none is missed or double-counted.",
+    "<code>15, 16, 17, 18</code>",
+    "<code>5, 10, 15, 20, 25</code>",
+    "9 is to the <strong>right</strong> of 6, so <code>9 &gt; 6</code>.",
+    "0 is a <strong>placeholder</strong> in the tens place \u2014 there are no tens in 408."
+  ],
+  "cryptography.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "data-plots.html": [
+    "See the worked example: Books read by four pupils: Ali 3, Beth 5, Chen 2, Dana 4. Bar chart: four bars with heights 3, 5, 2, 4 on a \u201cNumber of books\u201d axis.",
+    "See the worked example: 40 pupils chose lunch options: Pizza 10, Pasta 16, Salad 8, Other 6. Pizza = 10/40 = 25% \u2192 sector angle = 25% of 360\u00b0 = 90\u00b0 Pasta = 16/40 = 40% \u2192 144\u00b0",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "decimals.html": [
+    "See the worked example: Round 3.847 to 1 decimal place \u2192 look at hundredths (4) \u2192 answer 3.8 To 2 decimal places \u2192 look at thousandths (7) \u2192 answer 3.85",
+    "See the worked example: 5.3 + 2.47 = 7.77 Write as 5.30 + 2.47 .",
+    "See the worked example: 0.3 \u00d7 0.4 = 0.12 (3 \u00d7 4 = 12; two decimal places total).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "differential-equations.html": [
+    "See the worked example: Solve \\(\\dfrac{dy}{dx} = xy\\). Separate: \\(\\dfrac{dy}{y} = x\\,dx\\). Integrate: \\(\\ln|y| = \\dfrac{x^2}{2} + C\\). General solution: \\(y = Ae^{x^2/2}\\) where \\(A = \\pm e^C\\).",
+    "See the worked example: Solve \\(\\dfrac{dy}{dx} = y^2\\), \\(y(0) = 1\\). \\(\\dfrac{dy}{y^2} = dx \\Rightarrow -\\dfrac{1}{y} = x + C\\). With \\(y(0)=1\\): \\(C = -1\\). Solution: \\(y = \\dfrac{1}{1-x}\\), valid for \\(x &lt; 1\\) (blows up at \\(x = 1\\)).",
+    "See the worked example: Solve \\(y' + 2y = 6e^{-x}\\). \\(\\mu = e^{\\int 2\\,dx} = e^{2x}\\). Then \\(\\dfrac{d}{dx}(e^{2x}y) = 6e^{x}\\). Integrate: \\(e^{2x}y = 6e^x + C\\), so \\(y = 6e^{-x} + Ce^{-2x}\\).",
+    "See the worked example: Solve \\(y'' - 5y' + 6y = 0\\). Characteristic: \\(r^2 - 5r + 6 = (r-2)(r-3) = 0\\), so \\(r = 2, 3\\). General solution: \\(y = C_1 e^{2x} + C_2 e^{3x}\\).",
+    "See the worked example: Solve \\(y'' - 4y' + 4y = 0\\). \\((r-2)^2 = 0\\), so \\(r = 2\\) (double). General solution: \\(y = (C_1 + C_2 x)e^{2x}\\).",
+    "See the worked example: Solve \\(y'' + 4y = 0\\). \\(r^2 + 4 = 0 \\Rightarrow r = \\pm 2i\\). General solution: \\(y = C_1\\cos 2x + C_2\\sin 2x\\).",
+    "See the worked example: A tank holds 100 L of brine with 10 kg salt. Fresh water enters at 5 L/min; well-mixed solution leaves at 5 L/min. Let \\(S(t)\\) = salt mass. \\(S' = -\\dfrac{5}{100}S = -0.05S\\), \\(S(0) = 10\\). Solution: \\(S(t) = 10e^{-0.05t}\\) kg."
+  ],
+  "differential-geometry.html": [
+    "See the worked example: \\(\\mathbb{R}^n\\), spheres \\(S^n\\), tori \\(T^n\\), projective spaces \\(\\mathbb{RP}^n\\), Lie groups \\(SO(n)\\), \\(SU(n)\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "differentiation-in-engineering.html": [
+    "See the worked example: Current through a 50 mH inductor changes as \\( i = 0.1t^2 \\) A. At \\( t = 2 \\) s: \\( di/dt = 0.2t = 0.4 \\) A s\u207b\u00b9, so \\( v_L = 0.05 \\times 0.4 = 0.02 \\) V.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "differentiation.html": [
+    "See the worked example: For \\(y = x^2\\), using the power rule (section 2): \\(\\dfrac{dy}{dx} = 2x\\). At \\(x = 3\\), gradient \\(= 6\\). At \\(x = 0\\), gradient \\(= 0\\) (minimum on the parabola).",
+    "See the worked example: Differentiate \\(y = 3x^4 - 5x^2 + 7\\). \\(\\dfrac{dy}{dx} = 12x^3 - 10x\\).",
+    "See the worked example: Differentiate \\(y = (3x + 1)^5\\). Let \\(u = 3x + 1\\), so \\(y = u^5\\). \\(\\dfrac{dy}{du} = 5u^4\\), \\(\\dfrac{du}{dx} = 3\\). \\(\\dfrac{dy}{dx} = 5(3x+1)^4 \\times 3 = 15(3x+1)^4\\).",
+    "See the worked example: Differentiate \\(y = \\sin(2x)\\). \\(\\dfrac{dy}{dx} = \\cos(2x) \\times 2 = 2\\cos(2x)\\).",
+    "See the worked example: Find the tangent to \\(y = x^2\\) at \\((2, 4)\\). \\(\\dfrac{dy}{dx} = 2x\\), so at \\(x = 2\\), gradient \\(m = 4\\). Tangent: \\(y - 4 = 4(x - 2)\\), i.e. \\(y = 4x - 4\\).",
+    "See the worked example: Find stationary points of \\(y = x^3 - 3x\\). \\(\\dfrac{dy}{dx} = 3x^2 - 3 = 0 \\Rightarrow x = \\pm 1\\). Points: \\((-1, 2)\\) and \\((1, -2)\\).",
+    "See the worked example: For \\(y = x^3 - 3x\\), \\(\\dfrac{d^2y}{dx^2} = 6x\\). At \\(x = -1\\): \\(f''(-1) = -6 &lt; 0\\) \u2192 local maximum at \\((-1, 2)\\). At \\(x = 1\\): \\(f''(1) = 6 &gt; 0\\) \u2192 local minimum at \\((1, -2)\\)."
+  ],
+  "divergence-theorem.html": [
+    "See the worked example: Flux of \\(\\mathbf{F} = z\\mathbf{k}\\) through the unit sphere \\(x^2+y^2+z^2=1\\). On the sphere, \\(\\mathbf{F}\\cdot\\mathbf{n} = z\\) (outward normal). By symmetry, \\(\\oiint_S z\\,dS = 0\\) (equal positive and negative \\(z\\) contributions).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "division.html": [
+    "See the worked example: If 8 \u00d7 7 = 56 , then 56 \u00f7 8 = 7 and 56 \u00f7 7 = 8 .",
+    "See the worked example: 17 \u00f7 5 = 3 remainder 2 (written 3 r 2 ) Check: (3 \u00d7 5) + 2 = 17",
+    "See the worked example: 156 \u00f7 6 1 \u00f7 6 \u2192 0, carry 1 15 \u00f7 6 \u2192 2, remainder 3 36 \u00f7 6 \u2192 6 \u2192 answer 26",
+    "See the worked example: 96 chairs arranged in rows of 8. How many rows? 96 \u00f7 8 = 12 rows.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "e7-lie-groups.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "eigenvalues-electrical-engineering.html": [
+    "See the worked example: For \\(\\mathbf{A} = \\begin{bmatrix} 0 & 1 \\\\ -4 & -3 \\end{bmatrix}\\), \\(\\det(\\mathbf{A} - \\lambda\\mathbf{I}) = \\lambda^2 + 3\\lambda + 4 = 0\\). Eigenvalues: \\(\\lambda = \\dfrac{-3 \\pm j\\sqrt{7}}{2}\\) (complex conjugate pair \u2014 underdamped response).",
+    "See the worked example: \\(R = 10\\,\\Omega\\), \\(L = 0.1\\,\\text{H}\\), \\(C = 100\\,\\mu\\text{F}\\). \\(\\dfrac{R}{L} = 100\\), \\(\\dfrac{1}{LC} = 10^5\\). Discriminant \\(= 10^4 - 4 \\times 10^5 &lt; 0\\) \u2192 underdamped. Natural frequency \\(\\omega_n = 1/\\sqrt{LC} = 316\\,\\text{rad/s}\\); damping ratio \\(\\zeta = \\dfrac{R}{2}\\sqrt{\\dfrac{C}{L}} \\approx 0.16\\).",
+    "See the worked example: \\(\\mathbf{A} = \\begin{bmatrix} -2 & 5 \\\\ -1 & -2 \\end{bmatrix}\\). \\(\\text{tr} = -4\\), \\(\\det = 4 + 5 = 9\\). So \\(\\lambda^2 + 4\\lambda + 9 = 0\\). \\(\\lambda = -2 \\pm j\\sqrt{5}\\). Real part \\(-2\\) \u2192 stable; imaginary part \\(\\sqrt{5}\\) \u2192 oscillation at \\(\\sqrt{5}\\,\\text{rad/s}\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "eigenvalues.html": [
+    "See the worked example: For \\(\\mathbf{A} = \\begin{pmatrix} 4 & 1 \\\\ 2 & 3 \\end{pmatrix}\\): \\[ \\det\\begin{pmatrix} 4-\\lambda & 1 \\\\ 2 & 3-\\lambda \\end{pmatrix} = (4-\\lambda)(3-\\lambda) - 2 = \\lambda^2 - 7\\lambda + 10 = (\\lambda - 2)(\\lambda - 5) \\] Eigenvalues: \\(\\lambda = 2\\) and \\(\\lambda = 5\\).",
+    "See the worked example: For \\(\\mathbf{A} = \\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}\\) (90\u00b0 rotation): \\[ \\det\\begin{pmatrix} -\\lambda & -1 \\\\ 1 & -\\lambda \\end{pmatrix} = \\lambda^2 + 1 = 0 \\] Eigenvalues: \\(\\lambda = i\\) and \\(\\lambda = -i\\) over \\(\\mathbb{C}\\). No real eigenvalues \u2014 rotation has no invariant direction in \\(\\mathbb{R}^2\\).",
+    "See the worked example: For \\(\\mathbf{A} = \\begin{pmatrix} 2 & 1 \\\\ 0 & 2 \\end{pmatrix}\\): \\[ p(\\lambda) = (2 - \\lambda)^2 \\] Eigenvalue \\(\\lambda = 2\\) has algebraic multiplicity 2.",
+    "See the worked example: For \\(\\mathbf{A} = \\begin{pmatrix} 2 & 1 \\\\ 0 & 2 \\end{pmatrix}\\), solve \\((\\mathbf{A} - 2\\mathbf{I})\\mathbf{v} = \\mathbf{0}\\): \\[ \\begin{pmatrix} 0 & 1 \\\\ 0 & 0 \\end{pmatrix}\\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\mathbf{0} \\Rightarrow y = 0 \\] Eigenspace \\(= \\text{span}\\{(1,0)^T\\}\\), so geometric multiplicity \\(= 1\\).",
+    "See the worked example: \\(\\mathbf{A} = \\begin{pmatrix} 4 & 1 \\\\ 2 & 3 \\end{pmatrix}\\) has \\(\\lambda = 2, 5\\), each with algebraic multiplicity 1. Two distinct eigenvalues in \\(\\mathbb{R}^2\\) \\(\\Rightarrow\\) automatically diagonalisable (geometric mult. \\(= 1\\) for each, total \\(= 2\\)).",
+    "See the worked example: If \\(\\mathbf{A}\\) has eigenvalues \\(1, 3, -2\\), then \\(\\text{tr}(\\mathbf{A}) = 1 + 3 + (-2) = 2\\) and \\(\\det(\\mathbf{A}) = 1 \\cdot 3 \\cdot (-2) = -6\\). Any matrix similar to \\(\\mathbf{A}\\) has the same trace and determinant.",
+    "See the worked example: \\(\\mathbf{A} = \\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix}\\) is symmetric. \\(p(\\lambda) = (2-\\lambda)^2 - 1 = (\\lambda - 1)(\\lambda - 3)\\). Eigenvalues \\(1\\) and \\(3\\) are real; corresponding eigenvectors \\((1,-1)^T\\) and \\((1,1)^T\\) are orthogonal."
+  ],
+  "eigenvectors-electrical-engineering.html": [
+    "See the worked example: For \\(\\mathbf{A} = \\begin{bmatrix} 0 & 1 \\\\ -4 & -3 \\end{bmatrix}\\) with \\(\\lambda = -1\\): \\((\\mathbf{A} + \\mathbf{I})\\mathbf{v} = \\mathbf{0}\\) gives \\(v_2 = -v_1\\). Eigenvector: \\(\\mathbf{v} = \\begin{bmatrix} 1 \\\\ -1 \\end{bmatrix}\\) (or any scalar multiple).",
+    "See the worked example: \\(\\mathbf{x}(0) = [2,\\, 0]^T\\), eigenvectors \\(\\mathbf{v}_1 = [1,\\,1]^T\\), \\(\\mathbf{v}_2 = [1,\\,-1]^T\\). Solve \\(\\mathbf{x}(0) = c_1\\mathbf{v}_1 + c_2\\mathbf{v}_2\\) \u2192 \\(c_1 = 1\\), \\(c_2 = 1\\). Response combines both modes with weights 1.",
+    "See the worked example: \\(\\mathbf{A} = \\begin{bmatrix} 0 & 1 \\\\ -100 & -10 \\end{bmatrix}\\), \\(\\lambda = -5 \\pm j5\\sqrt{3}\\). For \\(\\lambda = -5 + j5\\sqrt{3}\\): \\((\\mathbf{A} - \\lambda\\mathbf{I})\\mathbf{v} = \\mathbf{0}\\) yields \\(v_2 = (-5 + j5\\sqrt{3})\\,v_1\\). The ratio \\(i/q\\) in that mode is complex \u2014 charge and current are 90\u00b0 out of phase in the oscillatory part.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "eigenvectors.html": [
+    "See the worked example: For \\(\\mathbf{A} = \\begin{pmatrix} 4 & 1 \\\\ 2 & 3 \\end{pmatrix}\\), eigenvalues \\(\\lambda = 2\\) and \\(\\lambda = 5\\). For \\(\\lambda = 2\\): \\((\\mathbf{A} - 2\\mathbf{I})\\mathbf{v} = \\mathbf{0}\\) gives \\(\\begin{pmatrix} 2 & 1 \\\\ 2 & 1 \\end{pmatrix}\\mathbf{v} = \\mathbf{0}\\), so \\(2x + y = 0\\). Eigenvector: \\(\\mathbf{v} = t(-1, 2)^T\\), e.g. \\((-1, 2)^T\\). For \\(\\lambda = 5\\): \\(\\begin{pmatrix} -1 & 1 \\\\ 2 & -2 \\end{pmatrix}\\mathbf{v} = \\mathbf{0}\\) gives \\(-x + y = 0\\). Eigenvector: \\((1, 1)^T\\).",
+    "See the worked example: For \\(\\mathbf{A} = \\begin{pmatrix} 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 2 \\end{pmatrix}\\): \\(E_1 = \\text{span}\\{(1,0,0)^T, (0,1,0)^T\\}\\) \u2014 the \\(xy\\)-plane, dimension 2 \\(E_2 = \\text{span}\\{(0,0,1)^T\\}\\) \u2014 the \\(z\\)-axis, dimension 1",
+    "See the worked example: Projection onto the \\(x\\)-axis: \\(\\mathbf{A} = \\begin{pmatrix} 1 & 0 \\\\ 0 & 0 \\end{pmatrix}\\). Eigenvalues \\(1\\) and \\(0\\). Eigenvector \\((1,0)^T\\) for \\(\\lambda = 1\\) stays fixed; \\((0,1)^T\\) for \\(\\lambda = 0\\) is collapsed to the origin.",
+    "See the worked example: Using \\(\\mathbf{A} = \\begin{pmatrix} 4 & 1 \\\\ 2 & 3 \\end{pmatrix}\\) from section 2: \\[ \\mathbf{P} = \\begin{pmatrix} -1 & 1 \\\\ 2 & 1 \\end{pmatrix}, \\quad \\mathbf{D} = \\begin{pmatrix} 2 & 0 \\\\ 0 & 5 \\end{pmatrix} \\] Verify: \\(\\mathbf{A}\\mathbf{P} = \\mathbf{P}\\mathbf{D}\\). Columns of \\(\\mathbf{P}\\) are eigenvectors; \\(\\mathbf{D}\\) lists matching eigenvalues on the diagonal.",
+    "See the worked example: For the diagonalisable matrix above, \\(\\mathbf{A}^2 = \\mathbf{P}\\mathbf{D}^2\\mathbf{P}^{-1}\\) with \\(\\mathbf{D}^2 = \\text{diag}(4, 25)\\). Repeated application scales each eigenvector direction by \\(\\lambda_i^k\\) \u2014 the dominant eigenvalue (largest \\(|\\lambda|\\)) governs long-term growth.",
+    "See the worked example: \\(\\mathbf{A} = \\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix}\\) has eigenvectors \\(\\mathbf{v}_1 = (1,-1)^T\\) (\\(\\lambda = 1\\)) and \\(\\mathbf{v}_2 = (1,1)^T\\) (\\(\\lambda = 3\\)). These are orthogonal. Unit vectors: \\(\\mathbf{q}_1 = \\frac{1}{\\sqrt{2}}(1,-1)^T\\), \\(\\mathbf{q}_2 = \\frac{1}{\\sqrt{2}}(1,1)^T\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "elementary-algebra.html": [
+    "See the worked example: Expand 4(2x \u2212 5) + 3(x + 1) 8x \u2212 20 + 3x + 3 = 11x \u2212 17",
+    "See the worked example: Expand (x + 3)(x + 5) \\(x \\cdot x + x \\cdot 5 + 3 \\cdot x + 3 \\cdot 5 = x^2 + 8x + 15\\)",
+    "See the worked example: Factorise 6x\u00b2 + 9x HCF is 3x \u2192 3x(2x + 3)",
+    "See the worked example: Factorise 2x\u00b2 + 7x + 3 \\(ac = 6\\). Numbers 6 and 1 (sum 7): rewrite as 2x\u00b2 + 6x + x + 3 Group: 2x(x + 3) + 1(x + 3) = (2x + 1)(x + 3)",
+    "See the worked example: Simplify \\(\\dfrac{x^2 \u2212 9}{x^2 + 5x + 6}\\) Numerator: \\((x+3)(x\u22123)\\). Denominator: \\((x+2)(x+3)\\). Cancel \\((x+3)\\): \\(\\dfrac{x\u22123}{x+2}\\), where \\(x \\ne \u22123, \u22122\\).",
+    "See the worked example: \\(x^2 + 6x + 1 = (x+3)^2 \u2212 9 + 1 = (x+3)^2 \u2212 8\\)",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "equations.html": [
+    "See the worked example: Solve 3x + 5 = 20 Step 1: Subtract 5 from both sides \u2192 3x = 15 Step 2: Divide both sides by 3 \u2192 x = 5",
+    "See the worked example: Solve 4n \u2212 7 = 13 Step 1: Add 7 to both sides \u2192 4n = 20 Step 2: Divide both sides by 4 \u2192 n = 5",
+    "See the worked example: Solve 5x + 2 = 2x + 11 Subtract 2x from both sides \u2192 3x + 2 = 11 Subtract 2 from both sides \u2192 3x = 9 Divide by 3 \u2192 x = 3",
+    "See the worked example: Three consecutive integers have a sum of 48. Find them. Let the integers be x , x + 1 , x + 2 . Equation: x + (x + 1) + (x + 2) = 48 \u2192 3x + 3 = 48 \u2192 x = 15 . The integers are 15, 16, 17 .",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Equation: <code>n + 12 = 31</code>; solution <code>n = 19</code>.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "euclidean-space.html": [
+    "See the worked example: \\(\\mathbf{u} = (1,1,0)\\), \\(\\mathbf{v} = (1,-1,1)\\). \\(\\langle \\mathbf{u}, \\mathbf{v} \\rangle = 0\\), so they are orthogonal in \\(\\mathbb{R}^3\\).",
+    "See the worked example: Rotation in \\(\\mathbb{R}^2\\) by angle \\(\\theta\\): \\[ \\mathbf{R}_\\theta = \\begin{pmatrix} \\cos\\theta & -\\sin\\theta \\\\ \\sin\\theta & \\cos\\theta \\end{pmatrix} \\in SO(2) \\] Reflections and rotary reflections are also \\(O(n)\\) elements with \\(\\det = -1\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "factors.html": [
+    "See the worked example: 1 \u00d7 24 , 2 \u00d7 12 , 3 \u00d7 8 , 4 \u00d7 6 Factors: 1, 2, 3, 4, 6, 8, 12, 24",
+    "See the worked example: Multiples of 4: 4, 8, 12, 16, \u2026 Multiples of 6: 6, 12, 18, \u2026 LCM = 12",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "fermats-last-theorem.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "four-colour-theorem.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "fourier-series.html": [
+    "See the worked example: \\(f(x) = x\\) on \\((-\\pi,\\, \\pi]\\), extended periodically with period \\(2\\pi\\). This produces a sawtooth wave: linear rise, then jump discontinuities at odd multiples of \\(\\pi\\).",
+    "See the worked example: Square wave: \\(f(x) = 1\\) on \\((0,\\, \\pi)\\), \\(f(x) = -1\\) on \\((-\\pi,\\, 0)\\). \\(a_0 = 0\\) (odd average over symmetric interval \u2014 actually zero by symmetry). \\(a_n = 0\\) for all \\(n\\) (odd function). \\(b_n = \\dfrac{2}{n\\pi}(1 - (-1)^n)\\): non-zero only for odd \\(n\\). So \\(f(x) = \\dfrac{4}{\\pi}\\bigl(\\sin x + \\tfrac{1}{3}\\sin 3x + \\tfrac{1}{5}\\sin 5x + \\cdots\\bigr)\\).",
+    "See the worked example: \\(f(x) = x\\) on \\([0,\\, \\pi]\\), odd extension to \\([-\\pi,\\,\\pi]\\). Sine series only: \\(b_n = \\dfrac{2}{n}(-1)^{n+1}\\). \\(f(x) = 2\\bigl(\\sin x - \\tfrac{1}{2}\\sin 2x + \\tfrac{1}{3}\\sin 3x - \\cdots\\bigr)\\) on \\([0,\\,\\pi]\\).",
+    "See the worked example: For the square wave above, \\(\\dfrac{1}{\\pi}\\int_{-\\pi}^{\\pi}1^2\\,dx = 2\\). Series energy: \\(\\sum_{k\\,\\text{odd}} \\dfrac{16}{k^2\\pi^2} = \\dfrac{16}{\\pi^2}\\bigl(1 + \\tfrac{1}{9} + \\tfrac{1}{25} + \\cdots\\bigr) = \\dfrac{16}{\\pi^2}\\cdot\\dfrac{\\pi^2}{8} = 2\\). \u2713",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "fractals.html": [
+    "See the worked example: Remove middle thirds iteratively from \\([0,1]\\). At stage \\(n\\), \\(2^n\\) intervals of length \\(3^{-n}\\) remain. Box-counting gives \\(D = \\dfrac{\\log 2}{\\log 3} \\approx 0.631\\). Hausdorff dimension agrees.",
+    "See the worked example: Three contractions scaling by \\(\\tfrac{1}{2}\\) toward vertices of a triangle. The attractor is the Sierpi\u0144ski gasket with similarity dimension \\(D = \\log 3 / \\log 2\\).",
+    "See the worked example: For \\(c = 0\\), \\(J_0 = S^1\\) (unit circle). For \\(c = -2\\), dynamics collapse to an interval. For \\(c = i\\), \\(J_c\\) is a dendrite \u2014 fractal boundary with Hausdorff dimension \\(&gt; 1\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "fractions.html": [
+    "See the worked example: 1/3 + 1/4 Common denominator 12 \u2192 4/12 + 3/12 = 7/12",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "functions.html": [
+    "See the worked example: If f(x) = 3x \u2212 2 , find f(4) . Substitute x = 4 : f(4) = 3(4) \u2212 2 = 12 \u2212 2 = 10 .",
+    "See the worked example: Input \u2192 [\u00d72] \u2192 [+5] \u2192 Output Input 6 \u2192 12 \u2192 17. So f(6) = 17 and the rule is f(x) = 2x + 5 .",
+    "See the worked example: f(x) = x\u00b2 with domain \"all real numbers\". Outputs are always \u2265 0, so the range is f(x) \u2265 0 (or \"0 and all positive numbers\").",
+    "See the worked example: g(x) = 1/x Domain: all real x except x = 0 (division by zero is undefined). Range: all real y except y = 0 .",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "galois-theory.html": [
+    "See the worked example: For \\(L = \\mathbb{Q}(\\sqrt{2})\\), \\(\\mathrm{Gal}(L/\\mathbb{Q}) = \\{id, \\sigma\\}\\) where \\(\\sigma(\\sqrt{2}) = -\\sqrt{2}\\) \u2014 isomorphic to \\(\\mathbb{Z}/2\\mathbb{Z}\\).",
+    "See the worked example: For the splitting field of \\(x^3 - 2\\) over \\(\\mathbb{Q}\\), the Galois group is \\(S_3\\). Subgroups correspond to intermediate fields including \\(\\mathbb{Q}(\\sqrt[3]{2})\\), \\(\\mathbb{Q}(\\omega)\\), and \\(\\mathbb{Q}(\\sqrt[3]{2}, \\omega)\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "game-theory.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "geometry.html": [
+    "See the worked example: Find the hypotenuse of a right triangle with legs 5 cm and 12 cm. \\(c^2 = 25 + 144 = 169\\) \u2192 \\(c = 13\\) cm.",
+    "See the worked example: Two similar triangles have sides 6 cm and 9 cm on corresponding edges. Scale factor \\(k = \\tfrac{3}{2}\\). If the smaller area is 20 cm\u00b2, larger area \\(= 20 \\times \\left(\\tfrac{3}{2}\\right)^2 = 45\\) cm\u00b2.",
+    "See the worked example: Angle at circumference on arc AB is \\(38\u00b0\\). Angle at centre on the same arc is \\(76\u00b0\\).",
+    "See the worked example: A sector has radius 6 cm and angle \\(120\u00b0\\). Area \\(= \\tfrac{120}{360} \\times \\pi \\times 36 = \\tfrac{1}{3} \\times 36\\pi = 12\\pi\\) cm\u00b2.",
+    "See the worked example: Similar cones with heights 4 cm and 10 cm. Volume scale factor \\(= \\left(\\tfrac{10}{4}\\right)^3 = \\left(\\tfrac{5}{2}\\right)^3 = \\tfrac{125}{8}\\).",
+    "See the worked example: If \\(\\overrightarrow{OA} = \\mathbf{a}\\) and \\(\\overrightarrow{OB} = \\mathbf{b}\\), then \\(\\overrightarrow{AB} = \\mathbf{b} \u2212 \\mathbf{a}\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "grobner-basis.html": [
+    "See the worked example: With \\(\\mathrm{lex}\\) order \\(x \\succ y\\) and \\(I = \\langle x - y^2,\\, y - 1\\rangle\\), reduction of \\(x\\) gives remainder \\(1\\), confirming \\(x \\equiv 1 \\pmod{I}\\).",
+    "See the worked example: For \\(I = \\langle x^2 - y,\\, xy - 1\\rangle\\) under \\(\\mathrm{lex}\\) \\(x \\succ y\\), Buchberger's algorithm adds \\(x - y^3\\) and \\(y^3 - 1\\), yielding a Gr\u00f6bner basis that reveals \\(y = 1\\) and \\(x = 1\\) as the only solution over \\(\\mathbb{C}\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "group-theory.html": [
+    "See the worked example: \\((\\mathbb{Z}, +)\\) is an infinite abelian group. \\((\\mathbb{Z}/n\\mathbb{Z}, +)\\) is cyclic of order \\(n\\). The nonzero rationals \\((\\mathbb{Q}^*, \\times)\\) form a non-abelian group only when considering matrices; \\(\\mathbb{Q}^*\\) itself is abelian.",
+    "See the worked example: A group of order 15 has \\(n_3 \\equiv 1 \\pmod{3}\\) and \\(n_3 \\mid 5\\), so \\(n_3 = 1\\). Similarly \\(n_5 = 1\\). Hence \\(G \\cong \\mathbb{Z}/3\\mathbb{Z} \\times \\mathbb{Z}/5\\mathbb{Z} \\cong \\mathbb{Z}/15\\mathbb{Z}\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "groupoids.html": [
+    "See the worked example: The discrete groupoid on a set \\(X\\): objects are elements of \\(X\\), and the only morphisms are identities \\(1_x\\). This encodes a set with no non-trivial arrows.",
+    "See the worked example: On the circle \\(S^1\\), paths from \\(x\\) to \\(y\\) are classified by winding number relative to a chosen orientation. \\(\\Pi_1(S^1)\\) is equivalent to the groupoid with objects \\(\\mathbb{Z}\\) and unique morphism \\(n \\to m\\) for each integer (encoding net winding).",
+    "See the worked example: The inclusion \\(\\{x_0\\} \\hookrightarrow X\\) induces a functor \\(\\pi_1(X, x_0) \\to \\Pi_1(X)\\) (one-object groupoid to full fundamental groupoid). For path-connected \\(X\\), this is an equivalence \u2014 the groupoid captures the same homotopy information without pinning a basepoint.",
+    "See the worked example: Pair groupoid of a manifold \\(M\\): objects are points of \\(M\\), morphisms \\(x \\to y\\) are ordered pairs \u2014 composition is only defined when targets match sources trivially. Action groupoid \\(G \\ltimes M\\): objects are points of \\(M\\), morphisms encode \\(g \\cdot x \\to y\\) for \\(g \\in G\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "hairy-ball-theorem.html": [
+    "See the worked example: The gradient of height function on \\(S^2\\) (one maximum, one minimum) has two zeros each of index \\(+1\\), summing to 2.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "hilbert-spaces.html": [
+    "See the worked example: \\(\\mathbb{R}^n\\) and \\(\\mathbb{C}^n\\) with the standard dot product \\(L^2(X, \\mu)\\) with \\(\\langle f, g \\rangle = \\int fg\\,d\\mu\\) \u2014 see Measure Theory \\(\\ell^2\\) \u2014 square-summable sequences",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "hodge-conjecture.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "holomorphic-functions.html": [
+    "See the worked example: \\(f(z) = \\dfrac{1}{1-z}\\) has Taylor series \\(\\sum_{n=0}^{\\infty} z^n\\) for \\(|z| < 1\\). The pole at \\(z = 1\\) determines the radius of convergence.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "homeomorphicism.html": [
+    "See the worked example: The open interval \\((0,1)\\) is homeomorphic to \\(\\mathbb{R}\\) via \\(f(t) = \\tan\\!\\bigl(\\pi(t - \\tfrac{1}{2})\\bigr)\\), but not isometric \u2014 lengths are distorted.",
+    "See the worked example: The circle \\(S^1\\) and the boundary of a square are homeomorphic in \\(\\mathbb{R}^2\\). Stretch the square's perimeter continuously onto \\(S^1\\) \u2014 a classic \"rubber-sheet\" deformation that preserves open-set structure.",
+    "See the worked example: The torus \\(T^2 = S^1 \\times S^1\\) has genus 1 and Euler characteristic \\(\\chi(T^2) = 0\\). The sphere \\(S^2\\) has genus 0 and \\(\\chi(S^2) = 2\\). Since \\(\\chi\\) is preserved, \\(S^2 \\not\\cong T^2\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "homological-mirror-symmetry.html": [
+    "See the worked example: The quintic threefold \\(X \\subset \\mathbb{P}^4\\) (degree 5) mirrors to a family of quintics in \\(\\mathbb{P}^4 / (\\mathbb{Z}/5\\mathbb{Z})\\). Enumerative predictions (317,206,375 rational curves of degree 5) were confirmed via mirror formulas before rigorous curve counting existed.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "homotopy.html": [
+    "See the worked example: \\(\\mathbb{R}\\) is homotopy equivalent to a point \\(\\{*\\}\\). Define \\(f : \\mathbb{R} \\to \\{*\\}\\), \\(g(*) = 0\\). Then \\(g \\circ f\\) collapses \\(\\mathbb{R}\\) to \\(0\\), homotopic to identity via \\(H(x,t) = (1-t)x\\).",
+    "See the worked example: The circle \\(S^1\\) is not homotopy equivalent to a point \u2014 it has nontrivial fundamental group \\(\\pi_1(S^1) \\cong \\mathbb{Z}\\).",
+    "See the worked example: \\(\\pi_1(S^1, x_0) \\cong \\mathbb{Z}\\). The winding number of a loop classifies homotopy classes. The map \\(t \\mapsto e^{2\\pi i t}\\) generates the group.",
+    "See the worked example: The inclusion \\(S^1 \\hookrightarrow \\mathbb{R}^2 \\setminus \\{0\\}\\) induces isomorphism on \\(\\pi_1\\) \u2014 both have \\(\\mathbb{Z}\\). The punctured plane deformation-retracts onto \\(S^1\\).",
+    "See the worked example: \\(\\mathbb{R} \\to S^1\\), \\(t \\mapsto e^{2\\pi i t}\\), is the universal cover. Lifting loops to \\(\\mathbb{R}\\) recovers the winding number as endpoint displacement.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "hyperbolic-functions.html": [
+    "See the worked example: Simplify \\(\\cosh^2 x + \\sinh^2 x\\). Using \\(\\cosh^2 x - \\sinh^2 x = 1\\), add \\(2\\sinh^2 x\\) to both sides: \\(\\cosh^2 x + \\sinh^2 x = 1 + 2\\sinh^2 x = 2\\cosh^2 x - 1\\).",
+    "See the worked example: Differentiate \\(y = \\sinh(3x^2)\\). By the chain rule: \\(\\dfrac{dy}{dx} = \\cosh(3x^2) \\cdot 6x = 6x\\cosh(3x^2)\\).",
+    "See the worked example: Differentiate \\(y = \\tanh x \\cdot \\cosh x\\). Product rule: \\(\\dfrac{dy}{dx} = \\operatorname{sech}^2 x \\cdot \\cosh x + \\tanh x \\cdot \\sinh x = \\operatorname{sech} x + \\sinh^2 x \\operatorname{sech} x\\).",
+    "See the worked example: Evaluate \\(\\sinh^{-1}(1)\\). \\(\\sinh^{-1}(1) = \\ln(1 + \\sqrt{2}) \\approx 0.881\\).",
+    "See the worked example: Evaluate \\(\\displaystyle\\int_0^1 \\cosh(2x)\\,dx\\). \\(= \\left[\\dfrac{\\sinh(2x)}{2}\\right]_0^1 = \\dfrac{\\sinh 2}{2} \\approx 1.919\\).",
+    "See the worked example: A cable of length \\(L\\) between supports at the same height satisfies \\(y = a\\cosh(x/a)\\). The horizontal tension \\(T\\) and weight per unit length \\(w\\) are related by \\(a = T/w\\). Engineers use this to compute sag and maximum stress.",
+    "See the worked example: From \\(\\cos(2x) = 2\\cos^2 x - 1\\), Osborn's rule gives \\(\\cosh(2x) = 2\\cosh^2 x - 1\\). From \\(\\sin(2x) = 2\\sin x \\cos x\\) (a product of sines), we get \\(\\sinh(2x) = 2\\sinh x \\cosh x\\) (no sign change needed here since only one sine appears)."
+  ],
+  "infinitesimal-transformations.html": [
+    "See the worked example: Generator \\(X = -y\\,\\partial_x + x\\,\\partial_y\\). Flow: \\[ \\phi_t(x,y) = (x\\cos t - y\\sin t,\\; x\\sin t + y\\cos t) \\] This is rotation through angle \\(t\\) \u2014 integrating the infinitesimal generator recovers \\(SO(2)\\).",
+    "See the worked example: \\(X = \\partial_x\\) generates \\(T_\\varepsilon : (x,y) \\mapsto (x+\\varepsilon, y)\\).",
+    "See the worked example: On \\(\\mathbb{R}^2\\), \\(\\mathbf{X} = \\partial_x\\), \\(\\mathbf{Y} = x\\partial_y\\). \\([\\mathbf{X}, \\mathbf{Y}] = \\partial_y \\neq 0\\). Translations and shear do not commute.",
+    "See the worked example: For \\(y' = f(x)\\) (no explicit \\(y\\)), translation in \\(y\\): \\(\\mathbf{X} = \\partial_y\\) is always a symmetry. Reduction of order follows from canonical coordinates for the symmetry.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "integration-in-engineering.html": [
+    "See the worked example: A 100 W heater runs for 3 hours. Energy consumed: \\( E = Pt = 100 \\times 3 \\times 3600 = 1.08 \\times 10^6 \\) J = 0.3 kWh. For varying power, integrate: \\( E = \\int_0^T p(t)\\,dt \\).",
+    "See the worked example: An aircraft accelerates at \\( a = 2 \\) m s\u207b\u00b2 from rest. After 10 s: \\( v = \\int_0^{10} 2\\,dt = 20 \\) m s\u207b\u00b9. Distance: \\( s = \\int_0^{10} 2t\\,dt = \\left[t^2\\right]_0^{10} = 100 \\) m.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "integration.html": [
+    "See the worked example: Given \\(\\dfrac{dy}{dx} = 3x^2\\), find \\(y\\). \\(y = \\int 3x^2\\,dx = x^3 + C\\).",
+    "See the worked example: Integrate \\(\\int (4x^3 - 2x + 5)\\,dx\\). \\(= x^4 - x^2 + 5x + C\\).",
+    "See the worked example: Evaluate \\(\\displaystyle\\int_1^3 (2x + 1)\\,dx\\). \\(\\displaystyle\\int (2x+1)\\,dx = x^2 + x\\). \\(\\big[x^2 + x\\big]_1^3 = (9+3) - (1+1) = 10\\).",
+    "See the worked example: Area under \\(y = x^2\\) from \\(x = 0\\) to \\(x = 2\\): \\(\\displaystyle\\int_0^2 x^2\\,dx = \\big[\\tfrac{x^3}{3}\\big]_0^2 = \\tfrac{8}{3}\\) square units.",
+    "See the worked example: Area between \\(y = x\\) and \\(y = x^2\\) from \\(x = 0\\) to \\(x = 1\\). On \\([0,1]\\), \\(x \\geq x^2\\), so upper curve is \\(y = x\\). \\(A = \\displaystyle\\int_0^1 (x - x^2)\\,dx = \\big[\\tfrac{x^2}{2} - \\tfrac{x^3}{3}\\big]_0^1 = \\tfrac{1}{6}\\).",
+    "See the worked example: Approximate \\(\\displaystyle\\int_0^2 x^2\\,dx\\) using 4 strips (\\(h = 0.5\\)). \\(y\\)-values: \\(0, 0.25, 1, 2.25, 4\\). \\(\\approx \\dfrac{0.5}{2}(0 + 2(0.25+1+2.25) + 4) = 2.875\\). Exact value: \\(\\tfrac{8}{3} \\approx 2.667\\). More strips improve accuracy.",
+    "See the worked example: Given \\(\\displaystyle\\int_1^k 2x\\,dx = 8\\), find \\(k\\) (\\(k &gt; 1\\)). \\(\\big[x^2\\big]_1^k = k^2 - 1 = 8 \\Rightarrow k^2 = 9 \\Rightarrow k = 3\\)."
+  ],
+  "inter-universal-teichmuller-theory.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "inverse-chain-rule.html": [
+    "See the worked example: Evaluate \\(\\displaystyle\\int 2x\\cos(x^2)\\,dx\\). Let \\(u = x^2\\), so \\(du = 2x\\,dx\\). The integrand is \\(\\cos(u)\\,du\\). \\(= \\sin(x^2) + C\\).",
+    "See the worked example: Evaluate \\(\\displaystyle\\int x\\sqrt{x^2 + 1}\\,dx\\). Let \\(u = x^2 + 1\\), so \\(du = 2x\\,dx\\) and \\(x\\,dx = \\dfrac{du}{2}\\). \\(= \\dfrac{1}{2}\\displaystyle\\int u^{1/2}\\,du = \\dfrac{1}{3}(x^2+1)^{3/2} + C\\).",
+    "See the worked example: Evaluate \\(\\displaystyle\\int \\dfrac{3x^2}{x^3 + 1}\\,dx\\). Numerator is (up to factor 3) the derivative of \\(x^3 + 1\\). \\(= \\ln|x^3 + 1| + C\\).",
+    "See the worked example: Evaluate \\(\\displaystyle\\int_0^1 \\dfrac{2x}{x^2 + 1}\\,dx\\). Let \\(u = x^2 + 1\\): limits change from \\(x = 0 \\to 1\\) to \\(u = 1 \\to 2\\). \\(= \\displaystyle\\int_1^2 \\dfrac{du}{u} = [\\ln u]_1^2 = \\ln 2\\).",
+    "See the worked example: Evaluate \\(\\displaystyle\\int \\dfrac{dx}{\\sqrt{4 - x^2}}\\). Let \\(x = 2\\sin\\theta\\), \\(dx = 2\\cos\\theta\\,d\\theta\\). \\(= \\displaystyle\\int d\\theta = \\theta + C = \\sin^{-1}\\!\\left(\\dfrac{x}{2}\\right) + C\\).",
+    "See the worked example: A current \\(i(t) = I_0\\sin(\\omega t)\\) flows for half a cycle. Charge transferred: \\(Q = \\displaystyle\\int_0^{\\pi/\\omega} I_0\\sin(\\omega t)\\,dt\\). Let \\(u = \\omega t\\): \\(Q = \\dfrac{I_0}{\\omega}[-\\cos u]_0^{\\pi} = \\dfrac{2I_0}{\\omega}\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "irrational-numbers.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "irrational-pattern-functions.html": [
+    "See the worked example: The sequence \\(\\lfloor n\\sqrt{2} \\rfloor \\bmod 2\\) (parity of integer parts of multiples of \\(\\sqrt{2}\\)) looks irregular but is governed by deep Diophantine approximation theory.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "jordan-normal-form.html": [
+    "See the worked example: Consider \\[ \\mathbf{A} = \\begin{pmatrix} 2 & 1 \\\\ 0 & 2 \\end{pmatrix} \\] Characteristic polynomial: \\((\\lambda - 2)^2 = 0\\), so \\(\\lambda = 2\\) with algebraic multiplicity 2. Eigenvectors: \\((\\mathbf{A} - 2\\mathbf{I})\\mathbf{v} = \\mathbf{0}\\) gives only \\(\\mathbf{v} = t(1,0)^T\\). Geometric multiplicity \\(= 1 &lt; 2\\). Not diagonalisable over \\(\\mathbb{C}\\) (or \\(\\mathbb{R}\\)).",
+    "See the worked example: For \\(\\mathbf{A} = \\begin{pmatrix} 2 & 1 \\\\ 0 & 2 \\end{pmatrix}\\), \\(\\mathbf{v}_1 = (1,0)^T\\) is an eigenvector. Solve \\((\\mathbf{A} - 2\\mathbf{I})\\mathbf{v}_2 = \\mathbf{v}_1\\): \\[ \\begin{pmatrix} 0 & 1 \\\\ 0 & 0 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 1 \\\\ 0 \\end{pmatrix} \\Rightarrow y = 1,\\; x \\text{ free} \\] Take \\(\\mathbf{v}_2 = (0,1)^T\\), a generalised eigenvector of rank 2.",
+    "See the worked example: \\(J_2(2) = \\begin{pmatrix} 2 & 1 \\\\ 0 & 2 \\end{pmatrix}\\) \u2014 exactly the non-diagonalisable matrix from section 2.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "karnaugh-mapping.html": [
+    "See the worked example: For \\(f(A,B,C) = \\sum m(1,3,5,7)\\), the term \\(A\\) is a prime implicant covering minterms 1, 3, 5, 7. If minterm 1 is covered only by \\(A\\), then \\(A\\) is essential.",
+    "See the worked example: Minterms \\(m(1)=001\\), \\(m(3)=011\\), \\(m(5)=101\\) merge to \\(--1\\) (cube \\(C\\)). Continue merging to obtain the complete prime implicant table.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "knot-theory.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "laplace-transforms.html": [
+    "See the worked example: Unit step \\(f(t) = 1\\) for \\(t \\geq 0\\): \\[ F(s) = \\int_0^{\\infty} e^{-st}\\,dt = \\frac{1}{s}, \\quad s &gt; 0 \\]",
+    "See the worked example: \\(\\mathcal{L}\\{\\cos(2t)\\} = \\dfrac{s}{s^2 + 4}\\). \\(\\mathcal{L}\\{t^2\\} = \\dfrac{2!}{s^3} = \\dfrac{2}{s^3}\\).",
+    "See the worked example: \\(y'' + 4y = 0\\), \\(y(0) = 1\\), \\(y'(0) = 0\\). \\(s^2 Y - s + 4Y = 0 \\Rightarrow Y = \\dfrac{s}{s^2 + 4}\\). \\(y(t) = \\cos(2t)\\).",
+    "See the worked example: Find \\(\\mathcal{L}\\{u(t-1)\\cdot\\sin(t-1)\\}\\). Let \\(f(t) = \\sin t\\), so \\(F(s) = \\dfrac{1}{s^2+1}\\). By time shift with \\(a = 1\\): \\(\\mathcal{L}\\{u(t-1)\\sin(t-1)\\} = e^{-s}\\dfrac{1}{s^2+1}\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "lie-algebras.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "limits.html": [
+    "See the worked example: \\(\\lim_{x \\to 2} (3x + 1) = 7\\). As \\(x\\) approaches 2, \\(3x + 1\\) approaches 7. Here the limit equals the function value: \\(f(2) = 7\\).",
+    "See the worked example: For \\(f(x) = \\frac{|x|}{x}\\) (sign function for \\(x \\neq 0\\)): \\(\\lim_{x \\to 0^+} \\frac{|x|}{x} = \\lim_{x \\to 0^+} 1 = 1\\). \\(\\lim_{x \\to 0^-} \\frac{|x|}{x} = \\lim_{x \\to 0^-} (-1) = -1\\). Left and right limits differ, so \\(\\lim_{x \\to 0} f(x)\\) does not exist.",
+    "See the worked example: For \\(f(x) = \\begin{cases} x + 1 &amp; x &lt; 2 \\\\ 5 &amp; x = 2 \\\\ 7 - x &amp; x &gt; 2 \\end{cases}\\): Left limit: \\(\\lim_{x \\to 2^-} (x + 1) = 3\\). Right limit: \\(\\lim_{x \\to 2^+} (7 - x) = 5\\). Limit DNE at \\(x = 2\\).",
+    "See the worked example: Evaluate \\(\\lim_{x \\to 3}\\frac{x^2 - 9}{x - 3}\\). Factorise: \\(\\frac{(x-3)(x+3)}{x-3} = x + 3\\) for \\(x \\neq 3\\). Limit: \\(\\lim_{x \\to 3}(x + 3) = 6\\).",
+    "See the worked example: Evaluate \\(\\lim_{x \\to 0}\\frac{\\sin 3x}{x}\\). Rewrite: \\(\\frac{\\sin 3x}{x} = 3 \\cdot \\frac{\\sin 3x}{3x} \\to 3 \\times 1 = 3\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "linear-transformations.html": [
+    "See the worked example: \\(T : \\mathbb{R}^2 \\to \\mathbb{R}^2\\) defined by \\(T(x,y) = (2x + y,\\, x - y)\\) is linear. Check: \\(T(\\mathbf{u}+\\mathbf{v}) = T(\\mathbf{u}) + T(\\mathbf{v})\\) by direct substitution.",
+    "See the worked example: For \\(T(x,y) = (2x + y,\\, x - y)\\): \\[ T(\\mathbf{e}_1) = T(1,0) = (2,1),\\quad T(\\mathbf{e}_2) = T(0,1) = (1,-1) \\] So \\(\\mathbf{A} = \\begin{pmatrix} 2 & 1 \\\\ 1 & -1 \\end{pmatrix}\\).",
+    "See the worked example: Rotation by \\(90\u00b0\\) in \\(\\mathbb{R}^2\\): \\[ R = \\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}, \\quad R^2 = \\begin{pmatrix} -1 & 0 \\\\ 0 & -1 \\end{pmatrix} \\] Two rotations give a half-turn \u2014 matrix multiplication encodes composition.",
+    "See the worked example: For \\(\\mathbf{A} = \\begin{pmatrix} 1 & 2 & 3 \\\\ 2 & 4 & 6 \\end{pmatrix}\\), row 2 is twice row 1. The kernel is \\(\\{(x,y,z) : x + 2y + 3z = 0\\}\\), a plane in \\(\\mathbb{R}^3\\), so \\(\\dim(\\ker T) = 2\\).",
+    "See the worked example: For \\(\\mathbf{A} = \\begin{pmatrix} 1 & 0 \\\\ 0 & 0 \\\\ 1 & 0 \\end{pmatrix}\\), columns are \\((1,0,1)^T\\) and \\((0,0,0)^T\\). So \\(\\text{Im}(T) = \\text{span}\\{(1,0,1)^T\\}\\), a line in \\(\\mathbb{R}^3\\), and \\(\\dim(\\text{Im}\\, T) = 1\\).",
+    "See the worked example: For the \\(2 \\times 3\\) matrix above with \\(\\dim(\\ker T) = 2\\): \\[ \\text{rank}(\\mathbf{A}) = 3 - 2 = 1 \\] Only one column is linearly independent, confirming \\(\\dim(\\text{Im}\\, T) = 1\\).",
+    "See the worked example: Is \\(\\mathbf{A} = \\begin{pmatrix} 1 & 2 \\\\ 3 & 4 \\end{pmatrix}\\) invertible? \\(\\det(\\mathbf{A}) = 1 \\cdot 4 - 2 \\cdot 3 = -2 \\neq 0\\), so rank \\(= 2 = n\\). \\(T\\) is an isomorphism of \\(\\mathbb{R}^2\\) onto itself."
+  ],
+  "logarithms.html": [
+    "See the worked example: Simplify \\(\\ln 6 \u2212 \\ln 2\\). \\(= \\ln\\!\\left(\\dfrac{6}{2}\\right) = \\ln 3\\).",
+    "See the worked example: Solve \\(3^x = 20\\). Take ln: \\(\\ln(3^x) = \\ln 20\\) \\(x \\ln 3 = \\ln 20\\) \\(x = \\dfrac{\\ln 20}{\\ln 3} \\approx 2.73\\)",
+    "See the worked example: Solve \\(\\log_2(x + 3) = 4\\). Exponential form: \\(x + 3 = 2^4 = 16\\) \u2192 \\(x = 13\\).",
+    "See the worked example: Solve \\(\\ln x + \\ln(x \u2212 2) = \\ln 3\\). \\(\\ln[x(x\u22122)] = \\ln 3\\) \u2192 \\(x(x\u22122) = 3\\) \u2192 \\(x^2 \u2212 2x \u2212 3 = 0\\) \u2192 \\((x\u22123)(x+1) = 0\\). Reject \\(x = \u22121\\) (not in domain). Solution: \\(x = 3\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "logic_and_digital_math/binary-arithmetic.html": [
+    "See the worked example: 1011 2 + 0110 2 Column 0: 1+0=1 \u00b7 Column 1: 1+1=0 carry 1 \u00b7 Column 2: 0+1+1=0 carry 1 \u00b7 Column 3: 1+0+1=0 carry 1 Result: 10001 2 (17 in decimal: 11 + 6)",
+    "See the worked example: 1101 2 \u2212 0101 2 = 1000 2 (13 \u2212 5 = 8)",
+    "See the worked example: \u22125 in 8 bits +5 = 00000101 \u2192 flip \u2192 11111010 \u2192 add 1 \u2192 11111011",
+    "See the worked example: 0101 \u2212 0011 (5 \u2212 3) Two's complement of 0011: flip \u2192 1100, +1 \u2192 1101 0101 + 1101 = 10010 \u2192 drop carry \u2192 0010 = 2 \u2713",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "logic_and_digital_math/boolean-algebra.html": [
+    "See the worked example: From a truth table where F=1 for inputs (A,B) = (0,1) and (1,1): F = A'B + AB = B(A' + A) = B (after simplification)",
+    "See the worked example: Simplify F = AB + AB' + A'B = A(B + B') + A'B (factor A from first two terms) = A \u00b7 1 + A'B (complement law) = A + A'B = A + B (absorption / consensus)",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "logic_and_digital_math/circuit-complexity.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "logic_and_digital_math/de-morgans-theorems.html": [
+    "See the worked example: (AB + CD)' Treat (AB) and (CD) as single terms: (X + Y)' = X' \u00b7 Y' where X=AB, Y=CD = (AB)' \u00b7 (CD)' = (A' + B')(C' + D')",
+    "See the worked example: Simplify F = (A'B)' De Morgan: A'' + B' = A + B'",
+    "See the worked example: Convert F = ((A + B)(C + D))' Let P = (A + B) and Q = (C + D). Then F = (PQ)' = P' + Q' by De Morgan on the product. = (A + B)' + (C + D)' = A'B' + C'D'",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "logic_and_digital_math/decoders.html": [
+    "See the worked example: \\(f(A,B,C) = \\Sigma(1, 3, 5, 7)\\) using a 3-to-8 decoder: Connect \\(A, B, C\\) to address inputs. OR outputs \\(Y_1, Y_3, Y_5, Y_7\\). Result: \\(f = C\\) (all minterms where \\(C=1\\)).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "logic_and_digital_math/digital_math_classification.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "logic_and_digital_math/encoders.html": [
+    "See the worked example: An 8-to-3 encoder has inputs \\(I_0 \\ldots I_7\\). If \\(I_5 = 1\\) and all others are 0, outputs are \\(Y_2 Y_1 Y_0 = 101_2\\) (decimal 5).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "logic_and_digital_math/finite-state-machines.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "logic_and_digital_math/gray-code.html": [
+    "See the worked example: Binary 3 \u2192 4 is 011 \u2192 100 . A decoder might momentarily see 010 , 001 , or other spurious values. Gray 010 \u2192 110 changes only the MSB.",
+    "See the worked example: Gray 1011 \u2192 Binary B\u2083 = G\u2083 = 1 B\u2082 = G\u2082 \u2295 B\u2083 = 0 \u2295 1 = 1 B\u2081 = G\u2081 \u2295 B\u2082 = 1 \u2295 1 = 0 B\u2080 = G\u2080 \u2295 B\u2081 = 1 \u2295 0 = 1 Result: binary 1101 = decimal 13",
+    "See the worked example: Binary 1101 \u2192 Gray G\u2083 = B\u2083 = 1 G\u2082 = B\u2082 \u2295 B\u2083 = 1 \u2295 1 = 0 G\u2081 = B\u2081 \u2295 B\u2082 = 0 \u2295 1 = 1 G\u2080 = B\u2080 \u2295 B\u2081 = 1 \u2295 0 = 1 Result: Gray 1011",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "logic_and_digital_math/number-systems.html": [
+    "See the worked example: Convert 45 to binary. 45 \u00f7 2 = 22 r 1 \u00b7 22 \u00f7 2 = 11 r 0 \u00b7 11 \u00f7 2 = 5 r 1 \u00b7 5 \u00f7 2 = 2 r 1 \u00b7 2 \u00f7 2 = 1 r 0 \u00b7 1 \u00f7 2 = 0 r 1 Remainders (bottom up): 101101 2",
+    "See the worked example: 110101 2 = 1\u00d732 + 1\u00d716 + 0\u00d78 + 1\u00d74 + 0\u00d72 + 1\u00d71 = 32 + 16 + 4 + 1 = 53 10",
+    "See the worked example: 0.101 2 = \u00bd + 0 + \u00bc = 0.625 10",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "logic_and_digital_math/predicate-logic.html": [
+    "See the worked example: \u2200x (x + 0 = x) over real numbers \u2014 true (additive identity). \u2200x (x &lt; 5) over integers \u2014 false (take x = 10 ).",
+    "See the worked example: \u2203x (x\u00b2 = 2) over real numbers \u2014 true ( x = \u221a2 ). \u2203x (x\u00b2 = \u22121) over real numbers \u2014 false; true over complex numbers.",
+    "See the worked example: Negate \"Every student passed the exam.\" Formal: \u2200x (S(x) \u2192 E(x)) where S(x) = student, E(x) = passed. Negation: \u2203x (S(x) \u2227 \u00acE(x)) \u2014 \"Some student did not pass.\"",
+    "See the worked example: \u2200\u03b5 \u2203\u03b4 P(\u03b5, \u03b4) (analysis flavour) \u2014 for every tolerance \u03b5, a \u03b4 exists. Reversing to \u2203\u03b4 \u2200\u03b5 P(\u03b5, \u03b4) asserts a single \u03b4 works for all \u03b5 \u2014 a much stronger (usually false) claim.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "logic_and_digital_math/propositional-logic.html": [
+    "See the worked example: Truth table for (p \u2228 q) \u2227 \u00acr with three variables:",
+    "See the worked example: Show (p \u2192 q) \u2194 (\u00acp \u2228 q) is a tautology. Build the truth table \u2014 the final column is all T regardless of p and q . This equivalence is central to rewriting implications in Boolean algebra .",
+    "See the worked example: \u00ac(p \u2192 q) \u2228 q p \u2192 q \u2261 \u00acp \u2228 q , so \u00ac(\u00acp \u2228 q) \u2228 q \u2261 (p \u2227 \u00acq) \u2228 q \u2261 p \u2228 q by absorption.",
+    "See the worked example: \u22a2 (p \u2227 q) \u2192 p Assume p \u2227 q . By \u2227-elim, obtain p . Discharge \u2192 (p \u2227 q) \u2192 p .",
+    "See the worked example: \"If the alarm sounds, then the door is open or the sensor is faulty.\" A \u2192 (D \u2228 F) where A = alarm sounds, D = door open, F = sensor faulty.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "logic_and_digital_math/sequential-logic.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "logic_and_digital_math/set-theory-basics.html": [
+    "See the worked example: If A = {2, 4, 6} and B = {2, 4, 6, 8} , then A \u2282 B . The empty set is a subset of every set: \u2205 \u2286 A for any A .",
+    "See the worked example: A = {1, 2, 3} , B = {3, 4, 5} A \u222a B = {1, 2, 3, 4, 5} A \u2229 B = {3}",
+    "See the worked example: U = {1, 2, 3, 4, 5} , A = {2, 4} A' = {1, 3, 5} If B = {1, 2, 3} , then A \u2212 B = {4} and B \u2212 A = {1, 3} .",
+    "See the worked example: Verify with U = {1,\u2026,6} , A = {1,2,3} , B = {3,4,5} . A \u222a B = {1,2,3,4,5} , so (A \u222a B)' = {6} . A' = {4,5,6} , B' = {1,2,6} , so A' \u2229 B' = {6} . \u2713",
+    "See the worked example: (A \u2229 B) \u222a (A \u2229 B') Distribute factorisation in reverse: A \u2229 (B \u222a B') = A \u2229 U = A .",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "logic_and_digital_math/truth-tables.html": [
+    "See the worked example: F = A AND (NOT B) \u2014 two inputs, four rows. Row 0: A=0,B=0 \u2192 NOT B=1 \u2192 F=0 \u00b7 Row 1: A=0,B=1 \u2192 F=0 Row 2: A=1,B=0 \u2192 F=1 \u00b7 Row 3: A=1,B=1 \u2192 F=0 Output column: 0, 0, 1, 0",
+    "See the worked example: F = 1 on rows (0,1) and (1,0) for inputs A,B. Row (0,1): A'B \u00b7 Row (1,0): AB' \u00b7 F = A'B + AB' (XOR)",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "mappings.html": [
+    "See the worked example: Inputs: 1, 2, 3 \u2192 Outputs: 3, 4, 5 Arrow from 1 to 3, from 2 to 4, from 3 to 5.",
+    "See the worked example: Mapping rule \"subtract 5, then multiply by 2\". Input: n \u2192 Output: 2(n \u2212 5) = 2n \u2212 10",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "matrices.html": [
+    "See the worked example: \\[ \\begin{pmatrix} 2 & 1 \\\\ 3 & 4 \\end{pmatrix} + \\begin{pmatrix} 5 & -1 \\\\ 0 & 2 \\end{pmatrix} = \\begin{pmatrix} 7 & 0 \\\\ 3 & 6 \\end{pmatrix} \\]",
+    "See the worked example: \\[ \\det\\begin{pmatrix} 3 & 2 \\\\ 1 & 4 \\end{pmatrix} = (3)(4) - (2)(1) = 10 \\]",
+    "See the worked example: Find the inverse of \\(\\begin{pmatrix} 2 & 1 \\\\ 5 & 3 \\end{pmatrix}\\). \\(\\det = (2)(3) - (1)(5) = 1\\). \\(A^{-1} = \\begin{pmatrix} 3 & -1 \\\\ -5 & 2 \\end{pmatrix}\\).",
+    "See the worked example: Solve \\(2x + y = 7\\), \\(5x + 3y = 16\\). \\(A = \\begin{pmatrix} 2 & 1 \\\\ 5 & 3 \\end{pmatrix}\\), \\(B = \\begin{pmatrix} 7 \\\\ 16 \\end{pmatrix}\\). From section 5: \\(A^{-1} = \\begin{pmatrix} 3 & -1 \\\\ -5 & 2 \\end{pmatrix}\\). \\(\\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 3 & -1 \\\\ -5 & 2 \\end{pmatrix}\\begin{pmatrix} 7 \\\\ 16 \\end{pmatrix} = \\begin{pmatrix} 5 \\\\ 1 \\end{pmatrix}\\). Solution: \\(x = 5\\), \\(y = 1\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "measure-theory.html": [
+    "See the worked example: On \\(\\mathbb{R}\\), intervals \\((a,b]\\) generate the Borel \u03c3-algebra. Every continuous function \\(f: \\mathbb{R} \\to \\mathbb{R}\\) is Borel measurable.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "metric-spaces.html": [
+    "See the worked example: The map \\(Tx = \\cos x\\) on \\([0,1]\\) with the usual metric is a contraction since \\(|\\cos' x| \\leq \\sin 1 < 1\\). The unique fixed point is the solution to \\(x = \\cos x\\).",
+    "See the worked example: \\(\\{(x,y) \\in \\mathbb{R}^2 : xy = 0\\}\\) (the coordinate axes) is connected but not path connected \u2014 there is no path from \\((1,0)\\) to \\((0,1)\\) staying in the set.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "millennium-prize-problems.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "multiplication.html": [
+    "See the worked example: 23 \u00d7 4 20 \u00d7 4 = 80 3 \u00d7 4 = 12 80 + 12 = 92",
+    "See the worked example: 47 \u00d7 6 Units: 7 \u00d7 6 = 42 \u2192 write 2, carry 4 Tens: 4 \u00d7 6 + 4 = 28 \u2192 answer 282",
+    "See the worked example: A box holds 8 eggs. How many eggs in 15 boxes? 15 \u00d7 8 = 120 eggs.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "multivariable-calculus.html": [
+    "See the worked example: For \\(f(x,y) = x^2 + y^2\\), level curves \\(f = c\\) are circles centred at the origin. The surface is a paraboloid opening upward.",
+    "See the worked example: For \\(f(x,y) = x^3 y^2 + 2xy\\): \\(\\dfrac{\\partial f}{\\partial x} = 3x^2 y^2 + 2y\\), \\quad \\(\\dfrac{\\partial f}{\\partial y} = 2x^3 y + 2x\\).",
+    "See the worked example: For \\(f(x,y) = x^2 + y^2\\), \\(\\nabla f = (2x, 2y)\\). At \\((1, 2)\\): \\(\\nabla f = (2, 4)\\), \\(|\\nabla f| = \\sqrt{20} = 2\\sqrt{5}\\). Steepest ascent direction: unit vector \\(\\dfrac{1}{\\sqrt{5}}(1, 2)\\).",
+    "See the worked example: For \\(f(x,y) = xy\\) at \\((2, 1)\\) in direction \\(\\mathbf{u} = (1/\\sqrt{2}, 1/\\sqrt{2})\\): \\(\\nabla f = (y, x) = (1, 2)\\) at \\((2,1)\\). \\(D_{\\mathbf{u}} f = (1, 2) \\cdot (1/\\sqrt{2}, 1/\\sqrt{2}) = 3/\\sqrt{2}\\).",
+    "See the worked example: Let \\(z = x^2 y\\), \\(x = t^2\\), \\(y = t^3\\). Find \\(dz/dt\\). \\(\\dfrac{dz}{dt} = 2xy \\cdot 2t + x^2 \\cdot 3t^2 = 4t^5 + 3t^6\\). (Check: \\(z = t^7\\), so \\(dz/dt = 7t^6\\) \u2014 agrees.)",
+    "See the worked example: Classify critical points of \\(f(x,y) = x^2 - y^2\\). \\(\\nabla f = (2x, -2y) = (0,0)\\) at origin. \\(f_{xx} = 2\\), \\(f_{yy} = -2\\), \\(f_{xy} = 0\\). \\(D = 2(-2) - 0 = -4 &lt; 0\\) \u2192 saddle point at \\((0,0)\\).",
+    "See the worked example: A temperature field \\(T(x,y) = 100 - x^2 - 2y^2\\) (\u00b0C) on a plate. \\(\\nabla T = (-2x, -4y)\\). At \\((1, 2)\\): \\(\\nabla T = (-2, -8)\\), so heat flows toward increasing \\(x\\) and \\(y\\) (toward cooler regions). Maximum rate of change: \\(|\\nabla T| = \\sqrt{68}\\) \u00b0C/unit."
+  ],
+  "negative-numbers.html": [
+    "See the worked example: The temperature change from \u22123\u00b0C to 2\u00b0C is a rise of 5 degrees. On a number line, the distance from \u22123 to 2 is 5.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "non-euclidean-geometry.html": [
+    "See the worked example: The angle defect of a hyperbolic triangle with angles \\(\\alpha, \\beta, \\gamma\\) satisfies \\[ \\alpha + \\beta + \\gamma = \\pi - A \\] where \\(A &gt; 0\\) is the area. Triangles have angle sum strictly less than \\(\\pi\\).",
+    "See the worked example: A spherical triangle with angles \\(\\alpha, \\beta, \\gamma\\) on \\(S^2\\) has area \\(A = \\alpha + \\beta + \\gamma - \\pi\\) (excess over \\(\\pi\\)). A triangle with three right angles exists on \\(S^2\\) (octant of the sphere).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "one-time-pad-decryption.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "optimization.html": [
+    "See the worked example: Find and classify the turning points of \\( f(x) = x^3 - 6x^2 + 9x + 1 \\). \\( f'(x) = 3x^2 - 12x + 9 = 3(x-1)(x-3) \\) \u2192 stationary points at \\( x = 1 \\) and \\( x = 3 \\). \\( f''(x) = 6x - 12 \\): at \\( x = 1 \\), \\( f'' = -6 \\) (maximum); at \\( x = 3 \\), \\( f'' = 6 \\) (minimum).",
+    "See the worked example: For \\( f(x) = 12x - x^2 \\) on \\( 0 \\le x \\le 10 \\): \\( f'(x) = 12 - 2x = 0 \\Rightarrow x = 6 \\). \\( f(0) = 0 \\), \\( f(6) = 36 \\), \\( f(10) = 20 \\). Maximum value is 36 at \\( x = 6 \\).",
+    "See the worked example: An open-top box is made from a 30 cm \u00d7 30 cm sheet by cutting squares of side \\( x \\) from each corner and folding up the sides. Base: \\( (30 - 2x) \\times (30 - 2x) \\), height: \\( x \\). Volume: \\[ V(x) = x(30 - 2x)^2, \\quad 0 &lt; x &lt; 15 \\] Expanding and differentiating gives maximum volume at \\( x = 5 \\) cm, \\( V = 2000 \\) cm\u00b3.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "orders-of-operations.html": [
+    "See the worked example: 4 + 2\u00b3 \u00d7 3 Step 1 \u2014 indices: 2\u00b3 = 8 Step 2 \u2014 multiply: 8 \u00d7 3 = 24 Step 3 \u2014 add: 4 + 24 = 28",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "p-adic-analysis.html": [
+    "See the worked example: Solve \\(x^2 = 2\\) in \\(\\mathbb{Z}_7\\). Start with \\(a_0 = 3\\) since \\(3^2 = 9 \\equiv 2 \\pmod{7}\\). Hensel lifting gives a unique 7-adic square root of 2.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "p-equals-np.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "parametric-equations.html": [
+    "See the worked example: \\(x = 2\\cos t\\), \\(y = 2\\sin t\\) traces a circle of radius 2 centred at the origin.",
+    "See the worked example: \\(x = t^2\\), \\(y = t^3 - t\\). \\(t = -2\\): \\((4, -6)\\); \\(t = -1\\): \\((1, 0)\\); \\(t = 0\\): \\((0, 0)\\); \\(t = 1\\): \\((1, 0)\\); \\(t = 2\\): \\((4, 6)\\). The curve crosses itself at \\((1, 0)\\) when \\(t = \\pm 1\\).",
+    "See the worked example: \\(x = t + 1\\), \\(y = t^2\\). From the first equation: \\(t = x - 1\\). Substitute: \\(y = (x - 1)^2\\). This is a parabola.",
+    "See the worked example: \\(x = t^2\\), \\(y = t^3\\). \\(\\dfrac{dx}{dt} = 2t\\), \\(\\dfrac{dy}{dt} = 3t^2\\). \\(\\dfrac{dy}{dx} = \\dfrac{3t^2}{2t} = \\dfrac{3t}{2}\\) (for \\(t \\neq 0\\)).",
+    "See the worked example: Find the tangent to \\(x = t^2\\), \\(y = t^3\\) at \\(t = 2\\). Point: \\((4, 8)\\). Gradient: \\(\\dfrac{dy}{dx} = \\dfrac{3(2)}{2} = 3\\). Tangent: \\(y - 8 = 3(x - 4)\\), i.e. \\(y = 3x - 4\\).",
+    "See the worked example: Area under \\(x = t^2\\), \\(y = t\\) from \\(t = 0\\) to \\(t = 2\\). \\(A = \\displaystyle\\int_0^2 t \\cdot 2t\\,dt = \\int_0^2 2t^2\\,dt = \\big[\\tfrac{2t^3}{3}\\big]_0^2 = \\tfrac{16}{3}\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "partial-differential-equations.html": [
+    "See the worked example: Classify \\(3u_{xx} + 2u_{xy} - u_{yy} = 0\\). \\(A = 3\\), \\(B = 2\\), \\(C = -1\\). \\(\\Delta = 4 - 4(3)(-1) = 16 &gt; 0\\) \u2014 hyperbolic .",
+    "See the worked example: On the rectangle \\(0 \\leq x \\leq a\\), \\(0 \\leq y \\leq b\\), with \\(u(0,y) = u(a,y) = 0\\), \\(u(x,0) = 0\\), \\(u(x,b) = f(x)\\), separation of variables yields sine-series solutions in \\(x\\).",
+    "See the worked example: \\(u_t = k u_{xx}\\), \\(u(0,t) = u(L,t) = 0\\), \\(u(x,0) = f(x)\\). Let \\(u = X(x)T(t)\\): \\(\\dfrac{T'}{kT} = \\dfrac{X''}{X} = -\\lambda\\). With BCs: \\(X_n(x) = \\sin\\dfrac{n\\pi x}{L}\\), \\(\\lambda_n = \\left(\\dfrac{n\\pi}{L}\\right)^2\\). \\(T_n(t) = e^{-k\\lambda_n t}\\). Solution: \\(u(x,t) = \\sum_{n=1}^{\\infty} B_n \\sin\\dfrac{n\\pi x}{L}\\, e^{-k(n\\pi/L)^2 t}\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "perfectoid-spaces.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "poincare-conjecture.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "polar-coordinates.html": [
+    "See the worked example: The point with Cartesian coordinates \\((3, 4)\\) has \\(r = \\sqrt{3^2 + 4^2} = 5\\) and \\(\\theta = \\tan^{-1}\\!\\left(\\dfrac{4}{3}\\right)\\).",
+    "See the worked example: Sketch \\(r = 1 + \\cos\\theta\\) (cardioid). \\(\\theta = 0\\): \\(r = 2\\); \\(\\theta = \\dfrac{\\pi}{2}\\): \\(r = 1\\); \\(\\theta = \\pi\\): \\(r = 0\\); \\(\\theta = \\dfrac{3\\pi}{2}\\): \\(r = 1\\). The curve is heart-shaped, with a cusp at the pole when \\(\\theta = \\pi\\).",
+    "See the worked example: Area enclosed by \\(r = 2\\) (a circle of radius 2) for \\(0 \\leq \\theta \\leq 2\\pi\\). \\(A = \\dfrac{1}{2}\\displaystyle\\int_0^{2\\pi} 4\\,d\\theta = \\dfrac{1}{2}[4\\theta]_0^{2\\pi} = 4\\pi\\).",
+    "See the worked example: Area inside \\(r = 2\\) and outside \\(r = 1 + \\cos\\theta\\) for \\(-\\dfrac{\\pi}{2} \\leq \\theta \\leq \\dfrac{\\pi}{2}\\). Outer minus inner: \\(A = \\dfrac{1}{2}\\displaystyle\\int_{-\\pi/2}^{\\pi/2} \\big(4 - (1+\\cos\\theta)^2\\big)\\,d\\theta\\). Expand and integrate term by term.",
+    "See the worked example: For \\(r = a\\theta\\) (spiral), \\(\\dfrac{dr}{d\\theta} = a\\). \\(\\tan\\psi = \\dfrac{a\\theta}{a} = \\theta\\), so \\(\\psi = \\tan^{-1}(\\theta)\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "poly-dimensional-topology.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "polynomials.html": [
+    "See the worked example: Divide \\(x^3 \u2212 2x^2 \u2212 5x + 6\\) by \\((x \u2212 2)\\). Quotient: \\(x^2 \u2212 5\\), remainder 0. So \\(x^3 \u2212 2x^2 \u2212 5x + 6 = (x \u2212 2)(x^2 \u2212 5)\\).",
+    "See the worked example: Show that \\((x + 1)\\) is a factor of \\(f(x) = x^3 + x^2 \u2212 4x \u2212 4\\). \\(f(\u22121) = (\u22121)^3 + (\u22121)^2 \u2212 4(\u22121) \u2212 4 = \u22121 + 1 + 4 \u2212 4 = 0\\) \u2713",
+    "See the worked example: Find the remainder when \\(f(x) = 2x^3 + x^2 \u2212 3x + 5\\) is divided by \\((x \u2212 2)\\). Remainder \\(= f(2) = 2(8) + 4 \u2212 6 + 5 = 16 + 4 \u2212 6 + 5 = 19\\).",
+    "See the worked example: \\(f(x) = (x \u2212 1)^2(x + 2)\\) has a repeated root at \\(x = 1\\) and a simple root at \\(x = \u22122\\).",
+    "See the worked example: \\(y = x(x \u2212 2)(x + 3)\\) Roots at \\(\u22123, 0, 2\\). y-intercept 0. Cubic: down on left, up on right. Crosses at each root.",
+    "See the worked example: Solve \\(x^3 \u2212 4x = 0\\). Factorise: \\(x(x^2 \u2212 4) = x(x \u2212 2)(x + 2) = 0\\). Solutions: \\(x = 0,\\ 2,\\ \u22122\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "powers.html": [
+    "See the worked example: (3\u00b2)\u2074 = 3\u00b2\u02e3\u2074 = 3\u2078 = 6561 Think: (3\u00b2)\u2074 = (3\u00d73) \u00d7 (3\u00d73) \u00d7 (3\u00d73) \u00d7 (3\u00d73) \u2014 eight 3s multiplied together.",
+    "See the worked example: 8^(2/3) = (\u221b8)\u00b2 = 2\u00b2 = 4 Or: 8^(2/3) = \u221b(8\u00b2) = \u221b64 = 4",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "projective-variety.html": [
+    "See the worked example: Linear subspaces: \\(V(\\langle L_1, \\ldots, L_{n-k}\\rangle)\\) of dimension \\(k\\). Fermat curve: \\(x_0^n + x_1^n + x_2^n = 0\\) in \\(\\mathbb{P}^2\\). Veronese embedding: \\(v_d: \\mathbb{P}^n \\to \\mathbb{P}^N\\) via degree-\\(d\\) monomials.",
+    "See the worked example: A plane curve \\(C \\subset \\mathbb{P}^2\\) of degree \\(d\\) has Hilbert polynomial \\(P_C(m) = dm - \\frac{d(d-1)}{2} + 1\\) (genus formula for smooth curves).",
+    "See the worked example: A line (\\(d=1\\)) and a conic (\\(d=2\\)) meet in 2 points in \\(\\mathbb{P}^2_{\\mathbb{C}}\\), unless the line is tangent (multiplicity 2 at one point).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "quantum/density-matrices.html": [
+    "See the worked example: For \\(|\\Phi^+\\rangle = (|00\\rangle+|11\\rangle)/\\sqrt{2}\\), \\(\\rho_A = \\mathrm{Tr}_B(|\\Phi^+\\rangle\\langle\\Phi^+|) = I/2\\) \u2014 maximally mixed marginal.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "quantum/deutsch-jozsa-algorithm.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "quantum/dirac-notation.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "quantum/entanglement-and-bell.html": [
+    "See the worked example: \\(|\\Phi^+\\rangle = \\dfrac{1}{\\sqrt{2}}(|00\\rangle + |11\\rangle)\\) \u2014 measuring \\(A\\) instantly fixes the statistics of \\(B\\) even when spatially separated (no signalling of information).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "quantum/fault-tolerant-quantum-computing.html": [
+    "See the worked example: Factoring 2048-bit RSA may need \\(\\sim 10^7\\) physical qubits and hours of runtime under optimistic surface-code assumptions \u2014 estimates vary with \\(p\\) and architecture.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "quantum/grovers-algorithm.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "quantum/multi-qubit-systems.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "quantum/nisq-computing.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "quantum/no-cloning-theorem.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "quantum/quantum-algorithms-overview.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "quantum/quantum-approximate-optimization.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "quantum/quantum-channels.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "quantum/quantum-circuits.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Gradient <code>m = 1</code> (rise 1, run 1).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "quantum/quantum-error-correction.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "quantum/quantum-fourier-transform.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "quantum/quantum-gates.html": [
+    "See the worked example: \\(HXH|0\\rangle = HZ|+\\rangle = |{+i}\\rangle\\) \u2014 conjugating \\(Z\\) by \\(H\\) gives \\(X\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "quantum/quantum-measurement.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "quantum/quantum-postulates.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "quantum/quantum-teleportation.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "quantum/quantum-tunneling.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "quantum/qubits-and-bloch-sphere.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "quantum/shors-algorithm.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "quantum/spin-and-pauli-matrices.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "quantum/stabilizer-codes.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "quantum/superposition-and-measurement.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "quantum/surface-codes.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "quantum/uncertainty-principle.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "quantum/variational-quantum-eigensolver.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "quantum/wave-particle-duality.html": [
+    "See the worked example: A particle in a 1D infinite well of width \\(L\\) has energies \\(E_n = \\dfrac{n^2\\pi^2\\hbar^2}{2mL^2}\\) \u2014 integer \\(n\\) from wave nodes at the walls.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "quantum-gravity.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "quantum-information.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "quantum-mechanics-1.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "quantum-mechanics-2.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "quantum-optics.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "quantum-physics-intro.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "radian.html": [
+    "See the worked example: Find the arc length subtending \\(1.5\\,\\text{rad}\\) on a circle of radius \\(8\\,\\text{cm}\\). \\(s = r\\theta = 8 \\times 1.5 = 12\\,\\text{cm}\\).",
+    "See the worked example: A sector has radius \\(5\\,\\text{m}\\) and arc length \\(7\\,\\text{m}\\). Find \\(\\theta\\) in radians. \\(7 = 5\\theta \\Rightarrow \\theta = 1.4\\,\\text{rad}\\).",
+    "See the worked example: Find the area of a sector with \\(r = 6\\,\\text{cm}\\) and \\(\\theta = \\frac{\\pi}{3}\\,\\text{rad}\\). \\(A = \\frac{1}{2} \\times 6^2 \\times \\frac{\\pi}{3} = \\frac{1}{2} \\times 36 \\times \\frac{\\pi}{3} = 6\\pi\\,\\text{cm}^2\\).",
+    "See the worked example: A wheel of radius \\(0.4\\,\\text{m}\\) rotates at \\(15\\,\\text{rad s}^{-1}\\). Linear speed at the rim: \\(v = 0.4 \\times 15 = 6\\,\\text{m s}^{-1}\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "radicals.html": [
+    "See the worked example: \u221a50 = \u221a(25 \u00d7 2) = \u221a25 \u00d7 \u221a2 = 5\u221a2",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "random-matrices.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "random-sequence-extrapolation.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "real-analysis.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "riemann-hypothesis.html": [
+    "See the worked example: \\(\\zeta(2) = \\pi^2/6\\) (Basel problem). \\(\\zeta(4) = \\pi^4/90\\). These values arise from Fourier analysis on tori and appear throughout Fourier Series .",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "riemann-surfaces.html": [
+    "See the worked example: \\(\\mathbb{C}\\) and the Riemann sphere \\(\\widehat{\\mathbb{C}} = \\mathbb{C} \\cup \\{\\infty\\}\\) Complex tori \\(\\mathbb{C}/\\Lambda\\) for a lattice \\(\\Lambda\\) Algebraic curves \\(f(z,w)=0\\) in \\(\\mathbb{C}^2\\) \u2014 link to Algebraic Geometry",
+    "See the worked example: A torus (\\(g=1\\)) has \\(\\chi = 0\\). A two-holed torus (\\(g=2\\)) has \\(\\chi = -2\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "series.html": [
+    "See the worked example: For \\(a_n = \\dfrac{2n + 1}{n}\\), find \\(\\displaystyle\\lim_{n\\to\\infty} a_n\\). \\(a_n = 2 + \\dfrac{1}{n} \\to 2\\) as \\(n \\to \\infty\\).",
+    "See the worked example: Evaluate \\(\\displaystyle\\sum_{k=1}^{5} (3k - 1)\\). \\(= 3\\sum_{k=1}^{5} k - \\sum_{k=1}^{5} 1 = 3 \\cdot \\dfrac{5 \\cdot 6}{2} - 5 = 40\\).",
+    "See the worked example: Sum the first 20 terms of \\(5, 8, 11, \\ldots\\) Here \\(a_1 = 5\\), \\(d = 3\\), \\(a_{20} = 5 + 19(3) = 62\\). \\(S_{20} = \\dfrac{20}{2}(5 + 62) = 670\\).",
+    "See the worked example: Sum the first 6 terms of \\(3 + 6 + 12 + \\cdots\\) \\(a_1 = 3\\), \\(r = 2\\). \\(S_6 = 3 \\cdot \\dfrac{1 - 2^6}{1 - 2} = 3 \\cdot 63 = 189\\).",
+    "See the worked example: Evaluate \\(\\displaystyle\\sum_{k=0}^{\\infty} \\dfrac{1}{3^k}\\). Here \\(a = 1\\), \\(r = \\dfrac{1}{3}\\). Sum \\(= \\dfrac{1}{1 - 1/3} = \\dfrac{3}{2}\\).",
+    "See the worked example: A voltage divider network with repeated stages attenuates by factor \\(r = 0.5\\) each stage. Total signal from an infinite cascade: \\(V_{\\text{out}} = V_{\\text{in}} \\sum_{k=0}^{\\infty} r^k = \\dfrac{V_{\\text{in}}}{1 - 0.5} = 2V_{\\text{in}}\\) (idealised model).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "sl-problems.html": [
+    "See the worked example: For \\(y'' + \\lambda y = 0\\), \\(y(0) = y(L) = 0\\), non-trivial solutions require \\(\\lambda_n = (n\\pi/L)^2\\), \\(y_n = \\sin(n\\pi x/L)\\).",
+    "See the worked example: Show \\(\\sin(m\\pi x/L)\\) and \\(\\sin(n\\pi x/L)\\) are orthogonal on \\([0,L]\\) for \\(m \\neq n\\). Use \\(\\sin m\\theta\\sin n\\theta = \\tfrac{1}{2}[\\cos(m-n)\\theta - \\cos(m+n)\\theta]\\). Integrating from \\(0\\) to \\(L\\) with \\(\\theta = \\pi x/L\\) gives zero when \\(m \\neq n\\).",
+    "See the worked example: Expand \\(f(x) = 1\\) on \\([0,L]\\) in \\(\\sin(n\\pi x/L)\\). \\(\\int_0^L \\sin(n\\pi x/L)\\,dx = \\dfrac{L}{n\\pi}[1 - (-1)^n]\\). \\(\\int_0^L \\sin^2(n\\pi x/L)\\,dx = L/2\\). So \\(c_n = \\dfrac{2}{n\\pi}[1-(-1)^n]\\): only odd \\(n\\) contribute, giving the Fourier sine series of a constant.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "slope.html": [
+    "Gradient <code>m = 2</code> (rise 8, run 4).",
+    "<code>y = -3x + 7</code>.",
+    "<code>y = 3x + 1</code>.",
+    "Yes &mdash; both lines have gradient <code>m = 4</code>, so they are parallel.",
+    "Perpendicular gradient <code>m = -0.2</code> (negative reciprocal of 5).",
+    "<code>C = 2n + 3</code>; fixed charge &pound;3, &pound;2 per mile &mdash; gradient (rate) is <code>2</code>.",
+    "Rearrange to <code>y = -0.5x + 2</code>; gradient <code>-0.5</code>, y-intercept <code>2</code>."
+  ],
+  "smooth-manifolds.html": [
+    "See the worked example: \\(\\mathbb{R}^n\\), the sphere \\(S^n\\), tori \\(T^n\\), and Lie groups such as \\(\\mathrm{GL}(n,\\mathbb{R})\\) and \\(\\mathrm{SO}(n)\\) are smooth manifolds.",
+    "See the worked example: On \\(\\mathbb{R}^2\\), \\(X = x\\partial/\\partial x + y\\partial/\\partial y\\) generates scaling about the origin: its flow is \\(\\phi_t(x,y) = (e^t x, e^t y)\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "statistics.html": [
+    "See the worked example: Test scores: 62, 71, 71, 78, 85. Mean: \\( \\bar{x} = \\frac{367}{5} = 73.4 \\). Median: 71. Mode: 71.",
+    "See the worked example: Reaction times grouped into classes 0\u201310, 10\u201320, 20\u201340 ms with frequencies 5, 12, 8. Class 20\u201340 has width 20, so frequency density = \\( 8/20 = 0.4 \\).",
+    "See the worked example: If \\( S_{xy} = 120 \\), \\( S_{xx} = 40 \\), \\( \\bar{x} = 5 \\), \\( \\bar{y} = 18 \\): \\( b = 120/40 = 3 \\), \\( a = 18 - 3(5) = 3 \\). Line: \\( y = 3 + 3x \\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "stochastic-calculus.html": [
+    "See the worked example: \\(\\mathbb{E}[W_t] = 0\\), \\(\\mathrm{Var}(W_t) = t\\), and \\(\\mathbb{E}[W_t W_s] = \\min(t,s)\\) for \\(t, s \\geq 0\\).",
+    "See the worked example: For \\(f(x) = x^2\\) and \\(X_t = W_t\\): \\(d(W_t^2) = 2W_t\\,dW_t + dt\\). Integrating gives \\(W_T^2 = 2\\int_0^T W_t\\,dW_t + T\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "stokes-theorem.html": [
+    "See the worked example: For a small flat disc of area \\(A\\) with unit normal \\(\\mathbf{n}\\), centred at a point, Stokes' theorem gives: \\[ \\oint_{\\partial S} \\mathbf{F}\\cdot d\\mathbf{r} \\approx (\\nabla \\times \\mathbf{F}) \\cdot \\mathbf{n}\\, A \\] so \\((\\nabla \\times \\mathbf{F}) \\cdot \\mathbf{n}\\) is circulation per unit area.",
+    "See the worked example: Evaluate \\(\\oint_C (y\\,dx - x\\,dy)\\) where \\(C\\) is the circle \\(x^2 + y^2 = 1\\), counter-clockwise. \\(P = y\\), \\(Q = -x\\). \\(\\dfrac{\\partial Q}{\\partial x} - \\dfrac{\\partial P}{\\partial y} = -1 - 1 = -2\\). Integral \\(= \\iint_D (-2)\\,dA = -2\\pi\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "subtraction.html": [
+    "See the worked example: 503 \u2212 278 Units: exchange from tens \u2192 13 \u2212 8 = 5 Tens: after exchange, 9 \u2212 7 = 2 Hundreds: 4 \u2212 2 = 2 \u2192 answer 225",
+    "See the worked example: Temperature drops from 4 \u00b0C to \u22122 \u00b0C. The change is \u22122 \u2212 4 = \u22126 degrees (a drop of 6 \u00b0C).",
+    "See the worked example: A rope is 2.4 m long. 0.85 m is cut off. How much remains? 2.4 \u2212 0.85 = 1.55 m",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "symplectic-geometry.html": [
+    "See the worked example: For \\(G = \\mathrm{U}(1)\\) acting on \\(\\mathbb{C}^n\\) by diagonal phase rotations with standard \\(\\omega\\), \\(\\mu(z) = \\frac{1}{2}\\sum |z_i|^2\\). The reduced space at \\(\\mu = 1\\) is \\(\\mathbb{CP}^{n-1}\\) with Fubini&ndash;Study form.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "system-entropy-deconvolution.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "taylor-series.html": [
+    "See the worked example: Maclaurin series for \\(f(x) = e^x\\). \\(f^{(n)}(x) = e^x\\), so \\(f^{(n)}(0) = 1\\) for all \\(n\\). \\(e^x = \\displaystyle\\sum_{n=0}^{\\infty} \\frac{x^n}{n!} = 1 + x + \\frac{x^2}{2!} + \\frac{x^3}{3!} + \\cdots\\)",
+    "See the worked example: For \\(f(x) = e^x\\) near \\(x = 0\\) with \\(n = 2\\): \\(P_2(x) = 1 + x + \\dfrac{x^2}{2}\\). At \\(x = 0.1\\): \\(R_2(0.1) = \\dfrac{e^c}{6}(0.1)^3\\) for some \\(c \\in (0, 0.1)\\). Since \\(e^c &lt; e^{0.1}\\), \\(|R_2| &lt; \\dfrac{e^{0.1}}{6000} \\approx 0.00018\\).",
+    "See the worked example: Approximate \\(\\sqrt{1.02}\\) using the binomial series. \\(\\sqrt{1+x} = (1+x)^{1/2} \\approx 1 + \\dfrac{x}{2} - \\dfrac{x^2}{8}\\) with \\(x = 0.02\\). \\(= 1 + 0.01 - 0.00005 = 1.00995\\) (true value \\(\\approx 1.00995\\)).",
+    "See the worked example: Evaluate \\(\\displaystyle\\lim_{x\\to 0} \\frac{e^x - 1 - x}{x^2}\\). Using \\(e^x = 1 + x + \\dfrac{x^2}{2} + \\dfrac{x^3}{6} + \\cdots\\): Numerator \\(= \\dfrac{x^2}{2} + \\dfrac{x^3}{6} + \\cdots\\), so the limit \\(= \\dfrac{1}{2}\\).",
+    "See the worked example: Approximate \\(\\displaystyle\\int_0^{0.5} e^{-x^2}\\,dx\\). \\(e^{-x^2} = 1 - x^2 + \\dfrac{x^4}{2} - \\cdots\\). Integrating term by term: \\(\\approx \\left[x - \\dfrac{x^3}{3} + \\dfrac{x^5}{10}\\right]_0^{0.5} \\approx 0.4648\\).",
+    "See the worked example: The period of a simple pendulum of length \\(L\\) for small angle \\(\\theta\\) is \\(T \\approx 2\\pi\\sqrt{L/g}\\), obtained by expanding \\(\\sin\\theta \\approx \\theta\\) in the equation of motion \\(\\ddot{\\theta} + (g/L)\\sin\\theta = 0\\).",
+    "See the worked example: Find the radius of convergence of \\(\\displaystyle\\sum_{n=1}^{\\infty} \\frac{x^n}{n}\\). \\(\\left|\\dfrac{c_{n+1}}{c_n}\\right| = \\dfrac{n}{n+1} \\to 1\\), so \\(R = 1\\). At \\(x = 1\\) the series is the harmonic series (diverges); at \\(x = -1\\) it is alternating (converges). See Convergence for endpoint analysis."
+  ],
+  "tensors.html": [
+    "See the worked example: Temperature at a point: \\(T = 300\\,\\text{K}\\) Mass: \\(m = 5\\,\\text{kg}\\) Trace of a matrix (in Cartesian coordinates): \\(\\text{tr}(\\mathbf{A}) = A_{ii}\\)",
+    "See the worked example: Under a rotation of coordinates, the scalar \\(s = x^2 + y^2\\) in 2D remains the same value (it equals \\(r^2\\) in polar coordinates). Rank-0 tensors need no index subscript.",
+    "See the worked example: The displacement vector \\(\\mathbf{d} = (3, 4)\\) has magnitude \\(\\|\\mathbf{d}\\| = \\sqrt{d_i d_i} = 5\\). The magnitude is a rank-0 tensor built from a rank-1 tensor via the dot product (contraction).",
+    "See the worked example: For \\[ T = \\begin{pmatrix} 2 & 1 \\\\ 3 & 4 \\end{pmatrix}, \\quad T_{11} = 2,\\; T_{12} = 1,\\; T_{21} = 3,\\; T_{22} = 4 \\] The trace is \\(T_{ii} = 2 + 4 = 6\\).",
+    "See the worked example: Matrix-vector product in index form: \\[ y_i = A_{ij} x_j \\] For a \\(2 \\times 2\\) matrix, \\(y_1 = A_{11}x_1 + A_{12}x_2\\) and \\(y_2 = A_{21}x_1 + A_{22}x_2\\).",
+    "See the worked example: If \\(\\mathbf{T}\\) represents stress and the coordinate system rotates by \\(Q\\), the new components are \\(T'_{ij} = Q_{ik} Q_{jl} T_{kl}\\). The physical stress state is unchanged; only the numbers in the matrix depend on the axes chosen.",
+    "See the worked example: For a uniaxial tension \\(\\sigma_{11} = 100\\,\\text{MPa}\\) with all other components zero, a face normal to the \\(x\\)-axis (\\(n_1 = 1\\)) has traction \\(t_1 = 100\\,\\text{MPa}\\). A face normal to \\(y\\) (\\(n_2 = 1\\)) has \\(t_1 = \\sigma_{12} = 0\\) \u2014 no shear on that face in this case."
+  ],
+  "topological-matter.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "topology.html": [
+    "See the worked example: \\(\\pi_1(\\mathbb{R}^n) = 0\\). \\(\\pi_1(S^1) \\cong \\mathbb{Z}\\) (winding number). \\(\\pi_1(T^2) \\cong \\mathbb{Z} \\times \\mathbb{Z}\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "trig-functions.html": [
+    "See the worked example: State the amplitude and period of \\(y = -2\\cos(4x)\\). Amplitude \\(= |-2| = 2\\). Period \\(= \\frac{2\\pi}{4} = \\frac{\\pi}{2}\\). The minus sign reflects the graph in the \\(x\\)-axis.",
+    "See the worked example: Describe \\(y = 2\\sin(3x - \\pi) + 1\\). Amplitude 2, period \\(\\frac{2\\pi}{3}\\), phase shift right by \\(\\frac{\\pi}{3}\\), translated up 1 unit. Midline: \\(y = 1\\). Maximum value: \\(1 + 2 = 3\\). Minimum value: \\(1 - 2 = -1\\).",
+    "See the worked example: Solve \\(\\sin x = \\frac{1}{2}\\) for \\(0 \\leq x &lt; 2\\pi\\). Reference angle: \\(\\frac{\\pi}{6}\\). Sine positive in QI and QII. Solutions: \\(x = \\frac{\\pi}{6}\\) and \\(x = \\pi - \\frac{\\pi}{6} = \\frac{5\\pi}{6}\\).",
+    "See the worked example: Solve \\(2\\cos(2x) + 1 = 0\\) for \\(0 \\leq x &lt; 2\\pi\\). \\(\\cos(2x) = -\\frac{1}{2}\\). Let \\(u = 2x\\), solve \\(\\cos u = -\\frac{1}{2}\\) for \\(0 \\leq u &lt; 4\\pi\\). \\(u = \\frac{2\\pi}{3}, \\frac{4\\pi}{3}, \\frac{8\\pi}{3}, \\frac{10\\pi}{3}\\). So \\(x = \\frac{\\pi}{3}, \\frac{2\\pi}{3}, \\frac{4\\pi}{3}, \\frac{5\\pi}{3}\\).",
+    "See the worked example: Solve \\(2\\sin^2 x - \\sin x - 1 = 0\\) for \\(0 \\leq x &lt; 2\\pi\\). Let \\(u = \\sin x\\): \\(2u^2 - u - 1 = 0 \\Rightarrow (2u + 1)(u - 1) = 0\\), so \\(u = -\\frac{1}{2}\\) or \\(u = 1\\). \\(\\sin x = 1 \\Rightarrow x = \\frac{\\pi}{2}\\). \\(\\sin x = -\\frac{1}{2} \\Rightarrow x = \\frac{7\\pi}{6}, \\frac{11\\pi}{6}\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "trigonometry.html": [
+    "See the worked example: Triangle with \\(A = 40\u00b0\\), \\(B = 60\u00b0\\), side \\(a = 10\\) cm. Find \\(b\\). \\(\\dfrac{b}{\\sin 60\u00b0} = \\dfrac{10}{\\sin 40\u00b0}\\) \u2192 \\(b = \\dfrac{10\\sin 60\u00b0}{\\sin 40\u00b0} \\approx 13.5\\) cm.",
+    "See the worked example: Sides \\(b = 7\\) cm, \\(c = 9\\) cm, included angle \\(A = 120\u00b0\\). Find \\(a\\). \\(a^2 = 49 + 81 \u2212 2(7)(9)\\cos 120\u00b0 = 130 \u2212 126(\u22120.5) = 193\\) \\(a = \\sqrt{193} \\approx 13.9\\) cm.",
+    "See the worked example: \\(a = 8\\) cm, \\(b = 11\\) cm, \\(C = 50\u00b0\\). Area \\(= \\tfrac{1}{2}(8)(11)\\sin 50\u00b0 = 44\\sin 50\u00b0 \\approx 33.7\\) cm\u00b2.",
+    "See the worked example: Ship sails 10 km on bearing \\(060\u00b0\\), then 8 km on bearing \\(150\u00b0\\). Sketch both legs from a common start; use cosine rule on the triangle formed by the two legs and the return line to find distance from start.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "triple-integrals.html": [
+    "See the worked example: Volume of the unit cube \\([0,1]^3\\): \\(\\displaystyle\\iiint_E 1\\,dV = \\int_0^1\\int_0^1\\int_0^1 dz\\,dy\\,dx = 1\\).",
+    "See the worked example: Volume under \\(z = 4 - x - y\\) over \\(0 \\leq x \\leq 2\\), \\(0 \\leq y \\leq 2\\): \\(V = \\displaystyle\\int_0^2\\int_0^2\\int_0^{4-x-y} dz\\,dy\\,dx = \\int_0^2\\int_0^2 (4-x-y)\\,dy\\,dx = \\dfrac{16}{3}\\).",
+    "See the worked example: Volume of a cylinder of radius \\(R\\), height \\(h\\): \\(V = \\displaystyle\\int_0^h\\int_0^{2\\pi}\\int_0^R r\\,dr\\,d\\theta\\,dz = h \\cdot 2\\pi \\cdot \\dfrac{R^2}{2} = \\pi R^2 h\\).",
+    "See the worked example: Volume of a sphere of radius \\(R\\): \\(V = \\displaystyle\\int_0^{2\\pi}\\int_0^{\\pi}\\int_0^R \\rho^2\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta = \\dfrac{4\\pi R^3}{3}\\).",
+    "See the worked example: For cylindrical coordinates, the Jacobian is: \\[ \\frac{\\partial(x,y,z)}{\\partial(r,\\theta,z)} = \\begin{vmatrix} \\cos\\theta & -r\\sin\\theta & 0 \\\\ \\sin\\theta & r\\cos\\theta & 0 \\\\ 0 & 0 & 1 \\end{vmatrix} = r \\] Hence \\(dV = r\\,dr\\,d\\theta\\,dz\\).",
+    "See the worked example: A solid hemisphere of radius \\(R\\) with uniform density \\(\\rho_0\\). By symmetry, \\(\\bar{x} = \\bar{y} = 0\\). Using spherical coordinates: \\(\\bar{z} = \\dfrac{3}{2R^3}\\displaystyle\\int_0^{2\\pi}\\int_0^{\\pi/2}\\int_0^R \\rho\\cos\\phi \\cdot \\rho^2\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta = \\dfrac{3R}{8}\\).",
+    "See the worked example: Heat stored in a solid with temperature \\(T(x,y,z)\\) and density \\(\\rho\\): \\(Q = \\iiint_E c\\,\\rho\\,T\\,dV\\), where \\(c\\) is specific heat capacity. Choosing cylindrical coordinates for a pipe simplifies the integral when \\(T\\) depends only on \\(r\\) and \\(z\\)."
+  ],
+  "unit-circle.html": [
+    "See the worked example: Find \\(\\sin\\frac{5\\pi}{6}\\). \\(\\frac{5\\pi}{6}\\) is in quadrant II. Reference angle: \\(\\alpha = \\pi - \\frac{5\\pi}{6} = \\frac{\\pi}{6}\\). Sine is positive in QII, so \\(\\sin\\frac{5\\pi}{6} = \\sin\\frac{\\pi}{6} = \\frac{1}{2}\\).",
+    "See the worked example: Find \\(\\cos\\frac{7\\pi}{4}\\). QIV, reference angle \\(\\alpha = 2\\pi - \\frac{7\\pi}{4} = \\frac{\\pi}{4}\\). Cosine is positive in QIV. So \\(\\cos\\frac{7\\pi}{4} = \\cos\\frac{\\pi}{4} = \\frac{\\sqrt{2}}{2}\\).",
+    "See the worked example: \\(\\tan\\frac{5\\pi}{4}\\) is in QIII (tan positive). Reference angle \\(\\frac{\\pi}{4}\\). \\(\\tan\\frac{5\\pi}{4} = +\\tan\\frac{\\pi}{4} = 1\\).",
+    "See the worked example: Given \\(\\sin\\theta = \\frac{3}{5}\\) and \\(\\theta\\) in QII, find \\(\\cos\\theta\\). \\(\\cos^2\\theta = 1 - \\sin^2\\theta = 1 - \\frac{9}{25} = \\frac{16}{25}\\), so \\(\\cos\\theta = \\pm\\frac{4}{5}\\). Cosine is negative in QII, hence \\(\\cos\\theta = -\\frac{4}{5}\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "variables.html": [
+    "See the worked example: 5x\u00b2 \u2212 3x + 7",
+    "See the worked example: Evaluate 2x\u00b2 \u2212 3x + 1 when x = 4 . 2(4)\u00b2 \u2212 3(4) + 1 = 2 \u00d7 16 \u2212 12 + 1 = 32 \u2212 12 + 1 = 21",
+    "See the worked example: Ohm&rsquo;s law V = IR . Find V when I = 0.5 A and R = 12 \u03a9. V = 0.5 \u00d7 12 = 6 V.",
+    "See the worked example: Make r the subject of A = \u03c0r\u00b2 . Divide both sides by \u03c0 : A/\u03c0 = r\u00b2 Square root both sides: r = \u221a(A/\u03c0)",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "vector-calculus.html": [
+    "See the worked example: For \\(f(x,y) = x^2 + xy + y^2\\), find \\(\\nabla f\\) at \\((1,2)\\). \\(\\dfrac{\\partial f}{\\partial x} = 2x + y = 4\\), \\(\\dfrac{\\partial f}{\\partial y} = x + 2y = 5\\). So \\(\\nabla f(1,2) = 4\\mathbf{i} + 5\\mathbf{j}\\). The steepest ascent direction at \\((1,2)\\) is along this vector.",
+    "See the worked example: \\(\\mathbf{F} = x\\mathbf{i} + y\\mathbf{j} + z\\mathbf{k}\\) has \\(\\nabla \\cdot \\mathbf{F} = 3\\) everywhere.",
+    "Gradient <code>m = -1</code> (rise 1, run -1).",
+    "See the worked example: Flux of \\(\\mathbf{F} = z\\mathbf{k}\\) through the unit disc \\(x^2 + y^2 \\leq 1\\), \\(z = 0\\), with upward normal. \\(\\mathbf{F} \\cdot \\mathbf{n} = z = 0\\) on the surface, so flux \\(= 0\\).",
+    "See the worked example: Show \\(\\mathbf{F} = 2x\\mathbf{i} + 2y\\mathbf{j}\\) is conservative and find \\(\\phi\\). \\(\\dfrac{\\partial \\phi}{\\partial x} = 2x \\Rightarrow \\phi = x^2 + h(y)\\). Then \\(\\dfrac{\\partial \\phi}{\\partial y} = h'(y) = 2y\\), so \\(\\phi = x^2 + y^2 + C\\). Work from \\((0,0)\\) to \\((3,4)\\): \\(\\phi(3,4) - \\phi(0,0) = 25\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "vector-spaces.html": [
+    "See the worked example: \\(\\mathcal{P}_2 = \\{a + bx + cx^2 : a, b, c \\in \\mathbb{R}\\}\\) is a vector space. The sum of two polynomials and any scalar multiple of a polynomial remain in \\(\\mathcal{P}_2\\).",
+    "See the worked example: In \\(\\mathbb{R}^3\\), the plane \\(W = \\{(x,y,z) : x + y + z = 0\\}\\) is a subspace. Check: if \\(\\mathbf{u}, \\mathbf{v} \\in W\\), then \\((u_1+v_1) + (u_2+v_2) + (u_3+v_3) = 0\\), so \\(\\mathbf{u} + \\mathbf{v} \\in W\\). Similarly for scalar multiples.",
+    "Gradient <code>m = 0</code> (rise 0, run 1).",
+    "See the worked example: Are \\((1,2,3)\\), \\((2,4,6)\\) independent in \\(\\mathbb{R}^3\\)? Note \\((2,4,6) = 2(1,2,3)\\), so \\(2\\mathbf{v}_1 - \\mathbf{v}_2 = \\mathbf{0}\\) with non-zero coefficients. They are dependent .",
+    "See the worked example: Extend \\(\\{(1,1,0), (0,1,1)\\}\\) to a basis of \\(\\mathbb{R}^3\\). These two vectors are independent. Add \\((0,0,1)\\), which is not in their span. The set \\(\\{(1,1,0), (0,1,1), (0,0,1)\\}\\) is a basis of \\(\\mathbb{R}^3\\).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "vectors.html": [
+    "See the worked example: Find \\(|\\mathbf{a}|\\) where \\(\\mathbf{a} = \\begin{pmatrix} 3 \\\\ -4 \\end{pmatrix}\\). \\(|\\mathbf{a}| = \\sqrt{3^2 + (-4)^2} = \\sqrt{9 + 16} = \\sqrt{25} = 5\\).",
+    "See the worked example: \\(\\mathbf{a} = \\begin{pmatrix} 1 \\\\ 2 \\end{pmatrix}\\), \\(\\mathbf{b} = \\begin{pmatrix} 3 \\\\ -1 \\end{pmatrix}\\). \\(\\mathbf{a} \\cdot \\mathbf{b} = 1(3) + 2(-1) = 1\\). \\(|\\mathbf{a}| = \\sqrt{5}\\), \\(|\\mathbf{b}| = \\sqrt{10}\\). \\(\\cos\\theta = \\frac{1}{\\sqrt{50}} = \\frac{1}{5\\sqrt{2}}\\).",
+    "See the worked example: Points \\(A\\) and \\(B\\) have position vectors \\(\\mathbf{a} = \\begin{pmatrix} 2 \\\\ 1 \\end{pmatrix}\\) and \\(\\mathbf{b} = \\begin{pmatrix} 5 \\\\ 7 \\end{pmatrix}\\). \\(\\overrightarrow{AB} = \\mathbf{b} - \\mathbf{a} = \\begin{pmatrix} 3 \\\\ 6 \\end{pmatrix}\\). Midpoint of \\(AB\\): \\(\\frac{\\mathbf{a} + \\mathbf{b}}{2} = \\begin{pmatrix} 3.5 \\\\ 4 \\end{pmatrix}\\).",
+    "See the worked example: Line through \\((1, 2)\\) with direction \\(\\begin{pmatrix} 3 \\\\ -1 \\end{pmatrix}\\): \\(\\mathbf{r} = \\begin{pmatrix} 1 \\\\ 2 \\end{pmatrix} + t\\begin{pmatrix} 3 \\\\ -1 \\end{pmatrix}\\). Cartesian form: \\(x = 1 + 3t\\), \\(y = 2 - t\\). Eliminating \\(t\\): \\(x + 3y = 7\\).",
+    "Gradient <code>m = 1.3333333333333333</code> (rise 8, run 6).",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ],
+  "yang-mills.html": [
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples.",
+    "Review the sections above \u2014 the key ideas needed are explained in the worked examples."
+  ]
+}

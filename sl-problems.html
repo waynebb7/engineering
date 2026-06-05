@@ -244,14 +244,36 @@
           <li>What does completeness of eigenfunctions mean for series expansions?</li>
         </ol>
       </div>
-      <p class="mini">
+      <details class="quiz-answers">
+        <summary class="quiz-answers__summary">Show answers</summary>
+        <ol class="quiz-answers__list">
+          <li>See the worked example: For \(y'' + \lambda y = 0\), \(y(0) = y(L) = 0\), non-trivial solutions require \(\lambda_n = (n\pi/L)^2\), \(y_n = \sin(n\pi x/L)\).</li>
+          <li>See the worked example: Show \(\sin(m\pi x/L)\) and \(\sin(n\pi x/L)\) are orthogonal on \([0,L]\) for \(m \neq n\). Use \(\sin m\theta\sin n\theta = \tfrac{1}{2}[\cos(m-n)\theta - \cos(m+n)\theta]\). Integrating from \(0\) to \(L\) with \(\theta = \pi x/L\) gives zero when \(m \neq n\).</li>
+          <li>See the worked example: Expand \(f(x) = 1\) on \([0,L]\) in \(\sin(n\pi x/L)\). \(\int_0^L \sin(n\pi x/L)\,dx = \dfrac{L}{n\pi}[1 - (-1)^n]\). \(\int_0^L \sin^2(n\pi x/L)\,dx = L/2\). So \(c_n = \dfrac{2}{n\pi}[1-(-1)^n]\): only odd \(n\) contribute, giving the Fourier sine series of a constant.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+        </ol>
+      </details>
+<p class="mini">
         For marking: verify BCs are satisfied by each eigenfunction, show orthogonality integrals explicitly, and use the
         coefficient formula with correct weight \(r(x)\).
       </p>
     </div>
 
-    <div class="card">
-      <h2>9) Next topics</h2>
+        <div class="card progression-card prerequisites-card">
+      <h2>9) Pre-requisites</h2>
+      <p>If you are struggling with this topic, review these subjects first.</p>
+      <ul>
+        <li><a href="divergence-theorem.html">Divergence Theorem</a> — undergraduate background from undergraduate (engineering or mathematics degree)</li>
+        <li><a href="stokes-theorem.html">Stoke's Theorem</a> — undergraduate background from undergraduate (engineering or mathematics degree)</li>
+      </ul>
+      <p class="mini">See the <a href="math/math-prereq-map.html">Mathematics prerequisite map</a> for the wider dependency graph.</p>
+    </div>
+
+<div class="card">
+      <h2>10) Next topics</h2>
       <ul>
         <li><a href="partial-differential-equations.html">Partial Differential Equations</a> — separation of variables applications</li>
         <li><a href="fourier-series.html">Fourier Series</a> — trigonometric eigenfunction expansions</li>
