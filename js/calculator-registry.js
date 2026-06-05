@@ -2209,8 +2209,11 @@
     window.CalcFormat = {
       num: function (n, d) {
         var digits = typeof d === 'number' ? d : 3;
-        if (typeof n === 'number') return n.toFixed(digits);
-        return String(n);
+        if (typeof n !== 'number' || !isFinite(n)) return String(n);
+        return n.toLocaleString('en-US', {
+          minimumFractionDigits: digits,
+          maximumFractionDigits: digits
+        });
       },
       line: function (label, val, unit) {
         var suffix = unit ? ' ' + unit : '';
