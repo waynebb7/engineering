@@ -2,175 +2,258 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="css/corporate.css">
-    <script src="js/site-layout.js" defer></script>
-  <title>Integration in Electrical Engineering</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/corporate.css">
+  <script src="js/site-layout.js" defer></script>
+  <title>Integration - A-Level</title>
   <script type="text/javascript" async
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
   </script>
 </head>
-<body>
-  
-    <div class="page-container">
-        <a href="index.html" class="back-link">&larr; Back to Hub</a>
-<h1>Integration in Electrical Engineering</h1>
 
-  <div class="section">
-    <h2>1. Capacitors and Inductors</h2>
-    <p>
-      The behavior of capacitors and inductors involves time integrals:
-    </p>
-    <ul>
-      <li>Capacitor voltage:
-        \( V_C(t) = \frac{1}{C} \int i(t)\,dt + V_0 \)
-      </li>
-      <li>Inductor current:
-        \( i_L(t) = \frac{1}{L} \int v(t)\,dt + i_0 \)
-      </li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>2. Energy Calculations</h2>
-    <p>
-      Electrical energy is obtained by integrating power:
-    </p>
-    <p>
-      \( E = \int P(t)\,dt \)
-    </p>
-    <p>
-      Capacitor and inductor stored energy:
-      \[
-      E_C = \frac{1}{2}CV^2, \quad E_L = \frac{1}{2}LI^2
-      \]
-    </p>
-  </div>
-
-  <div class="section">
-    <h2>3. Signal Processing</h2>
-    <p>
-      Integration is used in:
-    </p>
-    <ul>
-      <li>Analog integrators (e.g., op-amp circuits):
-        \( V_{out} = -\frac{1}{RC} \int V_{in}(t)\,dt \)
-      </li>
-      <li>Smoothing signals and low-pass filtering</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>4. Control Systems</h2>
-    <p>
-      In PID controllers, the integral term reduces steady-state error:
-    </p>
-    <p>
-      \( u(t) = K_p e(t) + K_i \int e(t)\,dt + K_d \frac{de(t)}{dt} \)
-    </p>
-  </div>
-
-  <div class="section">
-    <h2>5. Electromagnetics and Fields</h2>
-    <p>
-      Surface and volume integrals are fundamental in field theory:
-    </p>
-    <ul>
-      <li>Gauss’s Law:
-        \[
-        \oint_S \vec{D} \cdot d\vec{A} = Q_{\text{enclosed}}
-        \]
-      </li>
-      <li>Faraday’s Law (integral form):
-        \[
-        \oint_C \vec{E} \cdot d\vec{l} = -\frac{d\Phi_B}{dt}
-        \]
-      </li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>6. System Modeling & Simulation</h2>
-    <p>
-      System equations often include integrals. Example (RLC circuit):
-    </p>
-    <p>
-      \( L \frac{d^2i}{dt^2} + R \frac{di}{dt} + \frac{1}{C} i(t) = V(t) \)
-    </p>
-    <p>
-      Simulation tools (e.g., SPICE, MATLAB) use numerical integration to solve circuit behavior over time.
-    </p>
-  </div>
-
-  <div class="section">
-    <h2>7. Embedded & Real-Time Systems</h2>
-    <p>
-      Microcontrollers integrate sensor data to compute:
-    </p>
-    <ul>
-      <li>Velocity from acceleration</li>
-      <li>Position from velocity</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>8. Power Systems</h2>
-    <p>
-      Energy metering involves integration of instantaneous power:
-      \[
-      E = \int_0^T P(t)\,dt
-      \]
-    </p>
-    <p>
-      This is how utility meters calculate energy usage.
-    </p>
-  </div>
-
-  <div class="section">
-    <h2>Summary Table</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Application Area</th>
-          <th>Use of Integration</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Capacitors & Inductors</td>
-          <td>Accumulate current/voltage over time</td>
-        </tr>
-        <tr>
-          <td>Energy Calculations</td>
-          <td>Energy from power or stored in components</td>
-        </tr>
-        <tr>
-          <td>Signal Processing</td>
-          <td>Op-amp integrators, filtering, smoothing</td>
-        </tr>
-        <tr>
-          <td>Control Systems</td>
-          <td>Integral action in PID control</td>
-        </tr>
-        <tr>
-          <td>Electromagnetics</td>
-          <td>Surface and volume integrals in field theory</td>
-        </tr>
-        <tr>
-          <td>System Simulation</td>
-          <td>Solving integral-differential equations</td>
-        </tr>
-        <tr>
-          <td>Embedded Systems</td>
-          <td>Sensor fusion: motion, velocity, distance</td>
-        </tr>
-        <tr>
-          <td>Power Systems</td>
-          <td>Energy consumption from power data</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+<body class="content-page">
+  <div class="page-container">
+    <div class="content-hero">
+      <nav class="page-hero-breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">&larr; Back to Hub</a>
+      </nav>
+      <h1>Integration</h1>
+      <p>A-Level guide. Reverse differentiation, definite integrals, area under curves, and the trapezium rule.</p>
+      <div class="content-nav">
+        <a href="pure_math_subjects.html">&larr; Pure Math Subjects Catalog</a>
+      </div>
     </div>
+
+    <div class="content-body">
+
+    <div class="card">
+      <h2>1) Integration as reverse differentiation</h2>
+      <p>
+        <strong>Integration</strong> is the inverse of <a href="differentiation.html">differentiation</a>.
+        If \(\dfrac{dy}{dx} = f(x)\), then \(y = \int f(x)\,dx\) is the <strong>indefinite integral</strong>
+        — the family of functions whose derivative is \(f(x)\).
+      </p>
+      <div class="callout">
+        <strong>Key idea:</strong> Integration finds an <strong>antiderivative</strong>. Because differentiation
+        loses information about vertical shifts, the indefinite integral includes a <strong>constant of integration</strong> \(+C\).
+      </div>
+      <div class="callout">
+        <strong>Worked example:</strong> Given \(\dfrac{dy}{dx} = 3x^2\), find \(y\).<br />
+        \(y = \int 3x^2\,dx = x^3 + C\).
+      </div>
+      <p class="mini">
+        Notation: \(\int f(x)\,dx = F(x) + C\) means \(F'(x) = f(x)\). Always include \(+C\) unless finding
+        a particular solution with given initial conditions.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>2) Standard integrals and the power rule</h2>
+      <p>
+        Reverse the differentiation results you already know:
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Function</th>
+              <th>Indefinite integral</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>\(x^n\) (\(n \neq -1\))</td>
+              <td>\(\dfrac{x^{n+1}}{n+1} + C\)</td>
+            </tr>
+            <tr>
+              <td>\(\dfrac{1}{x}\)</td>
+              <td>\(\ln|x| + C\)</td>
+            </tr>
+            <tr>
+              <td>\(e^x\)</td>
+              <td>\(e^x + C\)</td>
+            </tr>
+            <tr>
+              <td>\(\cos x\)</td>
+              <td>\(\sin x + C\)</td>
+            </tr>
+            <tr>
+              <td>\(\sin x\)</td>
+              <td>\(-\cos x + C\)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout">
+        <strong>Worked example:</strong> Integrate \(\int (4x^3 - 2x + 5)\,dx\).<br />
+        \(= x^4 - x^2 + 5x + C\).
+      </div>
+      <div class="warning">
+        <strong>Common mistake:</strong> Forgetting \(+C\) in indefinite integrals, or dividing by zero when
+        integrating \(x^{-1}\) — use \(\ln|x|\) instead of the power rule.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>3) Definite integrals</h2>
+      <p>
+        A <strong>definite integral</strong> \(\displaystyle\int_a^b f(x)\,dx\) evaluates the accumulated change
+        of \(f(x)\) between \(x = a\) and \(x = b\). It gives a <strong>number</strong>, not a function.
+      </p>
+      <div class="callout">
+        <strong>Fundamental theorem of calculus:</strong>
+        \[
+        \int_a^b f(x)\,dx = \big[ F(x) \big]_a^b = F(b) - F(a)
+        \]
+        where \(F'(x) = f(x)\).
+      </div>
+      <div class="callout">
+        <strong>Worked example:</strong> Evaluate \(\displaystyle\int_1^3 (2x + 1)\,dx\).<br />
+        \(\displaystyle\int (2x+1)\,dx = x^2 + x\).<br />
+        \(\big[x^2 + x\big]_1^3 = (9+3) - (1+1) = 10\).
+      </div>
+      <p class="mini">
+        Definite integrals do not need \(+C\) — any constant cancels when you subtract \(F(a)\) from \(F(b)\).
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>4) Area under a curve</h2>
+      <p>
+        When \(f(x) \geq 0\) on \([a, b]\), the definite integral \(\displaystyle\int_a^b f(x)\,dx\) gives the
+        <strong>area under the curve</strong> \(y = f(x)\) between the lines \(x = a\) and \(x = b\).
+      </p>
+      <div class="callout">
+        <strong>Worked example:</strong> Area under \(y = x^2\) from \(x = 0\) to \(x = 2\):<br />
+        \(\displaystyle\int_0^2 x^2\,dx = \big[\tfrac{x^3}{3}\big]_0^2 = \tfrac{8}{3}\) square units.
+      </div>
+      <div class="warning">
+        <strong>Below the \(x\)-axis:</strong> If \(f(x) &lt; 0\) on part of the interval, the integral returns
+        a <strong>negative</strong> value. For geometric area, split the interval and take the absolute value
+        of each part, or integrate the top curve minus the bottom curve.
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Steps</h3>
+          <ol>
+            <li>Sketch the curve and shade the region</li>
+            <li>Find where the curve crosses the \(x\)-axis if needed</li>
+            <li>Set up \(\displaystyle\int_a^b f(x)\,dx\) with correct limits</li>
+            <li>Integrate and evaluate</li>
+          </ol>
+        </div>
+        <div>
+          <h3>Units</h3>
+          <p class="mini">Area is measured in square units. In applied questions, convert units if axes use different scales.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>5) Area between curves</h2>
+      <p>
+        The area enclosed between two curves \(y = f(x)\) (upper) and \(y = g(x)\) (lower) from \(x = a\) to \(x = b\) is:
+        \[
+        A = \int_a^b \big( f(x) - g(x) \big)\,dx
+        \]
+      </p>
+      <div class="callout">
+        <strong>Worked example:</strong> Area between \(y = x\) and \(y = x^2\) from \(x = 0\) to \(x = 1\).<br />
+        On \([0,1]\), \(x \geq x^2\), so upper curve is \(y = x\).<br />
+        \(A = \displaystyle\int_0^1 (x - x^2)\,dx = \big[\tfrac{x^2}{2} - \tfrac{x^3}{3}\big]_0^1 = \tfrac{1}{6}\).
+      </div>
+      <p class="mini">
+        When curves intersect within the region, find intersection points by solving \(f(x) = g(x)\), then
+        split the integral if the "upper" curve switches.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>6) The trapezium rule</h2>
+      <p>
+        When you cannot integrate exactly, the <strong>trapezium rule</strong> approximates
+        \(\displaystyle\int_a^b f(x)\,dx\) by splitting the interval into equal strips and approximating
+        each strip as a trapezium.
+      </p>
+      <div class="callout">
+        <strong>Formula</strong> with \(n\) strips of width \(h = \dfrac{b-a}{n}\) and ordinates
+        \(y_0, y_1, \ldots, y_n\):
+        \[
+        \int_a^b f(x)\,dx \approx \frac{h}{2}\big( y_0 + 2(y_1 + y_2 + \cdots + y_{n-1}) + y_n \big)
+        \]
+      </div>
+      <div class="callout">
+        <strong>Worked example:</strong> Approximate \(\displaystyle\int_0^2 x^2\,dx\) using 4 strips (\(h = 0.5\)).<br />
+        \(y\)-values: \(0, 0.25, 1, 2.25, 4\).<br />
+        \(\approx \dfrac{0.5}{2}(0 + 2(0.25+1+2.25) + 4) = 2.875\).<br />
+        Exact value: \(\tfrac{8}{3} \approx 2.667\). More strips improve accuracy.
+      </div>
+      <div class="warning">
+        <strong>Exam tip:</strong> The trapezium rule gives an <strong>overestimate</strong> for concave-up curves
+        and an <strong>underestimate</strong> for concave-down curves. State whether your answer is an over- or
+        underestimate when asked.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>7) Finding constants and interpreting integrals</h2>
+      <p>
+        A-Level questions often use definite integrals to find unknown constants or to interpret results in context.
+      </p>
+      <div class="callout">
+        <strong>Worked example:</strong> Given \(\displaystyle\int_1^k 2x\,dx = 8\), find \(k\) (\(k &gt; 1\)).<br />
+        \(\big[x^2\big]_1^k = k^2 - 1 = 8 \Rightarrow k^2 = 9 \Rightarrow k = 3\).
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Displacement and velocity</h3>
+          <p class="mini">If \(v(t)\) is velocity, \(\displaystyle\int_{t_1}^{t_2} v(t)\,dt\) gives displacement over that time interval.</p>
+        </div>
+        <div>
+          <h3>Total area</h3>
+          <p class="mini">For signed area (e.g. velocity below zero), split at roots and add magnitudes of each integral.</p>
+        </div>
+      </div>
+      <p class="mini">
+        Further techniques (substitution, integration by parts) extend these ideas — see related topics in the
+        <a href="pure_math_subjects.html">Pure Math Subjects Catalog</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>8) Quick knowledge check</h2>
+      <div class="quiz">
+        <ol>
+          <li>Find \(\displaystyle\int (6x^2 - 4)\,dx\).</li>
+          <li>Evaluate \(\displaystyle\int_0^2 (3x + 1)\,dx\).</li>
+          <li>Find the area under \(y = 4 - x^2\) from \(x = -2\) to \(x = 2\).</li>
+          <li>Find the area between \(y = x\) and \(y = x^2\) for \(0 \leq x \leq 1\).</li>
+          <li>Evaluate \(\displaystyle\int_1^4 \dfrac{1}{x}\,dx\).</li>
+          <li>Use the trapezium rule with 3 strips to estimate \(\displaystyle\int_0^3 x\,dx\).</li>
+          <li>Given \(\displaystyle\int_0^k x\,dx = 8\), find \(k\).</li>
+        </ol>
+      </div>
+      <p class="mini">
+        For marking: include \(+C\) for indefinite integrals, show substitution of limits for definite integrals,
+        and sketch regions for area questions.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>9) Next topics</h2>
+      <ul>
+        <li><a href="differentiation.html">Differentiation</a> — the inverse process and rates of change</li>
+        <li><a href="parametric-equations.html">Parametric Equations</a> — area and calculus with parametric curves</li>
+        <li><a href="polar-coordinates.html">Polar Coordinates</a> — area in polar form</li>
+        <li><a href="integration-in-engineering.html">Integration in Engineering</a> — applied contexts</li>
+        <li><a href="series.html">Series</a> — numerical methods and approximations</li>
+        <li><a href="pure_math_subjects.html">Pure Math Subjects Catalog</a></li>
+        <li><a href="index.html">Engineering Knowledge Hub</a></li>
+      </ul>
+    </div>
+
+    <p class="page-footer-note">A-Level Mathematics content.</p>
+    </div>
+  </div>
 </body>
 </html>

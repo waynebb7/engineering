@@ -1,177 +1,260 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="css/corporate.css">
-    <script src="js/site-layout.js" defer></script>
-<title>Eigenvector Applications in Electrical Engineering</title>
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/corporate.css">
+  <script src="js/site-layout.js" defer></script>
+  <title>Eigenvectors (Electrical Engineering) - Undergraduate</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
 </head>
-<body>
 
-
-    <div class="page-container">
-        <a href="index.html" class="back-link">&larr; Back to Hub</a>
-<h1>20 Real-World Applications of Eigenvectors in Electrical Engineering</h1>
-
-<ol>
-  <li>
-    <strong>State-Space System Modes</strong><br />
-    Consider the system:
-    \[
-      \dot{\mathbf{x}} = \mathbf{A} \mathbf{x}
-    \]
-    Eigenvectors \(\mathbf{v}_i\) satisfy:
-    \[
-      \mathbf{A} \mathbf{v}_i = \lambda_i \mathbf{v}_i
-    \]
-    These eigenvectors define directions along which the system states evolve, essential for analyzing stability and control.
-  </li>
-
-  <li>
-    <strong>Modal Analysis of RLC Circuits</strong><br />
-    Circuit differential equations can be written as:
-    \[
-      \mathbf{A} \mathbf{v} = \lambda \mathbf{v}
-    \]
-    where \(\mathbf{v}\) are eigenvectors describing mode shapes of voltages and currents.
-  </li>
-
-  <li>
-    <strong>Vibration Modes in Electric Machines</strong><br />
-    The vibration problem is:
-    \[
-      (\mathbf{K} - \omega^2 \mathbf{M}) \mathbf{Q} = \mathbf{0}
-    \]
-    Eigenvectors \(\mathbf{Q}\) represent vibration mode shapes used to avoid resonances.
-  </li>
-
-  <li>
-    <strong>Principal Component Analysis (PCA) in Signal Processing</strong><br />
-    The covariance matrix \(\mathbf{C}\) satisfies:
-    \[
-      \mathbf{C} \mathbf{v}_i = \lambda_i \mathbf{v}_i
-    \]
-    Eigenvectors \(\mathbf{v}_i\) are principal components extracting key signal features.
-  </li>
-
-  <li>
-    <strong>Power System Oscillation Modes</strong><br />
-    The Jacobian matrix \(\mathbf{J}\) linearizes the power grid:
-    \[
-      \mathbf{J} \mathbf{v} = \lambda \mathbf{v}
-    \]
-    Eigenvectors \(\mathbf{v}\) describe oscillation modes of the grid components.
-  </li>
-
-  <li>
-    <strong>Electromagnetic Waveguide Modes</strong><br />
-    The Helmholtz equation for the electric field \(\mathbf{E}\):
-    \[
-      \nabla^2 \mathbf{E} + k^2 \mathbf{E} = 0
-    \]
-    Eigenvectors \(\mathbf{E}\) define the modal field distributions.
-  </li>
-
-  <li>
-    <strong>Antenna Radiation Patterns</strong><br />
-    Eigenvalue problem for antenna impedance matrix \(\mathbf{Z}\):
-    \[
-      \mathbf{Z} \mathbf{v} = \lambda \mathbf{v}
-    \]
-    Eigenvectors \(\mathbf{v}\) describe radiation modes for antenna efficiency optimization.
-  </li>
-
-  <li>
-    <strong>Image Compression in Electrical Engineering</strong><br />
-    Eigenvectors of the covariance matrix \(\mathbf{C}\):
-    \[
-      \mathbf{C} \mathbf{v}_i = \lambda_i \mathbf{v}_i
-    \]
-    are used for compressing diagnostic images.
-  </li>
-
-  <li>
-    <strong>Electric Motor Fault Diagnosis</strong><br />
-    Eigenvectors from vibration data covariance matrices highlight fault-related signal modes.
-  </li>
-
-  <li>
-    <strong>Stability of Power Electronics Converters</strong><br />
-    State matrix \(\mathbf{A}\):
-    \[
-      \mathbf{A} \mathbf{v} = \lambda \mathbf{v}
-    \]
-    Eigenvectors indicate mode shapes of voltage and current perturbations.
-  </li>
-
-  <li>
-    <strong>Filter Design via Modal Decomposition</strong><br />
-    Eigenvectors reveal frequency response modes of filter system matrices.
-  </li>
-
-  <li>
-    <strong>Wireless Communication MIMO Channels</strong><br />
-    For the channel matrix \(\mathbf{H}\):
-    \[
-      \mathbf{H}^H \mathbf{H} \mathbf{v} = \lambda \mathbf{v}
-    \]
-    Eigenvectors determine optimal transmission directions.
-  </li>
-
-  <li>
-    <strong>Quantum Electrical Systems</strong><br />
-    The Hamiltonian \(\mathbf{H}\):
-    \[
-      \mathbf{H} \mathbf{v} = E \mathbf{v}
-    \]
-    Eigenvectors \(\mathbf{v}\) define quantum states in nanoscale electronics.
-  </li>
-
-  <li>
-    <strong>Vibration Suppression in Transformers</strong><br />
-    Mode shapes from eigenvectors guide the design of damping mechanisms.
-  </li>
-
-  <li>
-    <strong>System Identification</strong><br />
-    Eigenvectors extracted from data covariance matrices characterize system modes.
-  </li>
-
-  <li>
-    <strong>Acoustic Noise Control in Electric Machines</strong><br />
-    Eigenmodes of acoustic pressure fields help develop noise suppression techniques.
-  </li>
-
-  <li>
-    <strong>Thermal Analysis of Electronic Components</strong><br />
-    Thermal matrix \(\mathbf{K}\) satisfies:
-    \[
-      \mathbf{K} \mathbf{v} = \lambda \mathbf{v}
-    \]
-    Eigenvectors give heat distribution patterns.
-  </li>
-
-  <li>
-    <strong>Signal Decomposition in ECG and EEG Processing</strong><br />
-    Eigenvectors from covariance matrices represent dominant waveform modes.
-  </li>
-
-  <li>
-    <strong>Mechanical-Electrical Coupled System Analysis</strong><br />
-    Eigenvectors describe coupled mode shapes in electromechanical systems.
-  </li>
-
-  <li>
-    <strong>Robust Control Design</strong><br />
-    Eigenvectors reveal modal structures guiding control system tuning.
-  </li>
-</ol>
-
+<body class="content-page">
+  <div class="page-container">
+    <div class="content-hero">
+      <nav class="page-hero-breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">&larr; Back to Hub</a>
+      </nav>
+      <h1>Eigenvectors (Electrical Engineering)</h1>
+      <p>Undergraduate guide. System modes, PCA preview, vibration mode shapes, and practical electrical engineering applications.</p>
+      <div class="content-nav">
+        <a href="pure_math_subjects.html">&larr; Pure Math Subjects Catalog</a>
+      </div>
     </div>
+
+    <div class="content-body">
+
+    <div class="card">
+      <h2>1) Eigenvectors and mode directions</h2>
+      <p>
+        An <strong>eigenvector</strong> \(\mathbf{v}\) of matrix \(\mathbf{A}\) is a non-zero vector that satisfies
+        \(\mathbf{A}\mathbf{v} = \lambda \mathbf{v}\). The eigenvalue \(\lambda\) scales the vector; the
+        <strong>direction</strong> is unchanged.
+      </p>
+      <p>
+        For each eigenvalue, solve \((\mathbf{A} - \lambda\mathbf{I})\mathbf{v} = \mathbf{0}\). Any non-zero solution
+        in the null space is an eigenvector (multiples of \(\mathbf{v}\) are equivalent).
+      </p>
+      <div class="callout">
+        <strong>Key idea:</strong> In engineering, eigenvectors describe <strong>mode shapes</strong> — the relative
+        proportions of state variables during a natural response. Each mode evolves independently as \(e^{\lambda t}\)
+        along its eigenvector direction.
+      </div>
+      <div class="callout">
+        <strong>Worked example:</strong> For \(\mathbf{A} = \begin{bmatrix} 0 & 1 \\ -4 & -3 \end{bmatrix}\) with
+        \(\lambda = -1\): \((\mathbf{A} + \mathbf{I})\mathbf{v} = \mathbf{0}\) gives \(v_2 = -v_1\).<br />
+        Eigenvector: \(\mathbf{v} = \begin{bmatrix} 1 \\ -1 \end{bmatrix}\) (or any scalar multiple).
+      </div>
+      <p class="mini">
+        Prerequisite: <a href="eigenvalues-electrical-engineering.html">Eigenvalues (Electrical Engineering)</a> and
+        <a href="eigenvectors.html">Eigenvectors</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>2) State-space system modes</h2>
+      <p>
+        For \(\dot{\mathbf{x}} = \mathbf{A}\mathbf{x}\), the general solution (with \(n\) distinct eigenvalues) is:
+        \[
+        \mathbf{x}(t) = \sum_{i=1}^{n} c_i\,e^{\lambda_i t}\,\mathbf{v}_i
+        \]
+        where \(c_i\) depend on initial conditions and \(\mathbf{v}_i\) are eigenvectors.
+      </p>
+      <div class="callout">
+        <strong>Physical meaning:</strong> Each term \(c_i e^{\lambda_i t}\mathbf{v}_i\) is a <strong>mode</strong>.
+        If \(\mathbf{v}_1 = [1,\, -1]^T\) for an RLC circuit with states \([q,\, i]^T\), charge and current oscillate
+        in opposite proportion during that mode.
+      </div>
+      <div class="callout">
+        <strong>Worked example:</strong> \(\mathbf{x}(0) = [2,\, 0]^T\), eigenvectors \(\mathbf{v}_1 = [1,\,1]^T\),
+        \(\mathbf{v}_2 = [1,\,-1]^T\). Solve \(\mathbf{x}(0) = c_1\mathbf{v}_1 + c_2\mathbf{v}_2\) → \(c_1 = 1\), \(c_2 = 1\).<br />
+        Response combines both modes with weights 1.
+      </div>
+      <div class="warning">
+        <strong>Common mistake:</strong> Using eigenvectors from the wrong matrix (open-loop vs closed-loop). Always
+        match eigenvectors to the matrix governing the dynamics you are studying.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>3) PCA preview — principal components in signal processing</h2>
+      <p>
+        <strong>Principal Component Analysis (PCA)</strong> applies eigenvector decomposition to the covariance matrix
+        \(\mathbf{C}\) of sensor or signal data:
+        \[
+        \mathbf{C}\mathbf{v}_i = \lambda_i \mathbf{v}_i
+        \]
+        Eigenvectors \(\mathbf{v}_i\) are <strong>principal components</strong>; eigenvalues \(\lambda_i\) give the
+        variance along each direction.
+      </p>
+      <div class="two-col">
+        <div>
+          <h3>Largest eigenvalue</h3>
+          <p class="mini">Corresponding eigenvector captures the dominant signal direction — useful for dimensionality reduction and noise filtering.</p>
+        </div>
+        <div>
+          <h3>Smallest eigenvalues</h3>
+          <p class="mini">Often associated with noise subspaces. Truncating small-\(\lambda\) components removes low-energy noise.</p>
+        </div>
+      </div>
+      <div class="callout">
+        <strong>EE application:</strong> In antenna array processing and EEG/EMG analysis, PCA eigenvectors identify
+        coherent signal patterns. Retaining the top \(k\) components compresses data while preserving most energy:
+        \(\dfrac{\sum_{i=1}^{k}\lambda_i}{\sum_{i=1}^{n}\lambda_i}\) of total variance.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>4) Vibration modes in electrical machines</h2>
+      <p>
+        Mechanical vibration of motors and transformers satisfies:
+        \[
+        \mathbf{M}\ddot{\mathbf{q}} + \mathbf{K}\mathbf{q} = \mathbf{0}
+        \]
+        Assuming \(\mathbf{q}(t) = \mathbf{Q}\,e^{j\omega t}\) leads to the generalised eigenvalue problem:
+        \[
+        (\mathbf{K} - \omega^2\mathbf{M})\mathbf{Q} = \mathbf{0}
+        \]
+      </p>
+      <div class="callout">
+        <strong>Mode shapes:</strong> Eigenvector \(\mathbf{Q}\) shows how each part of the machine moves relative to
+        others at natural frequency \(\omega\). A mode might show rotor bending while the stator remains nearly still.
+      </div>
+      <div class="callout">
+        <strong>Design implication:</strong> Avoid operating frequencies near \(\omega\) where mode shapes couple strongly
+        to electromagnetic forces — this causes resonance, noise, and mechanical failure.
+      </div>
+      <p class="mini">
+        Natural frequencies \(\omega\) correspond to eigenvalues of \(\mathbf{M}^{-1}\mathbf{K}\) (when \(\mathbf{M}\) is invertible).
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>5) RLC circuit mode shapes</h2>
+      <p>
+        For the series RLC state model with \(\mathbf{x} = [q,\, i]^T\), eigenvectors reveal how charge and current
+        combine in each transient mode.
+      </p>
+      <div class="callout">
+        <strong>Underdamped case:</strong> Complex eigenvalues produce oscillatory modes. One eigenvector (and its conjugate)
+        describes the phasor relationship between \(q\) and \(i\) during ringing after a switch event.
+      </div>
+      <div class="callout">
+        <strong>Worked example:</strong> \(\mathbf{A} = \begin{bmatrix} 0 & 1 \\ -100 & -10 \end{bmatrix}\),
+        \(\lambda = -5 \pm j5\sqrt{3}\). For \(\lambda = -5 + j5\sqrt{3}\):
+        \((\mathbf{A} - \lambda\mathbf{I})\mathbf{v} = \mathbf{0}\) yields \(v_2 = (-5 + j5\sqrt{3})\,v_1\).<br />
+        The ratio \(i/q\) in that mode is complex — charge and current are 90° out of phase in the oscillatory part.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>6) Diagonalisation and decoupled coordinates</h2>
+      <p>
+        If \(\mathbf{A}\) has \(n\) linearly independent eigenvectors, it is <strong>diagonalisable</strong>:
+        \[
+        \mathbf{A} = \mathbf{P}\mathbf{\Lambda}\mathbf{P}^{-1}, \quad
+        \mathbf{P} = [\mathbf{v}_1 \mid \mathbf{v}_2 \mid \cdots \mid \mathbf{v}_n], \quad
+        \mathbf{\Lambda} = \text{diag}(\lambda_1, \ldots, \lambda_n)
+        \]
+        With \(\mathbf{z} = \mathbf{P}^{-1}\mathbf{x}\), the system decouples: \(\dot{z}_i = \lambda_i z_i\).
+      </p>
+      <div class="callout">
+        <strong>Engineering benefit:</strong> Decoupled modes simplify analysis — each \(z_i(t) = z_i(0)e^{\lambda_i t}\)
+        independently. Control designers can target individual modes via state feedback.
+      </div>
+      <div class="warning">
+        <strong>Limitation:</strong> Repeated eigenvalues or defective matrices may not have enough independent eigenvectors.
+        Use generalised eigenvectors or Jordan form in advanced courses.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>7) Practical EE applications summary</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Application</th>
+              <th>Matrix / operator</th>
+              <th>Eigenvector meaning</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>LTI circuit dynamics</td>
+              <td>State matrix \(\mathbf{A}\)</td>
+              <td>Relative voltage/current pattern per mode</td>
+            </tr>
+            <tr>
+              <td>Power grid oscillations</td>
+              <td>Jacobian \(\mathbf{J}\)</td>
+              <td>Generator angle/speed participation factors</td>
+            </tr>
+            <tr>
+              <td>Waveguide / cavity modes</td>
+              <td>Maxwell operator</td>
+              <td>Electric and magnetic field spatial patterns</td>
+            </tr>
+            <tr>
+              <td>PCA / dimensionality reduction</td>
+              <td>Covariance \(\mathbf{C}\)</td>
+              <td>Principal signal directions</td>
+            </tr>
+            <tr>
+              <td>Motor vibration</td>
+              <td>\(\mathbf{K} - \omega^2\mathbf{M}\)</td>
+              <td>Mechanical deformation shape at \(\omega\)</td>
+            </tr>
+            <tr>
+              <td>Coupled transmission lines</td>
+              <td>Coupling matrix</td>
+              <td>Even/odd mode voltage distributions</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="mini">
+        Eigenvectors answer <em>how</em> the system moves; eigenvalues answer <em>how fast</em> each mode grows or decays.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>8) Quick knowledge check</h2>
+      <div class="quiz">
+        <ol>
+          <li>Find an eigenvector for \(\mathbf{A} = \begin{bmatrix} 3 & 1 \\ 0 & 2 \end{bmatrix}\) corresponding to \(\lambda = 2\).</li>
+          <li>Explain in one sentence what an eigenvector of a state matrix represents physically.</li>
+          <li>In PCA, what quantity does the largest eigenvalue of \(\mathbf{C}\) measure?</li>
+          <li>Write the modal superposition formula for \(\mathbf{x}(t)\) given distinct eigenpairs \((\lambda_i, \mathbf{v}_i)\).</li>
+          <li>Why are eigenvectors only defined up to a scalar multiple?</li>
+          <li>For vibration mode \(\mathbf{Q}\), what does a large entry in one coordinate mean?</li>
+          <li>What matrix \(\mathbf{P}\) is formed from eigenvectors, and what does \(\mathbf{P}^{-1}\mathbf{x}\) represent?</li>
+        </ol>
+      </div>
+      <p class="mini">
+        For marking: show \((\mathbf{A} - \lambda\mathbf{I})\mathbf{v} = \mathbf{0}\), state a valid eigenvector, and
+        interpret it in context.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>9) Next topics</h2>
+      <ul>
+        <li><a href="eigenvalues-electrical-engineering.html">Eigenvalues (Electrical Engineering)</a> — poles and stability</li>
+        <li><a href="eigenvectors.html">Eigenvectors</a> — general theory and orthogonality</li>
+        <li><a href="eigenvalues.html">Eigenvalues</a> — characteristic polynomial and diagonalisation</li>
+        <li><a href="matrices.html">Matrices</a> — linear transformations and simultaneous equations</li>
+        <li><a href="fourier-series.html">Fourier Series</a> — orthogonal function expansions</li>
+        <li><a href="statistics.html">Statistics</a> — covariance and data analysis</li>
+        <li><a href="pure_math_subjects.html">Pure Math Subjects Catalog</a></li>
+        <li><a href="index.html">Engineering Knowledge Hub</a></li>
+      </ul>
+    </div>
+
+    <p class="page-footer-note">Undergraduate Mathematics content.</p>
+    </div>
+  </div>
 </body>
 </html>

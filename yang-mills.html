@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="css/corporate.css">
   <script src="js/site-layout.js" defer></script>
-  <title>Yang Mills</title>
+  <title>Yang-Mills Theory - Research</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
 </head>
 
 <body class="content-page">
@@ -14,31 +17,213 @@
       <nav class="page-hero-breadcrumb" aria-label="Breadcrumb">
         <a href="index.html">&larr; Back to Hub</a>
       </nav>
-      <h1>Yang Mills</h1>
-      <p>Mathematics topic page. Content is being developed.</p>
+      <h1>Yang-Mills Theory</h1>
+      <p>Research guide. Gauge field theory, the Yang–Mills existence and mass gap Millennium Problem, and connections to quantum field theory and the Standard Model.</p>
       <div class="content-nav">
         <a href="pure_math_subjects.html">&larr; Pure Math Subjects Catalog</a>
       </div>
     </div>
 
     <div class="content-body">
-      <div class="card">
-        <h2>Overview</h2>
-        <p>
-          This page is a placeholder for <strong>Yang Mills</strong>. It is linked from the
-          <a href="pure_math_subjects.html">Pure Math Subjects Catalog</a> and will be expanded with explanations,
-          worked examples, and engineering applications.
-        </p>
-      </div>
 
-      <div class="card">
-        <h2>Coming soon</h2>
-        <ul>
-          <li>Key definitions and notation</li>
-          <li>Step-by-step examples</li>
-          <li>Links to related calculators and reference material</li>
-        </ul>
+    <div class="card">
+      <h2>1) Gauge fields and the Yang–Mills action</h2>
+      <p>
+        <strong>Yang–Mills theory</strong> describes connections on a principal \(G\)-bundle over spacetime. For a compact simple Lie group \(G\) (e.g. \(G = \mathrm{SU}(N)\)) and connection 1-form \(A_\mu(x)\) valued in the Lie algebra \(\mathfrak{g}\), the field strength is
+        \[
+        F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu + [A_\mu, A_\nu].
+        \]
+        The Yang–Mills action on \(\mathbb{R}^4\) is
+        \[
+        S_{\mathrm{YM}} = \frac{1}{4g^2} \int_{\mathbb{R}^4} \mathrm{tr}(F_{\mu\nu} F^{\mu\nu})\, d^4x.
+        \]
+      </p>
+      <div class="callout">
+        <strong>Gauge invariance:</strong> The action is invariant under \(A_\mu \mapsto g A_\mu g^{-1} + g \partial_\mu g^{-1}\) for gauge transformations \(g : \mathbb{R}^4 \to G\). Physical observables depend only on gauge-equivalence classes.
       </div>
+      <p class="mini">
+        Prerequisite: <a href="lie-algebras.html">Lie Algebras</a>, <a href="differential-geometry.html">Differential Geometry</a>, and <a href="smooth-manifolds.html">Smooth Manifolds</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>2) Classical Yang–Mills equations</h2>
+      <p>
+        The Euler–Lagrange equations for the Yang–Mills action are
+        \[
+        D_\mu F^{\mu\nu} = 0,
+        \]
+        where \(D_\mu\) is the covariant derivative. In Lorenz gauge, this yields a nonlinear wave equation. Unlike Maxwell theory (\(G = \mathrm{U}(1)\)), Yang–Mills equations are nonlinear because \([A_\mu, A_\nu] \neq 0\).
+      </p>
+      <div class="callout">
+        <strong>Instantons:</strong> Self-dual solutions \(F_{\mu\nu} = \pm \tilde{F}_{\mu\nu}\) on \(\mathbb{R}^4\) minimize action in a given topological sector. The topological charge is
+        \[
+        Q = \frac{1}{32\pi^2} \int \mathrm{tr}(F_{\mu\nu} \tilde{F}^{\mu\nu})\, d^4x \in \mathbb{Z}.
+        \]
+      </div>
+      <div class="warning">
+        <strong>Classical vs quantum:</strong> Classical Yang–Mills theory is well posed. The Millennium Problem concerns the <em>quantum</em> theory constructed from the path integral.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>3) The Millennium Problem: existence and mass gap</h2>
+      <p>
+        The Clay Mathematics Institute poses:
+      </p>
+      <div class="callout">
+        <strong>Yang–Mills existence and mass gap:</strong> Prove that for any compact simple gauge group \(G\), a non-trivial quantum Yang–Mills theory exists on \(\mathbb{R}^4\) and has a <strong>mass gap</strong> \(\Delta > 0\): the Hamiltonian spectrum has a lowest non-zero eigenvalue bounded away from zero.
+      </div>
+      <p>
+        "Existence" means constructing the theory rigorously via the Euclidean path integral or Hamiltonian formulation, satisfying the Wightman axioms (or Osterwalder–Schrader axioms in Euclidean signature) with gauge-invariant observables.
+      </p>
+      <p>
+        The <strong>mass gap</strong> explains why force carriers in confining theories (e.g. gluons in QCD) are not observed as free particles: the spectrum of glueballs begins at a positive mass, and the strong force is short-range despite massless gluons classically.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>4) Path integrals and renormalization</h2>
+      <p>
+        The Euclidean partition function is formally
+        \[
+        Z = \int \mathcal{D}A\, e^{-S_{\mathrm{YM}}[A]}.
+        \]
+        This functional integral requires gauge fixing (Faddeev–Popov), regularization (lattice, dimensional), and renormalization to extract finite predictions.
+      </p>
+      <div class="two-col">
+        <div>
+          <h3>Lattice gauge theory</h3>
+          <p class="mini">Wilson (1974) discretizes spacetime; link variables \(U_\mu(x) \in G\) replace \(A_\mu\). Strong coupling expansion and Monte Carlo simulations provide non-perturbative evidence for confinement and mass gap.</p>
+        </div>
+        <div>
+          <h3>Renormalizability</h3>
+          <p class="mini">Yang–Mills in 4D is renormalizable at perturbative level (Gross–Wilczek, Politzer, 1973). Asymptotic freedom explains high-energy behavior; low-energy confinement is non-perturbative.</p>
+        </div>
+      </div>
+      <div class="callout">
+        <strong>Beta function:</strong> For \(\mathrm{SU}(N)\), \(\beta(g) = -\frac{g^3}{16\pi^2}\left(\frac{11N}{3}\right) + O(g^5) < 0\). The coupling decreases at short distances (asymptotic freedom) and grows at long distances (confinement heuristic).
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>5) Confinement and glueball spectrum</h2>
+      <p>
+        <strong>Confinement</strong> is the phenomenon that colored quarks and gluons are bound in color-neutral hadrons. Mathematically, confinement is linked to:
+      </p>
+      <ul>
+        <li>Area law for Wilson loops: \(\langle W(C) \rangle \sim e^{-\sigma \cdot \mathrm{Area}(C)}\).</li>
+        <li>Linear potential between static quarks: \(V(r) \sim \sigma r\) at large \(r\).</li>
+        <li>Absence of free gluon states in the physical spectrum.</li>
+      </ul>
+      <div class="callout">
+        <strong>Mass gap interpretation:</strong> The lightest glueball mass \(m_{\mathrm{glueball}} = \Delta > 0\) is the mass gap. Lattice QCD estimates \(m_{\mathrm{glueball}} \approx 1.5\)–\(1.7\) GeV for pure \(\mathrm{SU}(3)\) Yang–Mills.
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Approach</th>
+              <th>Contribution to mass gap</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Lattice Monte Carlo</td>
+              <td>Strong numerical evidence; not a proof</td>
+            </tr>
+            <tr>
+              <td>Constructive QFT</td>
+              <td>Mass gap proved in 2D and 3D Yang–Mills; 4D open</td>
+            </tr>
+            <tr>
+              <td>String theory</td>
+              <td>AdS/CFT relates strongly coupled gauge theory to gravity</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>6) Partial results and open obstacles</h2>
+      <div class="two-col">
+        <div>
+          <h3>Lower dimensions</h3>
+          <p class="mini">2D Yang–Mills is exactly solvable (Witten, heat-kernel methods). 3D Yang–Mills has a constructive mass gap (Glimm–Jaffe program). 4D lacks a complete constructive construction.</p>
+        </div>
+        <div>
+          <h3>Continuum limit</h3>
+          <p class="mini">Proving that the lattice theory has a continuum limit satisfying OS axioms, with mass gap uniform in lattice spacing, is the core difficulty. Uniform bounds on correlation functions are needed.</p>
+        </div>
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>OS reconstruction</h3>
+          <p class="mini">Osterwalder–Schrader axioms (Euclidean reflection positivity, cluster decomposition) allow reconstruction of Minkowski QFT. Verifying OS axioms for 4D Yang–Mills remains open.</p>
+        </div>
+        <div>
+          <h3>Operator product expansion</h3>
+          <p class="mini">Renormalization group flow and operator product expansions are perturbatively controlled but must be made rigorous non-perturbatively for the Millennium prize.</p>
+        </div>
+      </div>
+      <div class="warning">
+        <strong>Status (2025):</strong> The problem remains open. Lattice simulations strongly support existence and mass gap, but a mathematical proof in 4D has not been accepted.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>7) Research connections and physics</h2>
+      <div class="two-col">
+        <div>
+          <h3>Standard Model</h3>
+          <p class="mini">Quantum Chromodynamics (QCD) is \(\mathrm{SU}(3)\) Yang–Mills coupled to quarks. The electroweak sector uses \(\mathrm{SU}(2) \times \mathrm{U}(1)\). Yang–Mills is the mathematical backbone of particle physics.</p>
+        </div>
+        <div>
+          <h3>Geometric analysis</h3>
+          <p class="mini">Donaldson theory, Seiberg–Witten invariants, and moduli spaces of connections link Yang–Mills to <a href="differential-geometry.html">Differential Geometry</a> and <a href="topology.html">Topology</a>.</p>
+        </div>
+      </div>
+      <p class="mini">
+        Related: <a href="lie-algebras.html">Lie Algebras</a>, <a href="e7-lie-groups.html">E7 Lie Groups</a>,
+        <a href="millennium-prize-problems.html">Millennium Prize Problems</a>,
+        <a href="stochastic-calculus.html">Stochastic Calculus</a> (path integrals).
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>8) Quick knowledge check</h2>
+      <div class="quiz">
+        <ol>
+          <li>Write the Yang–Mills field strength \(F_{\mu\nu}\) and action \(S_{\mathrm{YM}}\).</li>
+          <li>State the Yang–Mills field equations and explain nonlinearity for \(\mathrm{SU}(2)\).</li>
+          <li>Formulate the Millennium Problem: what does "existence" and "mass gap" mean precisely?</li>
+          <li>Define asymptotic freedom and explain its physical significance.</li>
+          <li>What is the area law for Wilson loops and how does it relate to confinement?</li>
+          <li>Why is the 4D case harder than 2D and 3D?</li>
+          <li>Name the OS axioms and their role in constructive QFT.</li>
+        </ol>
+      </div>
+      <p class="mini">
+        For marking: distinguish classical and quantum theory; cite mass gap as a spectral property; reference lattice evidence vs proof.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>9) Next topics</h2>
+      <ul>
+        <li><a href="lie-algebras.html">Lie Algebras</a> — structure of gauge groups</li>
+        <li><a href="differential-geometry.html">Differential Geometry</a> — connections and curvature</li>
+        <li><a href="smooth-manifolds.html">Smooth Manifolds</a> — bundles and gauge theory</li>
+        <li><a href="stochastic-calculus.html">Stochastic Calculus</a> — path integral foundations</li>
+        <li><a href="millennium-prize-problems.html">Millennium Prize Problems</a> — Clay Institute overview</li>
+        <li><a href="hilbert-spaces.html">Hilbert Spaces</a> — quantum state spaces</li>
+        <li><a href="pure_math_subjects.html">Pure Math Subjects Catalog</a></li>
+        <li><a href="index.html">Engineering Knowledge Hub</a></li>
+      </ul>
+    </div>
+
+    <p class="page-footer-note">Advanced research-level Mathematics content.</p>
     </div>
   </div>
 </body>

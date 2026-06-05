@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="css/corporate.css">
   <script src="js/site-layout.js" defer></script>
-  <title>Automorphic Forms</title>
+  <title>Automorphic Forms - Postgraduate</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
 </head>
 
 <body class="content-page">
@@ -15,30 +18,202 @@
         <a href="index.html">&larr; Back to Hub</a>
       </nav>
       <h1>Automorphic Forms</h1>
-      <p>Mathematics topic page. Content is being developed.</p>
+      <p>Postgraduate guide. Modular forms, Hecke operators, L-functions, adeles, and the Langlands programme.</p>
       <div class="content-nav">
         <a href="pure_math_subjects.html">&larr; Pure Math Subjects Catalog</a>
       </div>
     </div>
 
     <div class="content-body">
-      <div class="card">
-        <h2>Overview</h2>
-        <p>
-          This page is a placeholder for <strong>Automorphic Forms</strong>. It is linked from the
-          <a href="pure_math_subjects.html">Pure Math Subjects Catalog</a> and will be expanded with explanations,
-          worked examples, and engineering applications.
-        </p>
-      </div>
 
-      <div class="card">
-        <h2>Coming soon</h2>
-        <ul>
-          <li>Key definitions and notation</li>
-          <li>Step-by-step examples</li>
-          <li>Links to related calculators and reference material</li>
-        </ul>
+    <div class="card">
+      <h2>1) Modular forms as the prototype</h2>
+      <p>
+        A <strong>modular form</strong> of weight \(k\) on \(\mathrm{SL}_2(\mathbb{Z})\) is a holomorphic
+        function \(f\) on the upper half-plane \(\mathbb{H}\) satisfying:
+        \[
+        f(\gamma z) = (cz + d)^k f(z), \quad \gamma = \begin{pmatrix} a & b \\ c & d \end{pmatrix} \in \mathrm{SL}_2(\mathbb{Z})
+        \]
+        and a growth condition at the cusp.
+      </p>
+      <div class="callout">
+        <strong>Fourier expansion:</strong> At the cusp \(\infty\),
+        \[
+        f(z) = \sum_{n=0}^{\infty} a_n e^{2\pi i n z}
+        \]
+        A <strong>cusp form</strong> has \(a_0 = 0\). The coefficients \(a_n\) encode deep arithmetic information.
       </div>
+      <div class="callout">
+        <strong>Worked example:</strong> The Eisenstein series \(E_k(z)\) of weight \(k \geq 4\) even is a
+        modular form with \(a_0 \neq 0\); the discriminant \(\Delta(z) = q\prod(1-q^n)^{24}\) is a weight-12 cusp form.
+      </div>
+      <p class="mini">
+        Prerequisite: <a href="complex-analysis.html">Complex Analysis</a> and
+        <a href="group-theory.html">Group Theory</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>2) Automorphic forms on higher groups</h2>
+      <p>
+        An <strong>automorphic form</strong> on a reductive algebraic group \(G\) over \(\mathbb{Q}\) is a
+        function on \(G(\mathbb{A}_\mathbb{Q})\) (the adele group) transforming under a character of a
+        Borel subgroup, satisfying moderate growth and invariance under a discrete subgroup
+        \(\Gamma \subset G(\mathbb{Q})\).
+      </p>
+      <div class="callout">
+        <strong>Key idea:</strong> Automorphic forms unify modular forms, Maass forms, and theta series as
+        instances of representation-theoretic functions on \(G(\mathbb{A})\).
+      </div>
+      <div class="callout">
+        <strong>Level and character:</strong> Congruence subgroups \(\Gamma_0(N)\), \(\Gamma_1(N)\) generalise
+        \(\mathrm{SL}_2(\mathbb{Z})\); nebentypus characters \(\psi\) modify the transformation law by a root of unity.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>3) Hecke operators and multiplicativity</h2>
+      <p>
+        <strong>Hecke operators</strong> \(T_p\) act on spaces of modular forms, preserving cusp forms.
+        On Fourier coefficients:
+        \[
+        a_n(T_p f) = a_{np}(f) + p^{k-1} a_{n/p}(f)
+        \]
+        for prime \(p\) and weight \(k\).
+      </p>
+      <div class="callout">
+        <strong>Eigenforms:</strong> A normalized Hecke eigenform satisfies
+        \(T_p f = a_p f\) for all primes \(p\). Then \(a_{mn} = a_m a_n\) when \((m,n)=1\), and
+        \(a_{p^{r+1}} = a_p a_{p^r} - p^{k-1} a_{p^{r-1}}\).
+      </div>
+      <div class="callout">
+        <strong>Worked example:</strong> The Ramanujan \(\tau(n)\) coefficients of \(\Delta(z)\) satisfy
+        \(\tau(mn) = \tau(m)\tau(n)\) for \((m,n)=1\) and \(\tau(p^{r+1}) = \tau(p)\tau(p^r) - p^{11}\tau(p^{r-1})\).
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>4) L-functions attached to automorphic forms</h2>
+      <p>
+        For a cusp form \(f\) with coefficients \(a_n\), the <strong>L-function</strong> is:
+        \[
+        L(f, s) = \sum_{n=1}^{\infty} \frac{a_n}{n^s} = \prod_p \frac{1}{1 - a_p p^{-s} + p^{k-1-2s}}
+        \]
+        convergent for \(\mathrm{Re}(s)\) large, with meromorphic continuation and functional equation.
+      </p>
+      <div class="callout">
+        <strong>Functional equation:</strong> Completed L-function \(\Lambda(f,s)\) satisfies
+        \(\Lambda(f, s) = \varepsilon \Lambda(\tilde{f}, 1-s)\) with root number \(\varepsilon\) and dual form \(\tilde{f}\).
+      </div>
+      <div class="warning">
+        <strong>Common mistake:</strong> Confusing the Dirichlet series \(\sum a_n n^{-s}\) with the Dedekind
+        zeta of a number field — automorphic L-functions arise from analytic objects on groups, not only ideals.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>5) Langlands correspondence (overview)</h2>
+      <p>
+        The <strong>Langlands programme</strong> predicts a correspondence between:
+      </p>
+      <ul>
+        <li>Galois representations \(\rho: \mathrm{Gal}(\overline{\mathbb{Q}}/\mathbb{Q}) \to \mathrm{GL}_n(\mathbb{C})\)</li>
+        <li>Automorphic representations \(\pi\) of \(\mathrm{GL}_n(\mathbb{A}_\mathbb{Q})\)</li>
+      </ul>
+      <p>
+        with compatible L-functions: \(L(\rho, s) = L(\pi, s)\).
+      </p>
+      <div class="callout">
+        <strong>Modularity theorem (Wiles et al.):</strong> Every semistable elliptic curve over \(\mathbb{Q}\)
+        is modular — its L-function equals \(L(f,s)\) for a weight-2 cusp form \(f\). This was essential to
+        Fermat's Last Theorem.
+      </div>
+      <p class="mini">
+        Related: <a href="algebraic-number-theory.html">Algebraic Number Theory</a> and
+        <a href="riemann-hypothesis.html">Riemann Hypothesis</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>6) Spectral theory and automorphic representations</h2>
+      <p>
+        Automorphic forms arise as matrix coefficients of <strong>unitary automorphic representations</strong>
+        in \(L^2(G(\mathbb{Q})\backslash G(\mathbb{A}))\). The spectral decomposition involves:
+      </p>
+      <div class="two-col">
+        <div>
+          <h3>Cusp forms</h3>
+          <p class="mini">Square-integrable, rapid decay at cusps; discrete spectrum contributions.</p>
+        </div>
+        <div>
+          <h3>Eisenstein series</h3>
+          <p class="mini">Continuous spectrum built from parabolic induction and Rankin–Selberg integrals.</p>
+        </div>
+      </div>
+      <div class="callout">
+        <strong>Rankin–Selberg method:</strong> Integrals of products of Eisenstein series against cusp forms
+        compute L-function special values and analytic continuation.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>7) Applications</h2>
+      <div class="two-col">
+        <div>
+          <h3>Number theory</h3>
+          <p class="mini">Distribution of primes, reciprocity laws, and Birch–Swinnerton–Dyer conjecture use automorphic L-functions.</p>
+        </div>
+        <div>
+          <h3>Physics</h3>
+          <p class="mini">Partition functions, black-hole entropy (BPS states), and moonshine connect modular forms to conformal field theory.</p>
+        </div>
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Cryptography</h3>
+          <p class="mini">L-functions of curves underpin security assumptions; modular forms appear in isogeny-based protocols.</p>
+        </div>
+        <div>
+          <h3>Harmonic analysis</h3>
+          <p class="mini">Theta functions and Poisson summation are automorphic forms on metaplectic groups.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>8) Quick knowledge check</h2>
+      <div class="quiz">
+        <ol>
+          <li>State the modular transformation law for weight-\(k\) forms.</li>
+          <li>What distinguishes a cusp form from a general modular form?</li>
+          <li>Write the action of \(T_p\) on Fourier coefficients \(a_n\).</li>
+          <li>Define the L-function \(L(f,s)\) for a modular form \(f\).</li>
+          <li>State the modularity theorem for elliptic curves over \(\mathbb{Q}\).</li>
+          <li>What is the adele group \(G(\mathbb{A}_\mathbb{Q})\) used for?</li>
+          <li>Give an example of a weight-12 cusp form on \(\mathrm{SL}_2(\mathbb{Z})\).</li>
+        </ol>
+      </div>
+      <p class="mini">
+        For marking: normalise eigenforms (\(a_1 = 1\)), track weight and level, and connect L-functions
+        to functional equations.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>9) Next topics</h2>
+      <ul>
+        <li><a href="algebraic-number-theory.html">Algebraic Number Theory</a> — Galois representations</li>
+        <li><a href="complex-analysis.html">Complex Analysis</a> — holomorphic functions on \(\mathbb{H}\)</li>
+        <li><a href="riemann-hypothesis.html">Riemann Hypothesis</a> — zeros of L-functions</li>
+        <li><a href="birch-and-swinnerton-dyer-conjecture.html">Birch and Swinnerton-Dyer Conjecture</a></li>
+        <li><a href="group-theory.html">Group Theory</a> — \(\mathrm{SL}_2\) and reductive groups</li>
+        <li><a href="e7-lie-groups.html">E7 Lie Groups</a> — exceptional automorphic L-functions</li>
+        <li><a href="pure_math_subjects.html">Pure Math Subjects Catalog</a></li>
+        <li><a href="index.html">Engineering Knowledge Hub</a></li>
+      </ul>
+    </div>
+
+    <p class="page-footer-note">Postgraduate Mathematics content.</p>
     </div>
   </div>
 </body>

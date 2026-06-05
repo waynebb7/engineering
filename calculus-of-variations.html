@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="css/corporate.css">
   <script src="js/site-layout.js" defer></script>
-  <title>Calculus of Variations</title>
+  <title>Calculus of Variations - Postgraduate</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
 </head>
 
 <body class="content-page">
@@ -15,30 +18,220 @@
         <a href="index.html">&larr; Back to Hub</a>
       </nav>
       <h1>Calculus of Variations</h1>
-      <p>Mathematics topic page. Content is being developed.</p>
+      <p>Postgraduate guide. Functionals, the Euler–Lagrange equation, constraints, Noether's theorem, and variational principles in mechanics and PDEs.</p>
       <div class="content-nav">
         <a href="pure_math_subjects.html">&larr; Pure Math Subjects Catalog</a>
       </div>
     </div>
 
     <div class="content-body">
-      <div class="card">
-        <h2>Overview</h2>
-        <p>
-          This page is a placeholder for <strong>Calculus of Variations</strong>. It is linked from the
-          <a href="pure_math_subjects.html">Pure Math Subjects Catalog</a> and will be expanded with explanations,
-          worked examples, and engineering applications.
-        </p>
-      </div>
 
-      <div class="card">
-        <h2>Coming soon</h2>
-        <ul>
-          <li>Key definitions and notation</li>
-          <li>Step-by-step examples</li>
-          <li>Links to related calculators and reference material</li>
-        </ul>
+    <div class="card">
+      <h2>1) Functionals and the variational problem</h2>
+      <p>
+        In ordinary calculus we extremise \(f : \mathbb{R} \to \mathbb{R}\). In the <strong>calculus of variations</strong>
+        we extremise a <strong>functional</strong> — a map from functions to numbers:
+        \[
+        J[y] = \int_a^b F(x, y(x), y'(x))\,dx
+        \]
+        where \(y\) belongs to a class of admissible functions (e.g. \(C^1\) with fixed endpoints \(y(a) = y_a\),
+        \(y(b) = y_b\)).
+      </p>
+      <div class="callout">
+        <strong>Key idea:</strong> The unknown is a <em>function</em>, not a finite-dimensional vector. Perturbations
+        \(y \mapsto y + \varepsilon \eta\) with \(\eta(a) = \eta(b) = 0\) replace directional derivatives.
       </div>
+      <p class="mini">
+        Prerequisite: <a href="integration.html">Integration</a>,
+        <a href="differentiation.html">Differentiation</a>,
+        <a href="differential-equations.html">Differential Equations</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>2) The Euler–Lagrange equation</h2>
+      <p>
+        If \(y^*\) is a local extremiser of \(J\) with fixed endpoints, then under standard smoothness assumptions
+        \(y^*\) satisfies the <strong>Euler–Lagrange (E–L) equation</strong>:
+        \[
+        \frac{\partial F}{\partial y} - \frac{d}{dx}\frac{\partial F}{\partial y'} = 0
+        \]
+      </p>
+      <div class="callout">
+        <strong>Worked example — shortest path in the plane:</strong> Minimise arc length
+        \(J[y] = \int_a^b \sqrt{1 + (y')^2}\,dx\). Here \(F = \sqrt{1+(y')^2}\) is independent of \(y\), so
+        \(\partial F/\partial y = 0\) and E–L gives \(y'' = 0\). Extremisers are straight lines \(y = mx + c\).
+      </div>
+      <div class="callout">
+        <strong>Worked example — brachistochrone:</strong> Minimise travel time under gravity. With appropriate
+        parametrisation, the solution is a cycloid — historically the problem that launched the field (Johann Bernoulli, 1696).
+      </div>
+      <div class="warning">
+        <strong>Common mistake:</strong> Applying E–L without checking that the functional is stationary (first variation
+        zero). Boundary terms from integration by parts must vanish — hence \(\eta(a) = \eta(b) = 0\).
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>3) First variation and sufficient conditions</h2>
+      <p>
+        The <strong>first variation</strong> of \(J\) at \(y\) in direction \(\eta\) is
+        \[
+        \delta J[y; \eta] = \left.\frac{d}{d\varepsilon} J[y + \varepsilon\eta]\right|_{\varepsilon=0}
+        = \int_a^b \left(\frac{\partial F}{\partial y}\eta + \frac{\partial F}{\partial y'}\eta'\right)dx
+        \]
+        Integration by parts yields the E–L equation when \(\delta J = 0\) for all admissible \(\eta\).
+      </p>
+      <div class="callout">
+        <strong>Legendre condition:</strong> For a minimum, \(\partial^2 F / \partial (y')^2 \geq 0\) along the
+        extremal (weak local minimum). Stronger convexity of \(F\) in \(y'\) gives sufficient conditions.
+      </div>
+      <div class="callout">
+        <strong>Beltrami identity:</strong> When \(F\) does not depend explicitly on \(x\),
+        \[
+        F - y'\frac{\partial F}{\partial y'} = \text{constant}
+        \]
+        This first integral often simplifies solving E–L.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>4) Constraints and Lagrange multipliers</h2>
+      <p>
+        <strong>Isoperimetric problems</strong> fix an integral constraint, e.g. maximise area subject to fixed perimeter.
+        Introduce a Lagrange multiplier \(\lambda\):
+        \[
+        \tilde{J}[y] = \int_a^b \bigl(F + \lambda G\bigr)\,dx
+        \]
+        and apply E–L to \(\tilde{F} = F + \lambda G\).
+      </p>
+      <div class="callout">
+        <strong>Worked example — Dido's problem:</strong> Among closed curves of length \(L\), the circle encloses
+        maximum area. The variational setup with constraint \(\int \sqrt{1+y'^2}\,dx = L\) yields circular arcs as
+        extremisers; closure gives a full circle.
+      </div>
+      <div class="callout">
+        <strong>Holonomic constraints:</strong> In mechanics, constraints \(g(\mathbf{q}) = 0\) are incorporated via
+        multipliers \(\lambda_i\) in the augmented Lagrangian — the foundation of constrained Hamiltonian systems.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>5) Lagrangian mechanics and Hamilton's principle</h2>
+      <p>
+        For a mechanical system with kinetic energy \(T\) and potential \(V\), define the <strong>Lagrangian</strong>
+        \(L = T - V\). <strong>Hamilton's principle</strong> states that the actual trajectory \(\mathbf{q}(t)\) makes
+        the action stationary:
+        \[
+        S[\mathbf{q}] = \int_{t_1}^{t_2} L(\mathbf{q}, \dot{\mathbf{q}}, t)\,dt, \quad \delta S = 0
+        \]
+        E–L yields the <strong>Euler–Lagrange equations of motion</strong>:
+        \[
+        \frac{d}{dt}\frac{\partial L}{\partial \dot{q}_i} - \frac{\partial L}{\partial q_i} = 0
+        \]
+      </p>
+      <div class="callout">
+        <strong>Worked example — harmonic oscillator:</strong> \(L = \tfrac{1}{2}m\dot{x}^2 - \tfrac{1}{2}kx^2\).
+        E–L gives \(m\ddot{x} + kx = 0\).
+      </div>
+      <p class="mini">
+        Related: <a href="classical-mechanics.html">Classical Mechanics</a>,
+        <a href="infinitesimal-transformations.html">Infinitesimal Transformations</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>6) Noether's theorem and symmetries</h2>
+      <p>
+        <strong>Noether's theorem:</strong> Every continuous symmetry of the action yields a conserved quantity.
+        If \(L\) is invariant under a one-parameter family of transformations generated by an infinitesimal variation,
+        there exists a conserved current.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Symmetry</th>
+              <th>Conserved quantity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Time translation (\(L\) independent of \(t\))</td>
+              <td>Energy (Hamiltonian)</td>
+            </tr>
+            <tr>
+              <td>Space translation</td>
+              <td>Linear momentum</td>
+            </tr>
+            <tr>
+              <td>Rotation</td>
+              <td>Angular momentum</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout">
+        <strong>Research context:</strong> Noether's theorem extends to field theory (conserved currents from Lagrangian
+        densities) and underpins gauge theories in particle physics.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>7) Direct methods and PDE connections</h2>
+      <p>
+        <strong>Direct methods</strong> (Tonelli, Hilbert) prove existence of minimisers in function spaces (Sobolev
+        spaces \(W^{1,p}\)) without solving E–L explicitly. Coercivity, weak lower semicontinuity, and compactness
+        (Rellich–Kondrachov) are central tools.
+      </p>
+      <div class="callout">
+        <strong>Dirichlet principle:</strong> Harmonic functions minimise the Dirichlet energy
+        \(\int |\nabla u|^2\,dx\) subject to boundary data — connecting variational calculus to
+        <a href="partial-differential-equations.html">Partial Differential Equations</a>.
+      </div>
+      <div class="callout">
+        <strong>Finite elements:</strong> Ritz and Galerkin methods discretise variational formulations — the
+        engineering workhorse for structural mechanics and electromagnetics.
+      </div>
+      <div class="warning">
+        <strong>Pitfall:</strong> Not every E–L solution is a minimiser. Saddle points (Morse index) and second-variation
+        analysis are needed for complete classification.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>8) Quick knowledge check</h2>
+      <div class="quiz">
+        <ol>
+          <li>Define a functional \(J[y]\) and state what it means for \(y^*\) to be a stationary point.</li>
+          <li>Derive the Euler–Lagrange equation from \(\delta J = 0\) with fixed endpoints.</li>
+          <li>Use E–L to show geodesics in the plane are straight lines (arc-length functional).</li>
+          <li>State the Beltrami identity and when it applies.</li>
+          <li>Write Hamilton's principle and the E–L equations for a Lagrangian \(L(\mathbf{q}, \dot{\mathbf{q}}, t)\).</li>
+          <li>State Noether's theorem and give one symmetry–conservation pair.</li>
+          <li>Explain the connection between the Dirichlet principle and harmonic functions.</li>
+        </ol>
+      </div>
+      <p class="mini">
+        For marking: show the variation calculation, state boundary conditions on \(\eta\), and cite conservation laws from symmetries.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>9) Next topics</h2>
+      <ul>
+        <li><a href="infinitesimal-transformations.html">Infinitesimal Transformations</a> — symmetries and Lie methods</li>
+        <li><a href="classical-mechanics.html">Classical Mechanics</a> — Lagrangian and Hamiltonian formalism</li>
+        <li><a href="partial-differential-equations.html">Partial Differential Equations</a> — variational origin of elliptic PDEs</li>
+        <li><a href="optimization.html">Optimization</a> — finite-dimensional optimisation</li>
+        <li><a href="integration.html">Integration</a> — definite integrals in functionals</li>
+        <li><a href="multivariable-calculus.html">Multivariable Calculus</a> — fields and gradients</li>
+        <li><a href="pure_math_subjects.html">Pure Math Subjects Catalog</a></li>
+        <li><a href="index.html">Engineering Knowledge Hub</a></li>
+      </ul>
+    </div>
+
+    <p class="page-footer-note">Postgraduate / research-level Mathematics content.</p>
     </div>
   </div>
 </body>

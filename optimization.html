@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="css/corporate.css">
   <script src="js/site-layout.js" defer></script>
-  <title>Optimization</title>
+  <title>Optimization - A-Level</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
 </head>
 
 <body class="content-page">
@@ -15,30 +18,245 @@
         <a href="index.html">&larr; Back to Hub</a>
       </nav>
       <h1>Optimization</h1>
-      <p>Mathematics topic page. Content is being developed.</p>
+      <p>A-Level guide. Using differentiation to find maximum and minimum values, an introduction to constraints, and modelling real engineering problems.</p>
       <div class="content-nav">
         <a href="pure_math_subjects.html">&larr; Pure Math Subjects Catalog</a>
       </div>
     </div>
 
     <div class="content-body">
-      <div class="card">
-        <h2>Overview</h2>
-        <p>
-          This page is a placeholder for <strong>Optimization</strong>. It is linked from the
-          <a href="pure_math_subjects.html">Pure Math Subjects Catalog</a> and will be expanded with explanations,
-          worked examples, and engineering applications.
-        </p>
-      </div>
 
-      <div class="card">
-        <h2>Coming soon</h2>
-        <ul>
-          <li>Key definitions and notation</li>
-          <li>Step-by-step examples</li>
-          <li>Links to related calculators and reference material</li>
-        </ul>
+    <div class="card">
+      <h2>1) What is optimization?</h2>
+      <p>
+        <strong>Optimization</strong> means finding the best value of a variable — often the largest or smallest value
+        that a quantity can take. In A-Level mathematics this usually means finding a <strong>maximum</strong> or
+        <strong>minimum</strong> of a function.
+      </p>
+      <ul>
+        <li>Maximize profit for a given production model</li>
+        <li>Minimize material used in a design</li>
+        <li>Find the peak height of a projectile</li>
+        <li>Locate the turning point of a cost function</li>
+      </ul>
+      <div class="callout">
+        <strong>Key idea:</strong> At a local maximum or minimum of a smooth function, the gradient is zero:
+        \( f'(x) = 0 \). You then use the second derivative or a sign table to classify the turning point.
       </div>
+      <p class="mini">
+        This builds on <a href="differentiation.html">Differentiation</a> and appears again in
+        <a href="calculus-real-world-problems.html">Calculus (Real World Problems)</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>2) Stationary points and the second derivative</h2>
+      <p>
+        A <strong>stationary point</strong> occurs where \( f'(x) = 0 \). To decide whether it is a maximum,
+        minimum, or point of inflection, examine \( f''(x) \) at that point.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Condition at \( x = a \)</th>
+              <th>Type of stationary point</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>\( f'(a) = 0 \) and \( f''(a) &lt; 0 \)</td>
+              <td>Local maximum</td>
+            </tr>
+            <tr>
+              <td>\( f'(a) = 0 \) and \( f''(a) &gt; 0 \)</td>
+              <td>Local minimum</td>
+            </tr>
+            <tr>
+              <td>\( f'(a) = 0 \) and \( f''(a) = 0 \)</td>
+              <td>Inconclusive — use a sign table for \( f'(x) \)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout">
+        <strong>Worked example:</strong> Find and classify the turning points of \( f(x) = x^3 - 6x^2 + 9x + 1 \).<br />
+        \( f'(x) = 3x^2 - 12x + 9 = 3(x-1)(x-3) \) → stationary points at \( x = 1 \) and \( x = 3 \).<br />
+        \( f''(x) = 6x - 12 \): at \( x = 1 \), \( f'' = -6 \) (maximum); at \( x = 3 \), \( f'' = 6 \) (minimum).
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>3) Optimising on a closed interval</h2>
+      <p>
+        When the domain is restricted, e.g. \( 0 \le x \le 10 \), the global maximum or minimum may occur at a
+        stationary point <em>inside</em> the interval or at an <strong>endpoint</strong>.
+      </p>
+      <ol>
+        <li>Find stationary points in the interval</li>
+        <li>Evaluate \( f(x) \) at each stationary point and at both endpoints</li>
+        <li>Compare values — the largest is the maximum, the smallest is the minimum</li>
+      </ol>
+      <div class="callout">
+        <strong>Worked example:</strong> For \( f(x) = 12x - x^2 \) on \( 0 \le x \le 10 \):<br />
+        \( f'(x) = 12 - 2x = 0 \Rightarrow x = 6 \).<br />
+        \( f(0) = 0 \), \( f(6) = 36 \), \( f(10) = 20 \). Maximum value is <strong>36</strong> at \( x = 6 \).
+      </div>
+      <div class="warning">
+        <strong>Common mistake:</strong> Assuming a turning point always gives the answer. On a restricted domain,
+        endpoints can produce better (or worse) values than any interior stationary point.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>4) Modelling problems — setting up the function</h2>
+      <p>
+        Optimisation questions in exams rarely give \( f(x) \) directly. You must translate words or a diagram
+        into a single-variable function, then differentiate.
+      </p>
+      <div class="two-col">
+        <div>
+          <h3>Strategy</h3>
+          <ol>
+            <li>Draw a diagram and label variables</li>
+            <li>Write a constraint (e.g. fixed perimeter, fixed volume)</li>
+            <li>Express the quantity to optimise in one variable</li>
+            <li>Differentiate, solve \( f'(x) = 0 \), check validity</li>
+          </ol>
+        </div>
+        <div>
+          <h3>Example setup</h3>
+          <p class="mini">A rectangle has perimeter 40 cm. Let width \( = w \), length \( = 20 - w \).</p>
+          <p class="mini">Area: \( A(w) = w(20 - w) = 20w - w^2 \)</p>
+          <p class="mini">\( A'(w) = 20 - 2w = 0 \Rightarrow w = 10 \) → square of side 10 cm, max area 100 cm².</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>5) Introduction to constraints</h2>
+      <p>
+        A <strong>constraint</strong> is a condition that limits the variables. At A-Level you usually eliminate
+        extra variables using the constraint before differentiating. At university, <strong>Lagrange multipliers</strong>
+        handle multiple variables with constraints — but the A-Level approach is substitution.
+      </p>
+      <div class="callout">
+        <strong>Worked example:</strong> An open-top box is made from a 30 cm × 30 cm sheet by cutting squares of side
+        \( x \) from each corner and folding up the sides.<br />
+        Base: \( (30 - 2x) \times (30 - 2x) \), height: \( x \). Volume:
+        \[ V(x) = x(30 - 2x)^2, \quad 0 &lt; x &lt; 15 \]
+        Expanding and differentiating gives maximum volume at \( x = 5 \) cm, \( V = 2000 \) cm³.
+      </div>
+      <p class="mini">
+        Always check that your solution satisfies physical constraints: lengths must be positive, angles in valid ranges,
+        and variables must stay within the stated domain.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>6) Engineering and science applications</h2>
+      <p>
+        Optimization appears throughout engineering whenever you want the best trade-off between competing quantities.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>What is optimised?</th>
+              <th>Method</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Structural design</td>
+              <td>Minimum weight for given strength</td>
+              <td>Model stress as function of dimensions; minimise</td>
+            </tr>
+            <tr>
+              <td>Projectile motion</td>
+              <td>Maximum range or height</td>
+              <td>Differentiate \( R(\theta) \) or \( h(t) \)</td>
+            </tr>
+            <tr>
+              <td>Manufacturing</td>
+              <td>Minimum cost</td>
+              <td>Cost function with production volume constraint</td>
+            </tr>
+            <tr>
+              <td>Electrical circuits</td>
+              <td>Maximum power transfer</td>
+              <td>Optimise load resistance (see <a href="calculus-power-calculations.html">Power Calculations</a>)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout">
+        <strong>Projectile range:</strong> For launch speed \( u \) and angle \( \theta \), range on level ground is
+        \( R = \frac{u^2 \sin 2\theta}{g} \). Maximum range occurs when \( \sin 2\theta = 1 \), i.e. \( \theta = 45° \).
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>7) Exam technique and checking</h2>
+      <div class="two-col">
+        <div>
+          <h3>Always show</h3>
+          <ul>
+            <li>Clear definition of variables and units</li>
+            <li>The function being optimised</li>
+            <li>Differentiation and solution of \( f'(x) = 0 \)</li>
+            <li>Second derivative test or comparison of values</li>
+            <li>Answer in context with units</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Sanity checks</h3>
+          <ul>
+            <li>Does the answer lie in the valid domain?</li>
+            <li>Is a maximum physically sensible (positive area, etc.)?</li>
+            <li>Substitute back into the original expression</li>
+          </ul>
+        </div>
+      </div>
+      <div class="warning">
+        <strong>Exam tip:</strong> If the question asks for the <em>minimum</em> amount of material, you may need to
+        minimise surface area subject to a fixed volume — the algebra is longer, but the method is identical.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>8) Quick knowledge check</h2>
+      <div class="quiz">
+        <ol>
+          <li>Find the coordinates of the turning point of \( y = x^2 - 4x + 7 \) and state whether it is a maximum or minimum.</li>
+          <li>For \( f(x) = 2x^3 - 3x^2 - 12x + 5 \), find all stationary points and classify them.</li>
+          <li>A farmer has 100 m of fencing to enclose a rectangular field against an existing wall (no fence needed on the wall side). If the side perpendicular to the wall has length \( x \), write the area as a function of \( x \) and find the dimensions that maximise the area.</li>
+          <li>Find the maximum value of \( f(x) = 8x - x^2 \) on the interval \( 0 \le x \le 10 \).</li>
+          <li>A cylindrical can must hold 500 cm³. Show that the surface area is \( S = 2\pi r^2 + \frac{1000}{r} \) and find the radius that minimises \( S \) (leave in terms of \( \pi \) if needed).</li>
+          <li>Explain why you must check endpoints when optimising on a restricted domain.</li>
+        </ol>
+      </div>
+      <p class="mini">
+        For marking: show differentiation, state the nature of each turning point, and include units in applied answers.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>9) Next topics</h2>
+      <ul>
+        <li><a href="differentiation.html">Differentiation</a> — rules and techniques for finding derivatives</li>
+        <li><a href="integration.html">Integration</a> — area under curves and reverse differentiation</li>
+        <li><a href="calculus-real-world-problems.html">Calculus (Real World Problems)</a> — motion, growth, and applied optimisation</li>
+        <li><a href="differentiation-in-engineering.html">Differentiation in Engineering</a> — rates in electrical and aircraft systems</li>
+        <li><a href="functions.html">Functions</a> — notation and graphs of the functions you optimise</li>
+        <li><a href="statistics.html">Statistics</a> — data analysis and regression (another form of modelling)</li>
+        <li><a href="pure_math_subjects.html">Pure Math Subjects Catalog</a></li>
+        <li><a href="index.html">Engineering Knowledge Hub</a></li>
+      </ul>
+    </div>
+
+    <p class="page-footer-note">A-Level optimization content.</p>
     </div>
   </div>
 </body>

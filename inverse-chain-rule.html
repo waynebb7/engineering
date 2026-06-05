@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="css/corporate.css">
   <script src="js/site-layout.js" defer></script>
-  <title>Inverse Chain Rule</title>
+  <title>Inverse Chain Rule - Undergraduate</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
 </head>
 
 <body class="content-page">
@@ -15,30 +18,309 @@
         <a href="index.html">&larr; Back to Hub</a>
       </nav>
       <h1>Inverse Chain Rule</h1>
-      <p>Mathematics topic page. Content is being developed.</p>
+      <p>Undergraduate guide. Integration by substitution, the reverse chain rule, and a table of standard integrals.</p>
       <div class="content-nav">
         <a href="pure_math_subjects.html">&larr; Pure Math Subjects Catalog</a>
       </div>
     </div>
 
     <div class="content-body">
-      <div class="card">
-        <h2>Overview</h2>
-        <p>
-          This page is a placeholder for <strong>Inverse Chain Rule</strong>. It is linked from the
-          <a href="pure_math_subjects.html">Pure Math Subjects Catalog</a> and will be expanded with explanations,
-          worked examples, and engineering applications.
-        </p>
-      </div>
 
-      <div class="card">
-        <h2>Coming soon</h2>
-        <ul>
-          <li>Key definitions and notation</li>
-          <li>Step-by-step examples</li>
-          <li>Links to related calculators and reference material</li>
-        </ul>
+    <div class="card">
+      <h2>1) The reverse chain rule</h2>
+      <p>
+        The <strong>chain rule</strong> for differentiation states that if \(y = F(u)\) and \(u = g(x)\), then
+        \(\dfrac{dy}{dx} = F'(u)\cdot g'(x)\). Integration reverses this process: if we recognise an integrand
+        of the form \(F'(g(x))\cdot g'(x)\), then
+      </p>
+      <div class="callout">
+        <strong>Reverse chain rule:</strong>
+        \[
+        \int F'(g(x))\,g'(x)\,dx = F(g(x)) + C
+        \]
       </div>
+      <div class="callout">
+        <strong>Worked example:</strong> Evaluate \(\displaystyle\int 2x\cos(x^2)\,dx\).<br />
+        Let \(u = x^2\), so \(du = 2x\,dx\). The integrand is \(\cos(u)\,du\).<br />
+        \(= \sin(x^2) + C\).
+      </div>
+      <p class="mini">
+        This builds on <a href="differentiation.html">Differentiation</a> (chain rule) and
+        <a href="integration.html">Integration</a> (antiderivatives). It is the foundation for
+        <a href="hyperbolic-functions.html">Hyperbolic Functions</a> integrals and
+        <a href="triple-integrals.html">Triple Integrals</a> change-of-variables.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>2) Integration by substitution</h2>
+      <p>
+        <strong>Integration by substitution</strong> (or <strong>\(u\)-substitution</strong>) formalises the
+        reverse chain rule. To evaluate \(\displaystyle\int f(x)\,dx\):
+      </p>
+      <div class="callout">
+        <strong>Method:</strong><br />
+        Step 1: Choose a substitution \(u = g(x)\).<br />
+        Step 2: Compute \(du = g'(x)\,dx\) and rearrange to express \(dx\) in terms of \(du\).<br />
+        Step 3: Rewrite the integral entirely in terms of \(u\).<br />
+        Step 4: Integrate with respect to \(u\), then substitute back.
+      </div>
+      <div class="callout">
+        <strong>Worked example:</strong> Evaluate \(\displaystyle\int x\sqrt{x^2 + 1}\,dx\).<br />
+        Let \(u = x^2 + 1\), so \(du = 2x\,dx\) and \(x\,dx = \dfrac{du}{2}\).<br />
+        \(= \dfrac{1}{2}\displaystyle\int u^{1/2}\,du = \dfrac{1}{3}(x^2+1)^{3/2} + C\).
+      </div>
+      <div class="warning">
+        <strong>Common mistake:</strong> Forgetting to replace \(dx\) fully. Every \(x\) in the integrand
+        must be expressed in terms of \(u\) before integrating.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>3) Recognising substitution patterns</h2>
+      <p>
+        Experienced integrators look for a function and (up to a constant factor) its derivative in the integrand.
+        The table below lists common patterns.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Integrand pattern</th>
+              <th>Substitution</th>
+              <th>Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>\(f'(x)\,[F(x)]^n\)</td>
+              <td>\(u = F(x)\)</td>
+              <td>\(\dfrac{[F(x)]^{n+1}}{n+1} + C\)</td>
+            </tr>
+            <tr>
+              <td>\(\dfrac{f'(x)}{f(x)}\)</td>
+              <td>\(u = f(x)\)</td>
+              <td>\(\ln|f(x)| + C\)</td>
+            </tr>
+            <tr>
+              <td>\(f'(x)\,e^{f(x)}\)</td>
+              <td>\(u = f(x)\)</td>
+              <td>\(e^{f(x)} + C\)</td>
+            </tr>
+            <tr>
+              <td>\(f'(x)\cos(f(x))\)</td>
+              <td>\(u = f(x)\)</td>
+              <td>\(\sin(f(x)) + C\)</td>
+            </tr>
+            <tr>
+              <td>\(f'(x)\sin(f(x))\)</td>
+              <td>\(u = f(x)\)</td>
+              <td>\(-\cos(f(x)) + C\)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout">
+        <strong>Worked example:</strong> Evaluate \(\displaystyle\int \dfrac{3x^2}{x^3 + 1}\,dx\).<br />
+        Numerator is (up to factor 3) the derivative of \(x^3 + 1\).<br />
+        \(= \ln|x^3 + 1| + C\).
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>4) Standard integrals</h2>
+      <p>
+        Every undergraduate engineer should know these results. They follow from reversing
+        <a href="differentiation.html">differentiation</a> rules and are used as building blocks for harder integrals.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Function</th>
+              <th>Indefinite integral</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>\(x^n\) (\(n \neq -1\))</td>
+              <td>\(\dfrac{x^{n+1}}{n+1} + C\)</td>
+            </tr>
+            <tr>
+              <td>\(\dfrac{1}{x}\)</td>
+              <td>\(\ln|x| + C\)</td>
+            </tr>
+            <tr>
+              <td>\(e^{ax}\)</td>
+              <td>\(\dfrac{e^{ax}}{a} + C\)</td>
+            </tr>
+            <tr>
+              <td>\(\sin(ax)\)</td>
+              <td>\(-\dfrac{\cos(ax)}{a} + C\)</td>
+            </tr>
+            <tr>
+              <td>\(\cos(ax)\)</td>
+              <td>\(\dfrac{\sin(ax)}{a} + C\)</td>
+            </tr>
+            <tr>
+              <td>\(\dfrac{1}{x^2 + a^2}\)</td>
+              <td>\(\dfrac{1}{a}\tan^{-1}\!\left(\dfrac{x}{a}\right) + C\)</td>
+            </tr>
+            <tr>
+              <td>\(\dfrac{1}{\sqrt{a^2 - x^2}}\)</td>
+              <td>\(\sin^{-1}\!\left(\dfrac{x}{a}\right) + C\)</td>
+            </tr>
+            <tr>
+              <td>\(\dfrac{1}{\sqrt{x^2 + a^2}}\)</td>
+              <td>\(\sinh^{-1}\!\left(\dfrac{x}{a}\right) + C\)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="warning">
+        <strong>Exam tip:</strong> Always check whether a constant factor is missing. If the derivative of the
+        inner function is not present, try algebraic manipulation or a different technique (integration by parts).
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>5) Definite integrals and change of limits</h2>
+      <p>
+        For a definite integral, you may either substitute back to \(x\) before evaluating, or change the limits
+        to \(u\)-values — both methods must agree.
+      </p>
+      <div class="callout">
+        <strong>Change of limits:</strong> If \(u = g(x)\), when \(x = a\) set \(u = g(a)\); when \(x = b\)
+        set \(u = g(b)\). Then
+        \[
+        \int_a^b f(x)\,dx = \int_{g(a)}^{g(b)} F(u)\,du
+        \]
+      </div>
+      <div class="callout">
+        <strong>Worked example:</strong> Evaluate \(\displaystyle\int_0^1 \dfrac{2x}{x^2 + 1}\,dx\).<br />
+        Let \(u = x^2 + 1\): limits change from \(x = 0 \to 1\) to \(u = 1 \to 2\).<br />
+        \(= \displaystyle\int_1^2 \dfrac{du}{u} = [\ln u]_1^2 = \ln 2\).
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Advantages of changing limits</h3>
+          <p class="mini">Avoids back-substitution; reduces algebraic errors in timed exams.</p>
+        </div>
+        <div>
+          <h3>When to keep \(x\)</h3>
+          <p class="mini">If the answer must be expressed in original variables for a physical interpretation.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>6) Trigonometric and hyperbolic substitutions</h2>
+      <p>
+        When integrands contain \(\sqrt{a^2 - x^2}\), \(\sqrt{a^2 + x^2}\), or \(\sqrt{x^2 - a^2}\),
+        trigonometric or hyperbolic substitutions remove the square root.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Expression</th>
+              <th>Substitution</th>
+              <th>Identity used</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>\(\sqrt{a^2 - x^2}\)</td>
+              <td>\(x = a\sin\theta\)</td>
+              <td>\(1 - \sin^2\theta = \cos^2\theta\)</td>
+            </tr>
+            <tr>
+              <td>\(\sqrt{a^2 + x^2}\)</td>
+              <td>\(x = a\sinh u\) or \(x = a\tan\theta\)</td>
+              <td>\(\cosh^2 u - 1 = \sinh^2 u\)</td>
+            </tr>
+            <tr>
+              <td>\(\sqrt{x^2 - a^2}\)</td>
+              <td>\(x = a\cosh u\) or \(x = a\sec\theta\)</td>
+              <td>\(\cosh^2 u - 1 = \sinh^2 u\)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout">
+        <strong>Worked example:</strong> Evaluate \(\displaystyle\int \dfrac{dx}{\sqrt{4 - x^2}}\).<br />
+        Let \(x = 2\sin\theta\), \(dx = 2\cos\theta\,d\theta\).<br />
+        \(= \displaystyle\int d\theta = \theta + C = \sin^{-1}\!\left(\dfrac{x}{2}\right) + C\).
+      </div>
+      <p class="mini">
+        See <a href="hyperbolic-functions.html">Hyperbolic Functions</a> for logarithmic forms of the results.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>7) Engineering applications</h2>
+      <p>
+        Substitution is the workhorse technique for computing work done, charge transferred, and accumulated
+        quantities in engineering models.
+      </p>
+      <div class="two-col">
+        <div>
+          <h3>Work done by a variable force</h3>
+          <p class="mini">
+            \(W = \displaystyle\int_{x_1}^{x_2} F(x)\,dx\). If \(F(x) = kx\) (spring), substitution is
+            unnecessary; if \(F(x) = f(g(x))g'(x)\), use reverse chain rule directly.
+          </p>
+        </div>
+        <div>
+          <h3>Probability and statistics</h3>
+          <p class="mini">
+            Normalising a probability density often requires \(\displaystyle\int e^{-ax^2}\,dx\), solved via
+            substitution and known Gaussian integrals.
+          </p>
+        </div>
+      </div>
+      <div class="callout">
+        <strong>Worked example:</strong> A current \(i(t) = I_0\sin(\omega t)\) flows for half a cycle.
+        Charge transferred: \(Q = \displaystyle\int_0^{\pi/\omega} I_0\sin(\omega t)\,dt\).<br />
+        Let \(u = \omega t\): \(Q = \dfrac{I_0}{\omega}[-\cos u]_0^{\pi} = \dfrac{2I_0}{\omega}\).
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>8) Quick knowledge check</h2>
+      <div class="quiz">
+        <ol>
+          <li>Evaluate \(\displaystyle\int 4x^3(x^4 + 3)^5\,dx\).</li>
+          <li>Evaluate \(\displaystyle\int \dfrac{e^x}{e^x + 1}\,dx\).</li>
+          <li>Evaluate \(\displaystyle\int_0^{\pi/2} \sin x \cos x\,dx\) using substitution.</li>
+          <li>Evaluate \(\displaystyle\int \dfrac{dx}{\sqrt{9 - x^2}}\).</li>
+          <li>State the reverse chain rule in words and in formula form.</li>
+          <li>Evaluate \(\displaystyle\int x e^{-x^2}\,dx\).</li>
+          <li>Explain why changing limits avoids back-substitution in definite integrals.</li>
+        </ol>
+      </div>
+      <p class="mini">
+        For marking: state the substitution explicitly, show the change of \(dx\), and include \(+C\) for
+        indefinite integrals. For definite integrals, show limit changes or back-substitution clearly.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>9) Next topics</h2>
+      <ul>
+        <li><a href="hyperbolic-functions.html">Hyperbolic Functions</a> — definitions, identities, and integrals</li>
+        <li><a href="series.html">Series</a> — summation and convergence</li>
+        <li><a href="taylor-series.html">Taylor Series</a> — integrating term-by-term</li>
+        <li><a href="multivariable-calculus.html">Multivariable Calculus</a> — partial derivatives and Jacobians</li>
+        <li><a href="triple-integrals.html">Triple Integrals</a> — change of variables in \(\mathbb{R}^3\)</li>
+        <li><a href="integration.html">Integration</a> — definite integrals and the fundamental theorem</li>
+        <li><a href="integration-in-engineering.html">Integration in Engineering</a> — applied contexts</li>
+        <li><a href="pure_math_subjects.html">Pure Math Subjects Catalog</a></li>
+        <li><a href="index.html">Engineering Knowledge Hub</a></li>
+      </ul>
+    </div>
+
+    <p class="page-footer-note">Undergraduate Mathematics content.</p>
     </div>
   </div>
 </body>

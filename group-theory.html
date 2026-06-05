@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="css/corporate.css">
   <script src="js/site-layout.js" defer></script>
-  <title>Group Theory</title>
+  <title>Group Theory - Postgraduate</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
 </head>
 
 <body class="content-page">
@@ -15,30 +18,246 @@
         <a href="index.html">&larr; Back to Hub</a>
       </nav>
       <h1>Group Theory</h1>
-      <p>Mathematics topic page. Content is being developed.</p>
+      <p>Postgraduate guide. Axioms, subgroups, homomorphisms, group actions, Sylow theory, and symmetry in algebra and physics.</p>
       <div class="content-nav">
         <a href="pure_math_subjects.html">&larr; Pure Math Subjects Catalog</a>
       </div>
     </div>
 
     <div class="content-body">
-      <div class="card">
-        <h2>Overview</h2>
-        <p>
-          This page is a placeholder for <strong>Group Theory</strong>. It is linked from the
-          <a href="pure_math_subjects.html">Pure Math Subjects Catalog</a> and will be expanded with explanations,
-          worked examples, and engineering applications.
-        </p>
-      </div>
 
-      <div class="card">
-        <h2>Coming soon</h2>
-        <ul>
-          <li>Key definitions and notation</li>
-          <li>Step-by-step examples</li>
-          <li>Links to related calculators and reference material</li>
-        </ul>
+    <div class="card">
+      <h2>1) Groups and the group axioms</h2>
+      <p>
+        A <strong>group</strong> \((G, \cdot)\) is a set \(G\) with a binary operation \(\cdot : G \times G \to G\) satisfying:
+      </p>
+      <ul>
+        <li><strong>Closure:</strong> \(a \cdot b \in G\) for all \(a, b \in G\).</li>
+        <li><strong>Associativity:</strong> \((ab)c = a(bc)\).</li>
+        <li><strong>Identity:</strong> \(\exists\, e \in G\) with \(ea = ae = a\).</li>
+        <li><strong>Inverses:</strong> for each \(a \in G\), \(\exists\, a^{-1} \in G\) with \(aa^{-1} = a^{-1}a = e\).</li>
+      </ul>
+      <p>
+        A group is <strong>abelian</strong> (or commutative) if \(ab = ba\) for all \(a, b \in G\). The <strong>order</strong> \(|G|\) is the cardinality of \(G\); finite group theory is central to combinatorics, cryptography, and crystallography.
+      </p>
+      <div class="callout">
+        <strong>Worked example:</strong> \((\mathbb{Z}, +)\) is an infinite abelian group. \((\mathbb{Z}/n\mathbb{Z}, +)\) is cyclic of order \(n\).<br />
+        The nonzero rationals \((\mathbb{Q}^*, \times)\) form a non-abelian group only when considering matrices; \(\mathbb{Q}^*\) itself is abelian.
       </div>
+      <div class="callout">
+        <strong>Key idea:</strong> Groups encode symmetry. Every geometric symmetry of a regular object corresponds to an element of a symmetry group (e.g. \(D_n\) for an \(n\)-gon).
+      </div>
+      <p class="mini">
+        Prerequisite: <a href="elementary-algebra.html">Elementary Algebra</a> and <a href="matrices.html">Matrices</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>2) Subgroups, cosets, and Lagrange's theorem</h2>
+      <p>
+        \(H \leq G\) means \(H\) is a <strong>subgroup</strong> of \(G\): \(H \subseteq G\) is closed under the operation and inverses. A subgroup is <strong>normal</strong>, written \(H \trianglelefteq G\), if \(gHg^{-1} = H\) for all \(g \in G\).
+      </p>
+      <p>
+        For \(H \leq G\), the <strong>left cosets</strong> are \(gH = \{gh : h \in H\}\). Cosets partition \(G\), and all cosets of \(H\) have the same size \(|H|\).
+      </p>
+      <div class="callout">
+        <strong>Lagrange's theorem:</strong> If \(G\) is finite and \(H \leq G\), then \(|H|\) divides \(|G|\). Equivalently, \([G : H] = |G|/|H|\) is the index of \(H\).
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Subgroup test</th>
+              <th>Condition</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>One-step test</td>
+              <td>Non-empty \(H\) and \(ab^{-1} \in H\) whenever \(a, b \in H\)</td>
+            </tr>
+            <tr>
+              <td>Normal subgroup</td>
+              <td>\(gHg^{-1} \subseteq H\) for all \(g \in G\) (equivalently \(gH = Hg\))</td>
+            </tr>
+            <tr>
+              <td>Generated subgroup</td>
+              <td>\(\langle S \rangle\) = all finite products of elements of \(S\) and their inverses</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="warning">
+        <strong>Common mistake:</strong> A subset closed under multiplication need not be a subgroup — closure under inverses is also required.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>3) Homomorphisms and the isomorphism theorems</h2>
+      <p>
+        A <strong>group homomorphism</strong> \(\varphi : G \to K\) satisfies \(\varphi(ab) = \varphi(a)\varphi(b)\). The <strong>kernel</strong> \(\ker\varphi = \{g \in G : \varphi(g) = e_K\}\) is a normal subgroup of \(G\); the <strong>image</strong> \(\operatorname{im}\varphi \leq K\).
+      </p>
+      <div class="callout">
+        <strong>First isomorphism theorem:</strong>
+        \[
+        G / \ker\varphi \cong \operatorname{im}\varphi
+        \]
+        where \(\cong\) denotes group isomorphism.
+      </div>
+      <div class="callout">
+        <strong>Second isomorphism theorem (Diamond theorem):</strong> For subgroups \(H \leq G\) and \(N \trianglelefteq G\):
+        \[
+        HN \leq G, \quad H \cap N \trianglelefteq H, \quad H/(H \cap N) \cong HN/N
+        \]
+      </div>
+      <div class="callout">
+        <strong>Third isomorphism theorem:</strong> If \(N \trianglelefteq G\) and \(K \trianglelefteq G\) with \(N \subseteq K\), then \(K/N \trianglelefteq G/N\) and \((G/N)/(K/N) \cong G/K\).
+      </div>
+      <p class="mini">
+        Quotient groups \(G/N\) are defined only when \(N \trianglelefteq G\). Normality is the algebraic condition for factoring symmetry.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>4) Symmetric groups and dihedral groups</h2>
+      <p>
+        The <strong>symmetric group</strong> \(S_n\) consists of all bijections \(\{1,\ldots,n\} \to \{1,\ldots,n\}\) under composition, with \(|S_n| = n!\). Every finite group embeds in some \(S_n\) (Cayley's theorem).
+      </p>
+      <p>
+        The <strong>dihedral group</strong> \(D_n = \langle r, s \mid r^n = s^2 = e,\, srs = r^{-1} \rangle\) is the symmetry group of a regular \(n\)-gon: \(r\) is rotation, \(s\) is reflection. \(|D_n| = 2n\).
+      </p>
+      <div class="callout">
+        <strong>Cycle notation:</strong> In \(S_4\), the permutation \((1\;2\;3)\) sends \(1 \mapsto 2\), \(2 \mapsto 3\), \(3 \mapsto 1\), fixing 4. Disjoint cycles commute.
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Cyclic groups</h3>
+          <p class="mini">If \(G = \langle g \rangle\) is generated by one element, then \(G \cong \mathbb{Z}\) (infinite) or \(G \cong \mathbb{Z}/n\mathbb{Z}\) (order \(n\)).</p>
+        </div>
+        <div>
+          <h3>Alternating group</h3>
+          <p class="mini">\(A_n = \ker(\operatorname{sgn} : S_n \to \{\pm 1\})\) has order \(n!/2\). Simple for \(n \geq 5\).</p>
+        </div>
+      </div>
+      <div class="warning">
+        <strong>Convention:</strong> Composition \((fg)(x) = f(g(x))\) (right-to-left) is standard in algebra texts; always check the author's convention.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>5) Group actions and the orbit-stabilizer theorem</h2>
+      <p>
+        A <strong>group action</strong> of \(G\) on a set \(X\) is a map \(G \times X \to X\), \((g,x) \mapsto g \cdot x\), with \(e \cdot x = x\) and \((gh) \cdot x = g \cdot (h \cdot x)\).
+      </p>
+      <p>
+        The <strong>orbit</strong> of \(x\) is \(\mathcal{O}_x = \{g \cdot x : g \in G\}\). The <strong>stabilizer</strong> is \(\operatorname{Stab}_G(x) = \{g \in G : g \cdot x = x\} \leq G\).
+      </p>
+      <div class="callout">
+        <strong>Orbit-stabilizer theorem:</strong>
+        \[
+        |\mathcal{O}_x| = [G : \operatorname{Stab}_G(x)] = |G| / |\operatorname{Stab}_G(x)|
+        \]
+        for finite \(G\). This is the primary counting tool in group theory.
+      </div>
+      <div class="callout">
+        <strong>Class equation:</strong> For \(G\) finite acting on itself by conjugation,
+        \[
+        |G| = |Z(G)| + \sum [G : C_G(x_i)]
+        \]
+        where \(Z(G)\) is the centre and \(C_G(x)\) is the centralizer of \(x\).
+      </div>
+      <p class="mini">
+        Conjugacy classes partition \(G\). The class equation proves that groups of order \(p^2\) ( \(p\) prime) are abelian.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>6) Sylow theorems and finite simple groups</h2>
+      <p>
+        For a finite group \(G\) and prime \(p\), a <strong>Sylow \(p\)-subgroup</strong> is a maximal \(p\)-subgroup. Sylow theory controls the structure of finite groups.
+      </p>
+      <div class="callout">
+        <strong>Sylow theorems (summary):</strong><br />
+        (1) Sylow \(p\)-subgroups exist and have order \(p^k\) where \(p^k \,\|\, |G|\) is maximal.<br />
+        (2) All Sylow \(p\)-subgroups are conjugate.<br />
+        (3) The number \(n_p\) of Sylow \(p\)-subgroups satisfies \(n_p \equiv 1 \pmod{p}\) and \(n_p \mid |G|\).
+      </div>
+      <div class="callout">
+        <strong>Worked example:</strong> A group of order 15 has \(n_3 \equiv 1 \pmod{3}\) and \(n_3 \mid 5\), so \(n_3 = 1\). Similarly \(n_5 = 1\). Hence \(G \cong \mathbb{Z}/3\mathbb{Z} \times \mathbb{Z}/5\mathbb{Z} \cong \mathbb{Z}/15\mathbb{Z}\).
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Simple groups</h3>
+          <p class="mini">\(G\) is <strong>simple</strong> if its only normal subgroups are \(\{e\}\) and \(G\). Building blocks of all finite groups via composition series.</p>
+        </div>
+        <div>
+          <h3>Classification</h3>
+          <p class="mini">The Classification of Finite Simple Groups (1980s–2000s) lists all finite simple groups: cyclic of prime order, alternating, Lie type, and 26 sporadic groups.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>7) Research connections and applications</h2>
+      <div class="two-col">
+        <div>
+          <h3>Galois theory bridge</h3>
+          <p class="mini">Galois groups of field extensions classify solvability of polynomials by radicals. \(S_5\) is not solvable, explaining the quintic.</p>
+        </div>
+        <div>
+          <h3>Representation theory</h3>
+          <p class="mini">Homomorphisms \(G \to GL(V)\) linearize symmetry. Irreducible representations decompose physical state spaces in quantum mechanics.</p>
+        </div>
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Crystallography</h3>
+          <p class="mini">Space groups in \(\mathbb{R}^3\) classify crystal structures. Point groups \(C_n, D_n, T, O, I\) describe molecular symmetry.</p>
+        </div>
+        <div>
+          <h3>Cryptography</h3>
+          <p class="mini">Elliptic curve groups over finite fields underpin modern public-key cryptography. Discrete logarithm hardness depends on group structure.</p>
+        </div>
+      </div>
+      <p class="mini">
+        Related: <a href="cryptography.html">Cryptography</a>, <a href="combinatorics.html">Combinatorics</a>,
+        <a href="algebraic-topology.html">Algebraic Topology</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>8) Quick knowledge check</h2>
+      <div class="quiz">
+        <ol>
+          <li>Prove that the identity element of a group is unique.</li>
+          <li>List all subgroups of \(\mathbb{Z}/6\mathbb{Z}\) and verify Lagrange's theorem.</li>
+          <li>Show that \(\ker\varphi \trianglelefteq G\) for any homomorphism \(\varphi : G \to K\).</li>
+          <li>Write down the multiplication table for \(D_3\) and identify its centre.</li>
+          <li>Use the orbit-stabilizer theorem to find \(|\mathcal{O}_x|\) when \(|G| = 24\) and \(|\operatorname{Stab}(x)| = 6\).</li>
+          <li>Determine how many Sylow 2-subgroups a group of order 12 can have.</li>
+          <li>State Cayley's theorem and explain its significance.</li>
+        </ol>
+      </div>
+      <p class="mini">
+        For marking: state theorems precisely, show normality or subgroup checks explicitly, and justify counting arguments via divisibility.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>9) Next topics</h2>
+      <ul>
+        <li><a href="real-analysis.html">Real Analysis</a> — rigorous limits underpin algebraic structures on \(\mathbb{R}\)</li>
+        <li><a href="topology.html">Topology</a> — continuity and symmetry beyond metric settings</li>
+        <li><a href="algebraic-topology.html">Algebraic Topology</a> — homotopy groups and fundamental groups</li>
+        <li><a href="cryptography.html">Cryptography</a> — finite groups in public-key systems</li>
+        <li><a href="combinatorics.html">Combinatorics</a> — counting orbits and Burnside's lemma</li>
+        <li><a href="complex-analysis.html">Complex Analysis</a> — automorphism groups of the disc</li>
+        <li><a href="pure_math_subjects.html">Pure Math Subjects Catalog</a></li>
+        <li><a href="index.html">Engineering Knowledge Hub</a></li>
+      </ul>
+    </div>
+
+    <p class="page-footer-note">Postgraduate / research-level Mathematics content.</p>
     </div>
   </div>
 </body>

@@ -1,62 +1,240 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/corporate.css">
-    <script src="js/site-layout.js" defer></script>
-  <title>Real-World Applications of Calculus</title>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/corporate.css">
+  <script src="js/site-layout.js" defer></script>
+  <title>Calculus (Real World Problems) - A-Level</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
 </head>
-<body>
-  
-    <div class="page-container">
-        <a href="index.html" class="back-link">&larr; Back to Hub</a>
-<h1>Real-World Applications of Calculus</h1>
 
-  <div class="example">
-    <h2>1. Engineering – Suspension Bridge Design</h2>
-    <p>Calculating the bending moment for a uniformly distributed load:</p>
-    <p>\[ M(x) = \frac{w}{2}x(L - x) \]</p>
-    <p>Used to determine structural load and stress points.</p>
-  </div>
-
-  <div class="example">
-    <h2>2. Physics – Spacecraft Landing on Mars</h2>
-    <p>Using integration to calculate velocity and position under Martian gravity:</p>
-    <p>\[ v(t) = -3.71t + v_0 \]</p>
-    <p>\[ s(t) = -1.855t^2 + v_0t + s_0 \]</p>
-  </div>
-
-  <div class="example">
-    <h2>3. Economics – Profit Maximization</h2>
-    <p>Finding the maximum profit point by setting the derivative of profit to zero:</p>
-    <p>\[ P(x) = -2x^2 + 100x - 500 \]</p>
-    <p>\[ P'(x) = -4x + 100 \Rightarrow x = 25 \]</p>
-  </div>
-
-  <div class="example">
-    <h2>4. Environmental Science – Rainwater Runoff</h2>
-    <p>Total rainwater accumulation over 2 hours from a linear rate:</p>
-    <p>\[ r(t) = 5t \]</p>
-    <p>\[ \int_0^2 5t \, dt = 10 \text{ liters} \]</p>
-  </div>
-
-  <div class="example">
-    <h2>5. Computer Science – Simulating Object Movement</h2>
-    <p>Physics simulation under gravity:</p>
-    <p>\[ a(t) = -9.8 \Rightarrow v(t) = -9.8t + v_0 \]</p>
-    <p>\[ s(t) = -4.9t^2 + v_0t + s_0 \]</p>
-  </div>
-
-  <div class="example">
-    <h2>6. Biology/Medicine – Drug Absorption</h2>
-    <p>Modeling drug concentration over time with exponential decay:</p>
-    <p>\[ C(t) = C_0 e^{-kt} \]</p>
-    <p>\[ \text{AUC} = \int_0^\infty C_0 e^{-kt} dt = \frac{C_0}{k} \]</p>
-  </div>
-
+<body class="content-page">
+  <div class="page-container">
+    <div class="content-hero">
+      <nav class="page-hero-breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">&larr; Back to Hub</a>
+      </nav>
+      <h1>Calculus (Real World Problems)</h1>
+      <p>A-Level guide. Modelling motion, growth and decay, and optimisation in bridges, projectiles, and population dynamics.</p>
+      <div class="content-nav">
+        <a href="pure_math_subjects.html">&larr; Pure Math Subjects Catalog</a>
+      </div>
     </div>
+
+    <div class="content-body">
+
+    <div class="card">
+      <h2>1) Modelling with calculus</h2>
+      <p>
+        Real-world problems often involve quantities that <strong>change continuously</strong>. Calculus provides the
+        language: differentiation for <strong>rates of change</strong>, integration for <strong>accumulation</strong>
+        over time or space.
+      </p>
+      <div class="callout">
+        <strong>Key idea:</strong> If \( s(t) \) is displacement, then velocity \( v = \dfrac{ds}{dt} \) and
+        acceleration \( a = \dfrac{dv}{dt} \). Integration reverses these relationships.
+      </div>
+      <p class="mini">
+        Builds on <a href="differentiation.html">Differentiation</a> and <a href="integration.html">Integration</a>.
+        See also <a href="optimization.html">Optimization</a> for max/min problems.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>2) Motion — kinematics</h2>
+      <p>
+        Under constant acceleration \( a \), starting from initial velocity \( u \) and displacement \( s_0 \):
+      </p>
+      <p>
+        \[ v(t) = u + at, \qquad s(t) = s_0 + ut + \tfrac{1}{2}at^2 \]
+      </p>
+      <div class="callout">
+        <strong>Worked example:</strong> A vehicle decelerates from 25 m s⁻¹ at \( a = -5 \) m s⁻². Time to stop:
+        \( 0 = 25 - 5t \Rightarrow t = 5 \) s. Distance: \( s = 25(5) + \tfrac{1}{2}(-5)(25) = 62.5 \) m.
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Differentiation path</h3>
+          <p class="mini">Given \( s(t) \), find \( v \) and \( a \) by differentiating.</p>
+        </div>
+        <div>
+          <h3>Integration path</h3>
+          <p class="mini">Given \( a(t) \), integrate to get \( v \), then integrate again for \( s \).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>3) Projectile motion</h2>
+      <p>
+        A projectile launched with speed \( u \) at angle \( \theta \) above horizontal, neglecting air resistance,
+        has horizontal and vertical components under gravity \( g \):
+      </p>
+      <p>
+        \[ x(t) = u\cos\theta \cdot t, \qquad y(t) = u\sin\theta \cdot t - \tfrac{1}{2}gt^2 \]
+      </p>
+      <div class="callout">
+        <strong>Maximum height:</strong> At the top, vertical velocity is zero. From \( v_y = u\sin\theta - gt = 0 \),
+        time to peak: \( t = \dfrac{u\sin\theta}{g} \). Maximum height:
+        \[ H = \frac{u^2\sin^2\theta}{2g} \]
+      </div>
+      <div class="callout">
+        <strong>Range on level ground:</strong>
+        \[ R = \frac{u^2\sin 2\theta}{g} \]
+        Maximum range when \( \theta = 45° \) (for launch and landing at the same height).
+      </div>
+      <div class="warning">
+        <strong>Assumption:</strong> These formulae ignore air resistance. Real aircraft and long-range projectiles
+        need more complex models.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>4) Exponential growth and decay</h2>
+      <p>
+        Many natural processes change at a rate proportional to the current amount:
+        \[ \frac{dN}{dt} = kN \]
+        Solution: \( N(t) = N_0 e^{kt} \). Growth if \( k &gt; 0 \), decay if \( k &lt; 0 \).
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th>Equation</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Population growth</td>
+              <td>\( P(t) = P_0 e^{rt} \)</td>
+              <td>Bacterial culture doubling</td>
+            </tr>
+            <tr>
+              <td>Radioactive decay</td>
+              <td>\( N(t) = N_0 e^{-\lambda t} \)</td>
+              <td>Half-life: \( t_{1/2} = \dfrac{\ln 2}{\lambda} \)</td>
+            </tr>
+            <tr>
+              <td>Newton cooling</td>
+              <td>\( T(t) = T_{\text{env}} + (T_0 - T_{\text{env}})e^{-kt} \)</td>
+              <td>Hot component cooling in air</td>
+            </tr>
+            <tr>
+              <td>Capacitor discharge</td>
+              <td>\( V(t) = V_0 e^{-t/RC} \)</td>
+              <td>See <a href="calculus-electrical-engineering.html">Calculus (Electrical Engineering)</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>5) Structural modelling — bridges and beams</h2>
+      <p>
+        Engineers use calculus to find bending moments, shear forces, and deflections in structures.
+        For a simply supported beam of length \( L \) with uniform load \( w \) per unit length:
+      </p>
+      <p>
+        \[ M(x) = \frac{w}{2}x(L - x) \]
+      </p>
+      <p>
+        The maximum bending moment occurs at mid-span (\( x = L/2 \)):
+        \( M_{\max} = \dfrac{wL^2}{8} \). Differentiating \( M(x) \) and setting to zero confirms this turning point.
+      </p>
+      <div class="callout">
+        <strong>Deflection:</strong> Beam deflection \( y(x) \) involves integrating the bending moment twice:
+        \[ EI\,\frac{d^2y}{dx^2} = M(x) \]
+        where \( E \) is Young's modulus and \( I \) is the second moment of area.
+      </div>
+      <p class="mini">
+        Suspension bridge cables follow a catenary or parabolic shape under load — optimisation minimises material
+        while meeting strength constraints.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>6) Optimisation applications</h2>
+      <p>
+        Real-world optimisation combines modelling with differentiation. Common A-Level and engineering examples:
+      </p>
+      <ul>
+        <li><strong>Minimum material:</strong> Surface area of a cylinder for fixed volume \( V = \pi r^2 h \)</li>
+        <li><strong>Maximum profit:</strong> Revenue minus cost as a function of production quantity</li>
+        <li><strong>Shortest time / path:</strong> Minimise a time function subject to constraints</li>
+        <li><strong>Population carrying capacity:</strong> Logistic model \( \dfrac{dP}{dt} = rP(1 - P/K) \)</li>
+      </ul>
+      <div class="callout">
+        <strong>Logistic growth:</strong> Population grows quickly at first, then slows as it approaches carrying
+        capacity \( K \). Unlike pure exponential growth, it models limited resources realistically.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>7) Setting up and validating models</h2>
+      <div class="two-col">
+        <div>
+          <h3>Modelling steps</h3>
+          <ol>
+            <li>Identify variables and units</li>
+            <li>State assumptions (constant \( g \), no friction, etc.)</li>
+            <li>Write the differential relationship or function</li>
+            <li>Solve using calculus techniques</li>
+            <li>Interpret results and check units</li>
+          </ol>
+        </div>
+        <div>
+          <h3>Validation</h3>
+          <ul>
+            <li>Does the answer have sensible magnitude?</li>
+            <li>Do limiting cases work (e.g. \( t = 0 \))?</li>
+            <li>Compare with data or simulation</li>
+          </ul>
+        </div>
+      </div>
+      <div class="warning">
+        <strong>Exam tip:</strong> Always define symbols at the start. Examiners award marks for correct setup even
+        if later algebra goes wrong.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>8) Quick knowledge check</h2>
+      <div class="quiz">
+        <ol>
+          <li>A ball is thrown vertically upward at 20 m s⁻¹. Taking \( g = 10 \) m s⁻², find the maximum height and time to return to the thrower's hand.</li>
+          <li>A population grows according to \( P(t) = 500e^{0.03t} \). Find the population after 10 years and the growth rate \( dP/dt \) at \( t = 10 \).</li>
+          <li>A projectile is fired at 40 m s⁻¹ at 30° to the horizontal. Find the range on level ground (\( g = 10 \) m s⁻²).</li>
+          <li>Write the bending moment equation for a 8 m beam with uniform load 2 kN m⁻¹ and find \( M_{\max} \).</li>
+          <li>Radioactive substance has half-life 6 hours. If \( N_0 = 1000 \) atoms, how many remain after 18 hours?</li>
+          <li>Explain one assumption in the standard projectile model and how it might affect real results.</li>
+        </ol>
+      </div>
+      <p class="mini">
+        For marking: show calculus steps, include units, and state assumptions where relevant.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>9) Next topics</h2>
+      <ul>
+        <li><a href="optimization.html">Optimization</a> — systematic max/min techniques</li>
+        <li><a href="differentiation-in-engineering.html">Differentiation in Engineering</a> — rates in electrical and aircraft systems</li>
+        <li><a href="integration-in-engineering.html">Integration in Engineering</a> — accumulation in engineering contexts</li>
+        <li><a href="calculus-electrical-engineering.html">Calculus (Electrical Engineering)</a> — circuits and transients</li>
+        <li><a href="differential-equations.html">Differential Equations</a> — formal theory beyond A-Level models</li>
+        <li><a href="pure_math_subjects.html">Pure Math Subjects Catalog</a></li>
+        <li><a href="index.html">Engineering Knowledge Hub</a></li>
+      </ul>
+    </div>
+
+    <p class="page-footer-note">A-Level calculus real-world problems content.</p>
+    </div>
+  </div>
 </body>
 </html>

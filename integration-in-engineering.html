@@ -2,200 +2,201 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="css/corporate.css">
-    <script src="js/site-layout.js" defer></script>
-  <title>Integration in Electrical and Aircraft Engineering</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/corporate.css">
+  <script src="js/site-layout.js" defer></script>
+  <title>Integration in Engineering - A-Level</title>
   <script type="text/javascript" async
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
   </script>
 </head>
-<body>
-  
-    <div class="page-container">
-        <a href="index.html" class="back-link">&larr; Back to Hub</a>
-<h1>Integration in Electrical and Aircraft Engineering</h1>
 
-  <div class="section">
-    <h2>🔌 Integration in Electrical Engineering</h2>
-
-    <h3>1. Capacitors and Inductors</h3>
-    <p>
-      The behavior of capacitors and inductors involves time integrals:
-      <br>
-      \( V_C(t) = \frac{1}{C} \int i(t)\,dt + V_0 \)
-      <br>
-      \( i_L(t) = \frac{1}{L} \int v(t)\,dt + i_0 \)
-    </p>
-
-    <h3>2. Energy Calculations</h3>
-    <p>
-      Electrical energy is obtained by integrating power:
-      \( E = \int P(t)\,dt \)
-      <br>
-      Capacitor and inductor stored energy:
-      \[
-      E_C = \frac{1}{2}CV^2, \quad E_L = \frac{1}{2}LI^2
-      \]
-    </p>
-
-    <h3>3. Signal Processing</h3>
-    <ul>
-      <li>Op-amp integrators: \( V_{out} = -\frac{1}{RC} \int V_{in}(t)\,dt \)</li>
-      <li>Filtering and smoothing signals</li>
-    </ul>
-
-    <h3>4. Control Systems</h3>
-    <p>
-      PID controllers use integration for the integral control term:
-      \[
-      u(t) = K_p e(t) + K_i \int e(t)\,dt + K_d \frac{de(t)}{dt}
-      \]
-    </p>
-
-    <h3>5. Electromagnetics</h3>
-    <ul>
-      <li>Gauss’s Law:
-        \[
-        \oint_S \vec{D} \cdot d\vec{A} = Q_{\text{enclosed}}
-        \]
-      </li>
-      <li>Faraday’s Law:
-        \[
-        \oint_C \vec{E} \cdot d\vec{l} = -\frac{d\Phi_B}{dt}
-        \]
-      </li>
-    </ul>
-
-    <h3>6. System Simulation</h3>
-    <p>
-      Simulation tools solve integral-differential equations such as:
-      \[
-      L \frac{d^2i}{dt^2} + R \frac{di}{dt} + \frac{1}{C} i(t) = V(t)
-      \]
-    </p>
-
-    <h3>7. Embedded Systems</h3>
-    <ul>
-      <li>Velocity from acceleration</li>
-      <li>Distance from velocity</li>
-    </ul>
-
-    <h3>8. Power Systems</h3>
-    <p>
-      Utility meters calculate energy as:
-      \[
-      E = \int_0^T P(t)\,dt
-      \]
-    </p>
-
-    <h3>Summary Table</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>Application Area</th>
-          <th>Use of Integration</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>Capacitors & Inductors</td><td>Accumulate current/voltage over time</td></tr>
-        <tr><td>Energy Calculations</td><td>Energy from power or stored in components</td></tr>
-        <tr><td>Signal Processing</td><td>Filtering and op-amp integration</td></tr>
-        <tr><td>Control Systems</td><td>Integral action in PID control</td></tr>
-        <tr><td>Electromagnetics</td><td>Surface and volume field integrals</td></tr>
-        <tr><td>Simulation</td><td>Numerical integration for circuit modeling</td></tr>
-        <tr><td>Embedded Systems</td><td>Motion calculations from sensors</td></tr>
-        <tr><td>Power Systems</td><td>Energy usage from instantaneous power</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="section">
-    <h2>✈️ Integration in Aircraft Engineering and Flight</h2>
-
-    <h3>1. Flight Dynamics and Navigation</h3>
-    <p>
-      Calculate velocity and position:
-      \[
-      v(t) = \int a(t)\,dt, \quad s(t) = \int v(t)\,dt
-      \]
-      Essential in inertial navigation systems (INS).
-    </p>
-
-    <h3>2. Aerodynamic Forces</h3>
-    <p>
-      Total lift and drag from pressure:
-      \[
-      L = \int_A p(x, y)\,dA
-      \]
-    </p>
-
-    <h3>3. Structural Analysis</h3>
-    <p>
-      Beam deflection from moment:
-      \[
-      y(x) = \int \int \frac{M(x)}{EI}\,dx^2
-      \]
-    </p>
-
-    <h3>4. Fuel and Range Estimation</h3>
-    <p>
-      Total fuel used:
-      \[
-      F = \int_0^t \dot{F}(t)\,dt
-      \]
-    </p>
-
-    <h3>5. Flight Control Systems</h3>
-    <p>
-      Same PID control structure as in electrical systems:
-      \[
-      u(t) = K_p e(t) + K_i \int e(t)\,dt + K_d \frac{de(t)}{dt}
-      \]
-    </p>
-
-    <h3>6. Propulsion and Thermodynamics</h3>
-    <p>
-      Mass flow and energy:
-      \[
-      \dot{m} = \int_A \rho v\,dA
-      \]
-    </p>
-
-    <h3>7. Vibration Analysis</h3>
-    <p>
-      Integration of angular velocity:
-      \[
-      x(t) = \int \omega(t)\,dt
-      \]
-    </p>
-
-    <h3>8. Flight Simulation</h3>
-    <p>
-      Solving nonlinear equations of motion with numerical integration (e.g., Runge-Kutta).
-    </p>
-
-    <h3>Summary Table</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>Application Area</th>
-          <th>Use of Integration</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>Flight Dynamics</td><td>Velocity and position from acceleration</td></tr>
-        <tr><td>Navigation</td><td>INS computations of movement</td></tr>
-        <tr><td>Aerodynamics</td><td>Surface pressure to lift/drag</td></tr>
-        <tr><td>Structures</td><td>Deflection from bending moment</td></tr>
-        <tr><td>Fuel Estimation</td><td>Total consumption over time</td></tr>
-        <tr><td>Control Systems</td><td>PID controller integration</td></tr>
-        <tr><td>Propulsion</td><td>Mass flow and work calculation</td></tr>
-        <tr><td>Vibration</td><td>Response over time from angular motion</td></tr>
-        <tr><td>Simulation</td><td>Numerical integration of flight equations</td></tr>
-      </tbody>
-    </table>
-  </div>
+<body class="content-page">
+  <div class="page-container">
+    <div class="content-hero">
+      <nav class="page-hero-breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">&larr; Back to Hub</a>
+      </nav>
+      <h1>Integration in Engineering</h1>
+      <p>A-Level guide. Integrals in electrical and aircraft engineering — energy, charge, motion, and aerodynamic forces.</p>
+      <div class="content-nav">
+        <a href="pure_math_subjects.html">&larr; Pure Math Subjects Catalog</a>
+      </div>
     </div>
+
+    <div class="content-body">
+
+    <div class="card">
+      <h2>1) Integration as accumulation</h2>
+      <p>
+        Integration answers: <strong>how much has built up over time or space?</strong>
+        If \( v = ds/dt \), then displacement is \( s = \int v\,dt \). If \( p = dE/dt \), energy is
+        \( E = \int p\,dt \).
+      </p>
+      <div class="callout">
+        <strong>Key idea:</strong> Differentiation finds rates; integration finds totals. They are inverse operations
+        and appear together throughout engineering analysis.
+      </div>
+      <p class="mini">
+        Prerequisite: <a href="integration.html">Integration</a>.
+        Related: <a href="differentiation-in-engineering.html">Differentiation in Engineering</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>2) Electrical engineering — capacitors and inductors</h2>
+      <p>
+        Reactive components integrate current and voltage over time:
+      </p>
+      <p>
+        \[ v_C(t) = \frac{1}{C}\int i_C\,dt + v_0, \qquad i_L(t) = \frac{1}{L}\int v_L\,dt + i_0 \]
+      </p>
+      <div class="two-col">
+        <div>
+          <h3>Capacitor</h3>
+          <p class="mini">Charge accumulates: \( q = \int i\,dt \), and \( q = Cv \).</p>
+          <p class="mini">RC charging: \( v_C = V_s(1 - e^{-t/RC}) \) — integral of current through resistor.</p>
+        </div>
+        <div>
+          <h3>Inductor</h3>
+          <p class="mini">Current builds up gradually when voltage is applied.</p>
+          <p class="mini">RL circuit: \( i_L = \dfrac{V_s}{R}(1 - e^{-tR/L}) \).</p>
+        </div>
+      </div>
+      <div class="callout">
+        <strong>Stored energy:</strong>
+        \[ E_C = \frac{1}{2}CV^2, \qquad E_L = \frac{1}{2}LI^2 \]
+        These follow from integrating power \( p = vi \) during charging.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>3) Electrical engineering — energy, power, and signal processing</h2>
+      <ul>
+        <li><strong>Energy from power:</strong> \( E = \int_{t_1}^{t_2} p(t)\,dt \) — basis of electricity metering (kWh)</li>
+        <li><strong>Average power:</strong> \( \bar{P} = \dfrac{1}{T}\int_0^T v(t)i(t)\,dt \) — see <a href="calculus-power-calculations.html">Power Calculations</a></li>
+        <li><strong>Op-amp integrator:</strong> \( v_{\text{out}} = -\dfrac{1}{RC}\int v_{\text{in}}\,dt \) — low-pass filtering and waveform shaping</li>
+        <li><strong>PID integral term:</strong> \( K_i\int e(t)\,dt \) — eliminates steady-state error in control loops</li>
+      </ul>
+      <div class="callout">
+        <strong>Worked example:</strong> A 100 W heater runs for 3 hours. Energy consumed:
+        \( E = Pt = 100 \times 3 \times 3600 = 1.08 \times 10^6 \) J = 0.3 kWh.
+        For varying power, integrate: \( E = \int_0^T p(t)\,dt \).
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>4) Electrical engineering — electromagnetics</h2>
+      <p>
+        Field theory uses surface and volume integrals (preview for further study):
+      </p>
+      <p>
+        \[ \oint_S \vec{D}\cdot d\vec{A} = Q_{\text{enclosed}} \quad \text{(Gauss's law)} \]
+        \[ \oint_C \vec{E}\cdot d\vec{l} = -\frac{d\Phi_B}{dt} \quad \text{(Faraday's law)} \]
+      </p>
+      <p class="mini">
+        At A-Level, focus on the physical meaning: integrating a field over an area gives total flux or enclosed
+        charge; integrating along a path gives induced EMF.
+      </p>
+      <div class="warning">
+        <strong>Scope note:</strong> Vector calculus integrals are covered in depth at university. Here, recognise
+        that integration links local field quantities to global circuit effects (e.g. transformer induction).
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>5) Aircraft engineering — flight dynamics and navigation</h2>
+      <p>
+        Integration converts between acceleration, velocity, and position — the core of inertial navigation:
+      </p>
+      <p>
+        \[ v(t) = \int a(t)\,dt + v_0, \qquad s(t) = \int v(t)\,dt + s_0 \]
+      </p>
+      <div class="callout">
+        <strong>Worked example:</strong> An aircraft accelerates at \( a = 2 \) m s⁻² from rest.
+        After 10 s: \( v = \int_0^{10} 2\,dt = 20 \) m s⁻¹.
+        Distance: \( s = \int_0^{10} 2t\,dt = \left[t^2\right]_0^{10} = 100 \) m.
+      </div>
+      <ul>
+        <li><strong>INS (Inertial Navigation System):</strong> integrates accelerometer data to track position — drift requires periodic correction</li>
+        <li><strong>Fuel consumption:</strong> \( F = \int_0^T \dot{F}(t)\,dt \) — total fuel used over a flight segment</li>
+        <li><strong>Flight simulators:</strong> numerical integration (Runge-Kutta) solves equations of motion step by step</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>6) Aircraft engineering — aerodynamics and structures</h2>
+      <div class="two-col">
+        <div>
+          <h3>Aerodynamic forces</h3>
+          <p class="mini">Total lift from surface pressure distribution:</p>
+          <p class="mini">\[ L = \int_A p(x,y)\,dA \]</p>
+          <p class="mini">Pressure varies across the wing; integration sums the contribution of each area element.</p>
+        </div>
+        <div>
+          <h3>Structural deflection</h3>
+          <p class="mini">Beam deflection from bending moment:</p>
+          <p class="mini">\[ y(x) = \iint \frac{M(x)}{EI}\,dx^2 \]</p>
+          <p class="mini">Double integration of moment gives displacement — critical for wing and fuselage design.</p>
+        </div>
+      </div>
+      <div class="callout">
+        <strong>Propulsion:</strong> Mass flow rate through an engine inlet:
+        \( \dot{m} = \int_A \rho v\,dA \), where \( \rho \) is air density and \( v \) is local velocity.
+        Thrust depends on the rate of momentum change of this flow.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>7) Numerical integration and simulation</h2>
+      <p>
+        Most engineering integrals are evaluated numerically when analytical solutions are unavailable:
+      </p>
+      <ul>
+        <li><strong>Trapezium rule / Simpson's rule</strong> — A-Level numerical methods for definite integrals</li>
+        <li><strong>Euler method:</strong> \( y_{n+1} = y_n + f(t_n)\,\Delta t \) — basic ODE stepping</li>
+        <li><strong>Runge-Kutta methods</strong> — higher accuracy for flight simulation and circuit simulators (SPICE)</li>
+        <li><strong>Embedded systems:</strong> accumulate sensor readings: position += velocity × Δt</li>
+      </ul>
+      <div class="callout">
+        <strong>Electrical–mechanical analogy:</strong> The same integration techniques solve RLC circuits and
+        mass-spring-damper systems. Simulation tools solve both using identical numerical integrators.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>8) Quick knowledge check</h2>
+      <div class="quiz">
+        <ol>
+          <li>Write the integral relationships for capacitor voltage and inductor current.</li>
+          <li>A current of \( i(t) = 3 \) A flows into a 500 μF capacitor from \( t = 0 \) to \( t = 4 \) s (starting from \( v = 0 \)). Find the final voltage.</li>
+          <li>Calculate the energy stored in a 2 H inductor carrying 5 A.</li>
+          <li>An aircraft decelerates at \( a = -1.5 \) m s⁻² from 80 m s⁻¹. How far does it travel before stopping?</li>
+          <li>Explain how integration is used in an electricity meter to measure kWh.</li>
+          <li>Why do inertial navigation systems require periodic position updates from GPS?</li>
+        </ol>
+      </div>
+      <p class="mini">
+        For marking: show integration steps or definite integral evaluation, include units, and explain the engineering context.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>9) Next topics</h2>
+      <ul>
+        <li><a href="differentiation-in-engineering.html">Differentiation in Engineering</a> — rates in electrical and aircraft systems</li>
+        <li><a href="integration.html">Integration</a> — pure maths techniques and rules</li>
+        <li><a href="calculus-power-calculations.html">Calculus (Power Calculations)</a> — average power integrals</li>
+        <li><a href="calculus-real-world-problems.html">Calculus (Real World Problems)</a> — motion and growth models</li>
+        <li><a href="calculus-electrical-engineering.html">Calculus (Electrical Engineering)</a> — circuit transients</li>
+        <li><a href="control-theory.html">Control Theory</a> — PID and feedback systems</li>
+        <li><a href="pure_math_subjects.html">Pure Math Subjects Catalog</a></li>
+        <li><a href="index.html">Engineering Knowledge Hub</a></li>
+      </ul>
+    </div>
+
+    <p class="page-footer-note">A-Level integration in engineering content.</p>
+    </div>
+  </div>
 </body>
 </html>

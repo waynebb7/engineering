@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="css/corporate.css">
   <script src="js/site-layout.js" defer></script>
-  <title>Projective Variety</title>
+  <title>Projective Variety - Postgraduate</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
 </head>
 
 <body class="content-page">
@@ -15,30 +18,197 @@
         <a href="index.html">&larr; Back to Hub</a>
       </nav>
       <h1>Projective Variety</h1>
-      <p>Mathematics topic page. Content is being developed.</p>
+      <p>Postgraduate guide. Projective space, homogeneous coordinates, Zariski topology, Nullstellensatz, and geometric properties of varieties.</p>
       <div class="content-nav">
         <a href="pure_math_subjects.html">&larr; Pure Math Subjects Catalog</a>
       </div>
     </div>
 
     <div class="content-body">
-      <div class="card">
-        <h2>Overview</h2>
-        <p>
-          This page is a placeholder for <strong>Projective Variety</strong>. It is linked from the
-          <a href="pure_math_subjects.html">Pure Math Subjects Catalog</a> and will be expanded with explanations,
-          worked examples, and engineering applications.
-        </p>
-      </div>
 
-      <div class="card">
-        <h2>Coming soon</h2>
+    <div class="card">
+      <h2>1) Projective space and homogeneous coordinates</h2>
+      <p>
+        <strong>Projective space</strong> \(\mathbb{P}^n_k\) over a field \(k\) is the set of lines through
+        the origin in \(k^{n+1}\). Points are written in <strong>homogeneous coordinates</strong>
+        \([x_0 : x_1 : \cdots : x_n]\), defined up to scaling by nonzero \(\lambda \in k^\times\).
+      </p>
+      <div class="callout">
+        <strong>Affine charts:</strong> On \(U_i = \{x_i \neq 0\}\), set coordinates
+        \(t_j = x_j / x_i\) (\(j \neq i\)) to identify \(U_i \cong \mathbb{A}^n_k\). Projective space is
+        covered by \(n+1\) affine charts.
+      </div>
+      <div class="callout">
+        <strong>Key idea:</strong> Projective space compactifies affine space: parallel lines meet at points
+        at infinity, eliminating many special cases in intersection theory.
+      </div>
+      <p class="mini">
+        Prerequisite: <a href="algebraic-geometry.html">Algebraic Geometry</a> and
+        <a href="polynomials.html">Polynomials</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>2) Projective varieties and homogeneous ideals</h2>
+      <p>
+        A <strong>projective variety</strong> is the zero locus in \(\mathbb{P}^n\) of homogeneous
+        polynomials \(f_1, \ldots, f_r \in k[x_0, \ldots, x_n]\):
+        \[
+        V(I) = \{[x] \in \mathbb{P}^n : f([x]) = 0 \text{ for all } f \in I\}
+        \]
+        where \(I\) is a homogeneous ideal. Evaluation is well-defined because homogeneous polynomials
+        satisfy \(f(\lambda x) = \lambda^d f(x)\).
+      </p>
+      <div class="callout">
+        <strong>Examples:</strong>
         <ul>
-          <li>Key definitions and notation</li>
-          <li>Step-by-step examples</li>
-          <li>Links to related calculators and reference material</li>
+          <li>Linear subspaces: \(V(\langle L_1, \ldots, L_{n-k}\rangle)\) of dimension \(k\).</li>
+          <li>Fermat curve: \(x_0^n + x_1^n + x_2^n = 0\) in \(\mathbb{P}^2\).</li>
+          <li>Veronese embedding: \(v_d: \mathbb{P}^n \to \mathbb{P}^N\) via degree-\(d\) monomials.</li>
         </ul>
       </div>
+    </div>
+
+    <div class="card">
+      <h2>3) Zariski topology and irreducibility</h2>
+      <p>
+        Closed sets in \(\mathbb{P}^n\) are exactly projective varieties. This
+        <strong>Zariski topology</strong> is coarser than the Euclidean topology and encodes algebraic
+        structure. A nonempty variety is <strong>irreducible</strong> if it cannot be written as a union
+        of two proper closed subvarieties.
+      </p>
+      <div class="callout">
+        <strong>Projective Nullstellensatz:</strong> For a homogeneous ideal \(I \subset k[x_0,\ldots,x_n]\),
+        \[
+        I(V(I)) = \sqrt{I}
+        \]
+        (with the convention that \(I(\emptyset) = (x_0, \ldots, x_n)\)). Radical ideals correspond to varieties.
+      </div>
+      <div class="warning">
+        <strong>Convention:</strong> Distinguish \(\mathbb{P}^n\) from its affine cone \(\mathbb{A}^{n+1} \setminus \{0\}\).
+        Homogeneous ideals must be generated in degree \(\geq 1\) to avoid spurious components at the origin.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>4) Dimension, degree, and Hilbert polynomial</h2>
+      <p>
+        The <strong>Krull dimension</strong> of \(V = V(I)\) equals the transcendence degree of its function
+        field \(k(V)\) over \(k\). For a hypersurface \(V(f)\) with \(f\) irreducible of degree \(d\),
+        the <strong>degree</strong> is \(\deg V = d\).
+      </p>
+      <div class="callout">
+        <strong>Hilbert polynomial:</strong> For a projective variety \(X \subset \mathbb{P}^n\), the Hilbert
+        function \(h_X(m) = \dim_k H^0(X, \mathcal{O}_X(m))\) is eventually a polynomial whose degree
+        equals \(\dim X\) and whose leading coefficient encodes degree and volume data.
+      </div>
+      <div class="callout">
+        <strong>Worked example:</strong> A plane curve \(C \subset \mathbb{P}^2\) of degree \(d\) has
+        Hilbert polynomial \(P_C(m) = dm - \frac{d(d-1)}{2} + 1\) (genus formula for smooth curves).
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>5) Bézout's theorem and intersections</h2>
+      <p>
+        In \(\mathbb{P}^2_k\) over an algebraically closed field, two curves of degrees \(d\) and \(e\)
+        without common components intersect in exactly \(de\) points counted with multiplicity (including
+        complex points and points at infinity).
+      </p>
+      <div class="callout">
+        <strong>Intersection multiplicity:</strong> Tangency and higher-order contact increase multiplicity;
+        Bézout's theorem counts these weighted contributions.
+      </div>
+      <div class="callout">
+        <strong>Worked example:</strong> A line (\(d=1\)) and a conic (\(d=2\)) meet in 2 points in
+        \(\mathbb{P}^2_{\mathbb{C}}\), unless the line is tangent (multiplicity 2 at one point).
+      </div>
+      <p class="mini">
+        Related: <a href="grobner-basis.html">Grobner Basis</a> for computing intersection ideals.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>6) Maps, rational functions, and birational geometry</h2>
+      <p>
+        A <strong>regular map</strong> \(\varphi: X \to Y\) between varieties is given locally by homogeneous
+        polynomials of the same degree. A <strong>rational map</strong> is defined on a dense open set and
+        may have indeterminacy loci.
+      </p>
+      <div class="callout">
+        <strong>Function field:</strong> \(k(X)\) consists of ratios \(f/g\) of homogeneous polynomials of
+        the same degree, modulo the ideal of \(X\). Birational equivalence means \(k(X) \cong k(Y)\).
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Blow-ups</h3>
+          <p class="mini">Resolve singularities and indeterminacy by replacing a point with a projective space of directions.</p>
+        </div>
+        <div>
+          <h3>Rational normal curves</h3>
+          <p class="mini">The Veronese image of \(\mathbb{P}^1\) is a rational curve of degree \(d\) in \(\mathbb{P}^d\).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>7) Applications</h2>
+      <div class="two-col">
+        <div>
+          <h3>Coding theory</h3>
+          <p class="mini">Algebraic-geometry codes use points on curves over finite fields in \(\mathbb{P}^n_{\mathbb{F}_q}\).</p>
+        </div>
+        <div>
+          <h3>Computer vision</h3>
+          <p class="mini">Multiple-view geometry and camera calibration use projective invariants.</p>
+        </div>
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Cryptography</h3>
+          <p class="mini">Elliptic curves are smooth plane cubics; pairings use divisor theory on projective curves.</p>
+        </div>
+        <div>
+          <h3>String theory</h3>
+          <p class="mini">Calabi–Yau varieties in projective spaces model compact extra dimensions.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>8) Quick knowledge check</h2>
+      <div class="quiz">
+        <ol>
+          <li>Define \(\mathbb{P}^n_k\) and explain homogeneous coordinates.</li>
+          <li>Why must defining polynomials be homogeneous in projective geometry?</li>
+          <li>State the projective Nullstellensatz.</li>
+          <li>What does Bézout's theorem predict for a cubic and a line in \(\mathbb{P}^2\)?</li>
+          <li>Define irreducibility of a variety.</li>
+          <li>How does the Hilbert polynomial encode dimension?</li>
+          <li>Give an example of a birational but non-isomorphic pair of varieties.</li>
+        </ol>
+      </div>
+      <p class="mini">
+        For marking: work over algebraically closed fields when applying Nullstellensatz and Bézout;
+        distinguish affine and projective charts.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>9) Next topics</h2>
+      <ul>
+        <li><a href="algebraic-geometry.html">Algebraic Geometry</a> — schemes and sheaves</li>
+        <li><a href="grobner-basis.html">Grobner Basis</a> — computing ideals of varieties</li>
+        <li><a href="riemann-surfaces.html">Riemann Surfaces</a> — one-dimensional varieties</li>
+        <li><a href="algebraic-number-theory.html">Algebraic Number Theory</a> — arithmetic varieties</li>
+        <li><a href="topology.html">Topology</a> — Zariski vs classical topology</li>
+        <li><a href="cryptography.html">Cryptography</a> — elliptic-curve cryptography</li>
+        <li><a href="pure_math_subjects.html">Pure Math Subjects Catalog</a></li>
+        <li><a href="index.html">Engineering Knowledge Hub</a></li>
+      </ul>
+    </div>
+
+    <p class="page-footer-note">Postgraduate Mathematics content.</p>
     </div>
   </div>
 </body>

@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="css/corporate.css">
   <script src="js/site-layout.js" defer></script>
-  <title>Fermats Last Theorem</title>
+  <title>Fermat's Last Theorem - Research</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
 </head>
 
 <body class="content-page">
@@ -14,31 +17,243 @@
       <nav class="page-hero-breadcrumb" aria-label="Breadcrumb">
         <a href="index.html">&larr; Back to Hub</a>
       </nav>
-      <h1>Fermats Last Theorem</h1>
-      <p>Mathematics topic page. Content is being developed.</p>
+      <h1>Fermat's Last Theorem</h1>
+      <p>Research guide. The statement, reduction to elliptic curves, the modularity theorem, and Wiles's proof outline connecting arithmetic geometry to Galois representations.</p>
       <div class="content-nav">
         <a href="pure_math_subjects.html">&larr; Pure Math Subjects Catalog</a>
       </div>
     </div>
 
     <div class="content-body">
-      <div class="card">
-        <h2>Overview</h2>
-        <p>
-          This page is a placeholder for <strong>Fermats Last Theorem</strong>. It is linked from the
-          <a href="pure_math_subjects.html">Pure Math Subjects Catalog</a> and will be expanded with explanations,
-          worked examples, and engineering applications.
-        </p>
-      </div>
 
-      <div class="card">
-        <h2>Coming soon</h2>
-        <ul>
-          <li>Key definitions and notation</li>
-          <li>Step-by-step examples</li>
-          <li>Links to related calculators and reference material</li>
-        </ul>
+    <div class="card">
+      <h2>1) The statement and historical context</h2>
+      <p>
+        <strong>Fermat's Last Theorem</strong> (FLT) asserts: for integers \(n \geq 3\), the equation
+        \[
+        x^n + y^n = z^n
+        \]
+        has no nonzero integer solutions \((x, y, z)\). Fermat claimed a proof in the 1630s (margin note in <em>Arithmetica</em>); the first complete proof was achieved by Andrew Wiles (1995), with Richard Taylor.
+      </p>
+      <div class="callout">
+        <strong>Early progress:</strong> Euler proved \(n = 3, 4\). Dirichlet and Legendre handled \(n = 5, 7\). Kummer's work on <strong>regular primes</strong> (using cyclotomic fields) proved FLT for infinitely many exponents but not all.
       </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Exponent / case</th>
+              <th>Status before 1995</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>\(n = 3, 4\)</td>
+              <td>Euler, Fermat (infinite descent)</td>
+            </tr>
+            <tr>
+              <td>Regular primes</td>
+              <td>Kummer (1847); covers e.g. \(n = 5, 7, 11, 13\)</td>
+            </tr>
+            <tr>
+              <td>\(n &lt; 4 \times 10^6\)</td>
+              <td>Computational (Wagstaff, others)</td>
+            </tr>
+            <tr>
+              <td>All \(n \geq 3\)</td>
+              <td>Wiles (1995) via modularity</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="mini">
+        Prerequisite: <a href="elementary-algebra.html">Elementary Algebra</a>, <a href="number-theory.html">Number Theory</a>, <a href="algebraic-number-theory.html">Algebraic Number Theory</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>2) Reduction to elliptic curves (Frey, Serre, Ribet)</h2>
+      <p>
+        Suppose \((a, b, c)\) is a counterexample to FLT with \(\gcd(a,b,c) = 1\) and exponent prime \(p \geq 5\) (Wiles's case; other exponents follow from this). The <strong>Frey curve</strong> is
+        \[
+        E : y^2 = x(x - a^p)(x + b^p).
+        \]
+        This elliptic curve over \(\mathbb{Q}\) is semistable and (conjecturally) should not exist if FLT holds.
+      </p>
+      <div class="callout">
+        <strong>Serre's \(\varepsilon\)-conjecture (1986):</strong> The Galois representation \(\rho_{E,p} : \mathrm{Gal}(\overline{\mathbb{Q}}/\mathbb{Q}) \to \mathrm{GL}_2(\mathbb{F}_p)\) attached to \(E\) is <strong>irreducible</strong> and <strong>modular</strong> (comes from a modular form of weight 2 and level \(N\)).
+      </div>
+      <div class="callout">
+        <strong>Ribet's level-lowering (1986):</strong> If \(\rho_{E,p}\) is irreducible and \(E\) is semistable, then \(\rho_{E,p}\) is modular of level 2 (i.e. comes from a modular form of level 2). A modular form of level 2 cannot exist (no cusp forms), yielding a contradiction.
+      </div>
+      <div class="warning">
+        <strong>Logical chain:</strong> FLT follows from: (i) Frey curve is semistable, (ii) modularity lifting (Wiles), (iii) Ribet's level lowering. Wiles proved (ii) for semistable curves, completing the argument.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>3) Elliptic curves and Galois representations</h2>
+      <p>
+        An <strong>elliptic curve</strong> over \(\mathbb{Q}\) is a smooth projective curve \(E : y^2 = x^3 + ax + b\) with \(a, b \in \mathbb{Q}\) and discriminant \(\Delta = -16(4a^3 + 27b^2) \neq 0\). The set \(E(\mathbb{Q})\) of rational points forms a finitely generated abelian group (Mordell&ndash;Weil theorem).
+      </p>
+      <p>
+        For a prime \(p\), the \(p\)-torsion \(E[p] \cong (\mathbb{Z}/p\mathbb{Z})^2\) gives a <strong>Galois representation</strong>
+        \[
+        \rho_{E,p} : \mathrm{Gal}(\overline{\mathbb{Q}}/\mathbb{Q}) \longrightarrow \mathrm{GL}_2(\mathbb{F}_p).
+        \]
+        The Frobenius element at a good prime \(\ell\) has characteristic polynomial \(T^2 - a_\ell T + \ell\) where \(a_\ell = \ell + 1 - \#E(\mathbb{F}_\ell)\).
+      </p>
+      <div class="two-col">
+        <div>
+          <h3>Semistable reduction</h3>
+          <p class="mini">\(E\) is semistable if it has good reduction outside a set of primes dividing the conductor \(N\), and bad reduction is multiplicative (Kodaira type I\(_m\)). The Frey curve is semistable.</p>
+        </div>
+        <div>
+          <h3>Conductor</h3>
+          <p class="mini">The minimal \(N\) such that \(E\) has good reduction outside primes dividing \(N\). For the Frey curve, \(N = abc\) (product of the FLT counterexample primes).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>4) Modular forms and the modularity theorem</h2>
+      <p>
+        A <strong>modular form</strong> of weight \(k\) and level \(N\) is a holomorphic function \(f : \mathbb{H} \to \mathbb{C}\) satisfying
+        \[
+        f\left(\frac{az+b}{cz+d}\right) = (cz+d)^k f(z), \quad \begin{pmatrix} a & b \\ c & d \end{pmatrix} \in \Gamma_0(N),
+        \]
+        with growth conditions at cusps. A <strong>cusp form</strong> vanishes at all cusps.
+      </p>
+      <div class="callout">
+        <strong>Modularity theorem (Taniyama&ndash;Shimura&ndash;Weil, now proved):</strong> Every elliptic curve \(E/\mathbb{Q}\) is <strong>modular</strong>: there exists a weight-2 cusp form \(f\) of level \(N\) (the conductor of \(E\)) such that
+        \[
+        a_\ell(f) = a_\ell(E) \quad \text{for all but finitely many primes } \ell.
+        \]
+        Equivalently, the \(L\)-function \(L(E, s)\) equals \(L(f, s)\) (up to factors at bad primes).
+      </div>
+      <div class="callout">
+        <strong>Hecke operators:</strong> \(T_\ell f = \sum_{[a : b] \in \mathbb{P}^1(\mathbb{F}_\ell)} f\left(\frac{a z + b}{\ell}\right)\). Eigenforms of Hecke operators correspond to Galois representations with controlled ramification.
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Object</th>
+              <th>Associated invariant</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Elliptic curve \(E/\mathbb{Q}\)</td>
+              <td>\(L(E,s)\), conductor \(N\), \(\rho_{E,p}\)</td>
+            </tr>
+            <tr>
+              <td>Modular form \(f\)</td>
+              <td>\(L(f,s)\), Fourier coefficients \(a_n(f)\)</td>
+            </tr>
+            <tr>
+              <td>Galois representation \(\rho\)</td>
+              <td>Ramification set, traces \(\mathrm{tr}(\mathrm{Frob}_\ell)\)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>5) Wiles's proof outline</h2>
+      <p>
+        Wiles proved the <strong>modularity lifting theorem</strong> for semistable elliptic curves: if \(\rho_{E,3}\) (or \(\rho_{E,5}\) with auxiliary techniques) is irreducible and modular, then \(E\) itself is modular. The proof proceeds via Galois deformation theory.
+      </p>
+      <div class="callout">
+        <strong>Step 1 &mdash; Universal deformation ring:</strong> Let \(\mathcal{R}\) be the universal deformation ring of \(\bar{\rho} = \rho_{E,p}\) (unramified outside \(N\), with prescribed ramification at \(p\)). Mazur's deformation theory controls \(\mathcal{R}\).
+      </div>
+      <div class="callout">
+        <strong>Step 2 &mdash; Hecke algebra:</strong> Let \(\mathbf{T}\) be the Hecke algebra of modular forms of level \(N\). A modular Galois representation \(\bar{\rho}\) arises from an eigenform, giving a surjection \(\mathbf{T} \twoheadrightarrow \mathcal{O}\) (the coefficient ring).
+      </div>
+      <div class="callout">
+        <strong>Step 3 &mdash; \(\mathcal{R} = \mathbf{T}\):</strong> Wiles constructs a surjection \(\mathbf{T} \to \mathcal{R}\) and proves \(\mathcal{R}\) is a complete intersection of the expected dimension. By level-lowering arguments and numerical criteria (Wiles's numerical criterion / patching by Taylor&ndash;Wiles), \(\mathcal{R} \cong \mathbf{T}\). This identifies the universal deformation with a Hecke algebra, proving modularity.
+      </div>
+      <div class="warning">
+        <strong>Initial gap:</strong> Wiles's first manuscript (1993) had a gap in the Euler system argument. Taylor and Wiles patched it using a second auxiliary prime. The final proof appeared in 1995.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>6) Generalizations and modern arithmetic geometry</h2>
+      <div class="two-col">
+        <div>
+          <h3>Full modularity</h3>
+          <p class="mini">Breuil, Conrad, Diamond, and Taylor (2001) extended modularity to all elliptic curves over \(\mathbb{Q}\), not only semistable ones. The modularity theorem is now fully proved.</p>
+        </div>
+        <div>
+          <h3>ABC conjecture</h3>
+          <p class="mini">FLT is a consequence of the ABC conjecture (Mochizuki's claimed proof remains disputed). The Frey curve argument shows deep connections between Diophantine equations and curve geometry.</p>
+        </div>
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Fermat quotients</h3>
+          <p class="mini">\(q_p(a) = \frac{a^{p-1} - 1}{p} \bmod p\) connects FLT to Iwasawa theory and class numbers of cyclotomic fields.</p>
+        </div>
+        <div>
+          <h3>Langlands program</h3>
+          <p class="mini">FLT is a special case of reciprocity between Galois representations and automorphic forms. See <a href="automorphic-forms.html">Automorphic Forms</a> and <a href="perfectoid-spaces.html">Perfectoid Spaces</a> for modern extensions.</p>
+        </div>
+      </div>
+      <div class="callout">
+        <strong>BSD connection:</strong> The Birch and Swinnerton-Dyer conjecture relates \(L(E,1)\) to the rank of \(E(\mathbb{Q})\). Modularity provides analytic continuation and functional equations for \(L(E,s)\).
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>7) Research connections and frontier directions</h2>
+      <p>
+        Post-Wiles arithmetic geometry studies: <strong>Serre's uniformity conjecture</strong> (open), <strong>generalized Fermat equations</strong> \(x^p + y^q = z^r\), <strong>modularity of abelian varieties</strong>, and the <strong>Langlands correspondence</strong> for \(\mathrm{GL}_n\) over number fields.
+      </p>
+      <p class="mini">
+        Related genius-level topics: <a href="perfectoid-spaces.html">Perfectoid Spaces</a>,
+        <a href="cohomology.html">Cohomology</a> (Galois cohomology, Selmer groups),
+        <a href="complex-kleinian-groups.html">Complex Kleinian Groups</a> (arithmetic lattices),
+        <a href="galois-theory.html">Galois Theory</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>8) Quick knowledge check</h2>
+      <div class="quiz">
+        <ol>
+          <li>State FLT precisely and explain why it suffices to consider prime exponents \(p \geq 5\).</li>
+          <li>Write the equation of the Frey curve for a hypothetical counterexample \((a,b,c)\) to \(a^p + b^p = c^p\).</li>
+          <li>State Ribet's level-lowering theorem and explain how it reduces FLT to modularity of semistable curves.</li>
+          <li>Define the Galois representation \(\rho_{E,p}\) and compute \(a_\ell\) in terms of point counts mod \(\ell\).</li>
+          <li>State the modularity theorem and define the \(L\)-function \(L(E,s)\).</li>
+          <li>Outline the three main steps of Wiles's proof (\(\mathcal{R}\), \(\mathbf{T}\), \(\mathcal{R} = \mathbf{T}\)).</li>
+          <li>Why does a modular form of level 2 not exist, and how does this complete the FLT argument?</li>
+        </ol>
+      </div>
+      <p class="mini">
+        For marking: trace the logical chain Frey &rarr; Serre &rarr; Ribet &rarr; Wiles; define all objects precisely.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>9) Next topics</h2>
+      <ul>
+        <li><a href="perfectoid-spaces.html">Perfectoid Spaces</a> &mdash; p-adic Galois representations and Hodge theory</li>
+        <li><a href="automorphic-forms.html">Automorphic Forms</a> &mdash; Langlands program foundations</li>
+        <li><a href="algebraic-number-theory.html">Algebraic Number Theory</a> &mdash; cyclotomic fields and class groups</li>
+        <li><a href="galois-theory.html">Galois Theory</a> &mdash; Galois groups and representations</li>
+        <li><a href="cohomology.html">Cohomology</a> &mdash; Galois cohomology and Selmer groups</li>
+        <li><a href="complex-kleinian-groups.html">Complex Kleinian Groups</a> &mdash; Bianchi and Picard groups</li>
+        <li><a href="random-matrices.html">Random Matrices</a> &mdash; L-function zero statistics</li>
+        <li><a href="poincare-conjecture.html">Poincaré Conjecture</a> &mdash; topology of 3-manifolds</li>
+        <li><a href="pure_math_subjects.html">Pure Math Subjects Catalog</a></li>
+        <li><a href="index.html">Engineering Knowledge Hub</a></li>
+      </ul>
+    </div>
+
+    <p class="page-footer-note">Advanced research-level Mathematics content.</p>
     </div>
   </div>
 </body>

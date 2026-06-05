@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="css/corporate.css">
   <script src="js/site-layout.js" defer></script>
-  <title>Real Analysis</title>
+  <title>Real Analysis - Postgraduate</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
 </head>
 
 <body class="content-page">
@@ -15,30 +18,232 @@
         <a href="index.html">&larr; Back to Hub</a>
       </nav>
       <h1>Real Analysis</h1>
-      <p>Mathematics topic page. Content is being developed.</p>
+      <p>Postgraduate guide. Rigorous limits, continuity, uniform convergence, differentiation, integration, and the bridge to measure theory.</p>
       <div class="content-nav">
         <a href="pure_math_subjects.html">&larr; Pure Math Subjects Catalog</a>
       </div>
     </div>
 
     <div class="content-body">
-      <div class="card">
-        <h2>Overview</h2>
-        <p>
-          This page is a placeholder for <strong>Real Analysis</strong>. It is linked from the
-          <a href="pure_math_subjects.html">Pure Math Subjects Catalog</a> and will be expanded with explanations,
-          worked examples, and engineering applications.
-        </p>
-      </div>
 
-      <div class="card">
-        <h2>Coming soon</h2>
-        <ul>
-          <li>Key definitions and notation</li>
-          <li>Step-by-step examples</li>
-          <li>Links to related calculators and reference material</li>
-        </ul>
+    <div class="card">
+      <h2>1) The real number system and completeness</h2>
+      <p>
+        <strong>Real analysis</strong> rebuilds calculus on axiomatic foundations. The reals \(\mathbb{R}\) form a complete ordered field: every non-empty subset bounded above has a least upper bound (supremum).
+      </p>
+      <p>
+        A <strong>metric space</strong> \((X, d)\) generalizes distance; \(\mathbb{R}\) with \(d(x,y) = |x-y|\) is the prototype. Completeness — every Cauchy sequence converges — distinguishes \(\mathbb{R}\) from \(\mathbb{Q}\).
+      </p>
+      <div class="callout">
+        <strong>Archimedean property:</strong> For \(x > 0\), \(\exists\, n \in \mathbb{N}\) with \(n > x\). Equivalently, \(\inf\{1/n : n \in \mathbb{N}\} = 0\).
       </div>
+      <div class="callout">
+        <strong>Key idea:</strong> Completeness is the analytic engine behind the Intermediate Value Theorem, Extreme Value Theorem, and all convergence arguments on closed intervals.
+      </div>
+      <p class="mini">
+        Prerequisite: <a href="limits.html">Limits</a>, <a href="metric-spaces.html">Metric Spaces</a>, and <a href="convergence.html">Convergence</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>2) Sequences, series, and uniform convergence</h2>
+      <p>
+        A sequence \((a_n)\) in \(\mathbb{R}\) <strong>converges</strong> to \(L\) if \(\forall\,\varepsilon > 0\,\exists\, N\) such that \(|a_n - L| < \varepsilon\) for \(n \geq N\). A <strong>Cauchy sequence</strong> satisfies: \(\forall\,\varepsilon > 0\,\exists\, N\) with \(|a_m - a_n| < \varepsilon\) for \(m, n \geq N\).
+      </p>
+      <p>
+        For functions \(f_n : E \to \mathbb{R}\), <strong>pointwise convergence</strong> means \(f_n(x) \to f(x)\) for each \(x\). <strong>Uniform convergence</strong> requires a single \(N(\varepsilon)\) working for all \(x \in E\):
+        \[
+        \sup_{x \in E} |f_n(x) - f(x)| \to 0
+        \]
+      </p>
+      <div class="callout">
+        <strong>Weierstrass M-test:</strong> If \(|f_n(x)| \leq M_n\) on \(E\) and \(\sum M_n\) converges, then \(\sum f_n\) converges uniformly and absolutely on \(E\).
+      </div>
+      <div class="warning">
+        <strong>Common mistake:</strong> Pointwise limits of continuous functions need not be continuous. Uniform convergence on a compact set preserves continuity.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>3) Continuity and uniform continuity</h2>
+      <p>
+        \(f : E \subseteq \mathbb{R} \to \mathbb{R}\) is <strong>continuous at \(a\)</strong> if \(\forall\,\varepsilon > 0\,\exists\,\delta > 0\) with \(|x - a| < \delta \Rightarrow |f(x) - f(a)| < \varepsilon\).
+      </p>
+      <p>
+        \(f\) is <strong>uniformly continuous</strong> on \(E\) if \(\delta\) depends only on \(\varepsilon\), not on the point \(a\). On compact sets, continuity implies uniform continuity (Heine–Cantor theorem).
+      </p>
+      <div class="callout">
+        <strong>Intermediate Value Theorem:</strong> If \(f\) is continuous on \([a,b]\) and \(f(a) < c < f(b)\), then \(\exists\, x \in (a,b)\) with \(f(x) = c\).
+      </div>
+      <div class="callout">
+        <strong>Extreme Value Theorem:</strong> A continuous function on a compact set \([a,b]\) attains its maximum and minimum.
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Requires</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>IVT</td>
+              <td>Connected domain (interval in \(\mathbb{R}\))</td>
+            </tr>
+            <tr>
+              <td>EVT</td>
+              <td>Compact domain (closed and bounded in \(\mathbb{R}\))</td>
+            </tr>
+            <tr>
+              <td>Uniform continuity</td>
+              <td>Compact domain, or Lipschitz condition globally</td>
+            </tr>
+            <tr>
+              <td>Interchange limit and integral</td>
+              <td>Uniform convergence (or dominated convergence in Lebesgue theory)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>4) Differentiation: rigorous foundations</h2>
+      <p>
+        \(f\) is <strong>differentiable at \(a\)</strong> if the limit
+        \[
+        f'(a) = \lim_{h \to 0} \frac{f(a+h) - f(a)}{h}
+        \]
+        exists. Differentiability implies continuity, but not conversely (e.g. \(f(x) = |x|\) at 0).
+      </p>
+      <div class="callout">
+        <strong>Mean Value Theorem:</strong> If \(f\) is continuous on \([a,b]\) and differentiable on \((a,b)\), then \(\exists\, c \in (a,b)\) with
+        \[
+        f'(c) = \frac{f(b) - f(a)}{b - a}
+        \]
+      </div>
+      <div class="callout">
+        <strong>Taylor's theorem:</strong> If \(f^{(n+1)}\) exists on an interval containing \(a\), then
+        \[
+        f(x) = \sum_{k=0}^{n} \frac{f^{(k)}(a)}{k!}(x-a)^k + R_n(x)
+        \]
+        with Lagrange remainder \(R_n(x) = \dfrac{f^{(n+1)}(\xi)}{(n+1)!}(x-a)^{n+1}\) for some \(\xi\) between \(a\) and \(x\).
+      </div>
+      <div class="warning">
+        <strong>Exam tip:</strong> Distinguish \(C^k\) ( \(k\) continuous derivatives) from mere \(k\)-fold differentiability. A \(C^\infty\) function need not equal its Taylor series (non-analytic smooth functions).
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>5) Riemann integration</h2>
+      <p>
+        For a bounded function \(f\) on \([a,b]\), the <strong>Riemann integral</strong> exists when upper and lower Darboux sums agree:
+        \[
+        \int_a^b f(x)\,dx = \inf U(f,P) = \sup L(f,P)
+        \]
+        over partitions \(P\). Continuous functions and monotone functions are Riemann integrable.
+      </p>
+      <div class="callout">
+        <strong>Fundamental Theorem of Calculus:</strong> If \(F' = f\) and \(f\) is continuous, then \(\displaystyle\int_a^b f(x)\,dx = F(b) - F(a)\).
+      </div>
+      <div class="callout">
+        <strong>Integration by parts and substitution:</strong> Rigorous versions require absolute continuity or \(C^1\) hypotheses. Fubini's theorem for \(\displaystyle\int\!\!\int f(x,y)\,dx\,dy\) needs integrability conditions on rectangles.
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Improper integrals</h3>
+          <p class="mini">Integrals over unbounded domains or with singular integrands are defined as limits of proper integrals. \(\int_1^\infty x^{-p}\,dx\) converges iff \(p > 1\).</p>
+        </div>
+        <div>
+          <h3>Lebesgue criterion</h3>
+          <p class="mini">\(f\) is Riemann integrable iff its set of discontinuities has Lebesgue measure zero. Explains why Dirichlet's function is not Riemann integrable.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>6) Measure theory and \(L^p\) spaces (preview)</h2>
+      <p>
+        <strong>Lebesgue measure</strong> \(\mu\) on \(\mathbb{R}\) extends length to a \(\sigma\)-algebra of measurable sets. The <strong>Lebesgue integral</strong> handles limits via the <strong>Dominated Convergence Theorem</strong>:
+        if \(f_n \to f\) a.e. and \(|f_n| \leq g\) with \(g\) integrable, then \(\int f_n \to \int f\).
+      </p>
+      <div class="callout">
+        <strong>\(L^p\) spaces:</strong> For \(1 \leq p < \infty\),
+        \[
+        L^p(\mu) = \left\{f \text{ measurable} : \int |f|^p\,d\mu < \infty\right\} / \sim
+        \]
+        (quotient by a.e. equality) is a Banach space. \(L^2\) is a Hilbert space with inner product \(\langle f, g \rangle = \int f\bar{g}\,d\mu\).
+      </div>
+      <div class="callout">
+        <strong>Key idea:</strong> Real analysis at postgraduate level is the gateway to functional analysis, PDE theory, and probability (where expectation is a Lebesgue integral).
+      </div>
+      <p class="mini">
+        See also: <a href="measure-theory.html">Measure Theory</a>, <a href="banach-spaces.html">Banach Spaces</a>, <a href="hilbert-spaces.html">Hilbert Spaces</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>7) Applications and research outlook</h2>
+      <div class="two-col">
+        <div>
+          <h3>Functional analysis</h3>
+          <p class="mini">Normed spaces, operators, and spectral theory rest on completeness and measure. Banach and Hilbert spaces generalize finite-dimensional linear algebra.</p>
+        </div>
+        <div>
+          <h3>PDEs and harmonic analysis</h3>
+          <p class="mini">Sobolev spaces \(W^{k,p}\) measure weak differentiability. Fourier analysis on \(L^2\) uses Plancherel's theorem.</p>
+        </div>
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Probability theory</h3>
+          <p class="mini">Rigorous probability requires measure theory: \(\mathbb{P}\) is a probability measure, random variables are measurable functions.</p>
+        </div>
+        <div>
+          <h3>Signal processing</h3>
+          <p class="mini">\(L^2\) convergence of Fourier series, sampling theorems, and wavelet decompositions rely on analytic estimates.</p>
+        </div>
+      </div>
+      <p class="mini">
+        Related: <a href="metric-spaces.html">Metric Spaces</a>, <a href="topology.html">Topology</a>,
+        <a href="complex-analysis.html">Complex Analysis</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>8) Quick knowledge check</h2>
+      <div class="quiz">
+        <ol>
+          <li>Prove that every Cauchy sequence in \(\mathbb{R}\) is bounded.</li>
+          <li>Give an example of pointwise but not uniform convergence on \((0,1)\).</li>
+          <li>State and apply the Mean Value Theorem to show \(|\sin x - \sin y| \leq |x - y|\).</li>
+          <li>Prove that a uniformly continuous function on \([a,b]\) is Riemann integrable.</li>
+          <li>Construct a function differentiable everywhere but with discontinuous derivative.</li>
+          <li>State the Dominated Convergence Theorem and explain why it is stronger than uniform convergence.</li>
+          <li>Prove \(\sqrt{2}\) is irrational using the least-upper-bound property.</li>
+        </ol>
+      </div>
+      <p class="mini">
+        For marking: provide \(\varepsilon\)-\(\delta\) proofs where requested, cite compactness or completeness explicitly, and distinguish pointwise from uniform statements.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>9) Next topics</h2>
+      <ul>
+        <li><a href="metric-spaces.html">Metric Spaces</a> — abstract setting for limits and completeness</li>
+        <li><a href="topology.html">Topology</a> — continuity without a metric</li>
+        <li><a href="complex-analysis.html">Complex Analysis</a> — analyticity and contour integration</li>
+        <li><a href="holomorphic-functions.html">Holomorphic Functions</a> — complex differentiability in depth</li>
+        <li><a href="differential-geometry.html">Differential Geometry</a> — analysis on manifolds</li>
+        <li><a href="measure-theory.html">Measure Theory</a> — Lebesgue integration and \(\sigma\)-algebras</li>
+        <li><a href="pure_math_subjects.html">Pure Math Subjects Catalog</a></li>
+        <li><a href="index.html">Engineering Knowledge Hub</a></li>
+      </ul>
+    </div>
+
+    <p class="page-footer-note">Postgraduate / research-level Mathematics content.</p>
     </div>
   </div>
 </body>
