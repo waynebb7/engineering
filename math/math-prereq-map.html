@@ -1,57 +1,16 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/corporate.css">
+    <script src="../js/site-layout.js" defer></script>
   <title>Mathematics Prerequisite Map (Horizontal)</title>
-  <style>
-    :root{
-      --bg:#f2f4f8; --card:#ffffff; --text:#2c3e50; --muted:#5b6b7a;
-      --border:#d7dde6; --accent:#3498db; --line:#8aa3b8; --highlight:#ff7f0e;
-      --req:#ff7f0e; --rec:#3498db;
-    }
-    html,body{height:100%}
-    body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--text)}
-    header{background:#2c3e50;color:#fff;padding:16px}
-    header h1{margin:0;font-size:1.25em}
-    header .sub{margin-top:6px;opacity:.9;font-size:.95em}
-
-    .toolbar{display:flex;gap:10px;flex-wrap:wrap;padding:12px 16px;background:#fff;border-bottom:1px solid var(--border);align-items:center}
-    .toolbar input,.toolbar select,.toolbar button{font-size:14px;padding:9px 10px;border:1px solid var(--border);border-radius:10px;background:#fff;color:var(--text)}
-    .toolbar button{cursor:pointer}
-    .toolbar .note{color:var(--muted);font-size:.92em}
-
-    .viewport{position:relative;height:calc(100vh - 124px);overflow-x:auto;overflow-y:hidden;padding:16px;box-sizing:border-box;scroll-behavior:smooth;white-space:nowrap}
-    .stage{position:relative;display:inline-flex;gap:16px;align-items:flex-start;padding-bottom:40px;min-height:100%;box-sizing:border-box}
-
-    .level{width:380px;background:rgba(255,255,255,.6);border:1px solid var(--border);border-radius:14px;padding:12px;box-sizing:border-box}
-    .level h2{margin:0 0 10px 0;font-size:1.05em;border-bottom:2px solid var(--accent);padding-bottom:8px}
-
-    .node{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px;margin-bottom:10px;box-shadow:0 2px 6px rgba(0,0,0,.06);cursor:pointer;user-select:none}
-    .node:hover{border-color:rgba(52,152,219,.8)}
-    .node .title{font-weight:700;font-size:.95em;margin:0;line-height:1.25}
-    .node .meta{margin-top:6px;font-size:.86em;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap}
-    .pill{border:1px solid var(--border);border-radius:999px;padding:2px 8px;background:#fbfcfe}
-    .node.selected{border-color:var(--highlight);box-shadow:0 0 0 3px rgba(255,127,14,.18)}
-    .node.dim{opacity:.25}
-    .node.upstream{border-left:6px solid var(--accent)}
-    .node.downstream{border-left:6px solid var(--highlight)}
-
-    .panel{position:absolute;top:16px;right:16px;width:380px;max-height:calc(100vh - 160px);overflow:auto;background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:0 2px 8px rgba(0,0,0,.10);padding:12px}
-    .panel h3{margin:0 0 10px 0;font-size:1.05em;border-bottom:2px solid var(--accent);padding-bottom:8px}
-    .panel .line{font-size:.92em;color:var(--muted);margin:8px 0}
-    .panel ul{margin:8px 0 0 18px;padding:0;font-size:.95em}
-    .panel li{margin:4px 0}
-    .panel a{color:var(--text);text-decoration:none}
-    .panel a:hover{color:#2980b9;text-decoration:underline}
-
-    svg#links{position:absolute;left:0;top:0;pointer-events:none}
-  </style>
 </head>
 
-<body>
-  <header>
-    <h1>Mathematics Prerequisite Map (Horizontal)</h1>
+<body class="map-page">
+  <header class="map-page-header">
+    <h1>Mathematics Prerequisite Map</h1>
     <div class="sub">Left is foundational. Right is advanced. Lines indicate prerequisite dependency. Required and recommended edges are drawn differently.</div>
   </header>
 

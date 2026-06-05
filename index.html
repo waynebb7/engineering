@@ -3,68 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Electrical Calculators</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: auto;
-            text-align: center;
-        }
-        h1 {
-            color: #2E3A87;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            margin: 10px 0;
-        }
-        a {
-            text-decoration: none;
-            font-size: 18px;
-            color: #2E3A87;
-            padding: 10px;
-            border: 1px solid #2E3A87;
-            display: inline-block;
-            width: 80%;
-            border-radius: 5px;
-        }
-        a:hover {
-            background-color: #2E3A87;
-            color: white;
-        }
-    </style>
+    <title>Engineering Knowledge Hub</title>
+    <link rel="stylesheet" href="css/corporate.css">
+    <script src="js/site-layout.js" defer></script>
 </head>
 <body>
-    <h1>Welcome to My Electrical Calculator Hub</h1>
-    <p>Select a calculator below:</p>
+    <section class="page-hero">
+        <h1>Engineering Knowledge Hub</h1>
+        <p class="lead">Professional reference tools, calculators, and structured learning paths for electrical engineering, mathematics, and physics.</p>
+    </section>
 
-    <ul>
-        <li><a href="electrical_engineering_variables.html">List Electrical Engineering Variables</a></li>
-        <li><a href="electrical_equations.html">List Electrical Engineering Equations</a></li>
-        <li><a href="dc_power_calculator.html">DC Power Calculator</a></li>
-        <li><a href="ac_power_calculator.html">AC Power Calculator (Single Phase)</a></li>
-        <li><a href="three_phase_power_calculator.html">AC Power Calculator (3 phase)</a></li>
-        <li><a href="star_three_phase_power.html">Three-Phase Star Power Calculator</a></li>
-        <li><a href="three_phase_power_calculator.html">Three-Phase Star Power Calculator</a></li>
-        <li><a href="delta_three_phase_power.html">Three-Phase Delta Power Calculator</a></li>
-        <li><a href="delta_phase_three_phase_power.html">Three-Phase Delta Power Calculator (Using Phase Values)</a></li>
-        <li><a href="power_factor_calculator.html">Power Factor Calculator</a></li>
-        <li><a href="degrees_to_radians.html">Degrees to Radians Calculator</a></li>
-        <li><a href="radians_to_degrees.html">Radians to Degrees Calculator</a></li>
-        <li><a href="tru_efficiency_calculator.html">TRU Efficiency Calculator</a></li>
-        <li><a href="communication-equipment-manufacturers.html">Communication Equipment Manufacturers</a></li>
-        <li><a href="to_do_list.html">To Do List</a></li>
-        <li><a href="pure_math_subjects.html">Pure Math Subjects List</a></li>
-        <li><a href="math/math-prereq-map.html">Math Topics Pre-requisites</a></li>
-        <li><a href="physics_subjects.html">Physics Subjects List</a></li>
-        <li><a href="physics_subjects_drill_down/physics_subjects_drill_down.html">Physics Subjects Drill Down</a></li>
-        <li><a href="physics_subjects_drill_down/physics_subjects_drill_down_list.html">Physics Subjects Drill Down List</a></li>
-        <li><a href="physics_subjects_drill_down/physics-prereq-map.html">Physics Pre-requisites</a></li>
-        <li><a href="tree.html">Hierarchical Tree of the subjects</a></li>
-        <li><a href="feedback.html">Submit Feedback on website</a></li>
-    </ul>
+    <div class="page-container">
+        <div class="card-grid">
+            <article class="card">
+                <h2 class="card__title">Electrical Reference</h2>
+                <p class="card__desc">Variables, symbols, and fundamental equations used in electrical engineering practice.</p>
+                <ul class="link-list">
+                    <li><a href="electrical_engineering_variables.html">Engineering Variables</a></li>
+                    <li><a href="electrical_equations.html">Engineering Equations</a></li>
+                </ul>
+            </article>
+
+            <article class="card">
+                <h2 class="card__title">Power Calculators</h2>
+                <p class="card__desc">Interactive tools for DC, AC, and three-phase power analysis.</p>
+                <ul class="link-list">
+                    <li><a href="dc_power_calculator.html">DC Power Calculator</a></li>
+                    <li><a href="ac_power_calculator.html">AC Power (Single Phase)</a></li>
+                    <li><a href="three_phase_power_calculator.html">AC Power (Three Phase)</a></li>
+                    <li><a href="star_three_phase_power.html">Star Configuration</a></li>
+                    <li><a href="delta_three_phase_power.html">Delta Configuration</a></li>
+                    <li><a href="delta_phase_three_phase_power.html">Delta (Phase Values)</a></li>
+                    <li><a href="power_factor_calculator.html">Power Factor</a></li>
+                    <li><a href="power_triangle_converter.html">Power Triangle (kW/kVA/kVAR)</a></li>
+                    <li><a href="reactive_power_calculator.html">Reactive Power</a></li>
+                    <li><a href="apparent_power_calculator.html">Apparent Power</a></li>
+                    <li><a href="tru_efficiency_calculator.html">TRU Efficiency</a></li>
+                    <li><a href="energy_cost_calculator.html">Energy Cost</a></li>
+                </ul>
+            </article>
+
+            <article class="card">
+                <h2 class="card__title">AC Circuit Calculators</h2>
+                <p class="card__desc">Ohm's law, impedance, reactance, and three-phase voltage/current relationships.</p>
+                <ul class="link-list">
+                    <li><a href="ohms_law_calculator.html">Ohm's Law</a></li>
+                    <li><a href="impedance_calculator.html">Impedance</a></li>
+                    <li><a href="inductive_reactance_calculator.html">Inductive Reactance (X<sub>L</sub>)</a></li>
+                    <li><a href="capacitive_reactance_calculator.html">Capacitive Reactance (X<sub>C</sub>)</a></li>
+                    <li><a href="star_voltage_calculator.html">Star Voltage (V<sub>L</sub> / V<sub>Ph</sub>)</a></li>
+                    <li><a href="delta_current_calculator.html">Delta Current (I<sub>L</sub> / I<sub>Ph</sub>)</a></li>
+                    <li><a href="power_ohms_law_calculator.html">Power (Ohm's Law)</a></li>
+                </ul>
+            </article>
+
+            <article class="card">
+                <h2 class="card__title">Practical EE Tools</h2>
+                <p class="card__desc">Motor sizing, cabling, transformers, components, and signal levels.</p>
+                <ul class="link-list">
+                    <li><a href="motor_current_calculator.html">Motor Current</a></li>
+                    <li><a href="cable_voltage_drop_calculator.html">Cable Voltage Drop</a></li>
+                    <li><a href="transformer_ratio_calculator.html">Transformer Ratio</a></li>
+                    <li><a href="resistor_color_code_calculator.html">Resistor Colour Code</a></li>
+                    <li><a href="db_converter.html">dB / dBm Converter</a></li>
+                </ul>
+            </article>
+
+            <article class="card">
+                <h2 class="card__title">Unit Conversion</h2>
+                <p class="card__desc">Engineering unit converters and angular measure conversions.</p>
+                <ul class="link-list">
+                    <li><a href="unit_converter_power.html">Power (mW / W / kW)</a></li>
+                    <li><a href="unit_converter_voltage.html">Voltage (V / kV)</a></li>
+                    <li><a href="unit_converter_current.html">Current (A / mA)</a></li>
+                    <li><a href="unit_converter_frequency.html">Frequency (Hz / kHz / MHz)</a></li>
+                    <li><a href="unit_converter_resistance.html">Resistance (Ω / kΩ / MΩ)</a></li>
+                    <li><a href="unit_converter_energy.html">Energy (J / kWh)</a></li>
+                    <li><a href="degrees_to_radians.html">Degrees to Radians</a></li>
+                    <li><a href="radians_to_degrees.html">Radians to Degrees</a></li>
+                </ul>
+            </article>
+
+            <article class="card">
+                <h2 class="card__title">Digital Logic</h2>
+                <p class="card__desc">Boolean algebra, number systems, and digital design fundamentals.</p>
+                <ul class="link-list">
+                    <li><a href="logic_and_digital_math/number-systems.html">Number Systems</a></li>
+                    <li><a href="logic_and_digital_math/boolean-algebra.html">Boolean Algebra</a></li>
+                    <li><a href="logic_and_digital_math/de-morgans-theorems.html">De Morgan's Theorems</a></li>
+                    <li><a href="logic_and_digital_math/karnaugh-mapping.html">Karnaugh Mapping</a></li>
+                    <li><a href="binary_decimal_hex_converter.html">Binary / Decimal / Hex</a></li>
+                    <li><a href="twos_complement_converter.html">2's Complement</a></li>
+                    <li><a href="logic_truth_table.html">Logic Truth Table</a></li>
+                </ul>
+            </article>
+
+            <article class="card">
+                <h2 class="card__title">Physics Calculators</h2>
+                <p class="card__desc">Force, energy, and motion calculations for engineering applications.</p>
+                <ul class="link-list">
+                    <li><a href="force_calculator.html">Force (F = ma)</a></li>
+                    <li><a href="kinetic_energy_calculator.html">Kinetic Energy</a></li>
+                    <li><a href="basic_physics/forces-basics.html">Forces (Basics)</a></li>
+                </ul>
+            </article>
+
+            <article class="card">
+                <h2 class="card__title">Aerospace</h2>
+                <p class="card__desc">Aircraft electrical systems, efficiency, and fuel energy calculations.</p>
+                <ul class="link-list">
+                    <li><a href="aircraft_bus_load_calculator.html">Aircraft Bus Load</a></li>
+                    <li><a href="generator_efficiency_calculator.html">Generator Efficiency</a></li>
+                    <li><a href="inverter_efficiency_calculator.html">Inverter Efficiency</a></li>
+                    <li><a href="fuel_energy_calculator.html">Fuel Energy</a></li>
+                </ul>
+            </article>
+
+            <article class="card">
+                <h2 class="card__title">Mathematics</h2>
+                <p class="card__desc">Calculus, linear algebra, and structured prerequisite pathways.</p>
+                <ul class="link-list">
+                    <li><a href="pure_math_subjects.html">Subject Catalog</a></li>
+                    <li><a href="math/math-prereq-map.html">Prerequisite Map</a></li>
+                    <li><a href="differentiation.html">Differentiation</a></li>
+                    <li><a href="integration.html">Integration</a></li>
+                    <li><a href="calculus-electrical-engineering.html">Calculus in EE</a></li>
+                    <li><a href="eigenvalues-electrical-engineering.html">Eigenvalues</a></li>
+                    <li><a href="eigenvectors-electrical-engineering.html">Eigenvectors</a></li>
+                </ul>
+            </article>
+
+            <article class="card">
+                <h2 class="card__title">Physics Topics</h2>
+                <p class="card__desc">Topic catalogs and dependency maps from foundations to frontier research.</p>
+                <ul class="link-list">
+                    <li><a href="physics_subjects.html">Subject Catalog</a></li>
+                    <li><a href="physics_subjects_drill_down/physics_subjects_drill_down.html">Drill Down Explorer</a></li>
+                    <li><a href="physics_subjects_drill_down/physics-prereq-map.html">Prerequisite Map</a></li>
+                </ul>
+            </article>
+
+            <article class="card">
+                <h2 class="card__title">Resources</h2>
+                <p class="card__desc">Industry references, subject trees, and site utilities.</p>
+                <ul class="link-list">
+                    <li><a href="communication-equipment-manufacturers.html">Equipment Manufacturers</a></li>
+                    <li><a href="tree.html">Subject Hierarchy</a></li>
+                    <li><a href="to_do_list.html">Development Roadmap</a></li>
+                    <li><a href="feedback.html">Submit Feedback</a></li>
+                </ul>
+            </article>
+        </div>
+    </div>
 </body>
 </html>

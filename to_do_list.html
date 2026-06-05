@@ -1,90 +1,40 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Persistent To-Do List</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 400px;
-            margin: auto;
-            text-align: center;
-        }
-        .input-container {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        input {
-            padding: 10px;
-            font-size: 16px;
-            flex-grow: 1;
-        }
-        button {
-            padding: 10px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #2E3A87;
-            color: white;
-            border: none;
-        }
-        button:hover {
-            background-color: #1B246E;
-        }
-        ol {
-            list-style-type: decimal;
-            padding: 0;
-            text-align: left;
-            margin-top: 20px;
-        }
-        li {
-            font-size: 18px;
-            padding: 5px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .delete-btn {
-            background-color: red;
-            color: white;
-            border: none;
-            padding: 5px;
-            cursor: pointer;
-        }
-        .task-checkbox {
-            margin-right: 10px;
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="css/corporate.css">
+    <script src="js/site-layout.js" defer></script>
+    <title>To-Do List | Engineering Knowledge</title>
 </head>
-<body>
-    <h1>Persistent To-Do List</h1>
-
-    <h2>Add Your Task</h2>
-    
-    <div class="input-container">
-        <input type="text" id="taskInput" placeholder="Enter a task">
-        <button onclick="addTask()">Add Task</button>
+<body class="calculator-page">
+    <div class="page-container page-container--calculator">
+        <a href="index.html" class="back-link">&larr; Back to Hub</a>
+        <div class="calculator-panel">
+            <h1>To-Do List</h1>
+            <p class="calc-lead">Add and track tasks in your browser.</p>
+            <h2>Add Task</h2>
+            <div class="input-container input-container--stacked">
+                <input type="text" id="taskInput" placeholder="Enter a task">
+                <button type="button" class="btn--block" onclick="addTask()">Add Task</button>
+            </div>
+            <h2>Your Tasks</h2>
+            <ol id="taskList" class="task-list"></ol>
+        </div>
     </div>
-
-    <h2>Your Tasks</h2>
-    <ol id="taskList"></ol>
-
     <script>
         document.addEventListener("DOMContentLoaded", loadTasks);
 
         function addTask() {
-            let taskInput = document.getElementById("taskInput");
-            let taskText = taskInput.value.trim();
+            var taskInput = document.getElementById("taskInput");
+            var taskText = taskInput.value.trim();
             if (taskText === "") return;
 
-            let taskList = document.getElementById("taskList");
-            let taskItem = document.createElement("li");
-            taskItem.innerHTML = `<input type="checkbox" class="task-checkbox" onchange="toggleTaskCompletion(this)">
-                                  <span>${taskText}</span> 
-                                  <button class="delete-btn" onclick="removeTask(this)">Remove</button>`;
+            var taskList = document.getElementById("taskList");
+            var taskItem = document.createElement("li");
+            taskItem.innerHTML = '<input type="checkbox" class="task-checkbox" onchange="toggleTaskCompletion(this)">' +
+                '<span>' + taskText + '</span>' +
+                '<button type="button" class="task-remove" onclick="removeTask(this)">Remove</button>';
             taskList.appendChild(taskItem);
 
             saveTasks();
@@ -92,35 +42,35 @@
         }
 
         function removeTask(button) {
-            let taskItem = button.parentElement;
-            taskItem.remove();
+            button.parentElement.remove();
             saveTasks();
         }
 
-        function toggleTaskCompletion(checkbox) {
+        function toggleTaskCompletion() {
             saveTasks();
         }
 
         function saveTasks() {
-            let tasks = [];
-            document.querySelectorAll("#taskList li").forEach(taskItem => {
-                let taskText = taskItem.querySelector("span").textContent.trim();
-                let completed = taskItem.querySelector(".task-checkbox").checked;
-                tasks.push({ text: taskText, completed: completed });
+            var tasks = [];
+            document.querySelectorAll("#taskList li").forEach(function (taskItem) {
+                tasks.push({
+                    text: taskItem.querySelector("span").textContent.trim(),
+                    completed: taskItem.querySelector(".task-checkbox").checked
+                });
             });
             localStorage.setItem("tasks", JSON.stringify(tasks));
         }
 
         function loadTasks() {
-            let storedTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
-            let taskList = document.getElementById("taskList");
-            taskList.innerHTML = ""; // Clear existing list
-            storedTasks.forEach(task => {
-                let taskItem = document.createElement("li");
-                taskItem.innerHTML = `<input type="checkbox" class="task-checkbox" ${task.completed ? "checked" : ""}
-                                      onchange="toggleTaskCompletion(this)">
-                                      <span>${task.text}</span> 
-                                      <button class="delete-btn" onclick="removeTask(this)">Remove</button>`;
+            var storedTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+            var taskList = document.getElementById("taskList");
+            taskList.innerHTML = "";
+            storedTasks.forEach(function (task) {
+                var taskItem = document.createElement("li");
+                taskItem.innerHTML = '<input type="checkbox" class="task-checkbox" ' + (task.completed ? "checked" : "") +
+                    ' onchange="toggleTaskCompletion(this)">' +
+                    '<span>' + task.text + '</span>' +
+                    '<button type="button" class="task-remove" onclick="removeTask(this)">Remove</button>';
                 taskList.appendChild(taskItem);
             });
         }

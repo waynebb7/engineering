@@ -1,47 +1,26 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maths Hierarchy</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 50px;
-        }
-        .node {
-            padding: 10px;
-            border: 2px solid black;
-            border-radius: 5px;
-            margin: 10px;
-            width: 150px;
-            font-weight: bold;
-        }
-        .line {
-            width: 2px;
-            height: 30px;
-            background-color: black;
-            margin: -10px 0;
-        }
-        .sub-nodes {
-            display: flex;
-            gap: 50px;
-        }
-    </style>
+    <link rel="stylesheet" href="css/corporate.css">
+    <script src="js/site-layout.js" defer></script>
+    <title>Subject Hierarchy | Engineering Knowledge</title>
 </head>
 <body>
-    <div class="container">
-        <div class="node">Maths</div>
-        <div class="line"></div>
-        <div class="sub-nodes">
-            <div class="node">Algebra</div>
-            <div class="node">Calculus</div>
+    <div class="page-container page-container--narrow">
+        <a href="index.html" class="back-link">&larr; Back to Hub</a>
+
+        <h1>Subject Hierarchy</h1>
+        <p class="lead text-center">High-level structure of mathematics topics covered in this hub.</p>
+
+        <div class="tree-diagram">
+            <div class="tree-node">Mathematics</div>
+            <div class="tree-line"></div>
+            <div class="tree-branches">
+                <div class="tree-node">Algebra</div>
+                <div class="tree-node">Calculus</div>
+            </div>
         </div>
     </div>
 </body>

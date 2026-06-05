@@ -1,77 +1,17 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../css/corporate.css">
+    <script src="../js/site-layout.js" defer></script>
   <title>De Morgan's Theorem Explained</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f9f9f9;
-      color: #333;
-      margin: 20px auto;
-      line-height: 1.6;
-      max-width: 800px;
-      padding: 10px;
-    }
-    h1 {
-      color: #2c3e50;
-      text-align: center;
-      margin-bottom: 0.5em;
-    }
-    h2 {
-      color: #3498db;
-      margin-top: 1.5em;
-    }
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      margin: 1em 0;
-    }
-    th, td {
-      border: 1px solid #bbb;
-      padding: 8px 12px;
-      text-align: center;
-    }
-    th {
-      background-color: #3498db;
-      color: white;
-    }
-    code {
-      background-color: #eee;
-      padding: 2px 4px;
-      border-radius: 4px;
-      font-family: monospace;
-    }
-    blockquote {
-      font-style: italic;
-      color: #666;
-      border-left: 4px solid #3498db;
-      margin: 1em 0;
-      padding-left: 1em;
-      background: #f0f8ff;
-    }
-
-    /* Class for negated variables */
-    .neg {
-      display: inline-block;
-      position: relative;
-      padding-top: 3px;
-      margin: 0 1px;
-    }
-    .neg::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background-color: black;
-    }
-  </style>
 </head>
 <body>
-  <h1>De Morgan's Theorem Explained</h1>
+  
+    <div class="page-container">
+        <a href="../index.html" class="back-link">&larr; Back to Hub</a>
+<h1>De Morgan's Theorem Explained</h1>
 
   <p>De Morgan's Theorems are fundamental rules in Boolean algebra that describe how logical operations <strong>AND</strong> and <strong>OR</strong> relate to each other through negation (NOT). These theorems provide a way to simplify complex logical expressions and are widely used in digital logic design, computer science, and mathematics.</p>
 
@@ -128,5 +68,6 @@
   <p>Suppose you have the expression <code><span class="neg">(X + Y)</span></code>, which means NOT (X OR Y). Using De Morgan’s Theorem:</p>
   <p><code><span class="neg">(X + Y)</span> = <span class="neg">X</span> · <span class="neg">Y</span></code></p>
   <p>This means instead of directly negating the OR operation, you can negate each input and then AND them together.</p>
+    </div>
 </body>
 </html>
