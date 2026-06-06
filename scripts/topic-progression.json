@@ -1071,7 +1071,7 @@
         "key": "quantum",
         "section": "Prerequisites",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -1106,7 +1106,7 @@
         "key": "quantum",
         "section": "Prerequisites",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -1142,7 +1142,7 @@
         "key": "quantum",
         "section": "Prerequisites",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -1261,7 +1261,7 @@
         "key": "quantum",
         "section": "Prerequisites",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -1686,7 +1686,7 @@
         "key": "quantum",
         "section": "Prerequisites",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -2082,7 +2082,7 @@
         "key": "quantum",
         "section": "Applications &amp; Security",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -2397,7 +2397,7 @@
         "key": "quantum",
         "section": "Prerequisites",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -5700,7 +5700,7 @@
         "key": "quantum",
         "section": "Quantum Foundations",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -5902,7 +5902,7 @@
         "key": "quantum",
         "section": "Quantum Foundations",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -6272,7 +6272,7 @@
         "key": "quantum",
         "section": "Quantum Foundations",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -6308,7 +6308,7 @@
         "key": "quantum",
         "section": "Frontier Physics (linked)",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -6511,7 +6511,7 @@
         "key": "quantum",
         "section": "Quantum Information",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -6684,7 +6684,7 @@
         "key": "quantum",
         "section": "Frontier Physics (linked)",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -6825,7 +6825,7 @@
         "key": "quantum",
         "section": "Frontier Physics (linked)",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -6904,7 +6904,7 @@
         "key": "quantum",
         "section": "Quantum Information",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -6939,7 +6939,7 @@
         "key": "quantum",
         "section": "Frontier Physics (linked)",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -7599,7 +7599,7 @@
         "key": "quantum",
         "section": "Quantum Foundations",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -7628,7 +7628,7 @@
         "key": "quantum",
         "section": "Quantum Foundations",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -7656,7 +7656,7 @@
         "key": "quantum",
         "section": "Quantum Foundations",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -7684,7 +7684,7 @@
         "key": "quantum",
         "section": "Quantum Foundations",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -7710,7 +7710,7 @@
         "key": "quantum",
         "section": "Quantum Foundations",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -7734,7 +7734,7 @@
         "key": "quantum",
         "section": "Quantum Foundations",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -7760,7 +7760,7 @@
         "key": "quantum",
         "section": "Quantum Foundations",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -7787,7 +7787,7 @@
         "key": "quantum",
         "section": "Quantum Information",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -7815,7 +7815,7 @@
         "key": "quantum",
         "section": "Quantum Information",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -7841,7 +7841,7 @@
         "key": "quantum",
         "section": "Quantum Information",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -7867,7 +7867,7 @@
         "key": "quantum",
         "section": "Quantum Information",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -7894,7 +7894,7 @@
         "key": "quantum",
         "section": "Quantum Information",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -7922,7 +7922,7 @@
         "key": "quantum",
         "section": "Quantum Computing \u2014 Core",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -7951,7 +7951,7 @@
         "key": "quantum",
         "section": "Quantum Computing \u2014 Core",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -7979,7 +7979,7 @@
         "key": "quantum",
         "section": "Quantum Computing \u2014 Core",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -8007,7 +8007,7 @@
         "key": "quantum",
         "section": "Quantum Computing \u2014 Core",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -8033,7 +8033,7 @@
         "key": "quantum",
         "section": "Quantum Computing \u2014 Core",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -8061,7 +8061,7 @@
         "key": "quantum",
         "section": "Quantum Algorithms",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -8088,7 +8088,7 @@
         "key": "quantum",
         "section": "Quantum Algorithms",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -8115,7 +8115,7 @@
         "key": "quantum",
         "section": "Quantum Algorithms",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -8144,7 +8144,7 @@
         "key": "quantum",
         "section": "Quantum Algorithms",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -8174,7 +8174,7 @@
         "key": "quantum",
         "section": "Quantum Algorithms",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -8202,7 +8202,7 @@
         "key": "quantum",
         "section": "Quantum Algorithms",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -8228,7 +8228,7 @@
         "key": "quantum",
         "section": "Quantum Algorithms",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -8256,7 +8256,7 @@
         "key": "quantum",
         "section": "Error Correction &amp; Fault Tolerance",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -8285,7 +8285,7 @@
         "key": "quantum",
         "section": "Error Correction &amp; Fault Tolerance",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -8312,7 +8312,7 @@
         "key": "quantum",
         "section": "Error Correction &amp; Fault Tolerance",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -8340,7 +8340,7 @@
         "key": "quantum",
         "section": "Error Correction &amp; Fault Tolerance",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -8366,7 +8366,7 @@
         "key": "quantum",
         "section": "Error Correction &amp; Fault Tolerance",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -8394,7 +8394,7 @@
         "key": "quantum",
         "section": "Hardware &amp; Engineering",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -8421,7 +8421,7 @@
         "key": "quantum",
         "section": "Hardware &amp; Engineering",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -8448,7 +8448,7 @@
         "key": "quantum",
         "section": "Hardware &amp; Engineering",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -8476,7 +8476,7 @@
         "key": "quantum",
         "section": "Hardware &amp; Engineering",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -8502,7 +8502,7 @@
         "key": "quantum",
         "section": "Hardware &amp; Engineering",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -8529,7 +8529,7 @@
         "key": "quantum",
         "section": "Applications &amp; Security",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -8554,7 +8554,7 @@
         "key": "quantum",
         "section": "Applications &amp; Security",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -8577,7 +8577,7 @@
         "key": "quantum",
         "section": "Applications &amp; Security",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],
@@ -8601,7 +8601,7 @@
         "key": "quantum",
         "section": "Applications &amp; Security",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": null,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum"
       }
     ],

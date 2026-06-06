@@ -24,7 +24,7 @@ CATALOGS = {
     "quantum": {
         "file": "learn/quantum/index.html",
         "catalog_href": "learn/quantum/index.html",
-        "prereq_map": None,
+        "prereq_map": "maps/quantum-prereq-map.html",
         "label": "Quantum",
         "prefix": "learn/quantum/",
     },

@@ -1302,14 +1302,105 @@ body.map-page .toolbar .note {
 body.map-page .viewport {
   position: relative;
   flex: 1;
-  height: calc(100vh - var(--corp-header-height) - 140px);
+  height: calc(100vh - var(--corp-header-height) - 200px);
   overflow-x: auto;
-  overflow-y: hidden;
+  overflow-y: auto;
   padding: 16px;
   box-sizing: border-box;
   scroll-behavior: smooth;
   white-space: nowrap;
   background: var(--bg);
+}
+
+body.map-page {
+  --math-line: #6b4fa0;
+}
+
+body.map-page .toolbar-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+body.map-page .toolbar-check,
+body.map-page .level-filter-label {
+  font-size: 0.9rem;
+  color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+body.map-page .level-filters {
+  max-width: 100%;
+}
+
+body.map-page .map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  padding: 8px 16px;
+  background: var(--corp-surface);
+  border-bottom: 1px solid var(--border);
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+body.map-page .legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+body.map-page .legend-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+  display: inline-block;
+}
+
+body.map-page .legend-swatch--selected { background: #fff3e8; border-color: var(--highlight); }
+body.map-page .legend-swatch--upstream { background: #e8f2fa; border-color: var(--accent); }
+body.map-page .legend-swatch--downstream { background: #edf7ee; border-color: #3d8b5f; }
+body.map-page .legend-swatch--gap { background: #fdeaea; border-color: #c44; }
+body.map-page .legend-swatch--math { background: #f3effa; border-color: var(--math-line); }
+
+body.map-page .progress-pill--done { background: #e8f5e9; color: #2e7d32; }
+body.map-page .progress-pill--read { background: #eef5fc; color: var(--accent); }
+body.map-page .progress-pill--partial { background: #fff8e1; color: #9a6b00; }
+body.map-page .progress-pill--weak { background: #fdecea; color: #b23; }
+body.map-page .progress-pill--todo { background: #f2f4f7; color: var(--muted); }
+body.map-page .progress-pill--no-lesson { background: #f2f4f7; color: var(--muted); }
+
+body.map-page .node.gap {
+  box-shadow: 0 0 0 2px rgba(196, 68, 68, 0.35);
+}
+
+body.map-page .node--math {
+  border-style: dashed;
+  border-color: var(--math-line);
+}
+
+body.map-page .pill--subject {
+  background: #f3effa;
+  color: var(--math-line);
+}
+
+body.map-page .lesson-status {
+  font-size: 0.8rem;
+  margin-left: 4px;
+}
+
+body.map-page .lesson-status--done { color: #2e7d32; }
+body.map-page .lesson-status--weak { color: #b23; }
+body.map-page .lesson-status--partial { color: #9a6b00; }
+body.map-page .lesson-status--todo { color: var(--muted); }
+
+body.map-page .panel .path-step::before {
+  content: "→ ";
+  color: var(--muted);
 }
 
 body.map-page .stage {

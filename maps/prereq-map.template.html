@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../assets/css/corporate.css">
+  <script src="../assets/js/site-layout.js" defer></script>
+  <script src="../assets/js/topic-progress.js" defer></script>
+  <title>{{TITLE}}</title>
+</head>
+
+<body class="map-page">
+  <header class="map-page-header">
+    <h1>{{HEADER_TITLE}}</h1>
+    <div class="sub">{{SUBTITLE}} <a id="catalogLink" href="#">Open subject catalog</a></div>
+  </header>
+
+  <div class="toolbar">
+    <div class="toolbar-group">
+      <input id="search" type="text" placeholder="Search topics" />
+      <select id="focusSelect"></select>
+      <select id="goalSelect"></select>
+      <button id="resetBtn" type="button">Reset view</button>
+    </div>
+    <div class="toolbar-group">
+      <select id="domainFilter"><option value="">All domains</option></select>
+      <label class="toolbar-check"><input id="lessonsOnly" type="checkbox" /> Lessons only</label>
+    </div>
+    <div class="toolbar-group level-filters">
+{{LEVEL_FILTERS}}
+    </div>
+  </div>
+
+  <aside class="map-legend" aria-label="Map legend">
+    <span class="legend-item"><span class="legend-swatch legend-swatch--selected"></span> Selected</span>
+    <span class="legend-item"><span class="legend-swatch legend-swatch--upstream"></span> Prerequisites</span>
+    <span class="legend-item"><span class="legend-swatch legend-swatch--downstream"></span> Dependents</span>
+    <span class="legend-item"><span class="legend-swatch legend-swatch--gap"></span> Missing prereqs</span>
+    <span class="legend-item"><span class="legend-swatch legend-swatch--math"></span> Cross-subject (math)</span>
+  </aside>
+
+  <div id="viewport" class="viewport">
+    <svg id="links"></svg>
+    <div id="stage" class="stage"></div>
+
+    <div id="detailPanel" class="panel" style="display:none;">
+      <h3 id="panelTitle">Topic</h3>
+      <div id="panelMeta" class="line"></div>
+      <div class="line"><strong>Lesson pages:</strong></div>
+      <ul id="panelLessons"></ul>
+      <div class="line"><strong>Shortest path to goal:</strong></div>
+      <ul id="panelPath"></ul>
+      <div class="line"><strong>Readiness gaps (from your progress):</strong></div>
+      <ul id="panelGaps"></ul>
+      <div class="line"><strong>Direct prerequisites:</strong></div>
+      <ul id="panelReq"></ul>
+      <div class="line"><strong>All prerequisites (transitive):</strong></div>
+      <ul id="panelReqAll"></ul>
+      <div class="line"><strong>Direct dependents:</strong></div>
+      <ul id="panelDep"></ul>
+    </div>
+  </div>
+
+  <script type="application/json" id="prereq-map-config">
+{{MAP_CONFIG_JSON}}
+  </script>
+  <script type="application/json" id="prereq-graph-data">
+{{GRAPH_DATA_JSON}}
+  </script>
+  <script type="application/json" id="prereq-node-pages">
+{{NODE_PAGES_JSON}}
+  </script>
+  <script src="../assets/js/prereq-map.js" defer></script>
+</body>
+</html>
