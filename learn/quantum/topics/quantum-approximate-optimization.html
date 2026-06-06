@@ -27,37 +27,43 @@
     <div class="content-body">
 
     <details class="content-key" id="topic-review-key">
-      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <summary class="content-key__summary">Topic review key — formulae, symbols, terms &amp; acronyms</summary>
       <div class="content-key__body">
-      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt>C(z) = \sum_{(i,j) \in E} \frac{1 - z_i z_j}{2}</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>G = (V,E)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>H_C = \sum_{(i,j) \in E} \frac{1}{2}(I - Z_i Z_j)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>H_C |z\rangle = C(z) |z\rangle, \qquad \min_z C(z) \Leftrightarrow \min \lang...</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>H_M = \sum_j X_j</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>U_C(\gamma_\ell) = e^{-i \gamma_\ell H_C}</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>U_M(\beta_\ell) = e^{-i \beta_\ell H_M}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(C(z) = \sum_{(i,j) \in E} \frac{1 - z_i z_j}{2}\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">G = (V,E)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(H_C = \sum_{(i,j) \in E} \frac{1}{2}(I - Z_i Z_j)\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(H_C |z\rangle = C(z) |z\rangle, \qquad \min_z C(z) \Leftrightarrow \min \langle H_C \rangle\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(H_M = \sum_j X_j\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(U_C(\gamma_\ell) = e^{-i \gamma_\ell H_C}\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(U_M(\beta_\ell) = e^{-i \beta_\ell H_M}\)</dt><dd>Key relationship used in this topic.</dd></div>
       </dl>
-      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <h3 class="content-key__heading">Symbol names in formulae</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt class="content-key__symbol">\(|\alpha\rangle\)</dt><dd><strong>Called:</strong> ket alpha. Dirac ket — coherent state with amplitude α.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(|n\rangle\)</dt><dd><strong>Called:</strong> ket n. Dirac ket — Fock state with n photons.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(|0\rangle\)</dt><dd><strong>Called:</strong> ket zero. Dirac ket — vacuum (zero-photon) state.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\beta\)</dt><dd><strong>Called:</strong> Greek beta. Greek letter beta (β).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\gamma\)</dt><dd><strong>Called:</strong> Greek gamma. Greek letter gamma (γ).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\infty\)</dt><dd><strong>Called:</strong> infinity. Infinity symbol (∞).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(E\)</dt><dd><strong>Called:</strong> capital E. Energy or electric field.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(H\)</dt><dd><strong>Called:</strong> capital H. Hamiltonian (energy operator).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(I\)</dt><dd><strong>Called:</strong> capital I. Current or moment of inertia.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(R\)</dt><dd><strong>Called:</strong> capital R. Radius, reflectivity, or resistance.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(V\)</dt><dd><strong>Called:</strong> capital V. Voltage or volume.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(X\)</dt><dd><strong>Called:</strong> capital X. Position quadrature or variable.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(n\)</dt><dd><strong>Called:</strong> lowercase n. Photon number or integer index.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Acronyms</h3>
       <dl class="content-key__list">
         <div class="content-key__item"><dt>NISQ</dt><dd>Noisy Intermediate-Scale Quantum — devices with limited qubits and significant noise.</dd></div>
-        <div class="content-key__item"><dt>NP</dt><dd>1) Combinatorial optimisation on qubits
-
- 
- Many NP-hard problems — MaxCut, portfolio optimisation, scheduling — can be written as minimising a
- cost function \(C(z)\) over bit strings \(z \in \{0,1\}^n\).</dd></div>
+        <div class="content-key__item"><dt>NP</dt><dd>Combinatorial optimisation on qubits Many NP-hard problems — MaxCut, portfolio optimisation, scheduling — can be written as minimising a cost function \(C(z)\) over bit strings \(z \in \{0,1\}^n\).</dd></div>
         <div class="content-key__item"><dt>QAOA</dt><dd>Quantum Approximate Optimization Algorithm — hybrid quantum-classical optimizer.</dd></div>
-        <div class="content-key__item"><dt>UCC</dt><dd>Introduced and explained in the sections below.</dd></div>
         <div class="content-key__item"><dt>VQE</dt><dd>Variational Quantum Eigensolver — algorithm for estimating ground-state energies.</dd></div>
-        <div class="content-key__item"><dt>XX</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>XY</dt><dd>XY mixer
-
- Used when preserving Hamming weight; encodes one-hot constraints in assignment problems.</dd></div>
-        <div class="content-key__item"><dt>ZNE</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>ZZ</dt><dd>Each edge term is
- implementable with \(R_{ZZ}\) interactions on connected qubits.</dd></div>
+        <div class="content-key__item"><dt>XY</dt><dd>XY mixer Used when preserving Hamming weight; encodes one-hot constraints in assignment problems.</dd></div>
+        <div class="content-key__item"><dt>ZZ</dt><dd>Each edge term is implementable with \(R_{ZZ}\) interactions on connected qubits.</dd></div>
       </dl>
       <h3 class="content-key__heading">Key terms &amp; phrases</h3>
       <dl class="content-key__list">

@@ -27,31 +27,65 @@
     <div class="content-body">
 
     <details class="content-key" id="topic-review-key">
-      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <summary class="content-key__summary">Topic review key — formulae, symbols, terms &amp; acronyms</summary>
       <div class="content-key__body">
-      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt>\mathbf{F} = f(x)\mathbf{i}</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>\mathbf{F} = P\mathbf{i} + Q\mathbf{j} + R\mathbf{k}</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>\mathbf{F} = z\mathbf{k}</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>\mathbf{F}(x,y,z) = x\mathbf{i} + y\mathbf{j} + z\mathbf{k}</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>\mathbf{F}\cdot\mathbf{n} = z</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>\nabla\cdot(\nabla\times\mathbf{F}) = 0</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>\nabla\cdot\mathbf{F} = f&#x27;(x)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>\nabla\cdot\mathbf{v} = 0</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>\nabla\times(\nabla f) = \mathbf{0}</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>\oiint_S \mathbf{F} \cdot d\mathbf{S} = \iiint_V (\nabla \cdot \mathbf{F})\, dV</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>\oiint_S z\,dS = 0</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>\oint_C \mathbf{F}\cdot\mathbf{n}\,ds = \iint_D (\nabla\cdot\mathbf{F})\,dA</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>\Phi = \iint_S \mathbf{F} \cdot \mathbf{n}\, dS = \iint_S \mathbf{F} \cdot d\...</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>f(b) - f(a) = \int_a^b f&#x27;(x)\,dx</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>S = \partial V</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>z = g(x,y)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\mathbf{F} = f(x)\mathbf{i}\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\mathbf{F} = P\mathbf{i} + Q\mathbf{j} + R\mathbf{k}\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\mathbf{F} = z\mathbf{k}\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\mathbf{F}(x,y,z) = x\mathbf{i} + y\mathbf{j} + z\mathbf{k}\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\mathbf{F}\cdot\mathbf{n} = z\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\nabla \cdot \mathbf{F} = \frac{\partial P}{\partial x} + \frac{\partial Q}{\partial y} + \frac{\partial R}{\partial z}\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\nabla \cdot \mathbf{F} = \lim_{\Delta V \to 0} \frac{1}{\Delta V}\oiint_{\partial(\Delta V)} \mathbf{F}\cdot d\mathbf{S}\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\nabla\cdot(\nabla\times\mathbf{F}) = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\nabla\cdot\mathbf{F} = f'(x)\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\nabla\cdot\mathbf{v} = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\nabla\times(\nabla f) = \mathbf{0}\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\oiint_S \mathbf{F} \cdot d\mathbf{S} = \iiint_V (\nabla \cdot \mathbf{F})\, dV\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\oiint_S z\,dS = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\oint_C \mathbf{F}\cdot\mathbf{n}\,ds = \iint_D (\nabla\cdot\mathbf{F})\,dA\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\Phi = \iint_S \mathbf{F} \cdot \mathbf{n}\, dS = \iint_S \mathbf{F} \cdot d\mathbf{S}\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(d\mathbf{S} = \pm\left(-\frac{\partial z}{\partial x}\mathbf{i} - \frac{\partial z}{\partial y}\mathbf{j} + \mathbf{k}\right) dx\,dy\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(f(b) - f(a) = \int_a^b f'(x)\,dx\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(S = \partial V\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">z = g(x,y)</dt><dd>Key relationship used in this topic.</dd></div>
       </dl>
-      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <h3 class="content-key__heading">Symbol names in formulae</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt>FTC</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(|\alpha\rangle\)</dt><dd><strong>Called:</strong> ket alpha. Dirac ket — coherent state with amplitude α.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(|n\rangle\)</dt><dd><strong>Called:</strong> ket n. Dirac ket — Fock state with n photons.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(|0\rangle\)</dt><dd><strong>Called:</strong> ket zero. Dirac ket — vacuum (zero-photon) state.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\Delta\)</dt><dd><strong>Called:</strong> Greek capital Delta. Greek letter capital Delta (Δ).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\Phi\)</dt><dd><strong>Called:</strong> Greek capital Phi. Greek letter capital Phi (Φ).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\pi\)</dt><dd><strong>Called:</strong> Greek pi. Greek letter pi (π).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">f&#x27;</dt><dd><strong>Called:</strong> f-prime. Prime notation — first derivative of f.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(a\)</dt><dd><strong>Called:</strong> a (lowercase). Annihilation operator.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\mathbf{0}\)</dt><dd><strong>Called:</strong> bold 0. Bold vector or matrix (0).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\mathbf{F}\)</dt><dd><strong>Called:</strong> bold F. Bold vector or matrix (F). On this page: Al interpretation Fluid flow If.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\mathbf{i}\)</dt><dd><strong>Called:</strong> bold i. Bold vector or matrix (i).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\mathbf{j}\)</dt><dd><strong>Called:</strong> bold j. Bold vector or matrix (j).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\mathbf{k}\)</dt><dd><strong>Called:</strong> bold k. Bold vector or matrix (k).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\mathbf{n}\)</dt><dd><strong>Called:</strong> bold n. Bold vector or matrix (n).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\mathbf{S}\)</dt><dd><strong>Called:</strong> bold S. Bold vector or matrix (S).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\mathbf{v}\)</dt><dd><strong>Called:</strong> bold v. Bold vector or matrix (v). On this page: Is velocity.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\lim\)</dt><dd><strong>Called:</strong> limit. Limit operator.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\nabla\)</dt><dd><strong>Called:</strong> nabla (del). Vector differential operator (∇).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\partial\)</dt><dd><strong>Called:</strong> partial derivative. Partial-derivative symbol (∂).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\pm\)</dt><dd><strong>Called:</strong> plus-minus. Plus-or-minus sign (±).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\times\)</dt><dd><strong>Called:</strong> times. Multiplication cross (×).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(D\)</dt><dd><strong>Called:</strong> capital D. Displacement operator or distance. On this page: Is the positively oriented boundary of.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(F\)</dt><dd><strong>Called:</strong> capital F. Force or finesse.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(P\)</dt><dd><strong>Called:</strong> capital P. Pressure or momentum quadrature (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(Q\)</dt><dd><strong>Called:</strong> capital Q. Quality factor.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(R\)</dt><dd><strong>Called:</strong> capital R. Radius, reflectivity, or resistance.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(S\)</dt><dd><strong>Called:</strong> capital S. Entropy or action. On this page: Nded by a piecewise smooth closed surface.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(g\)</dt><dd><strong>Called:</strong> lowercase g. Coupling strength or gravitational acceleration.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(k\)</dt><dd><strong>Called:</strong> lowercase k. Spring constant or wave number.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(v\)</dt><dd><strong>Called:</strong> lowercase v. Velocity. On this page: A solid region bounded by a piecewise smooth closed surface \(S\).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(x\)</dt><dd><strong>Called:</strong> lowercase x. Position or independent variable.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(y\)</dt><dd><strong>Called:</strong> lowercase y. Dependent variable.</dd></div>
       </dl>
       <h3 class="content-key__heading">Key terms &amp; phrases</h3>
       <dl class="content-key__list">

@@ -27,24 +27,52 @@
     <div class="content-body">
 
     <details class="content-key" id="topic-review-key">
-      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <summary class="content-key__summary">Topic review key — formulae, symbols, terms &amp; acronyms</summary>
       <div class="content-key__body">
-      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt>= |\nabla f|</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>\mathbf{q} = -k\nabla T</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>\mathbf{u} = (u_1, u_2, u_3)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>\nabla f = \mathbf{0}</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>D = 0</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>D = f_{xx}f_{yy} - (f_{xy})^2</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>f = \text{constant}</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>x = x(s,t)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>x = x(t)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>y = y(s,t)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>y = y(t)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>z = f(x, y)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>z = f(x,y)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(= |\nabla f|\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\frac{\partial f}{\partial x} = \lim_{h\to 0} \frac{f(x+h, y, z) - f(x,y,z)}{h}, \qquad
+ \frac{\partial f}{\partial y},\; \frac{\partial f}{\partial z} \text{ defined similarly.}\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\frac{\partial z}{\partial t} = \frac{\partial f}{\partial x}\frac{\partial x}{\partial t}
+ + \frac{\partial f}{\partial y}\frac{\partial y}{\partial t}\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\frac{dz}{dt} = \frac{\partial f}{\partial x}\frac{dx}{dt} + \frac{\partial f}{\partial y}\frac{dy}{dt}\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\mathbf{q} = -k\nabla T\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\mathbf{u} = (u_1, u_2, u_3)\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\nabla f = \left(\frac{\partial f}{\partial x},\; \frac{\partial f}{\partial y},\;
+ \frac{\partial f}{\partial z}\right)\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\nabla f = \mathbf{0}\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">D = 0</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(D = f_{xx}f_{yy} - (f_{xy})^2\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(D_{\mathbf{u}} f = \nabla f \cdot \mathbf{u} = u_1\frac{\partial f}{\partial x}
+ + u_2\frac{\partial f}{\partial y} + u_3\frac{\partial f}{\partial z}\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(f = \text{constant}\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">x = x(s,t)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">x = x(t)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">y = y(s,t)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">y = y(t)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">z = f(x, y)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">z = f(x,y)</dt><dd>Key relationship used in this topic.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Symbol names in formulae</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt class="content-key__symbol">\(|\alpha\rangle\)</dt><dd><strong>Called:</strong> ket alpha. Dirac ket — coherent state with amplitude α.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(|n\rangle\)</dt><dd><strong>Called:</strong> ket n. Dirac ket — Fock state with n photons.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(|0\rangle\)</dt><dd><strong>Called:</strong> ket zero. Dirac ket — vacuum (zero-photon) state.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\mathbf{0}\)</dt><dd><strong>Called:</strong> bold 0. Bold vector or matrix (0).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\mathbf{q}\)</dt><dd><strong>Called:</strong> bold q. Bold vector or matrix (q).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\mathbf{u}\)</dt><dd><strong>Called:</strong> bold u. Bold vector or matrix (u). On this page: Parallel to \(\nabla f\).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\lim\)</dt><dd><strong>Called:</strong> limit. Limit operator.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\nabla\)</dt><dd><strong>Called:</strong> nabla (del). Vector differential operator (∇).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\partial\)</dt><dd><strong>Called:</strong> partial derivative. Partial-derivative symbol (∂).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(D\)</dt><dd><strong>Called:</strong> capital D. Displacement operator or distance.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(R\)</dt><dd><strong>Called:</strong> capital R. Radius, reflectivity, or resistance.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(T\)</dt><dd><strong>Called:</strong> capital T. Temperature or period. On this page: Depend on.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(k\)</dt><dd><strong>Called:</strong> lowercase k. Spring constant or wave number.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(u\)</dt><dd><strong>Called:</strong> lowercase u. Substitution variable or internal mode.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(x\)</dt><dd><strong>Called:</strong> lowercase x. Position or independent variable. On this page: The partial derivative with respect to.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(y\)</dt><dd><strong>Called:</strong> lowercase y. Dependent variable.</dd></div>
       </dl>
       <h3 class="content-key__heading">Key terms &amp; phrases</h3>
       <dl class="content-key__list">
@@ -56,7 +84,7 @@
         <div class="content-key__item"><dt>Engineering applications</dt><dd>Engineering applications Multivariable calculus is essential for modelling fields, optimising designs, and analysing sensitivity in systems with many parameters.</dd></div>
         <div class="content-key__item"><dt>Functions of several variables</dt><dd>Functions of several variables A scalar field \(f(x, y, z)\) assigns a real number to each point in space.</dd></div>
         <div class="content-key__item"><dt>gradient</dt><dd>The gradient \(\nabla f\) collects all first partial derivatives into a vector pointing in the direction of steepest ascent:</dd></div>
-        <div class="content-key__item"><dt>Heat conduction</dt><dd>Fourier&#x27;s law: \(\mathbf{q} = -k\nabla T\).</dd></div>
+        <div class="content-key__item"><dt>Heat conduction</dt><dd>Fourier's law: \(\mathbf{q} = -k\nabla T\).</dd></div>
         <div class="content-key__item"><dt>Hessian matrix</dt><dd>The Hessian matrix classifies stationary points:</dd></div>
         <div class="content-key__item"><dt>partial derivative</dt><dd>The partial derivative with respect to \(x\) is found by differentiating with respect to \(x\) while treating all other variables as constants:</dd></div>
         <div class="content-key__item"><dt>Partial derivatives</dt><dd>The partial derivative with respect to \(x\) is found by differentiating with respect to \(x\) while treating all other variables as constants:</dd></div>

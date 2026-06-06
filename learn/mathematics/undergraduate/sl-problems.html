@@ -27,40 +27,75 @@
     <div class="content-body">
 
     <details class="content-key" id="topic-review-key">
-      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <summary class="content-key__summary">Topic review key — formulae, symbols, terms &amp; acronyms</summary>
       <div class="content-key__body">
-      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt>\alpha y + \beta y&#x27; = 0</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>\alpha_1 y(a) + \alpha_2 y&#x27;(a) = 0, \qquad \beta_1 y(b) + \beta_2 y&#x27;(b) = 0</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>\int_0^L \sin(n\pi x/L)\,dx = \dfrac{L}{n\pi}[1 - (-1)^n]</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>\int_0^L \sin^2(n\pi x/L)\,dx = L/2</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>\int_a^b r(x)\,y_m(x)\,y_n(x)\,dx = 0</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>\lambda = 0</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>\lambda_n = (2n\pi/L)^2</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>\lambda_n = (n\pi/L)^2</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>\lambda_n = \alpha_n^2</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>\omega_n = n\pi c/L</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>\sin m\theta\sin n\theta = \tfrac{1}{2}[\cos(m-n)\theta - \cos(m+n)\theta]</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>\tan\alpha L = \cdots</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>\theta = \pi x/L</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>c_n = \dfrac{2}{n\pi}[1-(-1)^n]</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>c_n = \frac{\int_a^b r(x)\,f(x)\,y_n(x)\,dx}{\int_a^b r(x)\,y_n^2(x)\,dx}</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>n=0,1,\ldots</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>p(x)y&#x27;&#x27; + p&#x27;(x)y&#x27; + [q(x) + \lambda r(x)]y = 0</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>u(0,t) = u(L,t) = 0</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>u_{tt} = c^2 u_{xx}</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>x = a</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\alpha y + \beta y' = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\alpha_1 y(a) + \alpha_2 y'(a) = 0, \qquad \beta_1 y(b) + \beta_2 y'(b) = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\frac{d}{dx}\left[p(x)\,\frac{dy}{dx}\right] + \left[q(x) + \lambda\,r(x)\right]y = 0, \quad a \leq x \leq b\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\int_0^L \sin(n\pi x/L)\,dx = \dfrac{L}{n\pi}[1 - (-1)^n]\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\int_0^L \sin^2(n\pi x/L)\,dx = L/2\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\int_a^b r(x)\,y_m(x)\,y_n(x)\,dx = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\lambda = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\lambda_n = (2n\pi/L)^2\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\lambda_n = (n\pi/L)^2\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\lambda_n = \alpha_n^2\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\omega_n = n\pi c/L\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\sin m\theta\sin n\theta = \tfrac{1}{2}[\cos(m-n)\theta - \cos(m+n)\theta]\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\tan\alpha L = \cdots\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\theta = \pi x/L\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(c_n = \dfrac{2}{n\pi}[1-(-1)^n]\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(c_n = \frac{\int_a^b r(x)\,f(x)\,y_n(x)\,dx}{\int_a^b r(x)\,y_n^2(x)\,dx}\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(n=0,1,\ldots\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(p(x)y'' + p'(x)y' + [q(x) + \lambda r(x)]y = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">u(0,t) = u(L,t) = 0</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(u_{tt} = c^2 u_{xx}\)</dt><dd>Key relationship used in this topic.</dd></div>
       </dl>
-      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <h3 class="content-key__heading">Symbol names in formulae</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt class="content-key__symbol">\(|\alpha\rangle\)</dt><dd><strong>Called:</strong> ket alpha. Dirac ket — coherent state with amplitude α.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(|n\rangle\)</dt><dd><strong>Called:</strong> ket n. Dirac ket — Fock state with n photons.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(|0\rangle\)</dt><dd><strong>Called:</strong> ket zero. Dirac ket — vacuum (zero-photon) state.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\omega_{n}\)</dt><dd><strong>Called:</strong> omega-sub-n. Greek omega with subscript n.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\alpha\)</dt><dd><strong>Called:</strong> Greek alpha. Greek letter alpha (α).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\beta\)</dt><dd><strong>Called:</strong> Greek beta. Greek letter beta (β).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\lambda\)</dt><dd><strong>Called:</strong> Greek lambda. Greek letter lambda (λ). On this page: A parameter (the eigenvalue).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\omega\)</dt><dd><strong>Called:</strong> Greek omega. Greek letter omega (ω).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\pi\)</dt><dd><strong>Called:</strong> Greek pi. Greek letter pi (π).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\theta\)</dt><dd><strong>Called:</strong> Greek theta. Greek letter theta (θ).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(a_1\)</dt><dd><strong>Called:</strong> a-sub-1. Annihilation operator for mode 1.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(a_2\)</dt><dd><strong>Called:</strong> a-sub-2. Annihilation operator for mode 2.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\alpha_{1}\)</dt><dd><strong>Called:</strong> alpha-sub-1. Greek alpha with subscript 1.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\alpha_{2}\)</dt><dd><strong>Called:</strong> alpha-sub-2. Greek alpha with subscript 2.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\alpha_{n}\)</dt><dd><strong>Called:</strong> alpha-sub-n. Greek alpha with subscript n.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\beta_{1}\)</dt><dd><strong>Called:</strong> beta-sub-1. Greek beta with subscript 1.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\beta_{2}\)</dt><dd><strong>Called:</strong> beta-sub-2. Greek beta with subscript 2.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\lambda_{1}\)</dt><dd><strong>Called:</strong> lambda-sub-1. Greek lambda with subscript 1.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\lambda_{2}\)</dt><dd><strong>Called:</strong> lambda-sub-2. Greek lambda with subscript 2.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\lambda_{n}\)</dt><dd><strong>Called:</strong> lambda-sub-n. Greek lambda with subscript n.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(a\)</dt><dd><strong>Called:</strong> a (lowercase). Annihilation operator.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\cos\)</dt><dd><strong>Called:</strong> cosine. Trigonometric cosine function.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\frac{dy}{dx}\)</dt><dd><strong>Called:</strong> dy by dx. Derivative of y with respect to x.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\infty\)</dt><dd><strong>Called:</strong> infinity. Infinity symbol (∞).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\neq\)</dt><dd><strong>Called:</strong> not equal. Inequality symbol (≠).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\sin\)</dt><dd><strong>Called:</strong> sine. Trigonometric sine function.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\tan\)</dt><dd><strong>Called:</strong> tangent. Trigonometric tangent function.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(L\)</dt><dd><strong>Called:</strong> capital L. Length, angular momentum, or inductance.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(m\)</dt><dd><strong>Called:</strong> lowercase m. Mass or slope.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(u\)</dt><dd><strong>Called:</strong> lowercase u. Substitution variable or internal mode.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(x\)</dt><dd><strong>Called:</strong> lowercase x. Position or independent variable.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(y\)</dt><dd><strong>Called:</strong> lowercase y. Dependent variable.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Acronyms</h3>
       <dl class="content-key__list">
         <div class="content-key__item"><dt>ODE</dt><dd>Ordinary differential equation — equation involving derivatives of one variable.</dd></div>
       </dl>
       <h3 class="content-key__heading">Key terms &amp; phrases</h3>
       <dl class="content-key__list">
         <div class="content-key__item"><dt>BCs</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>Boundary condition types</dt><dd>Homogeneous BCs for S–L theory take the general form: \[ \alpha_1 y(a) + \alpha_2 y&#x27;(a) = 0, \qquad \beta_1 y(b) + \beta_2 y&#x27;(b) = 0 \]</dd></div>
+        <div class="content-key__item"><dt>Boundary condition types</dt><dd>Homogeneous BCs for S–L theory take the general form: \[ \alpha_1 y(a) + \alpha_2 y'(a) = 0, \qquad \beta_1 y(b) + \beta_2 y'(b) = 0 \]</dd></div>
         <div class="content-key__item"><dt>complete</dt><dd>The \(y_n\) form a complete basis for expanding functions on \([a,b]\)</dd></div>
         <div class="content-key__item"><dt>Effect on eigenvalues</dt><dd>Introduced and explained in the sections below.</dd></div>
         <div class="content-key__item"><dt>eigenfunction</dt><dd>determined up to a scalar multiple; normalisation fixes the scale.</dd></div>
@@ -73,10 +108,10 @@
         <div class="content-key__item"><dt>Orthogonality</dt><dd>Eigenfunctions \(y_m, y_n\) (\(m \neq n\)) are orthogonal with weight \(r(x)\) : \[ \int_a^b r(x)\,y_m(x)\,y_n(x)\,dx = 0 \] For the standard case \(r(x) = 1\), this is ordinary \(L^2\) inner product orthogonality.</dd></div>
         <div class="content-key__item"><dt>Physical examples</dt><dd>Physical examples Vibrating string Wave equation \(u_{tt} = c^2 u_{xx}\) with fixed ends \(u(0,t) = u(L,t) = 0\).</dd></div>
         <div class="content-key__item"><dt>Problem</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>real</dt><dd>Eigenvalues \(\lambda_n\) are real and form an infinite sequence \(\lambda_1 &lt; \lambda_2 &lt; \cdots \to \infty\)</dd></div>
+        <div class="content-key__item"><dt>real</dt><dd>Eigenvalues \(\lambda_n\) are real and form an infinite sequence \(\lambda_1 < \lambda_2 < \cdots \to \infty\)</dd></div>
         <div class="content-key__item"><dt>Sturm–Liouville (S–L) problem</dt><dd>Introduced and explained in the sections below.</dd></div>
         <div class="content-key__item"><dt>Sturm–Liouville theorem</dt><dd>The Sturm–Liouville theorem guarantees (under standard conditions):</dd></div>
-        <div class="content-key__item"><dt>The eigenvalue problem</dt><dd>The eigenvalue problem Rewriting the S–L equation: \[ p(x)y&#x27;&#x27; + p&#x27;(x)y&#x27; + [q(x) + \lambda r(x)]y = 0 \] we seek pairs \((\lambda_n, y_n)\) with \(y_n \not\equiv 0\) satisfying the BCs.</dd></div>
+        <div class="content-key__item"><dt>The eigenvalue problem</dt><dd>The eigenvalue problem Rewriting the S–L equation: \[ p(x)y'' + p'(x)y' + [q(x) + \lambda r(x)]y = 0 \] we seek pairs \((\lambda_n, y_n)\) with \(y_n \not\equiv 0\) satisfying the BCs.</dd></div>
         <div class="content-key__item"><dt>The Sturm–Liouville form</dt><dd>A Sturm–Liouville (S–L) problem is a second-order linear ODE in self-adjoint form: \[ \frac{d}{dx}\left[p(x)\,\frac{dy}{dx}\right] + \left[q(x) + \lambda\,r(x)\right]y = 0, \quad a \leq x \leq b \] with homogeneous boundary conditions at...</dd></div>
         <div class="content-key__item"><dt>Vibrating string</dt><dd>Wave equation \(u_{tt} = c^2 u_{xx}\) with fixed ends \(u(0,t) = u(L,t) = 0\).</dd></div>
       </dl>

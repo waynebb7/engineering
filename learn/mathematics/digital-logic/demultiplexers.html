@@ -24,48 +24,53 @@
     <div class="content-body">
 
     <details class="content-key" id="topic-review-key">
-      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <summary class="content-key__summary">Topic review key — formulae, symbols, terms &amp; acronyms</summary>
       <div class="content-key__body">
-      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt>CS i = EN · m i (Address)</dt><dd>active when the select value equals i :
+        <div class="content-key__item"><dt class="content-key__formula">CS i = EN · m i (Address)</dt><dd>active when the select value equals i :
  
 
  Y i = D · m i (S) 
 
  
  Each output is the data input ANDed with the minterm of the select variables for that output index.</dd></div>
-        <div class="content-key__item"><dt>D = 0</dt><dd>Contrast with decoder: A decoder activates one output line without carrying arbitrary data D — it generates address patterns.</dd></div>
-        <div class="content-key__item"><dt>Y i = D · m i (S)</dt><dd>active when the select value equals i :
+        <div class="content-key__item"><dt class="content-key__formula">D = 0</dt><dd>Contrast with decoder: A decoder activates one output line without carrying arbitrary data D — it generates address patterns.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">Y i = D · m i (S)</dt><dd>active when the select value equals i :
  
 
  Y i = D · m i (S) 
 
  
  Each output is the data input ANDed with the minterm of the select variables for that output index.</dd></div>
-        <div class="content-key__item"><dt>Y₀ = S&#x27;D</dt><dd>Write equations for Y₀ and Y₃ of a 1:4 DEMUX.</dd></div>
-        <div class="content-key__item"><dt>Y₀ = S₁&#x27;S₀&#x27;D</dt><dd>Write equations for Y₀ and Y₃ of a 1:4 DEMUX.</dd></div>
-        <div class="content-key__item"><dt>Y₁ = SD</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>Y₁ = S₁&#x27;S₀D</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>Y₂ = S₁S₀&#x27;D</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>Y₃ = S₁S₀D</dt><dd>Write equations for Y₀ and Y₃ of a 1:4 DEMUX.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">Y₀ = S&#x27;D</dt><dd>Write equations for Y₀ and Y₃ of a 1:4 DEMUX.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">Y₀ = S₁&#x27;S₀&#x27;D</dt><dd>Write equations for Y₀ and Y₃ of a 1:4 DEMUX.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">Y₁ = SD</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">Y₁ = S₁&#x27;S₀D</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">Y₂ = S₁S₀&#x27;D</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">Y₃ = S₁S₀D</dt><dd>Write equations for Y₀ and Y₃ of a 1:4 DEMUX.</dd></div>
       </dl>
-      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <h3 class="content-key__heading">Symbol names in formulae</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt>CS</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">Address</dt><dd><strong>Called:</strong> Address. Quantity or variable in the relationship.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">CS</dt><dd><strong>Called:</strong> CS. Quantity or variable in the relationship.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">EN</dt><dd><strong>Called:</strong> EN. Quantity or variable in the relationship.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">SD</dt><dd><strong>Called:</strong> SD. Quantity or variable in the relationship.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(D\)</dt><dd><strong>Called:</strong> capital D. Displacement operator or distance.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(S\)</dt><dd><strong>Called:</strong> capital S. Entropy or action.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(i\)</dt><dd><strong>Called:</strong> lowercase i. Imaginary unit (√−1).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(m\)</dt><dd><strong>Called:</strong> lowercase m. Mass or slope.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Acronyms</h3>
+      <dl class="content-key__list">
         <div class="content-key__item"><dt>DEMUX</dt><dd>the conceptual model.</dd></div>
-        <div class="content-key__item"><dt>EN</dt><dd>Introduced and explained in the sections below.</dd></div>
         <div class="content-key__item"><dt>FPGA</dt><dd>This separates address decoding from data gating — a common PCB and FPGA pattern.</dd></div>
         <div class="content-key__item"><dt>G1</dt><dd>The 74138 3-to-8 decoder is effectively a DEMUX with inverted active-low outputs when G1, G2A, G2B enables are used.</dd></div>
         <div class="content-key__item"><dt>G2A</dt><dd>The 74138 3-to-8 decoder is effectively a DEMUX with inverted active-low outputs when G1, G2A, G2B enables are used.</dd></div>
         <div class="content-key__item"><dt>G2B</dt><dd>The 74138 3-to-8 decoder is effectively a DEMUX with inverted active-low outputs when G1, G2A, G2B enables are used.</dd></div>
-        <div class="content-key__item"><dt>IC</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>LED</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>MUX</dt><dd>Introduced and explained in the sections below.</dd></div>
         <div class="content-key__item"><dt>NAND</dt><dd>NOT-AND logic gate — universal gate in digital electronics.</dd></div>
         <div class="content-key__item"><dt>PCB</dt><dd>This separates address decoding from data gating — a common PCB and FPGA pattern.</dd></div>
-        <div class="content-key__item"><dt>SD</dt><dd>Introduced and explained in the sections below.</dd></div>
       </dl>
       <h3 class="content-key__heading">Key terms &amp; phrases</h3>
       <dl class="content-key__list">

@@ -27,25 +27,51 @@
     <div class="content-body">
 
     <details class="content-key" id="topic-review-key">
-      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <summary class="content-key__summary">Topic review key — formulae, symbols, terms &amp; acronyms</summary>
       <div class="content-key__body">
-      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt>\bar{u}(x) = \sum_j x_j u_j(x)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>\dot{x}_i = x_i\left(u_i(x) - \bar{u}(x)\right)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>BR_i(s_{-i}) = \arg\max_{s_i \in S_i} u_i(s_i, s_{-i})</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>For population shares \(x_i\) of strategies \(i\),
+        <div class="content-key__item"><dt class="content-key__formula">\(\bar{u}(x) = \sum_j x_j u_j(x)\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\dot{x}_i = x_i\left(u_i(x) - \bar{u}(x)\right)\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\max_{\sigma_1} \min_{\sigma_2} u_1(\sigma_1, \sigma_2) = \min_{\sigma_2} \max_{\sigma_1} u_1(\sigma_1, \sigma_2) = v\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\phi_i(v) = \sum_{S \subseteq N \setminus \{i\}} \frac{|S|!\,(|N|-|S|-1)!}{|N|!}\left[v(S \cup \{i\}) - v(S)\right]\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(BR_i(s_{-i}) = \arg\max_{s_i \in S_i} u_i(s_i, s_{-i})\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(For population shares \(x_i\) of strategies \(i\),
  \[
  \dot{x}_i = x_i\left(u_i(x) - \bar{u}(x)\right)
  \]
- where \(\bar{u}(x) = \sum_j x_j u_j(x)\) is average fitness. Nash equilibria are fixed points.</dt><dd>Key relationship highlighted in the lesson.</dd></div>
-        <div class="content-key__item"><dt>N = \{1, \ldots, n\}</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>s^* = (s_1^*, \ldots, s_n^*)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>u_1(s) + u_2(s) = 0</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>u_i(\sigma_i, \sigma_{-i}) = \sum_{s \in S} \left(\prod_j \sigma_j(s_j)\right...</dt><dd>Key relationship used in this topic.</dd></div>
+ where \(\bar{u}(x) = \sum_j x_j u_j(x)\) is average fitness. Nash equilibria are fixed points.\)</dt><dd>Key relationship highlighted in the lesson.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(N = \{1, \ldots, n\}\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(s^* = (s_1^*, \ldots, s_n^*)\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(u_1(s) + u_2(s) = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(u_i(\sigma_i, \sigma_{-i}) = \sum_{s \in S} \left(\prod_j \sigma_j(s_j)\right) u_i(s)\)</dt><dd>Key relationship used in this topic.</dd></div>
       </dl>
-      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <h3 class="content-key__heading">Symbol names in formulae</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt class="content-key__symbol">\(|\alpha\rangle\)</dt><dd><strong>Called:</strong> ket alpha. Dirac ket — coherent state with amplitude α.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(|n\rangle\)</dt><dd><strong>Called:</strong> ket n. Dirac ket — Fock state with n photons.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(|0\rangle\)</dt><dd><strong>Called:</strong> ket zero. Dirac ket — vacuum (zero-photon) state.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\sigma_{-i}\)</dt><dd><strong>Called:</strong> sigma-sub--i. Greek sigma with subscript -i.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\sigma_{1}\)</dt><dd><strong>Called:</strong> sigma-sub-1. Greek sigma with subscript 1.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\sigma_{2}\)</dt><dd><strong>Called:</strong> sigma-sub-2. Greek sigma with subscript 2.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\sigma_{i}\)</dt><dd><strong>Called:</strong> sigma-sub-i. Greek sigma with subscript i.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\sigma_{j}\)</dt><dd><strong>Called:</strong> sigma-sub-j. Greek sigma with subscript j.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\Delta\)</dt><dd><strong>Called:</strong> Greek capital Delta. Greek letter capital Delta (Δ).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\phi\)</dt><dd><strong>Called:</strong> Greek phi. Greek letter phi (φ).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\sigma\)</dt><dd><strong>Called:</strong> Greek sigma. Greek letter sigma (σ).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(a_1\)</dt><dd><strong>Called:</strong> a-sub-1. Annihilation operator for mode 1.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(a_2\)</dt><dd><strong>Called:</strong> a-sub-2. Annihilation operator for mode 2.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\phi_{i}\)</dt><dd><strong>Called:</strong> phi-sub-i. Greek phi with subscript i.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\times\)</dt><dd><strong>Called:</strong> times. Multiplication cross (×).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(R\)</dt><dd><strong>Called:</strong> capital R. Radius, reflectivity, or resistance.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(S\)</dt><dd><strong>Called:</strong> capital S. Entropy or action.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(n\)</dt><dd><strong>Called:</strong> lowercase n. Photon number or integer index.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(u\)</dt><dd><strong>Called:</strong> lowercase u. Substitution variable or internal mode.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(v\)</dt><dd><strong>Called:</strong> lowercase v. Velocity. On this page: Tegy sets Zero-sum Minimax value.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(x\)</dt><dd><strong>Called:</strong> lowercase x. Position or independent variable. On this page: Allocations.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Acronyms</h3>
       <dl class="content-key__list">
         <div class="content-key__item"><dt>ESS</dt><dd>A strategy is ESS (evolutionarily stable strategy) if it resists invasion by mutants.</dd></div>
         <div class="content-key__item"><dt>IESDS</dt><dd>Iterated elimination of dominated strategies (IESDS) refines predictions.</dd></div>
@@ -58,7 +84,7 @@
         <div class="content-key__item"><dt>characteristic function</dt><dd>A characteristic function \(v : 2^N \to \mathbb{R}\) gives the value coalition \(S\) can guarantee.</dd></div>
         <div class="content-key__item"><dt>cooperative game theory</dt><dd>In cooperative game theory , coalitions \(S \subseteq N\) form binding agreements.</dd></div>
         <div class="content-key__item"><dt>Cooperative games and the Shapley value</dt><dd>Cooperative games and the Shapley value In cooperative game theory , coalitions \(S \subseteq N\) form binding agreements.</dd></div>
-        <div class="content-key__item"><dt>Dominance and Nash equilibrium</dt><dd>Dominance and Nash equilibrium Strategy \(s_i\) is strictly dominated if \(\exists\, s_i&#x27;\) with \(u_i(s_i&#x27;, s_{-i}) &gt; u_i(s_i, s_{-i})\) for all \(s_{-i}\).</dd></div>
+        <div class="content-key__item"><dt>Dominance and Nash equilibrium</dt><dd>Dominance and Nash equilibrium Strategy \(s_i\) is strictly dominated if \(\exists\, s_i'\) with \(u_i(s_i', s_{-i}) > u_i(s_i, s_{-i})\) for all \(s_{-i}\).</dd></div>
         <div class="content-key__item"><dt>ESS</dt><dd>A strategy is ESS (evolutionarily stable strategy) if it resists invasion by mutants.</dd></div>
         <div class="content-key__item"><dt>Evolutionary game theory</dt><dd>Evolutionary game theory models populations of strategies.</dd></div>
         <div class="content-key__item"><dt>Evolutionary game theory and replicator dynamics</dt><dd>Evolutionary game theory and replicator dynamics Evolutionary game theory models populations of strategies.</dd></div>
@@ -69,7 +95,7 @@
         <div class="content-key__item"><dt>normal-form game</dt><dd>A normal-form game has players \(N = \{1, \ldots, n\}\), strategy sets \(S_i\), and payoff functions \(u_i : S_1 \times \cdots \times S_n \to \mathbb{R}\).</dd></div>
         <div class="content-key__item"><dt>Normal-form games and best responses</dt><dd>Normal-form games and best responses A normal-form game has players \(N = \{1, \ldots, n\}\), strategy sets \(S_i\), and payoff functions \(u_i : S_1 \times \cdots \times S_n \to \mathbb{R}\).</dd></div>
         <div class="content-key__item"><dt>Perfect recall</dt><dd>players remember their past actions and what they knew.</dd></div>
-        <div class="content-key__item"><dt>strictly dominated</dt><dd>Strategy \(s_i\) is strictly dominated if \(\exists\, s_i&#x27;\) with \(u_i(s_i&#x27;, s_{-i}) &gt; u_i(s_i, s_{-i})\) for all \(s_{-i}\).</dd></div>
+        <div class="content-key__item"><dt>strictly dominated</dt><dd>Strategy \(s_i\) is strictly dominated if \(\exists\, s_i'\) with \(u_i(s_i', s_{-i}) > u_i(s_i, s_{-i})\) for all \(s_{-i}\).</dd></div>
       </dl>
       </div>
     </details>

@@ -112,6 +112,9 @@ ACRONYM_GLOSSARY: dict[str, str] = {
     "QFT": "Quantum field theory — relativistic quantum framework for particles and fields.",
     "NISQ": "Noisy Intermediate-Scale Quantum — devices with limited qubits and significant noise.",
     "QKD": "Quantum key distribution — secure key exchange using quantum states.",
+    "QED": "Quantum electrodynamics — quantum theory of light and its interaction with charged matter. Cavity QED and circuit QED study atoms or qubits coupled to confined photon modes.",
+    "HOM": "Hong–Ou–Mandel effect — two indistinguishable photons on a beam splitter exit together; coincidence probability drops to zero.",
+    "LIGO": "Laser Interferometer Gravitational-Wave Observatory — detects gravitational waves; squeezed light improves its sensitivity.",
     "QAOA": "Quantum Approximate Optimization Algorithm — hybrid quantum-classical optimizer.",
     "VQE": "Variational Quantum Eigensolver — algorithm for estimating ground-state energies.",
     "PDE": "Partial differential equation — equation involving partial derivatives.",
@@ -229,11 +232,13 @@ def clean_definition(defn: str) -> str:
     return defn[:220] + ("..." if len(defn) > 220 else "")
 
 
+MAX_FORMULA_DISPLAY = 200
+
 def is_key_formula(raw: str) -> bool:
     raw = raw.strip()
     if len(raw) < 4:
         return False
-    if len(raw) > 100:
+    if len(raw) > MAX_FORMULA_DISPLAY:
         return False
     if re.search(r"\d{2,}", raw):
         return False
@@ -282,6 +287,9 @@ def guess_definition(term: str, scope: str) -> str:
     for pat in patterns:
         m = re.search(pat, plain, re.IGNORECASE)
         if m:
+            start = m.start()
+            if plain.rfind("(", 0, start) > plain.rfind(")", 0, start):
+                continue
             definition = m.group(1).strip()
             if 10 < len(definition) < 200:
                 return definition
@@ -289,6 +297,8 @@ def guess_definition(term: str, scope: str) -> str:
     for sentence in sentences(scope):
         if re.search(rf"\b{term_esc}\b", sentence, re.I):
             if 20 < len(sentence) < 220:
+                if re.search(rf"\([^)]*\b{term_esc}\b[^)]*is\b", sentence, re.I):
+                    continue
                 return sentence
 
     hint = formula_hint(term)
@@ -390,6 +400,29 @@ def extract_hero_terms(page_html: str) -> list[tuple[str, str]]:
     return list(found.values())
 
 
+def formula_display_key(raw: str) -> str | None:
+    """Never truncate LaTeX mid-command — invalid math won't render in MathJax."""
+    raw = raw.strip()
+    if not raw:
+        return None
+    if looks_like_latex(raw):
+        if len(raw) > MAX_FORMULA_DISPLAY:
+            return None
+        return raw
+    if len(raw) > 120:
+        return raw[:117] + "..."
+    return raw
+
+
+def store_formula(found: dict[str, str], raw: str, text: str) -> None:
+    key = formula_display_key(raw)
+    if not key or key in found:
+        return
+    lhs = raw.split("=")[0].strip().split()
+    hint = formula_hint(lhs[-1]) if lhs else None
+    found[key] = hint or "Key relationship used in this topic."
+
+
 def extract_formulae(cards: list[str]) -> list[tuple[str, str]]:
     text = "\n".join(cards)
     found: dict[str, str] = {}
@@ -398,31 +431,19 @@ def extract_formulae(cards: list[str]) -> list[tuple[str, str]]:
             raw = strip_tags(m.group(1))
             if not is_key_formula(raw):
                 continue
-            key = raw if len(raw) <= 80 else raw[:77] + "..."
-            if key not in found:
-                lhs = raw.split("=")[0].strip().split()
-                hint = formula_hint(lhs[-1]) if lhs else None
-                found[key] = hint or "Key relationship used in this topic."
+            store_formula(found, raw, text)
 
     for m in DOLLAR_INLINE_RE.finditer(text):
         raw = strip_tags(m.group(1))
         if not is_key_formula(raw):
             continue
-        key = raw if len(raw) <= 80 else raw[:77] + "..."
-        if key not in found:
-            lhs = raw.split("=")[0].strip().split()
-            hint = formula_hint(lhs[-1]) if lhs else None
-            found[key] = hint or "Key relationship used in this topic."
+        store_formula(found, raw, text)
 
     for m in MATH_INLINE_RE.finditer(text):
         raw = strip_tags(m.group(1))
         if not is_key_formula(raw):
             continue
-        key = raw if len(raw) <= 80 else raw[:77] + "..."
-        if key not in found:
-            lhs = raw.split("=")[0].strip().split()
-            hint = formula_hint(lhs[-1]) if lhs else None
-            found[key] = hint or "Key relationship used in this topic."
+        store_formula(found, raw, text)
 
     for m in CODE_RE.finditer(text):
         raw = strip_tags(m.group(1))
@@ -462,7 +483,10 @@ def extract_acronyms(cards: list[str], page_html: str) -> list[tuple[str, str]]:
         acr = m.group(0)
         if acr in SKIP_ACRONYMS or acr in found:
             continue
-        found[acr] = guess_definition(acr, plain)
+        definition = guess_definition(acr, plain)
+        if definition.startswith("Introduced and explained"):
+            continue
+        found[acr] = clean_definition(definition)
 
     return sorted(found.items(), key=lambda x: x[0])
 
@@ -593,15 +617,404 @@ def extract_terms(cards: list[str], page_html: str) -> list[tuple[str, str]]:
     return pruned
 
 
-def build_section(title: str, items: list[tuple[str, str]]) -> str:
+LATEX_MARKERS = re.compile(r"\\[a-zA-Z]+|\\[^a-zA-Z]|[_^{}]")
+
+
+def looks_like_latex(text: str) -> bool:
+    text = text.strip()
+    if not text:
+        return False
+    if text.startswith((r"\(", r"\[", "$$", "$")):
+        return True
+    return bool(LATEX_MARKERS.search(text))
+
+
+def format_formula_label(name: str) -> str:
+    name = name.strip()
+    if name.startswith((r"\(", r"\[")):
+        return name
+    if "\\" in name or looks_like_latex(name):
+        return rf"\({name}\)"
+    if re.fullmatch(r"[A-Za-z]", name):
+        return rf"\({name}\)"
+    return html.escape(name)
+
+
+def format_definition(defn: str) -> str:
+    defn = defn.strip()
+    if looks_like_latex(defn) or re.search(r"\\\(|\\\[|\$\$", defn):
+        return defn
+    return html.escape(defn)
+
+
+GREEK_UNICODE: dict[str, tuple[str, str]] = {
+    "alpha": ("alpha", "α"),
+    "beta": ("beta", "β"),
+    "gamma": ("gamma", "γ"),
+    "delta": ("delta", "δ"),
+    "epsilon": ("epsilon", "ε"),
+    "varepsilon": ("epsilon", "ε"),
+    "zeta": ("zeta", "ζ"),
+    "eta": ("eta", "η"),
+    "theta": ("theta", "θ"),
+    "vartheta": ("theta", "ϑ"),
+    "iota": ("iota", "ι"),
+    "kappa": ("kappa", "κ"),
+    "lambda": ("lambda", "λ"),
+    "mu": ("mu", "μ"),
+    "nu": ("nu", "ν"),
+    "xi": ("xi", "ξ"),
+    "pi": ("pi", "π"),
+    "rho": ("rho", "ρ"),
+    "sigma": ("sigma", "σ"),
+    "tau": ("tau", "τ"),
+    "upsilon": ("upsilon", "υ"),
+    "phi": ("phi", "φ"),
+    "varphi": ("phi", "φ"),
+    "chi": ("chi", "χ"),
+    "psi": ("psi", "ψ"),
+    "omega": ("omega", "ω"),
+    "hbar": ("h-bar", "ℏ"),
+    "Gamma": ("capital Gamma", "Γ"),
+    "Delta": ("capital Delta", "Δ"),
+    "Theta": ("capital Theta", "Θ"),
+    "Lambda": ("capital Lambda", "Λ"),
+    "Sigma": ("capital Sigma", "Σ"),
+    "Phi": ("capital Phi", "Φ"),
+    "Psi": ("capital Psi", "Ψ"),
+    "Omega": ("capital Omega", "Ω"),
+}
+
+MATH_FUNCTION_NAMES: dict[str, tuple[str, str]] = {
+    "sin": ("sine", "Trigonometric sine function."),
+    "cos": ("cosine", "Trigonometric cosine function."),
+    "tan": ("tangent", "Trigonometric tangent function."),
+    "ln": ("natural logarithm", "Logarithm base e."),
+    "log": ("logarithm", "Logarithm function."),
+    "exp": ("exponential", "Exponential function (e to the power)."),
+    "sqrt": ("square root", "Square-root radical."),
+    "sum": ("summation", "Sum over an index range."),
+    "int": ("integral", "Integral sign."),
+    "lim": ("limit", "Limit operator."),
+    "partial": ("partial derivative", "Partial-derivative symbol (∂)."),
+    "nabla": ("nabla (del)", "Vector differential operator (∇)."),
+    "infty": ("infinity", "Infinity symbol (∞)."),
+    "cdot": ("centred dot", "Multiplication dot (·)."),
+    "times": ("times", "Multiplication cross (×)."),
+    "pm": ("plus-minus", "Plus-or-minus sign (±)."),
+    "leq": ("less than or equal", "Inequality symbol (≤)."),
+    "geq": ("greater than or equal", "Inequality symbol (≥)."),
+    "neq": ("not equal", "Inequality symbol (≠)."),
+    "approx": ("approximately equal", "Approximation symbol (≈)."),
+    "propto": ("proportional to", "Proportionality symbol (∝)."),
+    "rightarrow": ("right arrow", "Arrow (→)."),
+    "leftarrow": ("left arrow", "Arrow (←)."),
+    "Rightarrow": ("implies arrow", "Double arrow (⇒)."),
+    "frac": ("fraction bar", "Fraction layout (numerator over denominator)."),
+    "dfrac": ("display fraction bar", "Display-style fraction."),
+}
+
+VARIABLE_NAMES: dict[str, tuple[str, str]] = {
+    "H": ("capital H", "Hamiltonian (energy operator)."),
+    "Q": ("capital Q", "Quality factor."),
+    "P": ("capital P", "Pressure or momentum quadrature (context-dependent)."),
+    "X": ("capital X", "Position quadrature or variable."),
+    "D": ("capital D", "Displacement operator or distance."),
+    "g": ("lowercase g", "Coupling strength or gravitational acceleration."),
+    "n": ("lowercase n", "Photon number or integer index."),
+    "m": ("lowercase m", "Mass or slope."),
+    "v": ("lowercase v", "Velocity."),
+    "a": ("lowercase a", "Annihilation operator or acceleration."),
+    "t": ("lowercase t", "Time."),
+    "f": ("lowercase f", "Function or frequency."),
+    "x": ("lowercase x", "Position or independent variable."),
+    "y": ("lowercase y", "Dependent variable."),
+    "u": ("lowercase u", "Substitution variable or internal mode."),
+    "i": ("lowercase i", "Imaginary unit (√−1)."),
+    "e": ("lowercase e", "Euler's number (base of natural log)."),
+    "c": ("lowercase c", "Speed of light or subscript label (cavity)."),
+    "R": ("capital R", "Radius, reflectivity, or resistance."),
+    "F": ("capital F", "Force or finesse."),
+    "W": ("capital W", "Weight or work."),
+    "E": ("capital E", "Energy or electric field."),
+    "B": ("capital B", "Magnetic field."),
+    "I": ("capital I", "Current or moment of inertia."),
+    "V": ("capital V", "Voltage or volume."),
+    "T": ("capital T", "Temperature or period."),
+    "N": ("capital N", "Newton (unit) or particle number."),
+    "S": ("capital S", "Entropy or action."),
+    "L": ("capital L", "Length, angular momentum, or inductance."),
+    "p": ("lowercase p", "Momentum or pressure."),
+    "k": ("lowercase k", "Spring constant or wave number."),
+    "r": ("lowercase r", "Radius or position vector magnitude."),
+    "q": ("lowercase q", "Charge or generalised coordinate."),
+}
+
+EXPLICIT_SYMBOL_RULES: list[tuple[str, str, str, str]] = [
+    (r"\\begin\{pmatrix\}", r"\begin{pmatrix}", "parenthesis matrix (pmatrix)", "Matrix or vector written in large parentheses."),
+    (r"a\^\\dagger", r"a^\dagger", "a-dagger", "Creation operator (dagger superscript on a)."),
+    (r"(?<![a-zA-Z])a\|", r"a", "a (lowercase)", "Annihilation operator."),
+    (r"(?<![a-zA-Z])a\^", r"a", "a (lowercase)", "Annihilation operator."),
+    (r"\\hat\{n\}", r"\hat{n}", "n-hat", "Number operator (circumflex over n)."),
+    (r"\\langle\s*\\hat\{n\}\s*\\rangle", r"\langle\hat{n}\rangle", "expectation of n-hat", "Angle brackets — expectation value (mean photon number)."),
+    (r"\\|0\\rangle", r"|0\rangle", "ket zero", "Dirac ket — vacuum (zero-photon) state."),
+    (r"\\|n\\rangle", r"|n\rangle", "ket n", "Dirac ket — Fock state with n photons."),
+    (r"\\|\alpha\\rangle", r"|\alpha\rangle", "ket alpha", "Dirac ket — coherent state with amplitude α."),
+    (r"\\alpha\^\*", r"\alpha^*", "alpha-star", "Complex conjugate of α (asterisk superscript)."),
+    (r"\\mathcal\{F\}", r"\mathcal{F}", "calligraphic F", "Calligraphic capital F (cavity finesse)."),
+    (r"\\mathcal\{R\}", r"\mathcal{R}", "calligraphic R", "Calligraphic capital R (mirror reflectivity)."),
+    (r"\\omega_c", r"\omega_c", "omega-sub-c", "Greek omega with subscript c (cavity frequency)."),
+    (r"\\omega_a", r"\omega_a", "omega-sub-a", "Greek omega with subscript a (atomic frequency)."),
+    (r"\\sigma_z", r"\sigma_z", "sigma-sub-z", "Pauli Z operator (sigma with subscript z)."),
+    (r"\\sigma_\+", r"\sigma_+", "sigma-plus", "Raising operator (sigma with plus subscript)."),
+    (r"\\sigma_-", r"\sigma_-", "sigma-minus", "Lowering operator (sigma with minus subscript)."),
+    (r"P_\{\\text\{coincidence\}\}", r"P_{\text{coincidence}}", "P-sub-coincidence", "Probability with subscript label coincidence."),
+    (r"a_1'", r"a_1'", "a-one-prime", "Annihilation operator for output mode 1 (prime mark)."),
+    (r"a_2'", r"a_2'", "a-two-prime", "Annihilation operator for output mode 2 (prime mark)."),
+    (r"a_1", r"a_1", "a-sub-1", "Annihilation operator for mode 1."),
+    (r"a_2", r"a_2", "a-sub-2", "Annihilation operator for mode 2."),
+    (r"\\dagger", r"\dagger", "dagger", "Hermitian-conjugate / creation-operator dagger (†)."),
+    (r"f'", r"f'", "f-prime", "Prime notation — first derivative of f."),
+    (r"f''", r"f''", "f-double-prime", "Double-prime notation — second derivative of f."),
+    (r"\\dfrac\{dy\}\{dx\}", r"\dfrac{dy}{dx}", "dy by dx", "Derivative of y with respect to x."),
+    (r"\\frac\{dy\}\{dx\}", r"\frac{dy}{dx}", "dy by dx", "Derivative of y with respect to x."),
+    (r"\\frac\{d\^2y\}\{dx\^2\}", r"\frac{d^2y}{dx^2}", "d-squared y by dx-squared", "Second derivative of y with respect to x."),
+]
+
+
+def gather_math_corpus(cards: list[str], formulae: list[tuple[str, str]]) -> str:
+    chunks = [name for name, _ in formulae]
+    for card in cards:
+        for regex in (MATH_BLOCK_RE, MATH_INLINE_RE, DOLLAR_BLOCK_RE, DOLLAR_INLINE_RE):
+            for m in regex.finditer(card):
+                chunks.append(strip_tags(m.group(1)))
+    return "\n".join(chunks)
+
+
+def symbol_store_key(display: str) -> str:
+    key = re.sub(r"\s+", "", display).lower()
+    key = re.sub(r"\{([^}]+)\}", r"\1", key)
+    return key
+
+
+def role_from_page(symbol_latex: str, page_text: str) -> str:
+    compact = re.sub(r"\s+", "", symbol_latex)
+    patterns = [
+        rf"([a-z][a-z\s\-]{{2,40}}?)\s*\\\(\s*{re.escape(compact)}\s*\\\)",
+        rf"\\\(\s*{re.escape(compact)}\s*\\\)\s*(?:is|means|counts|denotes|represents)\s+([^.,;]+)",
+    ]
+    scoped = CONTENT_KEY_RE.sub("", page_text)
+    plain = strip_tags(scoped)
+    bad_fragments = ("symbol names", "formulae", "topic review", "acronyms", "key terms")
+    for pat in patterns:
+        m = re.search(pat, plain, re.I)
+        if m:
+            role = re.sub(r"\s+", " ", m.group(1).strip())
+            if 8 < len(role) < 100 and not any(b in role.lower() for b in bad_fragments):
+                return role[0].upper() + role[1:] + "."
+    return ""
+
+
+INCOMPLETE_TEX_COMMANDS = {
+    "frac", "dfrac", "sqrt", "sum", "int", "text", "mathrm", "mathbf",
+    "mathcal", "hat", "left", "right", "begin", "end", "big", "Big",
+}
+
+
+def symbol_priority(called: str) -> int:
+    low = called.lower()
+    if any(k in low for k in ("dagger", "hat", "ket", "expectation", "sigma-", "omega-sub")):
+        return 0
+    if "calligraphic" in low or "greek" in low or "h-bar" in low:
+        return 1
+    if "sub" in low or "prime" in low:
+        return 2
+    if low.startswith("capital ") or low.startswith("lowercase "):
+        return 4
+    return 3
+
+
+def add_symbol_entry(
+    found: dict[str, tuple[str, str, str]],
+    display: str,
+    called: str,
+    meaning: str,
+    page_text: str = "",
+) -> None:
+    display = display.strip()
+    if not display:
+        return
+    role = role_from_page(display, page_text) if page_text else ""
+    if role and role not in meaning:
+        meaning = f"{meaning} On this page: {role}"
+    key = symbol_store_key(display)
+    if key not in found:
+        found[key] = (display, called, meaning)
+
+
+def extract_symbols(
+    cards: list[str],
+    formulae: list[tuple[str, str]],
+    page_html: str,
+) -> list[tuple[str, str, str]]:
+    corpus = gather_math_corpus(cards, formulae)
+    if not corpus.strip():
+        return []
+
+    found: dict[str, tuple[str, str, str]] = {}
+
+    for pattern, display, called, meaning in EXPLICIT_SYMBOL_RULES:
+        if re.search(pattern, corpus):
+            add_symbol_entry(found, display, called, meaning, page_html)
+
+    for m in re.finditer(r"\\mathcal\{([^}]+)\}", corpus):
+        letter = m.group(1)
+        add_symbol_entry(
+            found,
+            rf"\mathcal{{{letter}}}",
+            f"calligraphic {letter}",
+            f"Calligraphic capital {letter} (script face).",
+            page_html,
+        )
+
+    for m in re.finditer(r"\\hat\{([^}]+)\}", corpus):
+        inner = m.group(1)
+        add_symbol_entry(
+            found,
+            rf"\hat{{{inner}}}",
+            f"{inner}-hat",
+            f"Operator hat over {inner} — quantum observable or operator.",
+            page_html,
+        )
+
+    for m in re.finditer(r"\\mathbf\{([^}]+)\}", corpus):
+        inner = m.group(1)
+        add_symbol_entry(
+            found,
+            rf"\mathbf{{{inner}}}",
+            f"bold {inner}",
+            f"Bold vector or matrix ({inner}).",
+            page_html,
+        )
+
+    for m in re.finditer(r"\\mathrm\{([^}]+)\}", corpus):
+        inner = m.group(1)
+        add_symbol_entry(
+            found,
+            rf"\mathrm{{{inner}}}",
+            f"roman {inner}",
+            f"Upright (roman) typesetting for {inner}.",
+            page_html,
+        )
+
+    for m in re.finditer(
+        r"\\(omega|tau|sigma|alpha|beta|gamma|delta|theta|pi|mu|lambda|rho|phi|psi|epsilon|eta|kappa|nu|xi|chi)_(?:\{([^}]+)\}|([a-zA-Z0-9]+))",
+        corpus,
+    ):
+        base = m.group(1)
+        sub = m.group(2) or m.group(3)
+        if not base or not sub:
+            continue
+        display = rf"\{base}_{{{sub}}}"
+        greek = GREEK_UNICODE.get(base, (base, ""))[0]
+        add_symbol_entry(
+            found,
+            display,
+            f"{greek}-sub-{sub}",
+            f"Greek {greek} with subscript {sub}.",
+            page_html,
+        )
+
+    for m in re.finditer(r"\\big\|_\{([^}]+)\}", corpus):
+        sub = m.group(1)
+        add_symbol_entry(
+            found,
+            rf"\big|_{{{sub}}}",
+            f"evaluated-at subscript {sub}",
+            "Vertical bar with subscript — evaluated at a point.",
+            page_html,
+        )
+
+    for m in re.finditer(r"\\([a-zA-Z]+)", corpus):
+        cmd = m.group(1)
+        if cmd in INCOMPLETE_TEX_COMMANDS:
+            continue
+        if cmd in GREEK_UNICODE:
+            greek_name, unicode_ch = GREEK_UNICODE[cmd]
+            add_symbol_entry(
+                found,
+                f"\\{cmd}",
+                f"Greek {greek_name}",
+                f"Greek letter {greek_name} ({unicode_ch}).",
+                page_html,
+            )
+        elif cmd in MATH_FUNCTION_NAMES and cmd not in {"frac", "dfrac", "cdot", "geq", "leq"}:
+            called, meaning = MATH_FUNCTION_NAMES[cmd]
+            add_symbol_entry(found, f"\\{cmd}", called, meaning, page_html)
+
+    for letter, (called, meaning) in VARIABLE_NAMES.items():
+        if len(letter) == 1 and letter.islower() and f"\\{letter}" in corpus:
+            continue
+        if re.search(rf"(?<![a-zA-Z\\]){re.escape(letter)}(?![a-zA-Z0-9])", corpus):
+            add_symbol_entry(found, letter, called, meaning, page_html)
+
+    for name, _ in formulae:
+        if "\\" in name:
+            continue
+        if "=" not in name:
+            continue
+        for token in re.split(r"[=+\-*/(),\s]+", name):
+            token = token.strip()
+            if len(token) < 2:
+                continue
+            if re.fullmatch(r"[a-zA-Z]+", token) and token.lower() not in SKIP_TERMS:
+                add_symbol_entry(
+                    found,
+                    token,
+                    token.replace("_", " "),
+                    "Quantity or variable in the relationship.",
+                    page_html,
+                )
+
+    items = sorted(found.values(), key=lambda x: (symbol_priority(x[1]), x[1].lower()))
+    return items[:45]
+
+
+def build_symbols_section(symbols: list[tuple[str, str, str]]) -> str:
+    if not symbols:
+        return ""
+    rows = []
+    for display, called, meaning in symbols:
+        label = format_formula_label(display)
+        rows.append(
+            f'        <div class="content-key__item">'
+            f'<dt class="content-key__symbol">{label}</dt>'
+            f'<dd><strong>Called:</strong> {html.escape(called)}. {html.escape(meaning)}</dd></div>'
+        )
+    return (
+        '      <h3 class="content-key__heading">Symbol names in formulae</h3>\n'
+        '      <dl class="content-key__list">\n'
+        + "\n".join(rows)
+        + "\n      </dl>\n"
+    )
+
+
+def build_section(
+    title: str,
+    items: list[tuple[str, str]],
+    *,
+    formula_labels: bool = False,
+) -> str:
     if not items:
         return ""
     rows = []
     for name, definition in items:
+        label = format_formula_label(name) if formula_labels else html.escape(name)
+        dt_class = ' class="content-key__formula"' if formula_labels else ""
         rows.append(
             f'        <div class="content-key__item">'
-            f'<dt>{html.escape(name)}</dt>'
-            f"<dd>{html.escape(definition)}</dd></div>"
+            f"<dt{dt_class}>{label}</dt>"
+            f"<dd>{format_definition(definition)}</dd></div>"
         )
     return (
         f'      <h3 class="content-key__heading">{html.escape(title)}</h3>\n'
@@ -613,25 +1026,27 @@ def build_section(title: str, items: list[tuple[str, str]]) -> str:
 
 def build_content_key(
     formulae: list[tuple[str, str]],
+    symbols: list[tuple[str, str, str]],
     acronyms: list[tuple[str, str]],
     terms: list[tuple[str, str]],
 ) -> str | None:
-    if not formulae and not acronyms and not terms:
+    if not formulae and not symbols and not acronyms and not terms:
         return None
 
     body = (
         '      <p class="content-key__intro">'
         "Expand this review key before you read, then use it afterwards to check you can "
-        "explain each formula, acronym, and term without looking at the lesson."
+        "name every symbol, explain each formula, acronym, and term without looking at the lesson."
         "</p>\n"
     )
-    body += build_section("Formulae & relationships", formulae[:20])
-    body += build_section("Acronyms & symbols", acronyms[:24])
+    body += build_section("Formulae & relationships", formulae[:20], formula_labels=True)
+    body += build_symbols_section(symbols)
+    body += build_section("Acronyms", acronyms[:24])
     body += build_section("Key terms & phrases", terms[:35])
 
     return (
         f'    <details class="content-key" id="topic-review-key">\n'
-        f'      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>\n'
+        f'      <summary class="content-key__summary">Topic review key — formulae, symbols, terms &amp; acronyms</summary>\n'
         f'      <div class="content-key__body">\n'
         f"{body}"
         f"      </div>\n"
@@ -665,9 +1080,10 @@ def process_file(path: Path) -> bool:
         return False
 
     formulae = extract_formulae(cards)
+    symbols = extract_symbols(cards, formulae, text)
     acronyms = extract_acronyms(cards, text)
     terms = extract_terms(cards, text)
-    key = build_content_key(formulae, acronyms, terms)
+    key = build_content_key(formulae, symbols, acronyms, terms)
     if not key:
         return False
 

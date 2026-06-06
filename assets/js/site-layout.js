@@ -116,6 +116,27 @@
     var topicProgressScript = document.createElement('script');
     topicProgressScript.src = scriptSibling('topic-progress.js');
     document.head.appendChild(topicProgressScript);
+
+    var reviewKey = document.getElementById('topic-review-key');
+    if (reviewKey) {
+      function typesetReviewKey() {
+        if (window.MathJax && MathJax.Hub) {
+          MathJax.Hub.Queue(['Typeset', MathJax.Hub, reviewKey]);
+        }
+      }
+      reviewKey.addEventListener('toggle', function () {
+        if (reviewKey.open) {
+          typesetReviewKey();
+        }
+      });
+      if (reviewKey.open) {
+        if (window.MathJax && MathJax.Hub) {
+          MathJax.Hub.Register.StartupHook('End', function () {
+            typesetReviewKey();
+          });
+        }
+      }
+    }
   }
 
   if (body.classList.contains('calculator-page') && body.hasAttribute('data-calc')) {

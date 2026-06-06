@@ -27,32 +27,35 @@
     <div class="content-body">
 
     <details class="content-key" id="topic-review-key">
-      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <summary class="content-key__summary">Topic review key — formulae, symbols, terms &amp; acronyms</summary>
       <div class="content-key__body">
-      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt>(p \oplus k) \oplus k = p</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>c_1 \oplus c_2 = p_1 \oplus p_2.</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>k = c \oplus p</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>p_i = c_i \oplus k_i.</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\((p \oplus k) \oplus k = p\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(c_1 \oplus c_2 = p_1 \oplus p_2.\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(k = c \oplus p\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(p_i = c_i \oplus k_i.\)</dt><dd>Key relationship used in this topic.</dd></div>
       </dl>
-      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <h3 class="content-key__heading">Symbol names in formulae</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt class="content-key__symbol">\(|\alpha\rangle\)</dt><dd><strong>Called:</strong> ket alpha. Dirac ket — coherent state with amplitude α.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(|n\rangle\)</dt><dd><strong>Called:</strong> ket n. Dirac ket — Fock state with n photons.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(|0\rangle\)</dt><dd><strong>Called:</strong> ket zero. Dirac ket — vacuum (zero-photon) state.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(P\)</dt><dd><strong>Called:</strong> capital P. Pressure or momentum quadrature (context-dependent). On this page: Every plaintext.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(c\)</dt><dd><strong>Called:</strong> lowercase c. Speed of light or subscript label (cavity). On this page: Then for any fixed ciphertext.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(i\)</dt><dd><strong>Called:</strong> lowercase i. Imaginary unit (√−1).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(k\)</dt><dd><strong>Called:</strong> lowercase k. Spring constant or wave number. On this page: Tion without the key is impossible If.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(n\)</dt><dd><strong>Called:</strong> lowercase n. Photon number or integer index. On this page: Xt and key as bit strings of equal length.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Acronyms</h3>
       <dl class="content-key__list">
         <div class="content-key__item"><dt>AES</dt><dd>Advanced Encryption Standard — widely used symmetric encryption.</dd></div>
-        <div class="content-key__item"><dt>AI</dt><dd>1) About this topic (read first)
-
- 
- Unlike other entries in the AI Only catalog section, the one-time pad (OTP) is
- real, rigorous cryptography .</dd></div>
+        <div class="content-key__item"><dt>AI</dt><dd>About this topic (read first) Unlike other entries in the AI Only catalog section, the one-time pad (OTP) is real, rigorous cryptography .</dd></div>
         <div class="content-key__item"><dt>ECDH</dt><dd>Modern TLS uses computational cryptography (AES, ECDH) because OTP key logistics are impractical at internet scale.</dd></div>
-        <div class="content-key__item"><dt>OTP</dt><dd>rare online)
-
- 
- Key distribution: You need \(n\) random key bits per \(n\) message bits — securely delivered in advance.</dd></div>
+        <div class="content-key__item"><dt>OTP</dt><dd>About this topic (read first) Unlike other entries in the AI Only catalog section, the one-time pad (OTP) is real, rigorous cryptography .</dd></div>
         <div class="content-key__item"><dt>TLS</dt><dd>Modern TLS uses computational cryptography (AES, ECDH) because OTP key logistics are impractical at internet scale.</dd></div>
-        <div class="content-key__item"><dt>VENONA</dt><dd>Partial knowledge of one message (language redundancy) often reveals the other — this broke Soviet
- OTP traffic in the VENONA project.</dd></div>
+        <div class="content-key__item"><dt>VENONA</dt><dd>Partial knowledge of one message (language redundancy) often reveals the other — this broke Soviet OTP traffic in the VENONA project.</dd></div>
         <div class="content-key__item"><dt>XOR</dt><dd>Exclusive OR — logic output true when inputs differ.</dd></div>
       </dl>
       <h3 class="content-key__heading">Key terms &amp; phrases</h3>
@@ -69,7 +72,7 @@
         <div class="content-key__item"><dt>perfect secrecy</dt><dd>A cipher has perfect secrecy if for all plaintexts \(p_1, p_2\) and all ciphertexts \(c\): \[ \Pr[P = p_1 \mid C = c] = \Pr[P = p_2 \mid C = c].</dd></div>
         <div class="content-key__item"><dt>Plaintext (c ⊕ k)</dt><dd>Introduced and explained in the sections below.</dd></div>
         <div class="content-key__item"><dt>Position</dt><dd>Worked example: decrypt a 5-bit message Position Ciphertext Key Plaintext (c ⊕ k) 1 0 1 1 2 1 0 1 3 1 1 0 4 0 0 0 5 1 1 0</dd></div>
-        <div class="content-key__item"><dt>Shannon&#x27;s perfect secrecy definition</dt><dd>Shannon&#x27;s perfect secrecy definition A cipher has perfect secrecy if for all plaintexts \(p_1, p_2\) and all ciphertexts \(c\): \[ \Pr[P = p_1 \mid C = c] = \Pr[P = p_2 \mid C = c].</dd></div>
+        <div class="content-key__item"><dt>Shannon&#x27;s perfect secrecy definition</dt><dd>Shannon's perfect secrecy definition A cipher has perfect secrecy if for all plaintexts \(p_1, p_2\) and all ciphertexts \(c\): \[ \Pr[P = p_1 \mid C = c] = \Pr[P = p_2 \mid C = c].</dd></div>
         <div class="content-key__item"><dt>Synchronisation</dt><dd>Sender and receiver must agree on key index; loss of alignment destroys decryption.</dd></div>
         <div class="content-key__item"><dt>The two-time pad catastrophe (key reuse)</dt><dd>If the same key encrypts two messages \(p_1\) and \(p_2\): \[ c_1 \oplus c_2 = p_1 \oplus p_2.</dd></div>
         <div class="content-key__item"><dt>True randomness</dt><dd>Pseudorandom keys reduce security to computational assumptions — no longer perfect secrecy.</dd></div>

@@ -1788,6 +1788,25 @@ body.map-page svg#links {
   color: var(--corp-navy);
 }
 
+.content-page .content-key__item dt.content-key__formula {
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.content-page .content-key__item dt.content-key__formula .MathJax,
+.content-page .content-key__item dt.content-key__symbol .MathJax {
+  font-size: 1.05em !important;
+}
+
+.content-page .content-key__item dt.content-key__symbol {
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.content-page .content-key__item dd strong {
+  color: var(--corp-navy);
+}
+
 .content-page .content-key__item dd {
   margin: 0;
   color: var(--corp-text);

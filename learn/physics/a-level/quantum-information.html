@@ -27,35 +27,59 @@
     <div class="content-body">
 
     <details class="content-key" id="topic-review-key">
-      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <summary class="content-key__summary">Topic review key — formulae, symbols, terms &amp; acronyms</summary>
       <div class="content-key__body">
-      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt>\mathcal{E}(\rho) = (1-p)\rho + \frac{p}{3}(X\rho X + Y\rho Y + Z\rho Z)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>\mathcal{E}(\rho) = \sum_k E_k \rho E_k^\dagger, \quad \sum_k E_k^\dagger E_k...</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>\rho = I/2</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>I(A:B) = H(A) + H(B) - H(AB)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>I(A:B) = S(\rho_A) + S(\rho_B) - S(\rho_{AB})</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>S = 0</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>S(\rho) = -\mathrm{Tr}(\rho \log_2 \rho) = -\sum_i \lambda_i \log_2 \lambda_i</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>S(\rho_{AB}) = 0</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>S(U\rho U^\dagger) = S(\rho)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>S_A = 0</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>S_A = S(\rho_A), \quad \rho_A = \mathrm{Tr}_B(|\psi\rangle\langle\psi|)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt>|\psi\rangle = \alpha|0\rangle + \beta|1\rangle</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\mathcal{E}(\rho) = (1-p)\rho + \frac{p}{3}(X\rho X + Y\rho Y + Z\rho Z)\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\mathcal{E}(\rho) = \sum_k E_k \rho E_k^\dagger, \quad \sum_k E_k^\dagger E_k = I\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\rho = I/2\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\rho_A = \mathrm{Tr}_B(|\Phi^+\rangle\langle\Phi^+|) = \frac{1}{2}(|0\rangle\langle 0| + |1\rangle\langle 1|)\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">I(A:B) = H(A) + H(B) - H(AB)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(I(A:B) = S(\rho_A) + S(\rho_B) - S(\rho_{AB})\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">S = 0</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(S(\rho) = -\mathrm{Tr}(\rho \log_2 \rho) = -\sum_i \lambda_i \log_2 \lambda_i\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(S(\rho_{AB}) = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(S(U\rho U^\dagger) = S(\rho)\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(S_A = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(S_A = S(\rho_A), \quad \rho_A = \mathrm{Tr}_B(|\psi\rangle\langle\psi|)\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(|\psi\rangle = \alpha|0\rangle + \beta|1\rangle\)</dt><dd>Key relationship used in this topic.</dd></div>
       </dl>
-      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <h3 class="content-key__heading">Symbol names in formulae</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt>AB</dt><dd>5) Quantum mutual information
-
- 
- Classical mutual information \(I(A:B) = H(A) + H(B) - H(AB)\) measures shared randomness.</dd></div>
-        <div class="content-key__item"><dt>CPTP</dt><dd>6) Quantum channels — preview
-
- 
- When a quantum system interacts with an environment, its evolution is a quantum channel 
- \(\mathcal{E}\): a completely positive, trace-preserving (CPTP) map on density matrices.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\dagger\)</dt><dd><strong>Called:</strong> dagger. Hermitian-conjugate / creation-operator dagger (†).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(|\alpha\rangle\)</dt><dd><strong>Called:</strong> ket alpha. Dirac ket — coherent state with amplitude α.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(|n\rangle\)</dt><dd><strong>Called:</strong> ket n. Dirac ket — Fock state with n photons.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(|0\rangle\)</dt><dd><strong>Called:</strong> ket zero. Dirac ket — vacuum (zero-photon) state.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\mathcal{E}\)</dt><dd><strong>Called:</strong> calligraphic E. Calligraphic capital E (script face). On this page: Its evolution is a quantum channel.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\mathcal{H}\)</dt><dd><strong>Called:</strong> calligraphic H. Calligraphic capital H (script face). On this page: S to density operators on a Hilbert space.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\alpha\)</dt><dd><strong>Called:</strong> Greek alpha. Greek letter alpha (α).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\beta\)</dt><dd><strong>Called:</strong> Greek beta. Greek letter beta (β).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\Phi\)</dt><dd><strong>Called:</strong> Greek capital Phi. Greek letter capital Phi (Φ).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\lambda\)</dt><dd><strong>Called:</strong> Greek lambda. Greek letter lambda (λ).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\psi\)</dt><dd><strong>Called:</strong> Greek psi. Greek letter psi (ψ).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\rho\)</dt><dd><strong>Called:</strong> Greek rho. Greek letter rho (ρ). On this page: For a density matrix.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\lambda_{i}\)</dt><dd><strong>Called:</strong> lambda-sub-i. Greek lambda with subscript i.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\rho_{A}\)</dt><dd><strong>Called:</strong> rho-sub-A. Greek rho with subscript A.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\rho_{AB}\)</dt><dd><strong>Called:</strong> rho-sub-AB. Greek rho with subscript AB.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\rho_{B}\)</dt><dd><strong>Called:</strong> rho-sub-B. Greek rho with subscript B.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">AB</dt><dd><strong>Called:</strong> AB. Quantity or variable in the relationship.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\log\)</dt><dd><strong>Called:</strong> logarithm. Logarithm function.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\mathrm{Tr}\)</dt><dd><strong>Called:</strong> roman Tr. Upright (roman) typesetting for Tr.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(B\)</dt><dd><strong>Called:</strong> capital B. Magnetic field.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(E\)</dt><dd><strong>Called:</strong> capital E. Energy or electric field.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(H\)</dt><dd><strong>Called:</strong> capital H. Hamiltonian (energy operator).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(I\)</dt><dd><strong>Called:</strong> capital I. Current or moment of inertia.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(S\)</dt><dd><strong>Called:</strong> capital S. Entropy or action.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(X\)</dt><dd><strong>Called:</strong> capital X. Position quadrature or variable.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(k\)</dt><dd><strong>Called:</strong> lowercase k. Spring constant or wave number.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(n\)</dt><dd><strong>Called:</strong> lowercase n. Photon number or integer index.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Acronyms</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>AB</dt><dd>Quantum mutual information Classical mutual information \(I(A:B) = H(A) + H(B) - H(AB)\) measures shared randomness.</dd></div>
+        <div class="content-key__item"><dt>CPTP</dt><dd>Quantum channels — preview When a quantum system interacts with an environment, its evolution is a quantum channel \(\mathcal{E}\): a completely positive, trace-preserving (CPTP) map on density matrices.</dd></div>
         <div class="content-key__item"><dt>VQE</dt><dd>Variational Quantum Eigensolver — algorithm for estimating ground-state energies.</dd></div>
       </dl>
       <h3 class="content-key__heading">Key terms &amp; phrases</h3>
