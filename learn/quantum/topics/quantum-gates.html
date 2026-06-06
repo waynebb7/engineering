@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../../../assets/css/corporate.css">
+  <script src="../../../assets/js/site-layout.js" defer></script>
+  <title>Quantum Gates</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+<body class="content-page">
+  <div class="page-container">
+    <div class="content-hero">
+      <nav class="page-hero-breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">&larr; Back to Hub</a>
+      </nav>
+      <h1>Quantum Gates</h1>
+      <p>Quantum guide. Unitary operators on qubits — Pauli, Hadamard, phase, rotation gates, and the universal gate set for quantum computation.</p>
+      <div class="content-nav">
+        <a href="../index.html">&larr; Quantum Subjects Catalog</a>
+      </div>
+    </div>
+
+    <div class="content-body">
+
+    <div class="card">
+      <h2>1) What is a quantum gate?</h2>
+      <p>
+        A <strong>quantum gate</strong> is a unitary operator \(U\) (\(U^\dagger U = I\)) acting on qubit states.
+        Gates are reversible — unlike most classical logic gates, there is no irreversible AND without ancillas.
+      </p>
+      <div class="callout">
+        <strong>Key idea:</strong> Quantum computation = composing unitary gates, then measuring.
+        Every gate corresponds to a rotation (or reflection) on the
+        <a href="qubits-and-bloch-sphere.html">Bloch sphere</a>.
+      </div>
+      <p class="mini">
+        Prerequisite: <a href="../../mathematics/a-level/matrices.html">Matrices</a>,
+        <a href="../../mathematics/a-level/linear-transformations.html">Linear Transformations</a>,
+        <a href="qubits-and-bloch-sphere.html">Qubits</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>2) Pauli gates</h2>
+      <p>
+        The <strong>Pauli matrices</strong> \(X, Y, Z\) are Hermitian unitaries:
+        \[
+        X = \begin{pmatrix}0&1\\1&0\end{pmatrix},\quad
+        Y = \begin{pmatrix}0&-i\\i&0\end{pmatrix},\quad
+        Z = \begin{pmatrix}1&0\\0&-1\end{pmatrix}
+        \]
+      </p>
+      <ul>
+        <li>\(X|0\rangle = |1\rangle\) — bit flip (NOT gate)</li>
+        <li>\(Z|1\rangle = -|1\rangle\) — phase flip</li>
+        <li>\(Y = iXZ\) — combined bit and phase flip</li>
+      </ul>
+      <div class="callout">
+        <strong>Bloch view:</strong> \(X, Y, Z\) are rotations by \(\pi\) about the respective Bloch axes.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>3) Hadamard and phase gates</h2>
+      <p>
+        The <strong>Hadamard gate</strong> creates equal superposition:
+        \[
+        H = \frac{1}{\sqrt{2}}\begin{pmatrix}1&1\\1&-1\end{pmatrix},\quad
+        H|0\rangle = |+\rangle,\quad H|1\rangle = |-\rangle
+        \]
+      </p>
+      <p>
+        The <strong>phase gate</strong> \(S\) and <strong>\(T\) gate</strong>:
+        \[
+        S = \begin{pmatrix}1&0\\0&i\end{pmatrix},\quad
+        T = \begin{pmatrix}1&0\\0&e^{i\pi/4}\end{pmatrix}
+        \]
+        \(T\) is the fourth root of \(Z\); \(T^2 = S\), \(T^4 = Z\).
+      </p>
+      <div class="warning">
+        <strong>Note:</strong> \(H^2 = I\) — applying Hadamard twice returns the original state.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>4) Rotation gates</h2>
+      <p>
+        Rotation about axis \(\hat{n} \in \{x,y,z\}\) by angle \(\theta\):
+        \[
+        R_{\hat{n}}(\theta) = e^{-i\frac{\theta}{2}\hat{n}\cdot\vec{\sigma}}
+        \]
+      </p>
+      <p>
+        Common forms:
+        \[
+        R_x(\theta) = \begin{pmatrix}\cos\frac{\theta}{2} & -i\sin\frac{\theta}{2}\\ -i\sin\frac{\theta}{2} & \cos\frac{\theta}{2}\end{pmatrix},\quad
+        R_z(\theta) = \begin{pmatrix}e^{-i\theta/2} & 0\\ 0 & e^{i\theta/2}\end{pmatrix}
+        \]
+      </p>
+      <div class="callout">
+        <strong>Arbitrary single-qubit gate:</strong> Any \(U \in SU(2)\) decomposes into \(R_z R_y R_z\) (up to global phase) — the Z–Y decomposition.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>5) Two-qubit gates: CNOT and CZ</h2>
+      <p>
+        The <strong>controlled-NOT (CNOT)</strong> flips the target if the control is \(|1\rangle\):
+        \[
+        \mathrm{CNOT} = \begin{pmatrix}1&0&0&0\\0&1&0&0\\0&0&0&1\\0&0&1&0\end{pmatrix}
+        \]
+      </p>
+      <p>
+        <strong>Controlled-Z (CZ)</strong> applies \(Z\) to the target when control is \(|1\rangle\); CZ is symmetric in its qubits.
+      </p>
+      <div class="callout">
+        <strong>Entanglement:</strong> \((H \otimes I)\,\mathrm{CNOT}\,|00\rangle = |\Phi^+\rangle\) — a Bell state.
+        See <a href="multi-qubit-systems.html">Multi-Qubit Systems</a>.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>6) Universal gate sets</h2>
+      <p>
+        A gate set is <strong>universal</strong> if any unitary on \(n\) qubits can be approximated to arbitrary precision.
+      </p>
+      <ul>
+        <li>\(\{H, T, \mathrm{CNOT}\}\) — standard fault-tolerant set</li>
+        <li>\(\{H, S, \mathrm{CNOT}, T\}\) — Clifford + \(T\) for magic state distillation</li>
+        <li>\(\{\mathrm{CNOT}, \text{all single-qubit } U\}\) — universal with continuous single-qubit gates</li>
+      </ul>
+      <div class="warning">
+        <strong>Clifford group:</strong> Gates \(\{H, S, \mathrm{CNOT}\}\) alone are <em>not</em> universal — they are efficiently classically simulable (Gottesman–Knill theorem).
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>7) Matrix representation and composition</h2>
+      <p>
+        Gates compose right-to-left in the ket notation: \(U_2 U_1 |\psi\rangle\) means apply \(U_1\) first, then \(U_2\).
+        On circuits, time flows left to right.
+      </p>
+      <p>
+        Tensor products handle parallel wires: \(U \otimes V\) acts on two qubits independently.
+      </p>
+      <div class="callout">
+        <strong>Worked example:</strong> \(HXH|0\rangle = HZ|+\rangle = |{+i}\rangle\) — conjugating \(Z\) by \(H\) gives \(X\).
+      </div>
+      <p class="mini">
+        Circuit notation: <a href="quantum-circuits.html">Quantum Circuits</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>8) Quick knowledge check</h2>
+      <div class="quiz">
+        <ol>
+          <li>Verify that \(X, Y, Z\) are unitary and Hermitian.</li>
+          <li>Compute \(H|1\rangle\) and locate the result on the Bloch sphere.</li>
+          <li>Show that CNOT\(|10\rangle = |11\rangle\).</li>
+          <li>Why is \(\{H, S, \mathrm{CNOT}\}\) not universal?</li>
+          <li>Decompose \(R_y(\pi/2)\) and find its action on \(|0\rangle\).</li>
+          <li>What gate is \(T^4\)?</li>
+        </ol>
+      </div>
+      <details class="quiz-answers">
+        <summary class="quiz-answers__summary">Show answers</summary>
+        <ol class="quiz-answers__list">
+          <li>See the worked example: \(HXH|0\rangle = HZ|+\rangle = |{+i}\rangle\) — conjugating \(Z\) by \(H\) gives \(X\).</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+        </ol>
+      </details>
+</div>
+    <div class="card progression-card prerequisites-card">
+      <h2>9) Pre-requisites</h2>
+      <p>If you are struggling with this topic, review these subjects first.</p>
+      <ul>
+        <li><a href="qubits-and-bloch-sphere.html">Qubits and the Bloch Sphere</a> — quantum learning path — study before advancing</li>
+        <li><a href="../../mathematics/a-level/matrices.html">Matrices</a> — A-Level preparation relevant to this topic</li>
+      </ul>
+      
+    </div>
+
+    <div class="card progression-card next-topics-card">
+      <h2>10) Next topics</h2>
+      <p>Keep building your understanding — follow the path or explore branches.</p>
+      <h3>Recommended next</h3>
+      <p>Continue in catalog learning order.</p>
+      <ul>
+        <li><a href="quantum-circuits.html">Quantum Circuits</a></li>
+      </ul>
+      <h3>Parallel options</h3>
+      <p>Related topics you can study alongside or instead.</p>
+      <ul>
+        <li><a href="multi-qubit-systems.html">Multi-Qubit Systems</a></li>
+      </ul>
+      <h3>Go deeper</h3>
+      <p>Further topics once you are comfortable with the core material.</p>
+      <ul>
+        <li><a href="quantum-measurement.html">Measurement in Quantum Computing</a></li>
+        <li><a href="deutsch-jozsa-algorithm.html">Deutsch–Jozsa Algorithm</a></li>
+        <li><a href="grovers-algorithm.html">Grover's Search Algorithm</a></li>
+      </ul>
+      <h3>Catalog navigation</h3>
+      <ul>
+        <li><a href="../index.html">Quantum Catalog</a></li>
+        <li><a href="../../../index.html">Engineering Knowledge Hub</a></li>
+      </ul>
+    </div>
+
+<p class="page-footer-note">Quantum physics and computing content.</p>
+    </div>
+  </div>
+</body>
+</html>

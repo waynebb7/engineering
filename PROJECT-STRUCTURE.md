@@ -1,0 +1,177 @@
+# Engineering Knowledge Hub — Project Structure
+
+This document describes the folder layout after the June 2026 reorganization. The goal is to separate **learning content**, **calculators**, **reference material**, and **site infrastructure** so the repository is easy to browse and maintain.
+
+## Top-level layout
+
+```
+engineering/
+├── index.html              # Site hub (home)
+├── progress.html           # Learning progress dashboard
+├── feedback.html           # Feedback form
+│
+├── assets/                 # Shared static assets
+│   ├── css/                # Stylesheets (corporate.css)
+│   └── js/                 # Shared JavaScript
+│
+├── calculators/            # Interactive calculator pages
+│   ├── index.html          # Calculator hub
+│   ├── power/
+│   ├── ac-circuits/
+│   ├── practical/
+│   ├── converters/
+│   ├── logic/
+│   └── tools/
+│
+├── learn/                  # Teaching / topic pages
+│   ├── index.html          # Learning hub
+│   ├── mathematics/        # Pure math catalog + topics by level
+│   ├── physics/            # Physics catalog + topics by level
+│   └── quantum/            # Quantum catalog + topics/
+│
+├── reference/              # Lookup tables and industry reference
+│   ├── electrical/
+│   └── industry/
+│
+├── maps/                   # Prerequisite maps and topic metadata
+├── legacy/                 # Older exploratory tools (drill-down explorer)
+├── meta/                   # Site metadata (subject tree)
+│
+├── scripts/                # Build, migration, and maintenance scripts
+└── docs/                   # Documentation and exports
+```
+
+## Folder conventions
+
+### `assets/`
+
+All pages load shared CSS and JS from here:
+
+- `assets/css/corporate.css` — site-wide styles
+- `assets/js/site-layout.js` — header, footer, navigation
+- `assets/js/calculator-core.js` + `calculator-registry.js` — calculator engine
+- `assets/js/topic-progress.js` + `topic-catalog.js` — learning progress tracking
+
+Use **relative paths** from each HTML file to `assets/` (depth varies by folder).
+
+### `calculators/`
+
+Calculator shells are minimal HTML pages with `class="calculator-page"` and `data-calc="…"` on `<body>`. Logic lives in `assets/js/calculator-registry.js`, keyed by `data-calc` (not filename).
+
+| Subfolder      | Purpose                                      |
+|----------------|----------------------------------------------|
+| `power/`       | DC/AC/three-phase power, power factor, cost  |
+| `ac-circuits/` | Ohm's law, impedance, reactance, star/delta  |
+| `practical/`   | Motors, cables, transformers, dB, aerospace   |
+| `converters/`  | Unit converters, radians, binary/hex         |
+| `logic/`       | Truth table generator                        |
+| `tools/`       | Utilities (e.g. development roadmap)         |
+
+New calculators: add a shell under the appropriate subfolder, register fields/compute in `calculator-registry.js`, or use `scripts/generate-calculators.ps1`.
+
+### `learn/`
+
+Teaching pages use `class="content-page"` on `<body>`. Each subject catalog is an `index.html` under its subject folder.
+
+**Mathematics** (`learn/mathematics/`):
+
+| Level folder     | Catalog section (approx.)        |
+|------------------|----------------------------------|
+| `ks2-ks3/`       | Primary / KS2–KS3                |
+| `gcse/`          | GCSE                           |
+| `a-level/`       | A-Level                        |
+| `undergraduate/` | Undergraduate                  |
+| `postgraduate/`  | Postgraduate / research        |
+| `research/`      | Millennium problems, open research |
+| `speculative/`   | Non-standard / AI-only topics  |
+| `digital-logic/` | Boolean algebra, gates, K-maps |
+
+**Physics** (`learn/physics/`): same level naming (`ks2-ks3`, `gcse`, `a-level`, `undergraduate`, `postgraduate`, `frontier`, `applied`, `speculative`).
+
+**Quantum** (`learn/quantum/`):
+
+- `index.html` — catalog
+- `topics/` — all quantum topic pages
+
+Catalog cross-links use relative paths (e.g. `../mathematics/a-level/vectors.html`).
+
+### `reference/`
+
+- `reference/electrical/variables.html` — engineering variables
+- `reference/electrical/equations.html` — equation reference
+- `reference/industry/equipment-manufacturers.html` — manufacturer list
+
+### `maps/` and `legacy/`
+
+- `maps/math-prereq-map.html` — mathematics prerequisite graph
+- `maps/physics-prereq-map.html` — physics prerequisite graph
+- `maps/math-topics.json` — math topic metadata
+- `legacy/physics-drill-down/` — older physics explorer (not in main nav crawl)
+
+## URL redirects (backward compatibility)
+
+The migration left **redirect stub HTML files** at old paths (e.g. `dc_power_calculator.html`, `pure_math_subjects.html`, `differentiation.html`). Each stub meta-refreshes to the new location. The full old → new map is in:
+
+```
+scripts/path-relocation-map.json
+```
+
+To re-run the migration (only on a clean pre-migration tree):
+
+```bash
+python scripts/migrate-project-structure.py
+```
+
+## Build and maintenance scripts
+
+| Script | Purpose |
+|--------|---------|
+| `scripts/build-topic-catalog.py` | Regenerate `assets/js/topic-catalog.js` from catalogs |
+| `scripts/build-topic-progression.py` | Build `scripts/topic-progression.json` (prereqs / next topics) |
+| `scripts/apply-catalog-progression.py` | Inject Pre-requisites cards on topic pages |
+| `scripts/fix-hub-breadcrumbs.py` | Fix “Back to Hub” links after moves |
+| `scripts/check-links.py` | Internal link checker (`--scope core` for CI) |
+| `scripts/migrate-project-structure.py` | One-time folder reorganization |
+| `scripts/export-cursor-transcript.py` | Export agent transcripts to markdown |
+
+Typical refresh after catalog edits:
+
+```bash
+python scripts/build-topic-catalog.py
+python scripts/build-topic-progression.py
+python scripts/apply-catalog-progression.py
+python scripts/check-links.py --scope core
+```
+
+## Learning progress
+
+- **Dashboard:** `progress.html`
+- **Per-topic widget:** injected on `content-page` bodies via `topic-progress.js`
+- **Storage:** browser `localStorage` key `ek-topic-progress`
+- **Topic IDs:** paths like `learn/mathematics/a-level/differentiation.html` (matches catalog `href`)
+
+After the reorganization, previously saved progress keyed by old filenames (e.g. `differentiation.html`) will not match new IDs unless manually migrated.
+
+## CI
+
+GitHub Actions (`.github/workflows/ci.yml`) runs:
+
+1. `node --check` on `assets/js/*.js`
+2. `python scripts/check-links.py --scope core`
+
+## Adding new content
+
+1. **New math/physics topic:** add HTML under the correct `learn/{subject}/{level}/` folder, add a `<li>` link in the subject `index.html`, regenerate catalog/progression.
+2. **New calculator:** add shell under `calculators/{category}/`, register in `calculator-registry.js`.
+3. **New reference page:** add under `reference/` and link from `index.html` or nav in `site-layout.js`.
+
+## Navigation
+
+Main nav is defined in `assets/js/site-layout.js`:
+
+- Home → `index.html`
+- Reference → `reference/electrical/equations.html`
+- Calculators → `calculators/index.html`
+- Mathematics / Physics / Quantum → respective `learn/{subject}/index.html`
+- Digital Logic → `learn/mathematics/digital-logic/boolean-algebra.html`
+- Progress → `progress.html`

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../../../assets/css/corporate.css">
+  <script src="../../../assets/js/site-layout.js" defer></script>
+  <title>Postulates of Quantum Mechanics</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+<body class="content-page">
+  <div class="page-container">
+    <div class="content-hero">
+      <nav class="page-hero-breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">&larr; Back to Hub</a>
+      </nav>
+      <h1>Postulates of Quantum Mechanics</h1>
+      <p>Quantum guide. The standard axioms — state space, observables, measurement, and evolution — that define non-relativistic quantum theory.</p>
+      <div class="content-nav">
+        <a href="../index.html">&larr; Quantum Subjects Catalog</a>
+      </div>
+    </div>
+
+    <div class="content-body">
+
+    <div class="card">
+      <h2>1) Postulate I: State space</h2>
+      <p>
+        The state of an isolated physical system is represented by a <strong>unit vector</strong>
+        \(|\psi\rangle\) in a complex Hilbert space \(\mathcal{H}\). For composite systems,
+        \(\mathcal{H} = \mathcal{H}_1 \otimes \mathcal{H}_2 \otimes \cdots\).
+      </p>
+      <div class="callout">
+        <strong>Ray interpretation:</strong> \(|\psi\rangle\) and \(e^{i\phi}|\psi\rangle\) describe the same
+        physics — only the ray in \(\mathcal{H}\) matters. Notation:
+        <a href="dirac-notation.html">Dirac Notation</a>.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>2) Postulate II: Observables</h2>
+      <p>
+        Every measurable physical quantity (observable) corresponds to a <strong>Hermitian operator</strong>
+        \(A = A^\dagger\) on \(\mathcal{H}\). Possible measurement outcomes are eigenvalues of \(A\); eigenstates
+        \(|a_n\rangle\) satisfy \(A|a_n\rangle = a_n|a_n\rangle\).
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Observable</th>
+              <th>Operator (1D)</th>
+              <th>Spectrum</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Position</td>
+              <td>\(\hat{x}\)</td>
+              <td>Continuous \(\mathbb{R}\)</td>
+            </tr>
+            <tr>
+              <td>Momentum</td>
+              <td>\(\hat{p} = -i\hbar\dfrac{d}{dx}\)</td>
+              <td>Continuous \(\mathbb{R}\)</td>
+            </tr>
+            <tr>
+              <td>Energy</td>
+              <td>Hamiltonian \(\hat{H}\)</td>
+              <td>Discrete or continuous</td>
+            </tr>
+            <tr>
+              <td>Spin \(S_z\)</td>
+              <td>\(\dfrac{\hbar}{2}\sigma_z\)</td>
+              <td>\(\pm\hbar/2\)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="mini">
+        Spin operators: <a href="spin-and-pauli-matrices.html">Spin and Pauli Matrices</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>3) Postulate III: Measurement</h2>
+      <p>
+        Upon measurement of \(A\) with outcome \(a_n\):
+      </p>
+      <ol>
+        <li>Probability: \(P(a_n) = |\langle a_n|\psi\rangle|^2\) (Born rule)</li>
+        <li>State update: \(|\psi\rangle \to |a_n\rangle\) (ideal projective measurement)</li>
+      </ol>
+      <p>
+        Expectation: \(\langle A \rangle = \langle\psi|A|\psi\rangle\). Full treatment of superposition and POVMs:
+        <a href="superposition-and-measurement.html">Superposition and Measurement</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>4) Postulate IV: Time evolution</h2>
+      <p>
+        Between measurements, an isolated system evolves unitarily:
+      </p>
+      <p style="text-align:center;">\[i\hbar\frac{d}{dt}|\psi(t)\rangle = \hat{H}|\psi(t)\rangle\]</p>
+      <p>
+        Formal solution: \(|\psi(t)\rangle = U(t)|\psi(0)\rangle\) where \(U(t) = e^{-i\hat{H}t/\hbar}\) (for
+        time-independent \(\hat{H}\)). \(U\) is unitary: \(U^\dagger U = I\).
+      </p>
+      <div class="callout">
+        <strong>Stationary states:</strong> If \(\hat{H}|E_n\rangle = E_n|E_n\rangle\), then
+        \(|E_n\rangle\) evolves only in phase: \(|E_n(t)\rangle = e^{-iE_n t/\hbar}|E_n\rangle\).
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>5) Composite systems and entanglement</h2>
+      <p>
+        The postulates apply to the full Hilbert space of composite systems. Entangled states violate classical
+        factorisation of joint probabilities — a consequence of the tensor-product structure plus linearity.
+      </p>
+      <p class="mini">
+        <a href="entanglement-and-bell.html">Entanglement and Bell Inequalities</a> show this empirically.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>6) Mixed states extension</h2>
+      <p>
+        When a system is not in a pure state \(|\psi\rangle\) but a statistical ensemble, use a
+        <strong>density operator</strong> \(\rho\):
+      </p>
+      <ul>
+        <li>\(\rho \geq 0\), \(\mathrm{Tr}(\rho) = 1\)</li>
+        <li>\(\langle A \rangle = \mathrm{Tr}(\rho A)\)</li>
+        <li>Pure state: \(\rho = |\psi\rangle\langle\psi|\)</li>
+      </ul>
+      <p class="mini">
+        Full theory: <a href="density-matrices.html">Density Matrices</a>;
+        open-system evolution: <a href="quantum-channels.html">Quantum Channels</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>7) Correspondence and limits</h2>
+      <p>
+        Classical mechanics emerges when \(\hbar\) is negligible relative to action scales, and when decoherence
+        suppresses interference between macroscopically distinct alternatives. The
+        <a href="uncertainty-principle.html">Uncertainty Principle</a> follows from the commutator
+        \([\hat{x},\hat{p}] = i\hbar\).
+      </p>
+      <div class="warning">
+        <strong>Scope:</strong> These postulates describe non-relativistic quantum mechanics. Relativistic and
+        field-theoretic extensions live in the Physics catalog (QFT, etc.).
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>8) Quick knowledge check</h2>
+      <div class="quiz">
+        <ol>
+          <li>State Postulate I in one sentence.</li>
+          <li>What kind of operator represents an observable?</li>
+          <li>Write the Born rule for eigenvalue \(a_n\).</li>
+          <li>What is the Schrödinger equation?</li>
+          <li>Why are only eigenvalues observed in ideal measurements?</li>
+          <li>Express a pure-state density matrix.</li>
+          <li>How does tensor product structure enable entanglement?</li>
+        </ol>
+      </div>
+      <details class="quiz-answers">
+        <summary class="quiz-answers__summary">Show answers</summary>
+        <ol class="quiz-answers__list">
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+        </ol>
+      </details>
+<p class="mini">
+        Answers: state = unit vector in Hilbert space; Hermitian; \(|\langle a_n|\psi\rangle|^2\);
+        \(i\hbar\partial_t|\psi\rangle = \hat{H}|\psi\rangle\); collapse projects onto eigenstates;
+        \(\rho=|\psi\rangle\langle\psi|\); most vectors in \(\mathcal{H}_A\otimes\mathcal{H}_B\) are not product states.
+      </p>
+    </div>
+    <div class="card progression-card prerequisites-card">
+      <h2>9) Pre-requisites</h2>
+      <p>If you are struggling with this topic, review these subjects first.</p>
+      <ul>
+        <li><a href="dirac-notation.html">Dirac (Bra–Ket) Notation</a> — quantum learning path — study before advancing</li>
+        <li><a href="superposition-and-measurement.html">Superposition and Measurement</a> — quantum learning path — study before advancing</li>
+      </ul>
+      
+    </div>
+
+    <div class="card progression-card next-topics-card">
+      <h2>10) Next topics</h2>
+      <p>Keep building your understanding — follow the path or explore branches.</p>
+      <h3>Recommended next</h3>
+      <p>Continue in catalog learning order.</p>
+      <ul>
+        <li><a href="uncertainty-principle.html">Uncertainty Principle</a></li>
+      </ul>
+      <h3>Parallel options</h3>
+      <p>Related topics you can study alongside or instead.</p>
+      <ul>
+        <li><a href="spin-and-pauli-matrices.html">Spin and Pauli Matrices</a></li>
+      </ul>
+      <h3>Go deeper</h3>
+      <p>Further topics once you are comfortable with the core material.</p>
+      <ul>
+        <li><a href="quantum-tunneling.html">Quantum Tunneling</a></li>
+      </ul>
+      <h3>Catalog navigation</h3>
+      <ul>
+        <li><a href="../index.html">Quantum Catalog</a></li>
+        <li><a href="../../../index.html">Engineering Knowledge Hub</a></li>
+      </ul>
+    </div>
+
+<p class="page-footer-note">Quantum physics and computing content.</p>
+    </div>
+  </div>
+</body>
+</html>

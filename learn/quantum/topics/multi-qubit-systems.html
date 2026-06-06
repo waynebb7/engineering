@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../../../assets/css/corporate.css">
+  <script src="../../../assets/js/site-layout.js" defer></script>
+  <title>Multi-Qubit Systems</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+<body class="content-page">
+  <div class="page-container">
+    <div class="content-hero">
+      <nav class="page-hero-breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">&larr; Back to Hub</a>
+      </nav>
+      <h1>Multi-Qubit Systems</h1>
+      <p>Quantum guide. Tensor products, composite state spaces, separable vs entangled states, and the exponential growth of Hilbert space dimension.</p>
+      <div class="content-nav">
+        <a href="../index.html">&larr; Quantum Subjects Catalog</a>
+      </div>
+    </div>
+
+    <div class="content-body">
+
+    <div class="card">
+      <h2>1) Composite Hilbert spaces</h2>
+      <p>
+        For qubits \(A\) and \(B\) with spaces \(\mathcal{H}_A \cong \mathbb{C}^2\) and
+        \(\mathcal{H}_B \cong \mathbb{C}^2\), the joint system lives in the
+        <strong>tensor product</strong>:
+        \[
+        \mathcal{H}_{AB} = \mathcal{H}_A \otimes \mathcal{H}_B \cong \mathbb{C}^4
+        \]
+      </p>
+      <p>
+        General \(n\)-qubit space: \(\mathcal{H}^{\otimes n} \cong \mathbb{C}^{2^n}\).
+      </p>
+      <div class="callout">
+        <strong>Key idea:</strong> \(n\) qubits have \(2^n\) basis states \(|x_1 x_2 \cdots x_n\rangle\), not \(2n\).
+      </div>
+      <p class="mini">
+        Prerequisite: <a href="../../mathematics/undergraduate/tensors.html">Tensors</a>,
+        <a href="qubits-and-bloch-sphere.html">Qubits</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>2) Product states (separable states)</h2>
+      <p>
+        A <strong>product state</strong> factorises across subsystems:
+        \[
+        |\psi\rangle_{AB} = |\phi\rangle_A \otimes |\chi\rangle_B
+        \]
+        Example: \(|00\rangle = |0\rangle \otimes |0\rangle\), \(|+\rangle|0\rangle\).
+      </p>
+      <p>
+        Applying \(U \otimes V\) to a product state gives another product state — no entanglement is created
+        without two-qubit gates.
+      </p>
+      <div class="callout">
+        <strong>Basis:</strong> \(\{|00\rangle, |01\rangle, |10\rangle, |11\rangle\}\) for two qubits.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>3) Entangled states</h2>
+      <p>
+        A state is <strong>entangled</strong> if it cannot be written as a product. The Bell state:
+        \[
+        |\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)
+        \]
+        is maximally entangled.
+      </p>
+      <p>
+        All four Bell states:
+        \[
+        |\Phi^\pm\rangle = \frac{1}{\sqrt{2}}(|00\rangle \pm |11\rangle),\quad
+        |\Psi^\pm\rangle = \frac{1}{\sqrt{2}}(|01\rangle \pm |10\rangle)
+        \]
+      </p>
+      <div class="warning">
+        <strong>Test:</strong> For \(|\psi\rangle = a|00\rangle + b|01\rangle + c|10\rangle + d|11\rangle\),
+        separability requires \(ad = bc\).
+      </div>
+      <p class="mini">
+        Deeper treatment: <a href="entanglement-and-bell.html">Entanglement and Bell Inequalities</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>4) Tensor product of operators</h2>
+      <p>
+        If \(U\) acts on qubit \(A\) and \(V\) on qubit \(B\), the joint operator is \(U \otimes V\):
+        \[
+        (U \otimes V)(|\phi\rangle \otimes |\chi\rangle) = (U|\phi\rangle) \otimes (V|\chi\rangle)
+        \]
+      </p>
+      <p>
+        <strong>CNOT</strong> is not a tensor product — it couples subsystems:
+        \[
+        \mathrm{CNOT} = |0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes X
+        \]
+      </p>
+      <div class="callout">
+        <strong>Gate reference:</strong> <a href="quantum-gates.html">Quantum Gates</a>,
+        <a href="quantum-circuits.html">Quantum Circuits</a>.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>5) Partial trace and reduced states</h2>
+      <p>
+        Tracing out subsystem \(B\) from a density matrix \(\rho_{AB}\):
+        \[
+        \rho_A = \mathrm{Tr}_B(\rho_{AB}) = \sum_i (\mathbb{I}_A \otimes \langle i|_B)\,\rho_{AB}\,(\mathbb{I}_A \otimes |i\rangle_B)
+        \]
+      </p>
+      <p>
+        For \(|\Phi^+\rangle\): \(\rho_A = \mathrm{Tr}_B(|\Phi^+\rangle\langle\Phi^+|) = \frac{I}{2}\) — maximally mixed.
+        Bob's half of a Bell pair alone carries no information.
+      </p>
+      <div class="callout">
+        <strong>Mixed states:</strong> Reduced states of entangled pure states are generally mixed.
+        See <a href="density-matrices.html">Density Matrices</a>.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>6) Schmidt decomposition</h2>
+      <p>
+        Any pure bipartite state admits <strong>Schmidt decomposition</strong>:
+        \[
+        |\psi\rangle_{AB} = \sum_i \sqrt{\lambda_i}\,|i\rangle_A \otimes |i\rangle_B
+        \]
+        with \(\lambda_i \geq 0\), \(\sum \lambda_i = 1\). The Schmidt rank is 1 iff the state is separable.
+      </p>
+      <p>
+        Schmidt coefficients measure entanglement: \(|\Phi^+\rangle\) has rank 2 with \(\lambda_1 = \lambda_2 = \frac{1}{2}\).
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>7) Multi-qubit measurement</h2>
+      <p>
+        Measuring all qubits in the computational basis projects onto one of \(2^n\) outcomes with probability
+        \(|\langle x_1\cdots x_n | \psi \rangle|^2\).
+      </p>
+      <p>
+        <strong>Measuring one qubit:</strong> Apply projectors \(P_0 = |0\rangle\langle 0| \otimes I\),
+        \(P_1 = |1\rangle\langle 1| \otimes I\) — may not factor the post-measurement state if entangled.
+      </p>
+      <div class="callout">
+        <strong>Correlation:</strong> Bell states give perfectly correlated outcomes when both qubits are measured in \(Z\).
+      </div>
+      <p class="mini">
+        <a href="quantum-measurement.html">Measurement in Quantum Computing</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>8) Quick knowledge check</h2>
+      <div class="quiz">
+        <ol>
+          <li>How many basis states does a 4-qubit system have? What is the Hilbert space dimension?</li>
+          <li>Is \(\frac{1}{2}(|00\rangle + |01\rangle + |10\rangle + |11\rangle)\) separable?</li>
+          <li>Compute \(\mathrm{Tr}_B(|\Psi^-\rangle\langle\Psi^-|)\).</li>
+          <li>Write CNOT as a sum of tensor products.</li>
+          <li>What is the Schmidt rank of \(\frac{1}{\sqrt{3}}|00\rangle + \sqrt{\frac{2}{3}}|11\rangle\)?</li>
+          <li>Why does entanglement require interaction (two-qubit gates)?</li>
+        </ol>
+      </div>
+      <details class="quiz-answers">
+        <summary class="quiz-answers__summary">Show answers</summary>
+        <ol class="quiz-answers__list">
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+        </ol>
+      </details>
+</div>
+    <div class="card progression-card prerequisites-card">
+      <h2>9) Pre-requisites</h2>
+      <p>If you are struggling with this topic, review these subjects first.</p>
+      <ul>
+        <li><a href="quantum-circuits.html">Quantum Circuits</a> — quantum learning path — study before advancing</li>
+        <li><a href="quantum-gates.html">Quantum Gates</a> — quantum learning path — study before advancing</li>
+      </ul>
+      
+    </div>
+
+    <div class="card progression-card next-topics-card">
+      <h2>10) Next topics</h2>
+      <p>Keep building your understanding — follow the path or explore branches.</p>
+      <h3>Recommended next</h3>
+      <p>Continue in catalog learning order.</p>
+      <ul>
+        <li><a href="quantum-measurement.html">Measurement in Quantum Computing</a></li>
+      </ul>
+      <h3>Go deeper</h3>
+      <p>Further topics once you are comfortable with the core material.</p>
+      <ul>
+        <li><a href="deutsch-jozsa-algorithm.html">Deutsch–Jozsa Algorithm</a></li>
+        <li><a href="grovers-algorithm.html">Grover's Search Algorithm</a></li>
+        <li><a href="shors-algorithm.html">Shor's Factoring Algorithm</a></li>
+      </ul>
+      <h3>Catalog navigation</h3>
+      <ul>
+        <li><a href="../index.html">Quantum Catalog</a></li>
+        <li><a href="../../../index.html">Engineering Knowledge Hub</a></li>
+      </ul>
+    </div>
+
+<p class="page-footer-note">Quantum physics and computing content.</p>
+    </div>
+  </div>
+</body>
+</html>

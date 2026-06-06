@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../../../assets/css/corporate.css">
+  <script src="../../../assets/js/site-layout.js" defer></script>
+  <title>Symplectic Geometry - Research</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+<body class="content-page">
+  <div class="page-container">
+    <div class="content-hero">
+      <nav class="page-hero-breadcrumb" aria-label="Breadcrumb">
+        <a href="../../../index.html">&larr; Back to Hub</a>
+      </nav>
+      <h1>Symplectic Geometry</h1>
+      <p>Research guide. Closed nondegenerate 2-forms, Hamiltonian dynamics, moment maps, and the Gromov&ndash;Witten invariants linking geometry to quantum field theory.</p>
+      <div class="content-nav">
+        <a href="../index.html">&larr; Pure Math Subjects Catalog</a>
+      </div>
+    </div>
+
+    <div class="content-body">
+
+    <div class="card">
+      <h2>1) Symplectic forms and symplectic manifolds</h2>
+      <p>
+        A <strong>symplectic form</strong> on a smooth \(2n\)-dimensional manifold \(M\) is a closed nondegenerate 2-form \(\omega \in \Omega^2(M)\):
+        \[
+        d\omega = 0, \qquad \omega^n \neq 0 \text{ pointwise.}
+        \]
+        The pair \((M, \omega)\) is a <strong>symplectic manifold</strong>. Locally, Darboux's theorem guarantees coordinates \((q_1,\ldots,q_n,p_1,\ldots,p_n)\) with
+        \[
+        \omega = \sum_{i=1}^n dq_i \wedge dp_i.
+        \]
+      </p>
+      <p>
+        Nondegeneracy induces an isomorphism \(\flat : TM \to T^*M\), \(X \mapsto \iota_X \omega\). A vector field \(X\) is <strong>symplectic</strong> if \(\mathcal{L}_X \omega = 0\); it is <strong>Hamiltonian</strong> if \(X = X_H\) for some \(H \in C^\infty(M)\) with \(\iota_{X_H}\omega = dH\).
+      </p>
+      <div class="callout">
+        <strong>Key example:</strong> Phase space \((T^*Q, \omega_{\mathrm{can}})\) with \(\omega_{\mathrm{can}} = \sum dq_i \wedge dp_i\) is the archetype. Cotangent bundles carry canonical symplectic structures for any configuration manifold \(Q\).
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Object</th>
+              <th>Condition / role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Closed form</td>
+              <td>\(d\omega = 0\) &mdash; Stokes + Liouville volume preserved</td>
+            </tr>
+            <tr>
+              <td>Nondegenerate</td>
+              <td>\(\omega^n\) is a volume form; enables Hamiltonian dynamics</td>
+            </tr>
+            <tr>
+              <td>Compatible almost complex \(J\)</td>
+              <td>\(g(v,w) = \omega(v, Jw)\) Riemannian; \(J^2 = -I\), \(\omega(\cdot, J\cdot)\) positive</td>
+            </tr>
+            <tr>
+              <td>Kähler manifold</td>
+              <td>\(\omega\) closed, \(J\) integrable, \(g\) Hermitian &mdash; complex geometry meets symplectic</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="mini">
+        Prerequisite: <a href="../postgraduate/differential-geometry.html">Differential Geometry</a>, <a href="../postgraduate/smooth-manifolds.html">Smooth Manifolds</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>2) Hamiltonian mechanics and Poisson brackets</h2>
+      <p>
+        For \(H : M \to \mathbb{R}\), Hamilton's equations in Darboux coordinates are
+        \[
+        \dot{q}_i = \frac{\partial H}{\partial p_i}, \qquad \dot{p}_i = -\frac{\partial H}{\partial q_i}.
+        \]
+        Equivalently, flow along \(X_H\) satisfies \(\iota_{X_H}\omega = dH\). The <strong>Poisson bracket</strong> of functions \(f, g\) is
+        \[
+        \{f, g\} = \omega(X_f, X_g) = \sum_i \left(\frac{\partial f}{\partial q_i}\frac{\partial g}{\partial p_i} - \frac{\partial f}{\partial p_i}\frac{\partial g}{\partial q_i}\right).
+        \]
+      </p>
+      <div class="callout">
+        <strong>Liouville's theorem:</strong> Hamiltonian flow preserves \(\omega^n\). Phase-space volume is invariant under time evolution &mdash; the geometric foundation of statistical mechanics on symplectic manifolds.
+      </div>
+      <div class="callout">
+        <strong>Conservation laws:</strong> If \(\{H, f\} = 0\), then \(f\) is conserved along the flow of \(H\). Noether's theorem in this setting: symmetries of \(H\) yield conserved quantities via moment maps.
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Integrability</h3>
+          <p class="mini">A system with \(n\) independent commuting Hamiltonians \(H_1, \ldots, H_n\) (including \(H\)) is Liouville integrable; level sets are Lagrangian tori with linear flow.</p>
+        </div>
+        <div>
+          <h3>Arnold&ndash;Liouville</h3>
+          <p class="mini">Near a compact regular level set of an integrable system, action-angle coordinates exist: the geometry is explicitly toroidal.</p>
+        </div>
+      </div>
+      <div class="warning">
+        <strong>Convention:</strong> Sign conventions for \(\omega\), Poisson brackets, and complex structures vary across texts. Always verify whether \(\{q_i, p_j\} = \delta_{ij}\) or \(-\delta_{ij}\).
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>3) Lagrangian submanifolds and moment maps</h2>
+      <p>
+        A submanifold \(L \subset M\) is <strong>Lagrangian</strong> if \(\dim L = n\) and \(\omega|_L = 0\). In \(T^*Q\), graphs of closed 1-forms and zero sections are Lagrangian. Lagrangian submanifolds are central to <a href="homological-mirror-symmetry.html">Homological Mirror Symmetry</a> via the Fukaya category.
+      </p>
+      <p>
+        For a Lie group \(G\) acting on \((M, \omega)\) by symplectomorphisms, a <strong>moment map</strong> \(\mu : M \to \mathfrak{g}^*\) satisfies
+        \[
+        \langle \mu(x), \xi \rangle = \text{Hamiltonian for } X_\xi, \qquad \iota_{X_\xi}\omega = d\langle \mu, \xi \rangle.
+        \]
+        <strong>Marsden&ndash;Weinstein reduction</strong> produces a symplectic quotient \(M /\!\!/ G\) at regular values of \(\mu\).
+      </p>
+      <div class="callout">
+        <strong>Worked example:</strong> For \(G = \mathrm{U}(1)\) acting on \(\mathbb{C}^n\) by diagonal phase rotations with standard \(\omega\), \(\mu(z) = \frac{1}{2}\sum |z_i|^2\). The reduced space at \(\mu = 1\) is \(\mathbb{CP}^{n-1}\) with Fubini&ndash;Study form.
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Symplectic capacity</h3>
+          <p class="mini">Gromov's non-squeezing constrains how symplectic balls embed into cylinders &mdash; symplectic rigidity absent in volume-preserving topology.</p>
+        </div>
+        <div>
+          <h3>Contact geometry</h3>
+          <p class="mini">A contact manifold \((Y, \xi)\) is a \(2n{+}1\)-dimensional boundary theory; \(\xi = \ker \alpha\) with \(d\alpha\) symplectic on \(\xi\).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>4) Almost complex structures and J-holomorphic curves</h2>
+      <p>
+        An <strong>almost complex structure</strong> \(J\) on \((M, \omega)\) is <strong>\(\omega\)-compatible</strong> if \(g(v,w) = \omega(v, Jw)\) is positive definite. Gromov's innovation (1985) studies <strong>\(J\)-holomorphic curves</strong>: maps \(u : \Sigma \to M\) from a Riemann surface satisfying
+        \[
+        \bar{\partial}_J u = \frac{1}{2}(\partial u + J \circ du \circ j) = 0.
+        \]
+        These are minimal surfaces in a non-integrable almost complex setting and replace geodesics as the preferred 1-dimensional objects.
+      </p>
+      <div class="callout">
+        <strong>Moduli problem:</strong> For fixed genus \(g\), homology class \(A \in H_2(M)\), and compatible \(J\), the space \(\mathcal{M}(g,A,J)\) of \(J\)-holomorphic curves is a (stratified) manifold of dimension
+        \[
+        6g - 6 + 2n + 2\langle c_1(TM), A \rangle.
+        \]
+        Compactification via stable maps (Deligne&ndash;Mumford) yields Gromov&ndash;Witten theory.
+      </div>
+      <div class="warning">
+        <strong>Transversality:</strong> For generic \(J\), the moduli space is smooth; automatic transversality holds in dimension 4 under certain conditions. Bubbling and Fredholm index computations are the technical core.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>5) Gromov&ndash;Witten invariants: preview</h2>
+      <p>
+        <strong>Gromov&ndash;Witten invariants</strong> count (appropriately weighted) \(J\)-holomorphic curves in \(M\) representing a class \(A \in H_2(M;\mathbb{Z})\) with prescribed marked points. For genus zero:
+        \[
+        \mathrm{GW}_{0,k}(M, A; \alpha_1, \ldots, \alpha_k) = \int_{[\mathcal{M}_{0,k}(M,A)]^{\mathrm{vir}}} \mathrm{ev}_1^*\alpha_1 \wedge \cdots \wedge \mathrm{ev}_k^*\alpha_k.
+        \]
+        The virtual fundamental class compensates for the failure of \(\mathcal{M}\) to be compact or smooth.
+      </p>
+      <div class="callout">
+        <strong>Quantum cohomology:</strong> GW invariants deform the cup product on \(H^*(M)\) into a quantum product \(\star\), encoding rational curves. For \(\mathbb{CP}^n\), quantum cohomology recovers enumerative data (Kontsevich's rational curves formula).
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Invariant family</th>
+              <th>Counts / encodes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Genus 0 GW</td>
+              <td>Rational curves; quantum cohomology ring</td>
+            </tr>
+            <tr>
+              <td>Higher genus GW</td>
+              <td>Gromov&ndash;Witten potential; B-model link via mirror symmetry</td>
+            </tr>
+            <tr>
+              <td>Relative GW</td>
+              <td>Curves with boundary on Lagrangians; open string counts</td>
+            </tr>
+            <tr>
+              <td>Seiberg&ndash;Witten / Gromov&ndash;Witten</td>
+              <td>Conjectural equivalence for 4-manifolds; wall-crossing</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>6) Floer theory and holomorphic discs</h2>
+      <p>
+        <strong>Floer homology</strong> replaces Morse homology with infinite-dimensional gradient flows on loop spaces or with holomorphic strips between Lagrangians. For a pair \((L_0, L_1)\) of Lagrangian submanifolds, the <strong>Fukaya category</strong> \(\mathcal{F}(M)\) has objects = Lagrangians, morphisms = Floer complexes generated by intersection points.
+      </p>
+      <div class="callout">
+        <strong>Mirror symmetry bridge:</strong> Kontsevich's HMS conjecture identifies \(\mathcal{F}(M)\) with \(\mathbf{D}^b\mathrm{Coh}(W)\) for a mirror partner \(W\). Counting holomorphic discs (open GW invariants) matches period integrals on \(W\).
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Symplectic field theory</h3>
+          <p class="mini">SFT packages holomorphic curves in symplectic cobordisms into a \(\mathcal{A}_\infty\) algebra over a contact homology algebra &mdash; a grand unified framework for curve counting.</p>
+        </div>
+        <div>
+          <h3>Hofer's energy</h3>
+          <p class="mini">For a \(J\)-holomorphic curve \(u\), \(E(u) = \int u^*\omega \geq 0\). Finite energy and properness control compactness via Gromov's compactness theorem.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>7) Research connections and frontier directions</h2>
+      <div class="two-col">
+        <div>
+          <h3>Mirror symmetry</h3>
+          <p class="mini">Symplectic \(A\)-model (GW, Fukaya) dual to complex \(B\)-model (periods, variation of Hodge structure). See <a href="homological-mirror-symmetry.html">Homological Mirror Symmetry</a>.</p>
+        </div>
+        <div>
+          <h3>Topological recursion</h3>
+          <p class="mini">GW potentials of toric Calabi&ndash;Yau threefolds satisfy Eynard&ndash;Orantin topological recursion, linking symplectic enumerative geometry to random matrices.</p>
+        </div>
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Symplectic 4-manifolds</h3>
+          <p class="mini">Gromov non-squeezing, Taubes's SW=GW, and existence of symplectic structures on 4-manifolds remain active classification problems.</p>
+        </div>
+        <div>
+          <h3>Hamiltonian dynamics</h3>
+          <p class="mini">KAM theory, Aubry&ndash;Mather sets, and symplectic capacities (Ekeland&ndash;Hofer) connect rigidity to celestial mechanics and PDE.</p>
+        </div>
+      </div>
+      <p class="mini">
+        Related genius-level topics: <a href="homological-mirror-symmetry.html">Homological Mirror Symmetry</a>,
+        <a href="cohomology.html">Cohomology</a>, <a href="random-matrices.html">Random Matrices</a>,
+        <a href="../postgraduate/differential-geometry.html">Differential Geometry</a>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>8) Quick knowledge check</h2>
+      <div class="quiz">
+        <ol>
+          <li>Verify that \(\omega = \sum dq_i \wedge dp_i\) is closed and nondegenerate on \(\mathbb{R}^{2n}\).</li>
+          <li>Show that \(\{f, \{g, h\}\} + \{g, \{h, f\}\} + \{h, \{f, g\}\} = 0\) (Jacobi identity for the Poisson bracket).</li>
+          <li>Prove that a Lagrangian submanifold has half the dimension of the ambient symplectic manifold.</li>
+          <li>Compute the moment map for the \(\mathrm{SO}(3)\) action on \(\mathbb{R}^3 \times \mathbb{R}^3\) (angular momentum).</li>
+          <li>State Gromov's non-squeezing theorem and explain why it fails for volume-preserving maps.</li>
+          <li>Write the Cauchy&ndash;Riemann equations for a \(J\)-holomorphic map \(\mathbb{C} \to \mathbb{C}\) with standard \(J\).</li>
+          <li>Define the quantum product in terms of genus-0 GW invariants and explain its associativity (WDVV equations).</li>
+        </ol>
+      </div>
+      <details class="quiz-answers">
+        <summary class="quiz-answers__summary">Show answers</summary>
+        <ol class="quiz-answers__list">
+          <li>See the worked example: For \(G = \mathrm{U}(1)\) acting on \(\mathbb{C}^n\) by diagonal phase rotations with standard \(\omega\), \(\mu(z) = \frac{1}{2}\sum |z_i|^2\). The reduced space at \(\mu = 1\) is \(\mathbb{CP}^{n-1}\) with Fubini&ndash;Study form.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+        </ol>
+      </details>
+<p class="mini">
+        For marking: cite Darboux, Marsden&ndash;Weinstein, and Gromov compactness where relevant; check signs in Poisson brackets.
+      </p>
+    </div>
+    <div class="card progression-card prerequisites-card">
+      <h2>9) Pre-requisites</h2>
+      <p>If you are struggling with this topic, review these subjects first.</p>
+      <ul>
+        <li><a href="../postgraduate/infinitesimal-transformations.html">Infinitesimal Transformations</a> — advanced background from postgraduate / research-level (masters/phd)</li>
+      </ul>
+      <p class="mini">See the <a href="../../../maps/math-prereq-map.html">Mathematics prerequisite map</a> for the wider dependency graph.</p>
+    </div>
+
+    <div class="card progression-card next-topics-card">
+      <h2>10) Next topics</h2>
+      <p>Keep building your understanding — follow the path or explore branches.</p>
+      <h3>Recommended next</h3>
+      <p>Continue in catalog learning order.</p>
+      <ul>
+        <li><a href="random-matrices.html">Random Matrices</a></li>
+      </ul>
+      <h3>Parallel options</h3>
+      <p>Related topics you can study alongside or instead.</p>
+      <ul>
+        <li><a href="cohomology.html">Cohomology</a></li>
+      </ul>
+      <h3>Go deeper</h3>
+      <p>Further topics once you are comfortable with the core material.</p>
+      <ul>
+        <li><a href="homological-mirror-symmetry.html">Homological Mirror Symmetry</a></li>
+        <li><a href="complex-kleinian-groups.html">Complex Kleinian Groups</a></li>
+        <li><a href="perfectoid-spaces.html">Perfectoid Spaces</a></li>
+      </ul>
+      <h3>Catalog navigation</h3>
+      <ul>
+        <li><a href="../index.html">Mathematics Catalog</a></li>
+        <li><a href="../../../index.html">Engineering Knowledge Hub</a></li>
+      </ul>
+    </div>
+
+<p class="page-footer-note">Advanced research-level Mathematics content.</p>
+    </div>
+  </div>
+</body>
+</html>

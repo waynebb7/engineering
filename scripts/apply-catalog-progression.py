@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Inject Pre-requisites sections before Next topics on catalog topic pages."""
+"""Inject Pre-requisites and Next topics sections on catalog topic pages."""
 import json
 import re
 import subprocess
@@ -10,6 +10,13 @@ ROOT = Path(__file__).resolve().parent.parent
 PROGRESSION_FILE = ROOT / "scripts" / "topic-progression.json"
 
 PREREQ_CARD_MARKER = "progression-card prerequisites-card"
+NEXT_CARD_MARKER = "progression-card next-topics-card"
+
+CATALOG_LINKS = {
+    "math": ("learn/mathematics/index.html", "Mathematics Catalog"),
+    "physics": ("learn/physics/index.html", "Physics Catalog"),
+    "quantum": ("learn/quantum/index.html", "Quantum Catalog"),
+}
 
 NEXT_TOPICS_CARD_RE = re.compile(
     r'<div class="card(?:\s+[^"]*)?">\s*<h2>(?:(\d+)\)\s*)?Next topics</h2>.*?</div>',
@@ -53,7 +60,7 @@ def section_blurb(section: str) -> str:
 def prereq_description(p_entry: dict) -> str:
     section = p_entry.get("section", "")
     title = p_entry.get("title", "this topic")
-    if "Prerequisites" in section:
+    if section == "Prerequisites":
         return "mathematical tool needed before quantum topics"
     if "KS2" in section or "KS3" in section or "Primary" in section:
         return f"foundational skills that support {title.lower()}"
@@ -66,9 +73,11 @@ def prereq_description(p_entry: dict) -> str:
     if "Postgraduate" in section or "Research" in section or "PhD" in section:
         return f"advanced background from {section_blurb(section)}"
     if "Quantum" in section:
-        return f"quantum learning path — study before advancing"
+        return "quantum learning path — study before advancing"
     if "Physics" in section:
         return f"physics background from {section_blurb(section)}"
+    if "Logic" in section or "Digital" in section:
+        return "digital logic pathway — review before advancing"
     return f"study before this topic — from {section_blurb(section)}"
 
 
@@ -121,7 +130,80 @@ def build_prereq_card(
 """
 
 
-def remove_existing_prereq_cards(html: str) -> str:
+def build_next_card(
+    from_href: str, entry: dict, progression: dict, heading_number: int | None
+) -> str:
+    if heading_number:
+        heading = f"<h2>{heading_number}) Next topics</h2>"
+    else:
+        heading = "<h2>Next topics</h2>"
+
+    def topic_list(hrefs: list[str]) -> str:
+        lines = []
+        for h in hrefs:
+            t = progression.get(h, {}).get("title", Path(h).stem.replace("-", " ").title())
+            lines.append(f'        <li><a href="{link(from_href, h)}">{escape_html(t)}</a></li>')
+        return "\n".join(lines)
+
+    required = entry.get("next_required", [])
+    parallel = entry.get("next_parallel", [])
+    deeper = entry.get("next_deeper", [])
+
+    sections = []
+    if required:
+        sections.append(
+            f"""      <h3>Recommended next</h3>
+      <p>Continue in catalog learning order.</p>
+      <ul>
+{topic_list(required)}
+      </ul>"""
+        )
+    if parallel:
+        sections.append(
+            f"""      <h3>Parallel options</h3>
+      <p>Related topics you can study alongside or instead.</p>
+      <ul>
+{topic_list(parallel)}
+      </ul>"""
+        )
+    if deeper:
+        sections.append(
+            f"""      <h3>Go deeper</h3>
+      <p>Further topics once you are comfortable with the core material.</p>
+      <ul>
+{topic_list(deeper)}
+      </ul>"""
+        )
+
+    cat_lines = []
+    seen: set[str] = set()
+    for cat in entry.get("catalogs", []):
+        key = cat["key"]
+        if key in seen:
+            continue
+        seen.add(key)
+        chref, clabel = CATALOG_LINKS[key]
+        cat_lines.append(
+            f'        <li><a href="{link(from_href, chref)}">{escape_html(clabel)}</a></li>'
+        )
+    cat_lines.append(
+        f'        <li><a href="{link(from_href, "index.html")}">Engineering Knowledge Hub</a></li>'
+    )
+
+    body = "\n".join(sections)
+    return f"""    <div class="card {NEXT_CARD_MARKER}">
+      {heading}
+      <p>Keep building your understanding — follow the path or explore branches.</p>
+{body}
+      <h3>Catalog navigation</h3>
+      <ul>
+{chr(10).join(cat_lines)}
+      </ul>
+    </div>
+"""
+
+
+def remove_existing_progression_cards(html: str) -> str:
     html = re.sub(
         rf'\s*<div class="card {re.escape(PREREQ_CARD_MARKER)}">.*?</div>\s*',
         "\n",
@@ -129,7 +211,19 @@ def remove_existing_prereq_cards(html: str) -> str:
         flags=re.DOTALL,
     )
     html = re.sub(
+        rf'\s*<div class="card {re.escape(NEXT_CARD_MARKER)}">.*?</div>\s*',
+        "\n",
+        html,
+        flags=re.DOTALL,
+    )
+    html = re.sub(
         r'\s*<div class="card">\s*<h2>(?:\d+\)\s*)?Pre-?requisites?</h2>.*?</div>\s*',
+        "\n",
+        html,
+        flags=re.DOTALL | re.IGNORECASE,
+    )
+    html = re.sub(
+        r'\s*<div class="card(?:\s+[^"]*)?">\s*<h2>(?:\d+\)\s*)?Next topics</h2>.*?</div>\s*',
         "\n",
         html,
         flags=re.DOTALL | re.IGNORECASE,
@@ -143,39 +237,21 @@ def remove_existing_prereq_cards(html: str) -> str:
     return html
 
 
-def insert_prereq_before_next_topics(html: str, prereq_card: str) -> str:
-    if PREREQ_CARD_MARKER in html:
-        return html
-
+def detect_heading_number(html: str) -> int | None:
+    m = re.search(r"<h2>(\d+)\)\s*Quick knowledge check</h2>", html, re.I)
+    if m:
+        return int(m.group(1)) + 1
     match = NEXT_TOPICS_CARD_RE.search(html)
-    if not match:
-        footer = re.search(r'(\s*<p class="page-footer-note">)', html)
-        if footer:
-            return html[: footer.start()] + "\n" + prereq_card + html[footer.start() :]
-        return html + "\n" + prereq_card
+    if match and match.group(1):
+        return int(match.group(1)) - 1
+    return None
 
-    next_block = match.group(0)
-    next_num = int(match.group(1)) if match.group(1) else None
 
-    if next_num:
-        prereq_card = re.sub(
-            r"<h2>.*?</h2>",
-            f"<h2>{next_num}) Pre-requisites</h2>",
-            prereq_card,
-            count=1,
-            flags=re.DOTALL,
-        )
-        updated_next = re.sub(
-            r"<h2>\d+\)\s*Next topics</h2>",
-            f"<h2>{next_num + 1}) Next topics</h2>",
-            next_block,
-            count=1,
-            flags=re.IGNORECASE,
-        )
-    else:
-        updated_next = next_block
-
-    return html[: match.start()] + prereq_card + "\n" + updated_next + html[match.end() :]
+def insert_progression_cards(html: str, prereq_card: str, next_card: str) -> str:
+    footer = re.search(r"(\s*<p class=\"page-footer-note\">)", html)
+    if footer:
+        return html[: footer.start()] + "\n" + prereq_card + "\n" + next_card + html[footer.start() :]
+    return html + "\n" + prereq_card + "\n" + next_card
 
 
 def patch_file(path: Path, href: str, entry: dict, progression: dict) -> bool:
@@ -187,12 +263,15 @@ def patch_file(path: Path, href: str, entry: dict, progression: dict) -> bool:
         print(f"  SKIP (no content-page) {href}")
         return False
 
-    match = NEXT_TOPICS_CARD_RE.search(html)
-    heading_number = int(match.group(1)) if match and match.group(1) else None
+    heading_number = detect_heading_number(html)
+    html = remove_existing_progression_cards(html)
 
-    html = remove_existing_prereq_cards(html)
-    prereq = build_prereq_card(href, entry, progression, heading_number)
-    html = insert_prereq_before_next_topics(html, prereq)
+    prereq_num = heading_number
+    next_num = heading_number + 1 if heading_number else None
+
+    prereq = build_prereq_card(href, entry, progression, prereq_num)
+    nxt = build_next_card(href, entry, progression, next_num)
+    html = insert_progression_cards(html, prereq, nxt)
 
     path.write_text(html, encoding="utf-8")
     return True

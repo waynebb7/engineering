@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build js/topic-catalog.json from Mathematics, Physics, and Quantum catalog pages."""
+"""Build assets/js/topic-catalog.js from Mathematics, Physics, and Quantum catalog pages."""
 import json
 import re
 from pathlib import Path
@@ -10,20 +10,20 @@ CATALOGS = [
     {
         "id": "math",
         "label": "Mathematics",
-        "catalog_href": "pure_math_subjects.html",
-        "file": "pure_math_subjects.html",
+        "catalog_href": "learn/mathematics/index.html",
+        "file": "learn/mathematics/index.html",
     },
     {
         "id": "physics",
         "label": "Physics",
-        "catalog_href": "physics_subjects.html",
-        "file": "physics_subjects.html",
+        "catalog_href": "learn/physics/index.html",
+        "file": "learn/physics/index.html",
     },
     {
         "id": "quantum",
         "label": "Quantum",
-        "catalog_href": "quantum_subjects.html",
-        "file": "quantum_subjects.html",
+        "catalog_href": "learn/quantum/index.html",
+        "file": "learn/quantum/index.html",
     },
 ]
 
@@ -35,7 +35,17 @@ SECTION_RE = re.compile(r"<section>(.*?)</section>", re.DOTALL | re.IGNORECASE)
 H2_RE = re.compile(r"<h2>(.*?)</h2>", re.DOTALL | re.IGNORECASE)
 
 
-def parse_catalog(path: Path) -> list[dict]:
+def normalize_href(href: str, catalog_file: str) -> str:
+    href = href.replace("\\", "/")
+    if href.startswith("./"):
+        href = href[2:]
+    if href.startswith(("http://", "https://")):
+        return href
+    catalog_dir = (ROOT / catalog_file).parent
+    return (catalog_dir / href).resolve().relative_to(ROOT).as_posix()
+
+
+def parse_catalog(path: Path, catalog_file: str) -> list[dict]:
     text = path.read_text(encoding="utf-8")
     sections = []
     for block in SECTION_RE.findall(text):
@@ -45,12 +55,12 @@ def parse_catalog(path: Path) -> list[dict]:
         title = re.sub(r"<[^>]+>", "", h2.group(1)).strip()
         topics = []
         for href, link_title in LINK_RE.findall(block):
-            href = href.replace("\\", "/").lstrip("./")
+            full_href = normalize_href(href, catalog_file)
             topics.append(
                 {
-                    "id": href,
+                    "id": full_href,
                     "title": link_title.strip(),
-                    "href": href,
+                    "href": full_href,
                 }
             )
         if topics:
@@ -61,7 +71,7 @@ def parse_catalog(path: Path) -> list[dict]:
 def main():
     catalogs = []
     for meta in CATALOGS:
-        sections = parse_catalog(ROOT / meta["file"])
+        sections = parse_catalog(ROOT / meta["file"], meta["file"])
         catalogs.append(
             {
                 "id": meta["id"],
@@ -71,8 +81,10 @@ def main():
             }
         )
     payload = {"catalogs": catalogs}
-    json_out = ROOT / "js" / "topic-catalog.json"
-    js_out = ROOT / "js" / "topic-catalog.js"
+    out_dir = ROOT / "assets" / "js"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    json_out = out_dir / "topic-catalog.json"
+    js_out = out_dir / "topic-catalog.js"
     json_text = json.dumps(payload, indent=2)
     json_out.write_text(json_text, encoding="utf-8")
     js_out.write_text(
@@ -80,8 +92,7 @@ def main():
         "window.EK_TOPIC_CATALOG = " + json.dumps(payload) + ";\n",
         encoding="utf-8",
     )
-    total = sum(len(s["topics"]) for c in catalogs for s in c["sections"])
-    print(f"Wrote {total} topics across {len(catalogs)} catalogs to {json_out} and {js_out}")
+    print(f"Wrote {len(catalogs)} catalogs to {js_out}")
 
 
 if __name__ == "__main__":

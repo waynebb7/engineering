@@ -25,12 +25,12 @@ SKIP_PREFIXES = (
 
 # Subject catalogs list many pages that are not written yet.
 CATALOG_PAGES = {
-    "pure_math_subjects.html",
-    "physics_subjects.html",
-    "quantum_subjects.html",
-    "physics_subjects_drill_down/physics_subjects_drill_down_list.html",
-    "tree.html",
-    "logic_and_digital_math/digital_math_classification.html",
+    "learn/mathematics/index.html",
+    "learn/physics/index.html",
+    "learn/quantum/index.html",
+    "legacy/physics-drill-down/list.html",
+    "meta/tree.html",
+    "learn/mathematics/digital-logic/digital-math-classification.html",
 }
 
 
