@@ -26,7 +26,49 @@
 
     <div class="content-body">
 
-    <div class="card">
+    <details class="content-key" id="topic-review-key">
+      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <div class="content-key__body">
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Formulae &amp; relationships</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>\dfrac{1}{2i} - \dfrac{1}{-2i} = \pi i</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\mathrm{Res}(f, z_0) = \frac{1}{2\pi i} \oint_{|z-z_0|=r} f(z)\,dz</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\oint_\gamma f(z)\,dz = 0</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>f&#x27;(z_0) = \lim_{h \to 0} \frac{f(z_0 + h) - f(z_0)}{h}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>f(z) = \frac{az + b}{cz + d}, \quad ad - bc \neq 0</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>f(z) = \sum_{n=-\infty}^{\infty} a_n (z-z_0)^n</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>f(z) = u(x,y) + iv(x,y)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>f(z_0) = \frac{1}{2\pi i} \oint_\gamma \frac{f(z)}{z - z_0}\,dz</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>u_y = -2y = -v_x</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>z = \pm i</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>z = x + iy</dt><dd>Key relationship used in this topic.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Key terms &amp; phrases</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>Advanced topics and research outlook</dt><dd>Beyond the undergraduate core: Riemann surfaces (multi-valued functions such as \(\sqrt{z}\), \(\log z\)), entire functions (Weierstrass factorisation, Picard&#x27;s theorem), and several complex variables (Hartogs phenomena, domains of holom...</dd></div>
+        <div class="content-key__item"><dt>analytic</dt><dd>If \(f\) is differentiable on an open set \(D\), it is holomorphic (synonymous with analytic on \(D\) — locally equal to its Taylor series).</dd></div>
+        <div class="content-key__item"><dt>Applications in engineering and physics</dt><dd>Applications in engineering and physics Signal processing Analytic signals, Hilbert transforms, and filter design use holomorphic extensions to the upper half-plane (Kramers–Kronig relations).</dd></div>
+        <div class="content-key__item"><dt>Cauchy&#x27;s integral formula</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Cauchy&#x27;s theorem and integral formula</dt><dd>If \(f\) is holomorphic inside and on a simple closed contour \(\gamma\), then: \[ \oint_\gamma f(z)\,dz = 0 \] Cauchy&#x27;s integral formula: for \(z_0\) inside \(\gamma\), \[ f(z_0) = \frac{1}{2\pi i} \oint_\gamma \frac{f(z)}{z - z_0}\,dz ...</dd></div>
+        <div class="content-key__item"><dt>Cauchy–Riemann equations</dt><dd>Cauchy–Riemann equations Write \(z = x + iy\) and \(f(z) = u(x,y) + iv(x,y)\).</dd></div>
+        <div class="content-key__item"><dt>Complex differentiability and holomorphicity</dt><dd>A function \(f : D \subseteq \mathbb{C} \to \mathbb{C}\) is complex differentiable at \(z_0\) if the limit \[ f&#x27;(z_0) = \lim_{h \to 0} \frac{f(z_0 + h) - f(z_0)}{h} \] exists (as \(h \in \mathbb{C}\) approaches 0 from any direction).</dd></div>
+        <div class="content-key__item"><dt>complex differentiable</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>conformal</dt><dd>Holomorphic \(f\) with \(f&#x27;(z_0) \neq 0\) is conformal at \(z_0\): it preserves angles and orientation locally.</dd></div>
+        <div class="content-key__item"><dt>Conformal mappings and Möbius transformations</dt><dd>Conformal mappings and Möbius transformations Holomorphic \(f\) with \(f&#x27;(z_0) \neq 0\) is conformal at \(z_0\): it preserves angles and orientation locally.</dd></div>
+        <div class="content-key__item"><dt>entire functions</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Laurent expansion</dt><dd>Near an isolated singularity \(z_0\), \(f\) has a Laurent expansion \(f(z) = \sum_{n=-\infty}^{\infty} a_n (z-z_0)^n\).</dd></div>
+        <div class="content-key__item"><dt>Laurent series and residues</dt><dd>Laurent series and residues Near an isolated singularity \(z_0\), \(f\) has a Laurent expansion \(f(z) = \sum_{n=-\infty}^{\infty} a_n (z-z_0)^n\).</dd></div>
+        <div class="content-key__item"><dt>Möbius (fractional linear) maps</dt><dd>Möbius (fractional linear) maps \[ f(z) = \frac{az + b}{cz + d}, \quad ad - bc \neq 0 \] are conformal on \(\mathbb{C} \cup \{\infty\}\) and map circles/lines to circles/lines.</dd></div>
+        <div class="content-key__item"><dt>Residue theorem</dt><dd>\(\oint_\gamma f\,dz = 2\pi i \sum \mathrm{Res}(f, z_k)\) over poles inside \(\gamma\).</dd></div>
+        <div class="content-key__item"><dt>Riemann surfaces</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>several complex variables</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Signal processing</dt><dd>Analytic signals, Hilbert transforms, and filter design use holomorphic extensions to the upper half-plane (Kramers–Kronig relations).</dd></div>
+      </dl>
+      </div>
+    </details>
+
+<div class="card">
       <h2>1) Complex differentiability and holomorphicity</h2>
       <p>
         A function \(f : D \subseteq \mathbb{C} \to \mathbb{C}\) is <strong>complex differentiable</strong> at

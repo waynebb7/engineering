@@ -26,7 +26,46 @@
 
     <div class="content-body">
 
-    <div class="card">
+    <details class="content-key" id="topic-review-key">
+      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <div class="content-key__body">
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Formulae &amp; relationships</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>B_r(x) = \{y \in X : d(x,y) &lt; r\}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>d(x,y) = 0 \Leftrightarrow x = y</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>d(x,y) = \|x - y\|</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>d(x,y) = d(y,x)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>d_1(x,y) = \sum |x_i - y_i|</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>d_2(x,y) = \|x - y\|_2</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>d_\infty(x,y) = \max_i |x_i - y_i|</dt><dd>Key relationship used in this topic.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Key terms &amp; phrases</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>Applications and research connections</dt><dd>Applications and research connections Fixed-point methods Existence proofs for ODEs, Nash equilibria, and iterative numerical algorithms rely on contraction mappings in complete metric spaces.</dd></div>
+        <div class="content-key__item"><dt>Banach space</dt><dd>a complete normed space.</dd></div>
+        <div class="content-key__item"><dt>closed</dt><dd>A set is closed if its complement is open.</dd></div>
+        <div class="content-key__item"><dt>Compactness in metric spaces</dt><dd>Compactness in metric spaces \(K \subseteq X\) is sequentially compact if every sequence in \(K\) has a convergent subsequence with limit in \(K\).</dd></div>
+        <div class="content-key__item"><dt>complete</dt><dd>\((X, d)\) is complete if every Cauchy sequence converges in \(X\).</dd></div>
+        <div class="content-key__item"><dt>Completeness and the contraction mapping theorem</dt><dd>Completeness and the contraction mapping theorem \((X, d)\) is complete if every Cauchy sequence converges in \(X\).</dd></div>
+        <div class="content-key__item"><dt>connected</dt><dd>any two points are joined by a continuous path.</dd></div>
+        <div class="content-key__item"><dt>Connectedness and path connectedness</dt><dd>Connectedness and path connectedness \(X\) is connected if it cannot be written as a disjoint union of two non-empty open sets.</dd></div>
+        <div class="content-key__item"><dt>Definition and standard examples</dt><dd>A metric space \((X, d)\) consists of a set \(X\) and a function \(d : X \times X \to [0, \infty)\) satisfying, for all \(x, y, z \in X\):</dd></div>
+        <div class="content-key__item"><dt>Fixed-point methods</dt><dd>Existence proofs for ODEs, Nash equilibria, and iterative numerical algorithms rely on contraction mappings in complete metric spaces.</dd></div>
+        <div class="content-key__item"><dt>Normed spaces and uniform spaces</dt><dd>Normed spaces and uniform spaces A normed vector space \((V, \|\cdot\|)\) induces the metric \(d(x,y) = \|x - y\|\).</dd></div>
+        <div class="content-key__item"><dt>normed vector space</dt><dd>A normed vector space \((V, \|\cdot\|)\) induces the metric \(d(x,y) = \|x - y\|\).</dd></div>
+        <div class="content-key__item"><dt>open</dt><dd>The open ball \(B_r(x) = \{y \in X : d(x,y) open if every point has a ball contained in \(U\).</dd></div>
+        <div class="content-key__item"><dt>open ball</dt><dd>The open ball \(B_r(x) = \{y \in X : d(x,y) open if every point has a ball contained in \(U\).</dd></div>
+        <div class="content-key__item"><dt>Positivity</dt><dd>Positivity: \(d(x,y) = 0 \Leftrightarrow x = y\)</dd></div>
+        <div class="content-key__item"><dt>sequentially compact</dt><dd>\(K \subseteq X\) is sequentially compact if every sequence in \(K\) has a convergent subsequence with limit in \(K\).</dd></div>
+        <div class="content-key__item"><dt>Symmetry</dt><dd>Symmetry: \(d(x,y) = d(y,x)\)</dd></div>
+        <div class="content-key__item"><dt>total boundedness + completeness</dt><dd>In metric spaces, sequential compactness equals total boundedness + completeness .</dd></div>
+        <div class="content-key__item"><dt>Triangle inequality</dt><dd>Triangle inequality: \(d(x,z) \leq d(x,y) + d(y,z)\)</dd></div>
+      </dl>
+      </div>
+    </details>
+
+<div class="card">
       <h2>1) Definition and standard examples</h2>
       <p>
         A <strong>metric space</strong> \((X, d)\) consists of a set \(X\) and a function \(d : X \times X \to [0, \infty)\) satisfying, for all \(x, y, z \in X\):

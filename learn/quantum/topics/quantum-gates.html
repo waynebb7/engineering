@@ -26,7 +26,53 @@
 
     <div class="content-body">
 
-    <div class="card">
+    <details class="content-key" id="topic-review-key">
+      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <div class="content-key__body">
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Formulae &amp; relationships</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>\mathrm{CNOT} = \begin{pmatrix}1&amp;0&amp;0&amp;0\\0&amp;1&amp;0&amp;0\\0&amp;0&amp;0&amp;1\\0&amp;0&amp;1&amp;0\end{pmatrix}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>H^2 = I</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>HXH|0\rangle = HZ|+\rangle = |{+i}\rangle</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>R_{\hat{n}}(\theta) = e^{-i\frac{\theta}{2}\hat{n}\cdot\vec{\sigma}}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>S = \begin{pmatrix}1&amp;0\\0&amp;i\end{pmatrix},\quad
+ T = \begin{pmatrix}1&amp;0\\0&amp;e^{...</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>T^2 = S</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>T^4 = Z</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>U^\dagger U = I</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>X|0\rangle = |1\rangle</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>Y = iXZ</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>Z|1\rangle = -|1\rangle</dt><dd>Key relationship used in this topic.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>CNOT</dt><dd>Entanglement: \((H \otimes I)\,\mathrm{CNOT}\,|00\rangle = |\Phi^+\rangle\) — a Bell state.</dd></div>
+        <div class="content-key__item"><dt>CZ</dt><dd>symmetric in its qubits.</dd></div>
+        <div class="content-key__item"><dt>HXH</dt><dd>Worked example: \(HXH|0\rangle = HZ|+\rangle = |{+i}\rangle\) — conjugating \(Z\) by \(H\) gives \(X\).</dd></div>
+        <div class="content-key__item"><dt>HZ</dt><dd>Worked example: \(HXH|0\rangle = HZ|+\rangle = |{+i}\rangle\) — conjugating \(Z\) by \(H\) gives \(X\).</dd></div>
+        <div class="content-key__item"><dt>SU</dt><dd>Introduced and explained in the sections below.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Key terms &amp; phrases</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>\(T\) gate</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>controlled-NOT (CNOT)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Controlled-Z (CZ)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Hadamard and phase gates</dt><dd>The Hadamard gate creates equal superposition: \[ H = \frac{1}{\sqrt{2}}\begin{pmatrix}1&amp;1\\1&amp;-1\end{pmatrix},\quad H|0\rangle = |+\rangle,\quad H|1\rangle = |-\rangle \]</dd></div>
+        <div class="content-key__item"><dt>Hadamard gate</dt><dd>The Hadamard gate creates equal superposition: \[ H = \frac{1}{\sqrt{2}}\begin{pmatrix}1&amp;1\\1&amp;-1\end{pmatrix},\quad H|0\rangle = |+\rangle,\quad H|1\rangle = |-\rangle \]</dd></div>
+        <div class="content-key__item"><dt>Matrix representation and composition</dt><dd>Matrix representation and composition Gates compose right-to-left in the ket notation: \(U_2 U_1 |\psi\rangle\) means apply \(U_1\) first, then \(U_2\).</dd></div>
+        <div class="content-key__item"><dt>Pauli gates</dt><dd>The Pauli matrices \(X, Y, Z\) are Hermitian unitaries: \[ X = \begin{pmatrix}0&amp;1\\1&amp;0\end{pmatrix},\quad Y = \begin{pmatrix}0&amp;-i\\i&amp;0\end{pmatrix},\quad Z = \begin{pmatrix}1&amp;0\\0&amp;-1\end{pmatrix} \]</dd></div>
+        <div class="content-key__item"><dt>Pauli matrices</dt><dd>The Pauli matrices \(X, Y, Z\) are Hermitian unitaries: \[ X = \begin{pmatrix}0&amp;1\\1&amp;0\end{pmatrix},\quad Y = \begin{pmatrix}0&amp;-i\\i&amp;0\end{pmatrix},\quad Z = \begin{pmatrix}1&amp;0\\0&amp;-1\end{pmatrix} \]</dd></div>
+        <div class="content-key__item"><dt>quantum gate</dt><dd>a unitary operator \(U\) (\(U^\dagger U = I\)) acting on qubit states.</dd></div>
+        <div class="content-key__item"><dt>Rotation gates</dt><dd>Rotation about axis \(\hat{n} \in \{x,y,z\}\) by angle \(\theta\): \[ R_{\hat{n}}(\theta) = e^{-i\frac{\theta}{2}\hat{n}\cdot\vec{\sigma}} \]</dd></div>
+        <div class="content-key__item"><dt>Two-qubit gates: CNOT and CZ</dt><dd>The controlled-NOT (CNOT) flips the target if the control is \(|1\rangle\): \[ \mathrm{CNOT} = \begin{pmatrix}1&amp;0&amp;0&amp;0\\0&amp;1&amp;0&amp;0\\0&amp;0&amp;0&amp;1\\0&amp;0&amp;1&amp;0\end{pmatrix} \]</dd></div>
+        <div class="content-key__item"><dt>universal</dt><dd>A gate set is universal if any unitary on \(n\) qubits can be approximated to arbitrary precision.</dd></div>
+        <div class="content-key__item"><dt>Universal gate sets</dt><dd>Universal gate sets A gate set is universal if any unitary on \(n\) qubits can be approximated to arbitrary precision.</dd></div>
+      </dl>
+      </div>
+    </details>
+
+<div class="card">
       <h2>1) What is a quantum gate?</h2>
       <p>
         A <strong>quantum gate</strong> is a unitary operator \(U\) (\(U^\dagger U = I\)) acting on qubit states.

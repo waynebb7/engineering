@@ -26,7 +26,42 @@
 
     <div class="content-body">
 
-    <div class="card">
+    <details class="content-key" id="topic-review-key">
+      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <div class="content-key__body">
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Formulae &amp; relationships</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>f(0)=f(1)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>f(x) = 0</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>f(x) = c</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>U_f|x\rangle = (-1)^{f(x)}|x\rangle</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>U_f|x\rangle|-\rangle = (-1)^{f(x)}|x\rangle|-\rangle</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>|-\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)</dt><dd>Key relationship used in this topic.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Key terms &amp; phrases</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>Bernstein–Vazirani</dt><dd>Finds hidden bit string in one query.</dd></div>
+        <div class="content-key__item"><dt>Classical worst case</dt><dd>\(2^{n-1} + 1\) queries needed.</dd></div>
+        <div class="content-key__item"><dt>Constant</dt><dd>Constant: \(f(x) = c\) for all \(x\) (same output everywhere)</dd></div>
+        <div class="content-key__item"><dt>Deterministic separation</dt><dd>The exponential gap holds for exact identification.</dd></div>
+        <div class="content-key__item"><dt>General Deutsch–Jozsa circuit</dt><dd>For \(n\) input qubits plus one ancilla:</dd></div>
+        <div class="content-key__item"><dt>interference</dt><dd>The final \(H^{\otimes n}\) causes interference .</dd></div>
+        <div class="content-key__item"><dt>Limitations and successors</dt><dd>Limitations and successors Promise problem: \(f\) must be constant or balanced — not useful for general functions.</dd></div>
+        <div class="content-key__item"><dt>Phase kickback mechanism</dt><dd>With ancilla in \(|-\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)\): \[ U_f|x\rangle|-\rangle = |x\rangle \frac{1}{\sqrt{2}}\bigl((-1)^{f(x)}|0\rangle - (-1)^{f(x)}|1\rangle\bigr) = (-1)^{f(x)}|x\rangle|-\rangle \]</dd></div>
+        <div class="content-key__item"><dt>Promise problem</dt><dd>\(f\) must be constant or balanced — not useful for general functions.</dd></div>
+        <div class="content-key__item"><dt>Quantum</dt><dd>exactly 1 oracle query.</dd></div>
+        <div class="content-key__item"><dt>Result</dt><dd>All zeros \(\Leftrightarrow\) \(f\) is constant.</dd></div>
+        <div class="content-key__item"><dt>Simon (1994)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>The Deutsch problem (\(n = 1\))</dt><dd>For one bit, \(f\) is either constant (\(f(0)=f(1)\)) or balanced (\(f(0) \neq f(1)\)).</dd></div>
+        <div class="content-key__item"><dt>The problem</dt><dd>Given a Boolean function \(f: \{0,1\}^n \to \{0,1\}\) promised to be either:</dd></div>
+        <div class="content-key__item"><dt>Why it works — interference</dt><dd>Why it works — interference After step 2, the input register is uniform superposition: \[ \frac{1}{\sqrt{2^n}}\sum_{x} |x\rangle \] After the oracle: amplitudes pick up phases \((-1)^{f(x)}\).</dd></div>
+        <div class="content-key__item"><dt>Worked example: \(n = 2\)</dt><dd>Constant \(f(x) = 0\): oracle is identity.</dd></div>
+      </dl>
+      </div>
+    </details>
+
+<div class="card">
       <h2>1) The problem</h2>
       <p>
         Given a Boolean function \(f: \{0,1\}^n \to \{0,1\}\) promised to be either:

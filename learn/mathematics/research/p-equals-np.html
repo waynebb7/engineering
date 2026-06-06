@@ -26,7 +26,52 @@
 
     <div class="content-body">
 
-    <div class="card">
+    <details class="content-key" id="topic-review-key">
+      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <div class="content-key__body">
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Formulae &amp; relationships</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>\mathrm{P} = \mathrm{NP}</dt><dd>Key relationship used in this topic.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>ECC</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>EXP</dt><dd>problems solvable in exponential time.</dd></div>
+        <div class="content-key__item"><dt>NP</dt><dd>\(L \in \mathrm{NP}\) if there exists a polynomial \(p\) and a polynomial-time verifier \(V\) such that:
+ \[
+ x \in L \iff \exists\, w \text{ with } |w| \leq p(|x|) \text{ and } V(x, w) = 1.</dd></div>
+        <div class="content-key__item"><dt>PH</dt><dd>PH (Polynomial Hierarchy): alternations of quantifiers over polynomial predicates.</dd></div>
+        <div class="content-key__item"><dt>PSPACE</dt><dd>problems solvable in polynomial space; \(\mathrm{P} \subseteq \mathrm{NP} \subseteq \mathrm{PSPACE}\).</dd></div>
+        <div class="content-key__item"><dt>RSA</dt><dd>Rivest–Shamir–Adleman — public-key cryptography algorithm.</dd></div>
+        <div class="content-key__item"><dt>SAT</dt><dd>NP-complete .</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Key terms &amp; phrases</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>Barrier results</dt><dd>Relativization (Baker–Gill–Solovay), natural proofs (Razborov–Rudich), and algebrization (Aaronson–Wigderson) show that many proof techniques cannot resolve P vs NP without new ideas.</dd></div>
+        <div class="content-key__item"><dt>co-NP</dt><dd>complements of NP problems (validity of Boolean formulas).</dd></div>
+        <div class="content-key__item"><dt>Computational models and complexity classes</dt><dd>Computational models and complexity classes Complexity theory classifies decision problems by the resources needed to solve them.</dd></div>
+        <div class="content-key__item"><dt>Cook&#x27;s theorem</dt><dd>Cook&#x27;s theorem (1971) and Levin&#x27;s independent work (1973) established that SAT is NP-complete .</dd></div>
+        <div class="content-key__item"><dt>decision problem</dt><dd>a language \(L \subseteq \{0,1\}^*\); the answer is &quot;yes&quot; or &quot;no&quot; for each input \(x\).</dd></div>
+        <div class="content-key__item"><dt>EXP</dt><dd>problems solvable in exponential time.</dd></div>
+        <div class="content-key__item"><dt>If P = NP</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>If P ≠ NP (expected)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Levin&#x27;s independent work</dt><dd>Cook&#x27;s theorem (1971) and Levin&#x27;s independent work (1973) established that SAT is NP-complete .</dd></div>
+        <div class="content-key__item"><dt>NP-complete</dt><dd>A problem is NP-complete if it is in NP and NP-hard.</dd></div>
+        <div class="content-key__item"><dt>NP-completeness and reductions</dt><dd>NP-completeness and reductions A problem \(A\) is NP-hard if every problem in NP reduces to \(A\) in polynomial time.</dd></div>
+        <div class="content-key__item"><dt>NP-hard</dt><dd>A problem \(A\) is NP-hard if every problem in NP reduces to \(A\) in polynomial time.</dd></div>
+        <div class="content-key__item"><dt>PH (Polynomial Hierarchy)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Proof complexity</dt><dd>Lower bounds on proof length in propositional proof systems connect to circuit lower bounds and P vs NP.</dd></div>
+        <div class="content-key__item"><dt>PSPACE</dt><dd>problems solvable in polynomial space; \(\mathrm{P} \subseteq \mathrm{NP} \subseteq \mathrm{PSPACE}\).</dd></div>
+        <div class="content-key__item"><dt>Research connections</dt><dd>Research connections Proof complexity Lower bounds on proof length in propositional proof systems connect to circuit lower bounds and P vs NP.</dd></div>
+        <div class="content-key__item"><dt>SAT is NP-complete</dt><dd>Cook&#x27;s theorem (1971) and Levin&#x27;s independent work (1973) established that SAT is NP-complete .</dd></div>
+        <div class="content-key__item"><dt>The Cook–Levin theorem</dt><dd>The Cook–Levin theorem Cook&#x27;s theorem (1971) and Levin&#x27;s independent work (1973) established that SAT is NP-complete .</dd></div>
+        <div class="content-key__item"><dt>The P vs NP question</dt><dd>The P vs NP question Clearly \(\mathrm{P} \subseteq \mathrm{NP}\): if we can solve a problem in polynomial time, we can verify by solving and comparing.</dd></div>
+      </dl>
+      </div>
+    </details>
+
+<div class="card">
       <h2>1) Computational models and complexity classes</h2>
       <p>
         Complexity theory classifies decision problems by the resources needed to solve them. A <strong>decision problem</strong> is a language \(L \subseteq \{0,1\}^*\); the answer is "yes" or "no" for each input \(x\).

@@ -26,7 +26,62 @@
 
     <div class="content-body">
 
-    <div class="card">
+    <details class="content-key" id="topic-review-key">
+      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <div class="content-key__body">
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Formulae &amp; relationships</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>\bar{P} = \dfrac{1}{T}\int_0^T v(t)i(t)\,dt</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\oint_C \vec{E}\cdot d\vec{l} = -\frac{d\Phi_B}{dt} \quad \text{(Faraday&#x27;s law)}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\oint_S \vec{D}\cdot d\vec{A} = Q_{\text{enclosed}} \quad \text{(Gauss&#x27;s law)}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>E = \int p\,dt</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>E = \int_0^T p(t)\,dt</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>E = \int_{t_1}^{t_2} p(t)\,dt</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>L = \int_A p(x,y)\,dA</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>p = dE/dt</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>q = \int i\,dt</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>q = Cv</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>s = \int v\,dt</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>v = ds/dt</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>v(t) = \int a(t)\,dt + v_0, \qquad s(t) = \int v(t)\,dt + s_0</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>v_C = V_s(1 - e^{-t/RC})</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>v_C(t) = \frac{1}{C}\int i_C\,dt + v_0, \qquad i_L(t) = \frac{1}{L}\int v_L\,...</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>v_{\text{out}} = -\dfrac{1}{RC}\int v_{\text{in}}\,dt</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>y_{n+1} = y_n + f(t_n)\,\Delta t</dt><dd>Key relationship used in this topic.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>A-Level</dt><dd>Advanced Level qualifications — typically ages 16–18 in England.</dd></div>
+        <div class="content-key__item"><dt>EMF</dt><dd>Electromotive force — energy per unit charge driving current in a circuit.</dd></div>
+        <div class="content-key__item"><dt>ODE</dt><dd>Ordinary differential equation — equation involving derivatives of one variable.</dd></div>
+        <div class="content-key__item"><dt>PID</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>RC</dt><dd>RC charging: \( v_C = V_s(1 - e^{-t/RC}) \) — integral of current through resistor.</dd></div>
+        <div class="content-key__item"><dt>RLC</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>SPICE</dt><dd>Introduced and explained in the sections below.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Key terms &amp; phrases</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>Aerodynamic forces</dt><dd>Total lift from surface pressure distribution:</dd></div>
+        <div class="content-key__item"><dt>Aircraft engineering — aerodynamics and structures</dt><dd>Total lift from surface pressure distribution:</dd></div>
+        <div class="content-key__item"><dt>Average power</dt><dd>Average power: \( \bar{P} = \dfrac{1}{T}\int_0^T v(t)i(t)\,dt \) — see Power Calculations</dd></div>
+        <div class="content-key__item"><dt>Capacitor</dt><dd>Charge accumulates: \( q = \int i\,dt \), and \( q = Cv \).</dd></div>
+        <div class="content-key__item"><dt>Electrical engineering — capacitors and inductors</dt><dd>Reactive components integrate current and voltage over time:</dd></div>
+        <div class="content-key__item"><dt>Electrical engineering — electromagnetics</dt><dd>Field theory uses surface and volume integrals (preview for further study):</dd></div>
+        <div class="content-key__item"><dt>Embedded systems</dt><dd>Embedded systems: accumulate sensor readings: position += velocity × Δt</dd></div>
+        <div class="content-key__item"><dt>Energy from power</dt><dd>Energy from power: \( E = \int_{t_1}^{t_2} p(t)\,dt \) — basis of electricity metering (kWh)</dd></div>
+        <div class="content-key__item"><dt>Euler method</dt><dd>Euler method: \( y_{n+1} = y_n + f(t_n)\,\Delta t \) — basic ODE stepping</dd></div>
+        <div class="content-key__item"><dt>Integration as accumulation</dt><dd>Integration as accumulation Integration answers: how much has built up over time or space?</dd></div>
+        <div class="content-key__item"><dt>Numerical integration and simulation</dt><dd>Most engineering integrals are evaluated numerically when analytical solutions are unavailable:</dd></div>
+        <div class="content-key__item"><dt>Op-amp integrator</dt><dd>Op-amp integrator: \( v_{\text{out}} = -\dfrac{1}{RC}\int v_{\text{in}}\,dt \) — low-pass filtering and waveform shaping</dd></div>
+        <div class="content-key__item"><dt>PID integral term</dt><dd>PID integral term: \( K_i\int e(t)\,dt \) — eliminates steady-state error in control loops</dd></div>
+        <div class="content-key__item"><dt>Runge-Kutta methods</dt><dd>Runge-Kutta methods — higher accuracy for flight simulation and circuit simulators (SPICE)</dd></div>
+        <div class="content-key__item"><dt>Trapezium rule / Simpson&#x27;s rule</dt><dd>Trapezium rule / Simpson&#x27;s rule — A-Level numerical methods for definite integrals</dd></div>
+      </dl>
+      </div>
+    </details>
+
+<div class="card">
       <h2>1) Integration as accumulation</h2>
       <p>
         Integration answers: <strong>how much has built up over time or space?</strong>

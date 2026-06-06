@@ -26,7 +26,61 @@
 
     <div class="content-body">
 
-    <div class="card">
+    <details class="content-key" id="topic-review-key">
+      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <div class="content-key__body">
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Formulae &amp; relationships</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>\langle H \rangle = \sum_k c_k \langle P_k \rangle</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>E(\boldsymbol{\theta}) = \sum_k c_k \langle P_k \rangle</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>H = \sum_k c_k P_k, \qquad P_k \in \{I, X, Y, Z\}^{\otimes n}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>H = J(\sigma_1^x \sigma_2^x + \sigma_1^y \sigma_2^y + \sigma_1^z \sigma_2^z)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>U(\theta) = e^{-i\theta X_1 Y_2}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>|\psi(\boldsymbol{\theta})\rangle = U(\boldsymbol{\theta})|0\rangle^{\otimes n}</dt><dd>Key relationship used in this topic.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>ADAPT-VQE</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>CCSD</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>COBYLA</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>NISQ</dt><dd>Noisy Intermediate-Scale Quantum — devices with limited qubits and significant noise.</dd></div>
+        <div class="content-key__item"><dt>SPSA</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>UCC</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>VQE</dt><dd>Variational Quantum Eigensolver — algorithm for estimating ground-state energies.</dd></div>
+        <div class="content-key__item"><dt>ZNE</dt><dd>Introduced and explained in the sections below.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Key terms &amp; phrases</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>Active spaces</dt><dd>Active spaces: reduce qubit count by focusing on valence orbitals</dd></div>
+        <div class="content-key__item"><dt>ADAPT-VQE</dt><dd>ADAPT-VQE: grows the ansatz iteratively from operator pool</dd></div>
+        <div class="content-key__item"><dt>ansatz</dt><dd>The ansatz \(U(\boldsymbol{\theta})\) constrains which states are explored:</dd></div>
+        <div class="content-key__item"><dt>Ansätze: UCC and hardware-efficient</dt><dd>The ansatz \(U(\boldsymbol{\theta})\) constrains which states are explored:</dd></div>
+        <div class="content-key__item"><dt>Chemistry and materials applications</dt><dd>Chemistry and materials applications VQE targets the electronic Schrödinger equation for fixed nuclei.</dd></div>
+        <div class="content-key__item"><dt>Classical baselines</dt><dd>Classical baselines: compare to coupled cluster CCSD(T) for validation</dd></div>
+        <div class="content-key__item"><dt>Compute</dt><dd>Compute \(E(\boldsymbol{\theta}) = \sum_k c_k \langle P_k \rangle\) classically</dd></div>
+        <div class="content-key__item"><dt>Error mitigation</dt><dd>Error mitigation (not full correction): see Quantum Error Correction</dd></div>
+        <div class="content-key__item"><dt>H\(_2\), LiH, BeH\(_2\)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Hamiltonians as Pauli sums</dt><dd>Chemistry and spin models map to qubit Hamiltonians as weighted sums of Pauli strings:</dd></div>
+        <div class="content-key__item"><dt>Initialise</dt><dd>Initialise parameters \(\boldsymbol{\theta}\) (random or warm-start)</dd></div>
+        <div class="content-key__item"><dt>Measure</dt><dd>Measure expectations \(\langle P_k \rangle\) via basis rotations and shots</dd></div>
+        <div class="content-key__item"><dt>Measurement grouping</dt><dd>Measurement grouping: reduce circuit repetitions for Pauli terms</dd></div>
+        <div class="content-key__item"><dt>Molecular Hamiltonians</dt><dd>Electronic structure in a chosen basis → qubit operators → VQE estimates ground energy vs nuclear configuration.</dd></div>
+        <div class="content-key__item"><dt>Noise, mitigation, and NISQ practice</dt><dd>Noise, mitigation, and NISQ practice On noisy hardware, measured \(E(\boldsymbol{\theta})\) is biased.</dd></div>
+        <div class="content-key__item"><dt>Prepare</dt><dd>Prepare \(|\psi(\boldsymbol{\theta})\rangle = U(\boldsymbol{\theta})|0\rangle^{\otimes n}\) on quantum processor</dd></div>
+        <div class="content-key__item"><dt>Symmetry verification</dt><dd>Symmetry verification: discard shots violating particle-number or spin constraints</dd></div>
+        <div class="content-key__item"><dt>The variational principle</dt><dd>For a Hamiltonian \(H\) with ground-state energy \(E_0\), any normalised trial state \(|\psi(\boldsymbol{\theta})\rangle\) satisfies the variational principle :</dd></div>
+        <div class="content-key__item"><dt>The VQE loop</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Unitary coupled cluster (UCC)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Update</dt><dd>Update \(\boldsymbol{\theta}\) with optimiser (COBYLA, SPSA, gradient-based methods)</dd></div>
+        <div class="content-key__item"><dt>variational quantum eigensolver (VQE)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Worked sketch: 2-qubit Heisenberg dimer</dt><dd>Worked sketch: 2-qubit Heisenberg dimer Hamiltonian \(H = J(\sigma_1^x \sigma_2^x + \sigma_1^y \sigma_2^y + \sigma_1^z \sigma_2^z)\) on two qubits.</dd></div>
+        <div class="content-key__item"><dt>Zero-noise extrapolation (ZNE)</dt><dd>Introduced and explained in the sections below.</dd></div>
+      </dl>
+      </div>
+    </details>
+
+<div class="card">
       <h2>1) The variational principle</h2>
       <p>
         For a Hamiltonian \(H\) with ground-state energy \(E_0\), any normalised trial state \(|\psi(\boldsymbol{\theta})\rangle\)

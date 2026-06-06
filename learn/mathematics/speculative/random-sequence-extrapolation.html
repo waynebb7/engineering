@@ -26,7 +26,54 @@
 
     <div class="content-body">
 
-    <div class="card">
+    <details class="content-key" id="topic-review-key">
+      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <div class="content-key__body">
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Formulae &amp; relationships</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>\mathbb{E}[y_{T+1}] = \mu</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>S_{n+1} = S_n + Z_{n+1}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>X_{t+1} = \phi X_t + \varepsilon_t</dt><dd>Key relationship used in this topic.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>AR</dt><dd>5) When prediction looks like &quot;random extrapolation&quot;
+
+ 
+ AR(1) process: \(X_{t+1} = \phi X_t + \varepsilon_t\) — past helps if \(|\phi| &gt; 0\), but noise \(\varepsilon_t\) remains random.</dd></div>
+        <div class="content-key__item"><dt>ARIMA</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>LCG</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>ML</dt><dd>ML on chaotic systems: Short-horizon prediction possible; long-horizon fails (sensitivity to initial conditions).</dd></div>
+        <div class="content-key__item"><dt>PRNG</dt><dd>Compression: Detecting a repeating PRNG seed from output — cryptanalysis, not statistics.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Key terms &amp; phrases</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>About this topic (read first)</dt><dd>Random sequence extrapolation sounds like extending a list of random numbers into the future.</dd></div>
+        <div class="content-key__item"><dt>AR(1) process</dt><dd>\(X_{t+1} = \phi X_t + \varepsilon_t\) — past helps if \(|\phi| &gt; 0\), but noise \(\varepsilon_t\) remains random.</dd></div>
+        <div class="content-key__item"><dt>Compression</dt><dd>Detecting a repeating PRNG seed from output — cryptanalysis, not statistics.</dd></div>
+        <div class="content-key__item"><dt>distributions</dt><dd>\(\mathbb{E}[y_{T+1} \mid \text{past}]\) and confidence intervals — not guaranteed exact &quot;next random number.</dd></div>
+        <div class="content-key__item"><dt>Extrapolation</dt><dd>Extrapolation extends a fitted model outside the range of observed inputs.</dd></div>
+        <div class="content-key__item"><dt>ML on chaotic systems</dt><dd>Short-horizon prediction possible; long-horizon fails (sensitivity to initial conditions).</dd></div>
+        <div class="content-key__item"><dt>Random sequence</dt><dd>Outcomes from a stochastic process; future values are independent (or have only probabilistic dependence).</dd></div>
+        <div class="content-key__item"><dt>Random sequence extrapolation</dt><dd>Random sequence extrapolation sounds like extending a list of random numbers into the future.</dd></div>
+        <div class="content-key__item"><dt>random sequence extrapolation is impossible</dt><dd>there is no additional deterministic signal to extract.</dd></div>
+        <div class="content-key__item"><dt>Random vs pseudorandom</dt><dd>Random vs pseudorandom Random sequence Outcomes from a stochastic process; future values are independent (or have only probabilistic dependence).</dd></div>
+        <div class="content-key__item"><dt>Random walk</dt><dd>\(S_{n+1} = S_n + Z_{n+1}\) — best forecast is \(S_n\) (last value), variance grows.</dd></div>
+        <div class="content-key__item"><dt>Regression to the mean (common trap)</dt><dd>After an unusually high random draw, the next value often looks &quot;lower&quot; — not because the sequence compensates, but because extremes are rare.</dd></div>
+        <div class="content-key__item"><dt>Sensible approach</dt><dd>Sensible approach i.i.d.</dd></div>
+        <div class="content-key__item"><dt>Sequence type</dt><dd>Worked comparison Sequence type Can extrapolate next value exactly?</dd></div>
+        <div class="content-key__item"><dt>true randomness has no predictable pattern</dt><dd>the next value does not depend deterministically on the past.</dd></div>
+        <div class="content-key__item"><dt>uncertainty</dt><dd>Extrapolation succeeds only when the sequence is not actually random, or when you model uncertainty rather than point-predict the next term.</dd></div>
+        <div class="content-key__item"><dt>What extrapolation means in statistics</dt><dd>What extrapolation means in statistics Extrapolation extends a fitted model outside the range of observed inputs.</dd></div>
+        <div class="content-key__item"><dt>When prediction looks like &quot;random extrapolation&quot;</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>White noise: nothing to extrapolate</dt><dd>White noise: nothing to extrapolate If \(X_1, X_2, \ldots\) are independent with mean 0 and variance \(\sigma^2\), knowledge of \(X_1,\ldots,X_n\) does not improve prediction of \(X_{n+1}\) beyond 0.</dd></div>
+        <div class="content-key__item"><dt>Worked comparison</dt><dd>Worked comparison Sequence type Can extrapolate next value exactly?</dd></div>
+      </dl>
+      </div>
+    </details>
+
+<div class="card">
       <h2>1) About this topic (read first)</h2>
       <p>
         <strong>Random sequence extrapolation</strong> sounds like extending a list of random numbers into the future.

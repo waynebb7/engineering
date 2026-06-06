@@ -22,7 +22,67 @@
     </div>
 
     <div class="content-body">
-      <div class="card">
+
+    <details class="content-key" id="topic-review-key">
+      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <div class="content-key__body">
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Formulae &amp; relationships</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>EN = 0</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>f = C</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>f(A,B,C) = \Sigma(1, 3, 5, 7)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>Y_0 = \overline{A_1}\,\overline{A_0}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>Y_1 = \overline{A_1}\,A_0</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>Y_2 = A_1\,\overline{A_0}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>Y_3 = A_1\,A_0</dt><dd>Key relationship used in this topic.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>BCD</dt><dd>Dedicated BCD-to-7-segment ICs (e.g.</dd></div>
+        <div class="content-key__item"><dt>EN</dt><dd>Active-high enable
+
+ \(EN = 1\): decoder operates normally.</dd></div>
+        <div class="content-key__item"><dt>K-map</dt><dd>Karnaugh map — graphical method for Boolean logic minimization.</dd></div>
+        <div class="content-key__item"><dt>OR</dt><dd>3) Enable input
+
+ 
+ Practical decoder ICs include an enable input (sometimes labelled \(\overline{E}\), G, or STROBE).</dd></div>
+        <div class="content-key__item"><dt>SOP</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>STROBE</dt><dd>3) Enable input
+
+ 
+ Practical decoder ICs include an enable input (sometimes labelled \(\overline{E}\), G, or STROBE).</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Key terms &amp; phrases</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>2-to-4 decoder</dt><dd>2-to-4 decoder: 2 address inputs → 4 outputs (\(Y_0 \ldots Y_3\))</dd></div>
+        <div class="content-key__item"><dt>3-to-8 decoder</dt><dd>3-to-8 decoder: 3 address inputs → 8 outputs</dd></div>
+        <div class="content-key__item"><dt>4-to-16 from two 3-to-8 decoders</dt><dd>4-to-16 from two 3-to-8 decoders: use one address bit to select which chip is enabled; remaining three bits pick the output within that chip</dd></div>
+        <div class="content-key__item"><dt>5-to-32</dt><dd>5-to-32: one 2-to-4 decoder generates four enable signals; four 3-to-8 decoders each drive eight outputs</dd></div>
+        <div class="content-key__item"><dt>\(A_0\)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>\(A_1\)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>\(Y_0\)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>\(Y_1\)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>\(Y_2\)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>\(Y_3\)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Active-high enable</dt><dd>\(EN = 1\): decoder operates normally.</dd></div>
+        <div class="content-key__item"><dt>Advantage</dt><dd>Uses standard ICs; modular and easy to breadboard.</dd></div>
+        <div class="content-key__item"><dt>Building logic with decoders</dt><dd>Building logic with decoders Because each decoder output is a minterm, you can implement any combinational function by OR-ing the appropriate decoder outputs.</dd></div>
+        <div class="content-key__item"><dt>Cascading decoders</dt><dd>Build larger decoders from smaller ones using enable lines as a hierarchy:</dd></div>
+        <div class="content-key__item"><dt>Decoder vs demultiplexer</dt><dd>Decoder vs demultiplexer A demultiplexer (demux) routes one data input to one of many outputs based on an address.</dd></div>
+        <div class="content-key__item"><dt>Demux</dt><dd>Demux: passes an external data bit to the selected output; others receive 0</dd></div>
+        <div class="content-key__item"><dt>Enable input</dt><dd>Enable input Practical decoder ICs include an enable input (sometimes labelled \(\overline{E}\), G, or STROBE).</dd></div>
+        <div class="content-key__item"><dt>General form</dt><dd>General form: \(n\) inputs, \(2^n\) outputs — an n-to-2 n decoder</dd></div>
+        <div class="content-key__item"><dt>n-to-2 n decoder</dt><dd>General form: \(n\) inputs, \(2^n\) outputs — an n-to-2 n decoder</dd></div>
+        <div class="content-key__item"><dt>Procedure</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Truth table: 2-to-4 decoder</dt><dd>Boolean equations (each output is one minterm):</dd></div>
+        <div class="content-key__item"><dt>Worked example: 7-segment driver</dt><dd>Display the digits 0–9 using a BCD-to-7-segment decoder (a specialised decoder with 4 inputs and 7 segment outputs):</dd></div>
+      </dl>
+      </div>
+    </details>
+
+<div class="card">
         <h2>1) What is a decoder?</h2>
         <p>
           A <strong>decoder</strong> converts an \(n\)-bit binary input address into \(2^n\) one-hot output lines.

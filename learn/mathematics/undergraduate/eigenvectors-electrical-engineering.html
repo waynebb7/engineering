@@ -26,7 +26,54 @@
 
     <div class="content-body">
 
-    <div class="card">
+    <details class="content-key" id="topic-review-key">
+      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <div class="content-key__body">
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Formulae &amp; relationships</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>(\mathbf{A} - \lambda\mathbf{I})\mathbf{v} = \mathbf{0}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>(\mathbf{K} - \omega^2\mathbf{M})\mathbf{Q} = \mathbf{0}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\dot{\mathbf{x}} = \mathbf{A}\mathbf{x}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\dot{z}_i = \lambda_i z_i</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\mathbf{A}\mathbf{v} = \lambda \mathbf{v}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\mathbf{C}\mathbf{v}_i = \lambda_i \mathbf{v}_i</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\mathbf{M}\ddot{\mathbf{q}} + \mathbf{K}\mathbf{q} = \mathbf{0}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\mathbf{q}(t) = \mathbf{Q}\,e^{j\omega t}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\mathbf{v}_1 = [1,\, -1]^T</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\mathbf{x} = [q,\, i]^T</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\mathbf{z} = \mathbf{P}^{-1}\mathbf{x}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>z_i(t) = z_i(0)e^{\lambda_i t}</dt><dd>Key relationship used in this topic.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>LTI</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>PCA</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>RLC</dt><dd>If \(\mathbf{v}_1 = [1,\, -1]^T\) for an RLC circuit with states \([q,\, i]^T\), charge and current oscillate
+ in opposite proportion during that mode.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Key terms &amp; phrases</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>Application</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>diagonalisable</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Diagonalisation and decoupled coordinates</dt><dd>If \(\mathbf{A}\) has \(n\) linearly independent eigenvectors, it is diagonalisable : \[ \mathbf{A} = \mathbf{P}\mathbf{\Lambda}\mathbf{P}^{-1}, \quad \mathbf{P} = [\mathbf{v}_1 \mid \mathbf{v}_2 \mid \cdots \mid \mathbf{v}_n], \quad \ma...</dd></div>
+        <div class="content-key__item"><dt>direction</dt><dd>The eigenvalue \(\lambda\) scales the vector; the direction is unchanged.</dd></div>
+        <div class="content-key__item"><dt>eigenvector</dt><dd>An eigenvector \(\mathbf{v}\) of matrix \(\mathbf{A}\) is a non-zero vector that satisfies \(\mathbf{A}\mathbf{v} = \lambda \mathbf{v}\).</dd></div>
+        <div class="content-key__item"><dt>Eigenvector meaning</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Eigenvectors and mode directions</dt><dd>Eigenvectors and mode directions An eigenvector \(\mathbf{v}\) of matrix \(\mathbf{A}\) is a non-zero vector that satisfies \(\mathbf{A}\mathbf{v} = \lambda \mathbf{v}\).</dd></div>
+        <div class="content-key__item"><dt>Largest eigenvalue</dt><dd>Corresponding eigenvector captures the dominant signal direction — useful for dimensionality reduction and noise filtering.</dd></div>
+        <div class="content-key__item"><dt>Matrix / operator</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Practical EE applications summary</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Principal Component Analysis (PCA)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>principal components</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>RLC circuit mode shapes</dt><dd>RLC circuit mode shapes For the series RLC state model with \(\mathbf{x} = [q,\, i]^T\), eigenvectors reveal how charge and current combine in each transient mode.</dd></div>
+        <div class="content-key__item"><dt>State-space system modes</dt><dd>For \(\dot{\mathbf{x}} = \mathbf{A}\mathbf{x}\), the general solution (with \(n\) distinct eigenvalues) is: \[ \mathbf{x}(t) = \sum_{i=1}^{n} c_i\,e^{\lambda_i t}\,\mathbf{v}_i \] where \(c_i\) depend on initial conditions and \(\mathbf{...</dd></div>
+        <div class="content-key__item"><dt>Vibration modes in electrical machines</dt><dd>Mechanical vibration of motors and transformers satisfies: \[ \mathbf{M}\ddot{\mathbf{q}} + \mathbf{K}\mathbf{q} = \mathbf{0} \] Assuming \(\mathbf{q}(t) = \mathbf{Q}\,e^{j\omega t}\) leads to the generalised eigenvalue problem: \[ (\mat...</dd></div>
+      </dl>
+      </div>
+    </details>
+
+<div class="card">
       <h2>1) Eigenvectors and mode directions</h2>
       <p>
         An <strong>eigenvector</strong> \(\mathbf{v}\) of matrix \(\mathbf{A}\) is a non-zero vector that satisfies

@@ -26,7 +26,51 @@
 
     <div class="content-body">
 
-    <div class="card">
+    <details class="content-key" id="topic-review-key">
+      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <div class="content-key__body">
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Formulae &amp; relationships</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>\displaystyle\int_a^b f(x)\,dx = F(b) - F(a)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\inf\{1/n : n \in \mathbb{N}\} = 0</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\int_a^b f(x)\,dx = \inf U(f,P) = \sup L(f,P)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\langle f, g \rangle = \int f\bar{g}\,d\mu</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>d(x,y) = |x-y|</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>F&#x27; = f</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>f&#x27;(a) = \lim_{h \to 0} \frac{f(a+h) - f(a)}{h}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>f&#x27;(c) = \frac{f(b) - f(a)}{b - a}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>f(x) = c</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>f(x) = |x|</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>L^p(\mu) = \left\{f \text{ measurable} : \int |f|^p\,d\mu &lt; \infty\right\} / ...</dt><dd>Key relationship used in this topic.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Key terms &amp; phrases</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>Applications and research outlook</dt><dd>Applications and research outlook Functional analysis Normed spaces, operators, and spectral theory rest on completeness and measure.</dd></div>
+        <div class="content-key__item"><dt>Cauchy sequence</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Continuity and uniform continuity</dt><dd>\(f : E \subseteq \mathbb{R} \to \mathbb{R}\) is continuous at \(a\) if \(\forall\,\varepsilon &gt; 0\,\exists\,\delta &gt; 0\) with \(|x - a| &lt; \delta \Rightarrow |f(x) - f(a)| &lt; \varepsilon\).</dd></div>
+        <div class="content-key__item"><dt>continuous at \(a\)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>converges</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>differentiable at \(a\)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Differentiation: rigorous foundations</dt><dd>Differentiation: rigorous foundations \(f\) is differentiable at \(a\) if the limit \[ f&#x27;(a) = \lim_{h \to 0} \frac{f(a+h) - f(a)}{h} \] exists.</dd></div>
+        <div class="content-key__item"><dt>Dominated Convergence Theorem</dt><dd>if \(f_n \to f\) a.</dd></div>
+        <div class="content-key__item"><dt>Functional analysis</dt><dd>Normed spaces, operators, and spectral theory rest on completeness and measure.</dd></div>
+        <div class="content-key__item"><dt>Lebesgue integral</dt><dd>The Lebesgue integral handles limits via the Dominated Convergence Theorem : if \(f_n \to f\) a.e.</dd></div>
+        <div class="content-key__item"><dt>Lebesgue measure</dt><dd>Lebesgue measure \(\mu\) on \(\mathbb{R}\) extends length to a \(\sigma\)-algebra of measurable sets.</dd></div>
+        <div class="content-key__item"><dt>Measure theory and \(L^p\) spaces (preview)</dt><dd>Lebesgue measure \(\mu\) on \(\mathbb{R}\) extends length to a \(\sigma\)-algebra of measurable sets.</dd></div>
+        <div class="content-key__item"><dt>metric space</dt><dd>A metric space \((X, d)\) generalizes distance; \(\mathbb{R}\) with \(d(x,y) = |x-y|\) is the prototype.</dd></div>
+        <div class="content-key__item"><dt>pointwise convergence</dt><dd>\(f_n(x) \to f(x)\) for each \(x\).</dd></div>
+        <div class="content-key__item"><dt>Real analysis</dt><dd>Real analysis rebuilds calculus on axiomatic foundations.</dd></div>
+        <div class="content-key__item"><dt>Riemann integral</dt><dd>For a bounded function \(f\) on \([a,b]\), the Riemann integral exists when upper and lower Darboux sums agree: \[ \int_a^b f(x)\,dx = \inf U(f,P) = \sup L(f,P) \] over partitions \(P\).</dd></div>
+        <div class="content-key__item"><dt>Riemann integration</dt><dd>Riemann integration For a bounded function \(f\) on \([a,b]\), the Riemann integral exists when upper and lower Darboux sums agree: \[ \int_a^b f(x)\,dx = \inf U(f,P) = \sup L(f,P) \] over partitions \(P\).</dd></div>
+        <div class="content-key__item"><dt>Sequences, series, and uniform convergence</dt><dd>A sequence \((a_n)\) in \(\mathbb{R}\) converges to \(L\) if \(\forall\,\varepsilon &gt; 0\,\exists\, N\) such that \(|a_n - L| Cauchy sequence satisfies: \(\forall\,\varepsilon &gt; 0\,\exists\, N\) with \(|a_m - a_n| &lt; \varepsilon\) for \(m,...</dd></div>
+        <div class="content-key__item"><dt>The real number system and completeness</dt><dd>The real number system and completeness Real analysis rebuilds calculus on axiomatic foundations.</dd></div>
+        <div class="content-key__item"><dt>uniformly continuous</dt><dd>\(f\) is uniformly continuous on \(E\) if \(\delta\) depends only on \(\varepsilon\), not on the point \(a\).</dd></div>
+      </dl>
+      </div>
+    </details>
+
+<div class="card">
       <h2>1) The real number system and completeness</h2>
       <p>
         <strong>Real analysis</strong> rebuilds calculus on axiomatic foundations. The reals \(\mathbb{R}\) form a complete ordered field: every non-empty subset bounded above has a least upper bound (supremum).

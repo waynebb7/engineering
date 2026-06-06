@@ -26,7 +26,52 @@
 
     <div class="content-body">
 
-    <div class="card">
+    <details class="content-key" id="topic-review-key">
+      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <div class="content-key__body">
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Formulae &amp; relationships</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>D = H^{\otimes n}\bigl(2|0\rangle^{\otimes n}\langle 0|^{\otimes n} - I\bigr)...</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>f(x) = 0</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>G = D \cdot O_f</dt><dd>Key relationship used in this topic.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>NP</dt><dd>7) Applications and limitations
+
+ 
+ NP search: Speeds up brute-force SAT, graph problems quadratically — not exponential.</dd></div>
+        <div class="content-key__item"><dt>SAT</dt><dd>7) Applications and limitations
+
+ 
+ NP search: Speeds up brute-force SAT, graph problems quadratically — not exponential.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Key terms &amp; phrases</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>Applications and limitations</dt><dd>Applications and limitations NP search: Speeds up brute-force SAT, graph problems quadratically — not exponential.</dd></div>
+        <div class="content-key__item"><dt>Classical</dt><dd>Classical: \(O(N)\) oracle queries in expectation (\(O(N)\) worst case)</dd></div>
+        <div class="content-key__item"><dt>Cryptography</dt><dd>Reduces effective key search space (symmetric keys need doubling in length).</dd></div>
+        <div class="content-key__item"><dt>diffusion operator</dt><dd>The diffusion operator (about the mean) reflects amplitudes about their average: \[ D = 2|s\rangle\langle s| - I \]</dd></div>
+        <div class="content-key__item"><dt>Grover (1996)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Grover iteration</dt><dd>\(G = D \cdot O_f\) (apply oracle, then diffusion).</dd></div>
+        <div class="content-key__item"><dt>Grover oracle</dt><dd>The Grover oracle \(O_f\) flips the sign of the marked state: \[ O_f|x\rangle = \begin{cases}-|x\rangle &amp; f(x) = 1\\ |x\rangle &amp; f(x) = 0\end{cases} = \bigl(I - 2|x^*\rangle\langle x^*|\bigr) \]</dd></div>
+        <div class="content-key__item"><dt>Initialisation and uniform superposition</dt><dd>Prepare \(n\) qubits in uniform superposition: \[ |s\rangle = H^{\otimes n}|0\rangle^{\otimes n} = \frac{1}{\sqrt{N}}\sum_{x=0}^{N-1}|x\rangle \]</dd></div>
+        <div class="content-key__item"><dt>marked</dt><dd>Search an unstructured database of \(N = 2^n\) items for one marked entry \(x^*\) where \(f(x^*) = 1\) and \(f(x) = 0\) elsewhere.</dd></div>
+        <div class="content-key__item"><dt>Multiple marked items</dt><dd>If \(M\) items are marked (\(1 \leq M \leq N\)), the optimal iteration count is: \[ k \approx \frac{\pi}{4}\sqrt{\frac{N}{M}} \]</dd></div>
+        <div class="content-key__item"><dt>NP search</dt><dd>Speeds up brute-force SAT, graph problems quadratically — not exponential.</dd></div>
+        <div class="content-key__item"><dt>Optimisation</dt><dd>Amplitude amplification generalises to quantum walk frameworks.</dd></div>
+        <div class="content-key__item"><dt>quantum counting</dt><dd>If \(M\) is unknown, quantum counting (using phase estimation on Grover) estimates \(M\) first.</dd></div>
+        <div class="content-key__item"><dt>quantum walk</dt><dd>Optimisation: Amplitude amplification generalises to quantum walk frameworks.</dd></div>
+        <div class="content-key__item"><dt>The diffusion operator</dt><dd>The diffusion operator (about the mean) reflects amplitudes about their average: \[ D = 2|s\rangle\langle s| - I \]</dd></div>
+        <div class="content-key__item"><dt>The Grover iterate</dt><dd>The Grover iterate One Grover iteration : \(G = D \cdot O_f\) (apply oracle, then diffusion).</dd></div>
+        <div class="content-key__item"><dt>The oracle</dt><dd>The Grover oracle \(O_f\) flips the sign of the marked state: \[ O_f|x\rangle = \begin{cases}-|x\rangle &amp; f(x) = 1\\ |x\rangle &amp; f(x) = 0\end{cases} = \bigl(I - 2|x^*\rangle\langle x^*|\bigr) \]</dd></div>
+        <div class="content-key__item"><dt>The search problem</dt><dd>The search problem Search an unstructured database of \(N = 2^n\) items for one marked entry \(x^*\) where \(f(x^*) = 1\) and \(f(x) = 0\) elsewhere.</dd></div>
+      </dl>
+      </div>
+    </details>
+
+<div class="card">
       <h2>1) The search problem</h2>
       <p>
         Search an unstructured database of \(N = 2^n\) items for one <strong>marked</strong> entry \(x^*\) where

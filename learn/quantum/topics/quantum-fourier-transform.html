@@ -26,7 +26,56 @@
 
     <div class="content-body">
 
-    <div class="card">
+    <details class="content-key" id="topic-review-key">
+      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <div class="content-key__body">
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Formulae &amp; relationships</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>\mathrm{QFT}_N |j\rangle = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} e^{2\pi i j k ...</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\mathrm{QFT}_N^\dagger \mathrm{QFT}_N = I</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>f(x) = a^x \bmod N</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>j = j_1 j_2 \cdots j_n</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>R_m = \mathrm{diag}(1, e^{2\pi i / 2^m})</dt><dd>Key relationship used in this topic.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>DFT</dt><dd>1) Why the QFT matters
+
+ 
+ The quantum Fourier transform (QFT) is the quantum analogue of the discrete Fourier transform (DFT).</dd></div>
+        <div class="content-key__item"><dt>FFT</dt><dd>Fast Fourier Transform — efficient algorithm for frequency analysis.</dd></div>
+        <div class="content-key__item"><dt>IQFT</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>MSB</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>NISQ</dt><dd>Noisy Intermediate-Scale Quantum — devices with limited qubits and significant noise.</dd></div>
+        <div class="content-key__item"><dt>QFT</dt><dd>Quantum field theory — relativistic quantum framework for particles and fields.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Key terms &amp; phrases</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>\(O(n^2)\) gates</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Approximate QFT</dt><dd>Approximate QFT: Truncate small-angle phases to reduce depth at accuracy cost</dd></div>
+        <div class="content-key__item"><dt>Circuit construction</dt><dd>The standard \(n\)-qubit QFT circuit uses:</dd></div>
+        <div class="content-key__item"><dt>Controlled phase</dt><dd>Controlled phase \(R_m\) on target when control is 1, where \(R_m = \mathrm{diag}(1, e^{2\pi i / 2^m})\)</dd></div>
+        <div class="content-key__item"><dt>Controlled rotations</dt><dd>Controlled rotations: Arbitrary precision phases need decomposition into native gate set</dd></div>
+        <div class="content-key__item"><dt>Definition on computational basis</dt><dd>For \(N = 2^n\), the QFT maps basis state \(|j\rangle\) to:</dd></div>
+        <div class="content-key__item"><dt>Depth</dt><dd>Depth: QFT depth is \(O(n^2)\) — costly on NISQ hardware</dd></div>
+        <div class="content-key__item"><dt>Hadamard</dt><dd>Hadamard \(H\) on each qubit</dd></div>
+        <div class="content-key__item"><dt>Implementation challenges</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>inverse QFT</dt><dd>The inverse QFT on the first register concentrates probability on values related to the period \(r\).</dd></div>
+        <div class="content-key__item"><dt>Measurement</dt><dd>Measurement: Only bit strings are obtained; many runs may be needed for reliable period extraction</dd></div>
+        <div class="content-key__item"><dt>Period finding and Shor&#x27;s connection</dt><dd>Shor&#x27;s algorithm creates a superposition \(\frac{1}{\sqrt{Q}}\sum_x |x\rangle |a^x \bmod N\rangle\), then measures the second register to obtain a periodic sequence in the first.</dd></div>
+        <div class="content-key__item"><dt>phase estimation</dt><dd>Given a unitary \(U\) with eigenstate \(|\psi\rangle\) and eigenvalue \(e^{2\pi i \phi}\), phase estimation approximates \(\phi\) using controlled powers of \(U\) and an inverse QFT on an ancilla register.</dd></div>
+        <div class="content-key__item"><dt>quantum Fourier transform (QFT)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>quantum phase estimation</dt><dd>Foundation of quantum phase estimation</dd></div>
+        <div class="content-key__item"><dt>swap gates</dt><dd>Qubits processed in a specific order; swap gates often reverse bit order at the end</dd></div>
+        <div class="content-key__item"><dt>Unitarity</dt><dd>\(\mathrm{QFT}_N^\dagger \mathrm{QFT}_N = I\).</dd></div>
+        <div class="content-key__item"><dt>Why the QFT matters</dt><dd>Why the QFT matters The quantum Fourier transform (QFT) is the quantum analogue of the discrete Fourier transform (DFT).</dd></div>
+        <div class="content-key__item"><dt>Worked sketch: 3-qubit QFT</dt><dd>Worked sketch: 3-qubit QFT For \(n=3\), input \(|j_1 j_2 j_3\rangle\).</dd></div>
+      </dl>
+      </div>
+    </details>
+
+<div class="card">
       <h2>1) Why the QFT matters</h2>
       <p>
         The <strong>quantum Fourier transform (QFT)</strong> is the quantum analogue of the discrete Fourier transform (DFT).

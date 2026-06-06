@@ -26,7 +26,60 @@
 
     <div class="content-body">
 
-    <div class="card">
+    <details class="content-key" id="topic-review-key">
+      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <div class="content-key__body">
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Formulae &amp; relationships</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>T = \mathrm{diag}(1, e^{i\pi/4})</dt><dd>Key relationship used in this topic.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>CNOT</dt><dd>4) Clifford vs non-Clifford
+
+ 
+ Clifford gates (H, S, CNOT) map Pauli operators to Pauli operators.</dd></div>
+        <div class="content-key__item"><dt>FTQC</dt><dd>1) The fault model
+
+ 
+ Fault-tolerant quantum computing (FTQC) assumes each component fails with probability \(p\):
+ one- and two-qubit gates, preparations, measurements, and idle decoherence.</dd></div>
+        <div class="content-key__item"><dt>IO</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>NISQ</dt><dd>Noisy Intermediate-Scale Quantum — devices with limited qubits and significant noise.</dd></div>
+        <div class="content-key__item"><dt>QEC</dt><dd>\[
+ p_L \sim c \left(\frac{p}{p_{\mathrm{th}}}\right)^{(d+1)/2}
+ \]
+
+ 
+ This separates two eras: NISQ (above or near threshold, no full QEC) and
+ FTQC (below threshold, scalable).</dd></div>
+        <div class="content-key__item"><dt>QFT</dt><dd>Quantum field theory — relativistic quantum framework for particles and fields.</dd></div>
+        <div class="content-key__item"><dt>RSA</dt><dd>Rivest–Shamir–Adleman — public-key cryptography algorithm.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Key terms &amp; phrases</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>\(T\) gate</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Clifford gates</dt><dd>Clifford gates (H, S, CNOT) map Pauli operators to Pauli operators.</dd></div>
+        <div class="content-key__item"><dt>Clifford vs non-Clifford</dt><dd>Clifford vs non-Clifford Clifford gates (H, S, CNOT) map Pauli operators to Pauli operators.</dd></div>
+        <div class="content-key__item"><dt>Decoder speed</dt><dd>Decoder speed: superconducting rounds need \(\mu\mathrm{s}\) latency</dd></div>
+        <div class="content-key__item"><dt>Engineering bottlenecks</dt><dd>Control stack: Quantum Control and Calibration .</dd></div>
+        <div class="content-key__item"><dt>fault-tolerant</dt><dd>A logical gate implementation is fault-tolerant if a single physical fault causes at most one logical error, and correctable errors do not spread into uncorrectable ones.</dd></div>
+        <div class="content-key__item"><dt>Fault-tolerant gate criteria</dt><dd>Fault-tolerant gate criteria A logical gate implementation is fault-tolerant if a single physical fault causes at most one logical error, and correctable errors do not spread into uncorrectable ones.</dd></div>
+        <div class="content-key__item"><dt>Fault-tolerant quantum computing (FTQC)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>IO and cryogenics</dt><dd>IO and cryogenics: control lines per qubit, dilution refrigerator capacity</dd></div>
+        <div class="content-key__item"><dt>Logical pipeline for an algorithm</dt><dd>Running QFT -heavy algorithms fault-tolerantly requires:</dd></div>
+        <div class="content-key__item"><dt>Magic state distillation</dt><dd>Magic state distillation Noisy ancilla states \(|\tilde{T}\rangle\) are prepared then purified by distillation protocols (e.g.</dd></div>
+        <div class="content-key__item"><dt>magic state injection</dt><dd>FTQC supplies \(T\) via magic state injection with error suppression.</dd></div>
+        <div class="content-key__item"><dt>Manufacturing yield</dt><dd>Manufacturing yield: defective qubits reduce effective distance</dd></div>
+        <div class="content-key__item"><dt>The fault model</dt><dd>The fault model Fault-tolerant quantum computing (FTQC) assumes each component fails with probability \(p\): one- and two-qubit gates, preparations, measurements, and idle decoherence.</dd></div>
+        <div class="content-key__item"><dt>Threshold theorem</dt><dd>Threshold theorem If \(p Surface Codes , \(p_{\mathrm{th}}\) is often quoted around \(10^{-3}\) under standard depolarising models.</dd></div>
+        <div class="content-key__item"><dt>Two-qubit fidelity</dt><dd>Two-qubit fidelity: must sit below \(p_{\mathrm{th}}\) with margin</dd></div>
+      </dl>
+      </div>
+    </details>
+
+<div class="card">
       <h2>1) The fault model</h2>
       <p>
         <strong>Fault-tolerant quantum computing (FTQC)</strong> assumes each component fails with probability \(p\):

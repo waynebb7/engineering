@@ -26,7 +26,67 @@
 
     <div class="content-body">
 
-    <div class="card">
+    <details class="content-key" id="topic-review-key">
+      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <div class="content-key__body">
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Formulae &amp; relationships</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>C(z) = \sum_{(i,j) \in E} \frac{1 - z_i z_j}{2}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>G = (V,E)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>H_C = \sum_{(i,j) \in E} \frac{1}{2}(I - Z_i Z_j)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>H_C |z\rangle = C(z) |z\rangle, \qquad \min_z C(z) \Leftrightarrow \min \lang...</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>H_M = \sum_j X_j</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>U_C(\gamma_\ell) = e^{-i \gamma_\ell H_C}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>U_M(\beta_\ell) = e^{-i \beta_\ell H_M}</dt><dd>Key relationship used in this topic.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>NISQ</dt><dd>Noisy Intermediate-Scale Quantum — devices with limited qubits and significant noise.</dd></div>
+        <div class="content-key__item"><dt>NP</dt><dd>1) Combinatorial optimisation on qubits
+
+ 
+ Many NP-hard problems — MaxCut, portfolio optimisation, scheduling — can be written as minimising a
+ cost function \(C(z)\) over bit strings \(z \in \{0,1\}^n\).</dd></div>
+        <div class="content-key__item"><dt>QAOA</dt><dd>Quantum Approximate Optimization Algorithm — hybrid quantum-classical optimizer.</dd></div>
+        <div class="content-key__item"><dt>UCC</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>VQE</dt><dd>Variational Quantum Eigensolver — algorithm for estimating ground-state energies.</dd></div>
+        <div class="content-key__item"><dt>XX</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>XY</dt><dd>XY mixer
+
+ Used when preserving Hamming weight; encodes one-hot constraints in assignment problems.</dd></div>
+        <div class="content-key__item"><dt>ZNE</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>ZZ</dt><dd>Each edge term is
+ implementable with \(R_{ZZ}\) interactions on connected qubits.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Key terms &amp; phrases</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>\(p=1\)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>adiabatic theorem</dt><dd>The adiabatic theorem motivates why low-energy states of \(H_C\) may be reachable, but finite \(p\) and noise break ideal adiabaticity.</dd></div>
+        <div class="content-key__item"><dt>Approximation guarantees and limits</dt><dd>Approximation guarantees and limits For MaxCut at \(p=1\), QAOA achieves a known approximation ratio on 3-regular graphs.</dd></div>
+        <div class="content-key__item"><dt>Combinatorial optimisation on qubits</dt><dd>Combinatorial optimisation on qubits Many NP-hard problems — MaxCut, portfolio optimisation, scheduling — can be written as minimising a cost function \(C(z)\) over bit strings \(z \in \{0,1\}^n\).</dd></div>
+        <div class="content-key__item"><dt>Constrained QAOA</dt><dd>Constrained QAOA replaces the mixer with one that preserves feasible subspaces (e.g.</dd></div>
+        <div class="content-key__item"><dt>cost function</dt><dd>Many NP-hard problems — MaxCut, portfolio optimisation, scheduling — can be written as minimising a cost function \(C(z)\) over bit strings \(z \in \{0,1\}^n\).</dd></div>
+        <div class="content-key__item"><dt>cost Hamiltonian</dt><dd>QAOA maps this to finding low-energy states of a cost Hamiltonian \(H_C\) diagonal in the computational basis:</dd></div>
+        <div class="content-key__item"><dt>Cost unitary</dt><dd>Cost unitary: \(U_C(\gamma_\ell) = e^{-i \gamma_\ell H_C}\)</dd></div>
+        <div class="content-key__item"><dt>Error mitigation</dt><dd>Error mitigation: ZNE and readout correction before trusting cut values</dd></div>
+        <div class="content-key__item"><dt>Implementation on hardware</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Large \(p\)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>MaxCut example</dt><dd>MaxCut example For an undirected graph \(G = (V,E)\), MaxCut partitions vertices to maximise edges between partitions.</dd></div>
+        <div class="content-key__item"><dt>Mixer Hamiltonians and constraints</dt><dd>Mixer Hamiltonians and constraints Standard mixer \(H_M = \sum_j X_j\) preserves uniform superposition over all bit strings — suited to unconstrained problems.</dd></div>
+        <div class="content-key__item"><dt>Mixer unitary</dt><dd>Mixer unitary: \(U_M(\beta_\ell) = e^{-i \beta_\ell H_M}\), typically \(H_M = \sum_j X_j\)</dd></div>
+        <div class="content-key__item"><dt>No proven polynomial speedup</dt><dd>No proven polynomial speedup over classical heuristics for general instances yet</dd></div>
+        <div class="content-key__item"><dt>Parameter optimisation</dt><dd>Parameter optimisation: warm-start from classical solutions or smaller \(p\)</dd></div>
+        <div class="content-key__item"><dt>Problem mapping</dt><dd>Problem mapping: embed graph on qubit connectivity (minor embedding on superconducting chips)</dd></div>
+        <div class="content-key__item"><dt>Relation to adiabatic computing</dt><dd>Relation to adiabatic computing Adiabatic quantum computation evolves from \(H_M\) to \(H_C\) slowly.</dd></div>
+        <div class="content-key__item"><dt>Shot budgets</dt><dd>Shot budgets: estimate \(\langle H_C \rangle\) with grouped Pauli measurements</dd></div>
+        <div class="content-key__item"><dt>The QAOA circuit</dt><dd>The QAOA circuit Start from uniform superposition \(|+\rangle^{\otimes n}\).</dd></div>
+        <div class="content-key__item"><dt>XY mixer</dt><dd>Used when preserving Hamming weight; encodes one-hot constraints in assignment problems.</dd></div>
+      </dl>
+      </div>
+    </details>
+
+<div class="card">
       <h2>1) Combinatorial optimisation on qubits</h2>
       <p>
         Many NP-hard problems — MaxCut, portfolio optimisation, scheduling — can be written as minimising a

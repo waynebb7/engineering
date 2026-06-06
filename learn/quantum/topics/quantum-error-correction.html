@@ -26,7 +26,47 @@
 
     <div class="content-body">
 
-    <div class="card">
+    <details class="content-key" id="topic-review-key">
+      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <div class="content-key__body">
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Formulae &amp; relationships</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>X|0\rangle = |1\rangle</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>Z|+\rangle = |-\rangle</dt><dd>Key relationship used in this topic.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>CNOT</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>NISQ</dt><dd>Noisy Intermediate-Scale Quantum — devices with limited qubits and significant noise.</dd></div>
+        <div class="content-key__item"><dt>QEC</dt><dd>sufficient only for short algorithms.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Key terms &amp; phrases</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>\(d\)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>\(k\)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>arbitrary single-qubit errors</dt><dd>Peter Shor&#x27;s code was the first to protect against arbitrary single-qubit errors (bit and phase).</dd></div>
+        <div class="content-key__item"><dt>Bit-flip error</dt><dd>Bit-flip error: \(X|0\rangle = |1\rangle\) — like classical flip</dd></div>
+        <div class="content-key__item"><dt>Code parameters \([[n,k,d]]\)</dt><dd>A quantum code is described by:</dd></div>
+        <div class="content-key__item"><dt>Decoherence</dt><dd>Decoherence: entanglement with environment — see Quantum Channels</dd></div>
+        <div class="content-key__item"><dt>Logical qubit</dt><dd>Logical qubit: protected degree of freedom of a code</dd></div>
+        <div class="content-key__item"><dt>Logical vs physical qubits</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Magic state distillation</dt><dd>Magic state distillation: enables non-Clifford gates fault-tolerantly</dd></div>
+        <div class="content-key__item"><dt>one bit-flip</dt><dd>This code corrects one bit-flip but not phase errors.</dd></div>
+        <div class="content-key__item"><dt>Phase-flip error</dt><dd>Phase-flip error: \(Z|+\rangle = |-\rangle\) — no classical analogue</dd></div>
+        <div class="content-key__item"><dt>Shor&#x27;s nine-qubit code</dt><dd>Shor&#x27;s nine-qubit code Peter Shor&#x27;s code was the first to protect against arbitrary single-qubit errors (bit and phase).</dd></div>
+        <div class="content-key__item"><dt>Syndrome extraction</dt><dd>Syndrome extraction measures commuting observables (stabilisers) using ancilla qubits.</dd></div>
+        <div class="content-key__item"><dt>Syndrome measurement</dt><dd>Syndrome measurement Syndrome extraction measures commuting observables (stabilisers) using ancilla qubits.</dd></div>
+        <div class="content-key__item"><dt>The three-qubit bit-flip code</dt><dd>The three-qubit bit-flip code Encode one logical qubit: \(|0_L\rangle = |000\rangle\), \(|1_L\rangle = |111\rangle\).</dd></div>
+        <div class="content-key__item"><dt>threshold</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Threshold theorem (overview)</dt><dd>If physical gate error rate \(p\) is below a threshold \(p_{\mathrm{th}}\), arbitrarily long reliable computation is possible by increasing code size and concatenation or lattice surgery — error probability per logical operation can be d...</dd></div>
+        <div class="content-key__item"><dt>Transversal gates</dt><dd>Transversal gates: apply logical gates by physical gates in parallel — limited set</dd></div>
+        <div class="content-key__item"><dt>Why classical error correction fails</dt><dd>Why classical error correction fails Classical bits can be copied and measured without disturbance.</dd></div>
+      </dl>
+      </div>
+    </details>
+
+<div class="card">
       <h2>1) Why classical error correction fails</h2>
       <p>
         Classical bits can be copied and measured without disturbance. Quantum states cannot be cloned

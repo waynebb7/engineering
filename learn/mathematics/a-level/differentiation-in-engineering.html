@@ -26,7 +26,65 @@
 
     <div class="content-body">
 
-    <div class="card">
+    <details class="content-key" id="topic-review-key">
+      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <div class="content-key__body">
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Formulae &amp; relationships</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>\alpha = d\omega/dt</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\omega = d\theta/dt</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\varepsilon = du/dx</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>a = \dfrac{dv}{dt}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>a = dv/dt</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>dv/dt = \omega V_m\cos(\omega t)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>i = C\,dv/dt</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>L\,\ddot{i} + R\,\dot{i} + i/C = V(t)/L</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>m\,\ddot{x} + c\,\dot{x} + kx = F(t)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>P = dE/dt</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>p(t) = v(t)\,i(t)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>u(t) = K_p\,e(t) + K_i\int e(t)\,dt + K_d\,\frac{de(t)}{dt}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>v = \dfrac{ds}{dt}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>v = \frac{dh}{dt} \text{ (rate of climb)}, \qquad \omega = \frac{d\theta}{dt}...</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>v = ds/dt</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>v = V_m\sin(\omega t)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>v_L = L\,\frac{di}{dt}, \qquad i_C = C\,\frac{dv}{dt}</dt><dd>Key relationship used in this topic.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>AC</dt><dd>Alternating current — current that reverses direction periodically.</dd></div>
+        <div class="content-key__item"><dt>DC</dt><dd>Direct current — current flowing in one direction.</dd></div>
+        <div class="content-key__item"><dt>GPS</dt><dd>Global Positioning System — satellite navigation using precise timing.</dd></div>
+        <div class="content-key__item"><dt>MATLAB</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>PID</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>RLC</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>RPM</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>VSI</dt><dd>Introduced and explained in the sections below.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Key terms &amp; phrases</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>AC signals</dt><dd>AC signals: Differentiating \( v = V_m\sin(\omega t) \) gives \( dv/dt = \omega V_m\cos(\omega t) \) — phase shifts by 90°</dd></div>
+        <div class="content-key__item"><dt>Aircraft engineering — flight dynamics</dt><dd>Aircraft motion is described by derivatives of position, orientation, and aerodynamic coefficients:</dd></div>
+        <div class="content-key__item"><dt>Application</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Capacitor</dt><dd>Current flows when voltage changes .</dd></div>
+        <div class="content-key__item"><dt>Derivative used</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Differentiation as rate of change</dt><dd>Differentiation as rate of change In engineering, differentiation answers: how fast is this quantity changing?</dd></div>
+        <div class="content-key__item"><dt>Electrical analogue</dt><dd>RLC circuit: \( L\,\ddot{i} + R\,\dot{i} + i/C = V(t)/L \)</dd></div>
+        <div class="content-key__item"><dt>Electrical engineering — reactive components</dt><dd>Capacitors and inductors are defined by derivatives of voltage and current:</dd></div>
+        <div class="content-key__item"><dt>Engine spool rate</dt><dd>Engine spool rate: \( d(\text{RPM})/dt \) affects thrust response and fuel flow</dd></div>
+        <div class="content-key__item"><dt>Fault detection</dt><dd>Fault detection: Rapid \( di/dt \) triggers protective relays in power systems</dd></div>
+        <div class="content-key__item"><dt>Gyroscopes</dt><dd>Gyroscopes: output angular rate \( d\theta/dt \) for attitude reference</dd></div>
+        <div class="content-key__item"><dt>Mechanical engineering — motion and forces</dt><dd>Mechanical systems use the same position-velocity-acceleration relationships: \[ v = \frac{ds}{dt}, \qquad a = \frac{dv}{dt} = \frac{d^2s}{dt^2} \]</dd></div>
+        <div class="content-key__item"><dt>Numerical differentiation in practice</dt><dd>Numerical differentiation in practice Real sensors provide discrete data, not continuous functions.</dd></div>
+        <div class="content-key__item"><dt>PID control</dt><dd>PID control: Derivative term \( K_d\,\dfrac{de}{dt} \) responds to how fast error is changing</dd></div>
+        <div class="content-key__item"><dt>Power rate</dt><dd>\( P = dE/dt \).</dd></div>
+        <div class="content-key__item"><dt>Structural dynamics and vibration</dt><dd>Vibrating structures — wings, turbine blades, fuselage panels — satisfy differential equations involving second derivatives: \[ m\,\frac{d^2x}{dt^2} + c\,\frac{dx}{dt} + kx = F(t) \]</dd></div>
+        <div class="content-key__item"><dt>Vertical Speed Indicator (VSI)</dt><dd>Introduced and explained in the sections below.</dd></div>
+      </dl>
+      </div>
+    </details>
+
+<div class="card">
       <h2>1) Differentiation as rate of change</h2>
       <p>
         In engineering, differentiation answers: <strong>how fast is this quantity changing?</strong>

@@ -23,7 +23,88 @@
 
     <div class="content-body">
 
-    <div class="card">
+    <details class="content-key" id="topic-review-key">
+      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <div class="content-key__body">
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Formulae &amp; relationships</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>F = (A + B + C)(A + B&#x27; + C)(A&#x27; + B + C&#x27;)(A&#x27; + B&#x27; + C)(A&#x27; + B&#x27; + C&#x27;)</dt><dd>4) Product of Sums (POS)
+
+ 
+ Product of Sums is the dual form: an AND of OR terms (sum terms), often derived from maxterms where F = 0 .</dd></div>
+        <div class="content-key__item"><dt>F = 0</dt><dd>4) Product of Sums (POS)
+
+ 
+ Product of Sums is the dual form: an AND of OR terms (sum terms), often derived from maxterms where F = 0 .</dd></div>
+        <div class="content-key__item"><dt>F = A&#x27;B&#x27;C + A&#x27;BC + ABC</dt><dd>4) Product of Sums (POS)
+
+ 
+ Product of Sums is the dual form: an AND of OR terms (sum terms), often derived from maxterms where F = 0 .</dd></div>
+        <div class="content-key__item"><dt>F = A&#x27;C + AB</dt><dd>4) Product of Sums (POS)
+
+ 
+ Product of Sums is the dual form: an AND of OR terms (sum terms), often derived from maxterms where F = 0 .</dd></div>
+        <div class="content-key__item"><dt>F = Σ(1, 3, 7)</dt><dd>4) Product of Sums (POS)
+
+ 
+ Product of Sums is the dual form: an AND of OR terms (sum terms), often derived from maxterms where F = 0 .</dd></div>
+        <div class="content-key__item"><dt>F(A, B, C) = Σ(1, 3, 7)</dt><dd>Introduced and explained in the sections below.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>AB</dt><dd>fewer gates, same function.</dd></div>
+        <div class="content-key__item"><dt>ABC</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>AND-OR</dt><dd>Example: for F = Σ(1, 3, 7) , the zeros are at m₀, m₂, m₄, m₅, m₆:
+
+ F = (A + B + C)(A + B&#x27; + C)(A&#x27; + B + C&#x27;)(A&#x27; + B&#x27; + C)(A&#x27; + B&#x27; + C&#x27;) 
+
+ 
+ SOP is usually preferred for two-level AND-OR implementations.</dd></div>
+        <div class="content-key__item"><dt>BC</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>K-map</dt><dd>Karnaugh map — graphical method for Boolean logic minimization.</dd></div>
+        <div class="content-key__item"><dt>NAND</dt><dd>NOT-AND logic gate — universal gate in digital electronics.</dd></div>
+        <div class="content-key__item"><dt>NAND-NAND</dt><dd>POS suits NAND-NAND or NOR-NOR structures and complements derived from De Morgan&#x27;s theorems .</dd></div>
+        <div class="content-key__item"><dt>NOR</dt><dd>NOT-OR logic gate — universal gate in digital electronics.</dd></div>
+        <div class="content-key__item"><dt>NOR-NOR</dt><dd>POS suits NAND-NAND or NOR-NOR structures and complements derived from De Morgan&#x27;s theorems .</dd></div>
+        <div class="content-key__item"><dt>OR</dt><dd>Each combination maps to a unique minterm (product of literals) or maxterm (sum of literals).</dd></div>
+        <div class="content-key__item"><dt>POS</dt><dd>4) Product of Sums (POS)
+
+ 
+ Product of Sums is the dual form: an AND of OR terms (sum terms), often derived from maxterms where F = 0 .</dd></div>
+        <div class="content-key__item"><dt>SOP</dt><dd>usually preferred for two-level AND-OR implementations.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Key terms &amp; phrases</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>Boolean expression</dt><dd>Boolean expression — write SOP or POS from the truth table</dd></div>
+        <div class="content-key__item"><dt>combinational circuit</dt><dd>A combinational circuit has outputs that depend only on the present input values.</dd></div>
+        <div class="content-key__item"><dt>Combinational design flow</dt><dd>Standard procedure from specification to gate-level circuit:</dd></div>
+        <div class="content-key__item"><dt>critical path</dt><dd>Each gate adds a propagation delay t pd ; the longest path from input change to stable output is the critical path .</dd></div>
+        <div class="content-key__item"><dt>Description</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>hazard</dt><dd>an unwanted brief glitch on an output when inputs change, even though the steady-state truth table is correct.</dd></div>
+        <div class="content-key__item"><dt>Implementation</dt><dd>draw the logic diagram with chosen gate types (AND/OR, NAND-only, etc.</dd></div>
+        <div class="content-key__item"><dt>Index</dt><dd>A B Minterm Index 0 0 A&#x27;B&#x27; m₀ 0 1 A&#x27;B m₁ 1 0 AB&#x27; m₂ 1 1 AB m₃</dd></div>
+        <div class="content-key__item"><dt>Introduction to hazards</dt><dd>Introduction to hazards A hazard is an unwanted brief glitch on an output when inputs change, even though the steady-state truth table is correct.</dd></div>
+        <div class="content-key__item"><dt>maxterm</dt><dd>Each combination maps to a unique minterm (product of literals) or maxterm (sum of literals).</dd></div>
+        <div class="content-key__item"><dt>minterm</dt><dd>Each combination maps to a unique minterm (product of literals) or maxterm (sum of literals).</dd></div>
+        <div class="content-key__item"><dt>Minterms and maxterms</dt><dd>Minterms and maxterms For n input variables there are 2ⁿ input combinations.</dd></div>
+        <div class="content-key__item"><dt>Product of Sums</dt><dd>the dual form: an AND of OR terms (sum terms), often derived from maxterms where F = 0 .</dd></div>
+        <div class="content-key__item"><dt>Product of Sums (POS)</dt><dd>Product of Sums is the dual form: an AND of OR terms (sum terms), often derived from maxterms where F = 0 .</dd></div>
+        <div class="content-key__item"><dt>product term</dt><dd>Each AND term is a product term covering one or more minterms.</dd></div>
+        <div class="content-key__item"><dt>Propagation delay</dt><dd>Propagation delay Real gates are not instantaneous.</dd></div>
+        <div class="content-key__item"><dt>Simplification</dt><dd>Simplification — reduce terms using algebra, K-maps, or Quine–McCluskey</dd></div>
+        <div class="content-key__item"><dt>Specification</dt><dd>Specification — define inputs, outputs, and behaviour (word problem, timing diagram, or interface)</dd></div>
+        <div class="content-key__item"><dt>Sum of Products</dt><dd>Sum of Products expresses a function as an OR of AND terms.</dd></div>
+        <div class="content-key__item"><dt>Sum of Products (SOP)</dt><dd>Sum of Products expresses a function as an OR of AND terms.</dd></div>
+        <div class="content-key__item"><dt>Truth table</dt><dd>Truth table — list all input combinations and required outputs; see Truth Tables</dd></div>
+        <div class="content-key__item"><dt>Type</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Verification</dt><dd>Verification — simulate or build; check all rows of the truth table and timing behaviour</dd></div>
+        <div class="content-key__item"><dt>Worked example: majority function</dt><dd>Worked example: majority function Design a 3-input circuit where output F = 1 when at least two of A, B, C are 1.</dd></div>
+      </dl>
+      </div>
+    </details>
+
+<div class="card">
       <h2>1) What is combinational logic?</h2>
       <p>
         A <strong>combinational circuit</strong> has outputs that depend <em>only</em> on the present input values.

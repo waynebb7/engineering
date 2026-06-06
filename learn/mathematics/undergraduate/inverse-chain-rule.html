@@ -26,7 +26,56 @@
 
     <div class="content-body">
 
-    <div class="card">
+    <details class="content-key" id="topic-review-key">
+      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <div class="content-key__body">
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Formulae &amp; relationships</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>1 - \sin^2\theta = \cos^2\theta</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\cosh^2 u - 1 = \sinh^2 u</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\dfrac{dy}{dx} = F&#x27;(u)\cdot g&#x27;(x)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\int F&#x27;(g(x))\,g&#x27;(x)\,dx = F(g(x)) + C</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\int_a^b f(x)\,dx = \int_{g(a)}^{g(b)} F(u)\,du</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>du = g&#x27;(x)\,dx</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>F(x) = f(g(x))g&#x27;(x)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>F(x) = kx</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>u = F(x)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>u = f(x)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>u = g(a)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>u = g(b)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>u = g(x)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>W = \displaystyle\int_{x_1}^{x_2} F(x)\,dx</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>x = a</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>x = a\cosh u</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>x = a\sec\theta</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>x = a\sin\theta</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>x = a\sinh u</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>x = a\tan\theta</dt><dd>Key relationship used in this topic.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Key terms &amp; phrases</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>\(u\)-substitution</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>chain rule</dt><dd>The chain rule for differentiation states that if \(y = F(u)\) and \(u = g(x)\), then \(\dfrac{dy}{dx} = F&#x27;(u)\cdot g&#x27;(x)\).</dd></div>
+        <div class="content-key__item"><dt>Definite integrals and change of limits</dt><dd>Definite integrals and change of limits For a definite integral, you may either substitute back to \(x\) before evaluating, or change the limits to \(u\)-values — both methods must agree.</dd></div>
+        <div class="content-key__item"><dt>Engineering applications</dt><dd>Engineering applications Substitution is the workhorse technique for computing work done, charge transferred, and accumulated quantities in engineering models.</dd></div>
+        <div class="content-key__item"><dt>Expression</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Function</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Identity used</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Indefinite integral</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Integrand pattern</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Integration by substitution</dt><dd>Integration by substitution (or \(u\)-substitution ) formalises the reverse chain rule.</dd></div>
+        <div class="content-key__item"><dt>Recognising substitution patterns</dt><dd>Recognising substitution patterns Experienced integrators look for a function and (up to a constant factor) its derivative in the integrand.</dd></div>
+        <div class="content-key__item"><dt>Result</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Standard integrals</dt><dd>Standard integrals Every undergraduate engineer should know these results.</dd></div>
+        <div class="content-key__item"><dt>The reverse chain rule</dt><dd>The reverse chain rule The chain rule for differentiation states that if \(y = F(u)\) and \(u = g(x)\), then \(\dfrac{dy}{dx} = F&#x27;(u)\cdot g&#x27;(x)\).</dd></div>
+        <div class="content-key__item"><dt>Trigonometric and hyperbolic substitutions</dt><dd>Trigonometric and hyperbolic substitutions When integrands contain \(\sqrt{a^2 - x^2}\), \(\sqrt{a^2 + x^2}\), or \(\sqrt{x^2 - a^2}\), trigonometric or hyperbolic substitutions remove the square root.</dd></div>
+        <div class="content-key__item"><dt>Work done by a variable force</dt><dd>\(W = \displaystyle\int_{x_1}^{x_2} F(x)\,dx\).</dd></div>
+      </dl>
+      </div>
+    </details>
+
+<div class="card">
       <h2>1) The reverse chain rule</h2>
       <p>
         The <strong>chain rule</strong> for differentiation states that if \(y = F(u)\) and \(u = g(x)\), then

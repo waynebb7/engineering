@@ -26,7 +26,51 @@
 
     <div class="content-body">
 
-    <div class="card">
+    <details class="content-key" id="topic-review-key">
+      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <div class="content-key__body">
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Formulae &amp; relationships</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>\omega = \dfrac{2\pi}{T}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>a_0 = 0</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>a_n = 0</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>b_n = \dfrac{2}{n\pi}(1 - (-1)^n)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>c_n = \dfrac{a_n - jb_n}{2}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>f(-x) = f(x)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>f(x + T) = f(x)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>f(x) = -1</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>f(x) = \sum_{n=-\infty}^{\infty} c_n e^{inx}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>f(x)=x</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>x = 0</dt><dd>Key relationship used in this topic.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>AC</dt><dd>Alternating current — current that reverses direction periodically.</dd></div>
+        <div class="content-key__item"><dt>DC</dt><dd>Direct current — current flowing in one direction.</dd></div>
+        <div class="content-key__item"><dt>PWM</dt><dd>Engineering signals (AC waveforms, clock signals, PWM) are often modelled as periodic over one cycle.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Key terms &amp; phrases</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>AC power and harmonics</dt><dd>Non-linear loads (rectifiers, inverters) draw non-sinusoidal current.</dd></div>
+        <div class="content-key__item"><dt>Computing Fourier coefficients</dt><dd>Over one period \([-\pi,\, \pi]\) (or any interval of length \(2\pi\)): \[ a_0 = \frac{1}{\pi}\int_{-\pi}^{\pi} f(x)\,dx, \quad a_n = \frac{1}{\pi}\int_{-\pi}^{\pi} f(x)\cos nx\,dx, \quad b_n = \frac{1}{\pi}\int_{-\pi}^{\pi} f(x)\sin nx\...</dd></div>
+        <div class="content-key__item"><dt>Engineering applications</dt><dd>Engineering applications AC power and harmonics Non-linear loads (rectifiers, inverters) draw non-sinusoidal current.</dd></div>
+        <div class="content-key__item"><dt>Even extension</dt><dd>Reflect about \(x = 0\): \(f(-x) = f(x)\).</dd></div>
+        <div class="content-key__item"><dt>Fourier series definition</dt><dd>A \(2\pi\)-periodic function \(f(x)\) can be represented (under suitable conditions) by: \[ f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty}\bigl(a_n\cos nx + b_n\sin nx\bigr) \] For general period \(T\), use \(\omega = \dfrac{2\pi}{T}\) and r...</dd></div>
+        <div class="content-key__item"><dt>fundamental period</dt><dd>the smallest positive \(T\) with this property.</dd></div>
+        <div class="content-key__item"><dt>Harmonic decay</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Odd and even extensions</dt><dd>Odd and even extensions A function defined only on \([0,\, L]\) can be extended to a full period by choosing symmetry: Even extension Reflect about \(x = 0\): \(f(-x) = f(x)\).</dd></div>
+        <div class="content-key__item"><dt>Parseval&#x27;s theorem</dt><dd>Parseval&#x27;s theorem relates the energy of a signal in time (or space) to the energy in frequency components: \[ \frac{1}{\pi}\int_{-\pi}^{\pi} |f(x)|^2\,dx = \frac{a_0^2}{2} + \sum_{n=1}^{\infty}(a_n^2 + b_n^2) \]</dd></div>
+        <div class="content-key__item"><dt>periodic</dt><dd>A function \(f(x)\) is periodic with period \(T &gt; 0\) if \(f(x + T) = f(x)\) for all \(x\) in its domain.</dd></div>
+        <div class="content-key__item"><dt>Periodic functions and period</dt><dd>Periodic functions and period A function \(f(x)\) is periodic with period \(T &gt; 0\) if \(f(x + T) = f(x)\) for all \(x\) in its domain.</dd></div>
+        <div class="content-key__item"><dt>Series (main terms)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Standard series and harmonic content</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Waveform (period \(2\pi\))</dt><dd>Introduced and explained in the sections below.</dd></div>
+      </dl>
+      </div>
+    </details>
+
+<div class="card">
       <h2>1) Periodic functions and period</h2>
       <p>
         A function \(f(x)\) is <strong>periodic</strong> with period \(T &gt; 0\) if \(f(x + T) = f(x)\) for all \(x\)

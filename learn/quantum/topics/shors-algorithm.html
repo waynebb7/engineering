@@ -26,7 +26,49 @@
 
     <div class="content-body">
 
-    <div class="card">
+    <details class="content-key" id="topic-review-key">
+      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <div class="content-key__body">
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Formulae &amp; relationships</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>\frac{1}{\sqrt{Q}}\sum_{x=0}^{Q-1}|x\rangle|a^x \bmod N\rangle</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\mathrm{QFT}|j\rangle = \frac{1}{\sqrt{2^n}}\sum_{k=0}^{2^n-1} e^{2\pi i jk /...</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>f(x) = a^x \bmod N</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>N = pq</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>t = \lceil\log_2 N\rceil</dt><dd>Key relationship used in this topic.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>AES</dt><dd>Advanced Encryption Standard — widely used symmetric encryption.</dd></div>
+        <div class="content-key__item"><dt>AES-128</dt><dd>Symmetric crypto: Grover halves effective key length — AES-256 remains safe; AES-128 may not.</dd></div>
+        <div class="content-key__item"><dt>AES-256</dt><dd>Symmetric crypto: Grover halves effective key length — AES-256 remains safe; AES-128 may not.</dd></div>
+        <div class="content-key__item"><dt>NIST</dt><dd>Response: NIST post-quantum standards (CRYSTALS-Kyber, Dilithium) use lattice problems.</dd></div>
+        <div class="content-key__item"><dt>QFT</dt><dd>Quantum field theory — relativistic quantum framework for particles and fields.</dd></div>
+        <div class="content-key__item"><dt>RSA</dt><dd>Rivest–Shamir–Adleman — public-key cryptography algorithm.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Key terms &amp; phrases</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>Complexity and resources</dt><dd>Complexity and resources Gate complexity: \(O((\log N)^3)\) for the full algorithm with efficient modular exponentiation.</dd></div>
+        <div class="content-key__item"><dt>Discrete log</dt><dd>Shor generalises to \(\mathbb{Z}_p^*\) and elliptic curve groups.</dd></div>
+        <div class="content-key__item"><dt>Gate complexity</dt><dd>\(O((\log N)^3)\) for the full algorithm with efficient modular exponentiation.</dd></div>
+        <div class="content-key__item"><dt>Impact on cryptography</dt><dd>Impact on cryptography RSA and Diffie–Hellman security relies on the hardness of factoring and discrete logarithms.</dd></div>
+        <div class="content-key__item"><dt>inverse Quantum Fourier Transform (QFT)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>order</dt><dd>Pick random \(a order \(r\) is the smallest positive integer with: \[ a^r \equiv 1 \pmod{N} \]</dd></div>
+        <div class="content-key__item"><dt>Quantum period finding</dt><dd>Quantum period finding The function \(f(x) = a^x \bmod N\) is periodic with period \(r\).</dd></div>
+        <div class="content-key__item"><dt>Qubits</dt><dd>Roughly \(2\log N\) for the main registers; fault-tolerant implementations need millions of physical qubits for cryptographically relevant \(N\) (2048-bit RSA).</dd></div>
+        <div class="content-key__item"><dt>Reduction: factoring to order finding</dt><dd>Pick random \(a order \(r\) is the smallest positive integer with: \[ a^r \equiv 1 \pmod{N} \]</dd></div>
+        <div class="content-key__item"><dt>Response</dt><dd>NIST post-quantum standards (CRYSTALS-Kyber, Dilithium) use lattice problems.</dd></div>
+        <div class="content-key__item"><dt>RSA</dt><dd>Public key \(N = pq\) — factoring \(N\) recovers private key.</dd></div>
+        <div class="content-key__item"><dt>Shor (1994)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Shor&#x27;s circuit overview</dt><dd>Modular arithmetic circuits: largest resource cost in fault-tolerant implementations.</dd></div>
+        <div class="content-key__item"><dt>The factoring problem</dt><dd>The factoring problem Given composite integer \(N\), find non-trivial factors.</dd></div>
+        <div class="content-key__item"><dt>The Quantum Fourier Transform</dt><dd>The QFT on \(n\) qubits maps basis state \(|j\rangle\) to: \[ \mathrm{QFT}|j\rangle = \frac{1}{\sqrt{2^n}}\sum_{k=0}^{2^n-1} e^{2\pi i jk / 2^n}|k\rangle \]</dd></div>
+      </dl>
+      </div>
+    </details>
+
+<div class="card">
       <h2>1) The factoring problem</h2>
       <p>
         Given composite integer \(N\), find non-trivial factors. Classically, the best known algorithms

@@ -22,7 +22,72 @@
     </div>
 
     <div class="content-body">
-      <div class="card">
+
+    <details class="content-key" id="topic-review-key">
+      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <div class="content-key__body">
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>AND-OR</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>ASIC</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>CMOS</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>CPU</dt><dd>A 32-bit adder on a critical CPU path → carry-lookahead or prefix tree is worth the extra gates.</dd></div>
+        <div class="content-key__item"><dt>FFT</dt><dd>Fast Fourier Transform — efficient algorithm for frequency analysis.</dd></div>
+        <div class="content-key__item"><dt>FPGA</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>IP</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>LUT</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>MUX</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>NAND</dt><dd>NOT-AND logic gate — universal gate in digital electronics.</dd></div>
+        <div class="content-key__item"><dt>NC</dt><dd>a preview
+
+ 
+ Computational complexity theory classifies problems not just by total work (time / gate count) but by
+ parallel depth .</dd></div>
+        <div class="content-key__item"><dt>NOR</dt><dd>NOT-OR logic gate — universal gate in digital electronics.</dd></div>
+        <div class="content-key__item"><dt>NP</dt><dd>See also P vs NP for the broader complexity landscape.</dd></div>
+        <div class="content-key__item"><dt>OR</dt><dd>A 32-bit adder on a critical CPU path → carry-lookahead or prefix tree is worth the extra gates.</dd></div>
+        <div class="content-key__item"><dt>POS</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>SOP</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>XOR</dt><dd>Exclusive OR — logic output true when inputs differ.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Key terms &amp; phrases</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>Asymptotic complexity of circuits</dt><dd>Asymptotic complexity of circuits For functions of \(n\) input variables, we ask: how do gate count and depth scale as \(n\) grows?</dd></div>
+        <div class="content-key__item"><dt>Circuit complexity</dt><dd>Circuit complexity quantifies how &quot;large&quot; and &quot;deep&quot; a Boolean circuit is, helping engineers compare implementations and understand theoretical limits.</dd></div>
+        <div class="content-key__item"><dt>Circuit depth and delay</dt><dd>Circuit depth and delay Depth is the maximum number of gate layers on any input-to-output path.</dd></div>
+        <div class="content-key__item"><dt>Cost</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Depth (approx.)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Depth (delay)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Design</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>equivalent gate weights</dt><dd>A 2-input XOR costs more than one AND in CMOS — technology libraries assign equivalent gate weights</dd></div>
+        <div class="content-key__item"><dt>Function</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Gate count</dt><dd>the total number of primitive logic gates in a circuit.</dd></div>
+        <div class="content-key__item"><dt>Gate count (approx.)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Goal</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Known</dt><dd>Known: addition, sorting, multiplication are in NC (parallel algorithms exist)</dd></div>
+        <div class="content-key__item"><dt>Literal count</dt><dd>Literal count: number of variable appearances in a SOP/POS expression — correlates with AND-OR gate count</dd></div>
+        <div class="content-key__item"><dt>Most Boolean functions</dt><dd>Most Boolean functions: require exponentially many gates (\(2^n / n\)) — minimisation only helps for structured (non-random) functions</dd></div>
+        <div class="content-key__item"><dt>n-bit multiplication</dt><dd>n-bit multiplication: schoolbook method uses \(O(n^2)\) gates; Karatsuba and FFT-based methods reduce asymptotic gate count at the cost of irregular structure</dd></div>
+        <div class="content-key__item"><dt>Naive SOP gates</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>NC i</dt><dd>NC i : depth \(O(\log^i n)\); NC = ∪ NC i</dd></div>
+        <div class="content-key__item"><dt>Open</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Optimised gates</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>P vs NC — a preview</dt><dd>P vs NC — a preview Computational complexity theory classifies problems not just by total work (time / gate count) but by parallel depth .</dd></div>
+        <div class="content-key__item"><dt>parallel depth</dt><dd>Computational complexity theory classifies problems not just by total work (time / gate count) but by parallel depth .</dd></div>
+        <div class="content-key__item"><dt>Parity of \(n\) bits</dt><dd>Parity of \(n\) bits: depth \(O(\log n)\) with a tree of XOR gates; depth \(O(n)\) with a serial chain</dd></div>
+        <div class="content-key__item"><dt>Pipelining</dt><dd>Insert registers to cut combinational depth.</dd></div>
+        <div class="content-key__item"><dt>Practical design tradeoffs</dt><dd>Insert registers to cut combinational depth.</dd></div>
+        <div class="content-key__item"><dt>Serial chain (high depth)</dt><dd>Ripple-carry adder: depth \(O(n)\) for \(n\) bits.</dd></div>
+        <div class="content-key__item"><dt>Size (gate count)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Strategy</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Wire complexity</dt><dd>Wire complexity: number of connections — affects routing congestion in ICs and FPGAs</dd></div>
+        <div class="content-key__item"><dt>Worked comparison: 4-bit adder</dt><dd>Compare ripple-carry vs carry-lookahead for a 4-bit adder:</dd></div>
+      </dl>
+      </div>
+    </details>
+
+<div class="card">
         <h2>1) Why measure circuit complexity?</h2>
         <p>
           Every digital design has costs: silicon area, power, speed, and design effort.

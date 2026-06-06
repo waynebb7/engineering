@@ -15,6 +15,7 @@ Use for every page under `learn/physics/`.
   <div class="page-container">
     <div class="content-hero">...</div>
     <div class="content-body">
+      <!-- Topic review key injected by scripts/apply-content-key.py -->
       <!-- 7 or 8 numbered teaching cards -->
       <!-- 1 quiz card with <details class="quiz-answers"> -->
       <p class="page-footer-note">LEVEL footer text.</p>

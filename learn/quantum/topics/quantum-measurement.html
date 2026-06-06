@@ -26,7 +26,56 @@
 
     <div class="content-body">
 
-    <div class="card">
+    <details class="content-key" id="topic-review-key">
+      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <div class="content-key__body">
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Formulae &amp; relationships</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>\langle M \rangle = \langle\psi|M|\psi\rangle = \sum_m m\, P(m)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\sum_m E_m = I</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>M = \sum_m m\, P_m</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>P(0) = |\alpha|^2,\quad P(1) = |\beta|^2</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>P(m) = \langle\psi|E_m|\psi\rangle</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>P(m) = \langle\psi|P_m|\psi\rangle</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>Z = |0\rangle\langle 0| - |1\rangle\langle 1|</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>|\psi\rangle = \alpha|0\rangle + \beta|1\rangle</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>|\psi\rangle = |+\rangle</dt><dd>Key relationship used in this topic.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>POVM</dt><dd>6) POVMs and generalised measurement
+
+ 
+ A POVM (positive operator-valued measure) \(\{E_m\}\) satisfies \(\sum_m E_m = I\), \(E_m \geq 0\),
+ with \(P(m) = \langle\psi|E_m|\psi\rangle\).</dd></div>
+        <div class="content-key__item"><dt>QAOA</dt><dd>Quantum Approximate Optimization Algorithm — hybrid quantum-classical optimizer.</dd></div>
+        <div class="content-key__item"><dt>VQE</dt><dd>Variational Quantum Eigensolver — algorithm for estimating ground-state energies.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Key terms &amp; phrases</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>Computational basis measurement</dt><dd>The standard readout in quantum computing measures the Pauli \(Z\) observable: \[ Z = |0\rangle\langle 0| - |1\rangle\langle 1| \] For \(|\psi\rangle = \alpha|0\rangle + \beta|1\rangle\): \[ P(0) = |\alpha|^2,\quad P(1) = |\beta|^2 \]</dd></div>
+        <div class="content-key__item"><dt>Deutsch–Jozsa</dt><dd>Single final measurement determines if \(f\) is constant or balanced.</dd></div>
+        <div class="content-key__item"><dt>expectation value</dt><dd>The expectation value of observable \(M\): \[ \langle M \rangle = \langle\psi|M|\psi\rangle = \sum_m m\, P(m) \]</dd></div>
+        <div class="content-key__item"><dt>Grover</dt><dd>Measure after \(O(\sqrt{N})\) iterations to find the marked item.</dd></div>
+        <div class="content-key__item"><dt>Measurement in algorithms</dt><dd>Measurement in algorithms Deutsch–Jozsa: Single final measurement determines if \(f\) is constant or balanced.</dd></div>
+        <div class="content-key__item"><dt>Measuring in other bases</dt><dd>To measure in basis \(\{|+\rangle, |-\rangle\}\), apply \(H\) then measure in \(Z\): \[ H|\psi\rangle \to \text{measure } Z \to \text{outcome } \pm 1 \]</dd></div>
+        <div class="content-key__item"><dt>Multi-qubit measurement</dt><dd>Multi-qubit measurement Measuring all qubits projects onto \(|x_1 x_2 \cdots x_n\rangle\) with probability \(|\langle x_1\cdots x_n|\psi\rangle|^2\).</dd></div>
+        <div class="content-key__item"><dt>Observables and expectation values</dt><dd>The expectation value of observable \(M\): \[ \langle M \rangle = \langle\psi|M|\psi\rangle = \sum_m m\, P(m) \]</dd></div>
+        <div class="content-key__item"><dt>Outcome \(m\)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Partial measurement</dt><dd>Measuring qubit 1 of an entangled pair collapses the joint state.</dd></div>
+        <div class="content-key__item"><dt>Post-measurement state</dt><dd>Post-measurement state: \(\frac{P_m|\psi\rangle}{\|P_m|\psi\rangle\|}\) (projective / Lüders)</dd></div>
+        <div class="content-key__item"><dt>POVM</dt><dd>A POVM (positive operator-valued measure) \(\{E_m\}\) satisfies \(\sum_m E_m = I\), \(E_m \geq 0\), with \(P(m) = \langle\psi|E_m|\psi\rangle\).</dd></div>
+        <div class="content-key__item"><dt>POVMs and generalised measurement</dt><dd>POVMs and generalised measurement A POVM (positive operator-valued measure) \(\{E_m\}\) satisfies \(\sum_m E_m = I\), \(E_m \geq 0\), with \(P(m) = \langle\psi|E_m|\psi\rangle\).</dd></div>
+        <div class="content-key__item"><dt>repeated runs</dt><dd>Most algorithms require repeated runs (shots) to estimate outcome statistics.</dd></div>
+        <div class="content-key__item"><dt>Shor</dt><dd>Measure the period-register in the computational basis; continued fractions extract \(r\).</dd></div>
+        <div class="content-key__item"><dt>Teleportation</dt><dd>Bell measurement on Alice&#x27;s qubits; classical outcomes steer Bob&#x27;s correction.</dd></div>
+        <div class="content-key__item"><dt>The measurement postulate</dt><dd>Measuring observable \(M\) with spectral decomposition \(M = \sum_m m\, P_m\) on state \(|\psi\rangle\):</dd></div>
+      </dl>
+      </div>
+    </details>
+
+<div class="card">
       <h2>1) The measurement postulate</h2>
       <p>
         Measuring observable \(M\) with spectral decomposition \(M = \sum_m m\, P_m\) on state \(|\psi\rangle\):

@@ -26,7 +26,54 @@
 
     <div class="content-body">
 
-    <div class="card">
+    <details class="content-key" id="topic-review-key">
+      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <div class="content-key__body">
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Formulae &amp; relationships</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>\gamma = \mathrm{Tr}(\rho^2)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\langle A \rangle = \mathrm{Tr}(\rho A)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\langle\sigma_i\rangle = 0</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\rho = \dfrac{1}{2}(I + \mathbf{r}\cdot\boldsymbol{\sigma})</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\rho = \rho^\dagger</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\rho = \sum_i p_i\,|\psi_i\rangle\langle\psi_i|</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\rho = \sum_k \lambda_k |k\rangle\langle k|</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\rho = I/2</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\rho = |\psi\rangle\langle\psi|</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\rho_A = \mathrm{Tr}_B(\rho_{AB})</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\rho_A = \mathrm{Tr}_B(|\Phi^+\rangle\langle\Phi^+|) = I/2</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>S(\rho) = -\mathrm{Tr}(\rho\log_2\rho)</dt><dd>Key relationship used in this topic.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>AB</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>CPTP</dt><dd>General open-system evolution (noise, decoherence) is
+ described by completely positive trace-preserving (CPTP) maps — see
+ Quantum Channels .</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Key terms &amp; phrases</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>Amplitude damping</dt><dd>Amplitude damping: energy relaxation to ground state</dd></div>
+        <div class="content-key__item"><dt>Bloch vector picture (qubit)</dt><dd>Any qubit \(\rho\) can be written \(\rho = \dfrac{1}{2}(I + \mathbf{r}\cdot\boldsymbol{\sigma})\) where \(|\mathbf{r}| \leq 1\).</dd></div>
+        <div class="content-key__item"><dt>Definition and axioms</dt><dd>A density operator \(\rho\) on Hilbert space \(\mathcal{H}\) satisfies:</dd></div>
+        <div class="content-key__item"><dt>Depolarising channel</dt><dd>Depolarising channel: \(\rho \to (1-p)\rho + p\,I/d\)</dd></div>
+        <div class="content-key__item"><dt>Ensemble interpretation</dt><dd>If a system is prepared in state \(|\psi_i\rangle\) with probability \(p_i\) (\(\sum_i p_i = 1\)):</dd></div>
+        <div class="content-key__item"><dt>Hermitian</dt><dd>Hermitian: \(\rho = \rho^\dagger\)</dd></div>
+        <div class="content-key__item"><dt>mixed state</dt><dd>a statistical mixture of pure states described by a density operator \(\rho\).</dd></div>
+        <div class="content-key__item"><dt>Normalised</dt><dd>Normalised: \(\mathrm{Tr}(\rho) = 1\)</dd></div>
+        <div class="content-key__item"><dt>Phase damping</dt><dd>Phase damping: loss of coherences without energy change</dd></div>
+        <div class="content-key__item"><dt>Positive semidefinite</dt><dd>Positive semidefinite: \(\langle\phi|\rho|\phi\rangle \geq 0\) for all \(|\phi\rangle\)</dd></div>
+        <div class="content-key__item"><dt>Purity</dt><dd>\(\gamma = \mathrm{Tr}(\rho^2)\).</dd></div>
+        <div class="content-key__item"><dt>Purity and von Neumann entropy</dt><dd>Purity and von Neumann entropy Purity: \(\gamma = \mathrm{Tr}(\rho^2)\).</dd></div>
+        <div class="content-key__item"><dt>Quantum operations on \(\rho\)</dt><dd>Unitary evolution: \(\rho \to U\rho U^\dagger\).</dd></div>
+        <div class="content-key__item"><dt>Reduced states and partial trace</dt><dd>For composite system \(AB\) in state \(\rho_{AB}\), the reduced state of subsystem \(A\) is:</dd></div>
+        <div class="content-key__item"><dt>Spectral form</dt><dd>\(\rho = \sum_k \lambda_k |k\rangle\langle k|\) with eigenvalues \(\lambda_k \geq 0\), \(\sum \lambda_k = 1\).</dd></div>
+      </dl>
+      </div>
+    </details>
+
+<div class="card">
       <h2>1) Why density matrices?</h2>
       <p>
         Not every quantum system is in a definite pure state \(|\psi\rangle\). Thermal ensembles, uncontrolled

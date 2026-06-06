@@ -23,7 +23,44 @@
 
     <div class="content-body">
 
-    <div class="card">
+    <details class="content-key" id="topic-review-key">
+      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <div class="content-key__body">
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Formulae &amp; relationships</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>3 → 4</dt><dd>011 → 100 .</dd></div>
+        <div class="content-key__item"><dt>B i = G i ⊕ B i+1</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>B n-1 = G n-1</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>G i = B i ⊕ B i+1</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>G n-1 = B n-1</dt><dd>Introduced and explained in the sections below.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>MSB</dt><dd>Gray 010 → 110 changes only the MSB.</dd></div>
+        <div class="content-key__item"><dt>XOR</dt><dd>Exclusive OR — logic output true when inputs differ.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Key terms &amp; phrases</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>3-bit Gray code</dt><dd>3-bit Gray code Decimal Binary Gray 0 000 000 1 001 001 2 010 011 3 011 010 4 100 110 5 101 111 6 110 101 7 111 100</dd></div>
+        <div class="content-key__item"><dt>Asynchronous sampling</dt><dd>If a counter is read while updating, Gray code limits the error to at most one bit.</dd></div>
+        <div class="content-key__item"><dt>Binary</dt><dd>Reference tables (3-bit and 4-bit) 3-bit Gray code Decimal Binary Gray 0 000 000 1 001 001 2 010 011 3 011 010 4 100 110 5 101 111 6 110 101 7 111 100</dd></div>
+        <div class="content-key__item"><dt>Binary to Gray conversion</dt><dd>To encode binary B n-1 …B 0 as Gray G n-1 …G 0 :</dd></div>
+        <div class="content-key__item"><dt>Building reflected binary code</dt><dd>Building reflected binary code The classic construction is reflect and prefix .</dd></div>
+        <div class="content-key__item"><dt>Decimal</dt><dd>Reference tables (3-bit and 4-bit) 3-bit Gray code Decimal Binary Gray 0 000 000 1 001 001 2 010 011 3 011 010 4 100 110 5 101 111 6 110 101 7 111 100</dd></div>
+        <div class="content-key__item"><dt>exactly one bit</dt><dd>Gray code (reflected binary code) is a binary numbering system in which two consecutive values differ in exactly one bit .</dd></div>
+        <div class="content-key__item"><dt>Gray code to binary conversion</dt><dd>To decode a Gray codeword G n-1 …G 0 to binary B n-1 …B 0 :</dd></div>
+        <div class="content-key__item"><dt>Karnaugh maps</dt><dd>Adjacent cells use Gray ordering so variables change one at a time — see Karnaugh Mapping .</dd></div>
+        <div class="content-key__item"><dt>Reference tables (3-bit and 4-bit)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>reflect and prefix</dt><dd>The classic construction is reflect and prefix .</dd></div>
+        <div class="content-key__item"><dt>rotary encoder</dt><dd>a sensor on a spinning shaft that outputs a digital position code.</dd></div>
+        <div class="content-key__item"><dt>Rotary encoders</dt><dd>As a shaft rotates, sensors read successive positions — single-bit change prevents false readings during transition.</dd></div>
+        <div class="content-key__item"><dt>Why only one bit must change</dt><dd>Why only one bit must change In real hardware, signals do not switch instantaneously.</dd></div>
+      </dl>
+      </div>
+    </details>
+
+<div class="card">
       <h2>1) What is Gray code?</h2>
       <p>
         <strong>Gray code</strong> (reflected binary code) is a binary numbering system in which two consecutive values

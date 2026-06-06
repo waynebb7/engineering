@@ -26,7 +26,64 @@
 
     <div class="content-body">
 
-    <div class="card">
+    <details class="content-key" id="topic-review-key">
+      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <div class="content-key__body">
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Formulae &amp; relationships</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>O_f|x\rangle = (-1)^{f(x)}|x\rangle</dt><dd>Key relationship used in this topic.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>BQP</dt><dd>Common mistake: Confusing BQP with &quot;all NP problems.&quot; Factoring is in NP∩coNP; NP-complete
+ problems are not known to be in BQP.</dd></div>
+        <div class="content-key__item"><dt>HHL</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>NISQ</dt><dd>Noisy Intermediate-Scale Quantum — devices with limited qubits and significant noise.</dd></div>
+        <div class="content-key__item"><dt>NP</dt><dd>Common mistake: Confusing BQP with &quot;all NP problems.&quot; Factoring is in NP∩coNP; NP-complete
+ problems are not known to be in BQP.</dd></div>
+        <div class="content-key__item"><dt>PSPACE</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>QAOA</dt><dd>Quantum Approximate Optimization Algorithm — hybrid quantum-classical optimizer.</dd></div>
+        <div class="content-key__item"><dt>QFT</dt><dd>Quantum field theory — relativistic quantum framework for particles and fields.</dd></div>
+        <div class="content-key__item"><dt>VQE</dt><dd>Variational Quantum Eigensolver — algorithm for estimating ground-state energies.</dd></div>
+        <div class="content-key__item"><dt>XOR</dt><dd>Exclusive OR — logic output true when inputs differ.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Key terms &amp; phrases</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>Algorithm</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Amplitude amplification</dt><dd>Amplitude amplification: generalises Grover for broader success criteria</dd></div>
+        <div class="content-key__item"><dt>black-box oracle</dt><dd>Many algorithms are analysed with a black-box oracle \(O_f\) that implements \(f:\{0,1\}^n \to \{0,1\}\) or phase oracles \(O_f|x\rangle = (-1)^{f(x)}|x\rangle\).</dd></div>
+        <div class="content-key__item"><dt>BQP</dt><dd>BQP (bounded-error quantum polynomial time) is the class of problems solvable by quantum computers in polynomial time with error \(\leq 1/3\).</dd></div>
+        <div class="content-key__item"><dt>Choosing an algorithm: decision guide</dt><dd>Choosing an algorithm: decision guide Problem structure Periodicity → QFT/Shor; unstructured search → Grover; ground energy → VQE; graph cut → QAOA; dynamics → Hamiltonian simulation.</dd></div>
+        <div class="content-key__item"><dt>Classical (typical)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Complexity class BQP</dt><dd>Complexity class BQP BQP (bounded-error quantum polynomial time) is the class of problems solvable by quantum computers in polynomial time with error \(\leq 1/3\).</dd></div>
+        <div class="content-key__item"><dt>Computation</dt><dd>Computation: gates from Quantum Gates composed in Quantum Circuits</dd></div>
+        <div class="content-key__item"><dt>concrete problems</dt><dd>Whether \(\mathrm{BQP} \supsetneq \mathrm{P}\) is open in full generality, but concrete problems (integer factoring, discrete log) have quantum polynomial algorithms believed super-polynomial classically.</dd></div>
+        <div class="content-key__item"><dt>Exponential-speedup algorithms</dt><dd>Algorithms with exponential separation (under standard assumptions):</dd></div>
+        <div class="content-key__item"><dt>Grover</dt><dd>Grover : unstructured search — \(O(\sqrt{N})\)</dd></div>
+        <div class="content-key__item"><dt>Hamiltonian simulation</dt><dd>Hamiltonian simulation: simulating quantum dynamics with precision \(\epsilon\) in poly\((\log(1/\epsilon), n)\) time under sparsity assumptions</dd></div>
+        <div class="content-key__item"><dt>HHL (simplified)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Input</dt><dd>Input: classical data encoded into quantum states (or oracle access)</dd></div>
+        <div class="content-key__item"><dt>Oracle and query models</dt><dd>Oracle and query models Many algorithms are analysed with a black-box oracle \(O_f\) that implements \(f:\{0,1\}^n \to \{0,1\}\) or phase oracles \(O_f|x\rangle = (-1)^{f(x)}|x\rangle\).</dd></div>
+        <div class="content-key__item"><dt>Output</dt><dd>Output: classical bit strings from Measurement</dd></div>
+        <div class="content-key__item"><dt>Problem structure</dt><dd>Periodicity → QFT/Shor; unstructured search → Grover; ground energy → VQE; graph cut → QAOA; dynamics → Hamiltonian simulation.</dd></div>
+        <div class="content-key__item"><dt>QAOA</dt><dd>QAOA : combinatorial optimisation</dd></div>
+        <div class="content-key__item"><dt>Quadratic and polynomial speedups</dt><dd>Quadratic speedups still matter for large search spaces but may be overwhelmed by constant overheads on hardware.</dd></div>
+        <div class="content-key__item"><dt>quantum algorithm</dt><dd>a sequence of unitary operations and measurements on qubits that solves a computational problem.</dd></div>
+        <div class="content-key__item"><dt>Quantum machine learning ansätze</dt><dd>Quantum machine learning ansätze: heuristic feature maps — advantage debated</dd></div>
+        <div class="content-key__item"><dt>Quantum phase estimation</dt><dd>Quantum phase estimation: eigenvalue phases for unitaries</dd></div>
+        <div class="content-key__item"><dt>Quantum queries</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Quantum walk algorithms</dt><dd>Quantum walk algorithms: some graph problems gain polynomial factors</dd></div>
+        <div class="content-key__item"><dt>Query complexity</dt><dd>Query complexity counts oracle calls.</dd></div>
+        <div class="content-key__item"><dt>Shor&#x27;s algorithm</dt><dd>Shor&#x27;s algorithm : factoring and discrete logarithm via Quantum Fourier Transform and period finding</dd></div>
+        <div class="content-key__item"><dt>Simon</dt><dd>Simon: finds hidden XOR masks; inspired Shor</dd></div>
+        <div class="content-key__item"><dt>Variational and NISQ-era algorithms</dt><dd>Near-term algorithms trade proven asymptotic advantage for shallow circuits and hybrid loops:</dd></div>
+        <div class="content-key__item"><dt>VQE</dt><dd>VQE : ground-state energies</dd></div>
+      </dl>
+      </div>
+    </details>
+
+<div class="card">
       <h2>1) What makes an algorithm quantum?</h2>
       <p>
         A <strong>quantum algorithm</strong> is a sequence of unitary operations and measurements on qubits that solves

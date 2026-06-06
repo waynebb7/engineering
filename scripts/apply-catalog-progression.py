@@ -204,6 +204,7 @@ def build_next_card(
 
 
 def remove_existing_progression_cards(html: str) -> str:
+    # Preserve content-key — only remove progression cards
     html = re.sub(
         rf'\s*<div class="card {re.escape(PREREQ_CARD_MARKER)}">.*?</div>\s*',
         "\n",

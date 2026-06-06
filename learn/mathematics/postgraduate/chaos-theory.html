@@ -26,7 +26,52 @@
 
     <div class="content-body">
 
-    <div class="card">
+    <details class="content-key" id="topic-review-key">
+      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <div class="content-key__body">
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Formulae &amp; relationships</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>\dot{\mathbf{v}} = D\mathbf{F}(\mathbf{x})\mathbf{v}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\dot{\mathbf{x}} = \mathbf{F}(\mathbf{x})</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\lambda = 0</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\lambda = \lim_{n \to \infty} \frac{1}{n} \sum_{k=0}^{n-1} \ln |f&#x27;(x_k)|</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\lambda = \ln 2 &gt; 0</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>x = rx(1-x)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>x_{n+1} = r x_n(1 - x_n)</dt><dd>Key relationship used in this topic.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>SDIC</dt><dd>Interpretation: \(\lambda &gt; 0\) indicates SDIC (chaos); \(\lambda = 0\) marginal;
+ \(\lambda 0\).</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Key terms &amp; phrases</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>Bifurcations</dt><dd>Bifurcations are qualitative changes in dynamics as a parameter varies:</dd></div>
+        <div class="content-key__item"><dt>Bifurcations and routes to chaos</dt><dd>Bifurcations are qualitative changes in dynamics as a parameter varies:</dd></div>
+        <div class="content-key__item"><dt>chaotic</dt><dd>long-term behaviour is unpredictable despite short-term determinism.</dd></div>
+        <div class="content-key__item"><dt>Continuous systems: Lorenz and Rössler attractors</dt><dd>The Lorenz system (atmospheric convection model): \[ \dot{x} = \sigma(y - x), \quad \dot{y} = x(\rho - z) - y, \quad \dot{z} = xy - \beta z \] with classic parameters \(\sigma = 10\), \(\rho = 28\), \(\beta = 8/3\) exhibits a strange att...</dd></div>
+        <div class="content-key__item"><dt>Control, prediction, and research outlook</dt><dd>Control, prediction, and research outlook Shadowing: True trajectories stay close to numerical approximations for hyperbolic systems — finite-precision simulation can be meaningful despite SDIC.</dd></div>
+        <div class="content-key__item"><dt>Dense periodic orbits</dt><dd>Dense periodic orbits: periodic behaviour is ubiquitous in the attractor</dd></div>
+        <div class="content-key__item"><dt>deterministic</dt><dd>A dynamical system can be deterministic (evolution fixed by initial data) yet chaotic — long-term behaviour is unpredictable despite short-term determinism.</dd></div>
+        <div class="content-key__item"><dt>Deterministic chaos: definition and criteria</dt><dd>Deterministic chaos: definition and criteria A dynamical system can be deterministic (evolution fixed by initial data) yet chaotic — long-term behaviour is unpredictable despite short-term determinism.</dd></div>
+        <div class="content-key__item"><dt>Discrete maps: the logistic family</dt><dd>Discrete maps: the logistic family The logistic map \(x_{n+1} = r x_n(1 - x_n)\) on \([0,1]\) is a paradigm for period-doubling route to chaos.</dd></div>
+        <div class="content-key__item"><dt>Ergodicity</dt><dd>An invariant measure \(\mu\) is ergodic if time averages equal space averages for \(\mu\)-almost all initial conditions — justification for statistical ensembles in chaotic systems.</dd></div>
+        <div class="content-key__item"><dt>logistic map</dt><dd>The logistic map \(x_{n+1} = r x_n(1 - x_n)\) on \([0,1]\) is a paradigm for period-doubling route to chaos.</dd></div>
+        <div class="content-key__item"><dt>Lorenz system</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Lyapunov exponent</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Lyapunov exponents</dt><dd>The Lyapunov exponent \(\lambda\) quantifies average exponential separation of trajectories: \[ \lambda = \lim_{n \to \infty} \frac{1}{n} \sum_{k=0}^{n-1} \ln |f&#x27;(x_k)| \] For continuous flows \(\dot{\mathbf{x}} = \mathbf{F}(\mathbf{x})\...</dd></div>
+        <div class="content-key__item"><dt>Mechanism</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Sensitive dependence on initial conditions (SDIC)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>shift map</dt><dd>The shift map on bi-infinite symbol sequences models chaotic maps via coding (e.g.</dd></div>
+        <div class="content-key__item"><dt>Symbolic dynamics and ergodic theory</dt><dd>Symbolic dynamics and ergodic theory The shift map on bi-infinite symbol sequences models chaotic maps via coding (e.g.</dd></div>
+        <div class="content-key__item"><dt>Topological entropy</dt><dd>Topological entropy \(h_{\mathrm{top}}\) measures complexity of the orbit structure.</dd></div>
+        <div class="content-key__item"><dt>Topological mixing</dt><dd>Topological mixing: the system explores state space thoroughly</dd></div>
+      </dl>
+      </div>
+    </details>
+
+<div class="card">
       <h2>1) Deterministic chaos: definition and criteria</h2>
       <p>
         A dynamical system can be <strong>deterministic</strong> (evolution fixed by initial data) yet

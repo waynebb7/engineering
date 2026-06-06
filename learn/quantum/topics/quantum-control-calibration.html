@@ -26,7 +26,65 @@
 
     <div class="content-body">
 
-    <div class="card">
+    <details class="content-key" id="topic-review-key">
+      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <div class="content-key__body">
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Formulae &amp; relationships</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>\Omega_I(t) = A(t), \qquad \Omega_Q(t) = \alpha\,\frac{\dot{A}(t)}{\Delta}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>F(m) = A p^m + B</dt><dd>Key relationship used in this topic.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>AWG</dt><dd>Tools
+
+ 
+ Qiskit Experiments / Ignis
+
+ pyGSTi (gate set tomography)
+
+ LabOne Q (Zurich Instruments)
+
+ Custom Python + AWG control</dd></div>
+        <div class="content-key__item"><dt>CZ</dt><dd>CZ angle) vs pulse parameters.</dd></div>
+        <div class="content-key__item"><dt>DRAG</dt><dd>DRAG suppresses \(|1\rangle \to |2\rangle\)
+ leakage on transmon qubits.</dd></div>
+        <div class="content-key__item"><dt>GST</dt><dd>Verify with quantum process tomography (QPT) or gate set tomography (GST).</dd></div>
+        <div class="content-key__item"><dt>IQ</dt><dd>7) Readout calibration
+
+ 
+ Dispersive readout assigns each measurement outcome a label (0 or 1) based on integrated IQ signal.</dd></div>
+        <div class="content-key__item"><dt>QPT</dt><dd>Verify with quantum process tomography (QPT) or gate set tomography (GST).</dd></div>
+        <div class="content-key__item"><dt>RB</dt><dd>Insert a target gate \(G\) between random Cliffords to estimate
+ \(\epsilon_G\) specifically: compare decay rates with and without interleaving.</dd></div>
+        <div class="content-key__item"><dt>SPAM</dt><dd>Introduced and explained in the sections below.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Key terms &amp; phrases</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>Automation and software stack</dt><dd>Automation and software stack Modern labs run calibration DAGs (directed acyclic graphs) that execute spectroscopy → pulse update → RB verification in sequence, triggered on drift detection.</dd></div>
+        <div class="content-key__item"><dt>calibration</dt><dd>Without calibration , gate fidelities degrade and algorithm results become unreliable.</dd></div>
+        <div class="content-key__item"><dt>calibration DAGs</dt><dd>Modern labs run calibration DAGs (directed acyclic graphs) that execute spectroscopy → pulse update → RB verification in sequence, triggered on drift detection.</dd></div>
+        <div class="content-key__item"><dt>Common envelopes</dt><dd>Common envelopes Gaussian: smooth, band-limited Cosine: \(\cos^2\) rise/fall Slepian / flat-top: sharp but controlled sidelobes</dd></div>
+        <div class="content-key__item"><dt>Derivative Removal by Adiabatic
+ Gate (DRAG)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Measures</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Method</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Protocol</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Pulse shaping and DRAG</dt><dd>Pulse shaping and DRAG Square pulses cause spectral leakage to non-computational states.</dd></div>
+        <div class="content-key__item"><dt>Qubit control Hamiltonian</dt><dd>A driven qubit in the rotating frame is described by:</dd></div>
+        <div class="content-key__item"><dt>Randomized benchmarking</dt><dd>Randomized benchmarking estimates average gate fidelity over a Clifford group.</dd></div>
+        <div class="content-key__item"><dt>Randomized benchmarking (RB)</dt><dd>Randomized benchmarking estimates average gate fidelity over a Clifford group.</dd></div>
+        <div class="content-key__item"><dt>Readout calibration</dt><dd>Readout calibration Dispersive readout assigns each measurement outcome a label (0 or 1) based on integrated IQ signal.</dd></div>
+        <div class="content-key__item"><dt>Spectroscopy and basic calibration</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Tools</dt><dd>Tools Qiskit Experiments / Ignis pyGSTi (gate set tomography) LabOne Q (Zurich Instruments) Custom Python + AWG control</dd></div>
+        <div class="content-key__item"><dt>Two-qubit gate calibration</dt><dd>Two-qubit gate calibration Calibrating entangling gates requires tuning coupling strength, interaction duration, and cancellation of parasitic single-qubit rotations.</dd></div>
+        <div class="content-key__item"><dt>Why calibration matters</dt><dd>Why calibration matters Quantum hardware drifts: qubit frequencies shift with temperature, flux crosstalk changes coupling strengths, and amplifier gain varies.</dd></div>
+      </dl>
+      </div>
+    </details>
+
+<div class="card">
       <h2>1) Why calibration matters</h2>
       <p>
         Quantum hardware drifts: qubit frequencies shift with temperature, flux crosstalk changes coupling strengths,

@@ -1699,6 +1699,102 @@ body.map-page svg#links {
   margin-bottom: 0;
 }
 
+/* Expandable topic review key (formulae, acronyms, terms) */
+.content-page .content-key {
+  margin: 0 0 20px;
+  border: 1px solid var(--corp-border);
+  border-radius: var(--corp-radius);
+  background: var(--corp-surface);
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+}
+
+.content-page .content-key__summary {
+  padding: 14px 18px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--corp-navy);
+  background: linear-gradient(135deg, #eef4ff 0%, #f8fafc 100%);
+  list-style: none;
+  user-select: none;
+}
+
+.content-page .content-key__summary::-webkit-details-marker {
+  display: none;
+}
+
+.content-page .content-key__summary::before {
+  content: '▸ ';
+  display: inline-block;
+  transition: transform 0.2s ease;
+  color: var(--corp-accent);
+}
+
+.content-page .content-key[open] > .content-key__summary::before {
+  transform: rotate(90deg);
+}
+
+.content-page .content-key__summary:hover {
+  color: var(--corp-accent);
+}
+
+.content-page .content-key__body {
+  padding: 16px 18px 18px;
+  border-top: 1px solid var(--corp-border);
+  background: #fbfcfe;
+}
+
+.content-page .content-key__intro {
+  margin: 0 0 16px;
+  color: var(--corp-text-muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.content-page .content-key__heading {
+  margin: 18px 0 10px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--corp-accent);
+}
+
+.content-page .content-key__heading:first-of-type {
+  margin-top: 0;
+}
+
+.content-page .content-key__list {
+  margin: 0;
+  padding: 0;
+}
+
+.content-page .content-key__item {
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: #fff;
+  border: 1px solid var(--corp-border);
+}
+
+.content-page .content-key__item:last-child {
+  margin-bottom: 0;
+}
+
+.content-page .content-key__item dt {
+  margin: 0 0 4px;
+  font-weight: 600;
+  color: var(--corp-navy);
+}
+
+.content-page .content-key__item dd {
+  margin: 0;
+  color: var(--corp-text);
+  font-size: 0.93rem;
+  line-height: 1.5;
+}
+
 .content-page .page-footer-note {
   text-align: center;
   padding: 20px;

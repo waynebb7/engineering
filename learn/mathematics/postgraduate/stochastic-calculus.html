@@ -26,7 +26,55 @@
 
     <div class="content-body">
 
-    <div class="card">
+    <details class="content-key" id="topic-review-key">
+      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <div class="content-key__body">
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Formulae &amp; relationships</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>[W]_t = \lim \sum (W_{t_{i+1}} - W_{t_i})^2 = t</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\int_0^T H_t\,dW_t = \lim \sum H_{t_i}(W_{t_{i+1}} - W_{t_i})</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\mathbb{E}\left[\left(\int_0^T H_t\,dW_t\right)^2\right] = \mathbb{E}\int_0^T...</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>C_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+] = S_0\Phi(d_1) - Ke^{-rT}\P...</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>dS_t = r S_t\,dt + \sigma S_t\,dW_t^{\mathbb{Q}}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>dW_t^2 = dt</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>dX_t = \mu_t\,dt + \sigma_t\,dW_t</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>dX_t = b(t, X_t)\,dt + \sigma(t, X_t)\,dW_t, \quad X_0 = x_0</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>f(x) = x^2</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>W_0 = 0</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>X_t = W_t</dt><dd>Key relationship used in this topic.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>HJM</dt><dd>7) Applications and extensions
+
+ 
+ 
+ Mathematical finance
+
+ Derivatives pricing, hedging portfolios, interest-rate models (Vasicek, HJM), and volatility surfaces.</dd></div>
+        <div class="content-key__item"><dt>SDE</dt><dd>Introduced and explained in the sections below.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Key terms &amp; phrases</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>adapted</dt><dd>A process \((X_t)\) is adapted if \(X_t\) is \(\mathcal{F}_t\)-measurable for each \(t\).</dd></div>
+        <div class="content-key__item"><dt>Applications and extensions</dt><dd>Applications and extensions Mathematical finance Derivatives pricing, hedging portfolios, interest-rate models (Vasicek, HJM), and volatility surfaces.</dd></div>
+        <div class="content-key__item"><dt>Brownian motion</dt><dd>A standard Brownian motion (Wiener process) \(W_t\) satisfies:</dd></div>
+        <div class="content-key__item"><dt>filtered probability space</dt><dd>Stochastic calculus is built on a filtered probability space \((\Omega, \mathcal{F}, (\mathcal{F}_t)_{t \geq 0}, \mathbb{P})\), where \(\mathcal{F}_t\) records all information available up to time \(t\).</dd></div>
+        <div class="content-key__item"><dt>Girsanov theorem and risk-neutral pricing</dt><dd>Girsanov theorem and risk-neutral pricing Girsanov&#x27;s theorem changes probability measure by a density involving stochastic exponentials.</dd></div>
+        <div class="content-key__item"><dt>Girsanov&#x27;s theorem</dt><dd>Girsanov&#x27;s theorem changes probability measure by a density involving stochastic exponentials.</dd></div>
+        <div class="content-key__item"><dt>Itô integral</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Itô&#x27;s lemma</dt><dd>If \(X_t\) follows \(dX_t = \mu_t\,dt + \sigma_t\,dW_t\) and \(f(t,x)\) is twice continuously differentiable, then: \[ df(t, X_t) = \left(\frac{\partial f}{\partial t} + \mu_t\frac{\partial f}{\partial x} + \frac{1}{2}\sigma_t^2\frac{\pa...</dd></div>
+        <div class="content-key__item"><dt>Mathematical finance</dt><dd>Derivatives pricing, hedging portfolios, interest-rate models (Vasicek, HJM), and volatility surfaces.</dd></div>
+        <div class="content-key__item"><dt>Probability space and filtrations</dt><dd>Stochastic calculus is built on a filtered probability space \((\Omega, \mathcal{F}, (\mathcal{F}_t)_{t \geq 0}, \mathbb{P})\), where \(\mathcal{F}_t\) records all information available up to time \(t\).</dd></div>
+        <div class="content-key__item"><dt>SDE</dt><dd>An SDE has the form: \[ dX_t = b(t, X_t)\,dt + \sigma(t, X_t)\,dW_t, \quad X_0 = x_0 \] Existence and uniqueness require Lipschitz and linear-growth conditions on \(b\) and \(\sigma\).</dd></div>
+        <div class="content-key__item"><dt>Stochastic differential equations</dt><dd>An SDE has the form: \[ dX_t = b(t, X_t)\,dt + \sigma(t, X_t)\,dW_t, \quad X_0 = x_0 \] Existence and uniqueness require Lipschitz and linear-growth conditions on \(b\) and \(\sigma\).</dd></div>
+        <div class="content-key__item"><dt>The Itô integral</dt><dd>For an adapted process \(H_t\) with \(\mathbb{E}\int_0^T H_t^2\,dt &lt; \infty\), the Itô integral is defined as the \(L^2\) limit of simple-process integrals: \[ \int_0^T H_t\,dW_t = \lim \sum H_{t_i}(W_{t_{i+1}} - W_{t_i}) \]</dd></div>
+      </dl>
+      </div>
+    </details>
+
+<div class="card">
       <h2>1) Probability space and filtrations</h2>
       <p>
         Stochastic calculus is built on a <strong>filtered probability space</strong>

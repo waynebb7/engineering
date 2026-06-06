@@ -26,7 +26,50 @@
 
     <div class="content-body">
 
-    <div class="card">
+    <details class="content-key" id="topic-review-key">
+      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <div class="content-key__body">
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Formulae &amp; relationships</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>a_p = p + 1 - \#E(\mathbb{F}_p) \quad \text{(good } p \text{)},</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>E : y^2 = x^3 - x</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>L(E, s) = \prod_{p} L_p(p^{-s})^{-1},</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>r = 0</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>r = \mathrm{rank}(E)</dt><dd>Key relationship used in this topic.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>BSD</dt><dd>known for rank 0 and 1 (under standard conjectures on Sha in some formulations).</dd></div>
+        <div class="content-key__item"><dt>CM</dt><dd>5) Heegner points and Iwasawa theory
+
+ 
+ Heegner points are special points on \(E\) defined over imaginary quadratic fields, constructed from CM theory.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Key terms &amp; phrases</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>Computational verification and status</dt><dd>Computational verification and status BSD has been verified numerically for thousands of curves: Cremona&#x27;s tables (all curves of conductor \(\leq 500{,}000\)).</dd></div>
+        <div class="content-key__item"><dt>elliptic curve</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Elliptic curves over \(\mathbb{Q}\)</dt><dd>An elliptic curve over \(\mathbb{Q}\) is a smooth projective curve of genus 1 with a specified rational point (the identity), given by a Weierstrass equation \[ E : y^2 = x^3 + ax + b, \quad a, b \in \mathbb{Q}, \quad \Delta = -16(4a^3 +...</dd></div>
+        <div class="content-key__item"><dt>Hasse–Weil L-function</dt><dd>\[ L(E, s) = \prod_{p} L_p(p^{-s})^{-1}, \] convergent for \(\operatorname{Re}(s) &gt; \tfrac{3}{2}\) by the Hasse bound \(|a_p| \leq 2\sqrt{p}\).</dd></div>
+        <div class="content-key__item"><dt>Heegner points</dt><dd>special points on \(E\) defined over imaginary quadratic fields, constructed from CM theory.</dd></div>
+        <div class="content-key__item"><dt>Heegner points and Iwasawa theory</dt><dd>Heegner points and Iwasawa theory Heegner points are special points on \(E\) defined over imaginary quadratic fields, constructed from CM theory.</dd></div>
+        <div class="content-key__item"><dt>Langlands program</dt><dd>Modularity of elliptic curves is a case of the Langlands correspondence.</dd></div>
+        <div class="content-key__item"><dt>main conjecture of Iwasawa theory</dt><dd>The main conjecture of Iwasawa theory for elliptic curves (proved in many cases by Skinner–Urban, Wan, and others) relates \(p\)-adic L-functions to Selmer groups and implies BSD \(p\)-adic statements.</dd></div>
+        <div class="content-key__item"><dt>Mordell–Weil rank</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>regulator</dt><dd>Define the regulator \(R_E\) (determinant of the Néron–Tate height pairing on a \(\mathbb{Z}\)-basis of the free part), Tamagawa numbers \(c_p\), and Sha \(\Sha(E)\) (conjecturally finite).</dd></div>
+        <div class="content-key__item"><dt>Research connections</dt><dd>Research connections Langlands program Modularity of elliptic curves is a case of the Langlands correspondence.</dd></div>
+        <div class="content-key__item"><dt>Sha</dt><dd>Define the regulator \(R_E\) (determinant of the Néron–Tate height pairing on a \(\mathbb{Z}\)-basis of the free part), Tamagawa numbers \(c_p\), and Sha \(\Sha(E)\) (conjecturally finite).</dd></div>
+        <div class="content-key__item"><dt>Statement of the BSD Conjecture</dt><dd>Statement of the BSD Conjecture Let \(r = \mathrm{rank}(E)\), \(L(E, s)\) the completed L-function \(\Lambda(E, s)\), and \(\Omega_E\) the real period.</dd></div>
+        <div class="content-key__item"><dt>Tamagawa numbers</dt><dd>Define the regulator \(R_E\) (determinant of the Néron–Tate height pairing on a \(\mathbb{Z}\)-basis of the free part), Tamagawa numbers \(c_p\), and Sha \(\Sha(E)\) (conjecturally finite).</dd></div>
+        <div class="content-key__item"><dt>The L-function of an elliptic curve</dt><dd>For an elliptic curve \(E/\mathbb{Q}\) with good reduction outside a finite set of primes \(S\), define the local Euler factors: \[ a_p = p + 1 - \#E(\mathbb{F}_p) \quad \text{(good } p \text{)}, \] and appropriate polynomials \(L_p(s)\)...</dd></div>
+        <div class="content-key__item"><dt>Weak BSD</dt><dd>\(\operatorname{ord}_{s=1} L(E, s) = r\).</dd></div>
+        <div class="content-key__item"><dt>Weak BSD and strong BSD</dt><dd>Weak BSD and strong BSD Weak BSD \(\operatorname{ord}_{s=1} L(E, s) = r\).</dd></div>
+      </dl>
+      </div>
+    </details>
+
+<div class="card">
       <h2>1) Elliptic curves over \(\mathbb{Q}\)</h2>
       <p>
         An <strong>elliptic curve</strong> over \(\mathbb{Q}\) is a smooth projective curve of genus 1 with a specified rational point (the identity), given by a Weierstrass equation

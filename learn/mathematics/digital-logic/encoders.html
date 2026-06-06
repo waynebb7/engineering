@@ -22,7 +22,54 @@
     </div>
 
     <div class="content-body">
-      <div class="card">
+
+    <details class="content-key" id="topic-review-key">
+      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <div class="content-key__body">
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Formulae &amp; relationships</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>Y_0 = I_1 + I_3 + I_5 + I_7</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>Y_1 = I_2 + I_3 + I_6 + I_7</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>Y_2 = I_4 + I_5 + I_6 + I_7</dt><dd>Key relationship used in this topic.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>IC</dt><dd>4) Active-low inputs
+
+ 
+ Many IC encoders use active-low inputs: a line is considered active when it is driven to logic 0,
+ not logic 1.</dd></div>
+        <div class="content-key__item"><dt>OR</dt><dd>An encoder converts a one-hot (or one-active) input pattern into a compact binary output code.</dd></div>
+        <div class="content-key__item"><dt>ROM</dt><dd>Introduced and explained in the sections below.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Key terms &amp; phrases</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>\(Y_0\)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>\(Y_1\)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>\(Y_2\)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Active input</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Active-high view</dt><dd>Input \(I_k = 1\) means &quot;line \(k\) is selected.&quot;</dd></div>
+        <div class="content-key__item"><dt>active-low</dt><dd>Many IC encoders use active-low inputs: a line is considered active when it is driven to logic 0, not logic 1.</dd></div>
+        <div class="content-key__item"><dt>Active-low inputs</dt><dd>a line is considered active when it is driven to logic 0, not logic 1.</dd></div>
+        <div class="content-key__item"><dt>All-zero input</dt><dd>All-zero input: plain encoders have no valid output when no input is active; priority encoders add a \(V\) flag</dd></div>
+        <div class="content-key__item"><dt>binary encoder</dt><dd>A plain binary encoder assumes exactly one input is logic 1.</dd></div>
+        <div class="content-key__item"><dt>Binary encoder (8-to-3)</dt><dd>A plain binary encoder assumes exactly one input is logic 1.</dd></div>
+        <div class="content-key__item"><dt>Design notes and limitations</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Don&#x27;t-care conditions</dt><dd>Don&#x27;t-care conditions: if only one input can ever be active, plain encoders suffice and are simpler</dd></div>
+        <div class="content-key__item"><dt>Encoder vs multiplexer vs decoder</dt><dd>Encoder vs multiplexer vs decoder Encoder Many inputs → few outputs.</dd></div>
+        <div class="content-key__item"><dt>Glitch-free output</dt><dd>Glitch-free output: use registered outputs if the encoder feeds synchronous logic</dd></div>
+        <div class="content-key__item"><dt>Inverse of a decoder</dt><dd>Inverse of a decoder: decoders expand binary codes to one-hot outputs; encoders compress one-hot to binary</dd></div>
+        <div class="content-key__item"><dt>priority encoder</dt><dd>A priority encoder always reports the index of the highest-priority active input (conventionally the input with the largest index).</dd></div>
+        <div class="content-key__item"><dt>Priority rule</dt><dd>Priority rule: if \(I_5\) and \(I_2\) are both 1, output is 101 (5 wins over 2)</dd></div>
+        <div class="content-key__item"><dt>Propagation delay</dt><dd>Propagation delay: priority chains add delay proportional to input count; compare with tree structures for high-speed designs</dd></div>
+        <div class="content-key__item"><dt>Valid output (\(V\))</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Worked example: keyboard row scan</dt><dd>Worked example: keyboard row scan A 4×4 keyboard matrix produces one-hot row signals when a single key is pressed.</dd></div>
+      </dl>
+      </div>
+    </details>
+
+<div class="card">
         <h2>1) What is an encoder?</h2>
         <p>
           An <strong>encoder</strong> converts a one-hot (or one-active) input pattern into a compact binary output code.

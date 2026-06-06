@@ -26,7 +26,58 @@
 
     <div class="content-body">
 
-    <div class="card">
+    <details class="content-key" id="topic-review-key">
+      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <div class="content-key__body">
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Formulae &amp; relationships</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>\bar{P} = \frac{1}{T}\int_0^T v(t)\,i(t)\,dt</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\dfrac{dv}{dt} = \omega V_m \cos(\omega t + \phi)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\tau = L/R</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\tau = RC</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>E = \int_{t_1}^{t_2} v(t)\,i(t)\,dt = \int_{t_1}^{t_2} p(t)\,dt</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>i_C = C\,\frac{dv_C}{dt}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>i_L(t) = \frac{1}{L}\int v_L\,dt + i_0</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>i_L(t) = \frac{V_s}{R}\left(1 - e^{-tR/L}\right)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>L\,\frac{d^2i}{dt^2} + R\,\frac{di}{dt} + \frac{i}{C} = \frac{dV}{dt}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>p(t) = v(t)\,i(t)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>u(t) = K_p\,e(t) + K_i\int e(t)\,dt + K_d\,\frac{de(t)}{dt}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>v(t) = V_m \sin(\omega t + \phi_v), \qquad i(t) = I_m \sin(\omega t + \phi_i)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>v_C(t) = \frac{1}{C}\int i_C\,dt + v_0</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>v_C(t) = V_s\left(1 - e^{-t/RC}\right)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>v_L = L\,\frac{di_L}{dt}</dt><dd>Key relationship used in this topic.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>AC</dt><dd>Alternating current — current that reverses direction periodically.</dd></div>
+        <div class="content-key__item"><dt>DC</dt><dd>Direct current — current flowing in one direction.</dd></div>
+        <div class="content-key__item"><dt>PID</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>RC</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>RL</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>RLC</dt><dd>5) RLC transients and second-order circuits
+
+ 
+ Combining resistors, inductors, and capacitors gives second-order differential equations.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Key terms &amp; phrases</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>AC circuits and sinusoidal quantities</dt><dd>Alternating voltage and current vary sinusoidally: \[ v(t) = V_m \sin(\omega t + \phi_v), \qquad i(t) = I_m \sin(\omega t + \phi_i) \] where \( \omega = 2\pi f \) is angular frequency (rad s⁻¹) and \( f \) is frequency in hertz.</dd></div>
+        <div class="content-key__item"><dt>Behaviour</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Capacitors — differentiation and integration</dt><dd>Capacitors — differentiation and integration A capacitor stores charge.</dd></div>
+        <div class="content-key__item"><dt>Condition</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>functions of time</dt><dd>Voltage and current in real circuits are often functions of time .</dd></div>
+        <div class="content-key__item"><dt>Inductors — differentiation and integration</dt><dd>Inductors — differentiation and integration An inductor opposes changes in current.</dd></div>
+        <div class="content-key__item"><dt>Integrals for energy and power</dt><dd>Integrals for energy and power Instantaneous power is \( p(t) = v(t)\,i(t) \).</dd></div>
+        <div class="content-key__item"><dt>Period and frequency</dt><dd>Period \( T = 1/f \).</dd></div>
+        <div class="content-key__item"><dt>PID control and engineering applications</dt><dd>Feedback controllers combine proportional, integral, and derivative terms: \[ u(t) = K_p\,e(t) + K_i\int e(t)\,dt + K_d\,\frac{de(t)}{dt} \]</dd></div>
+        <div class="content-key__item"><dt>Response type</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>RLC transients and second-order circuits</dt><dd>RLC transients and second-order circuits Combining resistors, inductors, and capacitors gives second-order differential equations.</dd></div>
+      </dl>
+      </div>
+    </details>
+
+<div class="card">
       <h2>1) Why calculus in electrical engineering?</h2>
       <p>
         Voltage and current in real circuits are often <strong>functions of time</strong>. Capacitors and inductors

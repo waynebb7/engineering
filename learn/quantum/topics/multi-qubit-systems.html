@@ -26,7 +26,55 @@
 
     <div class="content-body">
 
-    <div class="card">
+    <details class="content-key" id="topic-review-key">
+      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <div class="content-key__body">
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Formulae &amp; relationships</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>(U \otimes V)(|\phi\rangle \otimes |\chi\rangle) = (U|\phi\rangle) \otimes (V...</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\lambda_1 = \lambda_2 = \frac{1}{2}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\mathcal{H}_{AB} = \mathcal{H}_A \otimes \mathcal{H}_B \cong \mathbb{C}^4</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\mathrm{CNOT} = |0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes X</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\rho_A = \mathrm{Tr}_B(|\Phi^+\rangle\langle\Phi^+|) = \frac{I}{2}</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>ad = bc</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>P_0 = |0\rangle\langle 0| \otimes I</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>P_1 = |1\rangle\langle 1| \otimes I</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>|\psi\rangle_{AB} = \sum_i \sqrt{\lambda_i}\,|i\rangle_A \otimes |i\rangle_B</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>|\psi\rangle_{AB} = |\phi\rangle_A \otimes |\chi\rangle_B</dt><dd>Key relationship used in this topic.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>AB</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>CNOT</dt><dd>not a tensor product — it couples subsystems:
+ \[
+ \mathrm{CNOT} = |0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes X
+ \]
+ 
+
+ 
+ Gate reference: Quantum Gates ,
+ Quantum Circuits .</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Key terms &amp; phrases</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>CNOT</dt><dd>CNOT is not a tensor product — it couples subsystems: \[ \mathrm{CNOT} = |0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes X \]</dd></div>
+        <div class="content-key__item"><dt>Composite Hilbert spaces</dt><dd>For qubits \(A\) and \(B\) with spaces \(\mathcal{H}_A \cong \mathbb{C}^2\) and \(\mathcal{H}_B \cong \mathbb{C}^2\), the joint system lives in the tensor product : \[ \mathcal{H}_{AB} = \mathcal{H}_A \otimes \mathcal{H}_B \cong \mathbb{...</dd></div>
+        <div class="content-key__item"><dt>entangled</dt><dd>A state is entangled if it cannot be written as a product.</dd></div>
+        <div class="content-key__item"><dt>Entangled states</dt><dd>Entangled states A state is entangled if it cannot be written as a product.</dd></div>
+        <div class="content-key__item"><dt>Measuring one qubit</dt><dd>Apply projectors \(P_0 = |0\rangle\langle 0| \otimes I\), \(P_1 = |1\rangle\langle 1| \otimes I\) — may not factor the post-measurement state if entangled.</dd></div>
+        <div class="content-key__item"><dt>Multi-qubit measurement</dt><dd>Multi-qubit measurement Measuring all qubits in the computational basis projects onto one of \(2^n\) outcomes with probability \(|\langle x_1\cdots x_n | \psi \rangle|^2\).</dd></div>
+        <div class="content-key__item"><dt>Partial trace and reduced states</dt><dd>Tracing out subsystem \(B\) from a density matrix \(\rho_{AB}\): \[ \rho_A = \mathrm{Tr}_B(\rho_{AB}) = \sum_i (\mathbb{I}_A \otimes \langle i|_B)\,\rho_{AB}\,(\mathbb{I}_A \otimes |i\rangle_B) \]</dd></div>
+        <div class="content-key__item"><dt>product state</dt><dd>A product state factorises across subsystems: \[ |\psi\rangle_{AB} = |\phi\rangle_A \otimes |\chi\rangle_B \] Example: \(|00\rangle = |0\rangle \otimes |0\rangle\), \(|+\rangle|0\rangle\).</dd></div>
+        <div class="content-key__item"><dt>Product states (separable states)</dt><dd>A product state factorises across subsystems: \[ |\psi\rangle_{AB} = |\phi\rangle_A \otimes |\chi\rangle_B \] Example: \(|00\rangle = |0\rangle \otimes |0\rangle\), \(|+\rangle|0\rangle\).</dd></div>
+        <div class="content-key__item"><dt>Schmidt decomposition</dt><dd>\[ |\psi\rangle_{AB} = \sum_i \sqrt{\lambda_i}\,|i\rangle_A \otimes |i\rangle_B \] with \(\lambda_i \geq 0\), \(\sum \lambda_i = 1\).</dd></div>
+        <div class="content-key__item"><dt>tensor product</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Tensor product of operators</dt><dd>If \(U\) acts on qubit \(A\) and \(V\) on qubit \(B\), the joint operator is \(U \otimes V\): \[ (U \otimes V)(|\phi\rangle \otimes |\chi\rangle) = (U|\phi\rangle) \otimes (V|\chi\rangle) \]</dd></div>
+      </dl>
+      </div>
+    </details>
+
+<div class="card">
       <h2>1) Composite Hilbert spaces</h2>
       <p>
         For qubits \(A\) and \(B\) with spaces \(\mathcal{H}_A \cong \mathbb{C}^2\) and

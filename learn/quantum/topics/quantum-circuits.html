@@ -26,7 +26,49 @@
 
     <div class="content-body">
 
-    <div class="card">
+    <details class="content-key" id="topic-review-key">
+      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <div class="content-key__body">
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Formulae &amp; relationships</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>O_f|x\rangle|y\rangle = |x\rangle|y \oplus f(x)\rangle</dt><dd>Key relationship used in this topic.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>CNOT</dt><dd>5) Universality and decomposition
+
+ 
+ Any unitary on \(n\) qubits decomposes into CNOT gates and single-qubit rotations.</dd></div>
+        <div class="content-key__item"><dt>CZ</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>IBM</dt><dd>Key idea: Circuits are the standard programming model for gate-based quantum computers
+ (IBM, Google, IonQ, etc.).</dd></div>
+        <div class="content-key__item"><dt>NISQ</dt><dd>Noisy Intermediate-Scale Quantum — devices with limited qubits and significant noise.</dd></div>
+        <div class="content-key__item"><dt>QFT</dt><dd>Quantum field theory — relativistic quantum framework for particles and fields.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Key terms &amp; phrases</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>Ancillas</dt><dd>Ancillas: Extra qubits initialised to \(|0\rangle\), often discarded</dd></div>
+        <div class="content-key__item"><dt>Circuit depth and width</dt><dd>Circuit depth and width Width = number of qubits.</dd></div>
+        <div class="content-key__item"><dt>Circuit elements</dt><dd>Circuit elements Initialisation: \(|0\rangle\) on each wire (physical reset or cooling) Single-qubit gates: \(H, X, R_z(\theta)\), etc.</dd></div>
+        <div class="content-key__item"><dt>Example: Bell state preparation</dt><dd>Circuit on two qubits:</dd></div>
+        <div class="content-key__item"><dt>feed-forward</dt><dd>Some circuits measure qubits mid-execution and apply gates conditioned on classical outcomes ( feed-forward ).</dd></div>
+        <div class="content-key__item"><dt>Initialisation</dt><dd>Initialisation: \(|0\rangle\) on each wire (physical reset or cooling)</dd></div>
+        <div class="content-key__item"><dt>Measurement</dt><dd>Measurement: Meter symbol; classical bits store outcomes</dd></div>
+        <div class="content-key__item"><dt>Mid-circuit measurement and classical control</dt><dd>Mid-circuit measurement and classical control Some circuits measure qubits mid-execution and apply gates conditioned on classical outcomes ( feed-forward ).</dd></div>
+        <div class="content-key__item"><dt>Multi-qubit gates</dt><dd>Multi-qubit gates: CNOT, CZ — control dot + target symbol</dd></div>
+        <div class="content-key__item"><dt>NISQ</dt><dd>Circuit depth matters for NISQ devices where decoherence limits how many gates you can run before errors dominate.</dd></div>
+        <div class="content-key__item"><dt>oracle</dt><dd>An oracle \(O_f\) is a black-box unitary encoding a function \(f\): \[ O_f|x\rangle|y\rangle = |x\rangle|y \oplus f(x)\rangle \] Algorithms like Deutsch–Jozsa and Grover query an oracle repeatedly.</dd></div>
+        <div class="content-key__item"><dt>Oracles and algorithm circuits</dt><dd>An oracle \(O_f\) is a black-box unitary encoding a function \(f\): \[ O_f|x\rangle|y\rangle = |x\rangle|y \oplus f(x)\rangle \] Algorithms like Deutsch–Jozsa and Grover query an oracle repeatedly.</dd></div>
+        <div class="content-key__item"><dt>Phase oracles</dt><dd>Phase oracles implement \(|x\rangle \to (-1)^{f(x)}|x\rangle\) using one ancilla: conjugate a CNOT-style construction with \(H\) on the ancilla.</dd></div>
+        <div class="content-key__item"><dt>quantum circuit</dt><dd>a sequence of unitary gates applied to qubits, followed by measurement.</dd></div>
+        <div class="content-key__item"><dt>Single-qubit gates</dt><dd>\(H, X, R_z(\theta)\), etc.</dd></div>
+        <div class="content-key__item"><dt>Universality and decomposition</dt><dd>Universality and decomposition Any unitary on \(n\) qubits decomposes into CNOT gates and single-qubit rotations.</dd></div>
+      </dl>
+      </div>
+    </details>
+
+<div class="card">
       <h2>1) What is a quantum circuit?</h2>
       <p>
         A <strong>quantum circuit</strong> is a sequence of unitary gates applied to qubits, followed by measurement.

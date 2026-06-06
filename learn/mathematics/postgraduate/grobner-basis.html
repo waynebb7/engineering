@@ -26,7 +26,52 @@
 
     <div class="content-body">
 
-    <div class="card">
+    <details class="content-key" id="topic-review-key">
+      <summary class="content-key__summary">Topic review key — formulae, terms &amp; acronyms</summary>
+      <div class="content-key__body">
+      <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Formulae &amp; relationships</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>\dim V(I) = \dim V(\mathrm{in}_\prec(I))</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\langle \mathrm{LT}(g_1), \ldots, \mathrm{LT}(g_m)\rangle = \langle \mathrm{L...</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>\mathrm{in}_\prec(I) = \langle \mathrm{LT}(f) : f \in I\rangle</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>G = \{g_1, \ldots, g_m\} \subset I</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>I = \langle f_1, \ldots, f_s\rangle \subset R</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>I_k = I \cap k[x_k, \ldots, x_n]</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt>R = k[x_1, \ldots, x_n]</dt><dd>Key relationship used in this topic.</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Acronyms &amp; symbols</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>LC</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>LM</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>LT</dt><dd>Reduced Gröbner basis: Uniquely determined: monic generators with no term of
+ \(g_i\) in \(\langle \mathrm{LT}(g_j) : j \neq i\rangle\).</dd></div>
+      </dl>
+      <h3 class="content-key__heading">Key terms &amp; phrases</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt>Applications</dt><dd>Applications Robotics and kinematics Constraint equations for joint configurations reduce to solvable triangular systems via Gröbner bases.</dd></div>
+        <div class="content-key__item"><dt>Buchberger&#x27;s algorithm and S-polynomials</dt><dd>For polynomials \(f, g\), the S-polynomial is: \[ S(f,g) = \frac{L}{\mathrm{LC}(f)\,\mathrm{LM}(f)}\,f - \frac{L}{\mathrm{LC}(g)\,\mathrm{LM}(g)}\,g, \quad L = \mathrm{lcm}(\mathrm{LM}(f), \mathrm{LM}(g)) \]</dd></div>
+        <div class="content-key__item"><dt>Elimination and the Extension Theorem</dt><dd>With lexicographic ordering \(x_1 \succ \cdots \succ x_n\), the \(k\)-th elimination ideal is: \[ I_k = I \cap k[x_k, \ldots, x_n] \] Gröbner bases respect elimination: if \(G\) is a Gröbner basis of \(I\) in \(\mathrm{lex}\), then \(G \...</dd></div>
+        <div class="content-key__item"><dt>elimination ideal</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Geometry of Gröbner bases</dt><dd>Geometry of Gröbner bases The initial ideal \(\mathrm{in}_\prec(I) = \langle \mathrm{LT}(f) : f \in I\rangle\) encodes asymptotic geometry.</dd></div>
+        <div class="content-key__item"><dt>Graded lex (\(\mathrm{grlex}\))</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Graded reverse lex (\(\mathrm{grevlex}\))</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Gröbner basis</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Gröbner basis definition</dt><dd>A finite set \(G = \{g_1, \ldots, g_m\} \subset I\) is a Gröbner basis of \(I\) (with respect to \(\prec\)) if: \[ \langle \mathrm{LT}(g_1), \ldots, \mathrm{LT}(g_m)\rangle = \langle \mathrm{LT}(f) : f \in I\rangle \] Equivalently, every...</dd></div>
+        <div class="content-key__item"><dt>Ideals and division algorithm</dt><dd>Ideals and division algorithm Given an ideal \(I = \langle f_1, \ldots, f_s\rangle \subset R\), the multivariate division algorithm reduces \(f\) modulo \(\{f_i\}\) to a remainder \(r\).</dd></div>
+        <div class="content-key__item"><dt>initial ideal</dt><dd>The initial ideal \(\mathrm{in}_\prec(I) = \langle \mathrm{LT}(f) : f \in I\rangle\) encodes asymptotic geometry.</dd></div>
+        <div class="content-key__item"><dt>Lexicographic (\(\mathrm{lex}\))</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>lexicographic ordering</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>monomial ordering</dt><dd>A monomial ordering \(\prec\) is a total order on monomials compatible with multiplication: if \(m \prec m&#x27;\) then \(m \cdot u \prec m&#x27; \cdot u\) for all monomials \(u\).</dd></div>
+        <div class="content-key__item"><dt>multivariate division
+ algorithm</dt><dd>Given an ideal \(I = \langle f_1, \ldots, f_s\rangle \subset R\), the multivariate division algorithm reduces \(f\) modulo \(\{f_i\}\) to a remainder \(r\).</dd></div>
+        <div class="content-key__item"><dt>Polynomial rings and monomial orderings</dt><dd>Polynomial rings and monomial orderings Let \(R = k[x_1, \ldots, x_n]\) be a polynomial ring over a field \(k\).</dd></div>
+        <div class="content-key__item"><dt>Robotics and kinematics</dt><dd>Constraint equations for joint configurations reduce to solvable triangular systems via Gröbner bases.</dd></div>
+      </dl>
+      </div>
+    </details>
+
+<div class="card">
       <h2>1) Polynomial rings and monomial orderings</h2>
       <p>
         Let \(R = k[x_1, \ldots, x_n]\) be a polynomial ring over a field \(k\). A
