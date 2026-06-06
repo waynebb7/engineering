@@ -1403,6 +1403,211 @@ body.map-page .panel .path-step::before {
   color: var(--muted);
 }
 
+body.map-page .map-hint {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 16px;
+  background: #eef5fc;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.92rem;
+  color: var(--corp-text);
+}
+
+body.map-page .map-hint__dismiss {
+  border: none;
+  background: transparent;
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: var(--muted);
+  line-height: 1;
+}
+
+body.map-page .readiness-banner {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.92rem;
+}
+
+body.map-page .readiness-banner--ready {
+  background: #e8f5e9;
+  color: #1b5e20;
+}
+
+body.map-page .readiness-banner--gaps {
+  background: #fff3e0;
+  color: #8a4b00;
+}
+
+body.map-page .readiness-banner__btn {
+  margin-left: 8px;
+  border: 1px solid currentColor;
+  background: transparent;
+  border-radius: var(--corp-radius);
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+body.map-page .toolbar-mini-btn {
+  font-size: 0.82rem;
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--corp-radius);
+  background: var(--corp-surface);
+  cursor: pointer;
+}
+
+body.map-page #jumpBtn,
+body.map-page #goalBtn {
+  font-size: 14px;
+  padding: 9px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--corp-radius);
+  background: var(--corp-surface);
+  cursor: pointer;
+  font-family: var(--corp-font);
+}
+
+body.map-page #goalBtn {
+  background: var(--corp-accent);
+  color: #fff;
+  border-color: var(--corp-accent);
+}
+
+body.map-page .legend-line {
+  display: inline-block;
+  width: 28px;
+  height: 0;
+  border-top: 3px solid var(--line);
+  vertical-align: middle;
+}
+
+body.map-page .legend-line--required { border-top-color: var(--req); }
+body.map-page .legend-line--rec { border-top: 2px dashed var(--rec); }
+
+body.map-page .status-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+body.map-page .status-dot--none {
+  background: #f2f4f7;
+  color: transparent;
+  border: 1px dashed var(--border);
+}
+
+body.map-page .status-dot--todo { background: #f2f4f7; color: var(--muted); }
+body.map-page .status-dot--partial { background: #fff8e1; color: #9a6b00; }
+body.map-page .status-dot--weak { background: #fdecea; color: #b23; }
+body.map-page .status-dot--done { background: #e8f5e9; color: #2e7d32; }
+body.map-page .status-dot--read { background: #eef5fc; color: var(--accent); }
+
+body.map-page.map-page--compact .node .title {
+  font-size: 0.88rem;
+}
+
+body.map-page .meta--compact {
+  margin-top: 4px;
+}
+
+body.map-page .node.on-path {
+  box-shadow: 0 0 0 2px rgba(30, 90, 138, 0.35);
+}
+
+body.map-page .panel-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 8px 0 12px;
+}
+
+body.map-page .path-list-view {
+  background: var(--corp-surface);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 16px;
+}
+
+body.map-page .path-list-view__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+body.map-page .path-list-view h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+body.map-page .path-list-view ol {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+body.map-page .path-list-view li {
+  margin: 4px 0;
+}
+
+body.map-page .path-list__topic {
+  border: none;
+  background: none;
+  color: var(--corp-accent);
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  font: inherit;
+}
+
+body.map-page .path-list__status {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 900px) {
+  body.map-page .viewport {
+    height: 50vh;
+    min-height: 280px;
+  }
+
+  body.map-page .path-list-view:not([hidden]) {
+    display: block;
+  }
+
+  body.map-page .panel {
+    position: static;
+    width: auto;
+    max-height: none;
+    margin: 12px 16px;
+  }
+}
+
+@media print {
+  body.map-page .site-header,
+  body.map-page .site-footer,
+  body.map-page .toolbar,
+  body.map-page .map-legend,
+  body.map-page .map-hint,
+  body.map-page .readiness-banner,
+  body.map-page .viewport,
+  body.map-page .panel {
+    display: none !important;
+  }
+
+  body.map-page .path-list-view {
+    display: block !important;
+    border: none;
+  }
+}
+
 body.map-page .stage {
   position: relative;
   display: inline-flex;
@@ -2479,6 +2684,13 @@ body.drill-down-page .status {
 .progress-row__title a {
   font-weight: 600;
   color: var(--corp-navy);
+}
+
+.progress-row__map {
+  margin-left: 8px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--corp-accent);
 }
 
 .progress-row__controls {

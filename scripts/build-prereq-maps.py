@@ -90,6 +90,18 @@ def graph_payload(spec: dict) -> dict:
     return payload
 
 
+def node_pages_payload(spec: dict, graph: dict, pages: dict) -> dict:
+    map_id = spec["config"]["id"]
+    by_node = pages.get("byNode", pages if "math" in pages else {})
+    payload = dict(by_node.get(map_id, {}))
+    if spec.get("merge_math_cross"):
+        math_pages = by_node.get("math", {})
+        for node in graph.get("nodes", []):
+            if node.get("subject") == "math" and node["id"] in math_pages:
+                payload[node["id"]] = math_pages[node["id"]]
+    return payload
+
+
 def render_template(spec: dict, graph: dict, pages: dict) -> str:
     template = TEMPLATE.read_text(encoding="utf-8")
     map_id = spec["config"]["id"]
@@ -104,7 +116,11 @@ def render_template(spec: dict, graph: dict, pages: dict) -> str:
         "{{LEVEL_FILTERS}}": level_checks,
         "{{MAP_CONFIG_JSON}}": json.dumps(spec["config"], ensure_ascii=False, indent=2),
         "{{GRAPH_DATA_JSON}}": json.dumps(graph, ensure_ascii=False, indent=2),
-        "{{NODE_PAGES_JSON}}": json.dumps(pages.get(map_id, {}), ensure_ascii=False, indent=2),
+        "{{NODE_PAGES_JSON}}": json.dumps(
+            node_pages_payload(spec, graph, pages),
+            ensure_ascii=False,
+            indent=2,
+        ),
     }
     html = template
     for key, value in replacements.items():

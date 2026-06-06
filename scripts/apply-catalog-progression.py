@@ -8,6 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 PROGRESSION_FILE = ROOT / "scripts" / "topic-progression.json"
+NODE_PAGES_FILE = ROOT / "maps" / "prereq-node-pages.json"
 
 PREREQ_CARD_MARKER = "progression-card prerequisites-card"
 NEXT_CARD_MARKER = "progression-card next-topics-card"
@@ -93,9 +94,15 @@ def build_prereq_card(
         heading = "<h2>Pre-requisites</h2>"
 
     map_link = ""
+    page_maps = json.loads(NODE_PAGES_FILE.read_text(encoding="utf-8")) if NODE_PAGES_FILE.exists() else {}
+    by_page = page_maps.get("byPage", {})
     for cat in catalogs:
         if cat.get("prereq_map"):
             map_href = link(from_href, cat["prereq_map"])
+            cat_key = cat.get("key") or ""
+            node_id = (by_page.get(cat_key) or {}).get(from_href.replace("\\", "/"))
+            if node_id:
+                map_href += f"?topic={node_id}"
             map_link = (
                 f'<p class="mini">See the '
                 f'<a href="{map_href}">{escape_html(cat["label"])} prerequisite map</a> '

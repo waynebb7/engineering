@@ -83,16 +83,27 @@ def best_title_match(node_title: str, topics: list[dict]) -> str | None:
     return best
 
 
+def existing_hrefs(hrefs: list[str]) -> list[str]:
+    return [h for h in hrefs if (ROOT / h).exists()]
+
+
 def main() -> None:
     overrides = {}
     if OVERRIDES.exists():
         overrides = json.loads(OVERRIDES.read_text(encoding="utf-8"))
+    for map_id, mapping in overrides.items():
+        for node_id, hrefs in list(mapping.items()):
+            kept = existing_hrefs(hrefs)
+            if kept:
+                mapping[node_id] = kept
+            else:
+                del mapping[node_id]
 
     math_topics = load_topics("math")
     physics_topics = load_topics("physics")
     quantum_topics = load_topics("quantum")
 
-    result: dict[str, dict[str, list[str]]] = {"math": {}, "physics": {}, "quantum": {}}
+    by_node: dict[str, dict[str, list[str]]] = {"math": {}, "physics": {}, "quantum": {}}
 
     for map_id, path in TOPIC_FILES.items():
         if not path.exists():
@@ -104,7 +115,9 @@ def main() -> None:
         for node in graph.get("nodes", []):
             node_id = node["id"]
             if node_id in map_overrides:
-                result[map_id][node_id] = map_overrides[node_id]
+                kept = existing_hrefs(map_overrides[node_id])
+                if kept:
+                    by_node[map_id][node_id] = kept
                 continue
 
             href = None
@@ -114,11 +127,11 @@ def main() -> None:
                 href = best_title_match(node["title"], catalog_topics)
 
             if href and (ROOT / href).exists():
-                result[map_id][node_id] = [href]
+                by_node[map_id][node_id] = [href]
 
         # Math external nodes used in cross maps
         for node in graph.get("nodes", []):
-            if node.get("subject") == "math" and node["id"] not in result.get(map_id, {}):
+            if node.get("subject") == "math" and node["id"] not in by_node.get(map_id, {}):
                 math_path = TOPIC_FILES["math"]
                 if math_path.exists():
                     math_graph = json.loads(math_path.read_text(encoding="utf-8"))
@@ -126,10 +139,18 @@ def main() -> None:
                     if math_node:
                         href = best_title_match(math_node["title"], math_topics)
                         if href and (ROOT / href).exists():
-                            result.setdefault(map_id, {})[node["id"]] = [href]
+                            by_node.setdefault(map_id, {})[node["id"]] = [href]
 
-    OUT.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    for k, v in result.items():
+    by_page: dict[str, dict[str, str]] = {}
+    for map_id, mapping in by_node.items():
+        by_page[map_id] = {}
+        for node_id, hrefs in mapping.items():
+            for href in hrefs:
+                by_page[map_id][href] = node_id
+
+    payload = {"byNode": by_node, "byPage": by_page}
+    OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    for k, v in by_node.items():
         print(f"{k}: mapped {len(v)} nodes")
 
 

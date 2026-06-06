@@ -254,6 +254,12 @@
     return true;
   }
 
+  var MAP_URLS = {
+    math: 'maps/math-prereq-map.html',
+    physics: 'maps/physics-prereq-map.html',
+    quantum: 'maps/quantum-prereq-map.html'
+  };
+
   function mountProgressPage() {
     if (!document.body.classList.contains('progress-page')) return;
     var root = document.getElementById('progress-app');
@@ -264,6 +270,7 @@
     var search = '';
     var catalogFilter = 'all';
     var catalogData = null;
+    var pageToNode = null;
     var expandedCatalogs = { math: false, physics: false, quantum: false };
 
     function catalogStats(cat, progress) {
@@ -286,6 +293,13 @@
 
     function topicHref(href) {
       return base + href;
+    }
+
+    function mapHrefForTopic(catId, topicId) {
+      if (!pageToNode || !MAP_URLS[catId]) return null;
+      var nodeId = (pageToNode[catId] || {})[topicId];
+      if (!nodeId) return null;
+      return base + MAP_URLS[catId] + '?topic=' + encodeURIComponent(nodeId);
     }
 
     function render() {
@@ -342,9 +356,13 @@
                 topic.id.toLowerCase().indexOf(search.toLowerCase()) === -1) return;
 
             visible += 1;
+            var mapHref = mapHrefForTopic(cat.id, topic.id);
+            var mapCell = mapHref
+              ? ' <a class="progress-row__map" href="' + mapHref + '" title="View on prerequisite map">Map</a>'
+              : '';
             rows +=
               '<tr class="progress-row" data-topic-id="' + topic.id + '">' +
-                '<td class="progress-row__title"><a href="' + topicHref(topic.href) + '">' + topic.title + '</a></td>' +
+                '<td class="progress-row__title"><a href="' + topicHref(topic.href) + '">' + topic.title + '</a>' + mapCell + '</td>' +
                 '<td class="progress-row__controls">' + buildControlsHtml(topic.id, entry, false) + '</td>' +
               '</tr>';
           });
@@ -380,7 +398,10 @@
                   : '') +
               '</summary>' +
               '<div class="progress-catalog__body">' +
-                '<p class="progress-catalog__meta"><a href="' + base + cat.catalog_href + '">Open ' + cat.label + ' catalog</a></p>' +
+                '<p class="progress-catalog__meta">' +
+                  '<a href="' + base + cat.catalog_href + '">Open ' + cat.label + ' catalog</a>' +
+                  (MAP_URLS[cat.id] ? ' · <a href="' + base + MAP_URLS[cat.id] + '">Prerequisite map</a>' : '') +
+                '</p>' +
                 sectionHtml +
               '</div>' +
             '</details>';
@@ -449,9 +470,14 @@
       }
     }
 
-    loadCatalogData()
-      .then(function (data) {
-        catalogData = data;
+    var mapsPromise = fetch(base + 'maps/prereq-node-pages.json', { cache: 'no-store' })
+      .then(function (res) { return res.ok ? res.json() : { byPage: {} }; })
+      .catch(function () { return { byPage: {} }; });
+
+    Promise.all([loadCatalogData(), mapsPromise])
+      .then(function (results) {
+        catalogData = results[0];
+        pageToNode = results[1].byPage || {};
         render();
       })
       .catch(function (err) {

@@ -9,24 +9,38 @@
   <title>Physics Prerequisite Map</title>
 </head>
 
-<body class="map-page">
+<body class="map-page map-page--compact">
   <header class="map-page-header">
     <h1>Physics Prerequisite Map</h1>
     <div class="sub">Left is foundational. Right is advanced. Dashed purple lines show cross-subject mathematics prerequisites. <a id="catalogLink" href="#">Open subject catalog</a></div>
   </header>
 
+  <div id="mapHint" class="map-hint" role="status" hidden>
+    <span>Pick a <strong>goal topic</strong> to see your shortest path, readiness gaps, and lesson links in the side panel.</span>
+    <button type="button" id="dismissHint" class="map-hint__dismiss" aria-label="Dismiss hint">&times;</button>
+  </div>
+
+  <div id="readinessBanner" class="readiness-banner" hidden></div>
+
   <div class="toolbar">
     <div class="toolbar-group">
       <input id="search" type="text" placeholder="Search topics" />
-      <select id="focusSelect"></select>
-      <select id="goalSelect"></select>
-      <button id="resetBtn" type="button">Reset view</button>
+      <select id="topicSelect" aria-label="Topic picker"></select>
+      <button id="jumpBtn" type="button" title="Jump to topic on map">Jump</button>
+      <button id="goalBtn" type="button" title="Set goal and show path">Set goal</button>
+      <button id="resetBtn" type="button">Reset</button>
     </div>
     <div class="toolbar-group">
+      <label class="toolbar-check"><input id="pathOnly" type="checkbox" /> Path only</label>
+      <label class="toolbar-check"><input id="gapsOnly" type="checkbox" /> My gaps only</label>
+      <label class="toolbar-check"><input id="compactCards" type="checkbox" checked /> Compact cards</label>
+      <select id="showThrough" aria-label="Show levels through"></select>
       <select id="domainFilter"><option value="">All domains</option></select>
       <label class="toolbar-check"><input id="lessonsOnly" type="checkbox" /> Lessons only</label>
     </div>
     <div class="toolbar-group level-filters">
+      <button type="button" id="levelsAll" class="toolbar-mini-btn">All levels</button>
+      <button type="button" id="levelsNone" class="toolbar-mini-btn">No levels</button>
         <label class="level-filter-label"><input type="checkbox" class="level-filter" value="KS2" checked> KS2</label>
         <label class="level-filter-label"><input type="checkbox" class="level-filter" value="KS3" checked> KS3</label>
         <label class="level-filter-label"><input type="checkbox" class="level-filter" value="GCSE" checked> GCSE</label>
@@ -42,8 +56,18 @@
     <span class="legend-item"><span class="legend-swatch legend-swatch--upstream"></span> Prerequisites</span>
     <span class="legend-item"><span class="legend-swatch legend-swatch--downstream"></span> Dependents</span>
     <span class="legend-item"><span class="legend-swatch legend-swatch--gap"></span> Missing prereqs</span>
-    <span class="legend-item"><span class="legend-swatch legend-swatch--math"></span> Cross-subject (math)</span>
+    <span class="legend-item legend-item--cross" id="legendCross"><span class="legend-swatch legend-swatch--math"></span> Cross-subject (math)</span>
+    <span class="legend-item legend-item--lines" id="legendLinesRequired"><span class="legend-line legend-line--required"></span> Required edge</span>
+    <span class="legend-item legend-item--lines" id="legendLinesRec"><span class="legend-line legend-line--rec"></span> Recommended edge</span>
   </aside>
+
+  <section id="pathListView" class="path-list-view" aria-label="Study path list" hidden>
+    <div class="path-list-view__header">
+      <h2>Study path</h2>
+      <button type="button" id="printPathBtn" class="toolbar-mini-btn">Print path</button>
+    </div>
+    <ol id="pathListOl"></ol>
+  </section>
 
   <div id="viewport" class="viewport">
     <svg id="links"></svg>
@@ -52,6 +76,10 @@
     <div id="detailPanel" class="panel" style="display:none;">
       <h3 id="panelTitle">Topic</h3>
       <div id="panelMeta" class="line"></div>
+      <div class="panel-actions">
+        <button type="button" id="startHereBtn" class="corp-btn">Start here</button>
+        <button type="button" id="exportPathBtn" class="corp-btn corp-btn--secondary">Copy path</button>
+      </div>
       <div class="line"><strong>Lesson pages:</strong></div>
       <ul id="panelLessons"></ul>
       <div class="line"><strong>Shortest path to goal:</strong></div>
@@ -1821,12 +1849,6 @@
   "math_methods_alevel": [
     "learn/physics/a-level/mathematical-methods-physics.html"
   ],
-  "vectors_alevel": [
-    "learn/physics/a-level/vectors-for-physics.html"
-  ],
-  "calculus_concepts_alevel": [
-    "learn/physics/a-level/calculus-concepts-physics.html"
-  ],
   "mechanics_alevel": [
     "learn/physics/a-level/mechanics-a-level.html"
   ],
@@ -1982,6 +2004,37 @@
   ],
   "high_energy_density_frontier": [
     "learn/physics/frontier/high-energy-density-physics.html"
+  ],
+  "gcse_algebra_basics": [
+    "learn/mathematics/gcse/equations.html"
+  ],
+  "gcse_linear_graphs": [
+    "learn/mathematics/gcse/functions.html"
+  ],
+  "al_vectors": [
+    "learn/mathematics/a-level/vectors.html"
+  ],
+  "al_functions": [
+    "learn/mathematics/gcse/functions.html",
+    "learn/mathematics/a-level/polynomials.html"
+  ],
+  "al_calculus_diff": [
+    "learn/mathematics/a-level/differentiation.html"
+  ],
+  "al_calculus_int": [
+    "learn/mathematics/a-level/integration.html"
+  ],
+  "bsc_multivariable_calc": [
+    "learn/mathematics/undergraduate/multivariable-calculus.html"
+  ],
+  "bsc_complex": [
+    "learn/mathematics/postgraduate/complex-analysis.html"
+  ],
+  "bsc_fourier": [
+    "learn/mathematics/undergraduate/fourier-series.html"
+  ],
+  "bsc_real_analysis": [
+    "learn/mathematics/postgraduate/real-analysis.html"
   ]
 }
   </script>

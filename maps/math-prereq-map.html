@@ -9,24 +9,38 @@
   <title>Mathematics Prerequisite Map</title>
 </head>
 
-<body class="map-page">
+<body class="map-page map-page--compact">
   <header class="map-page-header">
     <h1>Mathematics Prerequisite Map</h1>
     <div class="sub">Left is foundational. Right is advanced. Lines show prerequisite dependency. Required and recommended edges differ. <a id="catalogLink" href="#">Open subject catalog</a></div>
   </header>
 
+  <div id="mapHint" class="map-hint" role="status" hidden>
+    <span>Pick a <strong>goal topic</strong> to see your shortest path, readiness gaps, and lesson links in the side panel.</span>
+    <button type="button" id="dismissHint" class="map-hint__dismiss" aria-label="Dismiss hint">&times;</button>
+  </div>
+
+  <div id="readinessBanner" class="readiness-banner" hidden></div>
+
   <div class="toolbar">
     <div class="toolbar-group">
       <input id="search" type="text" placeholder="Search topics" />
-      <select id="focusSelect"></select>
-      <select id="goalSelect"></select>
-      <button id="resetBtn" type="button">Reset view</button>
+      <select id="topicSelect" aria-label="Topic picker"></select>
+      <button id="jumpBtn" type="button" title="Jump to topic on map">Jump</button>
+      <button id="goalBtn" type="button" title="Set goal and show path">Set goal</button>
+      <button id="resetBtn" type="button">Reset</button>
     </div>
     <div class="toolbar-group">
+      <label class="toolbar-check"><input id="pathOnly" type="checkbox" /> Path only</label>
+      <label class="toolbar-check"><input id="gapsOnly" type="checkbox" /> My gaps only</label>
+      <label class="toolbar-check"><input id="compactCards" type="checkbox" checked /> Compact cards</label>
+      <select id="showThrough" aria-label="Show levels through"></select>
       <select id="domainFilter"><option value="">All domains</option></select>
       <label class="toolbar-check"><input id="lessonsOnly" type="checkbox" /> Lessons only</label>
     </div>
     <div class="toolbar-group level-filters">
+      <button type="button" id="levelsAll" class="toolbar-mini-btn">All levels</button>
+      <button type="button" id="levelsNone" class="toolbar-mini-btn">No levels</button>
         <label class="level-filter-label"><input type="checkbox" class="level-filter" value="KS2" checked> KS2</label>
         <label class="level-filter-label"><input type="checkbox" class="level-filter" value="KS3" checked> KS3</label>
         <label class="level-filter-label"><input type="checkbox" class="level-filter" value="GCSE" checked> GCSE</label>
@@ -42,8 +56,18 @@
     <span class="legend-item"><span class="legend-swatch legend-swatch--upstream"></span> Prerequisites</span>
     <span class="legend-item"><span class="legend-swatch legend-swatch--downstream"></span> Dependents</span>
     <span class="legend-item"><span class="legend-swatch legend-swatch--gap"></span> Missing prereqs</span>
-    <span class="legend-item"><span class="legend-swatch legend-swatch--math"></span> Cross-subject (math)</span>
+    <span class="legend-item legend-item--cross" id="legendCross"><span class="legend-swatch legend-swatch--math"></span> Cross-subject (math)</span>
+    <span class="legend-item legend-item--lines" id="legendLinesRequired"><span class="legend-line legend-line--required"></span> Required edge</span>
+    <span class="legend-item legend-item--lines" id="legendLinesRec"><span class="legend-line legend-line--rec"></span> Recommended edge</span>
   </aside>
+
+  <section id="pathListView" class="path-list-view" aria-label="Study path list" hidden>
+    <div class="path-list-view__header">
+      <h2>Study path</h2>
+      <button type="button" id="printPathBtn" class="toolbar-mini-btn">Print path</button>
+    </div>
+    <ol id="pathListOl"></ol>
+  </section>
 
   <div id="viewport" class="viewport">
     <svg id="links"></svg>
@@ -52,6 +76,10 @@
     <div id="detailPanel" class="panel" style="display:none;">
       <h3 id="panelTitle">Topic</h3>
       <div id="panelMeta" class="line"></div>
+      <div class="panel-actions">
+        <button type="button" id="startHereBtn" class="corp-btn">Start here</button>
+        <button type="button" id="exportPathBtn" class="corp-btn corp-btn--secondary">Copy path</button>
+      </div>
       <div class="line"><strong>Lesson pages:</strong></div>
       <ul id="panelLessons"></ul>
       <div class="line"><strong>Shortest path to goal:</strong></div>
@@ -1175,6 +1203,9 @@
   "decimals_ks2": [
     "learn/mathematics/ks2-ks3/decimals.html"
   ],
+  "percentages_ks2": [
+    "learn/mathematics/ks2-ks3/fractions.html"
+  ],
   "negative_numbers_ks2": [
     "learn/mathematics/ks2-ks3/negative-numbers.html"
   ],
@@ -1202,34 +1233,47 @@
   "linear_equations_ks3": [
     "learn/mathematics/gcse/equations.html"
   ],
+  "inequalities_ks3": [
+    "learn/mathematics/gcse/equations.html"
+  ],
+  "graphs_intro_ks3": [
+    "learn/mathematics/gcse/functions.html"
+  ],
   "coordinates_cartesian_ks3": [
     "learn/mathematics/ks2-ks3/cartesian-coordinates.html"
+  ],
+  "geometry_angles_ks3": [
+    "learn/mathematics/ks2-ks3/basic-geometry.html"
   ],
   "stats_intro_ks3": [
     "learn/mathematics/a-level/statistics.html"
   ],
   "gcse_number": [
-    "learn/mathematics/gcse/powers.html",
-    "learn/mathematics/gcse/standard-form.html"
+    "learn/mathematics/gcse/powers.html"
   ],
   "gcse_algebra_basics": [
-    "learn/mathematics/gcse/equations.html",
-    "learn/mathematics/gcse/elementary-algebra.html"
+    "learn/mathematics/gcse/equations.html"
   ],
   "gcse_linear_graphs": [
     "learn/mathematics/gcse/functions.html"
   ],
-  "gcse_quadratics": [
-    "learn/mathematics/gcse/quadratics.html"
-  ],
   "gcse_simultaneous": [
+    "learn/mathematics/gcse/equations.html"
+  ],
+  "gcse_inequalities": [
     "learn/mathematics/gcse/equations.html"
   ],
   "gcse_sequences": [
     "learn/mathematics/undergraduate/series.html"
   ],
+  "gcse_surds": [
+    "learn/mathematics/gcse/radicals.html"
+  ],
   "gcse_trigonometry": [
-    "learn/mathematics/gcse/trigonometry.html"
+    "learn/mathematics/a-level/trigonometry.html"
+  ],
+  "gcse_circle_theorems": [
+    "learn/mathematics/a-level/geometry.html"
   ],
   "gcse_vectors": [
     "learn/mathematics/a-level/vectors.html"
@@ -1238,7 +1282,8 @@
     "learn/mathematics/a-level/statistics.html"
   ],
   "al_functions": [
-    "learn/mathematics/a-level/functions.html"
+    "learn/mathematics/gcse/functions.html",
+    "learn/mathematics/a-level/polynomials.html"
   ],
   "al_trig": [
     "learn/mathematics/a-level/trigonometry.html"
@@ -1264,11 +1309,11 @@
   "al_stats": [
     "learn/mathematics/a-level/statistics.html"
   ],
-  "al_probability": [
-    "learn/mathematics/a-level/probability.html"
+  "bsc_proofs": [
+    "learn/mathematics/postgraduate/real-analysis.html"
   ],
-  "bsc_linear_algebra": [
-    "learn/mathematics/undergraduate/linear-algebra.html"
+  "bsc_sets_logic": [
+    "learn/mathematics/digital-logic/set-theory-basics.html"
   ],
   "bsc_multivariable_calc": [
     "learn/mathematics/undergraduate/multivariable-calculus.html"
@@ -1283,7 +1328,7 @@
     "learn/mathematics/undergraduate/partial-differential-equations.html"
   ],
   "bsc_complex": [
-    "learn/mathematics/undergraduate/complex-analysis.html"
+    "learn/mathematics/postgraduate/complex-analysis.html"
   ],
   "bsc_fourier": [
     "learn/mathematics/undergraduate/fourier-series.html"
@@ -1300,11 +1345,14 @@
   "bsc_combinatorics": [
     "learn/mathematics/postgraduate/combinatorics.html"
   ],
-  "bsc_probability": [
-    "learn/mathematics/undergraduate/probability-theory.html"
+  "bsc_graph_theory": [
+    "learn/mathematics/postgraduate/combinatorics.html"
   ],
   "bsc_statistics": [
     "learn/mathematics/a-level/statistics.html"
+  ],
+  "bsc_numerical_methods": [
+    "learn/mathematics/undergraduate/series.html"
   ],
   "bsc_optimization": [
     "learn/mathematics/a-level/optimization.html"
@@ -1333,6 +1381,9 @@
   "msc_algebraic_topology": [
     "learn/mathematics/postgraduate/algebraic-topology.html"
   ],
+  "msc_stochastic_processes": [
+    "learn/mathematics/postgraduate/stochastic-calculus.html"
+  ],
   "msc_stochastic_calculus": [
     "learn/mathematics/postgraduate/stochastic-calculus.html"
   ],
@@ -1341,6 +1392,9 @@
   ],
   "frontier_riemann_hypothesis": [
     "learn/mathematics/research/riemann-hypothesis.html"
+  ],
+  "frontier_langlands": [
+    "learn/mathematics/postgraduate/automorphic-forms.html"
   ],
   "frontier_algebraic_geometry": [
     "learn/mathematics/postgraduate/algebraic-geometry.html"
@@ -1353,6 +1407,9 @@
   ],
   "frontier_automorphic_forms": [
     "learn/mathematics/postgraduate/automorphic-forms.html"
+  ],
+  "frontier_random_matrices": [
+    "learn/mathematics/research/random-matrices.html"
   ],
   "frontier_yang_mills": [
     "learn/mathematics/research/yang-mills.html"
