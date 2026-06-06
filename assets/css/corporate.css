@@ -1794,8 +1794,15 @@ body.map-page svg#links {
 }
 
 .content-page .content-key__item dt.content-key__formula .MathJax,
-.content-page .content-key__item dt.content-key__symbol .MathJax {
+.content-page .content-key__item dt.content-key__symbol .MathJax,
+.content-page .content-key__item dd .MathJax {
   font-size: 1.05em !important;
+}
+
+.content-page .content-key__item dt.content-key__formula .mjx-chtml,
+.content-page .content-key__item dt.content-key__symbol .mjx-chtml,
+.content-page .content-key__item dd .mjx-chtml {
+  font-family: MJXc-TeX, MJXc-TeX-Math, serif !important;
 }
 
 .content-page .content-key__item dt.content-key__symbol {

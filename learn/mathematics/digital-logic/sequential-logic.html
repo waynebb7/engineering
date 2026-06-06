@@ -6,6 +6,9 @@
   <link rel="stylesheet" href="../../../assets/css/corporate.css">
   <script src="../../../assets/js/site-layout.js" defer></script>
   <title>Sequential Logic</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
 </head>
 
 <body class="content-page">
@@ -29,9 +32,11 @@
       <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt class="content-key__formula">D = 0</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">Q = 0</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(D = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(Q = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
         <div class="content-key__item"><dt class="content-key__formula">\(Q_{next} = J\overline{Q} + \overline{K}Q\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(t_{cq}\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(t_{su}\)</dt><dd>Key relationship used in this topic.</dd></div>
       </dl>
       <h3 class="content-key__heading">Symbol names in formulae</h3>
       <dl class="content-key__list">
@@ -45,41 +50,33 @@
       </dl>
       <h3 class="content-key__heading">Acronyms</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt>JK</dt><dd>JK and T flip-flops JK flip-flop Generalises SR.</dd></div>
         <div class="content-key__item"><dt>NAND</dt><dd>NOT-AND logic gate — universal gate in digital electronics.</dd></div>
         <div class="content-key__item"><dt>NOR</dt><dd>NOT-OR logic gate — universal gate in digital electronics.</dd></div>
-        <div class="content-key__item"><dt>SR</dt><dd>SR latch and flip-flop The SR (Set-Reset) element has two inputs: Set forces output \(Q = 1\); Reset forces \(Q = 0\).</dd></div>
       </dl>
       <h3 class="content-key__heading">Key terms &amp; phrases</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt>Clock</dt><dd>Clock: synchronises state updates in synchronous designs</dd></div>
-        <div class="content-key__item"><dt>Clock-to-Q delay (\(t_{cq}\))</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>Combinational</dt><dd>Combinational circuits (see Combinational Logic ) produce outputs that depend only on present inputs.</dd></div>
-        <div class="content-key__item"><dt>Combinational vs sequential logic</dt><dd>Combinational vs sequential logic Combinational circuits (see Combinational Logic ) produce outputs that depend only on present inputs.</dd></div>
-        <div class="content-key__item"><dt>Comment</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>D (Data)</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>D flip-flop</dt><dd>D flip-flop: on the rising clock edge, \(Q \leftarrow D\); between edges, \(Q\) is stable</dd></div>
-        <div class="content-key__item"><dt>D latch</dt><dd>D latch: while enable (E) is high, \(Q\) follows \(D\); when E drops, \(Q\) holds the last value</dd></div>
-        <div class="content-key__item"><dt>D latch and D flip-flop</dt><dd>D latch and D flip-flop The D (Data) element eliminates the forbidden SR state by routing one input: \(D = 1\) sets \(Q = 1\); \(D = 0\) resets \(Q = 0\).</dd></div>
-        <div class="content-key__item"><dt>Hold time (\(t_h\))</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>JK and T flip-flops</dt><dd>JK and T flip-flops JK flip-flop Generalises SR.</dd></div>
+        <div class="content-key__item"><dt>Clock</dt><dd>Synchronises state updates in synchronous designs</dd></div>
+        <div class="content-key__item"><dt>Combinational</dt><dd>Circuits (see Combinational Logic ) produce outputs that depend only on present inputs.</dd></div>
+        <div class="content-key__item"><dt>D flip-flop</dt><dd>On the rising clock edge, \(Q \leftarrow D\); between edges, \(Q\) is stable</dd></div>
+        <div class="content-key__item"><dt>D latch</dt><dd>While enable (E) is high, \(Q\) follows \(D\); when E drops, \(Q\) holds the last value</dd></div>
         <div class="content-key__item"><dt>JK flip-flop</dt><dd>J=1,K=0 sets; J=0,K=1 resets; J=K=0 holds; J=K=1 toggles \(Q\).</dd></div>
         <div class="content-key__item"><dt>Latch (level-sensitive)</dt><dd>Transparent while enable is active.</dd></div>
-        <div class="content-key__item"><dt>Latches vs flip-flops</dt><dd>Latches vs flip-flops Latch (level-sensitive) Transparent while enable is active.</dd></div>
-        <div class="content-key__item"><dt>Next state</dt><dd>Next state: computed from current state and inputs</dd></div>
-        <div class="content-key__item"><dt>PISO</dt><dd>PISO: parallel in, serial out — useful for serial transmission</dd></div>
-        <div class="content-key__item"><dt>Propagation delay</dt><dd>Propagation delay: total delay through combinational logic between register stages</dd></div>
-        <div class="content-key__item"><dt>Q (after settle)</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>register</dt><dd>a bank of flip-flops storing a multi-bit word, updated on each clock edge.</dd></div>
-        <div class="content-key__item"><dt>Registers and shift registers</dt><dd>Registers and shift registers A register is a bank of flip-flops storing a multi-bit word, updated on each clock edge.</dd></div>
-        <div class="content-key__item"><dt>Setup time (\(t_{su}\))</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>SIPO</dt><dd>SIPO: serial in, parallel out — useful for expanding one wire to many</dd></div>
-        <div class="content-key__item"><dt>SR (Set-Reset)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Next state</dt><dd>Computed from current state and inputs</dd></div>
+        <div class="content-key__item"><dt>PISO</dt><dd>Parallel in, serial out — useful for serial transmission</dd></div>
+        <div class="content-key__item"><dt>Propagation delay</dt><dd>Total delay through combinational logic between register stages</dd></div>
+        <div class="content-key__item"><dt>register</dt><dd>A bank of flip-flops storing a multi-bit word, updated on each clock edge.</dd></div>
+        <div class="content-key__item"><dt>Sequential</dt><dd>Circuits add memory: outputs depend on present inputs and past history.</dd></div>
+        <div class="content-key__item"><dt>shift register</dt><dd>A shift register connects flip-flops in series so bits move one position per clock: connects flip-flops in series so bits move one position per clock:
+ 
+
+ 
+ SIPO: serial in, parallel out — useful for expanding one wire to many
+
+ PISO: pa...</dd></div>
+        <div class="content-key__item"><dt>SIPO</dt><dd>Serial in, parallel out — useful for expanding one wire to many</dd></div>
         <div class="content-key__item"><dt>SR flip-flop</dt><dd>An SR flip-flop adds a clock: S and R are gated so they only affect \(Q\) on the active clock edge.</dd></div>
-        <div class="content-key__item"><dt>SR latch and flip-flop</dt><dd>SR latch and flip-flop The SR (Set-Reset) element has two inputs: Set forces output \(Q = 1\); Reset forces \(Q = 0\).</dd></div>
         <div class="content-key__item"><dt>timing diagram</dt><dd>A timing diagram plots signals against time.</dd></div>
-        <div class="content-key__item"><dt>Timing diagrams</dt><dd>Timing diagrams A timing diagram plots signals against time.</dd></div>
-        <div class="content-key__item"><dt>Universal shift register</dt><dd>Universal shift register: configurable direction and load mode</dd></div>
+        <div class="content-key__item"><dt>Universal shift register</dt><dd>Configurable direction and load mode</dd></div>
       </dl>
       </div>
     </details>

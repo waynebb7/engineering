@@ -33,6 +33,9 @@
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
         <div class="content-key__item"><dt class="content-key__formula">\(\mathrm{P} = \mathrm{NP}\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\Phi_x\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(A \leq_p B\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(L \subseteq \{0,1\}^*\)</dt><dd>Key relationship used in this topic.</dd></div>
       </dl>
       <h3 class="content-key__heading">Symbol names in formulae</h3>
       <dl class="content-key__list">
@@ -45,16 +48,14 @@
         <div class="content-key__item"><dt class="content-key__symbol">\(\mathrm{PSPACE}\)</dt><dd><strong>Called:</strong> roman PSPACE. Upright (roman) typesetting for PSPACE.</dd></div>
         <div class="content-key__item"><dt class="content-key__symbol">\(B\)</dt><dd><strong>Called:</strong> capital B. Magnetic field.</dd></div>
         <div class="content-key__item"><dt class="content-key__symbol">\(L\)</dt><dd><strong>Called:</strong> capital L. Length, angular momentum, or inductance.</dd></div>
-        <div class="content-key__item"><dt class="content-key__symbol">\(P\)</dt><dd><strong>Called:</strong> capital P. Pressure or momentum quadrature (context-dependent). On this page: If there exists a polynomial.</dd></div>
-        <div class="content-key__item"><dt class="content-key__symbol">\(V\)</dt><dd><strong>Called:</strong> capital V. Voltage or volume. On this page: And a polynomial-time verifier.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(P\)</dt><dd><strong>Called:</strong> capital P. Pressure or momentum quadrature (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(V\)</dt><dd><strong>Called:</strong> capital V. Voltage or volume.</dd></div>
         <div class="content-key__item"><dt class="content-key__symbol">\(f\)</dt><dd><strong>Called:</strong> lowercase f. Function or frequency. On this page: Is a polynomial-time computable function.</dd></div>
-        <div class="content-key__item"><dt class="content-key__symbol">\(x\)</dt><dd><strong>Called:</strong> lowercase x. Position or independent variable. On this page: For each input.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(x\)</dt><dd><strong>Called:</strong> lowercase x. Position or independent variable.</dd></div>
       </dl>
       <h3 class="content-key__heading">Acronyms</h3>
       <dl class="content-key__list">
         <div class="content-key__item"><dt>EXP</dt><dd>problems solvable in exponential time.</dd></div>
-        <div class="content-key__item"><dt>NP</dt><dd>\(L \in \mathrm{NP}\) if there exists a polynomial \(p\) and a polynomial-time verifier \(V\) such that: \[ x \in L \iff \exists\, w \text{ with } |w| \leq p(|x|) \text{ and } V(x, w) = 1.</dd></div>
-        <div class="content-key__item"><dt>PH</dt><dd>PH (Polynomial Hierarchy): alternations of quantifiers over polynomial predicates.</dd></div>
         <div class="content-key__item"><dt>PSPACE</dt><dd>problems solvable in polynomial space; \(\mathrm{P} \subseteq \mathrm{NP} \subseteq \mathrm{PSPACE}\).</dd></div>
         <div class="content-key__item"><dt>RSA</dt><dd>Rivest–Shamir–Adleman — public-key cryptography algorithm.</dd></div>
         <div class="content-key__item"><dt>SAT</dt><dd>NP-complete .</dd></div>
@@ -62,24 +63,16 @@
       <h3 class="content-key__heading">Key terms &amp; phrases</h3>
       <dl class="content-key__list">
         <div class="content-key__item"><dt>Barrier results</dt><dd>Relativization (Baker–Gill–Solovay), natural proofs (Razborov–Rudich), and algebrization (Aaronson–Wigderson) show that many proof techniques cannot resolve P vs NP without new ideas.</dd></div>
-        <div class="content-key__item"><dt>co-NP</dt><dd>complements of NP problems (validity of Boolean formulas).</dd></div>
-        <div class="content-key__item"><dt>Computational models and complexity classes</dt><dd>Computational models and complexity classes Complexity theory classifies decision problems by the resources needed to solve them.</dd></div>
-        <div class="content-key__item"><dt>Cook&#x27;s theorem</dt><dd>Cook&#x27;s theorem (1971) and Levin&#x27;s independent work (1973) established that SAT is NP-complete .</dd></div>
-        <div class="content-key__item"><dt>decision problem</dt><dd>a language \(L \subseteq \{0,1\}^*\); the answer is "yes" or "no" for each input \(x\).</dd></div>
-        <div class="content-key__item"><dt>EXP</dt><dd>problems solvable in exponential time.</dd></div>
-        <div class="content-key__item"><dt>If P = NP</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>If P ≠ NP (expected)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>co-NP</dt><dd>Complements of NP problems (validity of Boolean formulas).</dd></div>
+        <div class="content-key__item"><dt>Cook&#x27;s theorem</dt><dd>(1971) and Levin&#x27;s independent work (1973) established that SAT is NP-complete .</dd></div>
+        <div class="content-key__item"><dt>decision problem</dt><dd>A language \(L \subseteq \{0,1\}^*\); the answer is "yes" or "no" for each input \(x\).</dd></div>
+        <div class="content-key__item"><dt>EXP</dt><dd>Problems solvable in exponential time.</dd></div>
         <div class="content-key__item"><dt>Levin&#x27;s independent work</dt><dd>Cook&#x27;s theorem (1971) and Levin&#x27;s independent work (1973) established that SAT is NP-complete .</dd></div>
         <div class="content-key__item"><dt>NP-complete</dt><dd>A problem is NP-complete if it is in NP and NP-hard.</dd></div>
-        <div class="content-key__item"><dt>NP-completeness and reductions</dt><dd>NP-completeness and reductions A problem \(A\) is NP-hard if every problem in NP reduces to \(A\) in polynomial time.</dd></div>
         <div class="content-key__item"><dt>NP-hard</dt><dd>A problem \(A\) is NP-hard if every problem in NP reduces to \(A\) in polynomial time.</dd></div>
-        <div class="content-key__item"><dt>PH (Polynomial Hierarchy)</dt><dd>Introduced and explained in the sections below.</dd></div>
         <div class="content-key__item"><dt>Proof complexity</dt><dd>Lower bounds on proof length in propositional proof systems connect to circuit lower bounds and P vs NP.</dd></div>
-        <div class="content-key__item"><dt>PSPACE</dt><dd>problems solvable in polynomial space; \(\mathrm{P} \subseteq \mathrm{NP} \subseteq \mathrm{PSPACE}\).</dd></div>
-        <div class="content-key__item"><dt>Research connections</dt><dd>Research connections Proof complexity Lower bounds on proof length in propositional proof systems connect to circuit lower bounds and P vs NP.</dd></div>
+        <div class="content-key__item"><dt>PSPACE</dt><dd>Problems solvable in polynomial space; \(\mathrm{P} \subseteq \mathrm{NP} \subseteq \mathrm{PSPACE}\).</dd></div>
         <div class="content-key__item"><dt>SAT is NP-complete</dt><dd>Cook&#x27;s theorem (1971) and Levin&#x27;s independent work (1973) established that SAT is NP-complete .</dd></div>
-        <div class="content-key__item"><dt>The Cook–Levin theorem</dt><dd>The Cook–Levin theorem Cook&#x27;s theorem (1971) and Levin&#x27;s independent work (1973) established that SAT is NP-complete .</dd></div>
-        <div class="content-key__item"><dt>The P vs NP question</dt><dd>The P vs NP question Clearly \(\mathrm{P} \subseteq \mathrm{NP}\): if we can solve a problem in polynomial time, we can verify by solving and comparing.</dd></div>
       </dl>
       </div>
     </details>

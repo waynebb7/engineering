@@ -35,9 +35,10 @@
         <div class="content-key__item"><dt class="content-key__formula">\(\dot{\mathbf{v}} = D\mathbf{F}(\mathbf{x})\mathbf{v}\)</dt><dd>Key relationship used in this topic.</dd></div>
         <div class="content-key__item"><dt class="content-key__formula">\(\dot{\mathbf{x}} = \mathbf{F}(\mathbf{x})\)</dt><dd>Key relationship used in this topic.</dd></div>
         <div class="content-key__item"><dt class="content-key__formula">\(\lambda = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\lambda = \lim_{n \to \infty} \frac{1}{n} \sum_{k=0}^{n-1} \ln |f'(x_k)|\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\lambda = \lim_{n \to \infty} \frac{1}{n} \sum_{k = 0}^{n-1} \ln |f'(x_k)|\)</dt><dd>Key relationship used in this topic.</dd></div>
         <div class="content-key__item"><dt class="content-key__formula">\(\lambda = \ln 2 > 0\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">x = rx(1-x)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(h_{\mathrm{top}}\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(x = rx(1-x)\)</dt><dd>Key relationship used in this topic.</dd></div>
         <div class="content-key__item"><dt class="content-key__formula">\(x_{n+1} = r x_n(1 - x_n)\)</dt><dd>Key relationship used in this topic.</dd></div>
       </dl>
       <h3 class="content-key__heading">Symbol names in formulae</h3>
@@ -51,7 +52,6 @@
         <div class="content-key__item"><dt class="content-key__symbol">\(\mu\)</dt><dd><strong>Called:</strong> Greek mu. Greek letter mu (μ). On this page: Ergodicity An invariant measure.</dd></div>
         <div class="content-key__item"><dt class="content-key__symbol">\(\rho\)</dt><dd><strong>Called:</strong> Greek rho. Greek letter rho (ρ).</dd></div>
         <div class="content-key__item"><dt class="content-key__symbol">\(\sigma\)</dt><dd><strong>Called:</strong> Greek sigma. Greek letter sigma (σ). On this page: A transverse section.</dd></div>
-        <div class="content-key__item"><dt class="content-key__symbol">f&#x27;</dt><dd><strong>Called:</strong> f-prime. Prime notation — first derivative of f.</dd></div>
         <div class="content-key__item"><dt class="content-key__symbol">\(\approx\)</dt><dd><strong>Called:</strong> approximately equal. Approximation symbol (≈).</dd></div>
         <div class="content-key__item"><dt class="content-key__symbol">\(\mathbf{F}\)</dt><dd><strong>Called:</strong> bold F. Bold vector or matrix (F).</dd></div>
         <div class="content-key__item"><dt class="content-key__symbol">\(\mathbf{v}\)</dt><dd><strong>Called:</strong> bold v. Bold vector or matrix (v).</dd></div>
@@ -60,11 +60,12 @@
         <div class="content-key__item"><dt class="content-key__symbol">\(\lim\)</dt><dd><strong>Called:</strong> limit. Limit operator.</dd></div>
         <div class="content-key__item"><dt class="content-key__symbol">\(\ln\)</dt><dd><strong>Called:</strong> natural logarithm. Logarithm base e.</dd></div>
         <div class="content-key__item"><dt class="content-key__symbol">\(\mathrm{top}\)</dt><dd><strong>Called:</strong> roman top. Upright (roman) typesetting for top.</dd></div>
-        <div class="content-key__item"><dt class="content-key__symbol">rx</dt><dd><strong>Called:</strong> rx. Quantity or variable in the relationship.</dd></div>
         <div class="content-key__item"><dt class="content-key__symbol">\(D\)</dt><dd><strong>Called:</strong> capital D. Displacement operator or distance.</dd></div>
-        <div class="content-key__item"><dt class="content-key__symbol">\(F\)</dt><dd><strong>Called:</strong> capital F. Force or finesse.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(f\)</dt><dd><strong>Called:</strong> lowercase f. Function or frequency.</dd></div>
         <div class="content-key__item"><dt class="content-key__symbol">\(k\)</dt><dd><strong>Called:</strong> lowercase k. Spring constant or wave number.</dd></div>
         <div class="content-key__item"><dt class="content-key__symbol">\(n\)</dt><dd><strong>Called:</strong> lowercase n. Photon number or integer index.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(r\)</dt><dd><strong>Called:</strong> lowercase r. Radius or position vector magnitude.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(t\)</dt><dd><strong>Called:</strong> lowercase t. Time.</dd></div>
         <div class="content-key__item"><dt class="content-key__symbol">\(v\)</dt><dd><strong>Called:</strong> lowercase v. Velocity.</dd></div>
         <div class="content-key__item"><dt class="content-key__symbol">\(x\)</dt><dd><strong>Called:</strong> lowercase x. Position or independent variable.</dd></div>
         <div class="content-key__item"><dt class="content-key__symbol">\(y\)</dt><dd><strong>Called:</strong> lowercase y. Dependent variable.</dd></div>
@@ -75,26 +76,36 @@
       </dl>
       <h3 class="content-key__heading">Key terms &amp; phrases</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt>Bifurcations</dt><dd>Bifurcations are qualitative changes in dynamics as a parameter varies:</dd></div>
-        <div class="content-key__item"><dt>Bifurcations and routes to chaos</dt><dd>Bifurcations are qualitative changes in dynamics as a parameter varies:</dd></div>
-        <div class="content-key__item"><dt>chaotic</dt><dd>long-term behaviour is unpredictable despite short-term determinism.</dd></div>
-        <div class="content-key__item"><dt>Continuous systems: Lorenz and Rössler attractors</dt><dd>The Lorenz system (atmospheric convection model): \[ \dot{x} = \sigma(y - x), \quad \dot{y} = x(\rho - z) - y, \quad \dot{z} = xy - \beta z \] with classic parameters \(\sigma = 10\), \(\rho = 28\), \(\beta = 8/3\) exhibits a strange att...</dd></div>
-        <div class="content-key__item"><dt>Control, prediction, and research outlook</dt><dd>Control, prediction, and research outlook Shadowing: True trajectories stay close to numerical approximations for hyperbolic systems — finite-precision simulation can be meaningful despite SDIC.</dd></div>
-        <div class="content-key__item"><dt>Dense periodic orbits</dt><dd>Dense periodic orbits: periodic behaviour is ubiquitous in the attractor</dd></div>
+        <div class="content-key__item"><dt>Bifurcations</dt><dd>Are qualitative changes in dynamics as a parameter varies: are qualitative changes in dynamics as a parameter varies:
+ 
+
+ 
+ 
+ 
+ 
+ Route 
+ Mechanism 
+ Example 
+ 
+
+ 
+ 
+ 
+ Period-doubling 
+ Successive flip bifurcations 
+ Logistic map 
+ 
+
+ 
+...</dd></div>
+        <div class="content-key__item"><dt>chaotic</dt><dd>Long-term behaviour is unpredictable despite short-term determinism.</dd></div>
+        <div class="content-key__item"><dt>Dense periodic orbits</dt><dd>Periodic behaviour is ubiquitous in the attractor</dd></div>
         <div class="content-key__item"><dt>deterministic</dt><dd>A dynamical system can be deterministic (evolution fixed by initial data) yet chaotic — long-term behaviour is unpredictable despite short-term determinism.</dd></div>
-        <div class="content-key__item"><dt>Deterministic chaos: definition and criteria</dt><dd>Deterministic chaos: definition and criteria A dynamical system can be deterministic (evolution fixed by initial data) yet chaotic — long-term behaviour is unpredictable despite short-term determinism.</dd></div>
-        <div class="content-key__item"><dt>Discrete maps: the logistic family</dt><dd>Discrete maps: the logistic family The logistic map \(x_{n+1} = r x_n(1 - x_n)\) on \([0,1]\) is a paradigm for period-doubling route to chaos.</dd></div>
         <div class="content-key__item"><dt>Ergodicity</dt><dd>An invariant measure \(\mu\) is ergodic if time averages equal space averages for \(\mu\)-almost all initial conditions — justification for statistical ensembles in chaotic systems.</dd></div>
         <div class="content-key__item"><dt>logistic map</dt><dd>The logistic map \(x_{n+1} = r x_n(1 - x_n)\) on \([0,1]\) is a paradigm for period-doubling route to chaos.</dd></div>
-        <div class="content-key__item"><dt>Lorenz system</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>Lyapunov exponent</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>Lyapunov exponents</dt><dd>The Lyapunov exponent \(\lambda\) quantifies average exponential separation of trajectories: \[ \lambda = \lim_{n \to \infty} \frac{1}{n} \sum_{k=0}^{n-1} \ln |f'(x_k)| \] For continuous flows \(\dot{\mathbf{x}} = \mathbf{F}(\mathbf{x})\...</dd></div>
-        <div class="content-key__item"><dt>Mechanism</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>Sensitive dependence on initial conditions (SDIC)</dt><dd>Introduced and explained in the sections below.</dd></div>
         <div class="content-key__item"><dt>shift map</dt><dd>The shift map on bi-infinite symbol sequences models chaotic maps via coding (e.g.</dd></div>
-        <div class="content-key__item"><dt>Symbolic dynamics and ergodic theory</dt><dd>Symbolic dynamics and ergodic theory The shift map on bi-infinite symbol sequences models chaotic maps via coding (e.g.</dd></div>
-        <div class="content-key__item"><dt>Topological entropy</dt><dd>Topological entropy \(h_{\mathrm{top}}\) measures complexity of the orbit structure.</dd></div>
-        <div class="content-key__item"><dt>Topological mixing</dt><dd>Topological mixing: the system explores state space thoroughly</dd></div>
+        <div class="content-key__item"><dt>Topological entropy</dt><dd>\(h_{\mathrm{top}}\) measures complexity of the orbit structure.</dd></div>
+        <div class="content-key__item"><dt>Topological mixing</dt><dd>The system explores state space thoroughly</dd></div>
       </dl>
       </div>
     </details>

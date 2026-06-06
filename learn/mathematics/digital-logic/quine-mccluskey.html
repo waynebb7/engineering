@@ -6,6 +6,9 @@
   <link rel="stylesheet" href="../../../assets/css/corporate.css">
   <script src="../../../assets/js/site-layout.js" defer></script>
   <title>Quine–McCluskey Method</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
 </head>
 
 <body class="content-page">
@@ -29,59 +32,35 @@
       <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt class="content-key__formula">(A + B)(A + C) = A + BC</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">(P₁ + P₂)(P₂ + P₃) = P₂ + P₁P₃</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">F = A&#x27;B&#x27; + BC + A&#x27;C&#x27;</dt><dd>7) Worked example (outline)
+        <div class="content-key__item"><dt class="content-key__formula">\(F = Σ(0, 1, 2, 5, 6, 7)\)</dt><dd>7) Worked example (outline)
 
- Minimise F = Σ(0, 1, 2, 5, 6, 7) with three variables A, B, C .</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">F = Σ(0, 1, 2, 5, 6, 7)</dt><dd>7) Worked example (outline)
-
- Minimise F = Σ(0, 1, 2, 5, 6, 7) with three variables A, B, C .</dd></div>
+ Minimise \(F = \)Σ(0, 1, 2, 5, 6, 7) with three variables A, B, C .</dd></div>
       </dl>
       <h3 class="content-key__heading">Symbol names in formulae</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt class="content-key__symbol">BC</dt><dd><strong>Called:</strong> BC. Quantity or variable in the relationship.</dd></div>
-        <div class="content-key__item"><dt class="content-key__symbol">\(B\)</dt><dd><strong>Called:</strong> capital B. Magnetic field.</dd></div>
         <div class="content-key__item"><dt class="content-key__symbol">\(F\)</dt><dd><strong>Called:</strong> capital F. Force or finesse.</dd></div>
-        <div class="content-key__item"><dt class="content-key__symbol">\(P\)</dt><dd><strong>Called:</strong> capital P. Pressure or momentum quadrature (context-dependent).</dd></div>
       </dl>
       <h3 class="content-key__heading">Acronyms</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt>BC</dt><dd>Step 1 — Combine: m₀ + m₁ → A&#x27;B&#x27; m₀ + m₂ → A&#x27;C&#x27; m₅ + m₇ → BC m₂ + m₆ → BC&#x27; m₁ + m₅ → B&#x27;C (if in set) m₃ + m₇ → further merges as applicable Step 2 — PI chart: Mark coverage; find essentials.</dd></div>
         <div class="content-key__item"><dt>K-map</dt><dd>Karnaugh map — graphical method for Boolean logic minimization.</dd></div>
-        <div class="content-key__item"><dt>PI</dt><dd>Prime implicant (PI) chart The PI chart (coverage table) lists prime implicants as rows and minterms as columns.</dd></div>
-        <div class="content-key__item"><dt>SOP</dt><dd>F = A&#x27;B&#x27; + BC + A&#x27;C&#x27; (verify against your combine table).</dd></div>
+        <div class="content-key__item"><dt>SOP</dt><dd>\(F = A'B' + BC + A'C' (verify against your combine table)\)</dd></div>
       </dl>
       <h3 class="content-key__heading">Key terms &amp; phrases</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt>Aspect</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>Binary (ABCD)</dt><dd>Introduced and explained in the sections below.</dd></div>
         <div class="content-key__item"><dt>essential</dt><dd>Identify essential prime implicants (sole × in a column)</dd></div>
-        <div class="content-key__item"><dt>Essential prime implicant</dt><dd>Essential prime implicant: a prime implicant that is the only cover for at least one minterm</dd></div>
-        <div class="content-key__item"><dt>Example fragment</dt><dd>Example fragment: If m₃ is covered by P₁ or P₂ , and m₇ by P₂ or P₃ :</dd></div>
+        <div class="content-key__item"><dt>Essential prime implicant</dt><dd>A prime implicant that is the only cover for at least one minterm</dd></div>
+        <div class="content-key__item"><dt>Example fragment</dt><dd>If m₃ is covered by P₁ or P₂ , and m₇ by P₂ or P₃ : If m₃ is covered by P₁ or P₂ , and m₇ by P₂ or P₃ :
+
+ (P₁ + P₂)(P₂ + P₃) = P₂ + P₁P₃ 
+
+ Minimal cover: P₂ alone if it covers all remaining minterms; otherwise P₁ and P₃ .</dd></div>
         <div class="content-key__item"><dt>fewest literals</dt><dd>Choose the product term with the fewest literals (fewest prime implicants)</dd></div>
-        <div class="content-key__item"><dt>Group (# of 1s)</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>K-map</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>Minterm</dt><dd>Minterm table and combining Start by listing all minterms (and don&#x27;t cares treated as 1s) grouped by the number of 1-bits in their binary code.</dd></div>
-        <div class="content-key__item"><dt>Minterm table and combining</dt><dd>Minterm table and combining Start by listing all minterms (and don&#x27;t cares treated as 1s) grouped by the number of 1-bits in their binary code.</dd></div>
-        <div class="content-key__item"><dt>m₀</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>m₁</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>m₂</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>m₈</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Minterm</dt><dd>Table and combining Start by listing all minterms (and don&#x27;t cares treated as 1s) grouped by the number of 1-bits in their binary code.</dd></div>
         <div class="content-key__item"><dt>Petrick method</dt><dd>When the PI chart has no essential prime implicants left, the Petrick method solves the cover problem algebraically.</dd></div>
-        <div class="content-key__item"><dt>Petrick method (introduction)</dt><dd>When the PI chart has no essential prime implicants left, the Petrick method solves the cover problem algebraically.</dd></div>
         <div class="content-key__item"><dt>PI chart</dt><dd>The PI chart (coverage table) lists prime implicants as rows and minterms as columns.</dd></div>
-        <div class="content-key__item"><dt>Prime implicant (PI) chart</dt><dd>Prime implicant (PI) chart The PI chart (coverage table) lists prime implicants as rows and minterms as columns.</dd></div>
         <div class="content-key__item"><dt>prime implicants</dt><dd>Guarantees finding all prime implicants</dd></div>
-        <div class="content-key__item"><dt>Q-M vs K-maps</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>Quine–McCluskey</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>Quine–McCluskey (Q-M) method</dt><dd>a systematic tabular procedure for minimising Boolean functions.</dd></div>
-        <div class="content-key__item"><dt>Selecting a minimal cover</dt><dd>Selecting a minimal cover After essential prime implicants are chosen, some minterms may remain uncovered.</dd></div>
+        <div class="content-key__item"><dt>Quine–McCluskey (Q-M) method</dt><dd>A systematic tabular procedure for minimising Boolean functions.</dd></div>
         <div class="content-key__item"><dt>set-cover</dt><dd>The remaining problem is a set-cover question: pick the fewest prime implicants that cover all remaining 1s.</dd></div>
-        <div class="content-key__item"><dt>Step 1 — Combine</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>Step 2 — PI chart</dt><dd>Mark coverage; find essentials.</dd></div>
-        <div class="content-key__item"><dt>Step 3 — Result</dt><dd>Typical minimal SOP: F = A&#x27;B&#x27; + BC + A&#x27;C&#x27; (verify against your combine table).</dd></div>
-        <div class="content-key__item"><dt>Worked example (outline)</dt><dd>Minimise F = Σ(0, 1, 2, 5, 6, 7) with three variables A, B, C .</dd></div>
       </dl>
       </div>
     </details>

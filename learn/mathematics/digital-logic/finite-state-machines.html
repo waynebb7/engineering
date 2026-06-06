@@ -6,6 +6,9 @@
   <link rel="stylesheet" href="../../../assets/css/corporate.css">
   <script src="../../../assets/js/site-layout.js" defer></script>
   <title>Finite State Machines</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
 </head>
 
 <body class="content-page">
@@ -29,11 +32,7 @@
       <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt class="content-key__formula">S0 / Z=0</dt><dd>Introduced and explained in the sections below.</dd></div>
-      </dl>
-      <h3 class="content-key__heading">Symbol names in formulae</h3>
-      <dl class="content-key__list">
-        <div class="content-key__item"><dt class="content-key__symbol">\(k\)</dt><dd><strong>Called:</strong> lowercase k. Spring constant or wave number.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(S0 / Z = 0\)</dt><dd>Introduced and explained in the sections below.</dd></div>
       </dl>
       <h3 class="content-key__heading">Acronyms</h3>
       <dl class="content-key__list">
@@ -41,41 +40,28 @@
       </dl>
       <h3 class="content-key__heading">Key terms &amp; phrases</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt>Arrows</dt><dd>Arrows: transitions, labelled with input condition / output action</dd></div>
-        <div class="content-key__item"><dt>Binary encoding</dt><dd>Binary encoding: \(k\) flip-flops encode up to \(2^k\) states; minimises register size</dd></div>
-        <div class="content-key__item"><dt>Build state table</dt><dd>Build state table: rows = current state; columns = input combinations; cells = next state and output</dd></div>
-        <div class="content-key__item"><dt>Choose state encoding</dt><dd>Choose state encoding: binary, one-hot, or Gray</dd></div>
-        <div class="content-key__item"><dt>Circles</dt><dd>Circles: states, labelled S0, S1, … or with meaningful names (IDLE, WAIT, SEND)</dd></div>
-        <div class="content-key__item"><dt>Current state</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>Define I/O</dt><dd>Define I/O: list all inputs, outputs, and their meaning</dd></div>
-        <div class="content-key__item"><dt>Derive Boolean equations</dt><dd>Derive Boolean equations for next-state and output logic (K-maps or HDL)</dd></div>
-        <div class="content-key__item"><dt>Design example: sequence detector &quot;101&quot;</dt><dd>Detect the bit sequence 1-0-1 in a serial input stream.</dd></div>
-        <div class="content-key__item"><dt>Design procedure</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>Draw state diagram</dt><dd>Draw state diagram: identify states and all transitions</dd></div>
-        <div class="content-key__item"><dt>finite state machine (FSM)</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>Gray code encoding</dt><dd>Gray code encoding: adjacent states differ by one bit; reduces power and hazard risk during transitions</dd></div>
-        <div class="content-key__item"><dt>Implement</dt><dd>Implement: state register (D flip-flops) + combinational next-state and output blocks</dd></div>
-        <div class="content-key__item"><dt>Implementation block diagram</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>initial state</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>Input = 0</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>Input = 1</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Arrows</dt><dd>Transitions, labelled with input condition / output action</dd></div>
+        <div class="content-key__item"><dt>Binary encoding</dt><dd>\(k\) flip-flops encode up to \(2^k\) states; minimises register size</dd></div>
+        <div class="content-key__item"><dt>Build state table</dt><dd>\(Rows = current state\); \(columns = input combinations\); \(cells = next state and output\)</dd></div>
+        <div class="content-key__item"><dt>Choose state encoding</dt><dd>Binary, one-hot, or Gray</dd></div>
+        <div class="content-key__item"><dt>Circles</dt><dd>States, labelled S0, S1, … or with meaningful names (IDLE, WAIT, SEND)</dd></div>
+        <div class="content-key__item"><dt>Define I/O</dt><dd>List all inputs, outputs, and their meaning</dd></div>
+        <div class="content-key__item"><dt>Derive Boolean equations</dt><dd>For next-state and output logic (K-maps or HDL)</dd></div>
+        <div class="content-key__item"><dt>Draw state diagram</dt><dd>Identify states and all transitions</dd></div>
+        <div class="content-key__item"><dt>Gray code encoding</dt><dd>Adjacent states differ by one bit; reduces power and hazard risk during transitions</dd></div>
+        <div class="content-key__item"><dt>Implement</dt><dd>State register (D flip-flops) + combinational next-state and output blocks</dd></div>
         <div class="content-key__item"><dt>inputs</dt><dd>A finite state machine (FSM) is a sequential model with a finite set of states , transitions between states driven by inputs , and outputs that depend on state (and possibly inputs).</dd></div>
-        <div class="content-key__item"><dt>Mealy</dt><dd>Mealy: output logic takes State S and Inputs X</dd></div>
-        <div class="content-key__item"><dt>Moore</dt><dd>Moore: output logic takes only State S</dd></div>
-        <div class="content-key__item"><dt>Moore convention</dt><dd>Moore convention: outputs written inside the state circle: S0 / Z=0</dd></div>
+        <div class="content-key__item"><dt>Mealy</dt><dd>Output logic takes State S and Inputs X</dd></div>
+        <div class="content-key__item"><dt>Moore</dt><dd>Output logic takes only State S</dd></div>
+        <div class="content-key__item"><dt>Moore convention</dt><dd>Outputs written inside the state circle: S0 / \(Z = 0\)</dd></div>
         <div class="content-key__item"><dt>Moore machine</dt><dd>Outputs depend only on the current state.</dd></div>
-        <div class="content-key__item"><dt>Moore states</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>Moore vs Mealy machines</dt><dd>Moore vs Mealy machines Moore machine Outputs depend only on the current state.</dd></div>
-        <div class="content-key__item"><dt>Next-state logic</dt><dd>Next-state logic: combinational circuit computing the next state from current state and inputs</dd></div>
-        <div class="content-key__item"><dt>One-hot encoding</dt><dd>One-hot encoding: one flip-flop per state; only one bit is 1 at a time; simplifies next-state logic in FPGAs</dd></div>
-        <div class="content-key__item"><dt>Output</dt><dd>Output detect = 1 when the third bit of a matching sequence arrives.</dd></div>
-        <div class="content-key__item"><dt>Output logic</dt><dd>Output logic: combinational circuit producing outputs</dd></div>
+        <div class="content-key__item"><dt>Next-state logic</dt><dd>Combinational circuit computing the next state from current state and inputs</dd></div>
+        <div class="content-key__item"><dt>One-hot encoding</dt><dd>One flip-flop per state; only one bit is 1 at a time; simplifies next-state logic in FPGAs</dd></div>
+        <div class="content-key__item"><dt>Output</dt><dd>\(Detect = 1 when the third bit of a matching sequence arrives\)</dd></div>
+        <div class="content-key__item"><dt>Output logic</dt><dd>Combinational circuit producing outputs</dd></div>
         <div class="content-key__item"><dt>outputs</dt><dd>A finite state machine (FSM) is a sequential model with a finite set of states , transitions between states driven by inputs , and outputs that depend on state (and possibly inputs).</dd></div>
-        <div class="content-key__item"><dt>S0 (IDLE)</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>S1 (GOT_1)</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>S2 (GOT_10)</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>S3 (GOT_101)</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>Simulate</dt><dd>Simulate: verify with test vectors and timing diagrams</dd></div>
+        <div class="content-key__item"><dt>Simulate</dt><dd>Verify with test vectors and timing diagrams</dd></div>
+        <div class="content-key__item"><dt>states</dt><dd>A finite state machine (FSM) is a sequential model with a finite set of states , transitions between states driven by inputs , and outputs that depend on state (and possibly inputs).</dd></div>
       </dl>
       </div>
     </details>

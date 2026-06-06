@@ -6,6 +6,9 @@
   <link rel="stylesheet" href="../../../assets/css/corporate.css">
   <script src="../../../assets/js/site-layout.js" defer></script>
   <title>Demultiplexers</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
 </head>
 
 <body class="content-page">
@@ -29,21 +32,7 @@
       <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt class="content-key__formula">CS i = EN · m i (Address)</dt><dd>active when the select value equals i :
- 
-
- Y i = D · m i (S) 
-
- 
- Each output is the data input ANDed with the minterm of the select variables for that output index.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">D = 0</dt><dd>Contrast with decoder: A decoder activates one output line without carrying arbitrary data D — it generates address patterns.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">Y i = D · m i (S)</dt><dd>active when the select value equals i :
- 
-
- Y i = D · m i (S) 
-
- 
- Each output is the data input ANDed with the minterm of the select variables for that output index.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(D = 0\)</dt><dd>Contrast with decoder: A decoder activates one output line without carrying arbitrary data D — it generates address patterns.</dd></div>
         <div class="content-key__item"><dt class="content-key__formula">Y₀ = S&#x27;D</dt><dd>Write equations for Y₀ and Y₃ of a 1:4 DEMUX.</dd></div>
         <div class="content-key__item"><dt class="content-key__formula">Y₀ = S₁&#x27;S₀&#x27;D</dt><dd>Write equations for Y₀ and Y₃ of a 1:4 DEMUX.</dd></div>
         <div class="content-key__item"><dt class="content-key__formula">Y₁ = SD</dt><dd>Introduced and explained in the sections below.</dd></div>
@@ -53,20 +42,13 @@
       </dl>
       <h3 class="content-key__heading">Symbol names in formulae</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt class="content-key__symbol">Address</dt><dd><strong>Called:</strong> Address. Quantity or variable in the relationship.</dd></div>
-        <div class="content-key__item"><dt class="content-key__symbol">CS</dt><dd><strong>Called:</strong> CS. Quantity or variable in the relationship.</dd></div>
-        <div class="content-key__item"><dt class="content-key__symbol">EN</dt><dd><strong>Called:</strong> EN. Quantity or variable in the relationship.</dd></div>
-        <div class="content-key__item"><dt class="content-key__symbol">SD</dt><dd><strong>Called:</strong> SD. Quantity or variable in the relationship.</dd></div>
         <div class="content-key__item"><dt class="content-key__symbol">\(D\)</dt><dd><strong>Called:</strong> capital D. Displacement operator or distance.</dd></div>
         <div class="content-key__item"><dt class="content-key__symbol">\(S\)</dt><dd><strong>Called:</strong> capital S. Entropy or action.</dd></div>
-        <div class="content-key__item"><dt class="content-key__symbol">\(i\)</dt><dd><strong>Called:</strong> lowercase i. Imaginary unit (√−1).</dd></div>
-        <div class="content-key__item"><dt class="content-key__symbol">\(m\)</dt><dd><strong>Called:</strong> lowercase m. Mass or slope.</dd></div>
       </dl>
       <h3 class="content-key__heading">Acronyms</h3>
       <dl class="content-key__list">
         <div class="content-key__item"><dt>DEMUX</dt><dd>the conceptual model.</dd></div>
         <div class="content-key__item"><dt>FPGA</dt><dd>This separates address decoding from data gating — a common PCB and FPGA pattern.</dd></div>
-        <div class="content-key__item"><dt>G1</dt><dd>The 74138 3-to-8 decoder is effectively a DEMUX with inverted active-low outputs when G1, G2A, G2B enables are used.</dd></div>
         <div class="content-key__item"><dt>G2A</dt><dd>The 74138 3-to-8 decoder is effectively a DEMUX with inverted active-low outputs when G1, G2A, G2B enables are used.</dd></div>
         <div class="content-key__item"><dt>G2B</dt><dd>The 74138 3-to-8 decoder is effectively a DEMUX with inverted active-low outputs when G1, G2A, G2B enables are used.</dd></div>
         <div class="content-key__item"><dt>NAND</dt><dd>NOT-AND logic gate — universal gate in digital electronics.</dd></div>
@@ -74,24 +56,51 @@
       </dl>
       <h3 class="content-key__heading">Key terms &amp; phrases</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt>1:2 DEMUX</dt><dd>1:2 DEMUX (one select line):</dd></div>
-        <div class="content-key__item"><dt>1:4 DEMUX</dt><dd>1:4 DEMUX (two select lines):</dd></div>
+        <div class="content-key__item"><dt>1:2 DEMUX</dt><dd>(one select line): (one select line):
+
+ 
+ Y₀ = S&#x27;D 
+
+ Y₁ = SD 
+
+ 
+ 1:4 DEMUX (two select lines):
+
+ 
+ Y₀ = S₁&#x27;S₀&#x27;D 
+
+ Y₁ = S₁&#x27;S₀D 
+
+ Y₂ = S₁S₀&#x27;D 
+
+ Y₃ = S₁S₀D 
+
+ 
+ 
+ Symbol labels: 1:2 , 1:4 , 1:8 .</dd></div>
+        <div class="content-key__item"><dt>1:4 DEMUX</dt><dd>(two select lines): (two select lines):
+
+ 
+ Y₀ = S₁&#x27;S₀&#x27;D 
+
+ Y₁ = S₁&#x27;S₀D 
+
+ Y₂ = S₁S₀&#x27;D 
+
+ Y₃ = S₁S₀D 
+
+ 
+ 
+ Symbol labels: 1:2 , 1:4 , 1:8 .</dd></div>
         <div class="content-key__item"><dt>2-to-4 decoder</dt><dd>Equivalently: use a 2-to-4 decoder for select minterms, then AND each decoder output with D .</dd></div>
         <div class="content-key__item"><dt>address decoding</dt><dd>DEMUX structure is the core of address decoding in memory and I/O systems.</dd></div>
-        <div class="content-key__item"><dt>binary decoder</dt><dd>If D = 1 (logic high), the DEMUX outputs are exactly the minterms of the select variables — it behaves as a binary decoder .</dd></div>
-        <div class="content-key__item"><dt>Cascading and expansion</dt><dd>Build larger DEMUXes hierarchically:</dd></div>
-        <div class="content-key__item"><dt>Clock distribution</dt><dd>Clock distribution: enable one branch of a clock tree (with care for skew)</dd></div>
-        <div class="content-key__item"><dt>demultiplexer (DEMUX)</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>DEMUX as a decoder</dt><dd>DEMUX as a decoder If D = 1 (logic high), the DEMUX outputs are exactly the minterms of the select variables — it behaves as a binary decoder .</dd></div>
-        <div class="content-key__item"><dt>DEMUX function</dt><dd>For a 1-to-2 m DEMUX, output Y i is active when the select value equals i :</dd></div>
-        <div class="content-key__item"><dt>Gate-level implementation</dt><dd>1:4 DEMUX from basic gates:</dd></div>
-        <div class="content-key__item"><dt>LED/matrix drivers</dt><dd>LED/matrix drivers: steer current to one column or row at a time</dd></div>
-        <div class="content-key__item"><dt>One-to-two and one-to-four DEMUX</dt><dd>1:2 DEMUX (one select line):</dd></div>
-        <div class="content-key__item"><dt>Routing and signal distribution</dt><dd>Primary uses of DEMUX routing:</dd></div>
-        <div class="content-key__item"><dt>Serial-to-parallel</dt><dd>Serial-to-parallel: time-multiplex one wire into multiple parallel lines over successive cycles</dd></div>
+        <div class="content-key__item"><dt>binary decoder</dt><dd>If \(D = 1 (logic high)\), the DEMUX outputs are exactly the minterms of the select variables — it behaves as a binary decoder .</dd></div>
+        <div class="content-key__item"><dt>Clock distribution</dt><dd>Enable one branch of a clock tree (with care for skew)</dd></div>
+        <div class="content-key__item"><dt>LED/matrix drivers</dt><dd>Steer current to one column or row at a time</dd></div>
+        <div class="content-key__item"><dt>Serial-to-parallel</dt><dd>Time-multiplex one wire into multiple parallel lines over successive cycles</dd></div>
         <div class="content-key__item"><dt>S₀</dt><dd>S₁ S₀ Y₀ Y₁ Y₂ Y₃ 0 0 D 0 0 0 0 1 0 D 0 0 1 0 0 0 D 0 1 1 0 0 0 D</dd></div>
-        <div class="content-key__item"><dt>S₁</dt><dd>S₁ S₀ Y₀ Y₁ Y₂ Y₃ 0 0 D 0 0 0 0 1 0 D 0 0 1 0 0 0 D 0 1 1 0 0 0 D</dd></div>
-        <div class="content-key__item"><dt>Test access</dt><dd>Test access: route a test signal to one of several circuit nodes</dd></div>
+        <div class="content-key__item"><dt>S₁</dt><dd>S₀ Y₀ Y₁ Y₂ Y₃ 0 0 D 0 0 0 0 1 0 D 0 0 1 0 0 0 D 0 1 1 0 0 0 D</dd></div>
+        <div class="content-key__item"><dt>Test access</dt><dd>Route a test signal to one of several circuit nodes</dd></div>
         <div class="content-key__item"><dt>Y₀</dt><dd>S₁ S₀ Y₀ Y₁ Y₂ Y₃ 0 0 D 0 0 0 0 1 0 D 0 0 1 0 0 0 D 0 1 1 0 0 0 D</dd></div>
         <div class="content-key__item"><dt>Y₁</dt><dd>S₁ S₀ Y₀ Y₁ Y₂ Y₃ 0 0 D 0 0 0 0 1 0 D 0 0 1 0 0 0 D 0 1 1 0 0 0 D</dd></div>
         <div class="content-key__item"><dt>Y₂</dt><dd>S₁ S₀ Y₀ Y₁ Y₂ Y₃ 0 0 D 0 0 0 0 1 0 D 0 0 1 0 0 0 D 0 1 1 0 0 0 D</dd></div>

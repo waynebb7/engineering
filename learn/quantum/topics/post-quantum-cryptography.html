@@ -33,6 +33,7 @@
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
         <div class="content-key__item"><dt class="content-key__formula">\((\mathbf{a}, b = \langle\mathbf{a}, \mathbf{s}\rangle + e \bmod q)\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\text{EUF-CMA}_{\text{SPHINCS+}} \leq \text{PRF}_{H} + (h+1) \cdot \text{EUF-CMA}_{\text{OTS}}\)</dt><dd>Key relationship used in this topic.</dd></div>
         <div class="content-key__item"><dt class="content-key__formula">\(c = \text{Encaps}(pk)\)</dt><dd>Key relationship used in this topic.</dd></div>
         <div class="content-key__item"><dt class="content-key__formula">\(K = \text{Decaps}(c, sk)\)</dt><dd>Key relationship used in this topic.</dd></div>
       </dl>
@@ -47,6 +48,7 @@
         <div class="content-key__item"><dt class="content-key__symbol">\(H\)</dt><dd><strong>Called:</strong> capital H. Hamiltonian (energy operator).</dd></div>
         <div class="content-key__item"><dt class="content-key__symbol">\(N\)</dt><dd><strong>Called:</strong> capital N. Newton (unit) or particle number. On this page: Ithm searches an unstructured database of.</dd></div>
         <div class="content-key__item"><dt class="content-key__symbol">\(a\)</dt><dd><strong>Called:</strong> lowercase a. Annihilation operator or acceleration.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(c\)</dt><dd><strong>Called:</strong> lowercase c. Speed of light or subscript label (cavity).</dd></div>
         <div class="content-key__item"><dt class="content-key__symbol">\(e\)</dt><dd><strong>Called:</strong> lowercase e. Euler&#x27;s number (base of natural log). On this page: Is a secret vector and.</dd></div>
         <div class="content-key__item"><dt class="content-key__symbol">\(q\)</dt><dd><strong>Called:</strong> lowercase q. Charge or generalised coordinate.</dd></div>
       </dl>
@@ -58,56 +60,40 @@
         <div class="content-key__item"><dt>CNSA</dt><dd>Standards bodies: IETF (hybrid TLS in RFC drafts), NSA CNSA 2.0 (mandates PQC for national security systems by 2035), BSI (German guidance), NCSC (UK).</dd></div>
         <div class="content-key__item"><dt>CPA</dt><dd>Based on IND-CCA security from a CPA-secure LWE construction plus Fujisaki–Okamoto transform.</dd></div>
         <div class="content-key__item"><dt>CRQC</dt><dd>Estimated timeline for cryptographically relevant quantum computers (CRQC): uncertain, but &quot;harvest now, decrypt later&quot; attacks motivate immediate migration.</dd></div>
-        <div class="content-key__item"><dt>DH</dt><dd>Migration strategy Inventory: catalogue all uses of RSA, DH, ECDH, ECDSA in systems and protocols.</dd></div>
         <div class="content-key__item"><dt>ECDH</dt><dd>Migration strategy Inventory: catalogue all uses of RSA, DH, ECDH, ECDSA in systems and protocols.</dd></div>
         <div class="content-key__item"><dt>ECDSA</dt><dd>Migration strategy Inventory: catalogue all uses of RSA, DH, ECDH, ECDSA in systems and protocols.</dd></div>
         <div class="content-key__item"><dt>FIPS</dt><dd>NIST finalised first PQC standards in 2024 (FIPS 203, 204, 205).</dd></div>
-        <div class="content-key__item"><dt>HMAC</dt><dd>HMAC and KDFs: increase output length proportionally.</dd></div>
+        <div class="content-key__item"><dt>HMAC</dt><dd>and KDFs: increase output length proportionally.</dd></div>
         <div class="content-key__item"><dt>IETF</dt><dd>Standards bodies: IETF (hybrid TLS in RFC drafts), NSA CNSA 2.0 (mandates PQC for national security systems by 2035), BSI (German guidance), NCSC (UK).</dd></div>
         <div class="content-key__item"><dt>IND-CCA</dt><dd>Based on IND-CCA security from a CPA-secure LWE construction plus Fujisaki–Okamoto transform.</dd></div>
-        <div class="content-key__item"><dt>KB</dt><dd>Kyber-768 (NIST Level 3) has public key ~1.2 KB and ciphertext ~1.1 KB.</dd></div>
         <div class="content-key__item"><dt>KEM</dt><dd>Kyber KEM flow: Alice generates key pair \((pk, sk)\); Bob encapsulates a shared secret \(K\) into ciphertext \(c = \text{Encaps}(pk)\); Alice decapsulates \(K = \text{Decaps}(c, sk)\).</dd></div>
         <div class="content-key__item"><dt>LWE</dt><dd>The search-LWE problem connects to worst-case lattice problems (\(\gamma\)-SVP).</dd></div>
         <div class="content-key__item"><dt>NCSC</dt><dd>Standards bodies: IETF (hybrid TLS in RFC drafts), NSA CNSA 2.0 (mandates PQC for national security systems by 2035), BSI (German guidance), NCSC (UK).</dd></div>
-        <div class="content-key__item"><dt>NIST</dt><dd>NIST finalised first PQC standards in 2024 (FIPS 203, 204, 205).</dd></div>
+        <div class="content-key__item"><dt>NIST</dt><dd>finalised first PQC standards in 2024 (FIPS 203, 204, 205).</dd></div>
         <div class="content-key__item"><dt>NSA</dt><dd>Standards bodies: IETF (hybrid TLS in RFC drafts), NSA CNSA 2.0 (mandates PQC for national security systems by 2035), BSI (German guidance), NCSC (UK).</dd></div>
         <div class="content-key__item"><dt>OTS</dt><dd>SPHINCS+ builds a hypertree of Merkle trees: a few long-term keys sign many one-time signature (OTS) keys, which sign individual messages.</dd></div>
         <div class="content-key__item"><dt>PQC</dt><dd>Post-quantum cryptography (PQC) = classical algorithms believed secure against quantum attacks.</dd></div>
         <div class="content-key__item"><dt>RFC</dt><dd>Standards bodies: IETF (hybrid TLS in RFC drafts), NSA CNSA 2.0 (mandates PQC for national security systems by 2035), BSI (German guidance), NCSC (UK).</dd></div>
         <div class="content-key__item"><dt>RSA</dt><dd>Rivest–Shamir–Adleman — public-key cryptography algorithm.</dd></div>
         <div class="content-key__item"><dt>SHA-256</dt><dd>Symmetric cryptography (AES, SHA-256) is less affected — Grover&#x27;s algorithm effectively halves key strength.</dd></div>
+        <div class="content-key__item"><dt>SHA-3</dt><dd>Use SHA-384/SHA-3 for long-term security.</dd></div>
+        <div class="content-key__item"><dt>SHA-384</dt><dd>Use SHA-384/SHA-3 for long-term security.</dd></div>
       </dl>
       <h3 class="content-key__heading">Key terms &amp; phrases</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt>Advantages</dt><dd>Advantages Minimal security assumptions Well-understood analysis NIST backup standard (FIPS 205)</dd></div>
+        <div class="content-key__item"><dt>Advantages</dt><dd>Minimal security assumptions Well-understood analysis NIST backup standard (FIPS 205)</dd></div>
         <div class="content-key__item"><dt>AES-256</dt><dd>Migrate to AES-256 for 128-bit quantum security.</dd></div>
-        <div class="content-key__item"><dt>Algorithm</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>Crypto-agility</dt><dd>design protocols to accept multiple algorithm identifiers.</dd></div>
-        <div class="content-key__item"><dt>Family</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>Grover&#x27;s algorithm</dt><dd>Grover's algorithm searches an unstructured database of \(N\) items in \(O(\sqrt{N})\) queries, effectively halving the security bits of symmetric-key algorithms:</dd></div>
-        <div class="content-key__item"><dt>Grover&#x27;s impact on symmetric crypto</dt><dd>Grover's algorithm searches an unstructured database of \(N\) items in \(O(\sqrt{N})\) queries, effectively halving the security bits of symmetric-key algorithms:</dd></div>
-        <div class="content-key__item"><dt>Hardness basis</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>Hash-based signatures</dt><dd>Hash-based signatures rely only on the security of cryptographic hash functions — conservative assumptions with no known quantum weakness beyond Grover&#x27;s quadratic speedup (countered by doubling output length).</dd></div>
-        <div class="content-key__item"><dt>Hash-based signatures (SPHINCS+)</dt><dd>Hash-based signatures rely only on the security of cryptographic hash functions — conservative assumptions with no known quantum weakness beyond Grover&#x27;s quadratic speedup (countered by doubling output length).</dd></div>
-        <div class="content-key__item"><dt>Hybrid mode</dt><dd>combine classical + PQC key exchange (e.</dd></div>
-        <div class="content-key__item"><dt>Implementation considerations</dt><dd>Implementation considerations Performance Kyber encaps/decaps: ~100 μs (software) Dilithium sign/verify: ~1 ms / ~300 μs SPHINCS+ sign: ~100 ms (large signatures)</dd></div>
-        <div class="content-key__item"><dt>Inventory</dt><dd>catalogue all uses of RSA, DH, ECDH, ECDSA in systems and protocols.</dd></div>
-        <div class="content-key__item"><dt>Lattice-based cryptography</dt><dd>Learning With Errors (LWE): Given pairs \((\mathbf{a}, b = \langle\mathbf{a}, \mathbf{s}\rangle + e \bmod q)\) where \(\mathbf{s}\) is a secret vector and \(e\) is small noise, recovering \(\mathbf{s}\) is hard.</dd></div>
-        <div class="content-key__item"><dt>Learning With Errors (LWE)</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>Migration strategy</dt><dd>Migration strategy Inventory: catalogue all uses of RSA, DH, ECDH, ECDSA in systems and protocols.</dd></div>
-        <div class="content-key__item"><dt>Module-LWE</dt><dd>Module-LWE (used in Kyber/Dilithium) works over module lattices, balancing security and performance.</dd></div>
-        <div class="content-key__item"><dt>NIST-standardised algorithms (2024)</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>Other PQC families</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>Performance</dt><dd>Performance Kyber encaps/decaps: ~100 μs (software) Dilithium sign/verify: ~1 ms / ~300 μs SPHINCS+ sign: ~100 ms (large signatures)</dd></div>
-        <div class="content-key__item"><dt>Post-quantum cryptography (PQC)</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>Prioritise</dt><dd>long-lived secrets (TLS certificates, document signing, firmware) first.</dd></div>
-        <div class="content-key__item"><dt>Representative</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt>Crypto-agility</dt><dd>Design protocols to accept multiple algorithm identifiers.</dd></div>
+        <div class="content-key__item"><dt>Grover&#x27;s algorithm</dt><dd>Searches an unstructured database of \(N\) items in \(O(\sqrt{N})\) queries, effectively halving the security bits of symmetric-key algorithms: searches an unstructured database of \(N\) items in \(O(\sqrt{N})\) queries,
+ effectively hal...</dd></div>
+        <div class="content-key__item"><dt>Hash-based signatures</dt><dd>Rely only on the security of cryptographic hash functions — conservative assumptions with no known quantum weakness beyond Grover&#x27;s quadratic speedup (countered by doubling output length).</dd></div>
+        <div class="content-key__item"><dt>Hybrid mode</dt><dd>Combine classical + PQC key exchange (e.</dd></div>
+        <div class="content-key__item"><dt>Inventory</dt><dd>Catalogue all uses of RSA, DH, ECDH, ECDSA in systems and protocols.</dd></div>
+        <div class="content-key__item"><dt>Module-LWE</dt><dd>(used in Kyber/Dilithium) works over module lattices, balancing security and performance.</dd></div>
+        <div class="content-key__item"><dt>Performance</dt><dd>Kyber encaps/decaps: ~100 μs (software) Dilithium sign/verify: ~1 ms / ~300 μs SPHINCS+ sign: ~100 ms (large signatures)</dd></div>
+        <div class="content-key__item"><dt>Prioritise</dt><dd>Long-lived secrets (TLS certificates, document signing, firmware) first.</dd></div>
         <div class="content-key__item"><dt>SHA-384/SHA-3</dt><dd>Use SHA-384/SHA-3 for long-term security.</dd></div>
-        <div class="content-key__item"><dt>Shor&#x27;s algorithm</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>Status</dt><dd>Introduced and explained in the sections below.</dd></div>
         <div class="content-key__item"><dt>Test</dt><dd>PQC increases key/ciphertext sizes — test bandwidth, latency, certificate chains.</dd></div>
-        <div class="content-key__item"><dt>The quantum threat to public-key crypto</dt><dd>Shor&#x27;s algorithm solves integer factoring and discrete logarithms in polynomial time on a quantum computer, breaking RSA, Diffie–Hellman, and elliptic-curve cryptography (ECC) that secure today&#x27;s internet, banking, and government communi...</dd></div>
-        <div class="content-key__item"><dt>Type</dt><dd>Introduced and explained in the sections below.</dd></div>
       </dl>
       </div>
     </details>

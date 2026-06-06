@@ -28,6 +28,11 @@
       <summary class="content-key__summary">Topic review key — formulae, symbols, terms &amp; acronyms</summary>
       <div class="content-key__body">
       <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
+      <h3 class="content-key__heading">Formulae &amp; relationships</h3>
+      <dl class="content-key__list">
+        <div class="content-key__item"><dt class="content-key__formula">\(f_{\mathrm{ISCO}}\approx\frac{c^3}{6^{3/2}\pi GM}\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(h\sim\frac{2G}{c^4R}\ddot{Q}\)</dt><dd>Key relationship used in this topic.</dd></div>
+      </dl>
       <h3 class="content-key__heading">Symbol names in formulae</h3>
       <dl class="content-key__list">
         <div class="content-key__item"><dt class="content-key__symbol">\(|\alpha\rangle\)</dt><dd><strong>Called:</strong> ket alpha. Dirac ket — coherent state with amplitude α.</dd></div>
@@ -41,6 +46,7 @@
         <div class="content-key__item"><dt class="content-key__symbol">\(R\)</dt><dd><strong>Called:</strong> capital R. Radius, reflectivity, or resistance.</dd></div>
         <div class="content-key__item"><dt class="content-key__symbol">\(S\)</dt><dd><strong>Called:</strong> capital S. Entropy or action.</dd></div>
         <div class="content-key__item"><dt class="content-key__symbol">\(c\)</dt><dd><strong>Called:</strong> lowercase c. Speed of light or subscript label (cavity).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(f\)</dt><dd><strong>Called:</strong> lowercase f. Function or frequency.</dd></div>
         <div class="content-key__item"><dt class="content-key__symbol">\(n\)</dt><dd><strong>Called:</strong> lowercase n. Photon number or integer index.</dd></div>
       </dl>
       <h3 class="content-key__heading">Acronyms</h3>
@@ -49,25 +55,12 @@
       </dl>
       <h3 class="content-key__heading">Key terms &amp; phrases</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt>Main limitation</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>Mathematical backbone and notation</dt><dd>Mathematical backbone and notation Advanced learning becomes faster when notation is explicit.</dd></div>
-        <div class="content-key__item"><dt>Misconception 1</dt><dd>a better fit always means a better physical model.</dd></div>
-        <div class="content-key__item"><dt>Misconception 2</dt><dd>one derivation implies universal validity.</dd></div>
-        <div class="content-key__item"><dt>Misconception 3</dt><dd>numerical precision equals physical accuracy.</dd></div>
-        <div class="content-key__item"><dt>Misconception 4</dt><dd>null results are uninformative.</dd></div>
-        <div class="content-key__item"><dt>Misconception 5</dt><dd>intuition and formalism compete.</dd></div>
-        <div class="content-key__item"><dt>Modeling choice</dt><dd>for example, linearized versus fully nonlinear dynamics, idealized symmetry versus perturbed geometry, or analytic approximation versus numerical discretization.</dd></div>
-        <div class="content-key__item"><dt>Physical intuition and scaling arguments</dt><dd>Physical intuition and scaling arguments Before numerical work, perform back-of-the-envelope scaling.</dd></div>
-        <div class="content-key__item"><dt>Primary strength</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt>Research workflow and reproducibility</dt><dd>Research workflow and reproducibility High-level theory is only half the work.</dd></div>
-        <div class="content-key__item"><dt>Step 1: define inputs</dt><dd>Step 1: define inputs.</dd></div>
-        <div class="content-key__item"><dt>Step 2: compute the controlling parameter</dt><dd>Step 2: compute the controlling parameter.</dd></div>
-        <div class="content-key__item"><dt>Step 3: test alternative assumptions</dt><dd>Step 3: test alternative assumptions.</dd></div>
-        <div class="content-key__item"><dt>Step 4: interpret physically</dt><dd>Step 4: interpret physically.</dd></div>
-        <div class="content-key__item"><dt>Step 5: communicate uncertainty</dt><dd>Step 5: communicate uncertainty.</dd></div>
-        <div class="content-key__item"><dt>Why this subject matters now</dt><dd>Why this subject matters now Gravitational Waves sits at the center of modern physics because it connects fundamental theory with measurable consequences in laboratories, observatories, or engineered systems.</dd></div>
-        <div class="content-key__item"><dt>Worked example A (step-by-step)</dt><dd>Matched filtering of chirping binaries extracts component masses and spins from phase evolution.</dd></div>
-        <div class="content-key__item"><dt>Worked example B (comparison and sensitivity)</dt><dd>Now solve the same conceptual problem with a different modeling choice: for example, linearized versus fully nonlinear dynamics, idealized symmetry versus perturbed geometry, or analytic approximation versus numerical discretization.</dd></div>
+        <div class="content-key__item"><dt>Misconception 1</dt><dd>A better fit always means a better physical model.</dd></div>
+        <div class="content-key__item"><dt>Misconception 2</dt><dd>One derivation implies universal validity.</dd></div>
+        <div class="content-key__item"><dt>Misconception 3</dt><dd>Numerical precision equals physical accuracy.</dd></div>
+        <div class="content-key__item"><dt>Misconception 4</dt><dd>Null results are uninformative.</dd></div>
+        <div class="content-key__item"><dt>Misconception 5</dt><dd>Intuition and formalism compete.</dd></div>
+        <div class="content-key__item"><dt>Modeling choice</dt><dd>For example, linearized versus fully nonlinear dynamics, idealized symmetry versus perturbed geometry, or analytic approximation versus numerical discretization.</dd></div>
       </dl>
       </div>
     </details>
@@ -85,13 +78,13 @@
         <h2>2) Mathematical backbone and notation</h2>
         <p>Advanced learning becomes faster when notation is explicit. We denote state variables, fields, or generalized coordinates by symbols chosen for context, and we track dimensions at every step. For this topic, representative governing relations include</p>
         <p>\[
-          h\\sim\\frac{2G}{c^4R}\\ddot{Q}
+          h\sim\frac{2G}{c^4R}\ddot{Q}
         \]</p>
         <p>\[
-          f_{\\mathrm{ISCO}}\\approx\\frac{c^3}{6^{3/2}\\pi GM}
+          f_{\mathrm{ISCO}}\approx\frac{c^3}{6^{3/2}\pi GM}
         \]</p>
         <p>\[
-          \\rho^2=4\\int \\frac{|\\tilde{h}(f)|^2}{S_n(f)}df
+          \rho^2=4\int \frac{|\tilde{h}(f)|^2}{S_n(f)}df
         \]</p>
         <p>Do not treat these as isolated formulas. They encode conservation principles, constitutive assumptions, and symmetry constraints. A reliable workflow is: (i) identify controlled quantities and unknowns, (ii) non-dimensionalize to expose dominant terms, (iii) choose boundary or initial conditions with physical justification, and (iv) validate limiting cases where analytic behavior is known. If your model fails a known limit, stop and repair the setup before running larger simulations or statistical fits.</p>
         <p>A second key habit is basis awareness. Many derivations look complicated only because variables are expressed in a poor basis. In research practice you often transform to a comoving, rotating, Fourier, eigenmode, or effective basis where couplings become sparse and physical interpretation becomes clearer. This is where intuition and algebra reinforce each other.</p>
@@ -170,7 +163,7 @@
         <h2>9) Quick knowledge check</h2>
         <div class="quiz">
           <ol>
-            <li>State the physical meaning of each of these three relations and identify one assumption behind each: \(h\\sim\\frac{2G}{c^4R}\\ddot{Q}\), \(f_{\\mathrm{ISCO}}\\approx\\frac{c^3}{6^{3/2}\\pi GM}\), \(\\rho^2=4\\int \\frac{|\\tilde{h}(f)|^2}{S_n(f)}df\).</li>
+            <li>State the physical meaning of each of these three relations and identify one assumption behind each: \(h\sim\frac{2G}{c^4R}\ddot{Q}\), \(f_{\mathrm{ISCO}}\approx\frac{c^3}{6^{3/2}\pi GM}\), \(\rho^2=4\int \frac{|\tilde{h}(f)|^2}{S_n(f)}df\).</li>
             <li>Give one scaling argument that tells you when a simplified model is valid in this subject.</li>
             <li>In a worked example, why is sensitivity analysis with alternative priors or parameters essential?</li>
             <li>What is the difference between statistical uncertainty and systematic uncertainty in a research claim?</li>

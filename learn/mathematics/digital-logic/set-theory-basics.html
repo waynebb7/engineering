@@ -6,6 +6,9 @@
   <link rel="stylesheet" href="../../../assets/css/corporate.css">
   <script src="../../../assets/js/site-layout.js" defer></script>
   <title>Set Theory Basics</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
 </head>
 
 <body class="content-page">
@@ -31,8 +34,7 @@
       <dl class="content-key__list">
         <div class="content-key__item"><dt class="content-key__formula">(A ∩ B)&#x27; = A&#x27; ∪ B&#x27;</dt><dd>Introduced and explained in the sections below.</dd></div>
         <div class="content-key__item"><dt class="content-key__formula">(A ∪ B)&#x27; = A&#x27; ∩ B&#x27;</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">A + A·B = A</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">A + B·C = (A+B)·(A+C)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(A + A·B = A\)</dt><dd>Introduced and explained in the sections below.</dd></div>
         <div class="content-key__item"><dt class="content-key__formula">\(A = {1, 2, 3}\)</dt><dd>x is an element of A 
 
  x ∉ A — x is not in A 
@@ -44,12 +46,6 @@
 
  
  Union collects elements in either set.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">A · (A + B) = A</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">A · (B + C) = A·B + A·C</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">A ∩ (A ∪ B) = A</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">A ∪ (A ∩ B) = A</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)</dt><dd>Introduced and explained in the sections below.</dd></div>
         <div class="content-key__item"><dt class="content-key__formula">\(B = {x | x is an even integer}\)</dt><dd>De Morgan (sets): 
  (A ∪ B)&#x27; = A&#x27; ∩ B&#x27; 
  (A ∩ B)&#x27; = A&#x27; ∪ B&#x27; 
@@ -64,37 +60,24 @@
       </dl>
       <h3 class="content-key__heading">Symbol names in formulae</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt class="content-key__symbol">an</dt><dd><strong>Called:</strong> an. Quantity or variable in the relationship.</dd></div>
-        <div class="content-key__item"><dt class="content-key__symbol">even</dt><dd><strong>Called:</strong> even. Quantity or variable in the relationship.</dd></div>
-        <div class="content-key__item"><dt class="content-key__symbol">is</dt><dd><strong>Called:</strong> is. Quantity or variable in the relationship.</dd></div>
         <div class="content-key__item"><dt class="content-key__symbol">\(B\)</dt><dd><strong>Called:</strong> capital B. Magnetic field.</dd></div>
-        <div class="content-key__item"><dt class="content-key__symbol">\(x\)</dt><dd><strong>Called:</strong> lowercase x. Position or independent variable.</dd></div>
-      </dl>
-      <h3 class="content-key__heading">Acronyms</h3>
-      <dl class="content-key__list">
-        <div class="content-key__item"><dt>OR</dt><dd>Sets are usually denoted by capital letters; elements by lowercase letters or numbers.</dd></div>
       </dl>
       <h3 class="content-key__heading">Key terms &amp; phrases</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt>Boolean form</dt><dd>Introduced and explained in the sections below.</dd></div>
         <div class="content-key__item"><dt>complement</dt><dd>The complement of A (relative to universal set U ) is everything in U not in A .</dd></div>
-        <div class="content-key__item"><dt>Complement and set difference</dt><dd>Complement and set difference The complement of A (relative to universal set U ) is everything in U not in A .</dd></div>
-        <div class="content-key__item"><dt>De Morgan&#x27;s laws (set form)</dt><dd>De Morgan&#x27;s theorems in Boolean algebra have direct set-theoretic partners.</dd></div>
         <div class="content-key__item"><dt>Definition</dt><dd>Operation Notation Definition Complement A' or Aᶜ {x ∈ U | x ∉ A} Difference A − B or A \ B {x | x ∈ A ∧ x ∉ B}</dd></div>
-        <div class="content-key__item"><dt>Distributive and absorption laws</dt><dd>Distributive and absorption laws Set algebra shares the same structural laws as Boolean algebra, which simplifies circuit and proof work.</dd></div>
         <div class="content-key__item"><dt>elements</dt><dd>A set is a collection of distinct objects called elements .</dd></div>
-        <div class="content-key__item"><dt>Intersection</dt><dd>Intersection collects elements in both.</dd></div>
+        <div class="content-key__item"><dt>Intersection</dt><dd>Collects elements in both.</dd></div>
         <div class="content-key__item"><dt>Logic gate</dt><dd>Operation Notation Definition Logic gate Union A ∪ B {x | x ∈ A ∨ x ∈ B} OR Intersection A ∩ B {x | x ∈ A ∧ x ∈ B} AND</dd></div>
-        <div class="content-key__item"><dt>Membership</dt><dd>Membership x ∈ A — x is an element of A x ∉ A — x is not in A</dd></div>
-        <div class="content-key__item"><dt>Membership and subsets</dt><dd>Membership and subsets Membership x ∈ A — x is an element of A x ∉ A — x is not in A</dd></div>
+        <div class="content-key__item"><dt>Membership</dt><dd>X ∈ A — x is an element of A x ∉ A — x is not in A</dd></div>
         <div class="content-key__item"><dt>Notation</dt><dd>Operation Notation Definition Complement A' or Aᶜ {x ∈ U | x ∉ A} Difference A − B or A \ B {x | x ∈ A ∧ x ∉ B}</dd></div>
-        <div class="content-key__item"><dt>Operation</dt><dd>Operation Notation Definition Complement A' or Aᶜ {x ∈ U | x ∉ A} Difference A − B or A \ B {x | x ∈ A ∧ x ∉ B}</dd></div>
-        <div class="content-key__item"><dt>Roster form</dt><dd>Roster form: A = {1, 2, 3} — list elements</dd></div>
-        <div class="content-key__item"><dt>Set-builder</dt><dd>Set-builder: B = {x | x is an even integer} — rule for membership</dd></div>
-        <div class="content-key__item"><dt>Union</dt><dd>Union collects elements in either set.</dd></div>
-        <div class="content-key__item"><dt>Union and intersection</dt><dd>Union and intersection Union collects elements in either set.</dd></div>
+        <div class="content-key__item"><dt>Operation</dt><dd>Notation Definition Complement A' or Aᶜ {x ∈ U | x ∉ A} Difference A − B or A \ B {x | x ∈ A ∧ x ∉ B}</dd></div>
+        <div class="content-key__item"><dt>Roster form</dt><dd>A = {1, 2, 3} — list elements</dd></div>
+        <div class="content-key__item"><dt>set</dt><dd>A collection of distinct objects called elements .</dd></div>
+        <div class="content-key__item"><dt>Set difference</dt><dd>Removes one set from another.</dd></div>
+        <div class="content-key__item"><dt>Set-builder</dt><dd>B = {x | x is an even integer} — rule for membership</dd></div>
+        <div class="content-key__item"><dt>Union</dt><dd>Collects elements in either set.</dd></div>
         <div class="content-key__item"><dt>Venn diagram</dt><dd>A Venn diagram represents sets as overlapping regions inside a rectangle (the universal set).</dd></div>
-        <div class="content-key__item"><dt>Venn diagrams</dt><dd>Venn diagrams A Venn diagram represents sets as overlapping regions inside a rectangle (the universal set).</dd></div>
       </dl>
       </div>
     </details>

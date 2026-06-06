@@ -84,13 +84,43 @@ TEMPLATE_SECTIONS = {
     "communication quality",
     "define terms",
     "success criteria",
+    # A-Level (and similar) page template card headings — not glossary terms
+    "foundations and context",
+    "core equations and interpretation",
+    "worked example a",
+    "worked example b",
+    "conceptual depth and synoptic links",
+    "practical methods and uncertainty",
+    "common mistakes and correction strategy",
+    "extended revision narrative",
+    "extended worked reasoning and exam communication",
+    "topic extension and exam drills",
+    "problem",
+    "method",
+    "interpretation",
 }
+
+GENERIC_DEFINITION_SNIPPETS = (
+    "introduced and explained in the sections below",
+    "key equations used repeatedly in this topic",
+    "synoptic a-level questions often combine",
+    "at a-level is best learned as a modelling language",
+    "this extension section reinforces",
+    "high-quality practical work begins with deliberate planning",
+    "in long-response questions, communicate as a scientist",
+    "rewards deliberate practice with mixed-format",
+    "a second question extends the same model",
+    "examiners frequently reward structure",
+    "each relation has a validity range",
+)
 
 SKIP_ACRONYMS = {
     "THE", "AND", "FOR", "NOT", "ARE", "BUT", "YOU", "ALL", "ANY", "ONE", "TWO",
     "USE", "CAN", "HAS", "HAD", "WAS", "ITS", "OUR", "WHO", "HOW", "WHY", "NEW",
     "OLD", "BIG", "TOP", "LOW", "HIGH", "TRUE", "FALSE", "HTML", "HTTP", "HREF",
     "SRC", "CSS", "JS", "UK", "US", "EE", "EK",
+    # Subsystem labels in Dirac/tensor notation — not acronyms
+    "AB", "AC", "BC", "AD", "BD", "CD",
 }
 
 ACRONYM_GLOSSARY: dict[str, str] = {
@@ -112,6 +142,8 @@ ACRONYM_GLOSSARY: dict[str, str] = {
     "QFT": "Quantum field theory — relativistic quantum framework for particles and fields.",
     "NISQ": "Noisy Intermediate-Scale Quantum — devices with limited qubits and significant noise.",
     "QKD": "Quantum key distribution — secure key exchange using quantum states.",
+    "EPR": "Einstein–Podolsky–Rosen (1935) argument: if quantum mechanics is complete, outcomes may require non-local correlations or hidden variables.",
+    "CHSH": r"Clauser–Horne–Shimony–Holt Bell test. Local hidden-variable models satisfy \(|S| \leq 2\); quantum mechanics allows \(|S| \leq 2\sqrt{2}\) (Tsirelson bound).",
     "QED": "Quantum electrodynamics — quantum theory of light and its interaction with charged matter. Cavity QED and circuit QED study atoms or qubits coupled to confined photon modes.",
     "HOM": "Hong–Ou–Mandel effect — two indistinguishable photons on a beam splitter exit together; coincidence probability drops to zero.",
     "LIGO": "Laser Interferometer Gravitational-Wave Observatory — detects gravitational waves; squeezed light improves its sensitivity.",
@@ -217,15 +249,58 @@ def is_poor_term(term: str) -> bool:
     return False
 
 
-def clean_definition(defn: str) -> str:
+def strip_term_echo(term: str, definition: str) -> str:
+    term_clean = normalize_term(term)
+    defn = re.sub(r"\s+", " ", definition).strip()
+    if not term_clean or not defn:
+        return defn
+    term_low = term_clean.lower()
+    defn_low = defn.lower()
+    for prefix in (
+        term_low,
+        f"{term_low}:",
+        f"{term_low} —",
+        f"{term_low} -",
+        f"{term_low} problem:",
+        f"{term_low} problem",
+    ):
+        if defn_low.startswith(prefix):
+            rest = defn[len(prefix) :].lstrip(" :—-.")
+            if len(rest) >= 12:
+                return rest
+    return defn
+
+
+def is_generic_definition(defn: str) -> bool:
+    low = defn.lower()
+    if "\\[" in defn or "$$" in defn:
+        return True
+    return any(snippet in low for snippet in GENERIC_DEFINITION_SNIPPETS)
+
+
+def is_section_heading_title(term: str) -> bool:
+    low = normalize_term(term).lower()
+    if is_template_section(term):
+        return True
+    if re.fullmatch(r"worked example [a-z]", low):
+        return True
+    if len(low.split()) > 3:
+        return True
+    if low.endswith(" worked example"):
+        return True
+    return False
+
+
+def clean_definition(defn: str, *, term: str = "") -> str:
     defn = strip_tags(defn)
     defn = re.sub(r"^\d+\)\s*", "", defn)
     defn = re.sub(r"\s+", " ", defn).strip()
+    if term:
+        defn = strip_term_echo(term, defn)
     sents = sentences(defn)
     if sents:
         sent = sents[0]
-        if sent.lower().startswith(defn[:20].lower().split()[0] if defn else ""):
-            # Drop heading echo; prefer the next sentence when present.
+        if term and sent.lower().startswith(normalize_term(term).lower()):
             if len(sents) > 1:
                 return sents[1]
         return sent
@@ -233,6 +308,59 @@ def clean_definition(defn: str) -> str:
 
 
 MAX_FORMULA_DISPLAY = 200
+
+PROSE_FORMULA_WORDS = {
+    "for", "the", "and", "from", "with", "often", "linked", "perpendicular",
+    "clockwise", "anticlockwise", "equilibrium", "design", "between", "into",
+    "that", "this", "when", "where", "each", "both", "are", "is", "not",
+    "should", "focus", "these", "key", "relationships", "tool", "pivot",
+}
+
+SYMBOL_STOP_WORDS = PROSE_FORMULA_WORDS | SKIP_TERMS | TEMPLATE_SECTIONS
+
+
+MATHJAX_SCRIPT = """  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>"""
+
+MATH_IN_TEXT_RE = re.compile(
+    r"[A-Za-z][A-Za-z0-9_]*\s*=\s*[A-Za-z0-9+\-*/^()_:.·×∝→±' ]+"
+)
+
+
+def page_has_mathjax(page_html: str) -> bool:
+    return "mathjax" in page_html.lower()
+
+
+def page_has_math_content(
+    cards: list[str], formulae: list[tuple[str, str]], page_html: str
+) -> bool:
+    if formulae:
+        return True
+    corpus = "\n".join(cards)
+    if re.search(r"\\\(|\\\[|\$\$", corpus):
+        return True
+    for card in cards:
+        for match in CODE_RE.finditer(card):
+            raw = strip_tags(match.group(1))
+            if is_key_formula(raw) and looks_like_math_expression(raw):
+                return True
+    if re.search(r"\\\(|\\\[|\$\$", page_html):
+        return True
+    return False
+
+
+def ensure_mathjax(page_html: str, *, needs_math: bool) -> str:
+    if not needs_math or page_has_mathjax(page_html):
+        return page_html
+    return re.sub(
+        r"</head>",
+        MATHJAX_SCRIPT + "\n</head>",
+        page_html,
+        count=1,
+        flags=re.IGNORECASE,
+    )
+
 
 def is_key_formula(raw: str) -> bool:
     raw = raw.strip()
@@ -250,10 +378,45 @@ def is_key_formula(raw: str) -> bool:
         return False
     if raw.count("=") > 2:
         return False
-    if "=" in raw:
+    if "\\" in raw or looks_like_latex(raw):
+        return "=" in raw or any(sym in raw for sym in ("×", "∝", "→", "±", "^", "_"))
+    words = re.findall(r"[a-zA-Z]+", raw)
+    if words and words[0].lower() in PROSE_FORMULA_WORDS:
+        return False
+    if any(w.lower() in PROSE_FORMULA_WORDS for w in words[:2]):
+        return False
+    if "\\" not in raw and (len(words) >= 5 or any(len(w) > 10 for w in words)):
+        return False
+    if re.search(r"\([^)]*\b(often|linked|usually|typically)\b", raw, re.I):
+        return False
+    if len(words) > 12:
+        return False
+    if "=" not in raw:
+        return False
+    lhs = raw.split("=")[0].strip()
+    if len(lhs.split()) > 4:
+        return False
+    return True
+
+
+def is_actual_symbol(display: str) -> bool:
+    plain = strip_tags(display).strip()
+    if not plain:
+        return False
+    if "\\" in plain or looks_like_latex(plain):
         return True
-    if any(sym in raw for sym in ("×", "∝", "→", "±")):
+    if re.fullmatch(r"[A-Za-z]", plain):
         return True
+    if re.fullmatch(r"[A-Za-z][0-9]+(?:'|′)?", plain):
+        return True
+    if re.fullmatch(r"[A-Za-z]\^[\w{}]+", plain):
+        return True
+    if re.fullmatch(r"[A-Za-z]_[\w{}]+", plain):
+        return True
+    if plain.lower() in SYMBOL_STOP_WORDS:
+        return False
+    if re.fullmatch(r"[a-zA-Z]+", plain):
+        return False
     return False
 
 
@@ -269,6 +432,43 @@ def sentences(text: str) -> list[str]:
     text = strip_tags(text)
     parts = re.split(r"(?<=[.!?])\s+", text)
     return [p.strip() for p in parts if len(p.strip()) > 15]
+
+
+def enrich_definition_from_context(term: str, definition: str, scope_html: str) -> str:
+    definition = definition.strip()
+    if not definition.rstrip().endswith(":"):
+        return definition
+    term_esc = re.escape(term)
+    idx = -1
+    for pat in (
+        rf"<strong>{term_esc}</strong>",
+        rf"<strong>{term_esc}[^<]*</strong>",
+    ):
+        m = re.search(pat, scope_html, re.I)
+        if m:
+            idx = m.end()
+            break
+    if idx == -1:
+        return definition
+    tail = scope_html[idx:]
+    math_m = re.search(r"\\\[(.*?)\\\]", tail, re.DOTALL)
+    if math_m:
+        expr = normalize_extracted_math(strip_tags(math_m.group(1)))
+        return f"{definition.rstrip()} \\({expr}\\)"
+    for sentence in sentences(tail):
+        if len(sentence) > 20 and term.lower() not in sentence.lower()[: len(term) + 5]:
+            return f"{definition.rstrip()} {sentence}"
+        if len(sentence) > 20:
+            return f"{definition.rstrip()} {sentence}"
+    return definition
+
+
+def is_false_acronym(acr: str, page_html: str) -> bool:
+    if len(acr) <= 2 and acr not in ACRONYM_GLOSSARY:
+        return True
+    if re.search(rf"[_{{]\\s*{re.escape(acr)}\\s*[}}]|\\rangle_{{?{re.escape(acr)}", page_html):
+        return True
+    return False
 
 
 def guess_definition(term: str, scope: str) -> str:
@@ -428,7 +628,7 @@ def extract_formulae(cards: list[str]) -> list[tuple[str, str]]:
     found: dict[str, str] = {}
     for regex in (MATH_BLOCK_RE, DOLLAR_BLOCK_RE):
         for m in regex.finditer(text):
-            raw = strip_tags(m.group(1))
+            raw = normalize_extracted_math(strip_tags(m.group(1)))
             if not is_key_formula(raw):
                 continue
             store_formula(found, raw, text)
@@ -483,10 +683,15 @@ def extract_acronyms(cards: list[str], page_html: str) -> list[tuple[str, str]]:
         acr = m.group(0)
         if acr in SKIP_ACRONYMS or acr in found:
             continue
+        if is_false_acronym(acr, page_html):
+            continue
         definition = guess_definition(acr, plain)
         if definition.startswith("Introduced and explained"):
             continue
-        found[acr] = clean_definition(definition)
+        definition = strip_term_echo(acr, clean_definition(definition, term=acr))
+        if is_generic_definition(definition) or definition.rstrip().endswith(":"):
+            continue
+        found[acr] = definition
 
     return sorted(found.items(), key=lambda x: x[0])
 
@@ -503,11 +708,27 @@ def definition_quality(defn: str, term: str) -> int:
     return score
 
 
-def add_term(found: dict[str, tuple[str, str]], term: str, definition: str) -> None:
+def add_term(
+    found: dict[str, tuple[str, str]],
+    term: str,
+    definition: str,
+    *,
+    context_html: str = "",
+) -> None:
     term = normalize_term(term)
     if is_skip_term(term) or is_template_section(term) or is_poor_term(term):
         return
-    definition = clean_definition(definition)
+    if is_section_heading_title(term):
+        return
+    definition = clean_definition(definition, term=term)
+    if context_html:
+        definition = enrich_definition_from_context(term, definition, context_html)
+    if definition and definition[0].islower():
+        definition = definition[0].upper() + definition[1:]
+    if len(definition) < 12 or is_generic_definition(definition):
+        return
+    if definition.rstrip().endswith(":"):
+        return
     if len(definition) > 240:
         definition = definition[:237] + "..."
     key = term.lower()
@@ -523,35 +744,27 @@ def extract_terms(cards: list[str], page_html: str) -> list[tuple[str, str]]:
     for card in cards:
         li_defined: set[str] = set()
         for m in re.finditer(
-            r"<li>\s*<strong>(.*?)</strong>\s*\(([^)]+)\)",
+            r"<li>\s*<strong>(.*?)</strong>\s*(?:\(([^)]+)\)|[—–-]\s*(.*?))\s*</li>",
             card,
             re.DOTALL | re.IGNORECASE,
         ):
             term = normalize_term(m.group(1))
-            definition = strip_tags(m.group(2))
+            definition = strip_tags(m.group(2) or m.group(3) or "")
             if definition and not definition.endswith("."):
                 definition += "."
             add_term(found, term, definition)
             li_defined.add(term.lower())
 
-        for m in H2_RE.finditer(card):
-            title = normalize_term(m.group(1))
-            if is_skip_term(title) or is_template_section(title) or is_poor_term(title):
-                continue
-            scoped = sentences(first_paragraph_after_h2(card, m))
-            definition = guess_definition(title, card)
-            if definition.startswith("Introduced and explained") and scoped:
-                definition = scoped[0]
-            add_term(found, title, definition)
-
         for m in H3_RE.finditer(card):
             title = normalize_term(m.group(1))
-            if is_skip_term(title) or is_template_section(title):
+            if is_skip_term(title) or is_section_heading_title(title) or is_poor_term(title):
                 continue
             scope = text_after_heading(card, title)
             scoped = sentences(scope)
             definition = scoped[0] if scoped else guess_definition(title, scope)
-            add_term(found, title, definition)
+            if is_generic_definition(definition):
+                continue
+            add_term(found, title, definition, context_html=card)
 
         for m in re.finditer(
             r"<(?:p|div class=\"callout\"|div class=\"warning\")[^>]*>(.*?)</(?:p|div)>",
@@ -567,7 +780,7 @@ def extract_terms(cards: list[str], page_html: str) -> list[tuple[str, str]]:
                     continue
                 if term.lower() in li_defined:
                     continue
-                add_term(found, term, guess_definition(term, block))
+                add_term(found, term, guess_definition(term, block), context_html=card)
 
         for m in re.finditer(r"<th>(.*?)</th>", card, re.DOTALL | re.IGNORECASE):
             term = normalize_term(m.group(1))
@@ -604,7 +817,7 @@ def extract_terms(cards: list[str], page_html: str) -> list[tuple[str, str]]:
             if len(plain_li) > 25 and not plain_li.startswith("State "):
                 for sm in STRONG_RE.finditer(li):
                     term = normalize_term(sm.group(1))
-                    add_term(found, term, guess_definition(term, li))
+                    add_term(found, term, guess_definition(term, li), context_html=card)
 
     # Drop near-duplicate shorter terms when a longer term contains them
     items = sorted(found.values(), key=lambda x: x[0].lower())
@@ -629,21 +842,118 @@ def looks_like_latex(text: str) -> bool:
     return bool(LATEX_MARKERS.search(text))
 
 
-def format_formula_label(name: str) -> str:
-    name = name.strip()
-    if name.startswith((r"\(", r"\[")):
-        return name
-    if "\\" in name or looks_like_latex(name):
-        return rf"\({name}\)"
+def looks_like_math_expression(text: str) -> bool:
+    text = strip_tags(text).strip()
+    if not text:
+        return False
+    if looks_like_latex(text):
+        return True
+    if re.fullmatch(r"[A-Za-z]", text):
+        return True
+    if re.fullmatch(r"[A-Za-z][0-9]+(?:'|′)?", text):
+        return True
+    if re.search(
+        r"\b(the|and|for|with|from|that|this|when|where|often|linked)\b", text, re.I
+    ):
+        return False
+    if len(text) > MAX_FORMULA_DISPLAY:
+        return False
+    if "=" in text and text.count("=") <= 3:
+        residue = re.sub(
+            r"[A-Za-z0-9=+\-*/^()_\[\]:,.|·×∝→±'√∀∃≤≥≠≈Σπ²³⁴\s]",
+            "",
+            text,
+        )
+        if not residue:
+            return True
+        if re.search(r"[A-Za-z]\([^)]+\)", text):
+            return True
+        if text.startswith("[") and re.search(r"\[[^\]]+\]", text):
+            return True
+    return False
+
+
+def _convert_divisions(expr: str) -> str:
+    match = re.fullmatch(r"([^/]+?) / (.+)", expr.strip())
+    if match:
+        numerator = match.group(1).strip()
+        denominator = match.group(2).strip()
+        return rf"\frac{{{numerator}}}{{{denominator}}}"
+    return expr
+
+
+def plain_math_to_latex(expr: str) -> str:
+    expr = strip_tags(expr).strip()
+    expr = expr.replace("π", r"\pi ")
+    expr = re.sub(r"\\pi\s+", r"\\pi ", expr)
+    expr = expr.replace("²", "^2").replace("³", "^3").replace("⁴", "^4")
+    expr = re.sub(r"√\(([^)]+)\)", r"\\sqrt{\1}", expr)
+    expr = re.sub(r"√([A-Za-z0-9]+)", r"\\sqrt{\1}", expr)
+    expr = re.sub(r"\s*=\s*", " = ", expr)
+    if " / " not in expr:
+        return expr
+    if " = " in expr:
+        lhs, rhs = expr.split(" = ", 1)
+        return f"{lhs.strip()} = {_convert_divisions(rhs)}"
+    return _convert_divisions(expr)
+
+
+def fix_latex_escaping(text: str) -> str:
+    """Collapse double-escaped TeX (\\\\frac) that breaks MathJax rendering."""
+    prev = None
+    while prev != text:
+        prev = text
+        text = re.sub(r"\\{2,}(?=[a-zA-Z{\[])", r"\\", text)
+    return text
+
+
+def fix_latex_in_html(html: str) -> str:
+    for pattern in (
+        re.compile(r"\\\((.*?)\\\)", re.DOTALL),
+        re.compile(r"\\\[(.*?)\\\]", re.DOTALL),
+        re.compile(r"\$\$(.*?)\$\$", re.DOTALL),
+    ):
+        html = pattern.sub(
+            lambda m: m.group(0).replace(m.group(1), fix_latex_escaping(m.group(1)), 1),
+            html,
+        )
+    return html
+
+
+def normalize_extracted_math(raw: str) -> str:
+    raw = re.sub(r"\s+", " ", raw).strip()
+    if raw.startswith(r"\[") and raw.endswith(r"\]"):
+        raw = raw[2:-2].strip()
+    if raw.startswith(r"\(") and raw.endswith(r"\)"):
+        raw = raw[2:-2].strip()
+    return fix_latex_escaping(raw)
+
+
+def format_formula_label(name: str, *, mathjax: bool = True) -> str:
+    name = normalize_extracted_math(name)
+    if mathjax and looks_like_math_expression(name):
+        latex = plain_math_to_latex(name)
+        return rf"\({latex}\)"
     if re.fullmatch(r"[A-Za-z]", name):
-        return rf"\({name}\)"
+        return f"<var>{html.escape(name)}</var>"
     return html.escape(name)
 
 
-def format_definition(defn: str) -> str:
+def format_definition(defn: str, *, mathjax: bool = False) -> str:
     defn = defn.strip()
     if looks_like_latex(defn) or re.search(r"\\\(|\\\[|\$\$", defn):
         return defn
+    if mathjax and MATH_IN_TEXT_RE.search(defn):
+        parts: list[str] = []
+        last = 0
+        for match in MATH_IN_TEXT_RE.finditer(defn):
+            parts.append(html.escape(defn[last : match.start()]))
+            expr = re.sub(r"[.,;:!?]+$", "", match.group(0).strip())
+            expr = plain_math_to_latex(expr)
+            parts.append(rf"\({expr}\)")
+            last = match.end()
+        parts.append(html.escape(defn[last:]))
+        return "".join(parts)
     return html.escape(defn)
 
 
@@ -806,12 +1116,18 @@ def role_from_page(symbol_latex: str, page_text: str) -> str:
     scoped = CONTENT_KEY_RE.sub("", page_text)
     plain = strip_tags(scoped)
     bad_fragments = ("symbol names", "formulae", "topic review", "acronyms", "key terms")
+    bad_starts = (
+        "states ", "separable", "measuring", "es are", "pure state", "joint ",
+        "subsystem", "and ", "the ", "for ", "when ", "if ",
+    )
     for pat in patterns:
         m = re.search(pat, plain, re.I)
         if m:
             role = re.sub(r"\s+", " ", m.group(1).strip())
-            if 8 < len(role) < 100 and not any(b in role.lower() for b in bad_fragments):
-                return role[0].upper() + role[1:] + "."
+            role_low = role.lower()
+            if 8 < len(role) < 100 and not any(b in role_low for b in bad_fragments):
+                if not any(role_low.startswith(b) for b in bad_starts):
+                    return role[0].upper() + role[1:] + "."
     return ""
 
 
@@ -952,40 +1268,54 @@ def extract_symbols(
             called, meaning = MATH_FUNCTION_NAMES[cmd]
             add_symbol_entry(found, f"\\{cmd}", called, meaning, page_html)
 
-    for letter, (called, meaning) in VARIABLE_NAMES.items():
-        if len(letter) == 1 and letter.islower() and f"\\{letter}" in corpus:
-            continue
-        if re.search(rf"(?<![a-zA-Z\\]){re.escape(letter)}(?![a-zA-Z0-9])", corpus):
-            add_symbol_entry(found, letter, called, meaning, page_html)
+    formula_corpus = " ".join(name for name, _ in formulae)
+    has_latex = "\\" in corpus
 
-    for name, _ in formulae:
-        if "\\" in name:
-            continue
-        if "=" not in name:
-            continue
-        for token in re.split(r"[=+\-*/(),\s]+", name):
-            token = token.strip()
-            if len(token) < 2:
-                continue
-            if re.fullmatch(r"[a-zA-Z]+", token) and token.lower() not in SKIP_TERMS:
-                add_symbol_entry(
-                    found,
-                    token,
-                    token.replace("_", " "),
-                    "Quantity or variable in the relationship.",
-                    page_html,
+    def letter_in_formulae(letter: str) -> bool:
+        if re.search(
+            rf"(?<=[a-zA-Z])\s{re.escape(letter)}\s(?=[a-zA-Z])",
+            formula_corpus,
+        ):
+            return False
+        if has_latex:
+            return bool(
+                re.search(
+                    rf"(?<![a-zA-Z\\]){re.escape(letter)}(?![a-zA-Z0-9])",
+                    formula_corpus,
                 )
+            )
+        return bool(
+            re.search(
+                rf"(?:\({re.escape(letter)}[^)]*\)|"
+                rf"(?<![a-zA-Z]){re.escape(letter)}\s*=|"
+                rf"=\s*{re.escape(letter)}(?![a-zA-Z0-9]))",
+                formula_corpus,
+            )
+        )
 
-    items = sorted(found.values(), key=lambda x: (symbol_priority(x[1]), x[1].lower()))
+    for letter, (called, meaning) in VARIABLE_NAMES.items():
+        in_formula = letter_in_formulae(letter)
+        in_latex = has_latex and bool(
+            re.search(
+                rf"(?<![a-zA-Z\\]){re.escape(letter)}(?![a-zA-Z0-9])",
+                corpus,
+            )
+        )
+        if not in_formula and not in_latex:
+            continue
+        add_symbol_entry(found, letter, called, meaning, page_html)
+
+    items = [item for item in found.values() if is_actual_symbol(item[0])]
+    items = sorted(items, key=lambda x: (symbol_priority(x[1]), x[1].lower()))
     return items[:45]
 
 
-def build_symbols_section(symbols: list[tuple[str, str, str]]) -> str:
+def build_symbols_section(symbols: list[tuple[str, str, str]], *, mathjax: bool = True) -> str:
     if not symbols:
         return ""
     rows = []
     for display, called, meaning in symbols:
-        label = format_formula_label(display)
+        label = format_formula_label(display, mathjax=mathjax)
         rows.append(
             f'        <div class="content-key__item">'
             f'<dt class="content-key__symbol">{label}</dt>'
@@ -1004,17 +1334,22 @@ def build_section(
     items: list[tuple[str, str]],
     *,
     formula_labels: bool = False,
+    mathjax: bool = True,
 ) -> str:
     if not items:
         return ""
     rows = []
     for name, definition in items:
-        label = format_formula_label(name) if formula_labels else html.escape(name)
+        label = (
+            format_formula_label(name, mathjax=mathjax)
+            if formula_labels
+            else html.escape(name)
+        )
         dt_class = ' class="content-key__formula"' if formula_labels else ""
         rows.append(
             f'        <div class="content-key__item">'
             f"<dt{dt_class}>{label}</dt>"
-            f"<dd>{format_definition(definition)}</dd></div>"
+            f"<dd>{format_definition(definition, mathjax=mathjax)}</dd></div>"
         )
     return (
         f'      <h3 class="content-key__heading">{html.escape(title)}</h3>\n'
@@ -1029,6 +1364,8 @@ def build_content_key(
     symbols: list[tuple[str, str, str]],
     acronyms: list[tuple[str, str]],
     terms: list[tuple[str, str]],
+    *,
+    mathjax: bool = True,
 ) -> str | None:
     if not formulae and not symbols and not acronyms and not terms:
         return None
@@ -1039,8 +1376,10 @@ def build_content_key(
         "name every symbol, explain each formula, acronym, and term without looking at the lesson."
         "</p>\n"
     )
-    body += build_section("Formulae & relationships", formulae[:20], formula_labels=True)
-    body += build_symbols_section(symbols)
+    body += build_section(
+        "Formulae & relationships", formulae[:20], formula_labels=True, mathjax=mathjax
+    )
+    body += build_symbols_section(symbols, mathjax=mathjax)
     body += build_section("Acronyms", acronyms[:24])
     body += build_section("Key terms & phrases", terms[:35])
 
@@ -1071,10 +1410,11 @@ def should_process(path: Path, html_text: str) -> bool:
 
 
 def process_file(path: Path) -> bool:
-    text = path.read_text(encoding="utf-8")
-    if not should_process(path, text):
+    original = path.read_text(encoding="utf-8")
+    if not should_process(path, original):
         return False
 
+    text = fix_latex_in_html(original)
     cards = get_teaching_cards(text)
     if not cards:
         return False
@@ -1083,12 +1423,17 @@ def process_file(path: Path) -> bool:
     symbols = extract_symbols(cards, formulae, text)
     acronyms = extract_acronyms(cards, text)
     terms = extract_terms(cards, text)
-    key = build_content_key(formulae, symbols, acronyms, terms)
+    needs_math = page_has_math_content(cards, formulae, text)
+    text = ensure_mathjax(text, needs_math=needs_math)
+    mathjax = page_has_mathjax(text)
+    key = build_content_key(
+        formulae, symbols, acronyms, terms, mathjax=mathjax
+    )
     if not key:
         return False
 
     new_text = inject_key(text, key)
-    if new_text != text:
+    if new_text != original:
         path.write_text(new_text, encoding="utf-8")
         return True
     return False
