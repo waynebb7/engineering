@@ -32,12 +32,12 @@
       <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt class="content-key__formula">\((p \oplus k) \oplus k = p\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\{0,1\}^n\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(c_1 \oplus c_2 = p_1 \oplus p_2.\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(k = c \oplus p\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(p_1, p_2\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(p_i = c_i \oplus k_i.\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\((p \oplus k) \oplus k = p\)</dt><dd>\] XOR is self-inverse: \((p \oplus k) \oplus k = p\).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\{0,1\}^n\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(c_1 \oplus c_2 = p_1 \oplus p_2.\)</dt><dd>The two-time pad catastrophe (key reuse) If the same key encrypts two messages \(p_1\) and \(p_2\): \[ c_1 \oplus c_2 = p_1 \oplus p_2.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(k = c \oplus p\)</dt><dd>Why decryption without the key is impossible If \(k\) is uniform over \(\{0,1\}^n\), then for any fixed ciphertext \(c\), every plaintext \(p\) is equally likely (because \(k = c \oplus p\) is equally likely).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(p_1, p_2\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(p_i = c_i \oplus k_i.\)</dt><dd>Encryption: \[ c_i = p_i \oplus k_i \quad \text{for } i = 1,\ldots,n \] where \(\oplus\) is XOR (addition mod 2).</dd></div>
       </dl>
       <h3 class="content-key__heading">Symbol names in formulae</h3>
       <dl class="content-key__list">
@@ -200,11 +200,11 @@
       <details class="quiz-answers">
         <summary class="quiz-answers__summary">Show answers</summary>
         <ol class="quiz-answers__list">
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>For bit strings of length \(n\): encryption \(c_i = p_i \oplus k_i\) and decryption \(p_i = c_i \oplus k_i\) for \(i = 1, \ldots, n\), where \(\oplus\) is XOR (addition mod 2). XOR is self-inverse: \((p \oplus k) \oplus k = p\).</li>
+          <li>If the key is uniform over \(\{0,1\}^n\), random, as long as the message, and never reused, then for any fixed ciphertext \(c\) every plaintext \(p\) is equally likely (since \(k = c \oplus p\) is equally likely). The attacker learns <strong>zero Shannon information</strong> about \(p\) from \(c\) alone — this is Shannon's perfect secrecy.</li>
+          <li>The key cancels: \(c_1 \oplus c_2 = (p_1 \oplus k) \oplus (p_2 \oplus k) = p_1 \oplus p_2\). Partial knowledge of one plaintext (language redundancy) can reveal the other — this broke Soviet OTP traffic in the VENONA project. Reuse destroys perfect security.</li>
+          <li><strong>Key distribution:</strong> OTP requires \(n\) truly random key bits per \(n\) message bits, securely delivered in advance — impractical at internet scale. Modern TLS uses computational cryptography (AES, ECDH) instead. Other reasons: synchronisation burden, no built-in authentication.</li>
+          <li><strong>No.</strong> OTP provides confidentiality (secrecy) only. It does not detect or prevent ciphertext tampering — an attacker can flip bits without detection. Real systems combine encryption with MACs or authenticated encryption for integrity.</li>
         </ol>
       </details>
 </div>

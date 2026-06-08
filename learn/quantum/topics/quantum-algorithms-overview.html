@@ -25,21 +25,6 @@
     </div>
 
     <div class="content-body">
-    <div class="card progression-card map-position-card" data-map="quantum">
-      <h2>On the Quantum map</h2>
-      <p class="map-position__meta"><strong>Quantum Algorithms Overview</strong> — Level: Algorithms · Domain: Quantum</p>
-      <p><a href="../../../maps/quantum-prereq-map.html?topic=qc_quantum_algorithms_overview">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
-      <h3>Builds on</h3>
-      <ul>
-        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_quantum_approximate_optimization">QAOA</a></li>
-        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_variational_quantum_eigensolver">Variational Quantum Eigensolver (VQE)</a></li>
-      </ul>
-      <h3>Unlocks</h3>
-      <ul>
-        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_quantum_error_correction">Quantum Error Correction</a></li>
-      </ul>
-    </div>
-
 
     <details class="content-key" id="topic-review-key">
       <summary class="content-key__summary">Topic review key — formulae, symbols, terms &amp; acronyms</summary>
@@ -47,9 +32,9 @@
       <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt class="content-key__formula">\(2^{n-1}+1\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(f:\{0,1\}^n \to \{0,1\}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(O_f|x\rangle = (-1)^{f(x)}|x\rangle\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(2^{n-1}+1\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(f:\{0,1\}^n \to \{0,1\}\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(O_f|x\rangle = (-1)^{f(x)}|x\rangle\)</dt><dd>Oracle and query models Many algorithms are analysed with a black-box oracle \(O_f\) that implements \(f:\{0,1\}^n \to \{0,1\}\) or phase oracles \(O_f|x\rangle = (-1)^{f(x)}|x\rangle\).</dd></div>
       </dl>
       <h3 class="content-key__heading">Symbol names in formulae</h3>
       <dl class="content-key__list">
@@ -99,6 +84,20 @@
       </div>
     </details>
 
+    <div class="card progression-card map-position-card" data-map="quantum">
+      <h2>On the Quantum map</h2>
+      <p class="map-position__meta"><strong>Quantum Algorithms Overview</strong> — Level: Algorithms · Domain: Quantum</p>
+      <p><a href="../../../maps/quantum-prereq-map.html?topic=qc_quantum_algorithms_overview">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
+      <h3>Builds on</h3>
+      <ul>
+        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_quantum_approximate_optimization">QAOA</a></li>
+        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_variational_quantum_eigensolver">Variational Quantum Eigensolver (VQE)</a></li>
+      </ul>
+      <h3>Unlocks</h3>
+      <ul>
+        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_quantum_error_correction">Quantum Error Correction</a></li>
+      </ul>
+    </div>
 <div class="card">
       <h2>1) What makes an algorithm quantum?</h2>
       <p>
@@ -247,13 +246,13 @@
       <details class="quiz-answers">
         <summary class="quiz-answers__summary">Show answers</summary>
         <ol class="quiz-answers__list">
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>polynomial-time quantum with bounded error</li>
+          <li>Shor</li>
+          <li>\(O(\sqrt{N})\)</li>
+          <li>period finding / phase estimation</li>
+          <li>VQE and QAOA</li>
+          <li>not known — unlikely for all</li>
+          <li>black-box access to \(f\) counting queries to \(O_f\).</li>
         </ol>
       </details>
 <p class="mini">

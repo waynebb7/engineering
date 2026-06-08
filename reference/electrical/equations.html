@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -54,8 +54,8 @@
                         <span class="variable-unit">(Volt-Amps Reactive, VAR)</span>
                     </div>
                 </button>
-                <button type="button" class="variable-row" data-eq="ohms" aria-label="Learn about Ohm's Law">
-                    <div class="variable-symbol">\( R = \frac{V}{I} \)</div>
+                <button type="button" class="variable-row" data-eq="ohms" aria-label="Learn about Ohm's Law (Resistance Calculation)">
+                    <div class="variable-symbol">\( R = \dfrac{V}{I} \)</div>
                     <div class="variable-desc">
                         <span class="variable-name">Ohm's Law (Resistance Calculation)</span>
                         <span class="variable-unit">(Ohms, \( \Omega \))</span>
@@ -76,34 +76,34 @@
                     </div>
                 </button>
                 <button type="button" class="variable-row" data-eq="xc" aria-label="Learn about Capacitive Reactance">
-                    <div class="variable-symbol">\( X_C = \frac{1}{2\pi f C} \)</div>
+                    <div class="variable-symbol">\( X_C = \dfrac{1}{2\pi f C} \)</div>
                     <div class="variable-desc">
                         <span class="variable-name">Capacitive Reactance</span>
                         <span class="variable-unit">(Ohms, \( \Omega \))</span>
                     </div>
                 </button>
-                <button type="button" class="variable-row" data-eq="star_voltage" aria-label="Learn about Star line and phase voltage">
+                <button type="button" class="variable-row" data-eq="star_voltage" aria-label="Learn about Star Connection: Line vs. Phase Voltage">
                     <div class="variable-symbol">\( V_L = \sqrt{3} \times V_{Ph} \)</div>
                     <div class="variable-desc">
                         <span class="variable-name">Star Connection: Line vs. Phase Voltage</span>
                         <span class="variable-unit">(Volts, V)</span>
                     </div>
                 </button>
-                <button type="button" class="variable-row" data-eq="star_current" aria-label="Learn about Star line and phase current">
+                <button type="button" class="variable-row" data-eq="star_current" aria-label="Learn about Star Connection: Line vs. Phase Current">
                     <div class="variable-symbol">\( I_L = I_{Ph} \)</div>
                     <div class="variable-desc">
                         <span class="variable-name">Star Connection: Line vs. Phase Current</span>
                         <span class="variable-unit">(Amps, A)</span>
                     </div>
                 </button>
-                <button type="button" class="variable-row" data-eq="delta_voltage" aria-label="Learn about Delta line and phase voltage">
+                <button type="button" class="variable-row" data-eq="delta_voltage" aria-label="Learn about Delta Connection: Line vs. Phase Voltage">
                     <div class="variable-symbol">\( V_L = V_{Ph} \)</div>
                     <div class="variable-desc">
                         <span class="variable-name">Delta Connection: Line vs. Phase Voltage</span>
                         <span class="variable-unit">(Volts, V)</span>
                     </div>
                 </button>
-                <button type="button" class="variable-row" data-eq="delta_current" aria-label="Learn about Delta line and phase current">
+                <button type="button" class="variable-row" data-eq="delta_current" aria-label="Learn about Delta Connection: Line vs. Phase Current">
                     <div class="variable-symbol">\( I_L = \sqrt{3} \times I_{Ph} \)</div>
                     <div class="variable-desc">
                         <span class="variable-name">Delta Connection: Line vs. Phase Current</span>
@@ -130,6 +130,7 @@
     </div>
 
     <script src="../../assets/js/circuit-diagrams.js"></script>
-    <script src="../../assets/js/equation-details.js" defer></script>
+    <script src="../../assets/js/equation-details-electrical.js" defer></script>
+    <script src="../../assets/js/equation-ref-ui.js" defer></script>
 </body>
 </html>

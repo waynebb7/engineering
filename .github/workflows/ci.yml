@@ -45,6 +45,9 @@ jobs:
           python3 scripts/build-prereq-node-pages.py
           python3 scripts/build-prereq-maps.py
           python3 scripts/build-legacy-physics-list.py
+          python3 scripts/build-quiz-model-answers-json.py
+          python3 scripts/extract-quiz-questions.py
+          python3 scripts/build-quiz-answers.py
           git diff --exit-code -- \
             assets/js/topic-catalog.js \
             assets/js/topic-catalog.json \
@@ -53,7 +56,10 @@ jobs:
             maps/math-prereq-map.html \
             maps/physics-prereq-map.html \
             maps/quantum-prereq-map.html \
-            legacy/physics-drill-down/list.html
+            legacy/physics-drill-down/list.html \
+            scripts/quiz-model-answers.json \
+            scripts/quiz-questions.json \
+            scripts/quiz-answers.json
 
       - name: Verify redirect stubs
         run: python3 scripts/verify-redirect-stubs.py

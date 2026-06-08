@@ -25,23 +25,6 @@
     </div>
 
     <div class="content-body">
-    <div class="card progression-card map-position-card" data-map="quantum">
-      <h2>On the Quantum map</h2>
-      <p class="map-position__meta"><strong>Entanglement and Bell Inequalities</strong> — Level: Information · Domain: Quantum</p>
-      <p><a href="../../../maps/quantum-prereq-map.html?topic=qc_entanglement_and_bell">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
-      <h3>Builds on</h3>
-      <ul>
-        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_dirac_notation">Dirac (Bra–Ket) Notation</a></li>
-        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_quantum_mechanics_2">Quantum Mechanics II</a></li>
-        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_superposition_and_measurement">Superposition and Measurement</a></li>
-      </ul>
-      <h3>Unlocks</h3>
-      <ul>
-        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_density_matrices">Density Matrices</a></li>
-        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_quantum_channels">Quantum Channels and Decoherence</a></li>
-      </ul>
-    </div>
-
 
     <details class="content-key" id="topic-review-key">
       <summary class="content-key__summary">Topic review key — formulae, symbols, terms &amp; acronyms</summary>
@@ -49,10 +32,10 @@
       <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt class="content-key__formula">\(\mathrm{Tr}_A(\rho_{AB}) = \rho_B\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(E(\mathbf{a},\mathbf{b}) = -\cos\theta_{ab}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(|\psi\rangle_{AB} = |\phi\rangle_A \otimes |\chi\rangle_B\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(|S| = |E(a,b) - E(a,b') + E(a',b) + E(a',b')| \leq 2\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\mathrm{Tr}_A(\rho_{AB}) = \rho_B\)</dt><dd>Area or amplitude (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(E(\mathbf{a},\mathbf{b}) = -\cos\theta_{ab}\)</dt><dd>Energy or electric field (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(|\psi\rangle_{AB} = |\phi\rangle_A \otimes |\chi\rangle_B\)</dt><dd>Wavefunction in quantum mechanics.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(|S| = |E(a,b) - E(a,b') + E(a',b) + E(a',b')| \leq 2\)</dt><dd>Entropy or action (context-dependent).</dd></div>
       </dl>
       <h3 class="content-key__heading">Symbol names in formulae</h3>
       <dl class="content-key__list">
@@ -97,6 +80,22 @@
       </div>
     </details>
 
+    <div class="card progression-card map-position-card" data-map="quantum">
+      <h2>On the Quantum map</h2>
+      <p class="map-position__meta"><strong>Entanglement and Bell Inequalities</strong> — Level: Information · Domain: Quantum</p>
+      <p><a href="../../../maps/quantum-prereq-map.html?topic=qc_entanglement_and_bell">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
+      <h3>Builds on</h3>
+      <ul>
+        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_dirac_notation">Dirac (Bra–Ket) Notation</a></li>
+        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_quantum_mechanics_2">Quantum Mechanics II</a></li>
+        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_superposition_and_measurement">Superposition and Measurement</a></li>
+      </ul>
+      <h3>Unlocks</h3>
+      <ul>
+        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_density_matrices">Density Matrices</a></li>
+        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_quantum_channels">Quantum Channels and Decoherence</a></li>
+      </ul>
+    </div>
 <div class="card">
       <h2>1) Separable vs entangled states</h2>
       <p>
@@ -218,13 +217,15 @@
       <details class="quiz-answers">
         <summary class="quiz-answers__summary">Show answers</summary>
         <ol class="quiz-answers__list">
-          <li>See the worked example: \(|\Phi^+\rangle = \dfrac{1}{\sqrt{2}}(|00\rangle + |11\rangle)\) — measuring \(A\) instantly fixes the statistics of \(B\) even when spatially separated (no signalling of information).</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>product \(|\phi\rangle|\chi\rangle\) vs non-factorisable</li>
+          <li>\((|00\rangle+|11\rangle)/\sqrt{2}\),
+        \((|01\rangle-|10\rangle)/\sqrt{2}\)</li>
+          <li>\(|S|\leq 2\)</li>
+          <li>\(2\sqrt{2}\)</li>
+          <li>marginal stats unchanged by distant
+        settings</li>
+          <li>singlet spin correlations</li>
+          <li>photon polarisation (many others valid).</li>
         </ol>
       </details>
 <p class="mini">

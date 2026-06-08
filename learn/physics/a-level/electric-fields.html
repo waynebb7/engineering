@@ -25,22 +25,6 @@
     </div>
 
     <div class="content-body">
-    <div class="card progression-card map-position-card" data-map="physics">
-      <h2>On the Physics map</h2>
-      <p class="map-position__meta"><strong>Electric Fields and Potential (A-Level)</strong> — Level: A-Level</p>
-      <p><a href="../../../maps/physics-prereq-map.html?topic=electric_fields_potential_alevel">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
-      <h3>Builds on</h3>
-      <ul>
-        <li><a href="../../../maps/physics-prereq-map.html?topic=circuits_alevel">Electric Circuits (A-Level)</a></li>
-        <li><a href="../../../maps/physics-prereq-map.html?topic=vectors_alevel">Vectors for Physics (A-Level)</a></li>
-      </ul>
-      <h3>Unlocks</h3>
-      <ul>
-        <li><a href="../../../maps/physics-prereq-map.html?topic=capacitors_alevel">Capacitors (A-Level)</a></li>
-        <li><a href="../../../maps/physics-prereq-map.html?topic=em_fields_bsc">Electromagnetism I (Fields) (BSc)</a></li>
-      </ul>
-    </div>
-
 
     <details class="content-key" id="topic-review-key">
       <summary class="content-key__summary">Topic review key — formulae, symbols, terms &amp; acronyms</summary>
@@ -48,12 +32,12 @@
       <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt class="content-key__formula">\(E = \frac{F}{q}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(E = \frac{V}{d}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(E = V/d\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(F = \frac{1}{4\pi\varepsilon_0}\frac{Qq}{r^2}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(Q = +3.0\,\mu\text{C}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(q = -1.5\,\mu\text{C}\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(E = \frac{F}{q}\)</dt><dd>Energy or electric field (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(E = \frac{V}{d}\)</dt><dd>Energy or electric field (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(E = V/d\)</dt><dd>Energy or electric field (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(F = \frac{1}{4\pi\varepsilon_0}\frac{Qq}{r^2}\)</dt><dd>Force.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(Q = +3.0\,\mu\text{C}\)</dt><dd>Charge or heat transfer (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(q = -1.5\,\mu\text{C}\)</dt><dd>Worked example A Problem: Point charges \(Q=+3.0\,\mu\text{C}\) and \(q=-1.5\,\mu\text{C}\) are separated by \(r=0.25\,\text{m}\) in vacuum.</dd></div>
       </dl>
       <h3 class="content-key__heading">Symbol names in formulae</h3>
       <dl class="content-key__list">
@@ -87,6 +71,21 @@
       </div>
     </details>
 
+    <div class="card progression-card map-position-card" data-map="physics">
+      <h2>On the Physics map</h2>
+      <p class="map-position__meta"><strong>Electric Fields and Potential (A-Level)</strong> — Level: A-Level</p>
+      <p><a href="../../../maps/physics-prereq-map.html?topic=electric_fields_potential_alevel">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
+      <h3>Builds on</h3>
+      <ul>
+        <li><a href="../../../maps/physics-prereq-map.html?topic=circuits_alevel">Electric Circuits (A-Level)</a></li>
+        <li><a href="../../../maps/physics-prereq-map.html?topic=vectors_alevel">Vectors for Physics (A-Level)</a></li>
+      </ul>
+      <h3>Unlocks</h3>
+      <ul>
+        <li><a href="../../../maps/physics-prereq-map.html?topic=capacitors_alevel">Capacitors (A-Level)</a></li>
+        <li><a href="../../../maps/physics-prereq-map.html?topic=em_fields_bsc">Electromagnetism I (Fields) (BSc)</a></li>
+      </ul>
+    </div>
 <div class="card">
         <h2>1) Foundations and context</h2>
         <p>Electric Fields at A-Level is best learned as a modelling language rather than a memorised formula list. The central skills include identifying assumptions, selecting a valid equation set, preserving sign conventions, and communicating conclusions with units and uncertainty awareness. This page is intentionally comprehensive so each section can be used as revision, homework support, and exam practice.</p>
@@ -181,23 +180,18 @@
             <li>How should a final numerical answer be validated before submission?</li>
           </ol>
         </div>
-        <details class="quiz-answers">
-          <summary class="quiz-answers__summary">Show answers</summary>
-          <ol class="quiz-answers__list">
-            <li>Coulomb's law applies to point charges in vacuum (or uniform medium with permittivity). \(E=F/q\) defines field at a point using a small test charge. \(E=V/d\) applies only to a <strong>uniform</strong> field between parallel plates.</li>
-            <li>Students use \(E=V/d\) for radial fields around a point charge, or forget that force direction depends on charge sign (attraction vs repulsion). State whether the field is uniform before choosing the equation.</li>
-            <li>\(F=\frac{1}{4\pi\varepsilon_0}\frac{Qq}{r^2}\), where \(F\) is force (N), \(Q\) and \(q\) are charges (C), \(r\) is separation (m), and \(\varepsilon_0\) is permittivity of free space.</li>
-            <li>Charge in coulombs and distance in metres give force in newtons. Using cm for \(r\) in Coulomb's law changes force by \(10^4\). Field strength from \(E=V/d\) needs \(d\) in metres and \(V\) in volts.</li>
-            <li>In field-mapping experiments, keep electrode geometry fixed, avoid moisture on plates, repeat potential readings, and ensure the probe does not disturb the field being measured.</li>
-            <li>Like charges repel, unlike charges attract. Field lines point from positive to negative. For a uniform field, \(E\) should be constant between parallel plates; \(F=qE\) direction follows test charge sign.</li>
-          </ol>
-        </details>
-      </div>
-l>
-        <li><a href="../index.html">Physics Catalog</a></li>
-        <li><a href="../../../index.html">Engineering Knowledge Hub</a></li>
-      </ul>
-    </div>
+      <details class="quiz-answers">
+        <summary class="quiz-answers__summary">Show answers</summary>
+        <ol class="quiz-answers__list">
+          <li>Coulomb's law applies to point charges in vacuum (or uniform medium with permittivity). \(E=F/q\) defines field at a point using a small test charge. \(E=V/d\) applies only to a <strong>uniform</strong> field between parallel plates.</li>
+          <li>Students use \(E=V/d\) for radial fields around a point charge, or forget that force direction depends on charge sign (attraction vs repulsion). State whether the field is uniform before choosing the equation.</li>
+          <li>\(F=\frac{1}{4\pi\varepsilon_0}\frac{Qq}{r^2}\), where \(F\) is force (N), \(Q\) and \(q\) are charges (C), \(r\) is separation (m), and \(\varepsilon_0\) is permittivity of free space.</li>
+          <li>Charge in coulombs and distance in metres give force in newtons. Using cm for \(r\) in Coulomb's law changes force by \(10^4\). Field strength from \(E=V/d\) needs \(d\) in metres and \(V\) in volts.</li>
+          <li>In field-mapping experiments, keep electrode geometry fixed, avoid moisture on plates, repeat potential readings, and ensure the probe does not disturb the field being measured.</li>
+          <li>Like charges repel, unlike charges attract. Field lines point from positive to negative. For a uniform field, \(E\) should be constant between parallel plates; \(F=qE\) direction follows test charge sign.</li>
+        </ol>
+      </details>
+</div>
     <div class="card progression-card prerequisites-card">
       <h2>12) Pre-requisites</h2>
       <p>If you are struggling with this topic, review these subjects first.</p>
@@ -229,12 +223,7 @@ l>
         <li><a href="thermal-physics.html">Thermal Physics</a></li>
       </ul>
       <h3>Catalog navigation</h3>
-      <ul>
-        <li><a href="../index.html">Physics Catalog</a></li>
-        <li><a href="../../../index.html">Engineering Knowledge Hub</a></li>
-      </ul>
-    </div>
-
+      <u
 
 
 <p class="page-footer-note">A-Level Physics content.</p>

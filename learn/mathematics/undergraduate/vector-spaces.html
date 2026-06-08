@@ -25,21 +25,6 @@
     </div>
 
     <div class="content-body">
-    <div class="card progression-card map-position-card" data-map="math">
-      <h2>On the Mathematics map</h2>
-      <p class="map-position__meta"><strong>Linear Algebra (BSc)</strong> — Level: BSc · Domain: Algebra</p>
-      <p><a href="../../../maps/math-prereq-map.html?topic=bsc_linear_algebra">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
-      <h3>Builds on</h3>
-      <ul>
-        <li><a href="../../../maps/math-prereq-map.html?topic=al_vectors">Vectors (A-Level)</a></li>
-      </ul>
-      <h3>Unlocks</h3>
-      <ul>
-        <li><a href="../../../maps/math-prereq-map.html?topic=bsc_abstract_algebra">Abstract Algebra I (Groups and Rings) (BSc)</a></li>
-        <li><a href="../../../maps/math-prereq-map.html?topic=bsc_optimization">Optimization (BSc)</a></li>
-      </ul>
-    </div>
-
 
     <details class="content-key" id="topic-review-key">
       <summary class="content-key__summary">Topic review key — formulae, symbols, terms &amp; acronyms</summary>
@@ -47,25 +32,25 @@
       <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt class="content-key__formula">\((\mathbf{u} + \mathbf{v}) + \mathbf{w} = \mathbf{u} + (\mathbf{v} + \mathbf{w})\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(2\mathbf{v}_1 - \mathbf{v}_2 = \mathbf{0}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\([\mathbf{v}]_{\mathcal{B}} = (\alpha_1, \ldots, \alpha_n)^T\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\alpha_1 \mathbf{v}_1 + \alpha_2 \mathbf{v}_2 + \cdots + \alpha_k \mathbf{v}_k\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\alpha_1 \mathbf{v}_1 + \alpha_2 \mathbf{v}_2 + \cdots + \alpha_k \mathbf{v}_k = \mathbf{0}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\alpha_i \in \mathbb{F}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\mathbb{R}^3\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\mathbb{R}^n\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\mathbf{v} + (-\mathbf{v}) = \mathbf{0}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\mathbf{v} + \mathbf{0} = \mathbf{v}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\mathbf{v} = (a,b,c)^T = a\mathbf{e}_1 + b\mathbf{e}_2 + c\mathbf{e}_3\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\mathbf{v} = \sum \alpha_i \mathbf{v}_i\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\mathbf{v}_1, \ldots, \mathbf{v}_k\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\mathcal{B} = \{\mathbf{v}_1, \ldots, \mathbf{v}_n\}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\mathcal{P}_n\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\{\mathbf{v}_1, \ldots, \mathbf{v}_k\}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(M_{m \times n}(\mathbb{R})\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(S = \{\mathbf{v}_1, \ldots, \mathbf{v}_k\}\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\((\mathbf{u} + \mathbf{v}) + \mathbf{w} = \mathbf{u} + (\mathbf{v} + \mathbf{w})\)</dt><dd>Vector space axioms A vector space \(V\) over a field \(\mathbb{F}\) (usually \(\mathbb{R}\) or \(\mathbb{C}\)) is a set of objects called vectors , together with two operations: Vector addition: \(\mathbf{u} + \mathbf{v} \in V\) Scalar multiplication: \(\alpha \mathbf{v} \in V\) for \(\alpha \in \mathbb{F}\) These must satisfy eight axioms (for all \(\mathbf{u}, \mathbf{v}, \mathbf{w} \in V\) and \(\alpha, \beta \in \mathbb{F}\)): Commutativity: \(\mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u}\) Associativity: \((\mathbf{u} + \mathbf{v}) + \mathbf{w} = \mathbf{u} + (\mathbf{v} + \mathbf{w})\) Zero vector: \(\exists\,\mathbf{0}\) with \(\mathbf{v} + \mathbf{0} = \mathbf{v}\) Additive inverse: \(\forall\,\mathbf{v},\;\exists\,-\mathbf{v}\) with \(\mathbf{v} + (-\mathbf{v}) = \mathbf{0}\) 2) Examples of vector spaces Many familiar sets are vector spaces over \(\mathbb{R}\): Space Vectors are… Dimension \(\mathbb{R}^n\) \(n\)-tuples of real numbers \(n\) \(M_{m \times n}(\mathbb{R})\) \(m \times n\) real matrices \(mn\) \(\mathcal{P}_n\) Polynomials of degree \(\leq n\) \(n + 1\) \(C[a,b]\) Continuous functions on \([a,b]\) Infinite 3) Subspaces A subset \(W \subseteq V\) is a subspace if \(W\) is itself a vector space under the same operations.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(2\mathbf{v}_1 - \mathbf{v}_2 = \mathbf{0}\)</dt><dd>Note \((2,4,6) = 2(1,2,3)\), so \(2\mathbf{v}_1 - \mathbf{v}_2 = \mathbf{0}\) with non-zero coefficients.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\([\mathbf{v}]_{\mathcal{B}} = (\alpha_1, \ldots, \alpha_n)^T\)</dt><dd>Magnetic flux density.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\alpha_1 \mathbf{v}_1 + \alpha_2 \mathbf{v}_2 + \cdots + \alpha_k \mathbf{v}_k\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\alpha_1 \mathbf{v}_1 + \alpha_2 \mathbf{v}_2 + \cdots + \alpha_k \mathbf{v}_k = \mathbf{0}\)</dt><dd>Subspace test: \(W \neq \emptyset\) and for all \(\mathbf{u}, \mathbf{v} \in W\), \(\alpha \in \mathbb{F}\): \(\mathbf{u} + \mathbf{v} \in W\) \(\alpha \mathbf{u} \in W\) 4) Linear combinations and span A linear combination of vectors \(\mathbf{v}_1, \ldots, \mathbf{v}_k\) is: \[ \alpha_1 \mathbf{v}_1 + \alpha_2 \mathbf{v}_2 + \cdots + \alpha_k \mathbf{v}_k \] where \(\alpha_i \in \mathbb{F}\).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\alpha_i \in \mathbb{F}\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\mathbb{R}^3\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\mathbb{R}^n\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u}\)</dt><dd>Vector space axioms A vector space \(V\) over a field \(\mathbb{F}\) (usually \(\mathbb{R}\) or \(\mathbb{C}\)) is a set of objects called vectors , together with two operations: Vector addition: \(\mathbf{u} + \mathbf{v} \in V\) Scalar multiplication: \(\alpha \mathbf{v} \in V\) for \(\alpha \in \mathbb{F}\) These must satisfy eight axioms (for all \(\mathbf{u}, \mathbf{v}, \mathbf{w} \in V\) and \(\alpha, \beta \in \mathbb{F}\)): Commutativity: \(\mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u}\) Associativity: \((\mathbf{u} + \mathbf{v}) + \mathbf{w} = \mathbf{u} + (\mathbf{v} + \mathbf{w})\) Zero vector: \(\exists\,\mathbf{0}\) with \(\mathbf{v} + \mathbf{0} = \mathbf{v}\) Additive inverse: \(\forall\,\mathbf{v},\;\exists\,-\mathbf{v}\) with \(\mathbf{v} + (-\mathbf{v}) = \mathbf{0}\) 2) Examples of vector spaces Many familiar sets are vector spaces over \(\mathbb{R}\): Space Vectors are… Dimension \(\mathbb{R}^n\) \(n\)-tuples of real numbers \(n\) \(M_{m \times n}(\mathbb{R})\) \(m \times n\) real matrices \(mn\) \(\mathcal{P}_n\) Polynomials of degree \(\leq n\) \(n + 1\) \(C[a,b]\) Continuous functions on \([a,b]\) Infinite 3) Subspaces A subset \(W \subseteq V\) is a subspace if \(W\) is itself a vector space under the same operations.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\mathbf{v} + (-\mathbf{v}) = \mathbf{0}\)</dt><dd>Vector space axioms A vector space \(V\) over a field \(\mathbb{F}\) (usually \(\mathbb{R}\) or \(\mathbb{C}\)) is a set of objects called vectors , together with two operations: Vector addition: \(\mathbf{u} + \mathbf{v} \in V\) Scalar multiplication: \(\alpha \mathbf{v} \in V\) for \(\alpha \in \mathbb{F}\) These must satisfy eight axioms (for all \(\mathbf{u}, \mathbf{v}, \mathbf{w} \in V\) and \(\alpha, \beta \in \mathbb{F}\)): Commutativity: \(\mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u}\) Associativity: \((\mathbf{u} + \mathbf{v}) + \mathbf{w} = \mathbf{u} + (\mathbf{v} + \mathbf{w})\) Zero vector: \(\exists\,\mathbf{0}\) with \(\mathbf{v} + \mathbf{0} = \mathbf{v}\) Additive inverse: \(\forall\,\mathbf{v},\;\exists\,-\mathbf{v}\) with \(\mathbf{v} + (-\mathbf{v}) = \mathbf{0}\) 2) Examples of vector spaces Many familiar sets are vector spaces over \(\mathbb{R}\): Space Vectors are… Dimension \(\mathbb{R}^n\) \(n\)-tuples of real numbers \(n\) \(M_{m \times n}(\mathbb{R})\) \(m \times n\) real matrices \(mn\) \(\mathcal{P}_n\) Polynomials of degree \(\leq n\) \(n + 1\) \(C[a,b]\) Continuous functions on \([a,b]\) Infinite 3) Subspaces A subset \(W \subseteq V\) is a subspace if \(W\) is itself a vector space under the same operations.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\mathbf{v} + \mathbf{0} = \mathbf{v}\)</dt><dd>Vector space axioms A vector space \(V\) over a field \(\mathbb{F}\) (usually \(\mathbb{R}\) or \(\mathbb{C}\)) is a set of objects called vectors , together with two operations: Vector addition: \(\mathbf{u} + \mathbf{v} \in V\) Scalar multiplication: \(\alpha \mathbf{v} \in V\) for \(\alpha \in \mathbb{F}\) These must satisfy eight axioms (for all \(\mathbf{u}, \mathbf{v}, \mathbf{w} \in V\) and \(\alpha, \beta \in \mathbb{F}\)): Commutativity: \(\mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u}\) Associativity: \((\mathbf{u} + \mathbf{v}) + \mathbf{w} = \mathbf{u} + (\mathbf{v} + \mathbf{w})\) Zero vector: \(\exists\,\mathbf{0}\) with \(\mathbf{v} + \mathbf{0} = \mathbf{v}\) Additive inverse: \(\forall\,\mathbf{v},\;\exists\,-\mathbf{v}\) with \(\mathbf{v} + (-\mathbf{v}) = \mathbf{0}\) 2) Examples of vector spaces Many familiar sets are vector spaces over \(\mathbb{R}\): Space Vectors are… Dimension \(\mathbb{R}^n\) \(n\)-tuples of real numbers \(n\) \(M_{m \times n}(\mathbb{R})\) \(m \times n\) real matrices \(mn\) \(\mathcal{P}_n\) Polynomials of degree \(\leq n\) \(n + 1\) \(C[a,b]\) Continuous functions on \([a,b]\) Infinite 3) Subspaces A subset \(W \subseteq V\) is a subspace if \(W\) is itself a vector space under the same operations.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\mathbf{v} = (a,b,c)^T = a\mathbf{e}_1 + b\mathbf{e}_2 + c\mathbf{e}_3\)</dt><dd>Vector space axioms A vector space \(V\) over a field \(\mathbb{F}\) (usually \(\mathbb{R}\) or \(\mathbb{C}\)) is a set of objects called vectors , together with two operations: Vector addition: \(\mathbf{u} + \mathbf{v} \in V\) Scalar multiplication: \(\alpha \mathbf{v} \in V\) for \(\alpha \in \mathbb{F}\) These must satisfy eight axioms (for all \(\mathbf{u}, \mathbf{v}, \mathbf{w} \in V\) and \(\alpha, \beta \in \mathbb{F}\)): Commutativity: \(\mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u}\) Associativity: \((\mathbf{u} + \mathbf{v}) + \mathbf{w} = \mathbf{u} + (\mathbf{v} + \mathbf{w})\) Zero vector: \(\exists\,\mathbf{0}\) with \(\mathbf{v} + \mathbf{0} = \mathbf{v}\) Additive inverse: \(\forall\,\mathbf{v},\;\exists\,-\mathbf{v}\) with \(\mathbf{v} + (-\mathbf{v}) = \mathbf{0}\) 2) Examples of vector spaces Many familiar sets are vector spaces over \(\mathbb{R}\): Space Vectors are… Dimension \(\mathbb{R}^n\) \(n\)-tuples of real numbers \(n\) \(M_{m \times n}(\mathbb{R})\) \(m \times n\) real matrices \(mn\) \(\mathcal{P}_n\) Polynomials of degree \(\leq n\) \(n + 1\) \(C[a,b]\) Continuous functions on \([a,b]\) Infinite 3) Subspaces A subset \(W \subseteq V\) is a subspace if \(W\) is itself a vector space under the same operations.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\mathbf{v} = \sum \alpha_i \mathbf{v}_i\)</dt><dd>Vector space axioms A vector space \(V\) over a field \(\mathbb{F}\) (usually \(\mathbb{R}\) or \(\mathbb{C}\)) is a set of objects called vectors , together with two operations: Vector addition: \(\mathbf{u} + \mathbf{v} \in V\) Scalar multiplication: \(\alpha \mathbf{v} \in V\) for \(\alpha \in \mathbb{F}\) These must satisfy eight axioms (for all \(\mathbf{u}, \mathbf{v}, \mathbf{w} \in V\) and \(\alpha, \beta \in \mathbb{F}\)): Commutativity: \(\mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u}\) Associativity: \((\mathbf{u} + \mathbf{v}) + \mathbf{w} = \mathbf{u} + (\mathbf{v} + \mathbf{w})\) Zero vector: \(\exists\,\mathbf{0}\) with \(\mathbf{v} + \mathbf{0} = \mathbf{v}\) Additive inverse: \(\forall\,\mathbf{v},\;\exists\,-\mathbf{v}\) with \(\mathbf{v} + (-\mathbf{v}) = \mathbf{0}\) 2) Examples of vector spaces Many familiar sets are vector spaces over \(\mathbb{R}\): Space Vectors are… Dimension \(\mathbb{R}^n\) \(n\)-tuples of real numbers \(n\) \(M_{m \times n}(\mathbb{R})\) \(m \times n\) real matrices \(mn\) \(\mathcal{P}_n\) Polynomials of degree \(\leq n\) \(n + 1\) \(C[a,b]\) Continuous functions on \([a,b]\) Infinite 3) Subspaces A subset \(W \subseteq V\) is a subspace if \(W\) is itself a vector space under the same operations.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\mathbf{v}_1, \ldots, \mathbf{v}_k\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\mathcal{B} = \{\mathbf{v}_1, \ldots, \mathbf{v}_n\}\)</dt><dd>Magnetic flux density.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\mathcal{P}_n\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\{\mathbf{v}_1, \ldots, \mathbf{v}_k\}\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(M_{m \times n}(\mathbb{R})\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(S = \{\mathbf{v}_1, \ldots, \mathbf{v}_k\}\)</dt><dd>Entropy or action (context-dependent).</dd></div>
       </dl>
       <h3 class="content-key__heading">Symbol names in formulae</h3>
       <dl class="content-key__list">
@@ -131,6 +116,20 @@
       </div>
     </details>
 
+    <div class="card progression-card map-position-card" data-map="math">
+      <h2>On the Mathematics map</h2>
+      <p class="map-position__meta"><strong>Linear Algebra (BSc)</strong> — Level: BSc · Domain: Algebra</p>
+      <p><a href="../../../maps/math-prereq-map.html?topic=bsc_linear_algebra">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
+      <h3>Builds on</h3>
+      <ul>
+        <li><a href="../../../maps/math-prereq-map.html?topic=al_vectors">Vectors (A-Level)</a></li>
+      </ul>
+      <h3>Unlocks</h3>
+      <ul>
+        <li><a href="../../../maps/math-prereq-map.html?topic=bsc_abstract_algebra">Abstract Algebra I (Groups and Rings) (BSc)</a></li>
+        <li><a href="../../../maps/math-prereq-map.html?topic=bsc_optimization">Optimization (BSc)</a></li>
+      </ul>
+    </div>
 <div class="card">
       <h2>1) Vector space axioms</h2>
       <p>
@@ -356,8 +355,8 @@
           <li>Gradient <code>m = 0</code> (rise 0, run 1).</li>
           <li>See the worked example: Are \((1,2,3)\), \((2,4,6)\) independent in \(\mathbb{R}^3\)? Note \((2,4,6) = 2(1,2,3)\), so \(2\mathbf{v}_1 - \mathbf{v}_2 = \mathbf{0}\) with non-zero coefficients. They are dependent .</li>
           <li>See the worked example: Extend \(\{(1,1,0), (0,1,1)\}\) to a basis of \(\mathbb{R}^3\). These two vectors are independent. Add \((0,0,1)\), which is not in their span. The set \(\{(1,1,0), (0,1,1), (0,0,1)\}\) is a basis of \(\mathbb{R}^3\).</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>See the worked example: \(\mathcal{P}_2 = \{a + bx + cx^2 : a, b, c \in \mathbb{R}\}\) is a vector space. The sum of two polynomials and any scalar multiple of a polynomial remain in \(\mathcal{P}_2\).</li>
+          <li>See the worked example: In \(\mathbb{R}^3\), the plane \(W = \{(x,y,z) : x + y + z = 0\}\) is a subspace. Check: if \(\mathbf{u}, \mathbf{v} \in W\), then \((u_1+v_1) + (u_2+v_2) + (u_3+v_3) = 0\), so \(\mathbf{u} + \mathbf{v} \in W\). Similarly for scalar multiples.</li>
         </ol>
       </details>
 <p class="mini">

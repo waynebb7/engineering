@@ -187,6 +187,35 @@ FORMULA_HINTS: dict[str, str] = {
     "current": "Rate of flow of electric charge.",
     "voltage": "Energy transferred per unit charge (potential difference).",
     "resistance": "Opposition to electric current.",
+    "momentum": "Product of mass and velocity.",
+    "impulse": "Change in momentum; force multiplied by time.",
+    "frequency": "Number of cycles per unit time.",
+    "wavelength": "Distance between successive wave crests.",
+    "period": "Time for one complete oscillation or cycle.",
+    "charge": "Property of matter that produces electric forces.",
+    "field": "Region where a force acts on objects or charges.",
+    "potential": "Stored energy per unit charge (electric potential).",
+    "capacitance": "Charge stored per unit potential difference.",
+    "inductance": "Property opposing change in current in a circuit.",
+    "flux": "Flow of a field through a surface.",
+    "entropy": "Measure of disorder or number of accessible microstates.",
+    "temperature": "Measure of average kinetic energy of particles.",
+    "probability": "Likelihood of an outcome, between 0 and 1.",
+    "variance": "Spread of a distribution around its mean.",
+    "gradient": "Rate of change of a quantity with position or input.",
+    "derivative": "Instantaneous rate of change of a function.",
+    "integral": "Accumulated sum of a quantity over an interval.",
+    "eigenvalue": "Scalar factor by which an eigenvector is scaled by a matrix.",
+    "eigenvector": "Non-zero vector unchanged in direction by a linear map.",
+    "hamiltonian": "Operator or function representing total energy in a system.",
+    "lagrangian": "Function used in mechanics; typically kinetic minus potential energy.",
+    "lambda": "Wavelength or decay constant, depending on context.",
+    "sigma": "Standard deviation, conductivity, or cross-section, depending on context.",
+    "omega": "Angular frequency (rad s⁻¹).",
+    "theta": "Angle (often in radians).",
+    "phi": "Phase angle or azimuthal angle.",
+    "psi": "Wavefunction in quantum mechanics.",
+    "hbar": "Reduced Planck constant ℏ = h/(2π).",
 }
 
 
@@ -425,7 +454,62 @@ def formula_hint(term: str) -> str | None:
     for key, hint in FORMULA_HINTS.items():
         if low == key or low == f"{key}s":
             return hint
+    if len(term) == 1 and term.isupper():
+        single_letter = {
+            "F": "Force.",
+            "E": "Energy or electric field (context-dependent).",
+            "V": "Voltage or volume (context-dependent).",
+            "I": "Electric current.",
+            "R": "Resistance or radius (context-dependent).",
+            "P": "Power or pressure (context-dependent).",
+            "Q": "Charge or heat transfer (context-dependent).",
+            "T": "Temperature, period, or kinetic energy (context-dependent).",
+            "U": "Internal energy or potential energy.",
+            "W": "Work done or weight.",
+            "B": "Magnetic flux density.",
+            "L": "Inductance or angular momentum (context-dependent).",
+            "C": "Capacitance or heat capacity (context-dependent).",
+            "N": "Number of particles or turns in a coil (context-dependent).",
+            "S": "Entropy or action (context-dependent).",
+            "H": "Enthalpy or magnetic field strength (context-dependent).",
+            "G": "Gravitational constant or Gibbs free energy (context-dependent).",
+            "K": "Spring constant or kinetic energy symbol (context-dependent).",
+            "M": "Mass or magnetization (context-dependent).",
+            "A": "Area or amplitude (context-dependent).",
+            "D": "Distance, displacement, or electric displacement (context-dependent).",
+        }
+        return single_letter.get(term)
     return None
+
+
+def describe_formula(raw: str, context: str) -> str:
+    plain = strip_tags(normalize_extracted_math(raw)).strip()
+    if not plain:
+        return "Equation used in this topic."
+
+    if "=" in plain:
+        lhs = plain.split("=")[0].strip()
+        for token in reversed(re.findall(r"[A-Za-z]+", lhs)):
+            hint = formula_hint(token)
+            if hint:
+                return hint
+        needle = plain[: min(40, len(plain))]
+        for sentence in sentences(context):
+            if needle in sentence or (len(lhs) > 2 and lhs in sentence):
+                cleaned = clean_definition(sentence)
+                if (
+                    len(cleaned) > 25
+                    and cleaned.lower() != plain.lower()
+                    and "key relationship" not in cleaned.lower()
+                ):
+                    return cleaned
+        lhs_disp = lhs if len(lhs) <= 40 else lhs[:37] + "..."
+        return f"Defines {lhs_disp} in terms of the other quantities in this equation."
+
+    hint = formula_hint(plain)
+    if hint:
+        return hint
+    return "Equation used in this topic."
 
 
 def sentences(text: str) -> list[str]:
@@ -618,9 +702,7 @@ def store_formula(found: dict[str, str], raw: str, text: str) -> None:
     key = formula_display_key(raw)
     if not key or key in found:
         return
-    lhs = raw.split("=")[0].strip().split()
-    hint = formula_hint(lhs[-1]) if lhs else None
-    found[key] = hint or "Key relationship used in this topic."
+    found[key] = describe_formula(raw, text)
 
 
 def extract_formulae(cards: list[str]) -> list[tuple[str, str]]:
@@ -652,9 +734,9 @@ def extract_formulae(cards: list[str]) -> list[tuple[str, str]]:
         if raw not in found:
             lhs_parts = raw.split("=")[0].strip().split()
             lhs = lhs_parts[-1] if lhs_parts else raw
-            definition = formula_hint(lhs) or guess_definition(lhs, text)
+            definition = describe_formula(raw, text)
             if definition.strip().rstrip(".") == raw.strip().rstrip("."):
-                definition = "Relationship used in this topic."
+                definition = f"Defines {lhs} in this topic."
             found[raw] = definition
 
     for m in re.finditer(
@@ -666,7 +748,7 @@ def extract_formulae(cards: list[str]) -> list[tuple[str, str]]:
         if any(k in label for k in ("equation", "formula", "key equation", "si form")):
             body = strip_tags(m.group(2))
             if body and body not in found:
-                found[body] = body if len(body) < 120 else "Key relationship highlighted in the lesson."
+                found[body] = body if len(body) < 120 else "Highlighted equation from the lesson."
 
     return sorted(found.items(), key=lambda x: x[0].lower())
 

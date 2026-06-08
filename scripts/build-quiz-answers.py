@@ -9,39 +9,83 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 QUESTIONS_FILE = ROOT / "scripts" / "quiz-questions.json"
 ANSWERS_FILE = ROOT / "scripts" / "quiz-answers.json"
+MODEL_ANSWERS_FILE = ROOT / "scripts" / "quiz-model-answers.json"
+
+
+def load_model_answers() -> dict[str, list[str]]:
+    if not MODEL_ANSWERS_FILE.exists():
+        return {}
+    return json.loads(MODEL_ANSWERS_FILE.read_text(encoding="utf-8"))
 
 try:
     import sympy as sp
 except ImportError:
     sp = None
 
-MINI_RE = re.compile(
-    r"Quick knowledge check</h2>\s*<div class=\"quiz\">.*?</div>\s*<p class=\"mini\">\s*(.*?)\s*</p>",
+QUIZ_CARD_RE = re.compile(
+    r"Quick knowledge check</h2>(.*?)(?=<div class=\"card progression|<div class=\"card\">|\Z)",
+    re.DOTALL | re.IGNORECASE,
+)
+ANSWERS_MINI_RE = re.compile(
+    r'<p class="mini">\s*Answers:\s*(.*?)</p>',
+    re.DOTALL | re.IGNORECASE,
+)
+GUIDANCE_MINI_RE = re.compile(
+    r'<p class="mini">\s*(?!Answers:)(.*?)\s*</p>',
     re.DOTALL | re.IGNORECASE,
 )
 CALLOUT_RE = re.compile(
-    r'<div class="callout">.*?<strong>(?:Example|Worked example|Answer)[^:]*:</strong>\s*(.*?)</div>',
+    r'<div class="callout">.*?<strong>(?:Example|Worked example|Answer|Why they matter|KS3 note)[^:]*:</strong>\s*(.*?)</div>',
     re.DOTALL | re.IGNORECASE,
 )
+WARNING_RE = re.compile(
+    r'<div class="warning">.*?<strong>Common mistake:</strong>\s*(.*?)</div>',
+    re.DOTALL | re.IGNORECASE,
+)
+
+
+def clean_text_fragment(raw: str) -> str:
+    text = re.sub(r"<br\s*/?>", " ", raw, flags=re.IGNORECASE)
+    text = re.sub(r"<[^>]+>", " ", text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def parse_quiz_card_answers(card_html: str) -> list[str]:
+    match = ANSWERS_MINI_RE.search(card_html)
+    if not match:
+        return []
+    return [part.strip() for part in match.group(1).split(";") if part.strip()]
 
 
 def read_page_context(path: Path) -> dict:
     if not path.exists():
-        return {"mini": "", "examples": []}
+        return {"guidance": "", "examples": [], "hints": [], "quiz_answers": []}
     text = path.read_text(encoding="utf-8")
-    mini = ""
-    m = MINI_RE.search(text)
-    if m:
-        mini = re.sub(r"<[^>]+>", " ", m.group(1))
-        mini = re.sub(r"\s+", " ", mini).strip()
+    card = QUIZ_CARD_RE.search(text)
+    card_html = card.group(1) if card else ""
+
+    guidance = ""
+    if card_html:
+        for mini in GUIDANCE_MINI_RE.findall(card_html):
+            plain = clean_text_fragment(mini)
+            if plain and "prerequisite map" not in plain.lower():
+                guidance = plain
+                break
+
     examples = []
     for ex in CALLOUT_RE.findall(text):
-        ex = re.sub(r"<br\s*/?>", " ", ex, flags=re.IGNORECASE)
-        ex = re.sub(r"<[^>]+>", " ", ex)
-        ex = re.sub(r"\s+", " ", ex).strip()
-        if ex:
-            examples.append(ex)
-    return {"mini": mini, "examples": examples}
+        cleaned = clean_text_fragment(ex)
+        if cleaned:
+            examples.append(cleaned)
+
+    hints = [clean_text_fragment(h) for h in WARNING_RE.findall(text) if clean_text_fragment(h)]
+
+    return {
+        "guidance": guidance,
+        "examples": examples,
+        "hints": hints,
+        "quiz_answers": parse_quiz_card_answers(card_html),
+    }
 
 
 def solve_linear_simple(expr: str) -> str | None:
@@ -228,10 +272,122 @@ def expand_solve(q: str) -> str | None:
     return None
 
 
+def format_number(value: float) -> str:
+    if value == int(value):
+        return str(int(value))
+    return f"{value:.2f}".rstrip("0").rstrip(".")
+
+
+def extract_numeric_expression(q: str) -> str | None:
+    for code in re.findall(r"<code>([^<]+)</code>", q):
+        expr = code.replace("−", "-").replace("×", "*").replace("÷", "/").strip()
+        if re.fullmatch(r"[\d\s+\-*/().]+", expr) and re.search(r"[+\-*/]", expr):
+            return expr
+
+    plain = re.search(
+        r"(?:calculate|evaluate|find|compute)\s+(-?\d+(?:\.\d+)?)\s*([+\-*/×÷])\s*(-?\d+(?:\.\d+)?)",
+        q,
+        re.I,
+    )
+    if plain:
+        left, op, right = plain.groups()
+        op = op.replace("×", "*").replace("÷", "/")
+        return f"{left}{op}{right}"
+
+    inline = re.search(r"(-?\d+(?:\.\d+)?)\s*([+\-*/×÷])\s*(-?\d+(?:\.\d+)?)", q)
+    if inline and "same as" not in q.lower():
+        left, op, right = inline.groups()
+        op = op.replace("×", "*").replace("÷", "/")
+        return f"{left}{op}{right}"
+    return None
+
+
+def evaluate_numeric_expression(expr: str) -> str | None:
+    normalized = expr.replace("−", "-").replace("×", "*").replace("÷", "/").strip()
+    if not re.fullmatch(r"[\d\s+\-*/().]+", normalized) or not re.search(r"[+\-*/]", normalized):
+        return None
+    try:
+        value = eval(normalized, {"__builtins__": {}}, {})  # noqa: S307 — numeric literals only
+    except Exception:
+        return None
+    if isinstance(value, (int, float)):
+        return format_number(float(value))
+    return None
+
+
+def basic_arithmetic_answer(q: str) -> str | None:
+    ql = q.lower()
+
+    bond = re.search(r"adds to (\d+) with (\d+)", ql)
+    if bond:
+        target, number = int(bond.group(1)), int(bond.group(2))
+        return f"<code>{number} + {target - number} = {target}</code> (number bond pair)."
+
+    if "same as" in ql and "why" in ql and "+" in q:
+        return "Yes — addition is <strong>commutative</strong> (order does not change the sum)."
+
+    total = re.search(r"sum of (\d+(?:\.\d+)?) and (\d+(?:\.\d+)?)", ql)
+    if total:
+        left, right = map(float, total.groups())
+        result = left + right
+        return f"<code>{format_number(left)} + {format_number(right)} = {format_number(result)}</code>."
+
+    amounts = re.findall(r"£(\d+(?:\.\d+)?)", q)
+    if len(amounts) >= 2 and any(word in ql for word in ("has", "finds", "altogether", "total", "now")):
+        left, right = map(float, amounts[:2])
+        result = left + right
+        return f"<code>£{amounts[0]} + £{amounts[1]} = £{result:.2f}</code>."
+
+    perimeter = re.search(r"perimeter of a square with side (\d+(?:\.\d+)?)\s*cm", ql)
+    if perimeter:
+        side = float(perimeter.group(1))
+        return f"<code>4 × {format_number(side)} = {format_number(4 * side)}</code> cm."
+
+    area = re.search(
+        r"area of a rectangle (\d+(?:\.\d+)?)\s*cm by (\d+(?:\.\d+)?)\s*cm",
+        ql,
+    )
+    if area:
+        length, width = map(float, area.groups())
+        return f"<code>{format_number(length)} × {format_number(width)} = {format_number(length * width)}</code> cm²."
+
+    expr = extract_numeric_expression(q)
+    if expr:
+        value = evaluate_numeric_expression(expr)
+        if value is not None:
+            return f"<code>{expr} = {value}</code>."
+    return None
+
+
+def contextual_fallback(question: str, ctx: dict, index: int) -> str:
+    if ctx.get("examples"):
+        example = ctx["examples"][index % len(ctx["examples"])]
+        return f"See the worked example: {example}"
+
+    if ctx.get("guidance"):
+        return f"Your answer should include: {ctx['guidance']}"
+
+    q_words = set(re.findall(r"[a-z]{5,}", question.lower()))
+    for hint in ctx.get("hints", []):
+        hint_words = set(re.findall(r"[a-z]{5,}", hint.lower()))
+        if q_words & hint_words:
+            return f"Avoid this common mistake: {hint}"
+
+    plain = clean_text_fragment(question)
+    if len(plain) > 120:
+        plain = plain[:117] + "..."
+    return f"Review the lesson sections above for the ideas needed to answer: “{plain}”."
+
+
 def generate_answer(question: str, ctx: dict, index: int) -> str:
+    quiz_answers = ctx.get("quiz_answers") or []
+    if index < len(quiz_answers):
+        return quiz_answers[index]
+
     q = question
     ordered = (
         counting_answer,
+        basic_arithmetic_answer,
         line_equation_answer,
         gradient_through_points,
         parallel_perpendicular,
@@ -251,26 +407,31 @@ def generate_answer(question: str, ctx: dict, index: int) -> str:
         if ans:
             return ans
 
-    if ctx["examples"] and index < len(ctx["examples"]):
-        return f"See the worked example: {ctx['examples'][min(index, len(ctx['examples']) - 1)]}"
-
-    if ctx["mini"]:
-        return f"Your answer should include: {ctx['mini']}"
-
-    return "Review the sections above — the key ideas needed are explained in the worked examples."
+    return contextual_fallback(q, ctx, index)
 
 
 def main():
     if sp is None:
         print("Note: sympy not installed — using basic linear-equation fallback (pip install -r scripts/requirements.txt for full coverage)")
+    model_answers = load_model_answers()
     questions = json.loads(QUESTIONS_FILE.read_text(encoding="utf-8"))
     answers: dict[str, list[str]] = {}
     for topic, qs in questions.items():
+        if topic in model_answers:
+            if len(model_answers[topic]) != len(qs):
+                raise SystemExit(
+                    f"Model answer count mismatch for {topic}: "
+                    f"{len(model_answers[topic])} answers, {len(qs)} questions"
+                )
+            answers[topic] = model_answers[topic]
+            continue
         ctx = read_page_context(ROOT / topic)
         answers[topic] = [generate_answer(q, ctx, i) for i, q in enumerate(qs)]
 
     ANSWERS_FILE.write_text(json.dumps(answers, indent=2), encoding="utf-8")
     print(f"Wrote answers for {len(answers)} topics to {ANSWERS_FILE}")
+    if model_answers:
+        print(f"Used model answers for {len(model_answers)} topics")
 
 
 if __name__ == "__main__":

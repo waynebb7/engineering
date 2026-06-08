@@ -30,9 +30,9 @@
       <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt class="content-key__formula">\(\dot{x} = f(x,\mu)\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\lambda = \lim_{t\to\infty}\frac{1}{t}\ln\frac{||\delta x(t)||}{||\delta x(0)||}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(x_{n+1} = rx_n(1-x_n)\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\dot{x} = f(x,\mu)\)</dt><dd>For this topic, representative governing relations include \[ \dot{x}=f(x,\mu) \] \[ \lambda=\lim_{t\to\infty}\frac{1}{t}\ln\frac{||\delta x(t)||}{||\delta x(0)||} \] \[ x_{n+1}=rx_n(1-x_n) \] Do not treat these as isolated formulas.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\lambda = \lim_{t\to\infty}\frac{1}{t}\ln\frac{||\delta x(t)||}{||\delta x(0)||}\)</dt><dd>Wavelength or decay constant, depending on context.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(x_{n+1} = rx_n(1-x_n)\)</dt><dd>For this topic, representative governing relations include \[ \dot{x}=f(x,\mu) \] \[ \lambda=\lim_{t\to\infty}\frac{1}{t}\ln\frac{||\delta x(t)||}{||\delta x(0)||} \] \[ x_{n+1}=rx_n(1-x_n) \] Do not treat these as isolated formulas.</dd></div>
       </dl>
       <h3 class="content-key__heading">Symbol names in formulae</h3>
       <dl class="content-key__list">
@@ -172,18 +172,18 @@
             <li>Explain one misconception from this guide and write the corrective habit in your own words.</li>
           </ol>
         </div>
-        <details class="quiz-answers">
-          <summary class="quiz-answers__summary">Show answers</summary>
-          <ol class="quiz-answers__list">
-            <li>The equations represent governing dynamics or constraints in this topic; assumptions may include linear response, specific gauge or coordinate choices, weak coupling, continuum limit, or equilibrium closure depending on context.</li>
-            <li>Any valid comparison of dominant timescales, length scales, or dimensionless ratios that justifies neglecting a term (for example dissipation, nonlinearity, or relativistic correction) earns full credit.</li>
-            <li>Sensitivity analysis reveals whether the conclusion is robust or prior-sensitive; without it, apparent precision may be an artifact of hidden assumptions.</li>
-            <li>Statistical uncertainty arises from finite data and random fluctuations; systematic uncertainty arises from calibration bias, model mismatch, foregrounds, or instrument effects.</li>
-            <li>Examples: version-controlled analysis code, fixed random seeds, synthetic-data recovery tests, archived configurations, or full uncertainty budgets attached to figures.</li>
-            <li>Any misconception-correction pair from the card is acceptable, provided the correction is operational and testable in actual workflow.</li>
-          </ol>
-        </details>
-      </div>
+      <details class="quiz-answers">
+        <summary class="quiz-answers__summary">Show answers</summary>
+        <ol class="quiz-answers__list">
+          <li>\(\dot{x}=f(x,\mu)\) is an autonomous dynamical system: state \(x\) evolving with parameter \(\mu\). Assumption: \(f\) is smooth and the phase space is completely specified. \(\lambda=\lim_{t\to\infty}\frac{1}{t}\ln\frac{\|\delta x(t)\|}{\|\delta x(0)\|}\) is a Lyapunov exponent measuring exponential sensitivity to initial conditions. Assumption: trajectory is chaotic and the time average exists. \(x_{n+1}=rx_n(1-x_n)\) is the logistic map — discrete-time population dynamics with growth parameter \(r\). Assumption: one-dimensional state and no explicit time dependence (autonomous iteration).</li>
+          <li>Compare characteristic timescales, lengths, and energies before trusting a reduced model. If a relaxation or equilibration timescale is much shorter than the driving timescale, quasi-steady or equilibrium approximations are justified; if not, transients dominate and steady-state formulas mislead. Identify the controlling dimensionless groups (e.g. signal-to-noise, inertial-to-dissipative, nonlinear-to-linear ratio) to map when a simplified model sits in a valid regime.</li>
+          <li>Sensitivity analysis recomputes the result with optimistic and conservative choices of priors or parameters (Section 5, Step 3). If the scientific conclusion flips sign or order of magnitude, the claim is prior-sensitive and must be reported with that dependence explicit. Without this check, a single parameter set can look definitive while the inference is fragile.</li>
+          <li><strong>Statistical uncertainty</strong> arises from finite data and stochastic fluctuations (shot noise, sample variance, Monte Carlo error); it typically shrinks with more data. <strong>Systematic uncertainty</strong> comes from calibration errors, model-form bias, background subtraction, instrument response, or unvalidated assumptions — it does not automatically average away. Report which dominates in each regime.</li>
+          <li>Run synthetic-data validation before analysing real measurements: inject known parameters through the full pipeline and verify recovery. Combine this with version-controlled assumptions, fixed random seeds, deterministic preprocessing, and regenerable figures so every plot can be reproduced from source and configuration.</li>
+          <li><strong>Misconception:</strong> a better fit always means a better physical model. <strong>Corrective habit:</strong> inspect residual structure, out-of-sample behaviour, and whether extra parameters only chase noise — goodness of fit must be weighed against parsimony and domain validity.</li>
+        </ol>
+      </details>
+</div>
     <div class="card progression-card prerequisites-card">
       <h2>10) Pre-requisites</h2>
       <p>If you are struggling with this topic, review these subjects first.</p>

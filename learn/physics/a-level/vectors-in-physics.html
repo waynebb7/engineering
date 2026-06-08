@@ -25,24 +25,6 @@
     </div>
 
     <div class="content-body">
-    <div class="card progression-card map-position-card" data-map="physics">
-      <h2>On the Physics map</h2>
-      <p class="map-position__meta"><strong>Vectors for Physics (A-Level)</strong> — Level: A-Level</p>
-      <p><a href="../../../maps/physics-prereq-map.html?topic=vectors_alevel">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
-      <h3>Builds on</h3>
-      <ul>
-        <li><a href="../../../maps/physics-prereq-map.html?topic=kinematics_gcse">Kinematics (GCSE)</a></li>
-        <li><a href="../../../maps/physics-prereq-map.html?topic=math_methods_alevel">Mathematical Methods for Physics (A-Level)</a></li>
-      </ul>
-      <h3>Unlocks</h3>
-      <ul>
-        <li><a href="../../../maps/physics-prereq-map.html?topic=electric_fields_potential_alevel">Electric Fields and Potential (A-Level)</a></li>
-        <li><a href="../../../maps/physics-prereq-map.html?topic=linear_algebra_bsc">Linear Algebra for Physics (BSc)</a></li>
-        <li><a href="../../../maps/physics-prereq-map.html?topic=magnetic_fields_alevel">Magnetic Fields (A-Level)</a></li>
-        <li><a href="../../../maps/physics-prereq-map.html?topic=mechanics_alevel">Mechanics (A-Level)</a></li>
-      </ul>
-    </div>
-
 
     <details class="content-key" id="topic-review-key">
       <summary class="content-key__summary">Topic review key — formulae, symbols, terms &amp; acronyms</summary>
@@ -50,11 +32,11 @@
       <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt class="content-key__formula">\(\vec v_{A/B} = \vec v_A-\vec v_B\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\vec{A} = A_x\hat{i}+A_y\hat{j}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\vec{v}_{A/B}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\vec{v}_{A/B} = \vec{v}_A-\vec{v}_B\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(|\vec A| = \sqrt{A_x^2+A_y^2}\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\vec v_{A/B} = \vec v_A-\vec v_B\)</dt><dd>Magnetic flux density.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\vec{A} = A_x\hat{i}+A_y\hat{j}\)</dt><dd>Area or amplitude (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\vec{v}_{A/B}\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\vec{v}_{A/B} = \vec{v}_A-\vec{v}_B\)</dt><dd>Magnetic flux density.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(|\vec A| = \sqrt{A_x^2+A_y^2}\)</dt><dd>Area or amplitude (context-dependent).</dd></div>
       </dl>
       <h3 class="content-key__heading">Symbol names in formulae</h3>
       <dl class="content-key__list">
@@ -87,6 +69,23 @@
       </div>
     </details>
 
+    <div class="card progression-card map-position-card" data-map="physics">
+      <h2>On the Physics map</h2>
+      <p class="map-position__meta"><strong>Vectors for Physics (A-Level)</strong> — Level: A-Level</p>
+      <p><a href="../../../maps/physics-prereq-map.html?topic=vectors_alevel">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
+      <h3>Builds on</h3>
+      <ul>
+        <li><a href="../../../maps/physics-prereq-map.html?topic=kinematics_gcse">Kinematics (GCSE)</a></li>
+        <li><a href="../../../maps/physics-prereq-map.html?topic=math_methods_alevel">Mathematical Methods for Physics (A-Level)</a></li>
+      </ul>
+      <h3>Unlocks</h3>
+      <ul>
+        <li><a href="../../../maps/physics-prereq-map.html?topic=electric_fields_potential_alevel">Electric Fields and Potential (A-Level)</a></li>
+        <li><a href="../../../maps/physics-prereq-map.html?topic=linear_algebra_bsc">Linear Algebra for Physics (BSc)</a></li>
+        <li><a href="../../../maps/physics-prereq-map.html?topic=magnetic_fields_alevel">Magnetic Fields (A-Level)</a></li>
+        <li><a href="../../../maps/physics-prereq-map.html?topic=mechanics_alevel">Mechanics (A-Level)</a></li>
+      </ul>
+    </div>
 <div class="card">
         <h2>1) Foundations and context</h2>
         <p>Vectors in Physics at A-Level is best learned as a modelling language rather than a memorised formula list. The central skills include identifying assumptions, selecting a valid equation set, preserving sign conventions, and communicating conclusions with units and uncertainty awareness. This page is intentionally comprehensive so each section can be used as revision, homework support, and exam practice.</p>
@@ -181,24 +180,18 @@
             <li>How should a final numerical answer be validated before submission?</li>
           </ol>
         </div>
-        <details class="quiz-answers">
-          <summary class="quiz-answers__summary">Show answers</summary>
-          <ol class="quiz-answers__list">
-            <li>Resolve vectors into perpendicular components before adding them. Relative velocity \(ec{v}_{A/B}=ec{v}_A-ec{v}_B\) applies in a chosen inertial frame with consistent direction conventions stated first.</li>
-            <li>A common error is adding magnitudes directly when vectors are not collinear — \(|ec{A}+ec{B}|
-eq|ec{A}|+|ec{B}|\) in general. Resolve into components, add components, then find resultant magnitude.</li>
-            <li>\(|\vec{A}|=\sqrt{A_x^2+A_y^2}\), where \(A_x\) and \(A_y\) are perpendicular components (same units as the vector, e.g. m s\(^{-1}\) for velocity).</li>
-            <li>Component values must use the same unit in each axis (e.g. both m s\(^{-1}\)). Mixing km h\(^{-1}\) with m s\(^{-1}\) in \(A_x\) and \(A_y\) gives a meaningless resultant magnitude.</li>
-            <li>When finding a resultant force experimentally, repeat spring-balance or force-meter readings, ensure forces act in a defined plane, and zero instruments before each measurement.</li>
-            <li>Check the resultant direction lies between the component directions for non-opposing vectors. For forces in equilibrium, the vector sum should be \(\approx\vec{0}\) within experimental uncertainty.</li>
-          </ol>
-        </details>
-      </div>
-l>
-        <li><a href="../index.html">Physics Catalog</a></li>
-        <li><a href="../../../index.html">Engineering Knowledge Hub</a></li>
-      </ul>
-    </div>
+      <details class="quiz-answers">
+        <summary class="quiz-answers__summary">Show answers</summary>
+        <ol class="quiz-answers__list">
+          <li>Resolve vectors into perpendicular components before adding them. Relative velocity \(\vec{v}_{A/B}=\vec{v}_A-\vec{v}_B\) applies in a chosen inertial frame with consistent direction conventions stated first.</li>
+          <li>A common error is adding magnitudes directly when vectors are not collinear — \(|\vec{A}+\vec{B}|\neq|\vec{A}|+|\vec{B}|\) in general. Resolve into components, add components, then find resultant magnitude.</li>
+          <li>\(|\vec{A}|=\sqrt{A_x^2+A_y^2}\), where \(A_x\) and \(A_y\) are perpendicular components (same units as the vector, e.g. m s\(^{-1}\) for velocity).</li>
+          <li>Component values must use the same unit in each axis (e.g. both m s\(^{-1}\)). Mixing km h\(^{-1}\) with m s\(^{-1}\) in \(A_x\) and \(A_y\) gives a meaningless resultant magnitude.</li>
+          <li>When finding a resultant force experimentally, repeat spring-balance or force-meter readings, ensure forces act in a defined plane, and zero instruments before each measurement.</li>
+          <li>Check the resultant direction lies between the component directions for non-opposing vectors. For forces in equilibrium, the vector sum should be \(\approx\vec{0}\) within experimental uncertainty.</li>
+        </ol>
+      </details>
+</div>
     <div class="card progression-card prerequisites-card">
       <h2>12) Pre-requisites</h2>
       <p>If you are struggling with this topic, review these subjects first.</p>
@@ -229,12 +222,7 @@ l>
         <li><a href="waves-a-level.html">Waves (Superposition, Standing Waves)</a></li>
       </ul>
       <h3>Catalog navigation</h3>
-      <ul>
-        <li><a href="../index.html">Physics Catalog</a></li>
-        <li><a href="../../../index.html">Engineering Knowledge Hub</a></li>
-      </ul>
-    </div>
-
+      <u
 
 
 <p class="page-footer-note">A-Level Physics content.</p>

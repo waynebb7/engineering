@@ -25,24 +25,6 @@
     </div>
 
     <div class="content-body">
-    <div class="card progression-card map-position-card" data-map="quantum">
-      <h2>On the Quantum map</h2>
-      <p class="map-position__meta"><strong>Qubits and the Bloch Sphere</strong> — Level: Computing · Domain: Quantum</p>
-      <p><a href="../../../maps/quantum-prereq-map.html?topic=qc_qubits_and_bloch_sphere">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
-      <h3>Builds on</h3>
-      <ul>
-        <li><a href="../../../maps/quantum-prereq-map.html?topic=al_complex">Complex Numbers (A-Level)</a></li>
-        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_dirac_notation">Dirac (Bra–Ket) Notation</a></li>
-        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_quantum_postulates">Postulates of Quantum Mechanics</a></li>
-        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_quantum_optics">Quantum Optics</a></li>
-      </ul>
-      <h3>Unlocks</h3>
-      <ul>
-        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_quantum_circuits">Quantum Circuits</a></li>
-        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_quantum_gates">Quantum Gates</a></li>
-      </ul>
-    </div>
-
 
     <details class="content-key" id="topic-review-key">
       <summary class="content-key__summary">Topic review key — formulae, symbols, terms &amp; acronyms</summary>
@@ -50,24 +32,24 @@
       <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt class="content-key__formula">\(\alpha = \cos\frac{\theta}{2}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\beta = e^{i\phi}\sin\frac{\theta}{2}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\langle Z \rangle = |\alpha|^2 - |\beta|^2 = r_z\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\mathbb{C}^2\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\mathbb{C}P^1\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\rho = |\psi\rangle\langle\psi| = \frac{1}{2}(I + \vec{r}\cdot\vec{\sigma})\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\vec{\sigma} = (X, Y, Z)\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(e^{i\gamma}|\psi\rangle\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(P(0) = |\alpha|^2\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(P(1) = |\beta|^2\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(|0\rangle = \begin{pmatrix}1\\0\end{pmatrix}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(|1\rangle = \begin{pmatrix}0\\1\end{pmatrix}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(|\alpha|^2\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(|\beta|^2\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(|\psi\rangle = \alpha|0\rangle + \beta|1\rangle\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(|\psi\rangle = \cos\frac{\theta}{2}|0\rangle + e^{i\phi}\sin\frac{\theta}{2}|1\rangle\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(|\psi\rangle \mapsto \vec{r} = (\sin\theta\cos\phi,\; \sin\theta\sin\phi,\; \cos\theta)\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\alpha = \cos\frac{\theta}{2}\)</dt><dd>Its state is a unit vector in \(\mathbb{C}^2\): \[ |\psi\rangle = \alpha|0\rangle + \beta|1\rangle, \quad |\alpha|^2 + |\beta|^2 = 1 \] where \(|0\rangle = \begin{pmatrix}1\\0\end{pmatrix}\) and \(|1\rangle = \begin{pmatrix}0\\1\end{pmatrix}\) are computational basis states.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\beta = e^{i\phi}\sin\frac{\theta}{2}\)</dt><dd>Its state is a unit vector in \(\mathbb{C}^2\): \[ |\psi\rangle = \alpha|0\rangle + \beta|1\rangle, \quad |\alpha|^2 + |\beta|^2 = 1 \] where \(|0\rangle = \begin{pmatrix}1\\0\end{pmatrix}\) and \(|1\rangle = \begin{pmatrix}0\\1\end{pmatrix}\) are computational basis states.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\langle Z \rangle = |\alpha|^2 - |\beta|^2 = r_z\)</dt><dd>Expectation value: \(\langle Z \rangle = |\alpha|^2 - |\beta|^2 = r_z\) — the Bloch \(z\)-coordinate equals the spin expectation along \(Z\).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\mathbb{C}^2\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\mathbb{C}P^1\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\rho = |\psi\rangle\langle\psi| = \frac{1}{2}(I + \vec{r}\cdot\vec{\sigma})\)</dt><dd>\(|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)\) at \((1,0,0)\) \(|-\rangle\) at \((-1,0,0)\); \(|{+i}\rangle\) at \((0,1,0)\) Density matrix form: \(\rho = |\psi\rangle\langle\psi| = \frac{1}{2}(I + \vec{r}\cdot\vec{\sigma})\) where \(\vec{\sigma} = (X, Y, Z)\) are Pauli matrices.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\vec{\sigma} = (X, Y, Z)\)</dt><dd>Standard deviation, conductivity, or cross-section, depending on context.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(e^{i\gamma}|\psi\rangle\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(P(0) = |\alpha|^2\)</dt><dd>Power or pressure (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(P(1) = |\beta|^2\)</dt><dd>Power or pressure (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)\)</dt><dd>\(|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)\) at \((1,0,0)\) \(|-\rangle\) at \((-1,0,0)\); \(|{+i}\rangle\) at \((0,1,0)\) Density matrix form: \(\rho = |\psi\rangle\langle\psi| = \frac{1}{2}(I + \vec{r}\cdot\vec{\sigma})\) where \(\vec{\sigma} = (X, Y, Z)\) are Pauli matrices.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(|0\rangle = \begin{pmatrix}1\\0\end{pmatrix}\)</dt><dd>Its state is a unit vector in \(\mathbb{C}^2\): \[ |\psi\rangle = \alpha|0\rangle + \beta|1\rangle, \quad |\alpha|^2 + |\beta|^2 = 1 \] where \(|0\rangle = \begin{pmatrix}1\\0\end{pmatrix}\) and \(|1\rangle = \begin{pmatrix}0\\1\end{pmatrix}\) are computational basis states.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(|1\rangle = \begin{pmatrix}0\\1\end{pmatrix}\)</dt><dd>Its state is a unit vector in \(\mathbb{C}^2\): \[ |\psi\rangle = \alpha|0\rangle + \beta|1\rangle, \quad |\alpha|^2 + |\beta|^2 = 1 \] where \(|0\rangle = \begin{pmatrix}1\\0\end{pmatrix}\) and \(|1\rangle = \begin{pmatrix}0\\1\end{pmatrix}\) are computational basis states.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(|\alpha|^2\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(|\beta|^2\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(|\psi\rangle = \alpha|0\rangle + \beta|1\rangle\)</dt><dd>Wavefunction in quantum mechanics.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(|\psi\rangle = \cos\frac{\theta}{2}|0\rangle + e^{i\phi}\sin\frac{\theta}{2}|1\rangle\)</dt><dd>Wavefunction in quantum mechanics.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(|\psi\rangle \mapsto \vec{r} = (\sin\theta\cos\phi,\; \sin\theta\sin\phi,\; \cos\theta)\)</dt><dd>Wavefunction in quantum mechanics.</dd></div>
       </dl>
       <h3 class="content-key__heading">Symbol names in formulae</h3>
       <dl class="content-key__list">
@@ -101,6 +83,23 @@
       </div>
     </details>
 
+    <div class="card progression-card map-position-card" data-map="quantum">
+      <h2>On the Quantum map</h2>
+      <p class="map-position__meta"><strong>Qubits and the Bloch Sphere</strong> — Level: Computing · Domain: Quantum</p>
+      <p><a href="../../../maps/quantum-prereq-map.html?topic=qc_qubits_and_bloch_sphere">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
+      <h3>Builds on</h3>
+      <ul>
+        <li><a href="../../../maps/quantum-prereq-map.html?topic=al_complex">Complex Numbers (A-Level)</a></li>
+        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_dirac_notation">Dirac (Bra–Ket) Notation</a></li>
+        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_quantum_postulates">Postulates of Quantum Mechanics</a></li>
+        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_quantum_optics">Quantum Optics</a></li>
+      </ul>
+      <h3>Unlocks</h3>
+      <ul>
+        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_quantum_circuits">Quantum Circuits</a></li>
+        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_quantum_gates">Quantum Gates</a></li>
+      </ul>
+    </div>
 <div class="card">
       <h2>1) What is a qubit?</h2>
       <p>
@@ -250,12 +249,12 @@
       <details class="quiz-answers">
         <summary class="quiz-answers__summary">Show answers</summary>
         <ol class="quiz-answers__list">
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>\(\frac{1}{\sqrt{2}}(|0\rangle + i|1\rangle) = |{+i}\rangle = \cos\frac{\theta}{2}|0\rangle + e^{i\phi}\sin\frac{\theta}{2}|1\rangle\) with \(\cos\frac{\theta}{2} = \frac{1}{\sqrt{2}}\) and \(e^{i\phi} = i\), so <strong>\(\theta = \frac{\pi}{2}\), \(\phi = \frac{\pi}{2}\)</strong> (equator point \((0,1,0)\) on the Bloch sphere).</li>
+          <li>They differ by global phase: \(|\psi\rangle\) and \(e^{i\gamma}|\psi\rangle\) are the same physical state in \(\mathbb{C}P^1\). Global phase is unobservable in any measurement.</li>
+          <li>\(|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)\) has \(|\alpha|^2 = |\beta|^2 = \frac{1}{2}\), so \(\langle Z \rangle = |\alpha|^2 - |\beta|^2 = \mathbf{0}\).</li>
+          <li>For a pure state, \(\rho = |\psi\rangle\langle\psi| = \frac{1}{2}(I + \vec{r}\cdot\vec{\sigma})\) where \(\vec{r}\) is the Bloch vector and \(\vec{\sigma} = (X, Y, Z)\).</li>
+          <li>\(\cos\frac{\pi}{4}|0\rangle + \sin\frac{\pi}{4}|1\rangle\) gives \(P(0) = \cos^2\frac{\pi}{4} = \frac{1}{2}\) and \(P(1) = \sin^2\frac{\pi}{4} = \frac{1}{2}\).</li>
+          <li><strong>Two</strong> real parameters (\(\theta\) and \(\phi\)). Pure qubit states live on \(\mathbb{C}P^1\), not \(\mathbb{C}^2\), after quotienting global phase.</li>
         </ol>
       </details>
 </div>

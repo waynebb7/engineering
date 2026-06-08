@@ -25,17 +25,6 @@
     </div>
 
     <div class="content-body">
-    <div class="card progression-card map-position-card" data-map="math">
-      <h2>On the Mathematics map</h2>
-      <p class="map-position__meta"><strong>Calculus of Variations (MSc)</strong> — Level: MSc · Domain: Applied</p>
-      <p><a href="../../../maps/math-prereq-map.html?topic=msc_calculus_variations">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
-      <h3>Builds on</h3>
-      <ul>
-        <li><a href="../../../maps/math-prereq-map.html?topic=bsc_multivariable_calc">Multivariable Calculus (BSc)</a></li>
-        <li><a href="../../../maps/math-prereq-map.html?topic=bsc_real_analysis">Real Analysis I (BSc)</a></li>
-      </ul>
-    </div>
-
 
     <details class="content-key" id="topic-review-key">
       <summary class="content-key__summary">Topic review key — formulae, symbols, terms &amp; acronyms</summary>
@@ -43,26 +32,26 @@
       <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt class="content-key__formula">\(\delta J = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\eta(a) = \eta(b) = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\frac{\partial F}{\partial y} - \frac{d}{dx}\frac{\partial F}{\partial y'} = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\frac{d}{dt}\frac{\partial L}{\partial \dot{q}_i} - \frac{\partial L}{\partial q_i} = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\int \sqrt{1+y'^2}\,dx = L\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\int |\nabla u|^2\,dx\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\partial F/\partial y = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\frac{\partial^2 F}{\partial (y')^2 \geq 0}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\tilde{F} = F + \lambda G\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\tilde{J}[y] = \int_a^b \bigl(F + \lambda G\bigr)\,dx\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(F = \sqrt{1+(y')^2}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(J[y] = \int_a^b \sqrt{1 + (y')^2}\,dx\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(J[y] = \int_a^b F(x, y(x), y'(x))\,dx\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(L = \tfrac{1}{2}m\dot{x}^2 - \tfrac{1}{2}kx^2\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(L = T - V\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(m\ddot{x} + kx = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(S[\mathbf{q}] = \int_{t_1}^{t_2} L(\mathbf{q}, \dot{\mathbf{q}}, t)\,dt, \quad \delta S = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(W^{1,p}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(y = mx + c\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(y'' = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\delta J = 0\)</dt><dd>First variation and sufficient conditions The first variation of \(J\) at \(y\) in direction \(\eta\) is \[ \delta J[y; \eta] = \left.\frac{d}{d\varepsilon} J[y + \varepsilon\eta]\right|_{\varepsilon=0} = \int_a^b \left(\frac{\partial F}{\partial y}\eta + \frac{\partial F}{\partial y'}\eta'\right)dx \] Integration by parts yields the E–L equation when \(\delta J = 0\) for all admissible \(\eta\).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\eta(a) = \eta(b) = 0\)</dt><dd>Perturbations \(y \mapsto y + \varepsilon \eta\) with \(\eta(a) = \eta(b) = 0\) replace directional derivatives.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\frac{\partial F}{\partial y} - \frac{d}{dx}\frac{\partial F}{\partial y'} = 0\)</dt><dd>Force.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\frac{d}{dt}\frac{\partial L}{\partial \dot{q}_i} - \frac{\partial L}{\partial q_i} = 0\)</dt><dd>Inductance or angular momentum (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\int \sqrt{1+y'^2}\,dx = L\)</dt><dd>The variational setup with constraint \(\int \sqrt{1+y'^2}\,dx = L\) yields circular arcs as extremisers; closure gives a full circle.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\int |\nabla u|^2\,dx\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\partial F/\partial y = 0\)</dt><dd>Force.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\frac{\partial^2 F}{\partial (y')^2 \geq 0}\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\tilde{F} = F + \lambda G\)</dt><dd>Force.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\tilde{J}[y] = \int_a^b \bigl(F + \lambda G\bigr)\,dx\)</dt><dd>Introduce a Lagrange multiplier \(\lambda\): \[ \tilde{J}[y] = \int_a^b \bigl(F + \lambda G\bigr)\,dx \] and apply E–L to \(\tilde{F} = F + \lambda G\).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(F = \sqrt{1+(y')^2}\)</dt><dd>Force.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(J[y] = \int_a^b \sqrt{1 + (y')^2}\,dx\)</dt><dd>In the calculus of variations we extremise a functional — a map from functions to numbers: \[ J[y] = \int_a^b F(x, y(x), y'(x))\,dx \] where \(y\) belongs to a class of admissible functions (e.g.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(J[y] = \int_a^b F(x, y(x), y'(x))\,dx\)</dt><dd>In the calculus of variations we extremise a functional — a map from functions to numbers: \[ J[y] = \int_a^b F(x, y(x), y'(x))\,dx \] where \(y\) belongs to a class of admissible functions (e.g.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(L = \tfrac{1}{2}m\dot{x}^2 - \tfrac{1}{2}kx^2\)</dt><dd>Inductance or angular momentum (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(L = T - V\)</dt><dd>Inductance or angular momentum (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(m\ddot{x} + kx = 0\)</dt><dd>E–L gives \(m\ddot{x} + kx = 0\).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(S[\mathbf{q}] = \int_{t_1}^{t_2} L(\mathbf{q}, \dot{\mathbf{q}}, t)\,dt, \quad \delta S = 0\)</dt><dd>Entropy or action (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(W^{1,p}\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(y = mx + c\)</dt><dd>Extremisers are straight lines \(y = mx + c\).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(y'' = 0\)</dt><dd>Here \(F = \sqrt{1+(y')^2}\) is independent of \(y\), so \(\partial F/\partial y = 0\) and E–L gives \(y'' = 0\).</dd></div>
       </dl>
       <h3 class="content-key__heading">Symbol names in formulae</h3>
       <dl class="content-key__list">
@@ -109,6 +98,16 @@
       </div>
     </details>
 
+    <div class="card progression-card map-position-card" data-map="math">
+      <h2>On the Mathematics map</h2>
+      <p class="map-position__meta"><strong>Calculus of Variations (MSc)</strong> — Level: MSc · Domain: Applied</p>
+      <p><a href="../../../maps/math-prereq-map.html?topic=msc_calculus_variations">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
+      <h3>Builds on</h3>
+      <ul>
+        <li><a href="../../../maps/math-prereq-map.html?topic=bsc_multivariable_calc">Multivariable Calculus (BSc)</a></li>
+        <li><a href="../../../maps/math-prereq-map.html?topic=bsc_real_analysis">Real Analysis I (BSc)</a></li>
+      </ul>
+    </div>
 <div class="card">
       <h2>1) Functionals and the variational problem</h2>
       <p>
@@ -302,9 +301,9 @@
           <li>See the worked example: Minimise travel time under gravity. With appropriate parametrisation, the solution is a cycloid — historically the problem that launched the field (Johann Bernoulli, 1696).</li>
           <li>See the worked example: Among closed curves of length \(L\), the circle encloses maximum area. The variational setup with constraint \(\int \sqrt{1+y'^2}\,dx = L\) yields circular arcs as extremisers; closure gives a full circle.</li>
           <li>See the worked example: \(L = \tfrac{1}{2}m\dot{x}^2 - \tfrac{1}{2}kx^2\). E–L gives \(m\ddot{x} + kx = 0\).</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>See the worked example: Minimise arc length \(J[y] = \int_a^b \sqrt{1 + (y')^2}\,dx\). Here \(F = \sqrt{1+(y')^2}\) is independent of \(y\), so \(\partial F/\partial y = 0\) and E–L gives \(y'' = 0\). Extremisers are straight lines \(y = mx + c\).</li>
+          <li>See the worked example: Minimise travel time under gravity. With appropriate parametrisation, the solution is a cycloid — historically the problem that launched the field (Johann Bernoulli, 1696).</li>
+          <li>See the worked example: Among closed curves of length \(L\), the circle encloses maximum area. The variational setup with constraint \(\int \sqrt{1+y'^2}\,dx = L\) yields circular arcs as extremisers; closure gives a full circle.</li>
         </ol>
       </details>
 <p class="mini">

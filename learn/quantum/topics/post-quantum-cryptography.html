@@ -25,17 +25,6 @@
     </div>
 
     <div class="content-body">
-    <div class="card progression-card map-position-card" data-map="quantum">
-      <h2>On the Quantum map</h2>
-      <p class="map-position__meta"><strong>Post-Quantum Cryptography</strong> — Level: Foundations · Domain: Quantum</p>
-      <p><a href="../../../maps/quantum-prereq-map.html?topic=qc_post_quantum_cryptography">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
-      <h3>Builds on</h3>
-      <ul>
-        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_quantum_metrology">Quantum Metrology and Sensing</a></li>
-        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_quantum_simulation">Quantum Simulation</a></li>
-      </ul>
-    </div>
-
 
     <details class="content-key" id="topic-review-key">
       <summary class="content-key__summary">Topic review key — formulae, symbols, terms &amp; acronyms</summary>
@@ -43,10 +32,10 @@
       <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt class="content-key__formula">\((\mathbf{a}, b = \langle\mathbf{a}, \mathbf{s}\rangle + e \bmod q)\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\text{EUF-CMA}_{\text{SPHINCS+}} \leq \text{PRF}_{H} + (h+1) \cdot \text{EUF-CMA}_{\text{OTS}}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(c = \text{Encaps}(pk)\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(K = \text{Decaps}(c, sk)\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\((\mathbf{a}, b = \langle\mathbf{a}, \mathbf{s}\rangle + e \bmod q)\)</dt><dd>NIST-standardised algorithms (2024) Standard Algorithm Type Hardness basis FIPS 203 (ML-KEM) CRYSTALS-Kyber Key encapsulation (KEM) Module Learning With Errors (MLWE) FIPS 204 (ML-DSA) CRYSTALS-Dilithium Digital signature Module LWE + Fiat–Shamir FIPS 205 (SLH-DSA) SPHINCS+ Stateless hash signature Hash function preimage resistance 3) Lattice-based cryptography Learning With Errors (LWE): Given pairs \((\mathbf{a}, b = \langle\mathbf{a}, \mathbf{s}\rangle + e \bmod q)\) where \(\mathbf{s}\) is a secret vector and \(e\) is small noise, recovering \(\mathbf{s}\) is hard.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\text{EUF-CMA}_{\text{SPHINCS+}} \leq \text{PRF}_{H} + (h+1) \cdot \text{EUF-CMA}_{\text{OTS}}\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(c = \text{Encaps}(pk)\)</dt><dd>Kyber KEM flow: Alice generates key pair \((pk, sk)\); Bob encapsulates a shared secret \(K\) into ciphertext \(c = \text{Encaps}(pk)\); Alice decapsulates \(K = \text{Decaps}(c, sk)\).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(K = \text{Decaps}(c, sk)\)</dt><dd>Spring constant or kinetic energy symbol (context-dependent).</dd></div>
       </dl>
       <h3 class="content-key__heading">Symbol names in formulae</h3>
       <dl class="content-key__list">
@@ -109,6 +98,16 @@
       </div>
     </details>
 
+    <div class="card progression-card map-position-card" data-map="quantum">
+      <h2>On the Quantum map</h2>
+      <p class="map-position__meta"><strong>Post-Quantum Cryptography</strong> — Level: Foundations · Domain: Quantum</p>
+      <p><a href="../../../maps/quantum-prereq-map.html?topic=qc_post_quantum_cryptography">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
+      <h3>Builds on</h3>
+      <ul>
+        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_quantum_metrology">Quantum Metrology and Sensing</a></li>
+        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_quantum_simulation">Quantum Simulation</a></li>
+      </ul>
+    </div>
 <div class="card">
       <h2>1) The quantum threat to public-key crypto</h2>
       <p>

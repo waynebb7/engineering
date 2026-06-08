@@ -25,21 +25,6 @@
     </div>
 
     <div class="content-body">
-    <div class="card progression-card map-position-card" data-map="quantum">
-      <h2>On the Quantum map</h2>
-      <p class="map-position__meta"><strong>Measurement in Quantum Computing</strong> — Level: Computing · Domain: Quantum</p>
-      <p><a href="../../../maps/quantum-prereq-map.html?topic=qc_quantum_measurement">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
-      <h3>Builds on</h3>
-      <ul>
-        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_multi_qubit_systems">Multi-Qubit Systems</a></li>
-        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_quantum_circuits">Quantum Circuits</a></li>
-      </ul>
-      <h3>Unlocks</h3>
-      <ul>
-        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_deutsch_jozsa_algorithm">Deutsch–Jozsa Algorithm</a></li>
-      </ul>
-    </div>
-
 
     <details class="content-key" id="topic-review-key">
       <summary class="content-key__summary">Topic review key — formulae, symbols, terms &amp; acronyms</summary>
@@ -47,21 +32,21 @@
       <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt class="content-key__formula">\(\frac{P_m|\psi\rangle}{\|P_m|\psi\rangle\|}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\langle M \rangle = \langle\psi|M|\psi\rangle = \sum_m m\, P(m)\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\sum_m E_m = I\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\{E_m\}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(E_m \geq 0\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(M = \sum_m m\, P_m\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(P(0) = |\alpha|^2,\quad P(1) = |\beta|^2\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(P(m) = \langle\psi|E_m|\psi\rangle\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(P(m) = \langle\psi|P_m|\psi\rangle\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(Z = |0\rangle\langle 0| - |1\rangle\langle 1|\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(|\langle x_1\cdots x_n|\psi\rangle|^2\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(|\Phi^+\rangle\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(|\psi\rangle = \alpha|0\rangle + \beta|1\rangle\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(|\psi\rangle = |+\rangle\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(|x_1 x_2 \cdots x_n\rangle\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\frac{P_m|\psi\rangle}{\|P_m|\psi\rangle\|}\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\langle M \rangle = \langle\psi|M|\psi\rangle = \sum_m m\, P(m)\)</dt><dd>Mass or magnetization (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\sum_m E_m = I\)</dt><dd>Energy or electric field (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\{E_m\}\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(E_m \geq 0\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(M = \sum_m m\, P_m\)</dt><dd>Mass or magnetization (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(P(0) = |\alpha|^2,\quad P(1) = |\beta|^2\)</dt><dd>Power or pressure (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(P(m) = \langle\psi|E_m|\psi\rangle\)</dt><dd>Power or pressure (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(P(m) = \langle\psi|P_m|\psi\rangle\)</dt><dd>Power or pressure (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(Z = |0\rangle\langle 0| - |1\rangle\langle 1|\)</dt><dd>Computational basis measurement The standard readout in quantum computing measures the Pauli \(Z\) observable: \[ Z = |0\rangle\langle 0| - |1\rangle\langle 1| \] For \(|\psi\rangle = \alpha|0\rangle + \beta|1\rangle\): \[ P(0) = |\alpha|^2,\quad P(1) = |\beta|^2 \] In circuits, the meter symbol on a wire performs this measurement and stores a classical bit.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(|\langle x_1\cdots x_n|\psi\rangle|^2\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(|\Phi^+\rangle\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(|\psi\rangle = \alpha|0\rangle + \beta|1\rangle\)</dt><dd>Wavefunction in quantum mechanics.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(|\psi\rangle = |+\rangle\)</dt><dd>Wavefunction in quantum mechanics.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(|x_1 x_2 \cdots x_n\rangle\)</dt><dd>Equation used in this topic.</dd></div>
       </dl>
       <h3 class="content-key__heading">Symbol names in formulae</h3>
       <dl class="content-key__list">
@@ -104,6 +89,20 @@
       </div>
     </details>
 
+    <div class="card progression-card map-position-card" data-map="quantum">
+      <h2>On the Quantum map</h2>
+      <p class="map-position__meta"><strong>Measurement in Quantum Computing</strong> — Level: Computing · Domain: Quantum</p>
+      <p><a href="../../../maps/quantum-prereq-map.html?topic=qc_quantum_measurement">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
+      <h3>Builds on</h3>
+      <ul>
+        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_multi_qubit_systems">Multi-Qubit Systems</a></li>
+        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_quantum_circuits">Quantum Circuits</a></li>
+      </ul>
+      <h3>Unlocks</h3>
+      <ul>
+        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_deutsch_jozsa_algorithm">Deutsch–Jozsa Algorithm</a></li>
+      </ul>
+    </div>
 <div class="card">
       <h2>1) The measurement postulate</h2>
       <p>
@@ -239,12 +238,12 @@
       <details class="quiz-answers">
         <summary class="quiz-answers__summary">Show answers</summary>
         <ol class="quiz-answers__list">
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>Born rule: outcome \(m\) occurs with probability \(P(m) = \langle\psi|P_m|\psi\rangle\). Post-measurement state (projective/L&uuml;ders): \(\frac{P_m|\psi\rangle}{\|P_m|\psi\rangle\|}\).</li>
+          <li>\(|{+i}\rangle = \frac{1}{\sqrt{2}}(|0\rangle + i|1\rangle)\) has equal amplitudes, so \(P(0) = |\alpha|^2 = \frac{1}{2}\) and \(P(1) = |\beta|^2 = \frac{1}{2}\) in the \(Z\) basis.</li>
+          <li>Apply \(H\) to rotate the \(X\) eigenbasis to the computational basis, then measure in \(Z\): \(H|\psi\rangle \to\) measure \(Z \to\) outcome \(\pm 1\).</li>
+          <li>For \(|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)\), measuring one qubit in \(Z\) yields 0 or 1 each with probability \(\frac{1}{2}\) and projects the pair to \(|00\rangle\) or \(|11\rangle\) (perfect \(Z\)-correlation).</li>
+          <li>A <strong>POVM</strong> is a set \(\{E_m\}\) with \(\sum_m E_m = I\), \(E_m \geq 0\), and \(P(m) = \langle\psi|E_m|\psi\rangle\). POVMs generalise projective measurement: effects need not be orthogonal projectors, modelling lossy or imperfect detectors.</li>
+          <li>Single measurements are <strong>probabilistic</strong>. Hardware runs many <strong>shots</strong> to estimate outcome probabilities and algorithm statistics (e.g. Grover success rate, VQE expectations).</li>
         </ol>
       </details>
 </div>

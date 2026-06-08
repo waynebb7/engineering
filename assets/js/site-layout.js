@@ -16,7 +16,6 @@
 
   var navItems = [
     { href: 'index.html', label: 'Home' },
-    { href: 'reference/electrical/equations.html', label: 'Reference' },
     { href: 'calculators/index.html', label: 'Calculators' },
     { href: 'learn/mathematics/index.html', label: 'Mathematics' },
     { href: 'learn/physics/index.html', label: 'Physics' },
@@ -29,9 +28,6 @@
   function isActive(href) {
     if (href === 'index.html') {
       return file === 'index.html' && path.indexOf('/learn/') === -1 && path.indexOf('/calculators/') === -1;
-    }
-    if (href === 'reference/electrical/equations.html') {
-      return path.indexOf('/reference/') !== -1;
     }
     if (href === 'calculators/index.html') {
       return path.indexOf('/calculators/') !== -1;

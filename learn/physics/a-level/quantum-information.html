@@ -25,13 +25,6 @@
     </div>
 
     <div class="content-body">
-    <div class="card progression-card map-position-card" data-map="quantum">
-      <h2>On the Quantum map</h2>
-      <p class="map-position__meta"><strong>Quantum Information</strong> — Level: Information · Domain: Physics</p>
-      <p><a href="../../../maps/quantum-prereq-map.html?topic=qc_quantum_information">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
-      <p class="mini"><em>Foundation topic — many advanced topics depend on this one.</em></p>
-    </div>
-
 
     <details class="content-key" id="topic-review-key">
       <summary class="content-key__summary">Topic review key — formulae, symbols, terms &amp; acronyms</summary>
@@ -39,24 +32,24 @@
       <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt class="content-key__formula">\(\lambda_i\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\mathbb{C}^{2^n}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\mathcal{E}(\rho) = (1-p)\rho + \frac{p}{3}(X\rho X + Y\rho Y + Z\rho Z)\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\mathcal{E}(\rho) = \sum_k E_k \rho E_k^\dagger, \quad \sum_k E_k^\dagger E_k = I\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\rho = I/2\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\rho_A = \mathrm{Tr}_B(|\Phi^+\rangle\langle\Phi^+|) = \frac{1}{2}(|0\rangle\langle 0| + |1\rangle\langle 1|)\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(I(A:B) = S(\rho_A) + S(\rho_B) - S(\rho_{AB})\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(S = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(S(\rho) = -\mathrm{Tr}(\rho \log_2 \rho) = -\sum_i \lambda_i \log_2 \lambda_i\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(S(\rho_{AB}) = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(S(U\rho U^\dagger) = S(\rho)\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(S_A = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(S_A = S(\rho_A), \quad \rho_A = \mathrm{Tr}_B(|\psi\rangle\langle\psi|)\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(|\alpha|^2\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(|\beta|^2\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(|\psi\rangle = \alpha|0\rangle + \beta|1\rangle\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(|\psi\rangle \in \mathbb{C}^2\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(|\psi\rangle_{AB}\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\lambda_i\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\mathbb{C}^{2^n}\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\mathcal{E}(\rho) = (1-p)\rho + \frac{p}{3}(X\rho X + Y\rho Y + Z\rho Z)\)</dt><dd>Energy or electric field (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\mathcal{E}(\rho) = \sum_k E_k \rho E_k^\dagger, \quad \sum_k E_k^\dagger E_k = I\)</dt><dd>Energy or electric field (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\rho = I/2\)</dt><dd>For a density matrix \(\rho\) with eigenvalues \(\lambda_i\): \[ S(\rho) = -\mathrm{Tr}(\rho \log_2 \rho) = -\sum_i \lambda_i \log_2 \lambda_i \] Pure states have \(S = 0\); maximally mixed single-qubit states \(\rho = I/2\) have \(S = 1\) bit.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\rho_A = \mathrm{Tr}_B(|\Phi^+\rangle\langle\Phi^+|) = \frac{1}{2}(|0\rangle\langle 0| + |1\rangle\langle 1|)\)</dt><dd>Area or amplitude (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(I(A:B) = S(\rho_A) + S(\rho_B) - S(\rho_{AB})\)</dt><dd>Magnetic flux density.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(S = 0\)</dt><dd>Entropy or action (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(S(\rho) = -\mathrm{Tr}(\rho \log_2 \rho) = -\sum_i \lambda_i \log_2 \lambda_i\)</dt><dd>Entropy or action (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(S(\rho_{AB}) = 0\)</dt><dd>Entropy or action (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(S(U\rho U^\dagger) = S(\rho)\)</dt><dd>Internal energy or potential energy.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(S_A = 0\)</dt><dd>Area or amplitude (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(S_A = S(\rho_A), \quad \rho_A = \mathrm{Tr}_B(|\psi\rangle\langle\psi|)\)</dt><dd>Area or amplitude (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(|\alpha|^2\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(|\beta|^2\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(|\psi\rangle = \alpha|0\rangle + \beta|1\rangle\)</dt><dd>Wavefunction in quantum mechanics.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(|\psi\rangle \in \mathbb{C}^2\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(|\psi\rangle_{AB}\)</dt><dd>Equation used in this topic.</dd></div>
       </dl>
       <h3 class="content-key__heading">Symbol names in formulae</h3>
       <dl class="content-key__list">
@@ -110,6 +103,12 @@
       </div>
     </details>
 
+    <div class="card progression-card map-position-card" data-map="quantum">
+      <h2>On the Quantum map</h2>
+      <p class="map-position__meta"><strong>Quantum Information</strong> — Level: Information · Domain: Physics</p>
+      <p><a href="../../../maps/quantum-prereq-map.html?topic=qc_quantum_information">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
+      <p class="mini"><em>Foundation topic — many advanced topics depend on this one.</em></p>
+    </div>
 <div class="card">
       <h2>1) Qubits as information carriers</h2>
       <p>
@@ -304,12 +303,12 @@
       <details class="quiz-answers">
         <summary class="quiz-answers__summary">Show answers</summary>
         <ol class="quiz-answers__list">
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>\(S(\rho)=-\sum_i \lambda_i\log_2\lambda_i=-\frac{3}{4}\log_2\frac{3}{4}-\frac{1}{4}\log_2\frac{1}{4}\approx 0.81\) bits.</li>
+          <li>\(\rho_B=\mathrm{Tr}_A(|\Phi^+\rangle\langle\Phi^+|)=\frac{1}{2}(|0\rangle\langle 0|+|1\rangle\langle 1|)\). Eigenvalues \(\frac{1}{2},\frac{1}{2}\) give \(S_B=-2\times\frac{1}{2}\log_2\frac{1}{2}=1\) bit.</li>
+          <li>Unknown quantum states cannot be copied faithfully. Protocols such as QKD and teleportation rely on this — an eavesdropper cannot duplicate intercepted qubits, and naive backup strategies fail.</li>
+          <li>Match \(\mathcal{E}(\rho)=(1-p)\rho+pX\rho X\) to \(\sum_k E_k\rho E_k^\dagger\): \(E_0=\sqrt{1-p}\,I\) and \(E_1=\sqrt{p}\,X\) (since \(X^2=I\)).</li>
+          <li>Yes. CPTP maps need not preserve entropy. Example: amplitude damping (or measure-and-reset) maps the maximally mixed qubit \(\rho=I/2\) (\(S=1\)) to a pure state \(|0\rangle\langle 0|\) (\(S=0\)). Entropy can increase under open-system evolution but may decrease when information is discarded.</li>
+          <li>At most <strong>one</strong> classical bit: a single measurement in the computational basis yields outcome 0 or 1 with probabilities \(|\alpha|^2\) and \(|\beta|^2\). The amplitudes themselves are not accessible.</li>
         </ol>
       </details>
 </div>

@@ -32,11 +32,11 @@
       <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt class="content-key__formula">\(\frac{2^n}{n}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\text{depth} \times t_g\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(O(\log^i n)\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(O(\log^k n)\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(O(n^2)\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\frac{2^n}{n}\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\text{depth} \times t_g\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(O(\log^i n)\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(O(\log^k n)\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(O(n^2)\)</dt><dd>Equation used in this topic.</dd></div>
       </dl>
       <h3 class="content-key__heading">Symbol names in formulae</h3>
       <dl class="content-key__list">
@@ -235,11 +235,11 @@ Depth 3:  ripple-carry bit stage (typical)
       <details class="quiz-answers">
         <summary class="quiz-answers__summary">Show answers</summary>
         <ol class="quiz-answers__list">
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li><strong>Gate count</strong> (size) is the total number of primitive logic gates in a circuit — it relates to silicon area and static power. <strong>Circuit depth</strong> is the maximum number of gate layers on any input-to-output path — with gate delay \(t_g\), critical-path delay is approximately \(\text{depth} \times t_g\) and limits clock frequency.</li>
+          <li>In a ripple-carry adder, the carry into bit \(i\) depends on the carry out of bit \(i-1\). That serial dependency chains through all \(n\) bit stages, so the longest path grows linearly: depth \(O(n)\).</li>
+          <li><strong>NC</strong> (Nick's Class) contains problems solvable by Boolean circuits of polynomial size and polylogarithmic depth \(O(\log^k n)\) — efficiently parallelisable. NC\(^i\) has depth \(O(\log^i n)\); NC \(= \bigcup_i\) NC\(^i\). It measures parallel depth, not just total gate count.</li>
+          <li>Pipelining inserts registers between combinational stages. Each stage keeps the same combinational depth, but a new result can be accepted every clock cycle once the pipeline is full — <em>throughput</em> rises even though per-stage delay (and latency per datum) is unchanged.</li>
+          <li>When maximising speed on a critical path — e.g. a 32-bit CPU adder — carry-lookahead or prefix-tree structures add gates but cut depth from \(O(n)\) toward \(O(\log n)\), raising the clock frequency limit. The lesson's tradeoff: more gates for lower depth when delay dominates.</li>
         </ol>
       </details>
 </div>

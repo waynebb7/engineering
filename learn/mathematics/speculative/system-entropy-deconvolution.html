@@ -32,11 +32,11 @@
       <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt class="content-key__formula">\(H(X) = -\sum_i p_i \log_2 p_i \quad \text{(bits)}.\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(R_0, R_1, \ldots, R_m\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(s_i(t)\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(x_k(t) = \sum_i a_{ki} s_i(t).\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(y(t) = (h * x)(t) + \text{noise},\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(H(X) = -\sum_i p_i \log_2 p_i \quad \text{(bits)}.\)</dt><dd>Enthalpy or magnetic field strength (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(R_0, R_1, \ldots, R_m\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(s_i(t)\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(x_k(t) = \sum_i a_{ki} s_i(t).\)</dt><dd>Blind source separation Suppose several source signals \(s_i(t)\) mix into microphones: \[ x_k(t) = \sum_i a_{ki} s_i(t).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(y(t) = (h * x)(t) + \text{noise},\)</dt><dd>If an observed signal \(y\) is modelled as a convolution \[ y(t) = (h * x)(t) + \text{noise}, \] then deconvolution attempts to recover the input \(x\) (or the kernel \(h\)) from \(y\).</dd></div>
       </dl>
       <h3 class="content-key__heading">Symbol names in formulae</h3>
       <dl class="content-key__list">
@@ -200,11 +200,11 @@
       <details class="quiz-answers">
         <summary class="quiz-answers__summary">Show answers</summary>
         <ol class="quiz-answers__list">
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li><strong>No.</strong> \"System entropy deconvolution\" is not a widely recognised university module title. Real, separate fields exist — Shannon entropy, maximum entropy methods (MEM), blind source separation, and signal deconvolution — but not under this combined label.</li>
+          <li>For a fair coin, \(P(\text{heads}) = P(\text{tails}) = \frac{1}{2}\). Shannon entropy \(H(X) = -\sum_i p_i \log_2 p_i = -\frac{1}{2}\log_2\frac{1}{2} - \frac{1}{2}\log_2\frac{1}{2} = 1\) bit.</li>
+          <li>Deconvolution is often <strong>ill-posed</strong> because the inverse problem is underdetermined — many different inputs \(x\) (or kernels \(h\)) produce nearly the same observed output \(y\), especially with noise. Extra assumptions (sparsity, smoothness, maximum entropy) are needed to select a unique solution.</li>
+          <li>Among all solutions consistent with measured constraints (moments, autocorrelation lags, positivity), maximum entropy selects the <strong>flattest / least assumptive</strong> spectrum — the one with greatest uncertainty that still fits the data. Informally: \"pick the most non-committal signal that matches what we measured.\"</li>
+          <li><strong>Simple deconvolution</strong> with a known kernel \(h\) inverts a fixed convolution \(y = h * x + \text{noise}\). <strong>ICA</strong> (Independent Component Analysis) solves blind source separation: several unknown sources \(s_i(t)\) mix through an unknown matrix \(a_{ki}\) into sensors \(x_k(t)\), and ICA recovers sources by assuming statistical independence and non-Gaussianity — without knowing the mixing kernel in advance.</li>
         </ol>
       </details>
 </div>

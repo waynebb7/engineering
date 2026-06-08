@@ -25,21 +25,6 @@
     </div>
 
     <div class="content-body">
-    <div class="card progression-card map-position-card" data-map="math">
-      <h2>On the Mathematics map</h2>
-      <p class="map-position__meta"><strong>Measure Theory (MSc)</strong> — Level: MSc · Domain: Analysis</p>
-      <p><a href="../../../maps/math-prereq-map.html?topic=msc_measure_theory">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
-      <h3>Builds on</h3>
-      <ul>
-        <li><a href="../../../maps/math-prereq-map.html?topic=msc_real_analysis">Real Analysis II (MSc)</a></li>
-      </ul>
-      <h3>Unlocks</h3>
-      <ul>
-        <li><a href="../../../maps/math-prereq-map.html?topic=msc_functional_analysis">Functional Analysis (MSc)</a></li>
-        <li><a href="../../../maps/math-prereq-map.html?topic=frontier_random_matrices">Random Matrix Theory (Frontier)</a></li>
-      </ul>
-    </div>
-
 
     <details class="content-key" id="topic-review-key">
       <summary class="content-key__summary">Topic review key — formulae, symbols, terms &amp; acronyms</summary>
@@ -47,22 +32,22 @@
       <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt class="content-key__formula">\(0 \leq f_1 \leq f_2 \leq \cdots\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\int f_n \to \int f\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\int s\,d\mu = \sum a_i \mu(A_i)\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\int_X f\,d\mu = \sup\left\{\int_X s\,d\mu : 0 \leq s \leq f,\; s \text{ simple}\right\}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\int_{X \times Y} f\,d(\mu \times \nu) = \int_X\!\left(\int_Y f(x,y)\,d\nu(y)\right)d\mu(x)\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\mathbb{R}^n\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\mathcal{B}(\mathbb{R}^n)\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\mu(\emptyset) = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\mu(A) = 0 \Rightarrow \nu(A) = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\nu(A) = \int_A f\,d\mu\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\|f\|_p = \left(\int_X |f|^p\,d\mu\right)^{1/p}, \qquad L^p(X, \mu) = \{f \text{ measurable}: \|f\|_p < \infty\}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\|fg\|_1 \leq \|f\|_p \|g\|_q\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(A \in \mathcal{F} \Rightarrow A^c \in \mathcal{F}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(A_n \in \mathcal{F}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(f = \frac{d\nu}{d\mu}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(f_n \to f\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(0 \leq f_1 \leq f_2 \leq \cdots\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\int f_n \to \int f\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\int s\,d\mu = \sum a_i \mu(A_i)\)</dt><dd>For such \(s\), \(\int s\,d\mu = \sum a_i \mu(A_i)\).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\int_X f\,d\mu = \sup\left\{\int_X s\,d\mu : 0 \leq s \leq f,\; s \text{ simple}\right\}\)</dt><dd>A non-negative measurable function is integrated via the Lebesgue integral : \[ \int_X f\,d\mu = \sup\left\{\int_X s\,d\mu : 0 \leq s \leq f,\; s \text{ simple}\right\} \] Simple functions: \(s = \sum_{i=1}^k a_i \mathbf{1}_{A_i}\) with \(A_i\) disjoint and measurable.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\int_{X \times Y} f\,d(\mu \times \nu) = \int_X\!\left(\int_Y f(x,y)\,d\nu(y)\right)d\mu(x)\)</dt><dd>Fubini–Tonelli: If \(f: X \times Y \to \mathbb{R}\) is measurable and either \(f \geq 0\) (Tonelli) or \(\int\!\!\int |f|\,d(\mu \times \nu) < \infty\) (Fubini), then \[ \int_{X \times Y} f\,d(\mu \times \nu) = \int_X\!\left(\int_Y f(x,y)\,d\nu(y)\right)d\mu(x) \] 6) \(L^p\) spaces and Hölder–Minkowski For \(1 \leq p < \infty\), define \[ \|f\|_p = \left(\int_X |f|^p\,d\mu\right)^{1/p}, \qquad L^p(X, \mu) = \{f \text{ measurable}: \|f\|_p < \infty\} \] (identifying functions a.e.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\mathbb{R}^n\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\mathcal{B}(\mathbb{R}^n)\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\mu(\emptyset) = 0\)</dt><dd>Measures and Carathéodory extension A measure \(\mu\) on \((X, \mathcal{F})\) is a function \(\mu: \mathcal{F} \to [0, \infty]\) with \(\mu(\emptyset) = 0\) and countable additivity: \[ \mu\!\left(\bigcup_{n=1}^{\infty} A_n\right) = \sum_{n=1}^{\infty} \mu(A_n) \] for disjoint \(A_n \in \mathcal{F}\).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\mu(A) = 0 \Rightarrow \nu(A) = 0\)</dt><dd>Area or amplitude (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\nu(A) = \int_A f\,d\mu\)</dt><dd>Area or amplitude (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\|f\|_p = \left(\int_X |f|^p\,d\mu\right)^{1/p}, \qquad L^p(X, \mu) = \{f \text{ measurable}: \|f\|_p < \infty\}\)</dt><dd>Fubini–Tonelli: If \(f: X \times Y \to \mathbb{R}\) is measurable and either \(f \geq 0\) (Tonelli) or \(\int\!\!\int |f|\,d(\mu \times \nu) < \infty\) (Fubini), then \[ \int_{X \times Y} f\,d(\mu \times \nu) = \int_X\!\left(\int_Y f(x,y)\,d\nu(y)\right)d\mu(x) \] 6) \(L^p\) spaces and Hölder–Minkowski For \(1 \leq p < \infty\), define \[ \|f\|_p = \left(\int_X |f|^p\,d\mu\right)^{1/p}, \qquad L^p(X, \mu) = \{f \text{ measurable}: \|f\|_p < \infty\} \] (identifying functions a.e.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\|fg\|_1 \leq \|f\|_p \|g\|_q\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(A \in \mathcal{F} \Rightarrow A^c \in \mathcal{F}\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(A_n \in \mathcal{F}\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(f = \frac{d\nu}{d\mu}\)</dt><dd>\(\mu(A)=0 \Rightarrow \nu(A)=0\)), then there exists a measurable Radon–Nikodym derivative \(f = \frac{d\nu}{d\mu}\) such that \(\nu(A) = \int_A f\,d\mu\).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(f_n \to f\)</dt><dd>Equation used in this topic.</dd></div>
       </dl>
       <h3 class="content-key__heading">Symbol names in formulae</h3>
       <dl class="content-key__list">
@@ -111,6 +96,20 @@
       </div>
     </details>
 
+    <div class="card progression-card map-position-card" data-map="math">
+      <h2>On the Mathematics map</h2>
+      <p class="map-position__meta"><strong>Measure Theory (MSc)</strong> — Level: MSc · Domain: Analysis</p>
+      <p><a href="../../../maps/math-prereq-map.html?topic=msc_measure_theory">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
+      <h3>Builds on</h3>
+      <ul>
+        <li><a href="../../../maps/math-prereq-map.html?topic=msc_real_analysis">Real Analysis II (MSc)</a></li>
+      </ul>
+      <h3>Unlocks</h3>
+      <ul>
+        <li><a href="../../../maps/math-prereq-map.html?topic=msc_functional_analysis">Functional Analysis (MSc)</a></li>
+        <li><a href="../../../maps/math-prereq-map.html?topic=frontier_random_matrices">Random Matrix Theory (Frontier)</a></li>
+      </ul>
+    </div>
 <div class="card">
       <h2>1) σ-algebras and measurable spaces</h2>
       <p>
@@ -278,12 +277,12 @@
         <summary class="quiz-answers__summary">Show answers</summary>
         <ol class="quiz-answers__list">
           <li>See the worked example: On \(\mathbb{R}\), intervals \((a,b]\) generate the Borel σ-algebra. Every continuous function \(f: \mathbb{R} \to \mathbb{R}\) is Borel measurable.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>See the worked example: On \(\mathbb{R}\), intervals \((a,b]\) generate the Borel σ-algebra. Every continuous function \(f: \mathbb{R} \to \mathbb{R}\) is Borel measurable.</li>
+          <li>See the worked example: On \(\mathbb{R}\), intervals \((a,b]\) generate the Borel σ-algebra. Every continuous function \(f: \mathbb{R} \to \mathbb{R}\) is Borel measurable.</li>
+          <li>See the worked example: On \(\mathbb{R}\), intervals \((a,b]\) generate the Borel σ-algebra. Every continuous function \(f: \mathbb{R} \to \mathbb{R}\) is Borel measurable.</li>
+          <li>See the worked example: On \(\mathbb{R}\), intervals \((a,b]\) generate the Borel σ-algebra. Every continuous function \(f: \mathbb{R} \to \mathbb{R}\) is Borel measurable.</li>
+          <li>See the worked example: On \(\mathbb{R}\), intervals \((a,b]\) generate the Borel σ-algebra. Every continuous function \(f: \mathbb{R} \to \mathbb{R}\) is Borel measurable.</li>
+          <li>See the worked example: On \(\mathbb{R}\), intervals \((a,b]\) generate the Borel σ-algebra. Every continuous function \(f: \mathbb{R} \to \mathbb{R}\) is Borel measurable.</li>
         </ol>
       </details>
 <p class="mini">

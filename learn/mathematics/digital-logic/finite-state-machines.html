@@ -32,7 +32,7 @@
       <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt class="content-key__formula">\(S0 / Z = 0\)</dt><dd>Introduced and explained in the sections below.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(S0 / Z = 0\)</dt><dd>Entropy or action (context-dependent).</dd></div>
       </dl>
       <h3 class="content-key__heading">Acronyms</h3>
       <dl class="content-key__list">
@@ -232,11 +232,11 @@ Inputs X ──┬──► [ Next-state logic ] ──► D FF ──► State 
       <details class="quiz-answers">
         <summary class="quiz-answers__summary">Show answers</summary>
         <ol class="quiz-answers__list">
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>In a <strong>Moore</strong> machine, outputs depend only on the current state (\(Z = g(S)\)) and change synchronously with state, one clock edge after a transition completes. In a <strong>Mealy</strong> machine, outputs depend on state <em>and</em> inputs (\(Z = g(S, X)\)) and can change immediately when inputs change, even between clock edges.</li>
+          <li>A synchronous FSM has three blocks: (1) <strong>state register</strong> — flip-flops holding the current state encoding; (2) <strong>next-state logic</strong> — combinational logic computing the next state from current state and inputs; (3) <strong>output logic</strong> — combinational logic producing outputs.</li>
+          <li>This is <strong>overlapping</strong> sequence detection. After detecting \"101\" in S3, the final bit is <code>1</code>, which can serve as the first bit of a new \"101\" pattern. Transitioning to S1 (GOT_1) reuses that trailing <code>1</code>; going to S0 would discard it and miss an overlapping match.</li>
+          <li><strong>One-hot encoding</strong> assigns one flip-flop per state; exactly one bit is <code>1</code> at a time (e.g. S0=<code>0001</code>, S1=<code>0010</code>). It simplifies next-state logic in FPGA architectures even though it uses more registers than binary encoding.</li>
+          <li>Prefer a <strong>Mealy</strong> machine when you need fewer states, immediate reaction to inputs, or faster output response. Moore is preferred when clean, clock-aligned, glitch-resistant outputs matter — Mealy outputs can glitch if inputs glitch.</li>
         </ol>
       </details>
 </div>

@@ -32,11 +32,11 @@
       <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt class="content-key__formula">\(D = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(Q = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(Q_{next} = J\overline{Q} + \overline{K}Q\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(t_{cq}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(t_{su}\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(D = 0\)</dt><dd>Distance, displacement, or electric displacement (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(Q = 0\)</dt><dd>Charge or heat transfer (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(Q_{next} = J\overline{Q} + \overline{K}Q\)</dt><dd>Charge or heat transfer (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(t_{cq}\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(t_{su}\)</dt><dd>Equation used in this topic.</dd></div>
       </dl>
       <h3 class="content-key__heading">Symbol names in formulae</h3>
       <dl class="content-key__list">
@@ -246,11 +246,11 @@ Q         ‾‾‾\___/‾‾   (D FF: Q updates on rising edge, after t_cq)
       <details class="quiz-answers">
         <summary class="quiz-answers__summary">Show answers</summary>
         <ol class="quiz-answers__list">
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>A <strong>latch</strong> is level-sensitive: while enable is active, output tracks input (transparent). A <strong>flip-flop</strong> is edge-triggered: it samples input only on a clock edge and holds the value between edges. Flip-flops are preferred in synchronous systems for cleaner setup/hold timing.</li>
+          <li>With S=R=1 on a basic NOR SR latch, both Set and Reset are active simultaneously, demanding \(Q=1\) and \(Q=0\) at once — an invalid, contradictory state. Standard latches forbid this combination to avoid metastability or unpredictable behaviour.</li>
+          <li>For an edge-triggered D flip-flop, the next-state (characteristic) equation is \(Q_{next} = D\).</li>
+          <li>With J=K=1, a JK flip-flop <strong>toggles</strong>: \(Q_{next} = \overline{Q}\) (the output flips state on the active clock edge).</li>
+          <li><strong>Setup time</strong> (\(t_{su}\)): input data must be stable for at least this interval <em>before</em> the active clock edge so the flip-flop can latch it reliably. <strong>Hold time</strong> (\(t_h\)): data must remain stable for at least this interval <em>after</em> the clock edge. Violating either can cause metastability.</li>
         </ol>
       </details>
 </div>

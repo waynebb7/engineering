@@ -23,25 +23,6 @@
       </div>
     </div>
     <div class="content-body">
-    <div class="card progression-card map-position-card" data-map="physics">
-      <h2>On the Physics map</h2>
-      <p class="map-position__meta"><strong>General Relativity (MSc)</strong> — Level: MSc</p>
-      <p><a href="../../../maps/physics-prereq-map.html?topic=general_relativity_msc">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
-      <h3>Builds on</h3>
-      <ul>
-        <li><a href="../../../maps/physics-prereq-map.html?topic=special_relativity_bsc">Special Relativity (BSc)</a></li>
-        <li><a href="../../../maps/physics-prereq-map.html?topic=tensor_calc_diff_geom_msc">Tensor Calculus and Differential Geometry (MSc)</a></li>
-      </ul>
-      <h3>Unlocks</h3>
-      <ul>
-        <li><a href="../../../maps/physics-prereq-map.html?topic=computational_relativity_msc">Computational Relativity (MSc)</a></li>
-        <li><a href="../../../maps/physics-prereq-map.html?topic=cosmology_msc">Cosmology (MSc)</a></li>
-        <li><a href="../../../maps/physics-prereq-map.html?topic=dark_energy_frontier">Dark Energy (Frontier Overview)</a></li>
-        <li><a href="../../../maps/physics-prereq-map.html?topic=gravitational_waves_msc">Gravitational Waves (MSc)</a></li>
-        <li><a href="../../../maps/physics-prereq-map.html?topic=quantum_gravity_frontier">Quantum Gravity (Frontier Overview)</a></li>
-      </ul>
-    </div>
-
 
     <details class="content-key" id="topic-review-key">
       <summary class="content-key__summary">Topic review key — formulae, symbols, terms &amp; acronyms</summary>
@@ -49,8 +30,8 @@
       <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt class="content-key__formula">\(ds^2 = g_{\mu\nu}dx^\mu dx^\nu\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(G_{\mu\nu} = \frac{8\pi G}{c^4}T_{\mu\nu}\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(ds^2 = g_{\mu\nu}dx^\mu dx^\nu\)</dt><dd>For this topic, representative governing relations include \[ G_{\mu\nu}=\frac{8\pi G}{c^4}T_{\mu\nu} \] \[ \frac{d^2x^\mu}{d\tau^2}+\Gamma^\mu_{\alpha\beta}\frac{dx^\alpha}{d\tau}\frac{dx^\beta}{d\tau}=0 \] \[ ds^2=g_{\mu\nu}dx^\mu dx^\nu \] Do not treat these as isolated formulas.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(G_{\mu\nu} = \frac{8\pi G}{c^4}T_{\mu\nu}\)</dt><dd>Gravitational constant or Gibbs free energy (context-dependent).</dd></div>
       </dl>
       <h3 class="content-key__heading">Symbol names in formulae</h3>
       <dl class="content-key__list">
@@ -86,6 +67,24 @@
       </div>
     </details>
 
+    <div class="card progression-card map-position-card" data-map="physics">
+      <h2>On the Physics map</h2>
+      <p class="map-position__meta"><strong>General Relativity (MSc)</strong> — Level: MSc</p>
+      <p><a href="../../../maps/physics-prereq-map.html?topic=general_relativity_msc">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
+      <h3>Builds on</h3>
+      <ul>
+        <li><a href="../../../maps/physics-prereq-map.html?topic=special_relativity_bsc">Special Relativity (BSc)</a></li>
+        <li><a href="../../../maps/physics-prereq-map.html?topic=tensor_calc_diff_geom_msc">Tensor Calculus and Differential Geometry (MSc)</a></li>
+      </ul>
+      <h3>Unlocks</h3>
+      <ul>
+        <li><a href="../../../maps/physics-prereq-map.html?topic=computational_relativity_msc">Computational Relativity (MSc)</a></li>
+        <li><a href="../../../maps/physics-prereq-map.html?topic=cosmology_msc">Cosmology (MSc)</a></li>
+        <li><a href="../../../maps/physics-prereq-map.html?topic=dark_energy_frontier">Dark Energy (Frontier Overview)</a></li>
+        <li><a href="../../../maps/physics-prereq-map.html?topic=gravitational_waves_msc">Gravitational Waves (MSc)</a></li>
+        <li><a href="../../../maps/physics-prereq-map.html?topic=quantum_gravity_frontier">Quantum Gravity (Frontier Overview)</a></li>
+      </ul>
+    </div>
 <div class="card">
         <h2>1) Why this subject matters now</h2>
         <p>General Relativity sits at the center of modern physics because it connects fundamental theory with measurable consequences in laboratories, observatories, or engineered systems. A research-level learner should treat this topic as both a conceptual framework and a practical toolbox: you use it to decide what approximations are valid, to design tests that separate competing models, and to translate raw measurements into inference about nature. In current literature, the most productive papers are rarely those that only present one equation; they explain assumptions, domain of validity, and uncertainty flow from instrument to conclusion.</p>
@@ -192,18 +191,18 @@
             <li>Explain one misconception from this guide and write the corrective habit in your own words.</li>
           </ol>
         </div>
-        <details class="quiz-answers">
-          <summary class="quiz-answers__summary">Show answers</summary>
-          <ol class="quiz-answers__list">
-            <li>The equations represent governing dynamics or constraints in this topic; assumptions may include linear response, specific gauge or coordinate choices, weak coupling, continuum limit, or equilibrium closure depending on context.</li>
-            <li>Any valid comparison of dominant timescales, length scales, or dimensionless ratios that justifies neglecting a term (for example dissipation, nonlinearity, or relativistic correction) earns full credit.</li>
-            <li>Sensitivity analysis reveals whether the conclusion is robust or prior-sensitive; without it, apparent precision may be an artifact of hidden assumptions.</li>
-            <li>Statistical uncertainty arises from finite data and random fluctuations; systematic uncertainty arises from calibration bias, model mismatch, foregrounds, or instrument effects.</li>
-            <li>Examples: version-controlled analysis code, fixed random seeds, synthetic-data recovery tests, archived configurations, or full uncertainty budgets attached to figures.</li>
-            <li>Any misconception-correction pair from the card is acceptable, provided the correction is operational and testable in actual workflow.</li>
-          </ol>
-        </details>
-      </div>
+      <details class="quiz-answers">
+        <summary class="quiz-answers__summary">Show answers</summary>
+        <ol class="quiz-answers__list">
+          <li>\(G_{\mu\nu}=\frac{8\pi G}{c^4}T_{\mu\nu}\) is Einstein's field equation: spacetime curvature sourced by stress-energy. Assumption: classical GR with metric-compatible connection and specified \(T_{\mu\nu}\). \(\frac{d^2x^\mu}{d\tau^2}+\Gamma^\mu_{\alpha\beta}\frac{dx^\alpha}{d\tau}\frac{dx^\beta}{d\tau}=0\) is the geodesic equation for free-fall trajectories. Assumption: test particle (negligible self-gravity) with affine parameter \(\tau\). \(ds^2=g_{\mu\nu}dx^\mu dx^\nu\) defines the invariant spacetime interval. Assumption: differentiable Lorentzian manifold with chosen coordinate chart.</li>
+          <li>Compare characteristic timescales, lengths, and energies before trusting a reduced model. If a relaxation or equilibration timescale is much shorter than the driving timescale, quasi-steady or equilibrium approximations are justified; if not, transients dominate and steady-state formulas mislead. Identify the controlling dimensionless groups (e.g. signal-to-noise, inertial-to-dissipative, nonlinear-to-linear ratio) to map when a simplified model sits in a valid regime.</li>
+          <li>Sensitivity analysis recomputes the result with optimistic and conservative choices of priors or parameters (Section 5, Step 3). If the scientific conclusion flips sign or order of magnitude, the claim is prior-sensitive and must be reported with that dependence explicit. Without this check, a single parameter set can look definitive while the inference is fragile.</li>
+          <li><strong>Statistical uncertainty</strong> arises from finite data and stochastic fluctuations (shot noise, sample variance, Monte Carlo error); it typically shrinks with more data. <strong>Systematic uncertainty</strong> comes from calibration errors, model-form bias, background subtraction, instrument response, or unvalidated assumptions — it does not automatically average away. Report which dominates in each regime.</li>
+          <li>Run synthetic-data validation before analysing real measurements: inject known parameters through the full pipeline and verify recovery. Combine this with version-controlled assumptions, fixed random seeds, deterministic preprocessing, and regenerable figures so every plot can be reproduced from source and configuration.</li>
+          <li><strong>Misconception:</strong> a better fit always means a better physical model. <strong>Corrective habit:</strong> inspect residual structure, out-of-sample behaviour, and whether extra parameters only chase noise — goodness of fit must be weighed against parsimony and domain validity.</li>
+        </ol>
+      </details>
+</div>
     <div class="card progression-card prerequisites-card">
       <h2>10) Pre-requisites</h2>
       <p>If you are struggling with this topic, review these subjects first.</p>

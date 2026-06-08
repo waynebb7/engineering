@@ -25,23 +25,6 @@
     </div>
 
     <div class="content-body">
-    <div class="card progression-card map-position-card" data-map="physics">
-      <h2>On the Physics map</h2>
-      <p class="map-position__meta"><strong>Uncertainty and Error (GCSE)</strong> — Level: GCSE</p>
-      <p><a href="../../../maps/physics-prereq-map.html?topic=uncertainty_error_gcse">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
-      <h3>Builds on</h3>
-      <ul>
-        <li><a href="../../../maps/physics-prereq-map.html?topic=measurement_uncertainty_intro">Measurement Uncertainty (Intro)</a></li>
-        <li><a href="../../../maps/physics-prereq-map.html?topic=physics_maths_gcse">Physics Maths Skills for GCSE</a></li>
-      </ul>
-      <h3>Unlocks</h3>
-      <ul>
-        <li><a href="../../../maps/physics-prereq-map.html?topic=computational_physics_bsc">Computational Physics (BSc Intro)</a></li>
-        <li><a href="../../../maps/physics-prereq-map.html?topic=data_analysis_bsc">Data Analysis for Physics (BSc)</a></li>
-        <li><a href="../../../maps/physics-prereq-map.html?topic=electronics_instrumentation_bsc">Electronics and Instrumentation (BSc)</a></li>
-      </ul>
-    </div>
-
 
     <details class="content-key" id="topic-review-key">
       <summary class="content-key__summary">Topic review key — formulae, symbols, terms &amp; acronyms</summary>
@@ -49,7 +32,7 @@
       <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt class="content-key__formula">\(\rho = m/V\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\rho = m/V\)</dt><dd>Worked example B Problem: Density \(\rho=m/V\) where \(m=156\,\text{g}\pm2\,\text{g}\) and \(V=20.0\,\text{cm}^3\pm0.5\,\text{cm}^3\).</dd></div>
       </dl>
       <h3 class="content-key__heading">Symbol names in formulae</h3>
       <dl class="content-key__list">
@@ -82,6 +65,22 @@
       </div>
     </details>
 
+    <div class="card progression-card map-position-card" data-map="physics">
+      <h2>On the Physics map</h2>
+      <p class="map-position__meta"><strong>Uncertainty and Error (GCSE)</strong> — Level: GCSE</p>
+      <p><a href="../../../maps/physics-prereq-map.html?topic=uncertainty_error_gcse">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
+      <h3>Builds on</h3>
+      <ul>
+        <li><a href="../../../maps/physics-prereq-map.html?topic=measurement_uncertainty_intro">Measurement Uncertainty (Intro)</a></li>
+        <li><a href="../../../maps/physics-prereq-map.html?topic=physics_maths_gcse">Physics Maths Skills for GCSE</a></li>
+      </ul>
+      <h3>Unlocks</h3>
+      <ul>
+        <li><a href="../../../maps/physics-prereq-map.html?topic=computational_physics_bsc">Computational Physics (BSc Intro)</a></li>
+        <li><a href="../../../maps/physics-prereq-map.html?topic=data_analysis_bsc">Data Analysis for Physics (BSc)</a></li>
+        <li><a href="../../../maps/physics-prereq-map.html?topic=electronics_instrumentation_bsc">Electronics and Instrumentation (BSc)</a></li>
+      </ul>
+    </div>
 <div class="card">
         <h2>1) Foundations and context</h2>
         <p>Practical Skills and Uncertainty at A-Level is best learned as a modelling language rather than a memorised formula list. The central skills include identifying assumptions, selecting a valid equation set, preserving sign conventions, and communicating conclusions with units and uncertainty awareness. This page is intentionally comprehensive so each section can be used as revision, homework support, and exam practice.</p>
@@ -174,23 +173,18 @@
             <li>How should a final numerical answer be validated before submission?</li>
           </ol>
         </div>
-        <details class="quiz-answers">
-          <summary class="quiz-answers__summary">Show answers</summary>
-          <ol class="quiz-answers__list">
-            <li>Percentage uncertainty \(\Delta x/x\times100\%\) applies to a directly measured quantity. Percentage uncertainties add for multiplied/divided combinations (\(z=xy\) or \(z=x/y\)); absolute uncertainties add for added/subtracted combinations.</li>
-            <li>Students round intermediate values too early, losing precision in propagated uncertainty. Keep extra significant figures until the final reported value and quote uncertainty to one significant figure (or two if leading digit is 1).</li>
-            <li>\(\frac{\Delta z}{z}\approx\frac{\Delta x}{x}+\frac{\Delta y}{y}\) for \(z=xy\) or \(z=x/y\), where \(\Delta x,\Delta y\) are absolute uncertainties in measured quantities.</li>
-            <li>Uncertainty propagation is dimensionless in percentage form — both \(\Delta x/x\) and \(\Delta y/y\) must use the same units as \(x\) and \(y\) before forming the ratio.</li>
-            <li>Repeat measurements to reduce random uncertainty, calibrate instruments before use, control environmental variables, and tabulate raw data with units before processing.</li>
-            <li>Report final values with justified significant figures matching uncertainty (e.g. \(g=9.81\pm0.02\) m s\(^{-2}\)). Percentage uncertainty should not be quoted to unrealistic precision. Identify whether random or systematic errors dominate.</li>
-          </ol>
-        </details>
-      </div>
-l>
-        <li><a href="../index.html">Physics Catalog</a></li>
-        <li><a href="../../../index.html">Engineering Knowledge Hub</a></li>
-      </ul>
-    </div>
+      <details class="quiz-answers">
+        <summary class="quiz-answers__summary">Show answers</summary>
+        <ol class="quiz-answers__list">
+          <li>Percentage uncertainty \(\Delta x/x\times100\%\) applies to a directly measured quantity. Percentage uncertainties add for multiplied/divided combinations (\(z=xy\) or \(z=x/y\)); absolute uncertainties add for added/subtracted combinations.</li>
+          <li>Students round intermediate values too early, losing precision in propagated uncertainty. Keep extra significant figures until the final reported value and quote uncertainty to one significant figure (or two if leading digit is 1).</li>
+          <li>\(\frac{\Delta z}{z}\approx\frac{\Delta x}{x}+\frac{\Delta y}{y}\) for \(z=xy\) or \(z=x/y\), where \(\Delta x,\Delta y\) are absolute uncertainties in measured quantities.</li>
+          <li>Uncertainty propagation is dimensionless in percentage form — both \(\Delta x/x\) and \(\Delta y/y\) must use the same units as \(x\) and \(y\) before forming the ratio.</li>
+          <li>Repeat measurements to reduce random uncertainty, calibrate instruments before use, control environmental variables, and tabulate raw data with units before processing.</li>
+          <li>Report final values with justified significant figures matching uncertainty (e.g. \(g=9.81\pm0.02\) m s\(^{-2}\)). Percentage uncertainty should not be quoted to unrealistic precision. Identify whether random or systematic errors dominate.</li>
+        </ol>
+      </details>
+</div>
     <div class="card progression-card prerequisites-card">
       <h2>12) Pre-requisites</h2>
       <p>If you are struggling with this topic, review these subjects first.</p>
@@ -222,12 +216,7 @@ l>
         <li><a href="../undergraduate/statistical-mechanics.html">Statistical Mechanics</a></li>
       </ul>
       <h3>Catalog navigation</h3>
-      <ul>
-        <li><a href="../index.html">Physics Catalog</a></li>
-        <li><a href="../../../index.html">Engineering Knowledge Hub</a></li>
-      </ul>
-    </div>
-
+      <u
 
 
 <p class="page-footer-note">A-Level Physics content.</p>

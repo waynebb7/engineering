@@ -25,20 +25,6 @@
     </div>
 
     <div class="content-body">
-    <div class="card progression-card map-position-card" data-map="math">
-      <h2>On the Mathematics map</h2>
-      <p class="map-position__meta"><strong>Complex Analysis (Advanced) (MSc)</strong> — Level: MSc · Domain: Analysis</p>
-      <p><a href="../../../maps/math-prereq-map.html?topic=msc_complex_analysis">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
-      <h3>Builds on</h3>
-      <ul>
-        <li><a href="../../../maps/math-prereq-map.html?topic=bsc_complex">Complex Analysis (Intro) (BSc)</a></li>
-      </ul>
-      <h3>Unlocks</h3>
-      <ul>
-        <li><a href="../../../maps/math-prereq-map.html?topic=frontier_riemann_hypothesis">Riemann Hypothesis (Frontier)</a></li>
-      </ul>
-    </div>
-
 
     <details class="content-key" id="topic-review-key">
       <summary class="content-key__summary">Topic review key — formulae, symbols, terms &amp; acronyms</summary>
@@ -46,23 +32,23 @@
       <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt class="content-key__formula">\((z-z_0)^{-m}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\Delta u = u_{xx} + u_{yy} = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}, \qquad \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\mathbb{C} \cong \mathbb{R}^2\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\oint_\gamma f(z)\,dz = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(f = u + iv\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(f'(z) = \lim_{h \to 0} \frac{f(z+h) - f(z)}{h}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(f'(z_0) \neq 0\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(f(z) = \sum_{n = -\infty}^{\infty} a_n (z - z_0)^n\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(f(z_0) = \frac{1}{2\pi i} \oint_\gamma \frac{f(z)}{z - z_0}\,dz\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(r < |z - z_0| < R\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\((z-z_0)^{-m}\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\Delta u = u_{xx} + u_{yy} = 0\)</dt><dd>Harmonic functions and Dirichlet problems If \(f = u + iv\) is holomorphic, then \(u\) and \(v\) are harmonic : \(\Delta u = u_{xx} + u_{yy} = 0\).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}, \qquad \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x}\)</dt><dd>If \(f\) is holomorphic, then \(u\) and \(v\) satisfy the Cauchy–Riemann equations : \[ \frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}, \qquad \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x} \] Sufficient condition: If \(u, v\) have continuous first partial derivatives on \(D\) and satisfy the Cauchy–Riemann equations, then \(f = u + iv\) is holomorphic on \(D\).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\mathbb{C} \cong \mathbb{R}^2\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\oint_\gamma f(z)\,dz = 0\)</dt><dd>Cauchy's integral theorem and formula For a simple closed contour \(\gamma\) in a domain \(D\) and \(f\) holomorphic in \(D\), \[ \oint_\gamma f(z)\,dz = 0 \] (Cauchy's integral theorem).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(f = u + iv\)</dt><dd>If \(f\) is holomorphic, then \(u\) and \(v\) satisfy the Cauchy–Riemann equations : \[ \frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}, \qquad \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x} \] Sufficient condition: If \(u, v\) have continuous first partial derivatives on \(D\) and satisfy the Cauchy–Riemann equations, then \(f = u + iv\) is holomorphic on \(D\).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(f'(z) = \lim_{h \to 0} \frac{f(z+h) - f(z)}{h}\)</dt><dd>A function \(f : D \subseteq \mathbb{C} \to \mathbb{C}\) is analytic (holomorphic) on an open set \(D\) if it is complex differentiable at every point of \(D\): \[ f'(z) = \lim_{h \to 0} \frac{f(z+h) - f(z)}{h} \] exists (as a complex limit).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(f'(z_0) \neq 0\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(f(z) = \sum_{n = -\infty}^{\infty} a_n (z - z_0)^n\)</dt><dd>A function \(f : D \subseteq \mathbb{C} \to \mathbb{C}\) is analytic (holomorphic) on an open set \(D\) if it is complex differentiable at every point of \(D\): \[ f'(z) = \lim_{h \to 0} \frac{f(z+h) - f(z)}{h} \] exists (as a complex limit).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(f(z_0) = \frac{1}{2\pi i} \oint_\gamma \frac{f(z)}{z - z_0}\,dz\)</dt><dd>If \(f\) is holomorphic inside and on \(\gamma\), then for \(z_0\) in the interior: \[ f(z_0) = \frac{1}{2\pi i} \oint_\gamma \frac{f(z)}{z - z_0}\,dz \] Cauchy estimates: If \(|f(z)| \leq M\) on \(|z - z_0| = R\), then \[ |f^{(n)}(z_0)| \leq \frac{n!\, M}{R^n} \] Holomorphic functions are smooth; derivatives grow at most factorially.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(r < |z - z_0| < R\)</dt><dd>Equation used in this topic.</dd></div>
         <div class="content-key__item"><dt class="content-key__formula">\(Solves the Dirichlet problem on the disc. For \(|z|\)</dt><dd>Solves the Dirichlet problem on the disc. For \(|z|</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(T(z) = \dfrac{az + b}{cz + d}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(u(z) = \frac{1}{2\pi} \int_0^{2\pi} u(re^{i\theta})\, \operatorname{Re}\left(\frac{re^{i\theta} + z}{re^{i\theta} - z}\right) d\theta\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(z = x + iy\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(|f^{(n)}(z_0)| \leq \frac{n!\, M}{R^n}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(|z - z_0| = R\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(T(z) = \dfrac{az + b}{cz + d}\)</dt><dd>Temperature, period, or kinetic energy (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(u(z) = \frac{1}{2\pi} \int_0^{2\pi} u(re^{i\theta})\, \operatorname{Re}\left(\frac{re^{i\theta} + z}{re^{i\theta} - z}\right) d\theta\)</dt><dd>Defines u(z) in terms of the other quantities in this equation.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(z = x + iy\)</dt><dd>The complex plane and analytic functions A complex number \(z = x + iy\) lives in \(\mathbb{C} \cong \mathbb{R}^2\).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(|f^{(n)}(z_0)| \leq \frac{n!\, M}{R^n}\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(|z - z_0| = R\)</dt><dd>If \(f\) is holomorphic inside and on \(\gamma\), then for \(z_0\) in the interior: \[ f(z_0) = \frac{1}{2\pi i} \oint_\gamma \frac{f(z)}{z - z_0}\,dz \] Cauchy estimates: If \(|f(z)| \leq M\) on \(|z - z_0| = R\), then \[ |f^{(n)}(z_0)| \leq \frac{n!\, M}{R^n} \] Holomorphic functions are smooth; derivatives grow at most factorially.</dd></div>
       </dl>
       <h3 class="content-key__heading">Symbol names in formulae</h3>
       <dl class="content-key__list">
@@ -101,6 +87,19 @@
       </div>
     </details>
 
+    <div class="card progression-card map-position-card" data-map="math">
+      <h2>On the Mathematics map</h2>
+      <p class="map-position__meta"><strong>Complex Analysis (Advanced) (MSc)</strong> — Level: MSc · Domain: Analysis</p>
+      <p><a href="../../../maps/math-prereq-map.html?topic=msc_complex_analysis">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
+      <h3>Builds on</h3>
+      <ul>
+        <li><a href="../../../maps/math-prereq-map.html?topic=bsc_complex">Complex Analysis (Intro) (BSc)</a></li>
+      </ul>
+      <h3>Unlocks</h3>
+      <ul>
+        <li><a href="../../../maps/math-prereq-map.html?topic=frontier_riemann_hypothesis">Riemann Hypothesis (Frontier)</a></li>
+      </ul>
+    </div>
 <div class="card">
       <h2>1) The complex plane and analytic functions</h2>
       <p>
@@ -302,12 +301,12 @@
         <summary class="quiz-answers__summary">Show answers</summary>
         <ol class="quiz-answers__list">
           <li>See the worked example: \(f(z) = z^2 = (x^2 - y^2) + i(2xy)\). Check: \(u_x = 2x = v_y\), \(u_y = -2y = -v_x\). Holomorphic everywhere.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li><code>2+1 = 3</code>.</li>
+          <li>See the worked example: \(f(z) = z^2 = (x^2 - y^2) + i(2xy)\). Check: \(u_x = 2x = v_y\), \(u_y = -2y = -v_x\). Holomorphic everywhere.</li>
+          <li>See the worked example: \(f(z) = z^2 = (x^2 - y^2) + i(2xy)\). Check: \(u_x = 2x = v_y\), \(u_y = -2y = -v_x\). Holomorphic everywhere.</li>
+          <li>See the worked example: \(f(z) = z^2 = (x^2 - y^2) + i(2xy)\). Check: \(u_x = 2x = v_y\), \(u_y = -2y = -v_x\). Holomorphic everywhere.</li>
+          <li>See the worked example: \(f(z) = z^2 = (x^2 - y^2) + i(2xy)\). Check: \(u_x = 2x = v_y\), \(u_y = -2y = -v_x\). Holomorphic everywhere.</li>
+          <li>See the worked example: \(f(z) = z^2 = (x^2 - y^2) + i(2xy)\). Check: \(u_x = 2x = v_y\), \(u_y = -2y = -v_x\). Holomorphic everywhere.</li>
         </ol>
       </details>
 <p class="mini">

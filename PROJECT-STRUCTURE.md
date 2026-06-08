@@ -99,6 +99,9 @@ Catalog cross-links use relative paths (e.g. `../mathematics/a-level/vectors.htm
 
 - `reference/electrical/variables.html` — engineering variables
 - `reference/electrical/equations.html` — equation reference
+- `reference/physics/variables.html`, `reference/physics/equations.html`
+- `reference/mathematics/variables.html`, `reference/mathematics/equations.html`
+- `reference/quantum/variables.html`, `reference/quantum/equations.html`
 - `reference/industry/equipment-manufacturers.html` — manufacturer list
 
 ### `maps/` and `legacy/`
@@ -182,14 +185,13 @@ GitHub Actions (`.github/workflows/ci.yml`) runs:
 
 1. **New math/physics topic:** add HTML under the correct `learn/{subject}/{level}/` folder, add a `<li>` link in the subject `index.html`, regenerate catalog/progression.
 2. **New calculator:** add shell under `calculators/{category}/`, register in `calculator-registry.js`.
-3. **New reference page:** add under `reference/` and link from `index.html` or nav in `site-layout.js`.
+3. **New reference page:** add under `reference/` and link from the Reference tile on `index.html`.
 
 ## Navigation
 
 Main nav is defined in `assets/js/site-layout.js`:
 
-- Home → `index.html`
-- Reference → `reference/electrical/equations.html`
+- Home → `index.html` (includes the Reference tile with links to all reference pages)
 - Calculators → `calculators/index.html`
 - Mathematics / Physics / Quantum → respective `learn/{subject}/index.html`
 - Digital Logic → `learn/mathematics/digital-logic/boolean-algebra.html`

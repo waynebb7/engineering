@@ -32,47 +32,13 @@
       <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt class="content-key__formula">F = A ⊕ B</dt><dd>Implement \(F = A\)⊕ B using a 4:1 MUX with A as select.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(F(A, B, C) = Σ(1, 2, 6, 7)\)</dt><dd>Introduced and explained in the sections below.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(S = 0\)</dt><dd>2) MUX function
-
- 
- For a 2 m -to-1 MUX with select S m−1 …S₀ , the output is:
- 
-
- \(Y = \)Σ I i · m i (S) 
-
- 
- Each minterm m i of the select variables ANDs with data input I i ;
- the OR of all such terms forms the output.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(Y = I k\)</dt><dd>equals the selected data input
-
- An n -input MUX needs ⌈log₂ n⌉ select lines
-
- 
- 
- Key idea: A MUX implements the function \(Y = I k where k is the binary value on the select bus\)</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">Y = I₀</dt><dd>equals the selected data input
-
- An n -input MUX needs ⌈log₂ n⌉ select lines
-
- 
- 
- Key idea: A MUX implements the function \(Y = I k where k is the binary value on the select bus\)</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">Y = I₁</dt><dd>equals the selected data input
-
- An n -input MUX needs ⌈log₂ n⌉ select lines
-
- 
- 
- Key idea: A MUX implements the function \(Y = I k where k is the binary value on the select bus\)</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">Y = S&#x27;I₀ + SI₁</dt><dd>equals the selected data input
-
- An n -input MUX needs ⌈log₂ n⌉ select lines
-
- 
- 
- Key idea: A MUX implements the function \(Y = I k where k is the binary value on the select bus\)</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">F = A ⊕ B</dt><dd>Force.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(F(A, B, C) = Σ(1, 2, 6, 7)\)</dt><dd>Capacitance or heat capacity (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(S = 0\)</dt><dd>Entropy or action (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(Y = I k\)</dt><dd>Think of it as a digitally controlled switch or &quot;data selector.&quot; Data inputs: I₀, I₁, …, I n−1 Select lines: S₀, S₁, … — binary address of the chosen input Output: Y — equals the selected data input An n -input MUX needs ⌈log₂ n⌉ select lines Key idea: A MUX implements the function \(Y = I k where k is the binary value on the select bus\)</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">Y = I₀</dt><dd>Boolean form: \(Y = S'I\)₀ + SI₁ When \(S = 0 : Y\)= I₀ When \(S = 1 : Y\)= I₁ A 2:1 MUX is universal for combinational logic : with the right constants on I₀ and I₁ , it can realise NOT, AND, and OR — see Truth Functional Completeness .</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">Y = I₁</dt><dd>Boolean form: \(Y = S'I\)₀ + SI₁ When \(S = 0 : Y\)= I₀ When \(S = 1 : Y\)= I₁ A 2:1 MUX is universal for combinational logic : with the right constants on I₀ and I₁ , it can realise NOT, AND, and OR — see Truth Functional Completeness .</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">Y = S&#x27;I₀ + SI₁</dt><dd>Boolean form: \(Y = S'I\)₀ + SI₁ When \(S = 0 : Y\)= I₀ When \(S = 1 : Y\)= I₁ A 2:1 MUX is universal for combinational logic : with the right constants on I₀ and I₁ , it can realise NOT, AND, and OR — see Truth Functional Completeness .</dd></div>
       </dl>
       <h3 class="content-key__heading">Symbol names in formulae</h3>
       <dl class="content-key__list">

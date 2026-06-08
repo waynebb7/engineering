@@ -93,6 +93,16 @@ def audit_file(path: Path) -> list[str]:
             issues.append(f"prose in formulae section: {plain[:60]}...")
         if re.search(r"\b(often|linked in tool)\b", plain, re.I):
             issues.append(f"prose qualifier in formula: {plain[:60]}...")
+        dd = m.group(0)
+        dd_m = re.search(r"<dd>(.*?)</dd>", dd, re.DOTALL | re.I)
+        if dd_m:
+            desc = re.sub(r"<[^>]+>", "", dd_m.group(1)).strip()
+            if desc in {
+                "Key relationship used in this topic.",
+                "Relationship used in this topic.",
+                "Key relationship highlighted in the lesson.",
+            }:
+                issues.append(f"placeholder formula description: {plain[:50]}...")
 
     for m in re.finditer(
         r'<h3 class="content-key__heading">Key terms[^<]*</h3>.*?<dl class="content-key__list">(.*?)</dl>',

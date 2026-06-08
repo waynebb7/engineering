@@ -25,20 +25,6 @@
     </div>
 
     <div class="content-body">
-    <div class="card progression-card map-position-card" data-map="math">
-      <h2>On the Mathematics map</h2>
-      <p class="map-position__meta"><strong>Advanced PDEs (MSc)</strong> — Level: MSc · Domain: Calculus</p>
-      <p><a href="../../../maps/math-prereq-map.html?topic=msc_pde_advanced">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
-      <h3>Builds on</h3>
-      <ul>
-        <li><a href="../../../maps/math-prereq-map.html?topic=bsc_pde">Partial Differential Equations (BSc)</a></li>
-      </ul>
-      <h3>Unlocks</h3>
-      <ul>
-        <li><a href="../../../maps/math-prereq-map.html?topic=frontier_yang_mills">Yang-Mills Existence and Mass Gap (Frontier)</a></li>
-      </ul>
-    </div>
-
 
     <details class="content-key" id="topic-review-key">
       <summary class="content-key__summary">Topic review key — formulae, symbols, terms &amp; acronyms</summary>
@@ -47,25 +33,25 @@
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
         <div class="content-key__item"><dt class="content-key__formula">\(\(u_t = k u_{xx}\), \(u(0,t) = u(L,t) = 0\), \(u(x,0) = f(x)\).\)</dt><dd>\(u_t = k u_{xx}\), \(u(0,t) = u(L,t) = 0\), \(u(x,0) = f(x)\).</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\alpha u + \beta\,\partial u/\partial n = \gamma\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\Delta = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\Delta = B^2 - 4AC\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\dfrac{T'}{kT} = \dfrac{X''}{X} = -\lambda\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\frac{\partial u}{\partial t} = k\,\frac{\partial^2 u}{\partial x^2}, \quad k > 0\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\frac{\partial^2 u}{\partial t^2} = c^2\,\frac{\partial^2 u}{\partial x^2}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\lambda_n\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\lambda_n = \left(\dfrac{n\pi}{L}\right)^2\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\nabla^2 u = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\nabla^2 u = u_{xx} + u_{yy} + u_{zz}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\partial^2 u/\partial x^2\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(A\,u_{xx} + B\,u_{xy} + C\,u_{yy} + D\,u_x + E\,u_y + F\,u = G\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(t = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(T_n(t) = e^{-k\lambda_n t}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(u = \sum_n C_n X_n(x) T_n(t)\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(u(x,0) = f(x)\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(u(x,t) = X(x)\,T(t)\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(u(x_1, x_2, \ldots)\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(u_t = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\alpha u + \beta\,\partial u/\partial n = \gamma\)</dt><dd>Boundary and initial conditions Condition type Specification Typical use Dirichlet \(u\) given on boundary Fixed temperature, fixed potential Neumann \(\partial u/\partial n\) given Fixed heat flux, insulated boundary Robin (mixed) \(\alpha u + \beta\,\partial u/\partial n = \gamma\) Convective heat transfer at surface Initial \(u\), \(u_t\) at \(t = 0\) Wave equation; parabolic needs \(u(x,0)\) only</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\Delta = 0\)</dt><dd>Classification: elliptic, parabolic, hyperbolic A general second-order linear PDE in two variables has the form: \[ A\,u_{xx} + B\,u_{xy} + C\,u_{yy} + D\,u_x + E\,u_y + F\,u = G \] The discriminant \(\Delta = B^2 - 4AC\) classifies the equation at each point: Type Condition Canonical example Typical behaviour Elliptic \(\Delta 0\) Wave: \(u_{tt} = c^2 u_{xx}\) Finite-speed propagation, oscillations 3) The heat equation The one-dimensional heat equation is: \[ \frac{\partial u}{\partial t} = k\,\frac{\partial^2 u}{\partial x^2}, \quad k > 0 \] where \(u(x,t)\) is temperature (or concentration) and \(k\) is the thermal diffusivity.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\Delta = B^2 - 4AC\)</dt><dd>Classification: elliptic, parabolic, hyperbolic A general second-order linear PDE in two variables has the form: \[ A\,u_{xx} + B\,u_{xy} + C\,u_{yy} + D\,u_x + E\,u_y + F\,u = G \] The discriminant \(\Delta = B^2 - 4AC\) classifies the equation at each point: Type Condition Canonical example Typical behaviour Elliptic \(\Delta 0\) Wave: \(u_{tt} = c^2 u_{xx}\) Finite-speed propagation, oscillations 3) The heat equation The one-dimensional heat equation is: \[ \frac{\partial u}{\partial t} = k\,\frac{\partial^2 u}{\partial x^2}, \quad k > 0 \] where \(u(x,t)\) is temperature (or concentration) and \(k\) is the thermal diffusivity.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\dfrac{T'}{kT} = \dfrac{X''}{X} = -\lambda\)</dt><dd>Temperature, period, or kinetic energy (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\frac{\partial u}{\partial t} = k\,\frac{\partial^2 u}{\partial x^2}, \quad k > 0\)</dt><dd>Classification: elliptic, parabolic, hyperbolic A general second-order linear PDE in two variables has the form: \[ A\,u_{xx} + B\,u_{xy} + C\,u_{yy} + D\,u_x + E\,u_y + F\,u = G \] The discriminant \(\Delta = B^2 - 4AC\) classifies the equation at each point: Type Condition Canonical example Typical behaviour Elliptic \(\Delta 0\) Wave: \(u_{tt} = c^2 u_{xx}\) Finite-speed propagation, oscillations 3) The heat equation The one-dimensional heat equation is: \[ \frac{\partial u}{\partial t} = k\,\frac{\partial^2 u}{\partial x^2}, \quad k > 0 \] where \(u(x,t)\) is temperature (or concentration) and \(k\) is the thermal diffusivity.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\frac{\partial^2 u}{\partial t^2} = c^2\,\frac{\partial^2 u}{\partial x^2}\)</dt><dd>The wave equation The one-dimensional wave equation is: \[ \frac{\partial^2 u}{\partial t^2} = c^2\,\frac{\partial^2 u}{\partial x^2} \] where \(c\) is the wave speed.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\lambda_n\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\lambda_n = \left(\dfrac{n\pi}{L}\right)^2\)</dt><dd>Wavelength or decay constant, depending on context.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\nabla^2 u = 0\)</dt><dd>Common notation: \(u_t = \partial u/\partial t\), \(u_{xx} = \partial^2 u/\partial x^2\), \(\nabla^2 u = u_{xx} + u_{yy} + u_{zz}\) (Laplacian).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\nabla^2 u = u_{xx} + u_{yy} + u_{zz}\)</dt><dd>Common notation: \(u_t = \partial u/\partial t\), \(u_{xx} = \partial^2 u/\partial x^2\), \(\nabla^2 u = u_{xx} + u_{yy} + u_{zz}\) (Laplacian).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\partial^2 u/\partial x^2\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(A\,u_{xx} + B\,u_{xy} + C\,u_{yy} + D\,u_x + E\,u_y + F\,u = G\)</dt><dd>Force.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(t = 0\)</dt><dd>In steady state (\(u_t = 0\)), this reduces to \(u_{xx} = 0\) (linear temperature profile in 1D).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(T_n(t) = e^{-k\lambda_n t}\)</dt><dd>Temperature, period, or kinetic energy (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(u = \sum_n C_n X_n(x) T_n(t)\)</dt><dd>Superpose: \(u = \sum_n C_n X_n(x) T_n(t)\) and fit ICs via Fourier series.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(u(x,0) = f(x)\)</dt><dd>Requires two initial conditions: \(u(x,0)\) and \(u_t(x,0)\).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(u(x,t) = X(x)\,T(t)\)</dt><dd>Classification: elliptic, parabolic, hyperbolic A general second-order linear PDE in two variables has the form: \[ A\,u_{xx} + B\,u_{xy} + C\,u_{yy} + D\,u_x + E\,u_y + F\,u = G \] The discriminant \(\Delta = B^2 - 4AC\) classifies the equation at each point: Type Condition Canonical example Typical behaviour Elliptic \(\Delta 0\) Wave: \(u_{tt} = c^2 u_{xx}\) Finite-speed propagation, oscillations 3) The heat equation The one-dimensional heat equation is: \[ \frac{\partial u}{\partial t} = k\,\frac{\partial^2 u}{\partial x^2}, \quad k > 0 \] where \(u(x,t)\) is temperature (or concentration) and \(k\) is the thermal diffusivity.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(u(x_1, x_2, \ldots)\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(u_t = 0\)</dt><dd>Common notation: \(u_t = \partial u/\partial t\), \(u_{xx} = \partial^2 u/\partial x^2\), \(\nabla^2 u = u_{xx} + u_{yy} + u_{zz}\) (Laplacian).</dd></div>
       </dl>
       <h3 class="content-key__heading">Symbol names in formulae</h3>
       <dl class="content-key__list">
@@ -115,6 +101,19 @@
       </div>
     </details>
 
+    <div class="card progression-card map-position-card" data-map="math">
+      <h2>On the Mathematics map</h2>
+      <p class="map-position__meta"><strong>Advanced PDEs (MSc)</strong> — Level: MSc · Domain: Calculus</p>
+      <p><a href="../../../maps/math-prereq-map.html?topic=msc_pde_advanced">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
+      <h3>Builds on</h3>
+      <ul>
+        <li><a href="../../../maps/math-prereq-map.html?topic=bsc_pde">Partial Differential Equations (BSc)</a></li>
+      </ul>
+      <h3>Unlocks</h3>
+      <ul>
+        <li><a href="../../../maps/math-prereq-map.html?topic=frontier_yang_mills">Yang-Mills Existence and Mass Gap (Frontier)</a></li>
+      </ul>
+    </div>
 <div class="card">
       <h2>1) PDEs and notation</h2>
       <p>
@@ -354,10 +353,10 @@
           <li>See the worked example: Classify \(3u_{xx} + 2u_{xy} - u_{yy} = 0\). \(A = 3\), \(B = 2\), \(C = -1\). \(\Delta = 4 - 4(3)(-1) = 16 &gt; 0\) — hyperbolic .</li>
           <li>See the worked example: On the rectangle \(0 \leq x \leq a\), \(0 \leq y \leq b\), with \(u(0,y) = u(a,y) = 0\), \(u(x,0) = 0\), \(u(x,b) = f(x)\), separation of variables yields sine-series solutions in \(x\).</li>
           <li>See the worked example: \(u_t = k u_{xx}\), \(u(0,t) = u(L,t) = 0\), \(u(x,0) = f(x)\). Let \(u = X(x)T(t)\): \(\dfrac{T'}{kT} = \dfrac{X''}{X} = -\lambda\). With BCs: \(X_n(x) = \sin\dfrac{n\pi x}{L}\), \(\lambda_n = \left(\dfrac{n\pi}{L}\right)^2\). \(T_n(t) = e^{-k\lambda_n t}\). Solution: \(u(x,t) = \sum_{n=1}^{\infty} B_n \sin\dfrac{n\pi x}{L}\, e^{-k(n\pi/L)^2 t}\).</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
+          <li>See the worked example: Classify \(3u_{xx} + 2u_{xy} - u_{yy} = 0\). \(A = 3\), \(B = 2\), \(C = -1\). \(\Delta = 4 - 4(3)(-1) = 16 &gt; 0\) — hyperbolic .</li>
+          <li>See the worked example: On the rectangle \(0 \leq x \leq a\), \(0 \leq y \leq b\), with \(u(0,y) = u(a,y) = 0\), \(u(x,0) = 0\), \(u(x,b) = f(x)\), separation of variables yields sine-series solutions in \(x\).</li>
+          <li>See the worked example: \(u_t = k u_{xx}\), \(u(0,t) = u(L,t) = 0\), \(u(x,0) = f(x)\). Let \(u = X(x)T(t)\): \(\dfrac{T'}{kT} = \dfrac{X''}{X} = -\lambda\). With BCs: \(X_n(x) = \sin\dfrac{n\pi x}{L}\), \(\lambda_n = \left(\dfrac{n\pi}{L}\right)^2\). \(T_n(t) = e^{-k\lambda_n t}\). Solution: \(u(x,t) = \sum_{n=1}^{\infty} B_n \sin\dfrac{n\pi x}{L}\, e^{-k(n\pi/L)^2 t}\).</li>
+          <li>See the worked example: Classify \(3u_{xx} + 2u_{xy} - u_{yy} = 0\). \(A = 3\), \(B = 2\), \(C = -1\). \(\Delta = 4 - 4(3)(-1) = 16 &gt; 0\) — hyperbolic .</li>
         </ol>
       </details>
 <p class="mini">

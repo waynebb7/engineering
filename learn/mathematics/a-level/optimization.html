@@ -25,17 +25,6 @@
     </div>
 
     <div class="content-body">
-    <div class="card progression-card map-position-card" data-map="math">
-      <h2>On the Mathematics map</h2>
-      <p class="map-position__meta"><strong>Convex Optimization (BSc)</strong> — Level: BSc · Domain: Applied</p>
-      <p><a href="../../../maps/math-prereq-map.html?topic=bsc_convex_optimization">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
-      <h3>Builds on</h3>
-      <ul>
-        <li><a href="../../../maps/math-prereq-map.html?topic=bsc_optimization">Optimization (BSc)</a></li>
-        <li><a href="../../../maps/math-prereq-map.html?topic=bsc_real_analysis">Real Analysis I (BSc)</a></li>
-      </ul>
-    </div>
-
 
     <details class="content-key" id="topic-review-key">
       <summary class="content-key__summary">Topic review key — formulae, symbols, terms &amp; acronyms</summary>
@@ -43,11 +32,11 @@
       <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt class="content-key__formula">\(f''(a) = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(f'(a) = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(f'(x) = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(f(0) = 0\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(x = a\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(f''(a) = 0\)</dt><dd>Condition at \( x = a \) Type of stationary point \( f'(a) = 0 \) and \( f''(a) 0 \) Local minimum \( f'(a) = 0 \) and \( f''(a) = 0 \) Inconclusive — use a sign table for \( f'(x) \) 3) Optimising on a closed interval When the domain is restricted, e.g.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(f'(a) = 0\)</dt><dd>Condition at \( x = a \) Type of stationary point \( f'(a) = 0 \) and \( f''(a) 0 \) Local minimum \( f'(a) = 0 \) and \( f''(a) = 0 \) Inconclusive — use a sign table for \( f'(x) \) 3) Optimising on a closed interval When the domain is restricted, e.g.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(f'(x) = 0\)</dt><dd>Maximize profit for a given production model Minimize material used in a design Find the peak height of a projectile Locate the turning point of a cost function Key idea: At a local maximum or minimum of a smooth function, the gradient is zero: \( f'(x) = 0 \).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(f(0) = 0\)</dt><dd>\( f(0) = 0 \), \( f(6) = 36 \), \( f(10) = 20 \).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(x = a\)</dt><dd>Condition at \( x = a \) Type of stationary point \( f'(a) = 0 \) and \( f''(a) 0 \) Local minimum \( f'(a) = 0 \) and \( f''(a) = 0 \) Inconclusive — use a sign table for \( f'(x) \) 3) Optimising on a closed interval When the domain is restricted, e.g.</dd></div>
       </dl>
       <h3 class="content-key__heading">Symbol names in formulae</h3>
       <dl class="content-key__list">
@@ -84,6 +73,16 @@
       </div>
     </details>
 
+    <div class="card progression-card map-position-card" data-map="math">
+      <h2>On the Mathematics map</h2>
+      <p class="map-position__meta"><strong>Convex Optimization (BSc)</strong> — Level: BSc · Domain: Applied</p>
+      <p><a href="../../../maps/math-prereq-map.html?topic=bsc_convex_optimization">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
+      <h3>Builds on</h3>
+      <ul>
+        <li><a href="../../../maps/math-prereq-map.html?topic=bsc_optimization">Optimization (BSc)</a></li>
+        <li><a href="../../../maps/math-prereq-map.html?topic=bsc_real_analysis">Real Analysis I (BSc)</a></li>
+      </ul>
+    </div>
 <div class="card">
       <h2>1) What is optimization?</h2>
       <p>
@@ -298,12 +297,12 @@
       <details class="quiz-answers">
         <summary class="quiz-answers__summary">Show answers</summary>
         <ol class="quiz-answers__list">
+          <li><code>2-4 = -2</code>.</li>
+          <li><code>3-3 = 0</code>.</li>
+          <li>See the worked example: An open-top box is made from a 30 cm × 30 cm sheet by cutting squares of side \( x \) from each corner and folding up the sides. Base: \( (30 - 2x) \times (30 - 2x) \), height: \( x \). Volume: \[ V(x) = x(30 - 2x)^2, \quad 0 &lt; x &lt; 15 \] Expanding and differentiating gives maximum volume at \( x = 5 \) cm, \( V = 2000 \) cm³.</li>
           <li>See the worked example: Find and classify the turning points of \( f(x) = x^3 - 6x^2 + 9x + 1 \). \( f'(x) = 3x^2 - 12x + 9 = 3(x-1)(x-3) \) → stationary points at \( x = 1 \) and \( x = 3 \). \( f''(x) = 6x - 12 \): at \( x = 1 \), \( f'' = -6 \) (maximum); at \( x = 3 \), \( f'' = 6 \) (minimum).</li>
           <li>See the worked example: For \( f(x) = 12x - x^2 \) on \( 0 \le x \le 10 \): \( f'(x) = 12 - 2x = 0 \Rightarrow x = 6 \). \( f(0) = 0 \), \( f(6) = 36 \), \( f(10) = 20 \). Maximum value is 36 at \( x = 6 \).</li>
           <li>See the worked example: An open-top box is made from a 30 cm × 30 cm sheet by cutting squares of side \( x \) from each corner and folding up the sides. Base: \( (30 - 2x) \times (30 - 2x) \), height: \( x \). Volume: \[ V(x) = x(30 - 2x)^2, \quad 0 &lt; x &lt; 15 \] Expanding and differentiating gives maximum volume at \( x = 5 \) cm, \( V = 2000 \) cm³.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
-          <li>Review the sections above — the key ideas needed are explained in the worked examples.</li>
         </ol>
       </details>
 <p class="mini">

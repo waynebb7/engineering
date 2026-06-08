@@ -25,21 +25,6 @@
     </div>
 
     <div class="content-body">
-    <div class="card progression-card map-position-card" data-map="physics">
-      <h2>On the Physics map</h2>
-      <p class="map-position__meta"><strong>Nuclear Physics (BSc)</strong> — Level: BSc</p>
-      <p><a href="../../../maps/physics-prereq-map.html?topic=nuclear_physics_bsc">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
-      <h3>Builds on</h3>
-      <ul>
-        <li><a href="../../../maps/physics-prereq-map.html?topic=nuclear_physics_alevel">Nuclear Physics (A-Level)</a></li>
-        <li><a href="../../../maps/physics-prereq-map.html?topic=qm1_bsc">Quantum Mechanics I (BSc)</a></li>
-      </ul>
-      <h3>Unlocks</h3>
-      <ul>
-        <li><a href="../../../maps/physics-prereq-map.html?topic=fusion_physics_msc">Fusion Physics (Intro) (MSc)</a></li>
-      </ul>
-    </div>
-
 
     <details class="content-key" id="topic-review-key">
       <summary class="content-key__summary">Topic review key — formulae, symbols, terms &amp; acronyms</summary>
@@ -47,9 +32,9 @@
       <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt class="content-key__formula">\(A = \lambda N\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(N = N_0e^{-\lambda t}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(T_{1/2} = \frac{\ln 2}{\lambda}\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(A = \lambda N\)</dt><dd>Area or amplitude (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(N = N_0e^{-\lambda t}\)</dt><dd>Number of particles or turns in a coil (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(T_{1/2} = \frac{\ln 2}{\lambda}\)</dt><dd>Temperature, period, or kinetic energy (context-dependent).</dd></div>
       </dl>
       <h3 class="content-key__heading">Symbol names in formulae</h3>
       <dl class="content-key__list">
@@ -77,6 +62,20 @@
       </div>
     </details>
 
+    <div class="card progression-card map-position-card" data-map="physics">
+      <h2>On the Physics map</h2>
+      <p class="map-position__meta"><strong>Nuclear Physics (BSc)</strong> — Level: BSc</p>
+      <p><a href="../../../maps/physics-prereq-map.html?topic=nuclear_physics_bsc">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
+      <h3>Builds on</h3>
+      <ul>
+        <li><a href="../../../maps/physics-prereq-map.html?topic=nuclear_physics_alevel">Nuclear Physics (A-Level)</a></li>
+        <li><a href="../../../maps/physics-prereq-map.html?topic=qm1_bsc">Quantum Mechanics I (BSc)</a></li>
+      </ul>
+      <h3>Unlocks</h3>
+      <ul>
+        <li><a href="../../../maps/physics-prereq-map.html?topic=fusion_physics_msc">Fusion Physics (Intro) (MSc)</a></li>
+      </ul>
+    </div>
 <div class="card">
         <h2>1) Foundations and context</h2>
         <p>Nuclear Physics at A-Level is best learned as a modelling language rather than a memorised formula list. The central skills include identifying assumptions, selecting a valid equation set, preserving sign conventions, and communicating conclusions with units and uncertainty awareness. This page is intentionally comprehensive so each section can be used as revision, homework support, and exam practice.</p>
@@ -169,23 +168,18 @@
             <li>How should a final numerical answer be validated before submission?</li>
           </ol>
         </div>
-        <details class="quiz-answers">
-          <summary class="quiz-answers__summary">Show answers</summary>
-          <ol class="quiz-answers__list">
-            <li>Exponential decay \(N=N_0 e^{-\lambda t}\) assumes a large number of nuclei and constant decay probability per nucleus. Half-life \(T_{1/2}=\ln 2/\lambda\) is valid for this random decay model.</li>
-            <li>Students confuse activity \(A\) (decays per second, Bq) with the number of nuclei \(N\), or use minutes for \(t\) while \(\lambda\) is in s\(^{-1}\). Convert time to seconds before substitution.</li>
-            <li>\(A=\lambda N\), where \(A\) is activity (Bq), \(\lambda\) is decay constant (s\(^{-1}\)), and \(N\) is the number of undecayed nuclei.</li>
-            <li>Activity is measured in becquerels (s\(^{-1}\)). If \(\lambda\) is in yr\(^{-1}\) but \(t\) is in seconds, the exponent \(\lambda t\) will be wrong by orders of magnitude.</li>
-            <li>Use a fixed source–detector geometry, repeat count-rate measurements, subtract background count rate, and keep counting time long enough to reduce percentage uncertainty.</li>
-            <li>After one half-life, activity should halve. Activity should decrease over time, never increase for a single isotope. Check \(A=\lambda N\) is consistent with tabulated half-life values.</li>
-          </ol>
-        </details>
-      </div>
-l>
-        <li><a href="../index.html">Physics Catalog</a></li>
-        <li><a href="../../../index.html">Engineering Knowledge Hub</a></li>
-      </ul>
-    </div>
+      <details class="quiz-answers">
+        <summary class="quiz-answers__summary">Show answers</summary>
+        <ol class="quiz-answers__list">
+          <li>Exponential decay \(N=N_0 e^{-\lambda t}\) assumes a large number of nuclei and constant decay probability per nucleus. Half-life \(T_{1/2}=\ln 2/\lambda\) is valid for this random decay model.</li>
+          <li>Students confuse activity \(A\) (decays per second, Bq) with the number of nuclei \(N\), or use minutes for \(t\) while \(\lambda\) is in s\(^{-1}\). Convert time to seconds before substitution.</li>
+          <li>\(A=\lambda N\), where \(A\) is activity (Bq), \(\lambda\) is decay constant (s\(^{-1}\)), and \(N\) is the number of undecayed nuclei.</li>
+          <li>Activity is measured in becquerels (s\(^{-1}\)). If \(\lambda\) is in yr\(^{-1}\) but \(t\) is in seconds, the exponent \(\lambda t\) will be wrong by orders of magnitude.</li>
+          <li>Use a fixed source–detector geometry, repeat count-rate measurements, subtract background count rate, and keep counting time long enough to reduce percentage uncertainty.</li>
+          <li>After one half-life, activity should halve. Activity should decrease over time, never increase for a single isotope. Check \(A=\lambda N\) is consistent with tabulated half-life values.</li>
+        </ol>
+      </details>
+</div>
     <div class="card progression-card prerequisites-card">
       <h2>12) Pre-requisites</h2>
       <p>If you are struggling with this topic, review these subjects first.</p>
@@ -217,12 +211,7 @@ l>
         <li><a href="../undergraduate/classical-mechanics.html">Classical Mechanics (Lagrangian Formulation)</a></li>
       </ul>
       <h3>Catalog navigation</h3>
-      <ul>
-        <li><a href="../index.html">Physics Catalog</a></li>
-        <li><a href="../../../index.html">Engineering Knowledge Hub</a></li>
-      </ul>
-    </div>
-
+      <u
 
 
 <p class="page-footer-note">A-Level Physics content.</p>

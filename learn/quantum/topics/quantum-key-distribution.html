@@ -25,21 +25,6 @@
     </div>
 
     <div class="content-body">
-    <div class="card progression-card map-position-card" data-map="quantum">
-      <h2>On the Quantum map</h2>
-      <p class="map-position__meta"><strong>Quantum Key Distribution (QKD)</strong> — Level: Foundations · Domain: Quantum</p>
-      <p><a href="../../../maps/quantum-prereq-map.html?topic=qc_quantum_key_distribution">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
-      <h3>Builds on</h3>
-      <ul>
-        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_topological_quantum_computing">Topological Quantum Computing (Overview)</a></li>
-      </ul>
-      <h3>Unlocks</h3>
-      <ul>
-        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_quantum_metrology">Quantum Metrology and Sensing</a></li>
-        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_quantum_simulation">Quantum Simulation</a></li>
-      </ul>
-    </div>
-
 
     <details class="content-key" id="topic-review-key">
       <summary class="content-key__summary">Topic review key — formulae, symbols, terms &amp; acronyms</summary>
@@ -47,13 +32,13 @@
       <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt class="content-key__formula">\(\ell_{\text{EC}}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\ell_{\text{key}} = n\bigl[1 - h(Q) - f\,h(Q)\bigr] - \ell_{\text{EC}} - \ell_{\text{PA}}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(\ell_{\text{PA}}\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(h(x) = -x\log_2 x - (1-x)\log_2(1-x)\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(|0\rangle \equiv |D\rangle = \tfrac{1}{\sqrt{2}}(|H\rangle+|V\rangle)\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(|1\rangle \equiv |A\rangle = \tfrac{1}{\sqrt{2}}(|H\rangle-|V\rangle)\)</dt><dd>Key relationship used in this topic.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(|\Phi^+\rangle = \tfrac{1}{\sqrt{2}}(|HH\rangle + |VV\rangle)\)</dt><dd>Key relationship used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\ell_{\text{EC}}\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\ell_{\text{key}} = n\bigl[1 - h(Q) - f\,h(Q)\bigr] - \ell_{\text{EC}} - \ell_{\text{PA}}\)</dt><dd>Final secure key length (asymptotic, single-photon): \(\ell_{\text{key}} = n\bigl[1 - h(Q) - f\,h(Q)\bigr] - \ell_{\text{EC}} - \ell_{\text{PA}}\) Finite-size effects reduce key rates for short blocks; modern security proofs account for statistical fluctuations.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(\ell_{\text{PA}}\)</dt><dd>Equation used in this topic.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(h(x) = -x\log_2 x - (1-x)\log_2(1-x)\)</dt><dd>In the asymptotic limit with ideal single-photon sources: \(R = 1 - h(Q) - Q\,h\!\left(\frac{f}{Q}\right)\) where \(h(x) = -x\log_2 x - (1-x)\log_2(1-x)\) is the binary entropy and \(f\) is the error-correction efficiency.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(|0\rangle \equiv |D\rangle = \tfrac{1}{\sqrt{2}}(|H\rangle+|V\rangle)\)</dt><dd>Distance, displacement, or electric displacement (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(|1\rangle \equiv |A\rangle = \tfrac{1}{\sqrt{2}}(|H\rangle-|V\rangle)\)</dt><dd>Area or amplitude (context-dependent).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(|\Phi^+\rangle = \tfrac{1}{\sqrt{2}}(|HH\rangle + |VV\rangle)\)</dt><dd>Phase angle or azimuthal angle.</dd></div>
       </dl>
       <h3 class="content-key__heading">Symbol names in formulae</h3>
       <dl class="content-key__list">
@@ -119,6 +104,20 @@
       </div>
     </details>
 
+    <div class="card progression-card map-position-card" data-map="quantum">
+      <h2>On the Quantum map</h2>
+      <p class="map-position__meta"><strong>Quantum Key Distribution (QKD)</strong> — Level: Foundations · Domain: Quantum</p>
+      <p><a href="../../../maps/quantum-prereq-map.html?topic=qc_quantum_key_distribution">Open this topic on the prerequisite map</a> to see upstream dependencies and study paths.</p>
+      <h3>Builds on</h3>
+      <ul>
+        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_topological_quantum_computing">Topological Quantum Computing (Overview)</a></li>
+      </ul>
+      <h3>Unlocks</h3>
+      <ul>
+        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_quantum_metrology">Quantum Metrology and Sensing</a></li>
+        <li><a href="../../../maps/quantum-prereq-map.html?topic=qc_quantum_simulation">Quantum Simulation</a></li>
+      </ul>
+    </div>
 <div class="card">
       <h2>1) What QKD provides</h2>
       <p>
