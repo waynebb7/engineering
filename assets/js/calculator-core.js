@@ -239,6 +239,52 @@
     );
   }
 
+  function siteRoot() {
+    var css = document.querySelector('link[href*="corporate.css"]');
+    if (css) {
+      var href = css.getAttribute('href') || '';
+      return href.replace(/assets\/css\/corporate\.css(?:\?.*)?$/i, '');
+    }
+    return '../../';
+  }
+
+  function renderReferenceDocumentsBlock(def) {
+    var refs = def.references;
+    if (!refs || !refs.length) return '';
+
+    var root = siteRoot();
+    var count = refs.length;
+    var items = refs.map(function (r) {
+      var href = root + r.file;
+      var note = r.note
+        ? '<span class="calc-docs__note">' + escapeHtml(r.note) + '</span>'
+        : '';
+      return (
+        '<li class="calc-docs__item">' +
+          '<a href="' + escapeHtml(href) + '" target="_blank" rel="noopener">' +
+            escapeHtml(r.title) +
+          '</a>' +
+          note +
+        '</li>'
+      );
+    }).join('');
+
+    return (
+      '<details class="calc-docs">' +
+        '<summary class="calc-docs__toggle">' +
+          '<span class="calc-docs__toggle-show">Reference documents (' + count + ')</span>' +
+          '<span class="calc-docs__toggle-hide">Hide reference documents</span>' +
+        '</summary>' +
+        '<div class="calc-docs__panel">' +
+          '<ul class="calc-docs__list">' + items + '</ul>' +
+          '<p class="calc-docs__library">' +
+            '<a href="' + escapeHtml(root + 'reference/documents/index.html') + '">Browse document library</a>' +
+          '</p>' +
+        '</div>' +
+      '</details>'
+    );
+  }
+
   function wireReference(panel) {
     var details = panel.querySelector('.calc-reference');
     if (!details) return;
@@ -267,6 +313,7 @@
   function renderShell(def) {
     var fieldsHtml = def.fields.map(renderField).join('\n                ');
     var referenceBlock = renderReferenceBlock(def);
+    var documentsBlock = renderReferenceDocumentsBlock(def);
     var sectionTitle = def.fieldsSectionTitle || 'Enter Values';
     var liveOn = def.liveRecalc !== false;
     var buttonBlock = liveOn
@@ -279,6 +326,7 @@
         '<div class="calculator-panel" data-calc-panel="' + escapeHtml(def.file) + '">' +
           '<h1>' + escapeHtml(def.title) + '</h1>' +
           '<p class="calc-lead">' + escapeHtml(def.lead) + '</p>' +
+          documentsBlock +
           referenceBlock +
           '<h2>' + escapeHtml(sectionTitle) + '</h2>' +
           '<div class="input-container">' + fieldsHtml + '</div>' +

@@ -21,6 +21,7 @@
     { href: 'learn/physics/index.html', label: 'Physics' },
     { href: 'learn/quantum/index.html', label: 'Quantum' },
     { href: 'learn/mathematics/digital-logic/index.html', label: 'Digital Logic' },
+    { href: 'reference/documents/index.html', label: 'Documents' },
     { href: 'progress.html', label: 'Progress' },
     { href: 'feedback.html', label: 'Feedback' }
   ];
@@ -46,6 +47,9 @@
     }
     if (href === 'progress.html') {
       return file === 'progress.html';
+    }
+    if (href === 'reference/documents/index.html') {
+      return path.indexOf('/reference/documents/') !== -1;
     }
     return file === href.split('/').pop();
   }

@@ -1031,9 +1031,16 @@
     },
     "power_wire_analysis_calculator.html": {
       "title": "Power Wire Analysis",
-      "lead": "Aircraft copper wire: max run length (L1/L2), conductor temperature (T2), and temperature-corrected voltage drop — AC 43.13-1B Chapter 11 methods.",
-      "formula": "$$ L_1 = \\frac{U}{I \\times R_L} \\quad T_2 = T_1 + (T_R - T_1)\\,\\frac{I}{I_{max}} \\quad L_2 = \\frac{254.5 \\times L_1}{234.5 + T_2} \\quad V_{drop} = I \\times R_L \\times l_{wire}\\,\\frac{234.5 + T_2}{254.5} $$",
+      "lead": "Aircraft copper wire: max run length (L1/L2), conductor temperature (T2), and temperature-corrected voltage drop per SAE ARP4404C §9.3.4.2.",
+      "formula": "$$ \\begin{aligned} V_{drop} &= I \\times l_{wire} \\times R_2 \\\\[0.4em] R_2 &= R_L \\times \\frac{234.5 + T_2}{254.5} \\\\[0.6em] T_2 &= T_1 + (T_R - T_1)\\,\\frac{I}{I_{max}} \\\\[0.6em] L_1 &= \\frac{U}{I \\times R_L} \\\\[0.4em] L_2 &= \\frac{254.5 \\times L_1}{234.5 + T_2} \\end{aligned} $$",
       "buttonLabel": "Calculate",
+      "references": [
+        {
+          "title": "SAE ARP4404C — Aircraft Electrical Installations (Rev. C)",
+          "file": "reference/documents/files/sae-arp4404c-aircraft-electrical-installations.pdf",
+          "note": "§9.3.4.2 Voltage Drop Calculations"
+        }
+      ],
       "fields": [
         {
           "id": "allowableDrop",
@@ -1111,7 +1118,7 @@
         },
         {
           "id": "wireLength",
-          "label": "Wire Run Length (for Vdrop)",
+          "label": "Wire Run Length (incl. ground return)",
           "type": "number",
           "value": "15",
           "unit": "ft",
@@ -1870,14 +1877,14 @@
     },
     "power_wire_analysis_calculator.html": {
       "title": "Power Wire Analysis (PWA)",
-      "what": "Computes maximum wire run length, estimated conductor temperature, derated length, and voltage drop for copper aircraft wire using FAA AC 43.13-1B Chapter 11 formulas.",
-      "when": "Use when sizing or checking aircraft wire runs instead of reading charts 11-2/11-3 directly — especially when ambient temperature is above 20 °C or the wire is heavily loaded.",
+      "what": "Computes maximum wire run length, estimated conductor temperature, derated length, and voltage drop for copper aircraft wire using SAE ARP4404C §9.3.4.2 (Voltage Drop Calculations).",
+      "when": "Use when sizing or checking aircraft wire runs — especially when ambient temperature is above 20 °C or the wire is heavily loaded and resistance must be corrected for conductor temperature.",
       "steps": [
-        "Enter the allowable voltage drop for the circuit (from Table 11-6 for your bus voltage).",
-        "Enter circuit current and select wire AWG (resistance per foot from Table 11-10) or enter a custom R_L.",
-        "Enter ambient temperature T1, wire insulation rating TR, and Imax from chart 11-4 (bundle/altitude derated).",
-        "Enter the actual wire run length to check voltage drop at the estimated conductor temperature.",
-        "Results update automatically: L1 (20 °C max length), T2, L2 (temperature-derated max length), and Vdrop."
+        "Enter the allowable voltage drop U for the circuit (ARP4404C Table 3 for your nominal bus voltage).",
+        "Enter circuit current and select wire AWG (R_L at 20 °C from the wire specification) or enter a custom resistance per foot.",
+        "Enter ambient temperature T1, wire insulation rating TR, and Imax per AS50881 (wire current, bundle, and altitude de-rating).",
+        "Enter total wire run length including the ground return path, as required by §9.3.4.2.",
+        "Results update automatically: L1 (max length at 20 °C reference), T2, L2 (length limit at T2), and Vdrop."
       ],
       "example": "14 AWG, 20 A, U = 1 V, T1 = 50 °C, TR = 200 °C, Imax = 26 A → L1 ≈ 16.4 ft, T2 ≈ 165 °C, L2 ≈ 10.5 ft; 15 ft run → Vdrop ≈ 1.43 V (exceeds 1 V limit — upsize wire or shorten run)."
     },
@@ -2282,19 +2289,20 @@
       ]
     },
     'power_wire_analysis_calculator.html': {
-      summary: 'AC 43.13-1B wire run length, conductor temperature, and voltage drop for copper wire.',
+      summary: 'SAE ARP4404C §9.3.4.2 — wire run length, conductor temperature, and temperature-corrected voltage drop for copper wire.',
       variables: [
-        { sym: 'L_1', desc: 'maximum run length at 20 °C reference' },
-        { sym: 'L_2', desc: 'derated maximum run length at T2' },
+        { sym: 'V_drop', desc: 'voltage drop along the wire run (§9.3.4.2)' },
+        { sym: 'R_2', desc: 'resistance per foot corrected for conductor temperature T2' },
+        { sym: 'R_L', desc: 'resistance per foot at 20 °C (wire specification)' },
+        { sym: 'L_1', desc: 'maximum run length at 20 °C reference (derived from U = I × L × R_L)' },
+        { sym: 'L_2', desc: 'maximum run length at estimated T2 (derived from R2 correction)' },
         { sym: 'T_1', desc: 'ambient temperature' },
-        { sym: 'T_2', desc: 'estimated conductor temperature' },
-        { sym: 'T_R', desc: 'wire rated temperature' },
+        { sym: 'T_2', desc: 'estimated conductor temperature (§9.3.4.2 formula)' },
+        { sym: 'T_R', desc: 'conductor temperature rating' },
         { sym: 'I', desc: 'circuit current' },
-        { sym: 'I_max', desc: 'maximum allowable current at TR' },
-        { sym: 'U', desc: 'allowable voltage drop' },
-        { sym: 'R_L', desc: 'conductor resistance per foot' },
-        { sym: 'l_wire', desc: 'wire run length' },
-        { sym: 'V_drop', desc: 'voltage drop along the wire' }
+        { sym: 'I_max', desc: 'maximum allowable current at TR (per AS50881)' },
+        { sym: 'U', desc: 'allowable voltage drop (ARP4404C Table 3)' },
+        { sym: 'l_wire', desc: 'wire run length including ground return' }
       ]
     },
     'force_calculator.html': {
@@ -2366,7 +2374,8 @@
       buttonLabel: m.buttonLabel,
       liveRecalc: true,
       fields: m.fields,
-      help: HELP[file] || null
+      help: HELP[file] || null,
+      references: m.references || []
     };
   });
 

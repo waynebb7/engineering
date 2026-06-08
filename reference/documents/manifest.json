@@ -1,0 +1,16 @@
+{
+  "documents": [
+    {
+      "id": "sae-arp4404c",
+      "title": "SAE ARP4404C — Aircraft Electrical Installations",
+      "file": "files/sae-arp4404c-aircraft-electrical-installations.pdf",
+      "type": "pdf",
+      "standard": "SAE ARP4404C",
+      "revision": "Rev. C",
+      "issued": "2013-11",
+      "summary": "Aerospace recommended practice for transport aircraft electrical installations, including wire sizing and voltage drop.",
+      "sections": ["9.3.4.2 Voltage Drop Calculations"],
+      "tags": ["aerospace", "electrical", "standards", "wire sizing"]
+    }
+  ]
+}
