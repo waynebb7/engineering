@@ -69,12 +69,34 @@
       '<nav class="site-nav" aria-label="Main navigation">' + navHtml + '</nav>' +
     '</div>';
 
+  function currentPageReference() {
+    var loc = window.location;
+    if (loc.protocol === 'file:') {
+      return loc.href;
+    }
+    return loc.pathname + loc.search + loc.hash;
+  }
+
+  function feedbackReportHref() {
+    var page = currentPageReference();
+    var title = document.title.replace(/\s*\|\s*Engineering Knowledge\s*$/i, '').trim();
+    return base + 'feedback.html?report=1&page=' + encodeURIComponent(page) +
+      '&title=' + encodeURIComponent(title);
+  }
+
+  var footerLinks =
+    '<a href="' + base + 'feedback.html">Feedback</a> &middot; ';
+  if (file !== 'feedback.html') {
+    footerLinks += '<a href="' + feedbackReportHref() + '">Report this page</a> &middot; ';
+  }
+  footerLinks += 'MIT License';
+
   var footer = document.createElement('footer');
   footer.className = 'site-footer';
   footer.innerHTML =
     '<div class="site-footer__inner">' +
       '<p>&copy; ' + new Date().getFullYear() + ' Engineering Knowledge Hub &middot; ' +
-      '<a href="' + base + 'feedback.html">Feedback</a> &middot; MIT License</p>' +
+      footerLinks + '</p>' +
     '</div>';
 
   var body = document.body;

@@ -1111,9 +1111,49 @@ button.variable-row {
 }
 
 .form-panel input[type="text"],
-.feedback-container input[type="text"] {
+.feedback-container input[type="text"],
+.feedback-container input[type="email"],
+.feedback-container select {
   width: 100%;
   margin-bottom: 16px;
+}
+
+.feedback-form label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--corp-navy);
+  margin-bottom: 6px;
+}
+
+.feedback-form label + label {
+  margin-top: 4px;
+}
+
+.feedback-context {
+  background: #f8fafc;
+  border: 1px solid var(--corp-border);
+  border-radius: var(--corp-radius);
+  padding: 16px 18px;
+  margin-bottom: 20px;
+}
+
+.feedback-context__title {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  border: none;
+  padding: 0;
+}
+
+.feedback-char-count {
+  margin: -8px 0 16px;
+  font-size: 0.85rem;
+  color: var(--corp-text-muted);
+  text-align: right;
+}
+
+.feedback-page .lead {
+  max-width: 640px;
 }
 
 .note {
