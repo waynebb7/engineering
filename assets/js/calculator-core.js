@@ -253,6 +253,17 @@
     });
   }
 
+  function hubHref() {
+    var css = document.querySelector('link[href*="corporate.css"]');
+    if (css) {
+      var href = css.getAttribute('href') || '';
+      if (href.indexOf('assets/') !== -1) {
+        return href.replace(/assets\/css\/corporate\.css/i, 'index.html');
+      }
+    }
+    return '../../index.html';
+  }
+
   function renderShell(def) {
     var fieldsHtml = def.fields.map(renderField).join('\n                ');
     var referenceBlock = renderReferenceBlock(def);
@@ -264,7 +275,7 @@
 
     return (
       '<div class="page-container page-container--calculator">' +
-        '<a href="index.html" class="back-link">&larr; Back to Hub</a>' +
+        '<a href="' + escapeHtml(hubHref()) + '" class="back-link">&larr; Back to Hub</a>' +
         '<div class="calculator-panel" data-calc-panel="' + escapeHtml(def.file) + '">' +
           '<h1>' + escapeHtml(def.title) + '</h1>' +
           '<p class="calc-lead">' + escapeHtml(def.lead) + '</p>' +
@@ -295,6 +306,43 @@
     script.async = true;
     script.onload = callback;
     document.head.appendChild(script);
+  }
+
+  function normalizeHelpStep(step, def) {
+    if (def.liveRecalc === false) return step;
+    var trimmed = String(step).trim();
+    if (/^Press Calculate\.?$/i.test(trimmed)) {
+      return 'The result updates automatically as you enter values.';
+    }
+    if (/^Press Convert\.?$/i.test(trimmed)) {
+      return 'The converted value updates automatically as you enter values.';
+    }
+    if (/^Press Generate\.?$/i.test(trimmed)) {
+      return 'The truth table appears automatically when you select a gate.';
+    }
+    if (/^Press Decode to read the resistance\.?$/i.test(trimmed)) {
+      return 'The decoded resistance appears automatically as you select bands.';
+    }
+    var match = trimmed.match(/^Press Calculate for (.+?)\.?$/i);
+    if (match) {
+      return 'The result shows ' + match[1] + ' automatically as you enter values.';
+    }
+    match = trimmed.match(/^Press Calculate to get (.+?)\.?$/i);
+    if (match) {
+      return 'The result shows ' + match[1] + ' automatically as you enter values.';
+    }
+    match = trimmed.match(/^Press Calculate — (.+?)\.?$/i);
+    if (match) {
+      return match[1] + ' — updates automatically as you enter values.';
+    }
+    return step;
+  }
+
+  function helpSteps(def) {
+    if (!def.help || !def.help.steps) return [];
+    return def.help.steps.map(function (step) {
+      return normalizeHelpStep(step, def);
+    });
   }
 
   function wireHelp(def, panel) {
@@ -328,7 +376,7 @@
         '<h2 id="calcHelpTitle">' + escapeHtml(def.help.title || def.title) + '</h2>' +
         '<section class="calc-help__section"><h3>What does it do?</h3><p>' + escapeHtml(def.help.what) + '</p></section>' +
         '<section class="calc-help__section"><h3>When should I use it?</h3><p>' + escapeHtml(def.help.when) + '</p></section>' +
-        '<section class="calc-help__section"><h3>How to use it (step by step)</h3>' + buildStepsHtml(def.help.steps || []) + '</section>' +
+        '<section class="calc-help__section"><h3>How to use it (step by step)</h3>' + buildStepsHtml(helpSteps(def)) + '</section>' +
         '<section class="calc-help__example"><h3>Quick example</h3><p>' + escapeHtml(def.help.example) + '</p></section>' +
       '</div>';
 

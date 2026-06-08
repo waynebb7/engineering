@@ -595,7 +595,7 @@
     "db_converter.html": {
       "title": "dB / dBm Converter",
       "lead": "Convert between power ratio, dB, and dBm.",
-      "formula": "dBm = 10·log₁₀(P_mW); dB = 10·log₁₀(P₁/P₂)",
+      "formula": "$$ \\mathrm{dBm} = 10 \\log_{10}(P_{\\mathrm{mW}}); \\quad \\mathrm{dB} = 10 \\log_{10}\\left(\\frac{P_1}{P_2}\\right) $$",
       "buttonLabel": "Calculate",
       "fields": [
         {
@@ -1443,7 +1443,7 @@
       "steps": [
         "Enter voltage across the component (V).",
         "Enter current flowing through it (A).",
-        "Press Calculate.",
+        "The result updates automatically as you enter values.",
         "Result is resistance in ohms."
       ],
       "example": "24 V and 3 A → R = 24/3 = 8 ohms."
@@ -1456,7 +1456,7 @@
         "Enter line voltage (same as phase voltage in delta).",
         "Enter line current (measured in the supply wires).",
         "Enter power factor.",
-        "Press Calculate."
+        "The result updates automatically as you enter values."
       ],
       "example": "Delta motor: 400 V line, 17.3 A line current, PF 0.85 → about 10,176 W."
     },
@@ -1468,7 +1468,7 @@
         "Enter the line voltage between phases.",
         "Enter the line current.",
         "Enter the power factor.",
-        "Press Calculate."
+        "The result updates automatically as you enter values."
       ],
       "example": "A star-connected motor on 400 V drawing 20 A at PF 0.92 uses about 12,755 W."
     },
@@ -1479,7 +1479,7 @@
       "steps": [
         "Type the voltage (V) in volts — e.g. 12 for a car battery.",
         "Type the current (I) in amps — how much current the load draws.",
-        "Press Calculate.",
+        "The result updates automatically as you enter values.",
         "Read the result in watts (W)."
       ],
       "example": "A 12 V circuit drawing 5 A uses 12 × 5 = 60 W of power."
@@ -1491,7 +1491,7 @@
       "steps": [
         "Select joules or kWh.",
         "Enter the value.",
-        "Press Convert."
+        "The converted value updates automatically as you enter values."
       ],
       "example": "3,600,000 J = 1 kWh."
     },
@@ -1503,7 +1503,7 @@
         "Enter power in watts (check the nameplate or use another calculator).",
         "Enter how many hours it runs.",
         "Enter your electricity rate in pence per kWh (check your bill).",
-        "Press Calculate for kWh used and total cost."
+        "The result shows kWh used and total cost automatically as you enter values."
       ],
       "example": "2,000 W for 3 hours = 6 kWh. At 28 p/kWh, cost = £1.68."
     },
@@ -1514,7 +1514,7 @@
       "steps": [
         "Select the unit you have.",
         "Enter the value.",
-        "Press Convert."
+        "The converted value updates automatically as you enter values."
       ],
       "example": "50 Hz = 0.05 kHz. 100 MHz = 100,000,000 Hz."
     },
@@ -1526,7 +1526,7 @@
         "Enter the AC voltage (V) — e.g. 230 V for UK mains.",
         "Enter the current (I) in amps.",
         "Enter the power factor (0 to 1). Use 1.0 for purely resistive loads like heaters; motors are often 0.7–0.9.",
-        "Press Calculate to get power in watts."
+        "The result shows power in watts automatically as you enter values."
       ],
       "example": "230 V, 10 A, power factor 0.9 gives P = 230 × 10 × 0.9 = 2,070 W."
     },
@@ -1539,7 +1539,7 @@
         "Select Band 2 (second digit).",
         "Select the multiplier band (how many zeros to add).",
         "Select tolerance (gold = ±5% is most common).",
-        "Press Decode to read the resistance."
+        "The decoded resistance appears automatically as you select bands."
       ],
       "example": "Yellow (4) + Violet (7) + Red (×100) + Gold → 4,700 Ω (4.7 kΩ) ±5%."
     },
@@ -1550,7 +1550,7 @@
       "steps": [
         "Enter true power in kW.",
         "Enter power factor (0 to 1).",
-        "Press Calculate.",
+        "The result updates automatically as you enter values.",
         "You get apparent power (kVA) and reactive power (kVAR)."
       ],
       "example": "8 kW at PF 0.85 → S = 8/0.85 ≈ 9.41 kVA, Q ≈ 4.95 kVAR."
@@ -1563,7 +1563,7 @@
         "Enter phase voltage (V across each load element).",
         "Enter phase current (I through each load element).",
         "Enter power factor.",
-        "Press Calculate — the tool converts to total three-phase power."
+        "Total three-phase power appears automatically as you enter values."
       ],
       "example": "Phase values 400 V and 10 A with PF 0.85 give total power ≈ 5,886 W."
     },
@@ -1574,7 +1574,7 @@
       "steps": [
         "Enter input power (mechanical power in, in watts).",
         "Enter output power (electrical power out, in watts).",
-        "Press Calculate.",
+        "The result updates automatically as you enter values.",
         "Higher percentage means less energy wasted as heat."
       ],
       "example": "12,000 W in, 10,800 W out → efficiency = 90%."
@@ -1586,7 +1586,7 @@
       "steps": [
         "Select volts or kilovolts.",
         "Enter the value.",
-        "Press Convert."
+        "The converted value updates automatically as you enter values."
       ],
       "example": "11 kV = 11,000 V."
     },
@@ -1597,7 +1597,7 @@
       "steps": [
         "Enter voltage (V) across the resistor.",
         "Enter resistance (R) in ohms.",
-        "Press Calculate.",
+        "The result updates automatically as you enter values.",
         "Shows power using both P = V²/R and P = I²R (same answer)."
       ],
       "example": "230 V across 46 Ω → P = 230²/46 = 1,150 W."
@@ -1609,7 +1609,7 @@
       "steps": [
         "Choose what you are converting from (dBm, mW, or dB ratio).",
         "Enter the value.",
-        "Press Calculate.",
+        "The result updates automatically as you enter values.",
         "Read the equivalent values in all three units."
       ],
       "example": "10 dBm = 10 mW of power. 0 dBm = 1 mW."
@@ -1621,7 +1621,7 @@
       "steps": [
         "Select amps or milliamps.",
         "Enter the value.",
-        "Press Convert."
+        "The converted value updates automatically as you enter values."
       ],
       "example": "250 mA = 0.25 A."
     },
@@ -1632,7 +1632,7 @@
       "steps": [
         "Enter DC input power in watts.",
         "Enter AC output power in watts.",
-        "Press Calculate for efficiency percentage."
+        "Efficiency percentage appears automatically as you enter values."
       ],
       "example": "500 W DC in, 465 W AC out → efficiency = 93%."
     },
@@ -1643,7 +1643,7 @@
       "steps": [
         "Enter power going into the TRU (watts).",
         "Enter useful power coming out (watts).",
-        "Press Calculate.",
+        "The result updates automatically as you enter values.",
         "Result is efficiency as a percentage — higher is better."
       ],
       "example": "500 W in, 450 W out → efficiency = (450/500) × 100 = 90%."
@@ -1654,7 +1654,7 @@
       "when": "Use when learning digital logic gates or verifying how AND, OR, NAND, NOR, XOR, and XNOR behave.",
       "steps": [
         "Select the gate type from the dropdown.",
-        "Press Generate.",
+        "The truth table appears automatically when you select a gate.",
         "Read the table: A and B are inputs (0 or 1), Out is the result."
       ],
       "example": "AND gate: output is 1 only when both A AND B are 1. All other rows are 0."
@@ -1666,7 +1666,7 @@
       "steps": [
         "Enter true power (P) in watts.",
         "Enter reactive power (Q) in VAR.",
-        "Press Calculate.",
+        "The result updates automatically as you enter values.",
         "Result is a number between 0 and 1 (e.g. 0.85). Closer to 1 is better."
       ],
       "example": "P = 1,000 W and Q = 500 VAR gives PF = 1,000 / √(1,000² + 500²) ≈ 0.894."
@@ -1678,7 +1678,7 @@
       "steps": [
         "Enter resistance (R) in ohms.",
         "Enter reactance (X) in ohms — inductive is positive, capacitive is negative.",
-        "Press Calculate.",
+        "The result updates automatically as you enter values.",
         "Result is total impedance in ohms."
       ],
       "example": "R = 6 Ω, X = 8 Ω → Z = √(6² + 8²) = 10 Ω."
@@ -1692,7 +1692,7 @@
         "Enter line voltage (e.g. 400 V).",
         "Enter power factor (nameplate value, often 0.8–0.9).",
         "Enter efficiency as a decimal (e.g. 0.9 for 90%).",
-        "Press Calculate for full-load current in amps."
+        "Full-load current in amps appears automatically as you enter values."
       ],
       "example": "11 kW, 400 V, PF 0.85, efficiency 0.9 → I ≈ 20.8 A."
     },
@@ -1704,7 +1704,7 @@
         "Enter the current flowing through the cable (A).",
         "Enter cable resistance in ohms per kilometre (from cable data sheet).",
         "Enter cable length in metres.",
-        "Press Calculate for voltage drop in volts."
+        "Voltage drop in volts appears automatically as you enter values."
       ],
       "example": "32 A, 0.5 Ω/km, 50 m cable → drop = 32 × 0.5 × 0.05 = 0.8 V."
     },
@@ -1714,7 +1714,7 @@
       "when": "Use when you have measured current inside a delta winding and need the supply cable current for breaker sizing.",
       "steps": [
         "Enter phase current (I through one delta branch).",
-        "Press Calculate.",
+        "The result updates automatically as you enter values.",
         "Result is line current = √3 × phase current."
       ],
       "example": "10 A phase current → 17.32 A line current."
@@ -1726,7 +1726,7 @@
       "steps": [
         "Enter frequency in Hz.",
         "Enter capacitance in microfarads (µF) — the value printed on the capacitor.",
-        "Press Calculate.",
+        "The result updates automatically as you enter values.",
         "Result is capacitive reactance X_C in ohms."
       ],
       "example": "50 Hz, 100 µF → X_C ≈ 31.8 Ω."
@@ -1738,7 +1738,7 @@
       "steps": [
         "Enter mass in kilograms.",
         "Enter velocity (speed) in metres per second.",
-        "Press Calculate.",
+        "The result updates automatically as you enter values.",
         "Result is kinetic energy in joules (J)."
       ],
       "example": "5 kg moving at 10 m/s → KE = ½ × 5 × 10² = 250 J."
@@ -1751,7 +1751,7 @@
         "Enter phase voltage (V from phase to neutral).",
         "Enter phase current.",
         "Enter power factor.",
-        "Press Calculate."
+        "The result updates automatically as you enter values."
       ],
       "example": "230 V phase, 20 A, PF 0.92 → total three-phase power ≈ 12,755 W."
     },
@@ -1761,7 +1761,7 @@
       "when": "Use when a calculation gives radians but you need to understand the angle in familiar degrees.",
       "steps": [
         "Enter the angle in radians.",
-        "Press Calculate.",
+        "The result updates automatically as you enter values.",
         "Read the result in degrees."
       ],
       "example": "π radians = 180°. 1.5708 rad ≈ 90°."
@@ -1772,7 +1772,7 @@
       "when": "Use before plugging angles into formulas that need radians — e.g. sin(), cos(), or reactance calculations.",
       "steps": [
         "Enter the angle in degrees.",
-        "Press Calculate.",
+        "The result updates automatically as you enter values.",
         "Read the result in radians."
       ],
       "example": "180° = π radians (≈ 3.1416). 90° = π/2 ≈ 1.5708 rad."
@@ -1785,7 +1785,7 @@
         "Select bus type: 28 V DC or 115 V AC single-phase.",
         "Enter load power in watts (from equipment nameplate).",
         "Enter power factor (use 1.0 for DC; 0.85–0.95 typical for AC).",
-        "Press Calculate for bus voltage and current."
+        "Bus voltage and current appear automatically as you enter values."
       ],
       "example": "500 W on 115 V AC at PF 0.9 → I = 500/(115×0.9) ≈ 4.83 A."
     },
@@ -1796,7 +1796,7 @@
       "steps": [
         "Enter mass in kilograms (kg).",
         "Enter acceleration in m/s² (use 9.81 for weight due to gravity on Earth).",
-        "Press Calculate.",
+        "The result updates automatically as you enter values.",
         "Result is force in newtons (N)."
       ],
       "example": "10 kg at 9.81 m/s² → F = 98.1 N (the weight of a 10 kg object on Earth)."
@@ -1808,7 +1808,7 @@
       "steps": [
         "Select the unit you are converting from.",
         "Enter the value.",
-        "Press Convert.",
+        "The converted value updates automatically as you enter values.",
         "Read the equivalent in all three units."
       ],
       "example": "1,500 W = 1.5 kW = 1,500,000 mW."
@@ -1821,7 +1821,7 @@
         "Enter voltage (V).",
         "Enter current (I).",
         "Enter phase angle in degrees (0° = in phase, positive = current lagging).",
-        "Press Calculate for reactive power in VAR."
+        "Reactive power in VAR appears automatically as you enter values."
       ],
       "example": "230 V, 10 A, angle 37° → Q = 230 × 10 × sin(37°) ≈ 1,384 VAR."
     },
@@ -1832,7 +1832,7 @@
       "steps": [
         "Select which base your input number is in.",
         "Type the number (binary: only 0 and 1; hex: 0–9 and A–F).",
-        "Press Convert.",
+        "The converted value updates automatically as you enter values.",
         "Read the equivalent in all three bases."
       ],
       "example": "Decimal 255 = Binary 11111111 = Hex 0xFF."
@@ -1845,7 +1845,7 @@
         "Enter primary voltage (V1).",
         "Enter number of primary turns (N1).",
         "Enter number of secondary turns (N2).",
-        "Press Calculate for secondary voltage."
+        "Secondary voltage appears automatically as you enter values."
       ],
       "example": "400 V primary, 1000 turns primary, 100 turns secondary → V2 = 40 V."
     },
@@ -1855,7 +1855,7 @@
       "when": "Use when you have one value and need the other — e.g. UK mains is 230 V phase / 400 V line in star.",
       "steps": [
         "Enter the phase voltage (V from one phase to neutral).",
-        "Press Calculate.",
+        "The result updates automatically as you enter values.",
         "Result is the line voltage between any two phases."
       ],
       "example": "230 V phase → line voltage = √3 × 230 ≈ 398 V (commonly quoted as 400 V)."
@@ -1866,7 +1866,7 @@
       "when": "Use when learning how computers represent negative numbers, or when debugging embedded systems.",
       "steps": [
         "Enter a decimal number from -128 to 127.",
-        "Press Convert.",
+        "The converted value updates automatically as you enter values.",
         "Read the 8-bit binary pattern."
       ],
       "example": "Decimal -5 is stored as 11111011 in 8-bit two's complement."
@@ -1879,7 +1879,7 @@
         "Enter line voltage (V_L) — the voltage between two phases.",
         "Enter line current (I_L) — current in each of the three wires.",
         "Enter power factor (typically 0.8–0.95 for motors).",
-        "Press Calculate for power in watts."
+        "Power in watts appears automatically as you enter values."
       ],
       "example": "400 V, 15 A, PF 0.85 gives P = √3 × 400 × 15 × 0.85 ≈ 8,834 W."
     },
@@ -1890,7 +1890,7 @@
       "steps": [
         "Enter frequency in Hz (50 for UK mains).",
         "Enter inductance in henries (H). Millihenries: divide by 1,000.",
-        "Press Calculate.",
+        "The result updates automatically as you enter values.",
         "Result is inductive reactance X_L in ohms."
       ],
       "example": "50 Hz, 0.05 H → X_L = 2π × 50 × 0.05 ≈ 15.7 Ω."
@@ -1902,7 +1902,7 @@
       "steps": [
         "Enter true power (P) in watts.",
         "Enter reactive power (Q) in VAR.",
-        "Press Calculate.",
+        "The result updates automatically as you enter values.",
         "Result is apparent power in volt-amperes (VA)."
       ],
       "example": "P = 3,000 W, Q = 4,000 VAR → S = √(3,000² + 4,000²) = 5,000 VA."
@@ -1914,7 +1914,7 @@
       "steps": [
         "Enter fuel mass in kilograms.",
         "Enter energy density in MJ/kg (jet fuel is typically ~43 MJ/kg).",
-        "Press Calculate.",
+        "The result updates automatically as you enter values.",
         "Result shows energy in megajoules and kilowatt-hours."
       ],
       "example": "500 kg of fuel at 43 MJ/kg → 21,500 MJ (≈ 5,972 kWh)."
@@ -1926,7 +1926,7 @@
       "steps": [
         "Select the unit you have.",
         "Enter the value.",
-        "Press Convert."
+        "The converted value updates automatically as you enter values."
       ],
       "example": "4,700 Ω = 4.7 kΩ = 0.0047 MΩ."
     }
@@ -2147,9 +2147,11 @@
     'db_converter.html': {
       summary: 'Decibels express power level as a logarithmic ratio.',
       variables: [
-        { sym: 'dBm', desc: 'power relative to 1 mW' },
+        { sym: 'dBm', desc: 'power in dBm (relative to 1 mW)' },
         { sym: 'dB', desc: 'power ratio in decibels' },
-        { sym: 'P', desc: 'power' }
+        { sym: 'P_mW', desc: 'power in milliwatts' },
+        { sym: 'P_1', desc: 'reference power' },
+        { sym: 'P_2', desc: 'comparison power' }
       ]
     },
     'degrees_to_radians.html': {
@@ -2853,7 +2855,7 @@
 
   defs['logic_truth_table'].resultClass = 'truth-table-wrap';
   defs['logic_truth_table'].fieldsSectionTitle = 'Select Gate';
-  defs['logic_truth_table'].placeholder = 'Select a gate and generate.';
+  defs['logic_truth_table'].placeholder = 'Select a gate to generate the truth table.';
   defs['resistor_color_code'].fieldsSectionTitle = 'Select Bands';
   defs['resistor_color_code'].placeholder = 'Select bands and decode.';
 
