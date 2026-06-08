@@ -111,7 +111,8 @@ Catalog cross-links use relative paths (e.g. `../mathematics/a-level/vectors.htm
 - `maps/quantum-prereq-map.html` — quantum prerequisite graph
 - `maps/*-topics.json` — graph source data
 - `maps/prereq-node-pages.json` — node ↔ lesson page mapping
-- `legacy/physics-drill-down/` — older physics explorer (not in main nav crawl)
+- `legacy/physics-drill-down/` — older physics explorer (not in main nav crawl). Loads `topics.json` over HTTP; `topics-data.js` is bundled for `file://` fallback.
+- `legacy/math-drill-down/` and `legacy/quantum-drill-down/` — same drill-down explorer pattern for mathematics and quantum.
 
 ## URL redirects (backward compatibility)
 
@@ -138,7 +139,8 @@ python scripts/migrate-project-structure.py
 | `scripts/apply-catalog-progression.py` | Inject map strip, Pre-requisites, and Next topics cards on lesson pages |
 | `scripts/extract-quiz-questions.py` | Extract quiz questions from lesson pages |
 | `scripts/build-quiz-answers.py` | Generate `scripts/quiz-answers.json` (optional `sympy` for algebra) |
-| `scripts/build-legacy-physics-list.py` | Regenerate `legacy/physics-drill-down/list.html` from physics graph |
+| `scripts/build-drilldown-explorers.py` | Regenerate all subject drill-down explorers, topic lists, and bundled data |
+| `scripts/build-legacy-physics-list.py` | Deprecated wrapper for `build-drilldown-explorers.py` |
 | `scripts/ensure-redirect-stubs.py` | Create missing bookmark redirect stubs from `path-relocation-map.json` |
 | `scripts/verify-redirect-stubs.py` | Verify redirect stubs point at existing targets |
 | `scripts/verify-catalog-links.py` | Verify math/physics/quantum catalog hrefs resolve |

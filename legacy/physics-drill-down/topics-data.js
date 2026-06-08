@@ -1,4 +1,5 @@
-{
+/* Auto-generated — run scripts/build-drilldown-explorers.py */
+window.DRILLDOWN_TOPICS = {
   "levels": [
     "KS2",
     "KS3",
@@ -2680,4 +2681,4 @@
       ]
     }
   ]
-}
+};

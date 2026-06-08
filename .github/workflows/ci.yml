@@ -44,7 +44,7 @@ jobs:
           python3 scripts/build-topic-progression.py
           python3 scripts/build-prereq-node-pages.py
           python3 scripts/build-prereq-maps.py
-          python3 scripts/build-legacy-physics-list.py
+          python3 scripts/build-drilldown-explorers.py
           python3 scripts/build-quiz-model-answers-json.py
           python3 scripts/extract-quiz-questions.py
           python3 scripts/build-quiz-answers.py
@@ -56,7 +56,15 @@ jobs:
             maps/math-prereq-map.html \
             maps/physics-prereq-map.html \
             maps/quantum-prereq-map.html \
+            legacy/math-drill-down/explorer.html \
+            legacy/math-drill-down/list.html \
+            legacy/math-drill-down/topics-data.js \
+            legacy/physics-drill-down/explorer.html \
             legacy/physics-drill-down/list.html \
+            legacy/physics-drill-down/topics-data.js \
+            legacy/quantum-drill-down/explorer.html \
+            legacy/quantum-drill-down/list.html \
+            legacy/quantum-drill-down/topics-data.js \
             scripts/quiz-model-answers.json \
             scripts/quiz-questions.json \
             scripts/quiz-answers.json
