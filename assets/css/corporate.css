@@ -1782,6 +1782,32 @@ body.map-page svg#links {
   padding: 0;
 }
 
+.catalog-page .catalog-hero .lead {
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 560px;
+  margin: 12px auto 0;
+}
+
+.catalog-page .catalog-hero .mini,
+.catalog-page .catalog-hero .content-nav {
+  margin-top: 12px;
+  margin-bottom: 0;
+}
+
+.catalog-page .catalog-hero .mini a,
+.catalog-page .catalog-hero .content-nav a {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.catalog-page .catalog-hero .mini a:hover,
+.catalog-page .catalog-hero .content-nav a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
 .catalog-page .catalog-grid {
   display: flex;
   flex-wrap: wrap;
@@ -1814,6 +1840,160 @@ body.map-page svg#links {
 .catalog-page .catalog-grid section a:hover {
   color: var(--corp-accent-hover);
   text-decoration: underline;
+}
+
+.catalog-page .catalog-grid section a:hover {
+  color: var(--corp-accent-hover);
+  text-decoration: underline;
+}
+
+.catalog-page .catalog-panel {
+  background: var(--corp-surface);
+  border: 1px solid var(--corp-border);
+  border-radius: var(--corp-radius-lg);
+  box-shadow: var(--corp-shadow);
+  padding: 24px;
+  margin-bottom: 24px;
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.catalog-page .catalog-panel h2 {
+  margin-top: 0;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.catalog-page .catalog-panel__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  margin-top: 12px;
+}
+
+.catalog-page .catalog-panel__links a {
+  color: var(--corp-accent);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.catalog-page .catalog-panel__links a:hover {
+  text-decoration: underline;
+}
+
+.catalog-page .catalog-callout {
+  background: rgba(30, 90, 138, 0.08);
+  border-left: 4px solid var(--corp-navy);
+  border-radius: var(--corp-radius);
+  padding: 16px 18px;
+  margin: 16px 0;
+  text-align: left;
+}
+
+.catalog-page .catalog-path {
+  margin: 12px 0 0;
+  padding-left: 1.25rem;
+  text-align: left;
+}
+
+.catalog-page .catalog-path li {
+  margin: 6px 0;
+}
+
+.catalog-page .catalog-path a {
+  color: var(--corp-accent);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.catalog-page .catalog-path a:hover {
+  text-decoration: underline;
+}
+
+.catalog-page .catalog-goals {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+
+.catalog-page .catalog-goals th,
+.catalog-page .catalog-goals td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--corp-border);
+}
+
+.catalog-page .catalog-goals th {
+  background: #f1f5f9;
+  color: var(--corp-navy);
+}
+
+.catalog-page .catalog-goals a {
+  color: var(--corp-accent);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.catalog-page .catalog-goals a:hover {
+  text-decoration: underline;
+}
+
+.catalog-page .catalog-progress {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.catalog-page .catalog-progress__summary {
+  font-weight: 600;
+  color: var(--corp-navy);
+}
+
+.catalog-page .topic-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.catalog-page .topic-checklist li {
+  padding: 6px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.catalog-page .topic-checklist label {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  cursor: pointer;
+  flex: 1;
+}
+
+.catalog-page .topic-checklist input[type="checkbox"] {
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+.catalog-page .topic-checklist a {
+  color: var(--corp-accent);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.catalog-page .topic-checklist a:hover {
+  text-decoration: underline;
+}
+
+.catalog-page .catalog-grid section > p {
+  color: var(--corp-text-muted);
+  font-size: 0.95rem;
+  margin: 0 0 12px;
+  text-align: left;
 }
 
 .catalog-page .scroll {
@@ -2291,6 +2471,25 @@ body.drill-down-page .drill-header .sub {
   margin-top: 6px;
   opacity: 0.9;
   font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+body.drill-down-page .drill-header .sub a {
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+body.drill-down-page .drill-header .sub a:hover {
+  color: #fff;
+}
+
+body.drill-down-page .drill-header .sub code {
+  color: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.12);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 
 body.drill-down-page .drill-main {

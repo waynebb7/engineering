@@ -26,6 +26,7 @@ SUBJECTS = [
         "pages_key": "math",
         "merge_math_cross": False,
         "default_domain": "Mathematics",
+        "include_map": True,
     },
     {
         "id": "physics",
@@ -38,6 +39,7 @@ SUBJECTS = [
         "pages_key": "physics",
         "merge_math_cross": True,
         "default_domain": "Physics",
+        "include_map": True,
     },
     {
         "id": "quantum",
@@ -50,6 +52,20 @@ SUBJECTS = [
         "pages_key": "quantum",
         "merge_math_cross": False,
         "default_domain": "Quantum",
+        "include_map": True,
+    },
+    {
+        "id": "digital-logic",
+        "title": "Digital Logic Topic Map",
+        "subject_label": "Digital Logic",
+        "topics_file": "maps/digital-logic-topics.json",
+        "out_dir": "legacy/digital-logic-drill-down",
+        "map_href": "maps/math-prereq-map.html",
+        "catalog_href": "learn/mathematics/digital-logic/index.html",
+        "pages_key": "digital_logic",
+        "merge_math_cross": False,
+        "default_domain": "Digital Logic",
+        "include_map": False,
     },
 ]
 
@@ -111,14 +127,27 @@ def page_label(path: str) -> str:
 
 
 def build_resources(
-    node_id: str,
+    node: dict,
     pages_by_node: dict,
     math_pages: dict,
     from_dir: Path,
     map_href: str,
     node_subject: str | None,
+    *,
+    include_map: bool = True,
 ) -> list[dict]:
+    node_id = node["id"]
     resources: list[dict] = []
+
+    lesson = node.get("lesson")
+    if lesson:
+        resources.append(
+            {
+                "label": page_label(lesson),
+                "url": os_path_relpath(from_dir, ROOT / lesson),
+            }
+        )
+
     pages = pages_by_node.get(node_id, [])
     if node_subject == "math" and not pages:
         pages = math_pages.get(node_id, [])
@@ -131,12 +160,14 @@ def build_resources(
             }
         )
 
-    resources.append(
-        {
-            "label": "Prerequisite map",
-            "url": os_path_relpath(from_dir, ROOT / map_href) + f"?topic={node_id}",
-        }
-    )
+    if include_map and map_href:
+        map_topic = node.get("map_topic", node_id)
+        resources.append(
+            {
+                "label": "Prerequisite map",
+                "url": os_path_relpath(from_dir, ROOT / map_href) + f"?topic={map_topic}",
+            }
+        )
     return resources
 
 
@@ -160,12 +191,13 @@ def graph_to_drilldown(spec: dict, graph: dict, pages: dict) -> dict:
             "required": [],
             "recommended": [],
             "resources": build_resources(
-                node["id"],
+                node,
                 pages_by_node,
                 math_pages,
                 out_dir,
                 spec["map_href"],
                 subject,
+                include_map=spec.get("include_map", True),
             ),
         }
 
@@ -205,7 +237,7 @@ def build_explorer_html(spec: dict) -> str:
     <h1>{escape_html(spec["title"])}</h1>
     <div class="sub">Click a topic to highlight prerequisites and downstream unlocks.
       Data source: <code>maps/{spec["id"]}-topics.json</code> ·
-      <a href="{catalog_link}">Subject catalog</a> ·
+      <a href="{catalog_link}">Subject catalogue</a> ·
       <a href="list.html">Topic list</a></div>
   </header>
 
@@ -277,13 +309,25 @@ def build_list_html(spec: dict, drilldown: dict, pages: dict) -> str:
     levels = drilldown["levels"]
     topics = drilldown["topics"]
 
+    map_href = os_path_relpath(out_dir, ROOT / spec["map_href"])
+    catalog_href = os_path_relpath(out_dir, ROOT / spec["catalog_href"])
+    if spec.get("include_map", True):
+        map_note = (
+            f'        Each topic links to lesson pages where available and to the'
+            f'        <a href="{map_href}">{spec["subject_label"].lower()} prerequisite map</a>.'
+        )
+    else:
+        map_note = (
+            f'        Each topic links to lesson pages in the'
+            f'        <a href="{catalog_href}">{spec["subject_label"].lower()} catalogue</a>.'
+        )
+
     lines = [
         LIST_START,
         '    <div class="card">',
         f'      <h2>All {escape_html(spec["subject_label"])} topics</h2>',
         '      <p class="note">',
-        f'        Each topic links to lesson pages where available and to the',
-        f'        <a href="{os_path_relpath(out_dir, ROOT / spec["map_href"])}">{spec["subject_label"].lower()} prerequisite map</a>.',
+        map_note,
         "        Use the",
         '        <a href="explorer.html">drill-down explorer</a> for interactive navigation.',
         "      </p>",
@@ -306,14 +350,26 @@ def build_list_html(spec: dict, drilldown: dict, pages: dict) -> str:
             map_link = os_path_relpath(out_dir, ROOT / spec["map_href"]) + f"?topic={node_id}"
             title = escape_html(topic["title"])
             lesson_pages = pages_by_node.get(node_id, [])
+            lesson_href = None
             if lesson_pages:
-                lesson = os_path_relpath(out_dir, ROOT / lesson_pages[0])
-                lines.append(
-                    f'        <li><a href="{lesson}">{title}</a> '
-                    f'(<a href="{map_link}">map</a>)</li>'
-                )
+                lesson_href = os_path_relpath(out_dir, ROOT / lesson_pages[0])
             else:
+                for resource in topic.get("resources", []):
+                    if resource.get("label") != "Prerequisite map":
+                        lesson_href = resource["url"]
+                        break
+            if lesson_href:
+                if spec.get("include_map", True):
+                    lines.append(
+                        f'        <li><a href="{lesson_href}">{title}</a> '
+                        f'(<a href="{map_link}">map</a>)</li>'
+                    )
+                else:
+                    lines.append(f'        <li><a href="{lesson_href}">{title}</a></li>')
+            elif spec.get("include_map", True):
                 lines.append(f'        <li><a href="{map_link}">{title}</a></li>')
+            else:
+                lines.append(f"        <li>{title}</li>")
         lines.append("      </ul>")
 
     lines.extend(["    </div>", LIST_END])

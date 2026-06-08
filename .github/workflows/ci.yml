@@ -67,6 +67,9 @@ jobs:
             legacy/quantum-drill-down/explorer.html \
             legacy/quantum-drill-down/list.html \
             legacy/quantum-drill-down/topics-data.js \
+            legacy/digital-logic-drill-down/explorer.html \
+            legacy/digital-logic-drill-down/list.html \
+            legacy/digital-logic-drill-down/topics-data.js \
             scripts/quiz-model-answers.json \
             scripts/quiz-questions.json \
             scripts/quiz-answers.json

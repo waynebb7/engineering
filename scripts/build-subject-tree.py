@@ -94,6 +94,13 @@ def render_learning(catalogs: list[dict]) -> str:
                 f'<a href="{rel_href(meta["map"])}">Prerequisite map</a>'
             )
             parts.append("          </p>")
+        if catalog["id"] == "math":
+            parts.append('          <p class="subject-tree__links">')
+            parts.append(
+                f'            <a href="{rel_href("learn/mathematics/digital-logic/index.html")}">Digital Logic catalogue</a> · '
+                f'<a href="{rel_href("legacy/digital-logic-drill-down/explorer.html")}">Digital Logic explorer</a>'
+            )
+            parts.append("          </p>")
         parts.append('          <ul class="subject-tree__sections">')
         for section in catalog.get("sections", []):
             count = len(section.get("topics", []))
