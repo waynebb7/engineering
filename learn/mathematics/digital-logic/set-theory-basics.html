@@ -20,7 +20,7 @@
       <h1>Set Theory Basics</h1>
       <p>Digital logic guide. Sets, union, intersection, complement, Venn diagrams, and De Morgan's laws in set form — the mathematical partner to Boolean algebra.</p>
       <div class="content-nav">
-        <a href="../index.html">&larr; Pure Math Subjects Catalog</a>
+        <a href="index.html">&larr; Digital Logic Catalogue</a>
       </div>
     </div>
 
@@ -32,34 +32,61 @@
       <p class="content-key__intro">Expand this review key before you read, then use it afterwards to check you can name every symbol, explain each formula, acronym, and term without looking at the lesson.</p>
       <h3 class="content-key__heading">Formulae &amp; relationships</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt class="content-key__formula">(A ∩ B)&#x27; = A&#x27; ∪ B&#x27;</dt><dd>Magnetic flux density.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">(A ∪ B)&#x27; = A&#x27; ∩ B&#x27;</dt><dd>Magnetic flux density.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(A + A·B = A\)</dt><dd>Magnetic flux density.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(A = {1, 2, 3}\)</dt><dd>Area or amplitude (context-dependent).</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\(B = {x | x is an even integer}\)</dt><dd>Magnetic flux density.</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\({1, 1, 2} = {1, 2}\)</dt><dd>Duplicates are ignored: {1, 1, 2} = {1, 2} .</dd></div>
-        <div class="content-key__item"><dt class="content-key__formula">\({1, 2, 3} = {3, 1, 2}\)</dt><dd>Roster form: A = {1, 2, 3} — list elements Set-builder: B = {x | x is an even integer} — rule for membership Empty set: ∅ or {} — no elements Universal set: U — all objects under discussion in a given context Key idea: Order does not matter: {1, 2, 3} = {3, 1, 2} .</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(A \cup B = \{x \mid x \in A \lor x \in B\}\)</dt><dd>Union — elements in A or B (logic OR).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(A \cap B = \{x \mid x \in A \land x \in B\}\)</dt><dd>Intersection — elements in both A and B (logic AND).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(A' = \{x \in U \mid x \notin A\}\)</dt><dd>Complement of A relative to universal set U (also written \(A^c\)).</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(A \setminus B = A \cap B'\)</dt><dd>Set difference — elements in A but not in B.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(A = B \iff A \subseteq B \land B \subseteq A\)</dt><dd>Set equality — same elements iff each is a subset of the other.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(A \subset B \iff A \subseteq B \land A \neq B\)</dt><dd>Proper subset — A is contained in B but not equal to B.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(A \cup \emptyset = A\), \(A \cap U = A\)</dt><dd>Identity laws with empty set and universal set.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\((A \cup B)' = A' \cap B'\)</dt><dd>De Morgan's law — complement of a union.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\((A \cap B)' = A' \cup B'\)</dt><dd>De Morgan's law — complement of an intersection.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(A \cap (B \cup C) = (A \cap B) \cup (A \cap C)\)</dt><dd>Distributive law — intersection over union.</dd></div>
+        <div class="content-key__item"><dt class="content-key__formula">\(A \cup (A \cap B) = A\), \(A \cap (A \cup B) = A\)</dt><dd>Absorption laws (set form).</dd></div>
       </dl>
       <h3 class="content-key__heading">Symbol names in formulae</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt class="content-key__symbol">\(B\)</dt><dd><strong>Called:</strong> capital B. Magnetic field.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(A\), \(B\), \(C\)</dt><dd><strong>Called:</strong> capital letters. Sets — collections of elements.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(U\)</dt><dd><strong>Called:</strong> capital U. Universal set — all objects under discussion in a given problem.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(x\)</dt><dd><strong>Called:</strong> lowercase x. A typical element ranging over members of a set.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\{ \}\)</dt><dd><strong>Called:</strong> set braces. Enclose listed or rule-defined elements, e.g. \(\{1,2,3\}\) or \(\{x \mid \text{condition}\}\).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\emptyset\)</dt><dd><strong>Called:</strong> empty set. The set with no elements (also written \(\{\}\)).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\in\)</dt><dd><strong>Called:</strong> element-of. \(x \in A\) means x is a member of set A.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\notin\)</dt><dd><strong>Called:</strong> not-in. \(x \notin A\) means x is not a member of A.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\subseteq\)</dt><dd><strong>Called:</strong> subset (or equal). Every element of A is also in B.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\subset\)</dt><dd><strong>Called:</strong> proper subset. \(A \subset B\) means \(A \subseteq B\) and \(A \neq B\).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\neq\)</dt><dd><strong>Called:</strong> not equal. Used when two sets are not the same, e.g. in the proper-subset definition.</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\cup\)</dt><dd><strong>Called:</strong> union. Combines elements from either set (logic OR).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\cap\)</dt><dd><strong>Called:</strong> intersection. Keeps elements common to both sets (logic AND).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(A'\), \(A^c\)</dt><dd><strong>Called:</strong> A prime, A complement, or A superscript c. Elements of U not in A (logic NOT).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\setminus\)</dt><dd><strong>Called:</strong> set minus. Set difference \(A \setminus B\) (also written \(A - B\)).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\lor\)</dt><dd><strong>Called:</strong> logical OR. Used in set-builder notation for union (\(x \in A \lor x \in B\)).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\land\)</dt><dd><strong>Called:</strong> logical AND. Used in set-builder notation for intersection (\(x \in A \land x \in B\)).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\mid\)</dt><dd><strong>Called:</strong> such that. Separates the variable from the membership rule in set-builder notation (\(\{x \mid \text{condition}\}\)).</dd></div>
+        <div class="content-key__item"><dt class="content-key__symbol">\(\iff\)</dt><dd><strong>Called:</strong> if and only if. States equivalence, e.g. for set equality or proper subset.</dd></div>
       </dl>
       <h3 class="content-key__heading">Key terms &amp; phrases</h3>
       <dl class="content-key__list">
-        <div class="content-key__item"><dt>complement</dt><dd>The complement of A (relative to universal set U ) is everything in U not in A .</dd></div>
-        <div class="content-key__item"><dt>Definition</dt><dd>Operation Notation Definition Complement A' or Aᶜ {x ∈ U | x ∉ A} Difference A − B or A \ B {x | x ∈ A ∧ x ∉ B}</dd></div>
-        <div class="content-key__item"><dt>elements</dt><dd>A set is a collection of distinct objects called elements .</dd></div>
-        <div class="content-key__item"><dt>Intersection</dt><dd>Collects elements in both.</dd></div>
-        <div class="content-key__item"><dt>Logic gate</dt><dd>Operation Notation Definition Logic gate Union A ∪ B {x | x ∈ A ∨ x ∈ B} OR Intersection A ∩ B {x | x ∈ A ∧ x ∈ B} AND</dd></div>
-        <div class="content-key__item"><dt>Membership</dt><dd>X ∈ A — x is an element of A x ∉ A — x is not in A</dd></div>
-        <div class="content-key__item"><dt>Notation</dt><dd>Operation Notation Definition Complement A' or Aᶜ {x ∈ U | x ∉ A} Difference A − B or A \ B {x | x ∈ A ∧ x ∉ B}</dd></div>
-        <div class="content-key__item"><dt>Operation</dt><dd>Notation Definition Complement A' or Aᶜ {x ∈ U | x ∉ A} Difference A − B or A \ B {x | x ∈ A ∧ x ∉ B}</dd></div>
-        <div class="content-key__item"><dt>Roster form</dt><dd>A = {1, 2, 3} — list elements</dd></div>
-        <div class="content-key__item"><dt>set</dt><dd>A collection of distinct objects called elements .</dd></div>
-        <div class="content-key__item"><dt>Set difference</dt><dd>Removes one set from another.</dd></div>
-        <div class="content-key__item"><dt>Set-builder</dt><dd>B = {x | x is an even integer} — rule for membership</dd></div>
-        <div class="content-key__item"><dt>Union</dt><dd>Collects elements in either set.</dd></div>
-        <div class="content-key__item"><dt>Venn diagram</dt><dd>A Venn diagram represents sets as overlapping regions inside a rectangle (the universal set).</dd></div>
+        <div class="content-key__item"><dt>set</dt><dd>A collection of distinct objects called elements.</dd></div>
+        <div class="content-key__item"><dt>elements</dt><dd>The individual objects that belong to a set.</dd></div>
+        <div class="content-key__item"><dt>roster form</dt><dd>Listing all elements inside braces, e.g. \(A = \{1, 2, 3\}\).</dd></div>
+        <div class="content-key__item"><dt>set-builder notation</dt><dd>Describing a set by a rule, e.g. \(B = \{x \mid x \text{ is an even integer}\}\).</dd></div>
+        <div class="content-key__item"><dt>empty set</dt><dd>The set with no elements, written \(\emptyset\) or \(\{\}\); a subset of every set.</dd></div>
+        <div class="content-key__item"><dt>universal set</dt><dd>All objects under discussion in a given context, denoted \(U\); needed to define complements.</dd></div>
+        <div class="content-key__item"><dt>membership</dt><dd>Whether an element belongs to a set (\(x \in A\)) or not (\(x \notin A\)).</dd></div>
+        <div class="content-key__item"><dt>subset</dt><dd>\(A \subseteq B\) — every element of A is also in B (A may equal B).</dd></div>
+        <div class="content-key__item"><dt>proper subset</dt><dd>\(A \subset B\) — A is contained in B but is not equal to B.</dd></div>
+        <div class="content-key__item"><dt>set equality</dt><dd>\(A = B\) when \(A \subseteq B\) and \(B \subseteq A\).</dd></div>
+        <div class="content-key__item"><dt>union</dt><dd>Combines elements from either set; corresponds to the OR logic gate.</dd></div>
+        <div class="content-key__item"><dt>intersection</dt><dd>Keeps elements common to both sets; corresponds to the AND logic gate.</dd></div>
+        <div class="content-key__item"><dt>complement</dt><dd>Relative to \(U\), everything in U not in A; written \(A'\) or \(A^c\).</dd></div>
+        <div class="content-key__item"><dt>set difference</dt><dd>Elements in A but not in B; \(A \setminus B\) or \(A \cap B'\).</dd></div>
+        <div class="content-key__item"><dt>disjoint sets</dt><dd>Sets with no elements in common: \(A \cap B = \emptyset\).</dd></div>
+        <div class="content-key__item"><dt>Venn diagram</dt><dd>Overlapping regions inside a rectangle (\(U\)) used to visualise set operations.</dd></div>
+        <div class="content-key__item"><dt>De Morgan's laws</dt><dd>\((A \cup B)' = A' \cap B'\) and \((A \cap B)' = A' \cup B'\); complements swap union and intersection.</dd></div>
+        <div class="content-key__item"><dt>distributive laws</dt><dd>Intersection distributes over union and vice versa, mirroring Boolean algebra.</dd></div>
+        <div class="content-key__item"><dt>absorption laws</dt><dd>\(A \cup (A \cap B) = A\) and \(A \cap (A \cup B) = A\).</dd></div>
+        <div class="content-key__item"><dt>commutative, associative, identity</dt><dd>Union and intersection reorder freely; \(\emptyset\) and \(U\) act as identities for \(\cup\) and \(\cap\).</dd></div>
       </dl>
       </div>
     </details>

@@ -8,6 +8,50 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 
+# Pages with hand-tuned review keys — auto-regeneration would overwrite correct symbols.
+CONTENT_KEY_CURATED_PATHS: frozenset[str] = frozenset(
+    {
+        "learn/mathematics/digital-logic/set-theory-basics.html",
+        "learn/mathematics/digital-logic/sequential-logic.html",
+    }
+)
+
+SET_THEORY_MARKERS = (
+    "∪",
+    "∩",
+    "∈",
+    "∉",
+    "⊆",
+    "⊂",
+    "∅",
+    "set theory",
+    "universal set",
+    "venn diagram",
+    "set-builder",
+    "roster form",
+    "de morgan",
+)
+
+SET_THEORY_UNICODE_SYMBOLS: list[tuple[str, str, str, str]] = [
+    ("∪", r"\cup", "union", "Union — elements in either set (logic OR)."),
+    ("∩", r"\cap", "intersection", "Intersection — elements in both sets (logic AND)."),
+    ("∈", r"\in", "element-of", r"Element-of — \(x \in A\) means x is a member of set A."),
+    ("∉", r"\notin", "not-in", r"Not-in — \(x \notin A\) means x is not a member of A."),
+    ("⊆", r"\subseteq", "subset", "Subset — every element of A is also in B."),
+    ("⊂", r"\subset", "proper subset", r"Proper subset — \(A \subset B\) means \(A \subseteq B\) and \(A \neq B\)."),
+    ("≠", r"\neq", "not equal", "Not equal — used when two sets differ, e.g. in proper subset."),
+    ("∅", r"\emptyset", "empty set", r"Empty set — no elements (also written \(\{\}\))."),
+    ("∖", r"\setminus", "set minus", r"Set difference \(A \setminus B\) (also written \(A - B\))."),
+]
+
+SET_THEORY_LETTERS: dict[str, tuple[str, str]] = {
+    "A": ("capital A", "Set A — a collection of elements."),
+    "B": ("capital B", "Set B — a collection of elements."),
+    "C": ("capital C", "Set C — a collection of elements."),
+    "U": ("capital U", "Universal set — all objects under discussion in a given problem."),
+    "x": ("lowercase x", "A typical element ranging over members of a set."),
+}
+
 CONTENT_KEY_RE = re.compile(
     r'\s*<details class="content-key"[^>]*>.*?</details>\s*',
     re.DOTALL | re.IGNORECASE,
@@ -449,8 +493,15 @@ def is_actual_symbol(display: str) -> bool:
     return False
 
 
-def formula_hint(term: str) -> str | None:
+def is_set_theory_context(text: str) -> bool:
+    low = text.lower()
+    return any(marker in text or marker in low for marker in SET_THEORY_MARKERS)
+
+
+def formula_hint(term: str, *, set_theory: bool = False) -> str | None:
     low = term.lower()
+    if set_theory and term in SET_THEORY_LETTERS:
+        return SET_THEORY_LETTERS[term][1]
     for key, hint in FORMULA_HINTS.items():
         if low == key or low == f"{key}s":
             return hint
@@ -482,15 +533,47 @@ def formula_hint(term: str) -> str | None:
     return None
 
 
+def describe_set_formula(plain: str, context: str) -> str | None:
+    if "∪" in plain and "∩" in plain and "'" in plain:
+        if "(A ∪ B)'" in plain or "(A ∩ B)'" in plain:
+            return "De Morgan's law — complement of union or intersection."
+        return "Identity or absorption law in set algebra."
+    if "∪" in plain and "∩" not in plain.replace("∪", ""):
+        if "'" in plain:
+            return "De Morgan's law for union and complement."
+        return "Union — elements in either set (logic OR)."
+    if "∩" in plain and "∪" not in plain.replace("∩", ""):
+        if "'" in plain:
+            return "De Morgan's law for intersection and complement."
+        return "Intersection — elements in both sets (logic AND)."
+    if re.search(r"A['′]|Aᶜ", plain) or ("'" in plain and "∈ U" in plain):
+        return "Complement of A relative to universal set U."
+    if "∖" in plain or re.search(r"A\s*[-−\\]\s*B", plain):
+        return "Set difference — elements in A but not in B."
+    if "⊆" in plain or "⊂" in plain:
+        return "Subset relationship between sets."
+    if re.fullmatch(r"[A-Z]\s*=\s*\{[^}]+\}", plain):
+        return f"Example or roster notation for set {plain[0]}."
+    if "Boolean" in plain or "·" in plain:
+        return "Parallel Boolean-algebra form of the same law."
+    return None
+
+
 def describe_formula(raw: str, context: str) -> str:
     plain = strip_tags(normalize_extracted_math(raw)).strip()
     if not plain:
         return "Equation used in this topic."
 
+    set_theory = is_set_theory_context(context)
+    if set_theory:
+        set_desc = describe_set_formula(plain, context)
+        if set_desc:
+            return set_desc
+
     if "=" in plain:
         lhs = plain.split("=")[0].strip()
         for token in reversed(re.findall(r"[A-Za-z]+", lhs)):
-            hint = formula_hint(token)
+            hint = formula_hint(token, set_theory=set_theory)
             if hint:
                 return hint
         needle = plain[: min(40, len(plain))]
@@ -506,7 +589,7 @@ def describe_formula(raw: str, context: str) -> str:
         lhs_disp = lhs if len(lhs) <= 40 else lhs[:37] + "..."
         return f"Defines {lhs_disp} in terms of the other quantities in this equation."
 
-    hint = formula_hint(plain)
+    hint = formula_hint(plain, set_theory=set_theory)
     if hint:
         return hint
     return "Equation used in this topic."
@@ -1174,8 +1257,17 @@ EXPLICIT_SYMBOL_RULES: list[tuple[str, str, str, str]] = [
 ]
 
 
+def gather_code_corpus(cards: list[str]) -> str:
+    chunks: list[str] = []
+    for card in cards:
+        for m in CODE_RE.finditer(card):
+            chunks.append(strip_tags(m.group(1)))
+    return "\n".join(chunks)
+
+
 def gather_math_corpus(cards: list[str], formulae: list[tuple[str, str]]) -> str:
     chunks = [name for name, _ in formulae]
+    chunks.append(gather_code_corpus(cards))
     for card in cards:
         for regex in (MATH_BLOCK_RE, MATH_INLINE_RE, DOLLAR_BLOCK_RE, DOLLAR_INLINE_RE):
             for m in regex.finditer(card):
@@ -1256,12 +1348,47 @@ def extract_symbols(
     page_html: str,
 ) -> list[tuple[str, str, str]]:
     corpus = gather_math_corpus(cards, formulae)
+    code_corpus = gather_code_corpus(cards)
     if not corpus.strip():
         return []
 
     found: dict[str, tuple[str, str, str]] = {}
+    set_theory = is_set_theory_context(corpus + code_corpus + page_html)
+
+    if set_theory:
+        for char, display, called, meaning in SET_THEORY_UNICODE_SYMBOLS:
+            if char in code_corpus or char in corpus:
+                add_symbol_entry(found, display, called, meaning, page_html)
+        if re.search(r"A['′]|Aᶜ|A\^c", code_corpus + corpus):
+            add_symbol_entry(
+                found,
+                r"A', A^c",
+                "A prime or A complement",
+                "Elements of U not in A (logic NOT).",
+                page_html,
+            )
+        if "iff" in code_corpus.lower() or r"\iff" in corpus:
+            add_symbol_entry(
+                found,
+                r"\iff",
+                "if and only if",
+                "Equivalence — used for set equality and proper subset definitions.",
+                page_html,
+            )
+        if "{" in code_corpus and "}" in code_corpus:
+            add_symbol_entry(
+                found,
+                r"\{ \}",
+                "set braces",
+                r"Enclose roster or set-builder elements, e.g. \(\{1,2,3\}\).",
+                page_html,
+            )
+
+    quantum_rule_markers = ("ket", "dagger", "annihilation", "creation", "fock", "dirac")
 
     for pattern, display, called, meaning in EXPLICIT_SYMBOL_RULES:
+        if set_theory and any(marker in called.lower() for marker in quantum_rule_markers):
+            continue
         if re.search(pattern, corpus):
             add_symbol_entry(found, display, called, meaning, page_html)
 
@@ -1375,7 +1502,8 @@ def extract_symbols(
             )
         )
 
-    for letter, (called, meaning) in VARIABLE_NAMES.items():
+    active_letters = SET_THEORY_LETTERS if set_theory else VARIABLE_NAMES
+    for letter, (called, meaning) in active_letters.items():
         in_formula = letter_in_formulae(letter)
         in_latex = has_latex and bool(
             re.search(
@@ -1383,7 +1511,16 @@ def extract_symbols(
                 corpus,
             )
         )
-        if not in_formula and not in_latex:
+        in_code = bool(
+            re.search(
+                rf"(?<![a-zA-Z]){re.escape(letter)}(?![a-zA-Z0-9])",
+                code_corpus,
+            )
+        )
+        if set_theory:
+            if not in_formula and not in_latex and not in_code:
+                continue
+        elif not in_formula and not in_latex:
             continue
         add_symbol_entry(found, letter, called, meaning, page_html)
 
@@ -1492,6 +1629,10 @@ def should_process(path: Path, html_text: str) -> bool:
 
 
 def process_file(path: Path) -> bool:
+    rel = path.relative_to(ROOT).as_posix()
+    if rel in CONTENT_KEY_CURATED_PATHS:
+        return False
+
     original = path.read_text(encoding="utf-8")
     if not should_process(path, original):
         return False

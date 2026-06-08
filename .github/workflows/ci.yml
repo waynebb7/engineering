@@ -41,6 +41,7 @@ jobs:
       - name: Verify generated artifacts are up to date
         run: |
           python3 scripts/build-topic-catalog.py
+          python3 scripts/build-subject-tree.py
           python3 scripts/build-topic-progression.py
           python3 scripts/build-prereq-node-pages.py
           python3 scripts/build-prereq-maps.py
@@ -51,6 +52,7 @@ jobs:
           git diff --exit-code -- \
             assets/js/topic-catalog.js \
             assets/js/topic-catalog.json \
+            meta/tree.html \
             scripts/topic-progression.json \
             maps/prereq-node-pages.json \
             maps/math-prereq-map.html \

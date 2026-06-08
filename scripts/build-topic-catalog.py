@@ -72,6 +72,9 @@ def main():
     catalogs = []
     for meta in CATALOGS:
         sections = parse_catalog(ROOT / meta["file"], meta["file"])
+        if meta["id"] == "math":
+            dl_index = ROOT / "learn/mathematics/digital-logic/index.html"
+            sections.extend(parse_catalog(dl_index, "learn/mathematics/digital-logic/index.html"))
         catalogs.append(
             {
                 "id": meta["id"],

@@ -35,7 +35,7 @@ engineering/
 │
 ├── maps/                   # Prerequisite maps and topic metadata
 ├── legacy/                 # Older exploratory tools (drill-down explorer)
-├── meta/                   # Site metadata (subject tree)
+├── meta/                   # Site metadata (generated subject tree)
 │
 ├── scripts/                # Build, migration, and maintenance scripts
 └── docs/                   # Documentation and exports
@@ -133,6 +133,7 @@ python scripts/migrate-project-structure.py
 | Script | Purpose |
 |--------|---------|
 | `scripts/build-topic-catalog.py` | Regenerate `assets/js/topic-catalog.js` from catalogs |
+| `scripts/build-subject-tree.py` | Regenerate `meta/tree.html` from `topic-catalog.json` |
 | `scripts/build-topic-progression.py` | Build `scripts/topic-progression.json` (prereqs / next topics) |
 | `scripts/build-prereq-node-pages.py` | Map graph nodes → lesson page hrefs (`maps/prereq-node-pages.json`) |
 | `scripts/build-prereq-maps.py` | Regenerate `maps/*-prereq-map.html` from topic JSON |

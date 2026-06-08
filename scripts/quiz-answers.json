@@ -304,13 +304,13 @@
     "See the worked example: \\(f(A,B,C) = \\Sigma(1, 3, 5, 7)\\) using a 3-to-8 decoder: Connect \\(A, B, C\\) to address inputs. OR outputs \\(Y_1, Y_3, Y_5, Y_7\\). Result: \\(f = C\\) (all minterms where \\(C=1\\))."
   ],
   "learn/mathematics/digital-logic/digital_math_classification.html": [
-    "Your answer should include: Compare your answers with the tables in sections 2\u20134 and the starter path in section 6.",
-    "Your answer should include: Compare your answers with the tables in sections 2\u20134 and the starter path in section 6.",
-    "Your answer should include: Compare your answers with the tables in sections 2\u20134 and the starter path in section 6.",
-    "Your answer should include: Compare your answers with the tables in sections 2\u20134 and the starter path in section 6.",
-    "Your answer should include: Compare your answers with the tables in sections 2\u20134 and the starter path in section 6.",
-    "Your answer should include: Compare your answers with the tables in sections 2\u20134 and the starter path in section 6.",
-    "Your answer should include: Compare your answers with the tables in sections 2\u20134 and the starter path in section 6."
+    "Any three from the introductory table, for example: <strong>Number Systems</strong> \u2014 binary, octal, hexadecimal, and decimal conversion; <strong>Binary Arithmetic</strong> \u2014 addition, subtraction, and two's complement; <strong>Logic Gates</strong> \u2014 AND, OR, NOT, NAND, NOR, and XOR symbols and behaviour.",
+    "<strong>Boolean Algebra</strong> (and comfort with truth tables). The typical path on this page is to master Boolean algebra before Karnaugh mapping, because K-maps minimise Boolean sum-of-products expressions.",
+    "<strong>Combinational logic</strong> outputs depend only on the current inputs \u2014 no memory. <strong>Sequential logic</strong> includes storage (latches and flip-flops), so outputs can depend on past states as well as present inputs.",
+    "Examples: <strong>Combinational Logic</strong> (structured circuits built from mux/demux blocks) and the dedicated <strong>Multiplexers</strong> / <strong>Demultiplexers</strong> pages listed under intermediate circuit design.",
+    "Gray code is a basic encoding where only one bit changes between successive values \u2014 used in rotary encoders and simple position sensing. It needs only introductory number-system ideas, not advanced minimisation algorithms.",
+    "The <strong>Quine\u2013McCluskey method</strong> \u2014 tabular minimisation for functions with more variables than a 4-variable K-map handles conveniently.",
+    "In order: (1) Number Systems, (2) Binary Arithmetic, (3) Boolean Algebra, (4) Truth Tables, (5) De Morgan's Theorems, (6) Digital Math Classification (this overview hub)."
   ],
   "learn/mathematics/digital-logic/encoders.html": [
     "See the worked example: An 8-to-3 encoder has inputs \\(I_0 \\ldots I_7\\). If \\(I_5 = 1\\) and all others are 0, outputs are \\(Y_2 Y_1 Y_0 = 101_2\\) (decimal 5).",

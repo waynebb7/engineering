@@ -20,7 +20,7 @@
     { href: 'learn/mathematics/index.html', label: 'Mathematics' },
     { href: 'learn/physics/index.html', label: 'Physics' },
     { href: 'learn/quantum/index.html', label: 'Quantum' },
-    { href: 'learn/mathematics/digital-logic/boolean-algebra.html', label: 'Digital Logic' },
+    { href: 'learn/mathematics/digital-logic/index.html', label: 'Digital Logic' },
     { href: 'progress.html', label: 'Progress' },
     { href: 'feedback.html', label: 'Feedback' }
   ];
@@ -33,7 +33,7 @@
       return path.indexOf('/calculators/') !== -1;
     }
     if (href === 'learn/mathematics/index.html') {
-      return path.indexOf('/learn/mathematics/') !== -1;
+      return path.indexOf('/learn/mathematics/') !== -1 && path.indexOf('/digital-logic/') === -1;
     }
     if (href === 'learn/physics/index.html') {
       return path.indexOf('/learn/physics/') !== -1;

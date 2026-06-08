@@ -696,7 +696,7 @@
           ]
         },
         {
-          "title": "Logic & Digital Mathematics",
+          "title": "Foundations",
           "topics": [
             {
               "id": "learn/mathematics/digital-logic/digital_math_classification.html",
@@ -725,7 +725,7 @@
             },
             {
               "id": "learn/mathematics/digital-logic/de-morgans-theorems.html",
-              "title": "DeMorgan\u2019s Theorems",
+              "title": "De Morgan's Theorems",
               "href": "learn/mathematics/digital-logic/de-morgans-theorems.html"
             },
             {
@@ -737,7 +737,12 @@
               "id": "learn/mathematics/digital-logic/gray-code.html",
               "title": "Gray Code",
               "href": "learn/mathematics/digital-logic/gray-code.html"
-            },
+            }
+          ]
+        },
+        {
+          "title": "Formal logic",
+          "topics": [
             {
               "id": "learn/mathematics/digital-logic/propositional-logic.html",
               "title": "Propositional Logic",
@@ -757,7 +762,12 @@
               "id": "learn/mathematics/digital-logic/truth-functional-completeness.html",
               "title": "Truth Functional Completeness",
               "href": "learn/mathematics/digital-logic/truth-functional-completeness.html"
-            },
+            }
+          ]
+        },
+        {
+          "title": "Combinational design",
+          "topics": [
             {
               "id": "learn/mathematics/digital-logic/combinational-logic.html",
               "title": "Combinational Logic",
@@ -792,7 +802,12 @@
               "id": "learn/mathematics/digital-logic/decoders.html",
               "title": "Decoders",
               "href": "learn/mathematics/digital-logic/decoders.html"
-            },
+            }
+          ]
+        },
+        {
+          "title": "Sequential systems",
+          "topics": [
             {
               "id": "learn/mathematics/digital-logic/sequential-logic.html",
               "title": "Sequential Logic",
