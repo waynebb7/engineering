@@ -19,7 +19,7 @@ TOPIC_FILES = {
     "quantum": ROOT / "maps" / "quantum-topics.json",
 }
 
-LEVEL_FOLDERS = {
+LEVEL_FOLDERS_MATH = {
     "KS2": "ks2-ks3",
     "KS3": "ks2-ks3",
     "GCSE": "gcse",
@@ -27,6 +27,17 @@ LEVEL_FOLDERS = {
     "BSc": "undergraduate",
     "MSc": "postgraduate",
     "Frontier": "research",
+}
+
+LEVEL_FOLDERS_PHYSICS = {
+    **LEVEL_FOLDERS_MATH,
+    "Frontier": "frontier",
+}
+
+SUBJECT_LEVEL_FOLDERS = {
+    "mathematics": LEVEL_FOLDERS_MATH,
+    "physics": LEVEL_FOLDERS_PHYSICS,
+    "quantum": {"A-Level": "topics", "BSc": "topics", "MSc": "topics", "Frontier": "topics"},
 }
 
 LEVEL_SUFFIXES = (
@@ -73,7 +84,8 @@ def existing_hrefs(hrefs: list[str]) -> list[str]:
 
 def slug_guess(node: dict, subject: str) -> str | None:
     level = node.get("level", "")
-    folder = LEVEL_FOLDERS.get(level, "")
+    folders = SUBJECT_LEVEL_FOLDERS.get(subject, LEVEL_FOLDERS_MATH)
+    folder = folders.get(level, "")
     if not folder:
         return None
     slug = node_slug(node["id"])

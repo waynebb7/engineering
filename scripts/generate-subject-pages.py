@@ -9,14 +9,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 
 CATALOGS = {
-    "pure_math_subjects.html": {
-        "catalog_href": "pure_math_subjects.html",
-        "catalog_label": "Pure Math Subjects Catalog",
+    "learn/mathematics/index.html": {
+        "catalog_href": "learn/mathematics/index.html",
+        "catalog_label": "Mathematics Catalog",
         "subject": "Mathematics",
     },
-    "physics_subjects.html": {
-        "catalog_href": "physics_subjects.html",
-        "catalog_label": "Physics Subjects Catalog",
+    "learn/physics/index.html": {
+        "catalog_href": "learn/physics/index.html",
+        "catalog_label": "Physics Catalog",
         "subject": "Physics",
     },
 }

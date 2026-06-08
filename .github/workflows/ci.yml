@@ -35,8 +35,34 @@ jobs:
             node --check "$file"
           done
 
+      - name: Validate Python scripts
+        run: python3 -m compileall scripts
+
+      - name: Verify generated artifacts are up to date
+        run: |
+          python3 scripts/build-topic-catalog.py
+          python3 scripts/build-topic-progression.py
+          python3 scripts/build-prereq-node-pages.py
+          python3 scripts/build-prereq-maps.py
+          python3 scripts/build-legacy-physics-list.py
+          git diff --exit-code -- \
+            assets/js/topic-catalog.js \
+            assets/js/topic-catalog.json \
+            scripts/topic-progression.json \
+            maps/prereq-node-pages.json \
+            maps/math-prereq-map.html \
+            maps/physics-prereq-map.html \
+            maps/quantum-prereq-map.html \
+            legacy/physics-drill-down/list.html
+
+      - name: Verify redirect stubs
+        run: python3 scripts/verify-redirect-stubs.py
+
       - name: Check internal links (core scope)
         run: python3 scripts/check-links.py --scope core
+
+      - name: Check internal links (full site)
+        run: python3 scripts/check-links.py --scope all
 
   deploy:
     needs: check

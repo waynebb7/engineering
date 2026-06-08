@@ -10,6 +10,11 @@ ROOT = Path(__file__).resolve().parent.parent
 QUESTIONS_FILE = ROOT / "scripts" / "quiz-questions.json"
 ANSWERS_FILE = ROOT / "scripts" / "quiz-answers.json"
 
+try:
+    import sympy as sp
+except ImportError:
+    sp = None
+
 MINI_RE = re.compile(
     r"Quick knowledge check</h2>\s*<div class=\"quiz\">.*?</div>\s*<p class=\"mini\">\s*(.*?)\s*</p>",
     re.DOTALL | re.IGNORECASE,
@@ -39,6 +44,30 @@ def read_page_context(path: Path) -> dict:
     return {"mini": mini, "examples": examples}
 
 
+def solve_linear_simple(expr: str) -> str | None:
+    """Fallback linear solver when sympy is unavailable."""
+    expr = expr.replace("−", "-").replace("×", "*").replace("÷", "/").replace(" ", "")
+    m = re.match(r"(-?\d*)x([+\-]\d+)=(-?\d+)", expr, re.I)
+    if m:
+        coeff_raw, b_raw, rhs_raw = m.groups()
+        coeff = int(coeff_raw or "1")
+        if coeff == 0:
+            return None
+        b = int(b_raw)
+        rhs = int(rhs_raw)
+        val = (rhs - b) / coeff
+        if val == int(val):
+            val = int(val)
+        return f"<code>x = {val}</code>"
+    m = re.match(r"x([+\-]\d+)=(-?\d+)", expr, re.I)
+    if m:
+        b = int(m.group(1))
+        rhs = int(m.group(2))
+        val = rhs - b
+        return f"<code>x = {val}</code>"
+    return None
+
+
 def solve_linear(code: str) -> str | None:
     code = code.replace("−", "-").replace("×", "*").replace("÷", "/").replace(" ", "")
     m = re.search(r"([0-9a-zA-Z+\-*/().]+=[0-9a-zA-Z+\-*/().]+)", code)
@@ -47,20 +76,19 @@ def solve_linear(code: str) -> str | None:
     expr = m.group(1).strip()
     if "x" not in expr.lower():
         return None
-    try:
-        import sympy as sp
-
-        x = sp.symbols("x")
-        lhs, rhs = expr.split("=")
-        sol = sp.solve(sp.Eq(sp.sympify(lhs), sp.sympify(rhs)), x)
-        if sol:
-            val = sol[0]
-            if val == int(val):
-                val = int(val)
-            return f"<code>x = {val}</code>"
-    except Exception:
-        return None
-    return None
+    if sp is not None:
+        try:
+            x = sp.symbols("x")
+            lhs, rhs = expr.split("=")
+            sol = sp.solve(sp.Eq(sp.sympify(lhs), sp.sympify(rhs)), x)
+            if sol:
+                val = sol[0]
+                if val == int(val):
+                    val = int(val)
+                return f"<code>x = {val}</code>"
+        except Exception:
+            pass
+    return solve_linear_simple(expr)
 
 
 def gradient_through_points(q: str) -> str | None:
@@ -168,19 +196,21 @@ def check_solution(q: str) -> str | None:
         if m and eq:
             x = int(m.group(1))
             expr = eq.group(1).replace("−", "-")
-            try:
-                import sympy as sp
-
-                x_sym = sp.symbols("x")
-                lhs_rhs = expr.split("=")
-                lhs = sp.sympify(lhs_rhs[0])
-                rhs = sp.sympify(lhs_rhs[1])
-                ok = lhs.subs(x_sym, x) == rhs.subs(x_sym, x)
-                if ok:
-                    return f"Yes — substituting <code>x = {x}</code> makes both sides equal."
-                return f"No — substituting <code>x = {x}</code> does not satisfy the equation."
-            except Exception:
-                pass
+            if sp is not None:
+                try:
+                    x_sym = sp.symbols("x")
+                    lhs_rhs = expr.split("=")
+                    lhs = sp.sympify(lhs_rhs[0])
+                    rhs = sp.sympify(lhs_rhs[1])
+                    ok = lhs.subs(x_sym, x) == rhs.subs(x_sym, x)
+                    if ok:
+                        return f"Yes — substituting <code>x = {x}</code> makes both sides equal."
+                    return f"No — substituting <code>x = {x}</code> does not satisfy the equation."
+                except Exception:
+                    pass
+            solved = solve_linear_simple(expr.replace(" ", ""))
+            if solved and f"x = {x}" in solved.replace("<code>", "").replace("</code>", ""):
+                return f"Yes — substituting <code>x = {x}</code> makes both sides equal."
     return None
 
 
@@ -231,6 +261,8 @@ def generate_answer(question: str, ctx: dict, index: int) -> str:
 
 
 def main():
+    if sp is None:
+        print("Note: sympy not installed — using basic linear-equation fallback (pip install -r scripts/requirements.txt for full coverage)")
     questions = json.loads(QUESTIONS_FILE.read_text(encoding="utf-8"))
     answers: dict[str, list[str]] = {}
     for topic, qs in questions.items():

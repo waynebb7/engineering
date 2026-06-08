@@ -1,21 +1,22 @@
 # Engineering Knowledge Hub
 
-A static reference and calculator site for electrical engineering, mathematics, physics, and digital logic. No build step is required — HTML, CSS, and JavaScript are served as-is.
+A static reference, calculator, and learning site for electrical engineering, mathematics, physics, and quantum computing. Most pages are plain HTML/CSS/JS; **catalog and prerequisite-map artifacts are regenerated with Python scripts** after content changes.
 
 **Live site:** [https://waynebb7.github.io/engineering/](https://waynebb7.github.io/engineering/)
+
+See [PROJECT-STRUCTURE.md](PROJECT-STRUCTURE.md) for the full folder layout and maintenance workflow.
 
 ## Features
 
 - **40+ interactive calculators** — power, AC/three-phase, unit conversion, digital logic, physics, aerospace
+- **300+ teaching pages** — mathematics, physics, and quantum catalogs with quizzes and progress tracking
+- **Prerequisite maps** — interactive dependency graphs for math, physics, and quantum paths
 - **Engineering reference** — variables and equations with click-to-learn modals
-- **Shared calculator engine** — definitions in `js/calculator-registry.js`, UI in `js/calculator-core.js`
-- **Corporate design system** — `css/corporate.css` across all pages
+- **Shared assets** — `assets/css/corporate.css`, `assets/js/calculator-core.js`, `assets/js/site-layout.js`
 
 ## Local development
 
-You need a local web server. Some pages load JSON with `fetch()` and will not work when opened as `file://` links.
-
-### Python (recommended)
+Use a local web server. Pages that `fetch()` JSON (progress, maps) will not work from `file://` URLs.
 
 ```bash
 cd engineering
@@ -24,91 +25,101 @@ python -m http.server 8080
 
 Open [http://localhost:8080/index.html](http://localhost:8080/index.html)
 
-### PowerShell
-
-```powershell
-cd engineering
-python -m http.server 8080
-```
-
-## Project structure
+## Project structure (summary)
 
 ```
 engineering/
-├── index.html                 # Hub page
-├── css/corporate.css          # Site-wide styles
-├── js/
-│   ├── site-layout.js         # Header, nav, footer
-│   ├── calculator-core.js     # Calculator engine (render, validation, live recalc)
-│   ├── calculator-registry.js # Calculator definitions and formulas
-│   ├── variable-details.js    # Variable reference modals
-│   └── equation-details.js    # Equation reference modals
-├── scripts/
-│   ├── check-links.py         # Internal link checker
-│   └── migrate-calc-shell.ps1 # Calculator HTML migration helper
-├── logic_and_digital_math/    # Digital logic topics
-├── basic_physics/             # Introductory physics
-├── math/                      # Math prerequisite map
-└── physics_subjects_drill_down/
+├── index.html              # Site hub
+├── progress.html           # Learning progress dashboard
+├── assets/                 # Shared CSS and JS
+├── calculators/            # Calculator pages by category
+├── learn/                  # Teaching pages (math, physics, quantum)
+├── reference/              # Variables, equations, industry reference
+├── maps/                   # Prerequisite maps and topic JSON
+├── legacy/                 # Older exploratory tools
+├── scripts/                # Build and maintenance scripts
+└── docs/                   # Documentation exports
+```
+
+Old root paths (e.g. `pure_math_subjects.html`, `differentiation.html`) remain as **redirect stubs** for bookmarks. New content lives under `learn/` and `calculators/`.
+
+## Refresh after catalog or map edits
+
+```bash
+python scripts/build-topic-catalog.py
+python scripts/build-topic-progression.py
+python scripts/build-prereq-node-pages.py
+python scripts/build-prereq-maps.py
+python scripts/build-legacy-physics-list.py
+python scripts/apply-catalog-progression.py
+python scripts/ensure-redirect-stubs.py
+python scripts/check-links.py --scope core
+python scripts/check-links.py --scope all
+```
+
+Optional script dependencies (quiz answer generation with algebra support):
+
+```bash
+pip install -r scripts/requirements.txt
+python scripts/build-quiz-answers.py
 ```
 
 ## Adding a calculator
 
-1. Create a minimal HTML shell:
+1. Add a shell under `calculators/{category}/`:
 
 ```html
 <body class="calculator-page" data-calc="my_calc"></body>
 ```
 
-2. Register the calculator in `js/calculator-registry.js` (fields, formula, `compute`, help text).
+2. Register fields and `compute` in `assets/js/calculator-registry.js`.
 
-3. Run locally and verify at `http://localhost:8080/my_calc_calculator.html`.
+3. Test at `http://localhost:8080/calculators/.../my_calc.html`.
 
 ## Quality checks
 
-### JavaScript syntax
+### JavaScript syntax (matches CI)
 
 ```bash
-node --check js/calculator-core.js
+for file in assets/js/*.js; do node --check "$file"; done
 ```
 
-### Internal links (CI scope)
+### Python scripts
 
-Checks pages reachable from `index.html`, excluding subject-catalog stubs with many unwritten topics:
+```bash
+python -m compileall scripts
+```
+
+### Internal links
 
 ```bash
 python scripts/check-links.py --scope core
 ```
 
-Full scan (includes catalogs — expect many failures until content is written):
+### Catalog link integrity
 
 ```bash
-python scripts/check-links.py --scope all
+python scripts/verify-catalog-links.py
+python scripts/verify-quantum-links.py
+python scripts/verify-redirect-stubs.py
 ```
 
 ## CI and deployment
 
-GitHub Actions workflow [`.github/workflows/ci.yml`](.github/workflows/ci.yml):
+GitHub Actions [`.github/workflows/ci.yml`](.github/workflows/ci.yml):
 
 | Job | When | What |
 |-----|------|------|
-| **check** | Every push and PR | `node --check` on all `js/*.js`; internal link check (`--scope core`) |
-| **deploy** | Push to `main` after check passes | Publishes the site to GitHub Pages |
+| **check** | Every push and PR | JS syntax, Python compile, generated-artifact drift check, core link check |
+| **deploy** | Push to `main` after check passes | GitHub Pages |
 
 ### First-time GitHub Pages setup
 
 1. Push this repository to GitHub.
-2. Open **Settings → Pages**.
-3. Under **Build and deployment**, set **Source** to **GitHub Actions**.
-4. Push to `main` (or run the workflow manually under **Actions**).
+2. **Settings → Pages → Build and deployment → GitHub Actions**
+3. Push to `main` or run the workflow manually.
 
-The site will be available at:
-
-`https://<your-github-username>.github.io/engineering/`
-
-## Subject catalogs
-
-`pure_math_subjects.html` and `physics_subjects.html` list many topics that are not yet written. Those pages are excluded from the core link check so CI stays green while content is added gradually. Run `--scope all` locally to see the full backlog.
+Site URL: `https://<username>.github.io/engineering/`
 
 ## License
 

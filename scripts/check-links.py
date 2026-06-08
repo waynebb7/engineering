@@ -28,7 +28,6 @@ CATALOG_PAGES = {
     "learn/mathematics/index.html",
     "learn/physics/index.html",
     "learn/quantum/index.html",
-    "legacy/physics-drill-down/list.html",
     "meta/tree.html",
     "learn/mathematics/digital-logic/digital-math-classification.html",
 }

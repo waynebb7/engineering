@@ -105,7 +105,9 @@ Catalog cross-links use relative paths (e.g. `../mathematics/a-level/vectors.htm
 
 - `maps/math-prereq-map.html` — mathematics prerequisite graph
 - `maps/physics-prereq-map.html` — physics prerequisite graph
-- `maps/math-topics.json` — math topic metadata
+- `maps/quantum-prereq-map.html` — quantum prerequisite graph
+- `maps/*-topics.json` — graph source data
+- `maps/prereq-node-pages.json` — node ↔ lesson page mapping
 - `legacy/physics-drill-down/` — older physics explorer (not in main nav crawl)
 
 ## URL redirects (backward compatibility)
@@ -128,18 +130,31 @@ python scripts/migrate-project-structure.py
 |--------|---------|
 | `scripts/build-topic-catalog.py` | Regenerate `assets/js/topic-catalog.js` from catalogs |
 | `scripts/build-topic-progression.py` | Build `scripts/topic-progression.json` (prereqs / next topics) |
-| `scripts/apply-catalog-progression.py` | Inject Pre-requisites cards on topic pages |
+| `scripts/build-prereq-node-pages.py` | Map graph nodes → lesson page hrefs (`maps/prereq-node-pages.json`) |
+| `scripts/build-prereq-maps.py` | Regenerate `maps/*-prereq-map.html` from topic JSON |
+| `scripts/apply-catalog-progression.py` | Inject map strip, Pre-requisites, and Next topics cards on lesson pages |
+| `scripts/extract-quiz-questions.py` | Extract quiz questions from lesson pages |
+| `scripts/build-quiz-answers.py` | Generate `scripts/quiz-answers.json` (optional `sympy` for algebra) |
+| `scripts/build-legacy-physics-list.py` | Regenerate `legacy/physics-drill-down/list.html` from physics graph |
+| `scripts/ensure-redirect-stubs.py` | Create missing bookmark redirect stubs from `path-relocation-map.json` |
+| `scripts/verify-redirect-stubs.py` | Verify redirect stubs point at existing targets |
+| `scripts/verify-catalog-links.py` | Verify math/physics/quantum catalog hrefs resolve |
 | `scripts/fix-hub-breadcrumbs.py` | Fix “Back to Hub” links after moves |
 | `scripts/check-links.py` | Internal link checker (`--scope core` for CI) |
 | `scripts/migrate-project-structure.py` | One-time folder reorganization |
 | `scripts/export-cursor-transcript.py` | Export agent transcripts to markdown |
 
-Typical refresh after catalog edits:
+Typical refresh after catalog or map edits:
 
 ```bash
 python scripts/build-topic-catalog.py
 python scripts/build-topic-progression.py
+python scripts/build-prereq-node-pages.py
+python scripts/build-prereq-maps.py
+python scripts/build-legacy-physics-list.py
 python scripts/apply-catalog-progression.py
+python scripts/ensure-redirect-stubs.py
+python scripts/verify-redirect-stubs.py
 python scripts/check-links.py --scope core
 ```
 
@@ -157,7 +172,11 @@ After the reorganization, previously saved progress keyed by old filenames (e.g.
 GitHub Actions (`.github/workflows/ci.yml`) runs:
 
 1. `node --check` on `assets/js/*.js`
-2. `python scripts/check-links.py --scope core`
+2. `python -m compileall scripts`
+3. Regenerate catalog, progression, and prereq map artifacts — fail if committed files drift
+4. Regenerate legacy physics topic list
+5. Create and verify backward-compatibility redirect stubs
+6. `python scripts/check-links.py --scope core` and `--scope all`
 
 ## Adding new content
 
