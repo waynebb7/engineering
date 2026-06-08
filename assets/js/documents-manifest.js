@@ -1,0 +1,43 @@
+window.DocumentManifest = {
+  "documents": [
+    {
+      "id": "sae-arp4404c",
+      "title": "SAE ARP4404C — Aircraft Electrical Installations",
+      "file": "files/sae-arp4404c-aircraft-electrical-installations.pdf",
+      "type": "pdf",
+      "standard": "SAE ARP4404C",
+      "revision": "Rev. C",
+      "issued": "2013-11",
+      "summary": "Aerospace recommended practice for transport aircraft electrical installations, including wire sizing and voltage drop.",
+      "sections": [
+        "9.3.4.2 Voltage Drop Calculations"
+      ],
+      "tags": [
+        "aerospace",
+        "electrical",
+        "standards",
+        "wire sizing"
+      ]
+    },
+    {
+      "id": "sae-as50881h",
+      "title": "SAE AS50881H — Wiring, Aerospace Vehicle",
+      "file": "files/as50881h-wiring-aerospace-vehicle.pdf",
+      "type": "pdf",
+      "standard": "SAE AS50881",
+      "revision": "Rev. H",
+      "summary": "Standard for selection and installation of wiring in aerospace vehicles, including wire ampacity, bundle derating, and altitude correction factors.",
+      "sections": [
+        "Wire current carrying capacity",
+        "Bundle and altitude de-rating"
+      ],
+      "tags": [
+        "aerospace",
+        "electrical",
+        "standards",
+        "wire sizing",
+        "wiring"
+      ]
+    }
+  ]
+};

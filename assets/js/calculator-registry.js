@@ -1039,6 +1039,11 @@
           "title": "SAE ARP4404C — Aircraft Electrical Installations (Rev. C)",
           "file": "reference/documents/files/sae-arp4404c-aircraft-electrical-installations.pdf",
           "note": "§9.3.4.2 Voltage Drop Calculations"
+        },
+        {
+          "title": "SAE AS50881H — Wiring, Aerospace Vehicle",
+          "file": "reference/documents/files/as50881h-wiring-aerospace-vehicle.pdf",
+          "note": "Wire ampacity, bundle and altitude de-rating (Imax)"
         }
       ],
       "fields": [

@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../../assets/css/corporate.css">
+  <script src="../../assets/js/documents-manifest.js" defer></script>
   <script src="../../assets/js/site-layout.js" defer></script>
   <script src="../../assets/js/documents-library.js" defer></script>
   <title>Document Library — Engineering Knowledge</title>
@@ -18,9 +19,10 @@
 
     <div class="callout">
       <strong>Adding documents:</strong> Copy files into <code>reference/documents/files/</code>
-      (PDF, <code>.docx</code>, or <code>.xlsx</code>), then register them in
-      <code>reference/documents/manifest.json</code>. Calculators can link to registered documents
-      from their reference panel.
+      (PDF, <code>.docx</code>, or <code>.xlsx</code>), register them in
+      <code>reference/documents/manifest.json</code>, then run
+      <code>python scripts/build-documents-manifest.py</code>. Calculators can link to registered
+      documents from their reference panel.
     </div>
 
     <div id="documents-list" class="documents-grid" aria-live="polite">

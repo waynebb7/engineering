@@ -62,23 +62,41 @@
     return docs.map(renderDocument).join('');
   }
 
+  function showCatalogue(mount, data) {
+    mount.innerHTML = renderList((data && data.documents) || []);
+  }
+
+  function showError(mount) {
+    mount.innerHTML =
+      '<p class="calc-error">Could not load the document catalogue. ' +
+      'Run <code>python scripts/build-documents-manifest.py</code> after updating the manifest.</p>';
+  }
+
+  function loadCatalogue() {
+    if (window.DocumentManifest && window.DocumentManifest.documents) {
+      return Promise.resolve(window.DocumentManifest);
+    }
+
+    return fetch('manifest.json')
+      .then(function (res) {
+        if (!res.ok) throw new Error('manifest.json returned ' + res.status);
+        return res.json();
+      });
+  }
+
   function init() {
     var mount = document.getElementById('documents-list');
     if (!mount) return;
 
-    fetch('manifest.json')
-      .then(function (res) {
-        if (!res.ok) throw new Error('Could not load manifest.json');
-        return res.json();
-      })
+    loadCatalogue()
       .then(function (data) {
-        mount.innerHTML = renderList(data.documents || []);
+        showCatalogue(mount, data);
       })
-      .catch(function () {
-        mount.innerHTML =
-          '<p class="calc-error">Could not load the document catalogue. ' +
-          'If you opened this page from disk, serve the site over HTTP or check that ' +
-          '<code>reference/documents/manifest.json</code> exists.</p>';
+      .catch(function (err) {
+        showError(mount);
+        if (window.console && console.warn) {
+          console.warn('Document library load failed:', err);
+        }
       });
   }
 
