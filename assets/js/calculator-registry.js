@@ -1029,6 +1029,97 @@
         }
       ]
     },
+    "power_wire_analysis_calculator.html": {
+      "title": "Power Wire Analysis",
+      "lead": "Aircraft copper wire: max run length (L1/L2), conductor temperature (T2), and temperature-corrected voltage drop — AC 43.13-1B Chapter 11 methods.",
+      "formula": "$$ L_1 = \\frac{U}{I \\times R_L} \\quad T_2 = T_1 + (T_R - T_1)\\,\\frac{I}{I_{max}} \\quad L_2 = \\frac{254.5 \\times L_1}{234.5 + T_2} \\quad V_{drop} = I \\times R_L \\times l_{wire}\\,\\frac{234.5 + T_2}{254.5} $$",
+      "buttonLabel": "Calculate",
+      "fields": [
+        {
+          "id": "allowableDrop",
+          "label": "Allowable Voltage Drop (U)",
+          "type": "number",
+          "value": "1",
+          "unit": "V",
+          "step": "0.01",
+          "options": []
+        },
+        {
+          "id": "current",
+          "label": "Circuit Current (I)",
+          "type": "number",
+          "value": "20",
+          "unit": "A",
+          "step": null,
+          "options": []
+        },
+        {
+          "id": "wireGauge",
+          "label": "Wire Gauge (AWG)",
+          "type": "select",
+          "value": "0.00304",
+          "unit": "-",
+          "step": null,
+          "options": [
+            { "value": "0.000792", "label": "8 AWG (0.000792 Ω/ft)" },
+            { "value": "0.00126", "label": "10 AWG (0.00126 Ω/ft)" },
+            { "value": "0.00202", "label": "12 AWG (0.00202 Ω/ft)" },
+            { "value": "0.00304", "label": "14 AWG (0.00304 Ω/ft)" },
+            { "value": "0.00488", "label": "16 AWG (0.00488 Ω/ft)" },
+            { "value": "0.00780", "label": "18 AWG (0.00780 Ω/ft)" },
+            { "value": "0.01240", "label": "20 AWG (0.01240 Ω/ft)" },
+            { "value": "0.01977", "label": "22 AWG (0.01977 Ω/ft)" },
+            { "value": "0.03143", "label": "24 AWG (0.03143 Ω/ft)" },
+            { "value": "custom", "label": "Custom resistance per foot" }
+          ]
+        },
+        {
+          "id": "resistancePerFoot",
+          "label": "Resistance per Foot (R_L)",
+          "type": "number",
+          "value": "0.00304",
+          "unit": "Ω/ft",
+          "step": "0.00001",
+          "options": []
+        },
+        {
+          "id": "ambientTemp",
+          "label": "Ambient Temperature (T1)",
+          "type": "number",
+          "value": "50",
+          "unit": "°C",
+          "step": null,
+          "options": []
+        },
+        {
+          "id": "ratedTemp",
+          "label": "Wire Rated Temperature (TR)",
+          "type": "number",
+          "value": "200",
+          "unit": "°C",
+          "step": null,
+          "options": []
+        },
+        {
+          "id": "imax",
+          "label": "Maximum Allowable Current (Imax)",
+          "type": "number",
+          "value": "26",
+          "unit": "A",
+          "step": null,
+          "options": []
+        },
+        {
+          "id": "wireLength",
+          "label": "Wire Run Length (for Vdrop)",
+          "type": "number",
+          "value": "15",
+          "unit": "ft",
+          "step": null,
+          "options": []
+        }
+      ]
+    },
     "aircraft_bus_load_calculator.html": {
       "title": "Aircraft Bus Load Calculator",
       "lead": "Estimate bus current for 28V DC or 115V 400Hz AC loads.",
@@ -1777,6 +1868,19 @@
       ],
       "example": "180° = π radians (≈ 3.1416). 90° = π/2 ≈ 1.5708 rad."
     },
+    "power_wire_analysis_calculator.html": {
+      "title": "Power Wire Analysis (PWA)",
+      "what": "Computes maximum wire run length, estimated conductor temperature, derated length, and voltage drop for copper aircraft wire using FAA AC 43.13-1B Chapter 11 formulas.",
+      "when": "Use when sizing or checking aircraft wire runs instead of reading charts 11-2/11-3 directly — especially when ambient temperature is above 20 °C or the wire is heavily loaded.",
+      "steps": [
+        "Enter the allowable voltage drop for the circuit (from Table 11-6 for your bus voltage).",
+        "Enter circuit current and select wire AWG (resistance per foot from Table 11-10) or enter a custom R_L.",
+        "Enter ambient temperature T1, wire insulation rating TR, and Imax from chart 11-4 (bundle/altitude derated).",
+        "Enter the actual wire run length to check voltage drop at the estimated conductor temperature.",
+        "Results update automatically: L1 (20 °C max length), T2, L2 (temperature-derated max length), and Vdrop."
+      ],
+      "example": "14 AWG, 20 A, U = 1 V, T1 = 50 °C, TR = 200 °C, Imax = 26 A → L1 ≈ 16.4 ft, T2 ≈ 165 °C, L2 ≈ 10.5 ft; 15 ft run → Vdrop ≈ 1.43 V (exceeds 1 V limit — upsize wire or shorten run)."
+    },
     "aircraft_bus_load_calculator.html": {
       "title": "Aircraft Bus Load Calculator",
       "what": "Estimates the current drawn from an aircraft electrical bus for a given power load.",
@@ -2175,6 +2279,22 @@
         { sym: 'P', desc: 'load power' },
         { sym: 'V', desc: 'bus voltage' },
         { sym: 'PF', desc: 'power factor' }
+      ]
+    },
+    'power_wire_analysis_calculator.html': {
+      summary: 'AC 43.13-1B wire run length, conductor temperature, and voltage drop for copper wire.',
+      variables: [
+        { sym: 'L_1', desc: 'maximum run length at 20 °C reference' },
+        { sym: 'L_2', desc: 'derated maximum run length at T2' },
+        { sym: 'T_1', desc: 'ambient temperature' },
+        { sym: 'T_2', desc: 'estimated conductor temperature' },
+        { sym: 'T_R', desc: 'wire rated temperature' },
+        { sym: 'I', desc: 'circuit current' },
+        { sym: 'I_max', desc: 'maximum allowable current at TR' },
+        { sym: 'U', desc: 'allowable voltage drop' },
+        { sym: 'R_L', desc: 'conductor resistance per foot' },
+        { sym: 'l_wire', desc: 'wire run length' },
+        { sym: 'V_drop', desc: 'voltage drop along the wire' }
       ]
     },
     'force_calculator.html': {
@@ -2706,6 +2826,68 @@
           f.line('Bus Voltage', V, 'V'),
           f.line('Bus Current', f.num(I, 3), 'A')
         ]));
+      };
+
+  defs['power_wire_analysis'].compute = function (ctx) {
+        var u = ctx.util;
+        var f = ctx.fmt;
+        var COPPER_REF = 254.5;
+        var COPPER_COEF = 234.5;
+
+        var U = u.parsePositive('allowableDrop', 'Allowable voltage drop');
+        var I = u.parsePositive('current', 'Circuit current');
+        var T1 = u.parse('ambientTemp', 'Ambient temperature');
+        var TR = u.parsePositive('ratedTemp', 'Wire rated temperature');
+        var Imax = u.parsePositive('imax', 'Maximum allowable current');
+        var Lwire = u.parseNonNegative('wireLength', 'Wire run length');
+        var err = u.firstError(U, I, T1, TR, Imax, Lwire);
+        if (err) return ctx.fail(err.msg);
+
+        if (TR.value <= T1.value) {
+          return ctx.fail('Wire rated temperature must be greater than ambient temperature.');
+        }
+
+        var gaugeEl = document.getElementById('wireGauge');
+        var Rft;
+        if (gaugeEl && gaugeEl.value === 'custom') {
+          var Rcustom = u.parsePositive('resistancePerFoot', 'Resistance per foot');
+          if (!Rcustom.ok) return ctx.fail(Rcustom.msg);
+          Rft = Rcustom.value;
+        } else if (gaugeEl) {
+          Rft = parseFloat(gaugeEl.value, 10);
+          if (isNaN(Rft) || Rft <= 0) {
+            return ctx.fail('Select a wire gauge or enter a custom resistance per foot.');
+          }
+        } else {
+          var Rfallback = u.parsePositive('resistancePerFoot', 'Resistance per foot');
+          if (!Rfallback.ok) return ctx.fail(Rfallback.msg);
+          Rft = Rfallback.value;
+        }
+
+        var L1 = U.value / (I.value * Rft);
+        var T2 = T1.value + (TR.value - T1.value) * (I.value / Imax.value);
+        var L2 = (COPPER_REF * L1) / (COPPER_COEF + T2);
+        var tempFactor = (COPPER_COEF + T2) / COPPER_REF;
+        var Vdrop = I.value * Rft * Lwire.value * tempFactor;
+
+        var lines = [
+          f.line('L1 — max length at 20 °C ref.', f.num(L1, 2), 'ft'),
+          f.line('T2 — estimated conductor temp.', f.num(T2, 1), '°C'),
+          f.line('L2 — derated max length', f.num(L2, 2), 'ft'),
+          f.line('Voltage drop at run length', f.num(Vdrop, 3), 'V')
+        ];
+
+        if (Lwire.value > L2.value + 0.01) {
+          lines.push('<span class="calc-note">Run length exceeds derated maximum L2 — consider larger wire or shorter run.</span>');
+        }
+        if (Vdrop.value > U.value + 0.001) {
+          lines.push('<span class="calc-note">Voltage drop exceeds allowable limit U.</span>');
+        }
+        if (I.value > Imax.value) {
+          lines.push('<span class="calc-note">Circuit current exceeds Imax — wire ampacity may be insufficient.</span>');
+        }
+
+        return ctx.ok(f.lines(lines));
       };
 
   defs['force'].compute = function (ctx) {
