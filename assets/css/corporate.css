@@ -1884,6 +1884,26 @@ body.map-page svg#links {
   border-bottom-color: var(--corp-accent);
 }
 
+.content-page .card.map-position-card {
+  background: linear-gradient(135deg, #f7fbff 0%, var(--corp-surface) 100%);
+  border-color: #c5d9eb;
+}
+
+.content-page .card.map-position-card h2 {
+  font-size: 1.15rem;
+}
+
+.content-page .map-position__meta {
+  color: var(--corp-text);
+  margin-bottom: 8px;
+}
+
+.content-page .card.map-position-card h3 {
+  font-size: 0.95rem;
+  margin: 16px 0 8px;
+  color: var(--corp-text-muted);
+}
+
 .content-page .two-col {
   display: flex;
   gap: 16px;

@@ -4,6 +4,10 @@
   var STORAGE_KEY = 'ek-topic-progress';
   var HINT_KEY = 'ek-prereq-map-hint-dismissed';
 
+  function goalStorageKey(mapId) {
+    return 'ek-prereq-map-goal-' + mapId;
+  }
+
   function parseJsonScript(id) {
     var el = document.getElementById(id);
     if (!el || !el.textContent.trim()) return null;
@@ -96,6 +100,7 @@
     var graph = parseJsonScript('prereq-graph-data');
     var pagesRaw = parseJsonScript('prereq-node-pages') || {};
     var mapId = config.id || 'math';
+    var GOAL_KEY = goalStorageKey(mapId);
 
     if (!graph) {
       console.error('Prerequisite map: missing graph data');
@@ -365,6 +370,22 @@
       var elRect = el.getBoundingClientRect();
       var target = viewport.scrollLeft + (elRect.left - vpRect.left) + (elRect.width / 2) - (vpRect.width / 2);
       viewport.scrollLeft = Math.max(0, target);
+    }
+
+    function saveGoal(id) {
+      try {
+        if (id) localStorage.setItem(GOAL_KEY, id);
+        else localStorage.removeItem(GOAL_KEY);
+      } catch (e) { /* ignore */ }
+    }
+
+    function loadSavedGoal() {
+      try {
+        var id = localStorage.getItem(GOAL_KEY);
+        return id && byId.has(id) ? id : null;
+      } catch (e) {
+        return null;
+      }
     }
 
     function updateUrl() {
@@ -667,6 +688,7 @@
 
     function setGoal(id) {
       goalId = id;
+      saveGoal(id);
       if (id) {
         select(id);
         if (pathOnlyEl) pathOnlyEl.checked = true;
@@ -786,6 +808,7 @@
     function resetView() {
       selectedId = null;
       goalId = null;
+      saveGoal(null);
       if (topicSelect) topicSelect.value = '';
       searchEl.value = '';
       if (domainFilter) domainFilter.value = '';
@@ -863,6 +886,7 @@
     var urlTopic = params.get('topic');
     if (urlGoal && byId.has(urlGoal)) {
       goalId = urlGoal;
+      saveGoal(urlGoal);
       if (pathOnlyEl) pathOnlyEl.checked = true;
     }
     if (urlTopic && byId.has(urlTopic)) {
@@ -870,11 +894,16 @@
       jumpTo(urlTopic);
     } else if (urlGoal && byId.has(urlGoal)) {
       setGoal(urlGoal);
-    } else if (defaultFocus && byId.has(defaultFocus)) {
-      select(defaultFocus);
-      jumpTo(defaultFocus);
     } else {
-      scheduleRedraw();
+      var savedGoal = loadSavedGoal();
+      if (savedGoal) {
+        setGoal(savedGoal);
+      } else if (defaultFocus && byId.has(defaultFocus)) {
+        select(defaultFocus);
+        jumpTo(defaultFocus);
+      } else {
+        scheduleRedraw();
+      }
     }
 
     if (catalogHref) {
