@@ -737,6 +737,22 @@ p {
   color: var(--corp-text-muted);
 }
 
+.documents-page .documents-section {
+  margin-top: 32px;
+}
+
+.documents-page .documents-section:first-child {
+  margin-top: 24px;
+}
+
+.documents-page .documents-section__title {
+  margin: 0 0 16px;
+  font-size: 1.15rem;
+  color: var(--corp-navy);
+  border-bottom: 2px solid var(--corp-accent-muted);
+  padding-bottom: 8px;
+}
+
 .documents-page .documents-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -779,6 +795,83 @@ p {
 
 .documents-card__title a:hover {
   color: var(--corp-accent);
+}
+
+.documents-versions {
+  margin-top: 12px;
+  border: 1px solid var(--corp-border);
+  border-radius: var(--corp-radius);
+  background: #f8fafc;
+}
+
+.documents-versions__toggle {
+  list-style: none;
+  cursor: pointer;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--corp-navy);
+  user-select: none;
+}
+
+.documents-versions__toggle::-webkit-details-marker {
+  display: none;
+}
+
+.documents-versions__toggle::before {
+  content: "▸ ";
+  display: inline-block;
+  transition: transform 0.15s ease;
+}
+
+.documents-versions[open] .documents-versions__toggle::before {
+  transform: rotate(90deg);
+}
+
+.documents-versions__toggle-show,
+.documents-versions__toggle-hide {
+  display: inline;
+}
+
+.documents-versions[open] .documents-versions__toggle-show {
+  display: none;
+}
+
+.documents-versions:not([open]) .documents-versions__toggle-hide {
+  display: none;
+}
+
+.documents-versions__list {
+  list-style: none;
+  margin: 0;
+  padding: 0 14px 12px;
+  border-top: 1px solid var(--corp-border);
+}
+
+.documents-version__item {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--corp-border);
+}
+
+.documents-version__item:last-child {
+  border-bottom: none;
+}
+
+.documents-version__item a {
+  font-weight: 600;
+  color: var(--corp-accent);
+  text-decoration: none;
+}
+
+.documents-version__item a:hover {
+  text-decoration: underline;
+}
+
+.documents-version__detail {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.85rem;
+  color: var(--corp-text-muted);
 }
 
 .documents-card__summary {

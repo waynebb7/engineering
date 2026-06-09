@@ -12,6 +12,14 @@ MANIFEST = ROOT / "reference" / "documents" / "manifest.json"
 OUTPUT = ROOT / "assets" / "js" / "documents-manifest.js"
 
 
+def document_files(doc: dict) -> list[str]:
+    versions = doc.get("versions")
+    if versions:
+        return [v.get("file", "") for v in versions if v.get("file")]
+    file_path = doc.get("file", "")
+    return [file_path] if file_path else []
+
+
 def main() -> int:
     if not MANIFEST.is_file():
         print(f"error: missing {MANIFEST.relative_to(ROOT)}", file=sys.stderr)
@@ -21,10 +29,10 @@ def main() -> int:
     documents = data.get("documents", [])
     missing = []
     for doc in documents:
-        rel = doc.get("file", "")
-        path = ROOT / "reference" / "documents" / rel.replace("/", "\\").replace("\\", "/")
-        if rel and not path.is_file():
-            missing.append(rel)
+        for rel in document_files(doc):
+            path = ROOT / "reference" / "documents" / rel.replace("\\", "/")
+            if not path.is_file():
+                missing.append(rel)
 
     if missing:
         print("error: manifest references missing files:", file=sys.stderr)
@@ -32,7 +40,14 @@ def main() -> int:
             print(f"  - {rel}", file=sys.stderr)
         return 1
 
-    payload = json.dumps({"documents": documents}, ensure_ascii=False, indent=2)
+    payload = json.dumps(
+        {
+            "groups": data.get("groups", []),
+            "documents": documents,
+        },
+        ensure_ascii=False,
+        indent=2,
+    )
     OUTPUT.write_text(
         "window.DocumentManifest = "
         + payload
