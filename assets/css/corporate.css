@@ -1050,7 +1050,7 @@ p {
   width: var(--pwa-unit-width);
   min-width: var(--pwa-unit-width);
   max-width: var(--pwa-unit-width);
-  text-align: left;
+  text-align: center;
   color: var(--corp-text-muted);
   font-size: 0.72rem;
   background: #fbfcfe;
