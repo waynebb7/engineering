@@ -11,6 +11,11 @@
     { id: 'ungrouped', title: 'Documents' }
   ];
 
+  var catalogueData = null;
+  var search = '';
+  var groupFilter = 'all';
+  var tagFilter = 'all';
+
   function escapeHtml(s) {
     return String(s)
       .replace(/&/g, '&amp;')
@@ -36,6 +41,49 @@
       }];
     }
     return [];
+  }
+
+  function collectTags(docs) {
+    var tagSet = {};
+    docs.forEach(function (doc) {
+      (doc.tags || []).forEach(function (tag) {
+        tagSet[tag] = true;
+      });
+    });
+    return Object.keys(tagSet).sort(function (a, b) {
+      return a.localeCompare(b);
+    });
+  }
+
+  function documentSearchText(doc) {
+    return [
+      doc.title,
+      doc.standard,
+      doc.summary,
+      doc.revision,
+      (doc.sections || []).join(' '),
+      (doc.tags || []).join(' ')
+    ].filter(Boolean).join(' ').toLowerCase();
+  }
+
+  function matchesFilter(doc) {
+    if (groupFilter !== 'all' && doc.group !== groupFilter) {
+      return false;
+    }
+    if (tagFilter !== 'all' && (doc.tags || []).indexOf(tagFilter) === -1) {
+      return false;
+    }
+    if (search) {
+      var query = search.toLowerCase();
+      if (documentSearchText(doc).indexOf(query) === -1) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function filtersActive() {
+    return search !== '' || groupFilter !== 'all' || tagFilter !== 'all';
   }
 
   function renderMeta(doc, versions) {
@@ -151,7 +199,15 @@
       return '<p class="text-muted">No documents registered yet. Add entries to <code>manifest.json</code>.</p>';
     }
 
-    var sections = groupDocuments(docs, data.groups);
+    var filtered = docs.filter(matchesFilter);
+    if (!filtered.length) {
+      return (
+        '<p class="documents-empty">No documents match your filters. ' +
+        'Try clearing the search or changing the category or tag filter.</p>'
+      );
+    }
+
+    var sections = groupDocuments(filtered, data.groups);
     return sections.map(function (section) {
       return (
         '<section class="documents-section">' +
@@ -164,8 +220,92 @@
     }).join('');
   }
 
-  function showCatalogue(mount, data) {
-    mount.innerHTML = renderList(data);
+  function renderToolbar(data) {
+    var docs = (data && data.documents) || [];
+    var groups = (data && data.groups) || [];
+    var tags = collectTags(docs);
+    var visibleCount = docs.filter(matchesFilter).length;
+    var summary = 'Showing ' + visibleCount + ' of ' + docs.length + ' document' + (docs.length === 1 ? '' : 's');
+
+    var html = '';
+    html += '<input type="search" id="documents-search" class="documents-search" placeholder="Search title, standard, tags…" value="' + escapeHtml(search) + '" />';
+
+    html += '<select id="documents-group-filter" class="documents-filter" aria-label="Filter by category">';
+    html += '<option value="all">All categories</option>';
+    groups.forEach(function (group) {
+      var selected = groupFilter === group.id ? ' selected' : '';
+      html += '<option value="' + escapeHtml(group.id) + '"' + selected + '>' + escapeHtml(group.title) + '</option>';
+    });
+    html += '</select>';
+
+    html += '<select id="documents-tag-filter" class="documents-filter" aria-label="Filter by tag">';
+    html += '<option value="all">All tags</option>';
+    tags.forEach(function (tag) {
+      var selected = tagFilter === tag ? ' selected' : '';
+      html += '<option value="' + escapeHtml(tag) + '"' + selected + '>' + escapeHtml(tag) + '</option>';
+    });
+    html += '</select>';
+
+    if (filtersActive()) {
+      html += '<button type="button" id="documents-clear-filters" class="corp-btn corp-btn--secondary">Clear filters</button>';
+    }
+
+    html += '<p class="documents-filter-summary">' + summary + '</p>';
+    return html;
+  }
+
+  function bindToolbarEvents(toolbar, listMount) {
+    var searchEl = document.getElementById('documents-search');
+    var groupEl = document.getElementById('documents-group-filter');
+    var tagEl = document.getElementById('documents-tag-filter');
+    var clearEl = document.getElementById('documents-clear-filters');
+
+    if (searchEl) {
+      searchEl.addEventListener('input', function () {
+        search = searchEl.value;
+        render(catalogueData, listMount, toolbar);
+        var el = document.getElementById('documents-search');
+        if (el) {
+          el.focus();
+          el.setSelectionRange(el.value.length, el.value.length);
+        }
+      });
+    }
+
+    if (groupEl) {
+      groupEl.addEventListener('change', function () {
+        groupFilter = groupEl.value;
+        render(catalogueData, listMount, toolbar);
+      });
+    }
+
+    if (tagEl) {
+      tagEl.addEventListener('change', function () {
+        tagFilter = tagEl.value;
+        render(catalogueData, listMount, toolbar);
+      });
+    }
+
+    if (clearEl) {
+      clearEl.addEventListener('click', function () {
+        search = '';
+        groupFilter = 'all';
+        tagFilter = 'all';
+        render(catalogueData, listMount, toolbar);
+      });
+    }
+  }
+
+  function render(data, listMount, toolbarMount) {
+    if (!data || !listMount) return;
+
+    if (toolbarMount) {
+      toolbarMount.hidden = false;
+      toolbarMount.innerHTML = renderToolbar(data);
+      bindToolbarEvents(toolbarMount, listMount);
+    }
+
+    listMount.innerHTML = renderList(data);
   }
 
   function showError(mount) {
@@ -188,13 +328,16 @@
 
   function init() {
     var mount = document.getElementById('documents-list');
+    var toolbar = document.getElementById('documents-toolbar');
     if (!mount) return;
 
     loadCatalogue()
       .then(function (data) {
-        showCatalogue(mount, data);
+        catalogueData = data;
+        render(data, mount, toolbar);
       })
       .catch(function (err) {
+        if (toolbar) toolbar.hidden = true;
         showError(mount);
         if (window.console && console.warn) {
           console.warn('Document library load failed:', err);
