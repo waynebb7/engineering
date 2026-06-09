@@ -30,29 +30,27 @@
 
   var GRID_ROWS = [
     { key: 'awg', labelB: '', labelC: 'AWG', unit: '', fmt: 'awg' },
-    { key: 'L1', labelB: 'Maximum wire length (NOT DE-RATED)', labelC: 'L1', unit: 'FEET', fmt: 'num' },
-    { key: 'V', labelB: 'System Voltage', labelC: 'V', unit: 'VOLTS', fmt: 'num' },
+    { key: 'L1', labelB: 'Maximum wire length (NOT DE-RATED)', labelC: 'L1', unit: 'FEET', fmt: 'num', digits: 3 },
+    { key: 'V', labelB: 'System Voltage', labelC: 'V', unit: 'VOLTS', fmt: 'num', digits: 2 },
     { key: 'U', labelB: 'Allowable voltage drop', labelC: 'U', unit: 'VOLTS', fmt: 'num' },
     { key: 'I', labelB: 'Circuit current', labelC: 'I', unit: 'AMPS', fmt: 'num' },
     { key: 'Rft', labelB: 'Resistance of wire per feet @ 20\u00B0C', labelC: 'R', unit: '\u03A9/ft', fmt: 'sci' },
-    { key: 'R1000', labelB: 'Resistance of wire per 1000 feet @ 20\u00B0C', labelC: '', unit: '\u03A9/1000ft', fmt: 'num' },
+    { key: 'R1000', labelB: 'Resistance of wire per 1000 feet @ 20\u00B0C', labelC: '', unit: '\u03A9/1000ft', fmt: 'num', digits: 3 },
     { key: 'T1', labelB: 'Ambient temperature', labelC: 'T1', unit: '\u00B0C', fmt: 'num' },
     { key: 'TR', labelB: 'Conductor temperature rating', labelC: 'TR', unit: '\u00B0C', fmt: 'num' },
-    { key: 'T2', labelB: 'Estimated conductor temperature', labelC: 'T2', unit: '\u00B0C', fmt: 'num' },
-    { key: 'Imax', labelB: 'Maximum allowable current @ TR', labelC: 'IMAX', unit: 'AMPS', fmt: 'num' },
-    { key: 'IfreePct', labelB: 'Actual % of current against free air current', labelC: '%', unit: '%', fmt: 'num' },
+    { key: 'T2', labelB: 'Estimated conductor temperature', labelC: 'T2', unit: '\u00B0C', fmt: 'num', digits: 3 },
+    { key: 'Imax', labelB: 'Maximum allowable current @ TR', labelC: 'IMAX', unit: 'AMPS', fmt: 'num', digits: 3 },
+    { key: 'IfreePct', labelB: 'Actual % of current against free air current', labelC: '%', unit: '%', fmt: 'pct' },
     { key: 'freeAir', labelB: 'De-rating (Max conductor current in free air)', labelC: 'x', unit: 'AMPS', fmt: 'num' },
-    { key: 'bundle', labelB: 'De-rating (Bundle)', labelC: 'y', unit: '', fmt: 'factor' },
+    { key: 'bundle', labelB: 'De-rating (Bundle)', labelC: 'y', unit: '', fmt: 'factor', digits: 2 },
     { key: 'altitude', labelB: 'De-rating (Altitude)', labelC: 'z', unit: '', fmt: 'factor' },
-    { key: 'IImax', labelB: 'I/IMAX', labelC: '', unit: '', fmt: 'num' },
-    { key: 'sqrtIImax', labelB: 'SQRT I/IMAX', labelC: '', unit: '', fmt: 'num' },
-    { key: 'L2ft', labelB: 'Maximum wire length (DE-RATED) (MOST SEVERE)', labelC: 'L2', unit: 'FEET', fmt: 'num' },
-    { key: 'L2m', labelB: 'Maximum wire length (DE-RATED) (MOST SEVERE)', labelC: 'L2', unit: 'METRES', fmt: 'num' },
-    { key: 'spacer', labelB: '', labelC: '', unit: '', fmt: 'blank' },
-    { key: 'spacer2', labelB: '', labelC: '', unit: '', fmt: 'blank' },
-    { key: 'Vdrop', labelB: 'Voltage drop', labelC: '', unit: 'volts drop', fmt: 'num' },
-    { key: 'wireLenFt', labelB: 'Wire Length for purposes of Voltage Drop', labelC: '', unit: 'FEET', fmt: 'num' },
-    { key: 'wireLenM', labelB: 'Wire Length for purposes of Voltage Drop', labelC: '', unit: 'METRES', fmt: 'num' }
+    { key: 'IImax', labelB: 'I/IMAX', labelC: '', unit: '', fmt: 'num', digits: 3 },
+    { key: 'sqrtIImax', labelB: 'SQRT I/IMAX', labelC: '', unit: '', fmt: 'num', digits: 3 },
+    { key: 'L2ft', labelB: 'Maximum wire length (DE-RATED) (MOST SEVERE)', labelC: 'L2', unit: 'FEET', fmt: 'num', digits: 3 },
+    { key: 'L2m', labelB: 'Maximum wire length (DE-RATED) (MOST SEVERE)', labelC: 'L2', unit: 'METRES', fmt: 'num', digits: 3 },
+    { key: 'Vdrop', labelB: 'Voltage drop', labelC: '', unit: 'volts drop', fmt: 'num', digits: 3 },
+    { key: 'wireLenFt', labelB: 'Wire Length for purposes of Voltage Drop', labelC: '', unit: 'FEET', fmt: 'num', digits: 3 },
+    { key: 'wireLenM', labelB: 'Wire Length for purposes of Voltage Drop', labelC: '', unit: 'METRES', fmt: 'num', digits: 3 }
   ];
 
   function num(val, digits) {
@@ -152,9 +150,15 @@
   function formatCell(row, value) {
     if (row.fmt === 'blank') return '';
     if (row.fmt === 'awg') return value;
-    if (row.fmt === 'factor') return num(value, 4);
+    if (row.fmt === 'factor') {
+      return num(value, typeof row.digits === 'number' ? row.digits : 4);
+    }
+    if (row.fmt === 'pct') {
+      if (typeof value !== 'number' || !isFinite(value)) return '';
+      return num(value * 100, 0) + '%';
+    }
     if (row.fmt === 'sci') return sci(value);
-    return num(value, 6);
+    return num(value, typeof row.digits === 'number' ? row.digits : 6);
   }
 
   function renderGrid(params) {
