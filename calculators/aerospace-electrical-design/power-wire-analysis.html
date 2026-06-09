@@ -1,12 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../assets/css/corporate.css">
-    <script src="../../assets/js/site-layout.js" defer></script>
-    <title>Power Wire Analysis | Engineering Knowledge</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../assets/css/corporate.css">
+  <script src="../../assets/js/site-layout.js" defer></script>
+  <script src="../../assets/js/pwa-grid-calculator.js" defer></script>
+  <title>Power Wire Analysis | Engineering Knowledge</title>
 </head>
-<body class="calculator-page" data-calc="power_wire_analysis">
+<body class="pwa-grid-page">
+  <div class="page-container page-container--wide">
+    <a href="index.html" class="back-link">&larr; Aerospace Electrical Design</a>
+
+    <h1>Power Wire Analysis</h1>
+    <p class="lead">
+      Interactive wire sizing grid (AWG 24–0000) with global parameters on the left and
+      per-gauge calculations on the right. Change any input to update the grid instantly.
+    </p>
+
+    <div class="pwa-layout">
+      <aside class="pwa-params" aria-label="Global parameters">
+        <h2>Global parameters</h2>
+        <form id="pwa-params-form" class="pwa-params__form">
+          <fieldset class="pwa-fieldset">
+            <legend>Electrical</legend>
+            <label>Generator line voltage (V)
+              <input type="number" name="generatorLineVoltage" step="0.0001" value="209.9455" required>
+            </label>
+            <label>Post-conditioning ELA voltage (V)
+              <input type="number" name="postConditioningVoltage" step="0.01" value="200" required>
+            </label>
+            <label>Regulated phase current (A)
+              <span class="hint">Converted to generator current using voltage ratio</span>
+              <input type="number" name="regulatedPhaseCurrent" step="0.0001" value="75.5805" required>
+            </label>
+            <label>Allowable voltage drop U (V)
+              <input type="number" name="allowableDrop" step="0.01" value="7" required>
+            </label>
+            <label>Ambient temperature T<sub>1</sub> (&deg;C)
+              <input type="number" name="ambientTemp" step="0.1" value="50" required>
+            </label>
+            <label>Conductor temperature rating T<sub>R</sub> (&deg;C)
+              <input type="number" name="conductorTempRating" step="1" value="260" required>
+            </label>
+          </fieldset>
+
+          <fieldset class="pwa-fieldset">
+            <legend>De-rating</legend>
+            <label>Altitude de-rating (35&nbsp;000&nbsp;ft)
+              <input type="number" name="altitudeDerating" step="0.0001" min="0" max="1" value="0.8625" required>
+            </label>
+            <label>Bundle de-rating (3 wires @ 100% load)
+              <input type="number" name="bundleDerating" step="0.01" min="0" max="1" value="0.75" required>
+            </label>
+          </fieldset>
+
+          <fieldset class="pwa-fieldset">
+            <legend>Wire length (for voltage drop)</legend>
+            <label>Wire run length
+              <span class="pwa-length-row">
+                <input type="number" name="wireLength" step="0.01" min="0" value="603.6" required>
+                <select name="wireLengthUnit" aria-label="Length unit">
+                  <option value="in" selected>Inches</option>
+                  <option value="m">Metres</option>
+                </select>
+              </span>
+            </label>
+            <label>Additional routing allowance (%)
+              <input type="number" name="routingPct" step="0.1" min="0" value="30" required>
+            </label>
+            <p class="pwa-derived">
+              Total wire length:
+              <strong id="pwa-wire-length-ft">—</strong> ft
+              (<span id="pwa-wire-length-m">—</span> m)
+            </p>
+          </fieldset>
+        </form>
+      </aside>
+
+      <section class="pwa-grid-wrap" aria-label="AWG calculation grid">
+        <h2 id="pwa-grid-title">Wire analysis grid</h2>
+        <p class="text-muted pwa-grid-note">Label columns stay fixed while you scroll AWG values horizontally.</p>
+        <div class="pwa-grid-scroll">
+          <div class="pwa-grid-split">
+            <div class="pwa-grid-frozen">
+              <table class="pwa-grid pwa-grid--frozen" id="pwa-grid-frozen">
+                <thead></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <div class="pwa-grid-data-scroll" id="pwa-grid-data-scroll">
+              <table class="pwa-grid pwa-grid--data" id="pwa-grid-data">
+                <thead></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
 </body>
 </html>
