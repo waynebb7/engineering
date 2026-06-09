@@ -39,12 +39,12 @@
     { key: 'T1', labelB: 'Ambient temperature', labelC: 'T1', unit: '\u00B0C', fmt: 'num' },
     { key: 'TR', labelB: 'Conductor temperature rating', labelC: 'TR', unit: '\u00B0C', fmt: 'num' },
     { key: 'T2', labelB: 'Estimated conductor temperature', labelC: 'T2', unit: '\u00B0C', fmt: 'num' },
-    { key: 'Imax', labelB: 'Maximum allowable current @ TR', labelC: 'I_max', unit: 'AMPS', fmt: 'num' },
-    { key: 'IfreePct', labelB: 'Actual % of current against free air current', labelC: 'I/I_free', unit: 'RATIO', fmt: 'num' },
-    { key: 'freeAir', labelB: 'Max conductor current in free air (AC 43.13 Fig 11-4a)', labelC: '', unit: 'AMPS', fmt: 'num' },
-    { key: 'bundle', labelB: 'De-rating (Bundle)', labelC: '', unit: 'FACTOR', fmt: 'factor' },
-    { key: 'altitude', labelB: 'De-rating (Altitude)', labelC: '', unit: 'FACTOR', fmt: 'factor' },
-    { key: 'IImax', labelB: 'I/IMAX', labelC: '', unit: 'RATIO', fmt: 'num' },
+    { key: 'Imax', labelB: 'Maximum allowable current @ TR', labelC: 'IMAX', unit: 'AMPS', fmt: 'num' },
+    { key: 'IfreePct', labelB: 'Actual % of current against free air current', labelC: '%', unit: '%', fmt: 'num' },
+    { key: 'freeAir', labelB: 'De-rating (Max conductor current in free air)', labelC: 'x', unit: 'AMPS', fmt: 'num' },
+    { key: 'bundle', labelB: 'De-rating (Bundle)', labelC: 'y', unit: '', fmt: 'factor' },
+    { key: 'altitude', labelB: 'De-rating (Altitude)', labelC: 'z', unit: '', fmt: 'factor' },
+    { key: 'IImax', labelB: 'I/IMAX', labelC: '', unit: '', fmt: 'num' },
     { key: 'sqrtIImax', labelB: 'SQRT I/IMAX', labelC: '', unit: '', fmt: 'num' },
     { key: 'L2ft', labelB: 'Maximum wire length (DE-RATED) (MOST SEVERE)', labelC: 'L2', unit: 'FEET', fmt: 'num' },
     { key: 'L2m', labelB: 'Maximum wire length (DE-RATED) (MOST SEVERE)', labelC: 'L2', unit: 'METRES', fmt: 'num' },
@@ -166,7 +166,9 @@
     var frozenBody = document.querySelector('#pwa-grid-frozen tbody');
     var dataHead = document.querySelector('#pwa-grid-data thead');
     var dataBody = document.querySelector('#pwa-grid-data tbody');
-    if (!frozenHead || !frozenBody || !dataHead || !dataBody) return;
+    var unitsHead = document.querySelector('#pwa-grid-units thead');
+    var unitsBody = document.querySelector('#pwa-grid-units tbody');
+    if (!frozenHead || !frozenBody || !dataHead || !dataBody || !unitsHead || !unitsBody) return;
 
     frozenHead.innerHTML =
       '<tr class="pwa-grid__head">' +
@@ -179,11 +181,17 @@
     columns.forEach(function (col) {
       dataHeadHtml += '<th class="pwa-grid__awg">' + col.awg + '</th>';
     });
-    dataHeadHtml += '<th class="pwa-grid__unit"></th></tr>';
+    dataHeadHtml += '</tr>';
     dataHead.innerHTML = dataHeadHtml;
+
+    unitsHead.innerHTML =
+      '<tr class="pwa-grid__head">' +
+        '<th class="pwa-grid__unit"></th>' +
+      '</tr>';
 
     var frozenHtml = '';
     var dataHtml = '';
+    var unitsHtml = '';
     GRID_ROWS.forEach(function (row, idx) {
       if (row.key === 'awg') return;
       var excelRow = idx + 7;
@@ -201,32 +209,46 @@
         var val = col[row.key];
         dataHtml += '<td class="pwa-grid__val">' + formatCell(row, val) + '</td>';
       });
-      dataHtml += '<td class="pwa-grid__unit">' + row.unit + '</td></tr>';
+      dataHtml += '</tr>';
+
+      unitsHtml +=
+        '<tr class="' + rowClass + '" data-row="' + excelRow + '">' +
+          '<td class="pwa-grid__unit">' + row.unit + '</td>' +
+        '</tr>';
     });
 
     frozenBody.innerHTML = frozenHtml;
     dataBody.innerHTML = dataHtml;
+    unitsBody.innerHTML = unitsHtml;
     syncGridRowHeights();
   }
 
   function syncGridRowHeights() {
     var frozenHeadRow = document.querySelector('#pwa-grid-frozen thead tr');
     var dataHeadRow = document.querySelector('#pwa-grid-data thead tr');
+    var unitsHeadRow = document.querySelector('#pwa-grid-units thead tr');
     var frozenRows = document.querySelectorAll('#pwa-grid-frozen tbody tr');
     var dataRows = document.querySelectorAll('#pwa-grid-data tbody tr');
+    var unitsRows = document.querySelectorAll('#pwa-grid-units tbody tr');
 
-    function matchPair(a, b) {
-      if (!a || !b) return;
-      a.style.height = '';
-      b.style.height = '';
-      var height = Math.max(a.offsetHeight, b.offsetHeight);
-      a.style.height = height + 'px';
-      b.style.height = height + 'px';
+    function matchRows(rows) {
+      var present = rows.filter(function (row) { return row; });
+      if (!present.length) return;
+      present.forEach(function (row) {
+        row.style.height = '';
+      });
+      var height = Math.max.apply(
+        null,
+        present.map(function (row) { return row.offsetHeight; })
+      );
+      present.forEach(function (row) {
+        row.style.height = height + 'px';
+      });
     }
 
-    matchPair(frozenHeadRow, dataHeadRow);
+    matchRows([frozenHeadRow, dataHeadRow, unitsHeadRow]);
     for (var i = 0; i < frozenRows.length; i += 1) {
-      matchPair(frozenRows[i], dataRows[i]);
+      matchRows([frozenRows[i], dataRows[i], unitsRows[i]]);
     }
   }
 
