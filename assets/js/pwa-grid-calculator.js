@@ -48,9 +48,9 @@
     { key: 'sqrtIImax', labelB: 'SQRT I/IMAX', labelC: '', unit: '', fmt: 'num', digits: 3 },
     { key: 'L2ft', labelB: 'Maximum wire length (DE-RATED) (MOST SEVERE)', labelC: 'L2', unit: 'FEET', fmt: 'num', digits: 3 },
     { key: 'L2m', labelB: 'Maximum wire length (DE-RATED) (MOST SEVERE)', labelC: 'L2', unit: 'METRES', fmt: 'num', digits: 3 },
-    { key: 'Vdrop', labelB: 'Voltage drop', labelC: '', unit: 'volts drop', fmt: 'num', digits: 3 },
-    { key: 'wireLenFt', labelB: 'Wire Length for purposes of Voltage Drop', labelC: '', unit: 'FEET', fmt: 'num', digits: 3 },
-    { key: 'wireLenM', labelB: 'Wire Length for purposes of Voltage Drop', labelC: '', unit: 'METRES', fmt: 'num', digits: 3 }
+    { key: 'Vdrop', labelB: 'Voltage drop', labelC: '', unit: 'volts drop', fmt: 'num', digits: 3, section: 'vdrop' },
+    { key: 'wireLenFt', labelB: 'Wire Length for purposes of Voltage Drop', labelC: '', unit: 'FEET', fmt: 'num', digits: 3, section: 'vdrop' },
+    { key: 'wireLenM', labelB: 'Wire Length for purposes of Voltage Drop', labelC: '', unit: 'METRES', fmt: 'num', digits: 3, section: 'vdrop' }
   ];
 
   function num(val, digits) {
@@ -196,10 +196,30 @@
     var frozenHtml = '';
     var dataHtml = '';
     var unitsHtml = '';
+    var vdropDividerShown = false;
     GRID_ROWS.forEach(function (row, idx) {
       if (row.key === 'awg') return;
+
+      if (row.section === 'vdrop' && !vdropDividerShown) {
+        vdropDividerShown = true;
+        frozenHtml +=
+          '<tr class="pwa-grid__row pwa-grid__row--divider" aria-hidden="true">' +
+            '<th colspan="3"></th>' +
+          '</tr>';
+        dataHtml +=
+          '<tr class="pwa-grid__row pwa-grid__row--divider" aria-hidden="true">' +
+            '<td colspan="' + columns.length + '"></td>' +
+          '</tr>';
+        unitsHtml +=
+          '<tr class="pwa-grid__row pwa-grid__row--divider" aria-hidden="true">' +
+            '<td></td>' +
+          '</tr>';
+      }
+
       var excelRow = idx + 7;
-      var rowClass = 'pwa-grid__row' + (row.fmt === 'blank' ? ' pwa-grid__row--blank' : '');
+      var rowClass = 'pwa-grid__row';
+      if (row.fmt === 'blank') rowClass += ' pwa-grid__row--blank';
+      if (row.section === 'vdrop') rowClass += ' pwa-grid__row--vdrop';
 
       frozenHtml +=
         '<tr class="' + rowClass + '" data-row="' + excelRow + '">' +

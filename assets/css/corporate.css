@@ -1083,15 +1083,38 @@ p {
   color: var(--corp-text);
 }
 
-.pwa-grid tr:hover .pwa-grid__val,
-.pwa-grid tr:hover .pwa-grid__awg {
-  background: #e8f1f8;
+.pwa-grid__row--divider th,
+.pwa-grid__row--divider td {
+  height: 10px;
+  padding: 0;
+  border: none;
+  border-top: 2px solid var(--corp-navy);
+  background: var(--corp-surface);
+  pointer-events: none;
+}
+
+.pwa-grid__row--vdrop th.pwa-grid__label-b,
+.pwa-grid__row--vdrop td.pwa-grid__label-c,
+.pwa-grid__row--vdrop td.pwa-grid__eq,
+.pwa-grid__row--vdrop td.pwa-grid__val,
+.pwa-grid__row--vdrop td.pwa-grid__unit {
+  background: #f4f7fb;
+}
+
+.pwa-grid__row--vdrop:nth-child(even) th.pwa-grid__label-b,
+.pwa-grid__row--vdrop:nth-child(even) td.pwa-grid__label-c,
+.pwa-grid__row--vdrop:nth-child(even) td.pwa-grid__eq,
+.pwa-grid__row--vdrop:nth-child(even) td.pwa-grid__val,
+.pwa-grid__row--vdrop:nth-child(even) td.pwa-grid__unit {
+  background: #eef2f7;
 }
 
 .pwa-grid tr:hover .pwa-grid__label-b,
 .pwa-grid tr:hover .pwa-grid__label-c,
 .pwa-grid tr:hover .pwa-grid__eq,
-.pwa-grid tr:hover .pwa-grid__unit {
+.pwa-grid tr:hover .pwa-grid__unit,
+.pwa-grid tr:hover .pwa-grid__val,
+.pwa-grid tr:hover .pwa-grid__awg {
   background: #e8f1f8;
 }
 
