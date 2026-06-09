@@ -419,6 +419,171 @@ window.DocumentManifest = {
           "file": "files/easa-cs-25-easy-access-amendment-21.pdf"
         }
       ]
+    },
+    {
+      "id": "easa-cs-27-easy-access",
+      "group": "easa-certification",
+      "title": "EASA CS-27 — Easy Access Rules (Small Rotorcraft)",
+      "type": "pdf",
+      "standard": "EASA CS-27",
+      "pickerLabel": "edition",
+      "summary": "EASA Certification Specification CS-27 Easy Access Rules for small rotorcraft, covering airworthiness requirements from initial issue through successive amendments.",
+      "sections": [
+        "CS-27 airworthiness requirements",
+        "Certification specification amendments"
+      ],
+      "tags": [
+        "aerospace",
+        "certification",
+        "airworthiness",
+        "EASA",
+        "CS-27",
+        "rotorcraft"
+      ],
+      "versions": [
+        {
+          "id": "easa_cs_27_easy_access_initial_issue",
+          "label": "Initial issue",
+          "revision": "Initial issue",
+          "file": "files/easa-cs-27-easy-access-initial-issue.pdf"
+        },
+        {
+          "id": "easa_cs_27_easy_access_amendment_01",
+          "label": "Amendment 1",
+          "revision": "Amendment 1",
+          "file": "files/easa-cs-27-easy-access-amendment-01.pdf"
+        },
+        {
+          "id": "easa_cs_27_easy_access_amendment_02",
+          "label": "Amendment 2",
+          "revision": "Amendment 2",
+          "file": "files/easa-cs-27-easy-access-amendment-02.pdf"
+        },
+        {
+          "id": "easa_cs_27_easy_access_amendment_03",
+          "label": "Amendment 3",
+          "revision": "Amendment 3",
+          "file": "files/easa-cs-27-easy-access-amendment-03.pdf"
+        },
+        {
+          "id": "easa_cs_27_easy_access_amendment_04",
+          "label": "Amendment 4",
+          "revision": "Amendment 4",
+          "file": "files/easa-cs-27-easy-access-amendment-04.pdf"
+        },
+        {
+          "id": "easa_cs_27_easy_access_amendment_05",
+          "label": "Amendment 5",
+          "revision": "Amendment 5",
+          "file": "files/easa-cs-27-easy-access-amendment-05.pdf"
+        },
+        {
+          "id": "easa_cs_27_easy_access_amendment_06",
+          "label": "Amendment 6",
+          "revision": "Amendment 6",
+          "file": "files/easa-cs-27-easy-access-amendment-06.pdf"
+        },
+        {
+          "id": "easa_cs_27_easy_access_amendment_10",
+          "label": "Amendment 10",
+          "revision": "Amendment 10",
+          "file": "files/easa-cs-27-easy-access-amendment-10.pdf"
+        }
+      ]
+    },
+    {
+      "id": "easa-cs-29-easy-access",
+      "group": "easa-certification",
+      "title": "EASA CS-29 — Easy Access Rules (Large Rotorcraft)",
+      "type": "pdf",
+      "standard": "EASA CS-29",
+      "pickerLabel": "edition",
+      "summary": "EASA Certification Specification CS-29 Easy Access Rules for large rotorcraft, covering airworthiness requirements from initial issue through successive amendments.",
+      "sections": [
+        "CS-29 airworthiness requirements",
+        "Certification specification amendments"
+      ],
+      "tags": [
+        "aerospace",
+        "certification",
+        "airworthiness",
+        "EASA",
+        "CS-29",
+        "rotorcraft"
+      ],
+      "versions": [
+        {
+          "id": "easa_cs_29_easy_access_initial_issue",
+          "label": "Initial issue",
+          "revision": "Initial issue",
+          "file": "files/easa-cs-29-easy-access-initial-issue.pdf"
+        },
+        {
+          "id": "easa_cs_29_easy_access_amendment_01",
+          "label": "Amendment 1",
+          "revision": "Amendment 1",
+          "file": "files/easa-cs-29-easy-access-amendment-01.pdf"
+        },
+        {
+          "id": "easa_cs_29_easy_access_amendment_02",
+          "label": "Amendment 2",
+          "revision": "Amendment 2",
+          "file": "files/easa-cs-29-easy-access-amendment-02.pdf"
+        },
+        {
+          "id": "easa_cs_29_easy_access_amendment_03",
+          "label": "Amendment 3",
+          "revision": "Amendment 3",
+          "file": "files/easa-cs-29-easy-access-amendment-03.pdf"
+        },
+        {
+          "id": "easa_cs_29_easy_access_amendment_04",
+          "label": "Amendment 4",
+          "revision": "Amendment 4",
+          "file": "files/easa-cs-29-easy-access-amendment-04.pdf"
+        },
+        {
+          "id": "easa_cs_29_easy_access_amendment_05",
+          "label": "Amendment 5",
+          "revision": "Amendment 5",
+          "file": "files/easa-cs-29-easy-access-amendment-05.pdf"
+        },
+        {
+          "id": "easa_cs_29_easy_access_amendment_06",
+          "label": "Amendment 6",
+          "revision": "Amendment 6",
+          "file": "files/easa-cs-29-easy-access-amendment-06.pdf"
+        }
+      ]
+    },
+    {
+      "id": "easa-cs-23-easy-access",
+      "group": "easa-certification",
+      "title": "EASA CS-23 — Easy Access Rules (Normal, Utility, Aerobatic and Commuter Aeroplanes)",
+      "type": "pdf",
+      "standard": "EASA CS-23",
+      "pickerLabel": "edition",
+      "summary": "EASA Certification Specification CS-23 Easy Access Rules for normal, utility, aerobatic and commuter category aeroplanes.",
+      "sections": [
+        "CS-23 airworthiness requirements",
+        "Certification specification amendments"
+      ],
+      "tags": [
+        "aerospace",
+        "certification",
+        "airworthiness",
+        "EASA",
+        "CS-23",
+        "aeroplanes"
+      ],
+      "versions": [
+        {
+          "id": "easa_cs_23_easy_access_amendment_04",
+          "label": "Amendment 4",
+          "revision": "Amendment 4",
+          "file": "files/easa-cs-23-easy-access-amendment-04.pdf"
+        }
+      ]
     }
   ]
 };
