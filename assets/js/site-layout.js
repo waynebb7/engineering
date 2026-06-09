@@ -17,10 +17,7 @@
   var navItems = [
     { href: 'index.html', label: 'Home' },
     { href: 'calculators/index.html', label: 'Calculators' },
-    { href: 'learn/mathematics/index.html', label: 'Mathematics' },
-    { href: 'learn/physics/index.html', label: 'Physics' },
-    { href: 'learn/quantum/index.html', label: 'Quantum' },
-    { href: 'learn/mathematics/digital-logic/index.html', label: 'Digital Logic' },
+    { href: 'learn/index.html', label: 'Learn' },
     { href: 'reference/documents/index.html', label: 'Documents' },
     { href: 'progress.html', label: 'Progress' },
     { href: 'feedback.html', label: 'Feedback' }
@@ -33,23 +30,17 @@
     if (href === 'calculators/index.html') {
       return path.indexOf('/calculators/') !== -1;
     }
-    if (href === 'learn/mathematics/index.html') {
-      return path.indexOf('/learn/mathematics/') !== -1 && path.indexOf('/digital-logic/') === -1;
-    }
-    if (href === 'learn/physics/index.html') {
-      return path.indexOf('/learn/physics/') !== -1;
-    }
-    if (href === 'learn/quantum/index.html') {
-      return path.indexOf('/learn/quantum/') !== -1;
-    }
-    if (href.indexOf('digital-logic/') !== -1) {
-      return path.indexOf('/digital-logic/') !== -1;
+    if (href === 'learn/index.html') {
+      return path.indexOf('/learn/') !== -1;
     }
     if (href === 'progress.html') {
       return file === 'progress.html';
     }
+    if (href === 'feedback.html') {
+      return file === 'feedback.html';
+    }
     if (href === 'reference/documents/index.html') {
-      return path.indexOf('/reference/documents/') !== -1;
+      return path.indexOf('/reference/') !== -1;
     }
     return file === href.split('/').pop();
   }

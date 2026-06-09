@@ -6,6 +6,30 @@ A static reference, calculator, and learning site for electrical engineering, ma
 
 See [PROJECT-STRUCTURE.md](PROJECT-STRUCTURE.md) for the full folder layout and maintenance workflow.
 
+## Start here for contributors
+
+**Browse the repo by folder, not the flat root file list.** Real pages live under `calculators/`, `learn/`, `reference/`, and `maps/`. The ~280 HTML files at the repo root (and in folders like `quantum/`, `basic_physics/`) are **redirect stubs** for old bookmarks — they are hidden in Cursor/VS Code via `.vscode/settings.json`.
+
+| Goal | Where to go |
+|------|-------------|
+| Site hub | `index.html` |
+| Calculators | `calculators/` |
+| Lessons & catalogs | `learn/` |
+| Variables, equations, PDFs | `reference/` |
+| Prerequisite maps | `maps/` |
+| Shared CSS/JS | `assets/` |
+| Build scripts | `scripts/` |
+
+One-page contributor guide: [docs/CONTRIBUTOR-MAP.md](docs/CONTRIBUTOR-MAP.md)
+
+Refresh IDE hide rules after stub changes:
+
+```bash
+python scripts/build-vscode-excludes.py
+```
+
+(`ensure-redirect-stubs.py` runs this automatically.)
+
 ## Features
 
 - **40+ interactive calculators** — power, AC/three-phase, unit conversion, digital logic, physics, aerospace
@@ -41,7 +65,7 @@ engineering/
 └── docs/                   # Documentation exports
 ```
 
-Old root paths (e.g. `pure_math_subjects.html`, `differentiation.html`) remain as **redirect stubs** for bookmarks. New content lives under `learn/` and `calculators/`.
+Old root paths (e.g. `pure_math_subjects.html`, `differentiation.html`) remain as **redirect stubs** for bookmarks. New content lives under `learn/` and `calculators/`. Redirect stubs are hidden in the IDE — see [docs/CONTRIBUTOR-MAP.md](docs/CONTRIBUTOR-MAP.md).
 
 ## Refresh after catalog or map edits
 

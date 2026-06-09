@@ -143,6 +143,7 @@ python scripts/migrate-project-structure.py
 | `scripts/build-drilldown-explorers.py` | Regenerate all subject drill-down explorers, topic lists, and bundled data |
 | `scripts/build-legacy-physics-list.py` | Deprecated wrapper for `build-drilldown-explorers.py` |
 | `scripts/ensure-redirect-stubs.py` | Create missing bookmark redirect stubs from `path-relocation-map.json` |
+| `scripts/build-vscode-excludes.py` | Regenerate `.vscode/settings.json` to hide redirect stubs in the IDE |
 | `scripts/verify-redirect-stubs.py` | Verify redirect stubs point at existing targets |
 | `scripts/verify-catalog-links.py` | Verify math/physics/quantum catalog hrefs resolve |
 | `scripts/fix-hub-breadcrumbs.py` | Fix “Back to Hub” links after moves |
@@ -196,6 +197,9 @@ Main nav is defined in `assets/js/site-layout.js`:
 
 - Home → `index.html` (includes the Reference tile with links to all reference pages)
 - Calculators → `calculators/index.html`
-- Mathematics / Physics / Quantum → respective `learn/{subject}/index.html`
-- Digital Logic → `learn/mathematics/digital-logic/boolean-algebra.html`
+- Learn → `learn/index.html` (hub for mathematics, physics, quantum, and digital logic)
+- Documents → `reference/documents/index.html`
 - Progress → `progress.html`
+- Feedback → `feedback.html`
+
+Contributor quick reference: [docs/CONTRIBUTOR-MAP.md](docs/CONTRIBUTOR-MAP.md)

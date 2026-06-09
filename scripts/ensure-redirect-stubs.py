@@ -67,6 +67,11 @@ def main() -> int:
         created += 1
 
     print(f"Redirect stubs: created {created}, already present {skipped}")
+
+    import subprocess
+
+    exclude_script = ROOT / "scripts" / "build-vscode-excludes.py"
+    subprocess.run([sys.executable, str(exclude_script)], check=True)
     return 0
 
 

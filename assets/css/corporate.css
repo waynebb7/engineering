@@ -63,12 +63,12 @@ body.has-site-chrome {
 .site-header__inner {
   max-width: var(--corp-max-width);
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 20px;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: 16px;
 }
 
 .site-brand {
@@ -116,9 +116,11 @@ body.has-site-chrome {
 .site-nav {
   display: flex;
   align-items: center;
-  gap: 4px;
-  flex-wrap: wrap;
+  gap: 2px;
+  flex-wrap: nowrap;
   justify-content: flex-end;
+  flex-shrink: 1;
+  min-width: 0;
 }
 
 .site-nav a {
@@ -126,7 +128,7 @@ body.has-site-chrome {
   text-decoration: none;
   font-size: 13px;
   font-weight: 500;
-  padding: 8px 14px;
+  padding: 7px 11px;
   border-radius: 6px;
   transition: background 0.15s, color 0.15s;
   white-space: nowrap;
@@ -136,6 +138,17 @@ body.has-site-chrome {
 .site-nav a.active {
   background: rgba(255, 255, 255, 0.1);
   color: #fff;
+}
+
+@media (max-width: 1080px) {
+  .site-brand__tagline {
+    display: none;
+  }
+
+  .site-nav a {
+    padding: 7px 9px;
+    font-size: 12px;
+  }
 }
 
 .site-footer {
