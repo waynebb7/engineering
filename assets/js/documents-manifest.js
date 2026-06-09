@@ -584,6 +584,29 @@ window.DocumentManifest = {
           "file": "files/easa-cs-23-easy-access-amendment-04.pdf"
         }
       ]
+    },
+    {
+      "id": "easa-part-21-easy-access",
+      "group": "easa-certification",
+      "title": "EASA Part-21 — Easy Access Rules (Airworthiness and Environmental Certification)",
+      "file": "files/easa-part-21-easy-access-rev-march-2023-corr-may-2023.pdf",
+      "type": "pdf",
+      "standard": "Regulation (EU) No 748/2012",
+      "revision": "Rev March 2023 (corr May 2023)",
+      "summary": "EASA Easy Access Rules for airworthiness and environmental certification under Regulation (EU) No 748/2012 (Part-21), covering design, production, and continuing airworthiness organisation approvals.",
+      "sections": [
+        "Part-21 airworthiness certification",
+        "Design and production organisation approvals",
+        "Continuing airworthiness"
+      ],
+      "tags": [
+        "aerospace",
+        "certification",
+        "airworthiness",
+        "EASA",
+        "Part-21",
+        "748/2012"
+      ]
     }
   ]
 };
