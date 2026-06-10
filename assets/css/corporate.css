@@ -822,6 +822,8 @@ p {
   padding: 18px 20px;
   position: sticky;
   top: calc(var(--corp-header-height) + 16px);
+  z-index: 5;
+  isolation: isolate;
 }
 
 .pwa-params h2,
@@ -886,16 +888,21 @@ p {
   display: flex;
   gap: 8px;
   margin-top: 4px;
+  align-items: stretch;
 }
 
-.pwa-length-row input {
-  flex: 1 1 auto;
-  min-width: 0;
+.pwa-params__form .pwa-length-row input {
+  flex: 1 1 0;
+  min-width: 5rem;
+  width: 0;
   margin-top: 0;
 }
 
-.pwa-length-row select {
+.pwa-params__form .pwa-length-row select {
   flex: 0 0 auto;
+  width: auto;
+  min-width: 6.5rem;
+  margin-top: 0;
   padding: 8px 10px;
   border: 1px solid var(--corp-border);
   border-radius: var(--corp-radius);
@@ -905,6 +912,8 @@ p {
 
 .pwa-grid-wrap {
   min-width: 0;
+  position: relative;
+  z-index: 1;
 }
 
 .pwa-grid-note {
@@ -1007,6 +1016,7 @@ p {
 .pwa-grid-frozen {
   flex: 0 0 auto;
   z-index: 2;
+  overflow: hidden;
   box-shadow: 2px 0 8px rgba(15, 41, 66, 0.12);
   background: var(--corp-surface);
 }
@@ -1014,6 +1024,7 @@ p {
 .pwa-grid-units-frozen {
   flex: 0 0 auto;
   z-index: 2;
+  overflow: hidden;
   box-shadow: -2px 0 8px rgba(15, 41, 66, 0.12);
   background: var(--corp-surface);
 }
@@ -1098,6 +1109,8 @@ p {
   font-weight: 600;
   white-space: normal;
   word-wrap: break-word;
+  overflow-wrap: anywhere;
+  overflow: hidden;
   line-height: 1.35;
 }
 

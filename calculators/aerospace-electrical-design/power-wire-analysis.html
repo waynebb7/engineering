@@ -24,11 +24,8 @@
         <form id="pwa-params-form" class="pwa-params__form">
           <fieldset class="pwa-fieldset">
             <legend>Electrical</legend>
-            <label>Generator line voltage (V)
-              <input type="number" name="generatorLineVoltage" step="0.0001" value="209.9455" required>
-            </label>
-            <label>Post-conditioning ELA voltage (V)
-              <input type="number" name="postConditioningVoltage" step="0.01" value="200" required>
+            <label>Voltage (V)
+              <input type="number" name="generatorLineVoltage" step="0.01" value="209.95" required>
             </label>
             <label>Circuit current (A)
               <input type="number" name="circuitCurrent" step="0.01" min="0" value="72" required>
@@ -46,9 +43,13 @@
 
           <fieldset class="pwa-fieldset">
             <legend>De-rating</legend>
-            <label>Altitude de-rating (35&nbsp;000&nbsp;ft)
-              <input type="number" name="altitudeDerating" step="0.0001" min="0" max="1" value="0.8625" required>
+            <label>Altitude de-rating (AC 43.13 Fig 11-6)
+              <select name="altitudeFt" id="pwa-altitude-ft" required></select>
             </label>
+            <p class="pwa-derived">
+              De-rating factor:
+              <strong id="pwa-altitude-factor">—</strong>
+            </p>
             <label>Bundle de-rating (3 wires @ 100% load)
               <input type="number" name="bundleDerating" step="0.01" min="0" max="1" value="0.75" required>
             </label>

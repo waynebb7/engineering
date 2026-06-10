@@ -26,8 +26,32 @@
     ]
   };
 
+  // AC 43.13-1B Fig 11-6 altitude derating curve (altitude in thousands of feet).
+  var ALTITUDE_CURVE = [
+    { kft: 0, factor: 1.00 },
+    { kft: 5, factor: 0.98 },
+    { kft: 10, factor: 0.96 },
+    { kft: 15, factor: 0.94 },
+    { kft: 20, factor: 0.92 },
+    { kft: 25, factor: 0.90 },
+    { kft: 30, factor: 0.88 },
+    { kft: 35, factor: 0.86 },
+    { kft: 40, factor: 0.84 },
+    { kft: 45, factor: 0.82 },
+    { kft: 50, factor: 0.80 },
+    { kft: 55, factor: 0.785 },
+    { kft: 60, factor: 0.77 },
+    { kft: 65, factor: 0.76 },
+    { kft: 70, factor: 0.75 },
+    { kft: 75, factor: 0.74 },
+    { kft: 80, factor: 0.73 },
+    { kft: 85, factor: 0.72 },
+    { kft: 90, factor: 0.71 },
+    { kft: 95, factor: 0.705 },
+    { kft: 100, factor: 0.70 }
+  ];
+
   var WIRES = [
-    { label: '24', ohm1000ft: 34.96055994685995, freeAirA: 16 },
     { label: '22', ohm1000ft: 17.92223997275819, freeAirA: 21 },
     { label: '20', ohm1000ft: 9.99743998480389, freeAirA: 28 },
     { label: '18', ohm1000ft: 6.339839990363444, freeAirA: 38 },
@@ -48,27 +72,29 @@
 
   var GRID_ROWS = [
     { key: 'awg', labelB: '', labelC: 'AWG', unit: '', fmt: 'awg' },
-    { key: 'L1', labelB: 'Maximum wire length (NOT DE-RATED)', labelC: 'L1', unit: 'FEET', fmt: 'num', digits: 3 },
-    { key: 'V', labelB: 'System Voltage', labelC: 'V', unit: 'VOLTS', fmt: 'num', digits: 2 },
-    { key: 'U', labelB: 'Allowable voltage drop', labelC: 'U', unit: 'VOLTS', fmt: 'num' },
-    { key: 'I', labelB: 'Circuit current', labelC: 'I', unit: 'AMPS', fmt: 'num', digits: 2 },
+    { key: 'L1', labelB: 'Maximum wire length (NOT DE-RATED)', labelC: 'L1', unit: 'ft', fmt: 'num', digits: 3 },
+    { key: 'V', labelB: 'System Voltage', labelC: 'V', unit: 'V', fmt: 'num', digits: 2 },
+    { key: 'U', labelB: 'Allowable voltage drop', labelC: 'U', unit: 'V', fmt: 'num' },
+    { key: 'I', labelB: 'Circuit current', labelC: 'I', unit: 'A', fmt: 'num', digits: 2 },
     { key: 'Rft', labelB: 'Resistance of wire per feet @ 20\u00B0C', labelC: 'R', unit: '\u03A9/ft', fmt: 'sci' },
     { key: 'R1000', labelB: 'Resistance of wire per 1000 feet @ 20\u00B0C', labelC: '', unit: '\u03A9/1000ft', fmt: 'num', digits: 3 },
     { key: 'T1', labelB: 'Ambient temperature', labelC: 'T1', unit: '\u00B0C', fmt: 'num' },
     { key: 'TR', labelB: 'Conductor temperature rating', labelC: 'TR', unit: '\u00B0C', fmt: 'num' },
     { key: 'T2', labelB: 'Estimated conductor temperature', labelC: 'T2', unit: '\u00B0C', fmt: 'num', digits: 3 },
-    { key: 'Imax', labelB: 'Maximum allowable current @ TR', labelC: 'IMAX', unit: 'AMPS', fmt: 'num', digits: 3 },
+    { key: 'Imax', labelB: 'Maximum allowable current @ TR', labelC: 'IMAX', unit: 'A', fmt: 'num', digits: 3 },
     { key: 'IfreePct', labelB: 'Actual % of current against free air current', labelC: '%', unit: '%', fmt: 'pct' },
-    { key: 'freeAir', labelB: 'De-rating (Max conductor current in free air)', labelC: 'x', unit: 'AMPS', fmt: 'num' },
+    { key: 'freeAir', labelB: 'De-rating (Max conductor current in free air)', labelC: 'x', unit: 'A', fmt: 'num' },
     { key: 'bundle', labelB: 'De-rating (Bundle)', labelC: 'y', unit: '', fmt: 'factor', digits: 2 },
     { key: 'altitude', labelB: 'De-rating (Altitude)', labelC: 'z', unit: '', fmt: 'factor' },
     { key: 'IImax', labelB: 'I/IMAX', labelC: '', unit: '', fmt: 'num', digits: 3 },
     { key: 'sqrtIImax', labelB: 'SQRT I/IMAX', labelC: '', unit: '', fmt: 'num', digits: 3 },
-    { key: 'L2ft', labelB: 'Maximum wire length (DE-RATED) (MOST SEVERE)', labelC: 'L2', unit: 'FEET', fmt: 'num', digits: 3 },
-    { key: 'L2m', labelB: 'Maximum wire length (DE-RATED) (MOST SEVERE)', labelC: 'L2', unit: 'METRES', fmt: 'num', digits: 3 },
-    { key: 'Vdrop', labelB: 'Voltage drop', labelC: '', unit: 'volts drop', fmt: 'num', digits: 3, section: 'vdrop' },
-    { key: 'wireLenFt', labelB: 'Wire Length for purposes of Voltage Drop', labelC: '', unit: 'FEET', fmt: 'num', digits: 3, section: 'vdrop' },
-    { key: 'wireLenM', labelB: 'Wire Length for purposes of Voltage Drop', labelC: '', unit: 'METRES', fmt: 'num', digits: 3, section: 'vdrop' }
+    { key: 'L2in', labelB: 'Maximum wire length (DE-RATED) (MOST SEVERE) (in)', labelC: 'L2', unit: 'in', fmt: 'num', digits: 3 },
+    { key: 'L2ft', labelB: 'Maximum wire length (DE-RATED) (MOST SEVERE) (ft)', labelC: 'L2', unit: 'ft', fmt: 'num', digits: 3 },
+    { key: 'L2m', labelB: 'Maximum wire length (DE-RATED) (MOST SEVERE) (m)', labelC: 'L2', unit: 'm', fmt: 'num', digits: 3 },
+    { key: 'Vdrop', labelB: 'Voltage drop (volts)', labelC: '', unit: 'V', fmt: 'num', digits: 3, section: 'vdrop' },
+    { key: 'wireLenIn', labelB: 'Wire Length for purposes of Voltage Drop (in)', labelC: '', unit: 'in', fmt: 'num', digits: 3, section: 'vdrop' },
+    { key: 'wireLenFt', labelB: 'Wire Length for purposes of Voltage Drop (ft)', labelC: '', unit: 'ft', fmt: 'num', digits: 3, section: 'vdrop' },
+    { key: 'wireLenM', labelB: 'Wire Length for purposes of Voltage Drop (m)', labelC: '', unit: 'm', fmt: 'num', digits: 3, section: 'vdrop' }
   ];
 
   function num(val, digits) {
@@ -85,6 +111,43 @@
     if (val === 0) return '0';
     if (val >= 0.001) return num(val, 6);
     return val.toExponential(4);
+  }
+
+  function altitudeDeratingFactor(altitudeFt) {
+    var kft = altitudeFt / 1000;
+    if (kft <= ALTITUDE_CURVE[0].kft) return ALTITUDE_CURVE[0].factor;
+    if (kft >= ALTITUDE_CURVE[ALTITUDE_CURVE.length - 1].kft) {
+      return ALTITUDE_CURVE[ALTITUDE_CURVE.length - 1].factor;
+    }
+    for (var i = 0; i < ALTITUDE_CURVE.length - 1; i += 1) {
+      var start = ALTITUDE_CURVE[i];
+      var end = ALTITUDE_CURVE[i + 1];
+      if (kft >= start.kft && kft <= end.kft) {
+        var t = (kft - start.kft) / (end.kft - start.kft);
+        return start.factor + t * (end.factor - start.factor);
+      }
+    }
+    return ALTITUDE_CURVE[ALTITUDE_CURVE.length - 1].factor;
+  }
+
+  function formatAltitudeLabel(altitudeFt) {
+    return altitudeFt.toLocaleString('en-US') + ' ft';
+  }
+
+  function initAltitudeSelect(form) {
+    var selectEl = form.elements.altitudeFt;
+    if (!selectEl) return;
+
+    var html = '';
+    for (var altitudeFt = 0; altitudeFt <= 100000; altitudeFt += 1000) {
+      var factor = altitudeDeratingFactor(altitudeFt);
+      html +=
+        '<option value="' + altitudeFt + '">' +
+        formatAltitudeLabel(altitudeFt) + ' — ' + num(factor, 4) +
+        '</option>';
+    }
+    selectEl.innerHTML = html;
+    selectEl.value = '35000';
   }
 
   function getAllowableDropEntries(operationType) {
@@ -159,19 +222,21 @@
     var wireLengthFt = totalIn / 12;
 
     var generatorLineVoltage = f('generatorLineVoltage');
-    var postConditioningVoltage = f('postConditioningVoltage');
     var circuitCurrent = f('circuitCurrent');
+    var altitudeFt = parseInt(form.elements.altitudeFt.value, 10);
+    var altitudeDerating = altitudeDeratingFactor(altitudeFt);
 
     return {
       generatorLineVoltage: generatorLineVoltage,
-      postConditioningVoltage: postConditioningVoltage,
       circuitCurrent: circuitCurrent,
       allowableDrop: f('allowableDrop'),
       ambientTemp: f('ambientTemp'),
       conductorTempRating: f('conductorTempRating'),
-      altitudeDerating: f('altitudeDerating'),
+      altitudeFt: altitudeFt,
+      altitudeDerating: altitudeDerating,
       bundleDerating: f('bundleDerating'),
       wireLengthFt: wireLengthFt,
+      wireLengthIn: totalIn,
       wireLengthM: wireLengthFt * FT_TO_M
     };
   }
@@ -192,6 +257,7 @@
     var sqrtIImax = Math.sqrt(IImax);
     var T2 = T1 + (TR - T1) * sqrtIImax;
     var L2ft = (COPPER_REF * L1) / (COPPER_COEF + T2);
+    var L2in = L2ft * 12;
     var L2m = L2ft * FT_TO_M;
     var wireLenFt = params.wireLengthFt;
     var Vdrop = (I * Rft * wireLenFt) * (COPPER_COEF + T2) / COPPER_REF;
@@ -214,9 +280,11 @@
       altitude: altitude,
       IImax: IImax,
       sqrtIImax: sqrtIImax,
+      L2in: L2in,
       L2ft: L2ft,
       L2m: L2m,
       Vdrop: Vdrop,
+      wireLenIn: params.wireLengthIn,
       wireLenFt: wireLenFt,
       wireLenM: params.wireLengthM
     };
@@ -613,8 +681,10 @@
   function updateDerived(params) {
     var ftEl = document.getElementById('pwa-wire-length-ft');
     var mEl = document.getElementById('pwa-wire-length-m');
+    var altEl = document.getElementById('pwa-altitude-factor');
     if (ftEl) ftEl.textContent = num(params.wireLengthFt, 2);
     if (mEl) mEl.textContent = num(params.wireLengthM, 3);
+    if (altEl) altEl.textContent = num(params.altitudeDerating, 4);
   }
 
   function recalc() {
@@ -640,6 +710,7 @@
     updateGridTitle();
     initExportControls();
     initAllowableDropControls(form);
+    initAltitudeSelect(form);
 
     var unitEl = form.elements.wireLengthUnit;
     var lengthEl = form.elements.wireLength;
