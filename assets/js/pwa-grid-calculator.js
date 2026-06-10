@@ -273,7 +273,7 @@
     if (!wireType) return;
 
     linkEl.href = wireType.specPage;
-    linkEl.textContent = 'View ' + wireType.label + ' specification';
+    linkEl.setAttribute('aria-label', wireType.label + ' specification');
   }
 
   function syncConductorTempRatingForWireType(form, wireTypeId) {

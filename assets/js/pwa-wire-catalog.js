@@ -41,6 +41,39 @@
         { awg: '000', strand: '518/0.45', conductorNomDiaMm: 13.40, ohmPerKm: 0.237, odMinMm: 14.00, odMaxMm: 14.80, ampRatingMax: 345.00, weightKgPerKm: 835.00 },
         { awg: '0000', strand: '665/0.45', conductorNomDiaMm: 14.80, ohmPerKm: 0.190, odMinMm: 15.60, odMaxMm: 16.40, ampRatingMax: 380.00, weightKgPerKm: 1060.00 }
       ]
+    },
+    {
+      id: 'raychem-55a0811',
+      label: 'Raychem 55A0811',
+      manufacturer: 'TE Connectivity / Raychem',
+      brandSpec: 'Raychem SCD 55A0811 (M22759/34)',
+      construction:
+        'Tin-coated copper conductor. Radiation-crosslinked modified ETFE primary insulation ' +
+        'and jacket (dual-wall). Part of Raychem Specification 55A.',
+      operatingTemp: '-65 °C to +150 °C',
+      voltageRating: '600 V r.m.s. at sea level',
+      defaultConductorTempRating: 150,
+      specPage: 'wire-specification.html?wire=raychem-55a0811',
+      documentFile: '../../reference/documents/files/raychem-55a0811-wire-specification.pdf',
+      awgSizes: [
+        { awg: '24', strand: '19×36', conductorNomDiaMm: 0.61, ohmPer1000ft: 26.2, odMinMm: 1.09, odMaxMm: 1.19, weightKgPerKm: 3.4 },
+        { awg: '22', strand: '19×34', conductorNomDiaMm: 0.79, ohmPer1000ft: 16.2, odMinMm: 1.22, odMaxMm: 1.32, weightKgPerKm: 4.8 },
+        { awg: '20', strand: '19×32', conductorNomDiaMm: 0.99, ohmPer1000ft: 9.88, odMinMm: 1.42, odMaxMm: 1.52, weightKgPerKm: 7.0 },
+        { awg: '18', strand: '19×30', conductorNomDiaMm: 1.24, ohmPer1000ft: 6.23, odMinMm: 1.70, odMaxMm: 1.85, weightKgPerKm: 10.7 },
+        { awg: '16', strand: '19×29', conductorNomDiaMm: 1.40, ohmPer1000ft: 4.81, odMinMm: 1.88, odMaxMm: 2.06, weightKgPerKm: 13.4 },
+        { awg: '14', strand: '19×27', conductorNomDiaMm: 1.75, ohmPer1000ft: 3.06, odMinMm: 2.31, odMaxMm: 2.49, weightKgPerKm: 20.5 },
+        { awg: '12', strand: '37×28', conductorNomDiaMm: 2.26, ohmPer1000ft: 2.02, odMinMm: 2.74, odMaxMm: 2.90, weightKgPerKm: 30.5 },
+        { awg: '10', strand: '37×26', conductorNomDiaMm: 2.90, ohmPer1000ft: 1.26, odMinMm: 3.30, odMaxMm: 3.50, weightKgPerKm: 48.2 },
+        { awg: '8', strand: '133×29', conductorNomDiaMm: 4.39, ohmPer1000ft: 0.701, odMinMm: 4.75, odMaxMm: 5.08, weightKgPerKm: 89.7 },
+        { awg: '6', strand: '133×27', conductorNomDiaMm: 5.51, ohmPer1000ft: 0.445, odMinMm: 5.87, odMaxMm: 6.35, weightKgPerKm: 141.0 },
+        { awg: '4', strand: '133×25', conductorNomDiaMm: 6.96, ohmPer1000ft: 0.280, odMinMm: 7.62, odMaxMm: 8.13, weightKgPerKm: 223.0 },
+        { awg: '2', strand: '665×30', conductorNomDiaMm: 8.64, ohmPer1000ft: 0.183, odMinMm: 10.06, odMaxMm: 10.67, weightKgPerKm: 370.0 },
+        { awg: '1', strand: '817×30', conductorNomDiaMm: 9.65, ohmPer1000ft: 0.149, odMinMm: 11.48, odMaxMm: 12.19, weightKgPerKm: 484.0 },
+        { awg: '0', strand: '1045×30', conductorNomDiaMm: 10.80, ohmPer1000ft: 0.116, odMinMm: 12.57, odMaxMm: 13.36, weightKgPerKm: 570.0 },
+        { awg: '00', strand: '1330×30', conductorNomDiaMm: 12.07, ohmPer1000ft: 0.091, odMinMm: 14.07, odMaxMm: 14.86, weightKgPerKm: 744.0 },
+        { awg: '000', strand: '1665×30', conductorNomDiaMm: 13.72, ohmPer1000ft: 0.071, odMinMm: 15.24, odMaxMm: 16.00, weightKgPerKm: 887.0 },
+        { awg: '0000', strand: '2109×30', conductorNomDiaMm: 15.37, ohmPer1000ft: 0.056, odMinMm: 16.64, odMaxMm: 17.53, weightKgPerKm: 1120.0 }
+      ]
     }
   ];
 
@@ -56,10 +89,16 @@
   function buildWireRows(wireType) {
     if (!wireType || !wireType.awgSizes) return [];
     return wireType.awgSizes.map(function (size) {
+      var ohmPer1000ft = typeof size.ohmPer1000ft === 'number'
+        ? size.ohmPer1000ft
+        : ohm1000ftFromKm(size.ohmPerKm);
+      var ohmPerKm = typeof size.ohmPerKm === 'number'
+        ? size.ohmPerKm
+        : ohmPer1000ft / OHM_KM_TO_OHM_1000FT;
       return {
         label: size.awg,
-        ohmPerKm: size.ohmPerKm,
-        ohm1000ft: ohm1000ftFromKm(size.ohmPerKm),
+        ohmPerKm: ohmPerKm,
+        ohm1000ft: ohmPer1000ft,
         strand: size.strand,
         conductorNomDiaMm: size.conductorNomDiaMm,
         odMinMm: size.odMinMm,

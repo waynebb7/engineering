@@ -23,6 +23,10 @@
   }
 
   function renderSpecTable(rows) {
+    var hasAmpRatings = rows.some(function (row) {
+      return typeof row.ampRatingMax === 'number' && isFinite(row.ampRatingMax);
+    });
+
     var html =
       '<div class="pwa-wire-spec__table-wrap">' +
         '<table class="pwa-wire-spec__table">' +
@@ -31,10 +35,11 @@
             '<th scope="col">Strand</th>' +
             '<th scope="col">Conductor dia. (nom.)</th>' +
             '<th scope="col">Resistance @ 20 °C</th>' +
-            '<th scope="col">Finished O/D (min–max)</th>' +
-            '<th scope="col">Amp rating (max.)</th>' +
-            '<th scope="col">Weight</th>' +
-          '</tr></thead><tbody>';
+            '<th scope="col">Finished O/D (min–max)</th>';
+    if (hasAmpRatings) {
+      html += '<th scope="col">Amp rating (max.)</th>';
+    }
+    html += '<th scope="col">Weight</th></tr></thead><tbody>';
 
     rows.forEach(function (row) {
       html +=
@@ -44,14 +49,42 @@
           '<td>' + num(row.conductorNomDiaMm, 2) + ' mm</td>' +
           '<td>' + num(row.ohmPerKm, 3) + ' Ω/km<br><span class="pwa-wire-spec__sub">' +
             num(row.ohm1000ft, 3) + ' Ω/1000 ft</span></td>' +
-          '<td>' + num(row.odMinMm, 2) + '–' + num(row.odMaxMm, 2) + ' mm</td>' +
-          '<td>' + num(row.ampRatingMax, 2) + ' A</td>' +
-          '<td>' + num(row.weightKgPerKm, 0) + ' kg/km</td>' +
-        '</tr>';
+          '<td>' + num(row.odMinMm, 2) + '–' + num(row.odMaxMm, 2) + ' mm</td>';
+      if (hasAmpRatings) {
+        html += '<td>' + (
+          typeof row.ampRatingMax === 'number' && isFinite(row.ampRatingMax)
+            ? num(row.ampRatingMax, 2) + ' A'
+            : '—'
+        ) + '</td>';
+      }
+      html += '<td>' + num(row.weightKgPerKm, 0) + ' kg/km</td></tr>';
     });
 
     html += '</tbody></table></div>';
     return html;
+  }
+
+  function initWirePicker(currentWireId) {
+    if (!window.PwaWireCatalog) return;
+
+    var wrap = document.getElementById('pwa-wire-spec-picker-wrap');
+    var selectEl = document.getElementById('pwa-wire-spec-picker');
+    if (!wrap || !selectEl) return;
+
+    var html = '';
+    PwaWireCatalog.listWireTypes().forEach(function (entry) {
+      html += '<option value="' + escapeHtml(entry.id) + '">' + escapeHtml(entry.label) + '</option>';
+    });
+    selectEl.innerHTML = html;
+    selectEl.value = currentWireId;
+    wrap.hidden = PwaWireCatalog.listWireTypes().length <= 1;
+
+    selectEl.addEventListener('change', function () {
+      var nextId = selectEl.value;
+      var url = new URL(window.location.href);
+      url.searchParams.set('wire', nextId);
+      window.location.href = url.pathname + url.search;
+    });
   }
 
   function renderPage() {
@@ -71,6 +104,7 @@
     }
 
     var rows = PwaWireCatalog.getWireRows(wireId);
+    initWirePicker(wireId);
     document.title = wireType.label + ' — Wire specification | Engineering Knowledge';
 
     var titleEl = document.getElementById('pwa-wire-spec-title');
@@ -96,7 +130,7 @@
         '</a>' +
       '</p>' +
       '<h2>Electrical and mechanical data</h2>' +
-      '<p class="text-muted">Resistance values below populate the calculator grid (Ω/1000 ft derived from Ω/km).</p>' +
+      '<p class="text-muted">Resistance values below populate the calculator grid (Ω/1000 ft shown with Ω/km).</p>' +
       renderSpecTable(rows);
   }
 

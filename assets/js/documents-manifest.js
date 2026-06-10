@@ -612,6 +612,30 @@ window.DocumentManifest = {
       ]
     },
     {
+      "id": "raychem-55a0811",
+      "group": "wire-cables",
+      "title": "Raychem 55A0811 — ETFE Insulated Wire (TE Connectivity)",
+      "file": "files/raychem-55a0811-wire-specification.pdf",
+      "type": "pdf",
+      "standard": "Raychem SCD 55A0811",
+      "summary": "TE Connectivity / Raychem specification control drawing for 55A0811 tin-coated copper wire: construction, resistance @ 20 °C, and ratings used in Power Wire Analysis.",
+      "sections": [
+        "Resistance @ 20 °C (Ω/1000 ft)",
+        "Construction and insulation",
+        "Operating temperature -65 °C to +150 °C"
+      ],
+      "tags": [
+        "wire",
+        "cable",
+        "Raychem",
+        "55A",
+        "TE Connectivity",
+        "manufacturer data",
+        "resistance",
+        "aerospace"
+      ]
+    },
+    {
       "id": "easa-part-21-easy-access",
       "group": "easa-certification",
       "title": "EASA Part-21 — Easy Access Rules (Airworthiness and Environmental Certification)",

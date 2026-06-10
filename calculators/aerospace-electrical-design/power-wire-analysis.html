@@ -24,17 +24,17 @@
     </p>
 
     <div class="pwa-layout">
-      <aside class="pwa-params" aria-label="Global parameters">
-        <h2>Global parameters</h2>
+      <aside class="pwa-params" aria-label="Calculation parameters">
         <form id="pwa-params-form" class="pwa-params__form">
           <fieldset class="pwa-fieldset">
-            <legend>Electrical</legend>
-            <label>Wire type
+            <legend>Wire &amp; circuit</legend>
+            <div class="pwa-params__wire-picker">
+              <label class="pwa-params__wire-picker-label" for="pwa-wire-type">Wire type</label>
               <select name="wireType" id="pwa-wire-type" required></select>
-            </label>
-            <p class="pwa-chart-link">
-              <a href="wire-specification.html?wire=kp260" id="pwa-wire-spec-link" target="_blank" rel="noopener noreferrer">View wire specification</a>
-            </p>
+              <a class="pwa-params__spec-link" id="pwa-wire-spec-link" href="wire-specification.html?wire=kp260" target="_blank" rel="noopener noreferrer" aria-label="KP260 (K.Lacey) specification">
+                Specification<span class="pwa-params__spec-link-icon" aria-hidden="true">↗</span>
+              </a>
+            </div>
             <label>Voltage (V)
               <select name="generatorLineVoltagePreset" id="pwa-voltage-preset" required>
                 <option value="5">5 V</option>
@@ -64,6 +64,10 @@
                 <select name="allowableDrop" id="pwa-allowable-drop" required></select>
               </label>
             </div>
+          </fieldset>
+
+          <fieldset class="pwa-fieldset">
+            <legend>Temperature &amp; T<sub>2</sub></legend>
             <label>Ambient temperature T<sub>1</sub> (&deg;C)
               <input type="number" name="ambientTemp" step="0.1" value="50" required>
             </label>
@@ -75,64 +79,60 @@
                 <option value="260" selected>260 &deg;C</option>
                 <option value="custom">Custom&hellip;</option>
               </select>
+              <span class="pwa-params__field-hint">Insulation class per wire spec (AS50881 / datasheet)</span>
             </label>
             <label class="pwa-params__custom-field" id="pwa-conductor-tr-custom-wrap" hidden>
               Custom T<sub>R</sub> (&deg;C)
               <input type="number" name="conductorTempRatingCustom" id="pwa-conductor-tr-custom" step="1" min="1" value="260">
             </label>
-            <p class="pwa-derived pwa-derived--note">
-              Insulation class per wire specification (AS50881 / datasheet).
-            </p>
             <label>T<sub>2</sub> calculation standard
               <select name="t2Standard" id="pwa-t2-standard">
                 <option value="arp4404" selected>SAE ARP4404C &sect;9.3.4.2</option>
                 <option value="ac43">AC 43.13-1B</option>
               </select>
             </label>
-            <p class="pwa-derived pwa-derived--note" id="pwa-t2-standard-note">
-              T<sub>2</sub> = T<sub>1</sub> + (T<sub>R</sub> &minus; T<sub>1</sub>) &times; (I/I<sub>max</sub>)&sup2;
-            </p>
+            <details class="pwa-params__formula-hint">
+              <summary>T<sub>2</sub> formula</summary>
+              <p class="pwa-derived pwa-derived--note" id="pwa-t2-standard-note">
+                T<sub>2</sub> = T<sub>1</sub> + (T<sub>R</sub> &minus; T<sub>1</sub>) &times; (I/I<sub>max</sub>)&sup2;
+              </p>
+            </details>
           </fieldset>
 
           <fieldset class="pwa-fieldset">
             <legend>De-rating</legend>
-            <p class="pwa-chart-link">
-              <a href="free-air-chart.html" target="_blank" rel="noopener noreferrer">View free-air ampacity charts (Fig 11-4a &amp; 11-4b)</a>
-            </p>
-            <label>Altitude de-rating (AC 43.13 Fig 11-6)
+            <div class="pwa-params__field">
+              <div class="pwa-params__field-meta">
+                <span class="pwa-params__field-label">Altitude (Fig 11-6)</span>
+                <span class="pwa-params__field-result">z = <strong id="pwa-altitude-factor">—</strong></span>
+              </div>
               <select name="altitudeFt" id="pwa-altitude-ft" required></select>
-            </label>
-            <p class="pwa-derived">
-              De-rating factor:
-              <strong id="pwa-altitude-factor">—</strong>
-            </p>
-            <p class="pwa-chart-link">
-              <a href="altitude-derating-chart.html" target="_blank" rel="noopener noreferrer">View altitude derating chart (Fig 11-6)</a>
-            </p>
-            <label>Number of wires in bundle
-              <input type="number" name="bundleWireCount" step="1" min="1" max="41" value="3" required>
-            </label>
-            <label>Bundle loading (AC 43.13 Fig 11-5)
-              <select name="bundleLoadingPct" id="pwa-bundle-loading" required>
-                <option value="20">20%</option>
-                <option value="40">40%</option>
-                <option value="60">60%</option>
-                <option value="80">80%</option>
-                <option value="100" selected>100%</option>
-              </select>
-            </label>
-            <p class="pwa-derived">
-              Bundle de-rating factor:
-              <strong id="pwa-bundle-factor">—</strong>
-            </p>
-            <p class="pwa-chart-link">
-              <a href="bundle-derating-chart.html" target="_blank" rel="noopener noreferrer">View bundle derating chart (Fig 11-5)</a>
-            </p>
+            </div>
+            <div class="pwa-params__field">
+              <div class="pwa-params__field-meta">
+                <span class="pwa-params__field-label">Bundle (Fig 11-5)</span>
+                <span class="pwa-params__field-result">y = <strong id="pwa-bundle-factor">—</strong></span>
+              </div>
+              <div class="pwa-params__field-row">
+                <label class="pwa-params__inline-label">Wires in bundle
+                  <input type="number" name="bundleWireCount" step="1" min="1" max="41" value="3" required>
+                </label>
+                <label class="pwa-params__inline-label">Loading
+                  <select name="bundleLoadingPct" id="pwa-bundle-loading" required>
+                    <option value="20">20%</option>
+                    <option value="40">40%</option>
+                    <option value="60">60%</option>
+                    <option value="80">80%</option>
+                    <option value="100" selected>100%</option>
+                  </select>
+                </label>
+              </div>
+            </div>
           </fieldset>
 
           <fieldset class="pwa-fieldset">
-            <legend>Wire length (for voltage drop)</legend>
-            <label>Wire run length
+            <legend>Wire length</legend>
+            <label>Run length
               <span class="pwa-length-row">
                 <input type="number" name="wireLength" step="0.01" min="0" value="603.6" required>
                 <select name="wireLengthUnit" aria-label="Length unit">
@@ -141,42 +141,58 @@
                 </select>
               </span>
             </label>
-            <label>Additional routing allowance (%)
+            <label>Routing allowance (%)
               <input type="number" name="routingPct" step="0.1" min="0" value="30" required>
             </label>
-            <p class="pwa-derived">
-              Total wire length:
+            <p class="pwa-derived pwa-derived--total">
+              Total length:
               <strong id="pwa-wire-length-ft">—</strong> ft
               (<span id="pwa-wire-length-m">—</span> m)
             </p>
           </fieldset>
+
+          <nav class="pwa-params__ref-charts" aria-label="De-rating reference charts">
+            <span class="pwa-params__ref-charts-label">Reference charts</span>
+            <ul>
+              <li><a href="free-air-chart.html" target="_blank" rel="noopener noreferrer">Free air (Fig 11-4)</a></li>
+              <li><a href="altitude-derating-chart.html" target="_blank" rel="noopener noreferrer">Altitude (Fig 11-6)</a></li>
+              <li><a href="bundle-derating-chart.html" target="_blank" rel="noopener noreferrer">Bundle (Fig 11-5)</a></li>
+            </ul>
+          </nav>
         </form>
       </aside>
 
       <section class="pwa-grid-wrap" aria-label="AWG calculation grid">
-        <h2 id="pwa-grid-title">Wire analysis grid</h2>
-        <p class="text-muted pwa-grid-note">Label and unit columns stay fixed while you scroll AWG values horizontally.</p>
-        <div class="pwa-export" id="pwa-export">
-          <fieldset class="pwa-export__options">
-            <legend>Copy table</legend>
-            <p class="pwa-export__note">Description, symbol, and units are always included. Paste into Word or Excel.</p>
-            <div class="pwa-export__checks">
-              <label class="pwa-export__check">
-                <input type="checkbox" id="pwa-export-awg-all" checked>
-                All AWG sizes
-              </label>
-            </div>
-            <div class="pwa-export__awg-group">
-              <span class="pwa-export__awg-label">AWG columns</span>
-              <div class="pwa-export__awg-checks" id="pwa-export-awg-checks"></div>
-            </div>
-          </fieldset>
-          <div class="pwa-export__actions">
-            <button type="button" class="btn btn--small" id="pwa-copy-table">Copy table</button>
-            <button type="button" class="btn btn--small pwa-export__btn-secondary" id="pwa-copy-table-formulas">Copy table with formulas</button>
-            <span class="pwa-export__status" id="pwa-copy-status" aria-live="polite"></span>
+        <div class="pwa-grid-header">
+          <div>
+            <h2 id="pwa-grid-title">Wire analysis grid</h2>
+            <p class="pwa-grid-note">Scroll horizontally for AWG columns; row labels stay fixed.</p>
           </div>
         </div>
+        <details class="pwa-export" id="pwa-export">
+          <summary class="pwa-export__summary">Copy table</summary>
+          <div class="pwa-export__body">
+            <p class="pwa-export__note">Description, symbol, and units are always included. Paste into Word or Excel.</p>
+            <fieldset class="pwa-export__options">
+              <legend class="visually-hidden">Export columns</legend>
+              <div class="pwa-export__checks">
+                <label class="pwa-export__check">
+                  <input type="checkbox" id="pwa-export-awg-all" checked>
+                  All AWG sizes
+                </label>
+              </div>
+              <div class="pwa-export__awg-group">
+                <span class="pwa-export__awg-label">AWG columns</span>
+                <div class="pwa-export__awg-checks" id="pwa-export-awg-checks"></div>
+              </div>
+            </fieldset>
+            <div class="pwa-export__actions">
+              <button type="button" class="btn btn--small" id="pwa-copy-table">Copy table</button>
+              <button type="button" class="btn btn--small pwa-export__btn-secondary" id="pwa-copy-table-formulas">Copy table with formulas</button>
+              <span class="pwa-export__status" id="pwa-copy-status" aria-live="polite"></span>
+            </div>
+          </div>
+        </details>
         <div class="pwa-grid-scroll">
           <div class="pwa-grid-split">
             <div class="pwa-grid-frozen">

@@ -808,7 +808,7 @@ p {
 
 .pwa-layout {
   display: grid;
-  grid-template-columns: minmax(280px, 340px) minmax(0, 1fr);
+  grid-template-columns: minmax(300px, 360px) minmax(0, 1fr);
   gap: 24px;
   align-items: start;
   margin-top: 24px;
@@ -819,7 +819,7 @@ p {
   border: 1px solid var(--corp-border);
   border-radius: var(--corp-radius-lg);
   box-shadow: var(--corp-shadow);
-  padding: 18px 20px;
+  padding: 16px 18px;
   position: sticky;
   top: calc(var(--corp-header-height) + 16px);
   z-index: 5;
@@ -828,23 +828,27 @@ p {
 
 .pwa-params h2,
 .pwa-grid-wrap h2 {
-  margin: 0 0 12px;
+  margin: 0 0 4px;
   font-size: 1.05rem;
-  border-bottom: 2px solid var(--corp-accent-muted);
-  padding-bottom: 8px;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.pwa-grid-header {
+  margin-bottom: 12px;
 }
 
 .pwa-params__form label {
   display: block;
-  margin-bottom: 12px;
-  font-size: 0.88rem;
+  margin-bottom: 10px;
+  font-size: 0.84rem;
   font-weight: 600;
   color: var(--corp-navy);
 }
 
 .pwa-params__form label .hint {
   display: block;
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 400;
   color: var(--corp-text-muted);
   margin: 2px 0 4px;
@@ -854,32 +858,43 @@ p {
 .pwa-params__form select {
   width: 100%;
   margin-top: 4px;
-  padding: 8px 10px;
+  height: 2.375rem;
+  padding: 0 10px;
   border: 1px solid var(--corp-border);
   border-radius: var(--corp-radius);
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   font-family: var(--corp-font);
+  line-height: 1.25;
+  box-sizing: border-box;
   background: #fff;
 }
 
 .pwa-fieldset {
-  border: 1px solid var(--corp-border);
-  border-radius: var(--corp-radius);
-  padding: 12px 12px 4px;
-  margin: 0 0 14px;
+  border: none;
+  border-top: 1px solid var(--corp-border);
+  border-radius: 0;
+  padding: 14px 0 0;
+  margin: 0 0 4px;
+}
+
+.pwa-fieldset:first-of-type {
+  border-top: none;
+  padding-top: 0;
 }
 
 .pwa-fieldset legend {
-  padding: 0 6px;
-  font-size: 0.82rem;
+  padding: 0;
+  margin: 0 0 10px;
+  font-size: 0.78rem;
   font-weight: 700;
   color: var(--corp-accent);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
 }
 
 .pwa-params__custom-field {
-  margin-top: -6px;
+  margin-top: -4px;
+  margin-bottom: 8px;
 }
 
 .pwa-params__custom-field[hidden] {
@@ -890,23 +905,222 @@ p {
   border: 1px solid var(--corp-border);
   border-radius: var(--corp-radius);
   padding: 10px 12px 2px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
+  background: #fff;
 }
 
 .pwa-params__group-label {
   display: block;
-  font-size: 0.82rem;
+  font-size: 0.76rem;
   font-weight: 700;
-  color: var(--corp-accent);
+  color: var(--corp-text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   margin-bottom: 8px;
 }
 
-.pwa-derived {
-  font-size: 0.88rem;
+.pwa-params__field {
+  margin-bottom: 12px;
+}
+
+.pwa-params__field-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.pwa-params__field-label {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--corp-navy);
+}
+
+.pwa-params__field-result {
+  font-size: 0.78rem;
   color: var(--corp-text-muted);
-  margin: 4px 0 0;
+  white-space: nowrap;
+}
+
+.pwa-params__field-result strong {
+  color: var(--corp-navy);
+  font-weight: 700;
+}
+
+.pwa-params__field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.pwa-params__inline-label {
+  margin-bottom: 0;
+  font-size: 0.78rem;
+}
+
+.pwa-params__wire-picker {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    'wire-label wire-label'
+    'wire-select wire-spec';
+  gap: 4px 8px;
+  margin-bottom: 10px;
+}
+
+.pwa-params__wire-picker-label {
+  grid-area: wire-label;
+  margin-bottom: 0;
+}
+
+.pwa-params__wire-picker select {
+  grid-area: wire-select;
+  margin-top: 0;
+}
+
+.pwa-params__wire-picker .pwa-params__spec-link {
+  grid-area: wire-spec;
+  align-self: stretch;
+  justify-content: center;
+}
+
+.pwa-params__spec-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 2.375rem;
+  padding: 0 12px;
+  border: 1px solid var(--corp-border);
+  border-radius: var(--corp-radius);
+  background: #fff;
+  color: var(--corp-accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.pwa-params__spec-link:hover {
+  background: #eef4fa;
+  text-decoration: none;
+}
+
+.pwa-params__spec-link-icon {
+  font-size: 0.9em;
+}
+
+.pwa-params__field-hint {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.76rem;
+  font-weight: 400;
+  color: var(--corp-text-muted);
+}
+
+.pwa-params__field-hint a {
+  color: var(--corp-accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.pwa-params__field-hint a:hover {
+  text-decoration: underline;
+}
+
+.pwa-params__formula-hint {
+  margin: 2px 0 0;
+  font-size: 0.78rem;
+}
+
+.pwa-params__formula-hint summary {
+  cursor: pointer;
+  color: var(--corp-accent);
+  font-weight: 600;
+  list-style: none;
+}
+
+.pwa-params__formula-hint summary::-webkit-details-marker {
+  display: none;
+}
+
+.pwa-params__formula-hint summary::before {
+  content: '▸ ';
+}
+
+.pwa-params__formula-hint[open] summary::before {
+  content: '▾ ';
+}
+
+.pwa-params__formula-hint .pwa-derived--note {
+  margin-top: 6px;
+}
+
+.pwa-params__ref-charts {
+  margin-top: 4px;
+  padding-top: 14px;
+  border-top: 1px solid var(--corp-border);
+}
+
+.pwa-params__ref-charts-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--corp-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+.pwa-params__ref-charts ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pwa-params__ref-charts a {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--corp-accent);
+  text-decoration: none;
+}
+
+.pwa-params__ref-charts a:hover {
+  text-decoration: underline;
+}
+
+.pwa-derived {
+  font-size: 0.82rem;
+  color: var(--corp-text-muted);
+  margin: 6px 0 0;
+}
+
+.pwa-derived--total {
+  padding: 8px 10px;
+  border-radius: var(--corp-radius);
+  background: #f8fafc;
+  border: 1px solid var(--corp-border);
+}
+
+.pwa-derived--note {
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .pwa-chart-link {
@@ -922,6 +1136,30 @@ p {
 
 .pwa-chart-link a:hover {
   text-decoration: underline;
+}
+
+.pwa-wire-spec-page .pwa-wire-spec__picker {
+  margin: 0 0 20px;
+  max-width: 360px;
+}
+
+.pwa-wire-spec-page .pwa-wire-spec__picker label {
+  display: block;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--corp-navy);
+}
+
+.pwa-wire-spec-page .pwa-wire-spec__picker select {
+  width: 100%;
+  margin-top: 4px;
+  height: 2.375rem;
+  padding: 0 10px;
+  border: 1px solid var(--corp-border);
+  border-radius: var(--corp-radius);
+  font: inherit;
+  box-sizing: border-box;
+  background: #fff;
 }
 
 .pwa-wire-spec-page .pwa-wire-spec__meta {
@@ -990,6 +1228,7 @@ p {
   min-width: 5rem;
   width: 0;
   margin-top: 0;
+  height: 2.375rem;
 }
 
 .pwa-params__form .pwa-length-row select {
@@ -997,11 +1236,13 @@ p {
   width: auto;
   min-width: 6.5rem;
   margin-top: 0;
-  padding: 8px 10px;
+  height: 2.375rem;
+  padding: 0 10px;
   border: 1px solid var(--corp-border);
   border-radius: var(--corp-radius);
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   background: #fff;
+  box-sizing: border-box;
 }
 
 .pwa-grid-wrap {
@@ -1017,10 +1258,36 @@ p {
 
 .pwa-export {
   margin: 0 0 14px;
-  padding: 12px 14px;
   border: 1px solid var(--corp-border);
   border-radius: var(--corp-radius);
   background: #f8fafc;
+}
+
+.pwa-export__summary {
+  padding: 10px 14px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--corp-navy);
+  cursor: pointer;
+  list-style: none;
+}
+
+.pwa-export__summary::-webkit-details-marker {
+  display: none;
+}
+
+.pwa-export__summary::before {
+  content: '▸ ';
+  color: var(--corp-accent);
+}
+
+.pwa-export[open] .pwa-export__summary::before {
+  content: '▾ ';
+}
+
+.pwa-export__body {
+  padding: 0 14px 14px;
+  border-top: 1px solid var(--corp-border);
 }
 
 .pwa-export__note {
