@@ -19,13 +19,22 @@
     <a href="index.html" class="back-link">&larr; Aerospace Electrical Design</a>
 
     <h1>Power Wire Analysis</h1>
-    <p class="lead">
-      Interactive wire sizing grid (AWG 24–0000) with global parameters on the left and
-      per-gauge calculations on the right. Change any input to update the grid instantly.
+    <p class="lead pwa-page-lead">
+      Size and compare wire gauges (AWG 24–0000) for conductor temperature and voltage drop.
+      Set circuit parameters on the left; results update in the grid on the right.
     </p>
+    <ul class="pwa-page-hints" aria-label="How to use this calculator">
+      <li>Choose wire type, voltage, current, and de-rating factors in <strong>Parameters</strong>.</li>
+      <li>Scroll the grid horizontally to compare AWG columns.</li>
+      <li>Use <strong>Save &amp; restore project</strong> to export settings to Excel or import them back.</li>
+    </ul>
 
     <div class="pwa-layout">
       <aside class="pwa-params" aria-label="Calculation parameters">
+        <header class="pwa-params__header">
+          <h2>Parameters</h2>
+          <p>Changes apply immediately to every AWG column.</p>
+        </header>
         <form id="pwa-params-form" class="pwa-params__form">
           <fieldset class="pwa-fieldset">
             <legend>Wire &amp; circuit</legend>
@@ -166,48 +175,64 @@
       <section class="pwa-grid-wrap" aria-label="AWG calculation grid">
         <div class="pwa-grid-header">
           <div>
-            <h2 id="pwa-grid-title">Wire analysis grid</h2>
-            <p class="pwa-grid-note">Scroll horizontally for AWG columns; row labels stay fixed.</p>
+            <h2 id="pwa-grid-title">Analysis grid</h2>
+            <p class="pwa-grid-note">Row labels stay fixed while you scroll AWG columns.</p>
           </div>
         </div>
         <details class="pwa-export" id="pwa-export">
-          <summary class="pwa-export__summary">Export / Import</summary>
+          <summary class="pwa-export__summary">Save &amp; restore project</summary>
           <div class="pwa-export__body">
-            <p class="pwa-export__note">
-              Save a project to Excel and reload it later. <strong>Export all</strong> includes every parameter
-              plus the full AWG analysis table. Edit settings on the Parameters sheet, then import to restore.
-            </p>
             <label class="pwa-export__project">Project / circuit name
               <input type="text" id="pwa-project-name" name="projectName" placeholder="Optional — used in the filename">
             </label>
-            <fieldset class="pwa-export__options">
-              <legend class="visually-hidden">Export columns</legend>
-              <div class="pwa-export__checks">
-                <label class="pwa-export__check">
-                  <input type="checkbox" id="pwa-export-awg-all" checked>
-                  All AWG sizes
+
+            <div class="pwa-export__section">
+              <h3 class="pwa-export__heading">Export to Excel</h3>
+              <p class="pwa-export__hint">
+                <strong>Export all</strong> saves every parameter plus the full AWG table.
+                <strong>Export table</strong> saves the grid only (use the AWG options below).
+              </p>
+              <fieldset class="pwa-export__options">
+                <legend class="pwa-export__options-legend">Table export columns</legend>
+                <div class="pwa-export__checks">
+                  <label class="pwa-export__check">
+                    <input type="checkbox" id="pwa-export-awg-all" checked>
+                    All AWG sizes
+                  </label>
+                </div>
+                <div class="pwa-export__awg-group">
+                  <span class="pwa-export__awg-label">Or choose AWG columns</span>
+                  <div class="pwa-export__awg-checks" id="pwa-export-awg-checks"></div>
+                </div>
+              </fieldset>
+              <div class="pwa-export__btn-row">
+                <button type="button" class="btn pwa-export__btn" id="pwa-export-table">Export table</button>
+                <button type="button" class="btn pwa-export__btn" id="pwa-export-all">Export all</button>
+              </div>
+            </div>
+
+            <div class="pwa-export__section">
+              <h3 class="pwa-export__heading">Import from Excel</h3>
+              <p class="pwa-export__hint">
+                Use a workbook created with <strong>Export all</strong>. Edit values on the
+                <em>Parameters</em> sheet, then import to restore settings here.
+              </p>
+              <div class="pwa-export__btn-row pwa-export__btn-row--import">
+                <label class="btn pwa-export__btn pwa-export__import-btn">
+                  Import workbook
+                  <input type="file" id="pwa-import-workbook" accept=".xlsx,.xls" hidden>
                 </label>
               </div>
-              <div class="pwa-export__awg-group">
-                <span class="pwa-export__awg-label">AWG columns (table export only)</span>
-                <div class="pwa-export__awg-checks" id="pwa-export-awg-checks"></div>
-              </div>
-            </fieldset>
-            <div class="pwa-export__actions">
-              <button type="button" class="btn btn--small" id="pwa-export-table">Export table</button>
-              <button type="button" class="btn btn--small" id="pwa-export-all">Export all</button>
-              <label class="btn btn--small pwa-export__import-btn">
-                Import workbook
-                <input type="file" id="pwa-import-workbook" accept=".xlsx,.xls" hidden>
-              </label>
-              <span class="pwa-export__status" id="pwa-export-status" aria-live="polite"></span>
             </div>
+
+            <p class="pwa-export__status" id="pwa-export-status" aria-live="polite"></p>
+
             <details class="pwa-export__clipboard">
               <summary>Copy to clipboard</summary>
-              <p class="pwa-export__note">Paste into Word or Excel without saving a file.</p>
-              <div class="pwa-export__actions pwa-export__actions--secondary">
-                <button type="button" class="btn btn--small pwa-export__btn-secondary" id="pwa-copy-table">Copy table</button>
-                <button type="button" class="btn btn--small pwa-export__btn-secondary" id="pwa-copy-table-formulas">Copy with formulas</button>
+              <p class="pwa-export__hint">Paste into Word or Excel without saving a file.</p>
+              <div class="pwa-export__btn-row pwa-export__btn-row--secondary">
+                <button type="button" class="btn pwa-export__btn pwa-export__btn-secondary" id="pwa-copy-table">Copy table</button>
+                <button type="button" class="btn pwa-export__btn pwa-export__btn-secondary" id="pwa-copy-table-formulas">Copy with formulas</button>
               </div>
             </details>
           </div>
