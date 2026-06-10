@@ -878,6 +878,14 @@ p {
   letter-spacing: 0.04em;
 }
 
+.pwa-params__custom-tr {
+  margin-top: -6px;
+}
+
+.pwa-params__custom-tr[hidden] {
+  display: none;
+}
+
 .pwa-derived {
   font-size: 0.88rem;
   color: var(--corp-text-muted);
@@ -1494,6 +1502,19 @@ p {
 .pwa-bundle-chart__legend {
   font-size: 11px;
   fill: var(--corp-navy);
+}
+
+.pwa-free-air-chart-wrap--second {
+  margin-top: 24px;
+}
+
+.pwa-free-air-chart__wire-label {
+  font-size: 12px;
+  font-weight: 700;
+  stroke: #fff;
+  stroke-width: 4px;
+  paint-order: stroke fill;
+  pointer-events: none;
 }
 
 .pwa-bundle-chart__marker {

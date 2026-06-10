@@ -7,6 +7,7 @@
   <script src="../../assets/js/site-layout.js" defer></script>
   <script src="../../assets/js/pwa-bundle-derating.js" defer></script>
   <script src="../../assets/js/pwa-altitude-derating.js" defer></script>
+  <script src="../../assets/js/pwa-free-air.js" defer></script>
   <script src="../../assets/js/pwa-grid-calculator.js" defer></script>
   <title>Power Wire Analysis | Engineering Knowledge</title>
 </head>
@@ -39,8 +40,21 @@
               <input type="number" name="ambientTemp" step="0.1" value="50" required>
             </label>
             <label>Conductor temperature rating T<sub>R</sub> (&deg;C)
-              <input type="number" name="conductorTempRating" step="1" value="260" required>
+              <select name="conductorTempRatingPreset" id="pwa-conductor-tr-preset" required>
+                <option value="135">135 &deg;C</option>
+                <option value="150">150 &deg;C</option>
+                <option value="200">200 &deg;C</option>
+                <option value="260" selected>260 &deg;C</option>
+                <option value="custom">Custom&hellip;</option>
+              </select>
             </label>
+            <label class="pwa-params__custom-tr" id="pwa-conductor-tr-custom-wrap" hidden>
+              Custom T<sub>R</sub> (&deg;C)
+              <input type="number" name="conductorTempRatingCustom" id="pwa-conductor-tr-custom" step="1" min="1" value="260">
+            </label>
+            <p class="pwa-derived pwa-derived--note">
+              Insulation class per wire specification (AS50881 / datasheet).
+            </p>
             <label>T<sub>2</sub> calculation standard
               <select name="t2Standard" id="pwa-t2-standard">
                 <option value="arp4404" selected>SAE ARP4404C &sect;9.3.4.2</option>
@@ -54,6 +68,9 @@
 
           <fieldset class="pwa-fieldset">
             <legend>De-rating</legend>
+            <p class="pwa-chart-link">
+              <a href="free-air-chart.html" target="_blank" rel="noopener noreferrer">View free-air ampacity charts (Fig 11-4a &amp; 11-4b)</a>
+            </p>
             <label>Altitude de-rating (AC 43.13 Fig 11-6)
               <select name="altitudeFt" id="pwa-altitude-ft" required></select>
             </label>

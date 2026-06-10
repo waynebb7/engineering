@@ -35,22 +35,22 @@
   // AC 43.13-1B Fig 11-6 — see pwa-altitude-derating.js
 
   var WIRES = [
-    { label: '22', ohm1000ft: 17.92223997275819, freeAirA: 21 },
-    { label: '20', ohm1000ft: 9.99743998480389, freeAirA: 28 },
-    { label: '18', ohm1000ft: 6.339839990363444, freeAirA: 38 },
-    { label: '16', ohm1000ft: 4.389119993328538, freeAirA: 40 },
-    { label: '14', ohm1000ft: 3.230879995089062, freeAirA: 56 },
-    { label: '12', ohm1000ft: 2.0116799969422465, freeAirA: 71.5 },
-    { label: '10', ohm1000ft: 1.2588239980865876, freeAirA: 99 },
-    { label: '8', ohm1000ft: 0.7315199988880896, freeAirA: 160 },
-    { label: '6', ohm1000ft: 0.4785359992726253, freeAirA: 215 },
-    { label: '4', ohm1000ft: 0.2959607995501396, freeAirA: 295 },
-    { label: '2', ohm1000ft: 0.18470879971924264, freeAirA: 400 },
-    { label: '1', ohm1000ft: 0.152399999768352, freeAirA: 460 },
-    { label: '0', ohm1000ft: 0.11612879982348423, freeAirA: 540 },
-    { label: '00', ohm1000ft: 0.08839199986564415, freeAirA: 630 },
-    { label: '000', ohm1000ft: 0.07223759989019884, freeAirA: 740 },
-    { label: '0000', ohm1000ft: 0.057911999911973766, freeAirA: 920 }
+    { label: '22', ohm1000ft: 17.92223997275819 },
+    { label: '20', ohm1000ft: 9.99743998480389 },
+    { label: '18', ohm1000ft: 6.339839990363444 },
+    { label: '16', ohm1000ft: 4.389119993328538 },
+    { label: '14', ohm1000ft: 3.230879995089062 },
+    { label: '12', ohm1000ft: 2.0116799969422465 },
+    { label: '10', ohm1000ft: 1.2588239980865876 },
+    { label: '8', ohm1000ft: 0.7315199988880896 },
+    { label: '6', ohm1000ft: 0.4785359992726253 },
+    { label: '4', ohm1000ft: 0.2959607995501396 },
+    { label: '2', ohm1000ft: 0.18470879971924264 },
+    { label: '1', ohm1000ft: 0.152399999768352 },
+    { label: '0', ohm1000ft: 0.11612879982348423 },
+    { label: '00', ohm1000ft: 0.08839199986564415 },
+    { label: '000', ohm1000ft: 0.07223759989019884 },
+    { label: '0000', ohm1000ft: 0.057911999911973766 }
   ];
 
   var GRID_ROWS = [
@@ -94,6 +94,15 @@
     if (val === 0) return '0';
     if (val >= 0.001) return num(val, 6);
     return val.toExponential(4);
+  }
+
+  // AC 43.13-1B Fig 11-4a / 11-4b — see pwa-free-air.js
+  function freeAirCurrent(wire, ambientTemp, conductorRating) {
+    if (window.PwaFreeAir) {
+      var current = PwaFreeAir.freeAirCurrent(wire.label, ambientTemp, conductorRating);
+      if (current !== null) return current;
+    }
+    return 0;
   }
 
   function altitudeDeratingFactor(altitudeFt) {
@@ -198,6 +207,39 @@
     return 'T<sub>1</sub> + (T<sub>R</sub> &minus; T<sub>1</sub>) &times; (I/I<sub>max</sub>)&sup2;';
   }
 
+  function readConductorTempRating(form) {
+    var presetEl = form.elements.conductorTempRatingPreset;
+    if (presetEl && presetEl.value !== 'custom') {
+      return parseFloat(presetEl.value, 10);
+    }
+    var customEl = form.elements.conductorTempRatingCustom;
+    return customEl ? parseFloat(customEl.value, 10) : 260;
+  }
+
+  function updateConductorTempRatingCustomVisibility(form) {
+    var presetEl = form.elements.conductorTempRatingPreset;
+    var wrap = document.getElementById('pwa-conductor-tr-custom-wrap');
+    var customEl = form.elements.conductorTempRatingCustom;
+    if (!presetEl || !wrap) return;
+
+    var isCustom = presetEl.value === 'custom';
+    wrap.hidden = !isCustom;
+    if (customEl) {
+      customEl.required = isCustom;
+    }
+  }
+
+  function initConductorTempRatingControls(form) {
+    var presetEl = form.elements.conductorTempRatingPreset;
+    if (!presetEl) return;
+
+    updateConductorTempRatingCustomVisibility(form);
+    presetEl.addEventListener('change', function () {
+      updateConductorTempRatingCustomVisibility(form);
+      recalc();
+    });
+  }
+
   function readParams(form) {
     function f(name) {
       return parseFloat(form.elements[name].value, 10);
@@ -225,7 +267,7 @@
       circuitCurrent: circuitCurrent,
       allowableDrop: f('allowableDrop'),
       ambientTemp: f('ambientTemp'),
-      conductorTempRating: f('conductorTempRating'),
+      conductorTempRating: readConductorTempRating(form),
       altitudeFt: altitudeFt,
       altitudeDerating: altitudeDerating,
       bundleWireCount: bundleWireCount,
@@ -246,7 +288,7 @@
     var T1 = params.ambientTemp;
     var TR = params.conductorTempRating;
     var L1 = U / (I * Rft);
-    var freeAir = wire.freeAirA;
+    var freeAir = freeAirCurrent(wire, T1, TR);
     var bundle = params.bundleDerating;
     var altitude = params.altitudeDerating;
     var Imax = freeAir * bundle * altitude;
@@ -381,7 +423,7 @@
       case 'IfreePct':
         return '=' + ref('I') + '/' + ref('freeAir') + '*100';
       case 'freeAir':
-        return excelRawValue(wire.freeAirA);
+        return excelRawValue(col.freeAir);
       case 'bundle':
         return excelRawValue(params.bundleDerating);
       case 'altitude':
@@ -897,6 +939,7 @@
     updateGridTitle();
     initExportControls();
     initAllowableDropControls(form);
+    initConductorTempRatingControls(form);
     initAltitudeSelect(form);
 
     var unitEl = form.elements.wireLengthUnit;
