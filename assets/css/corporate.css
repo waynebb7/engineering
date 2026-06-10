@@ -909,6 +909,83 @@ p {
   font-size: 0.88rem;
 }
 
+.pwa-export {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px 20px;
+  margin: 0 0 14px;
+  padding: 12px 14px;
+  border: 1px solid var(--corp-border);
+  border-radius: var(--corp-radius);
+  background: #f8fafc;
+}
+
+.pwa-export__options {
+  flex: 1 1 280px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.pwa-export__options legend {
+  padding: 0;
+  margin: 0 0 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--corp-navy);
+}
+
+.pwa-export__checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+}
+
+.pwa-export__check {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--corp-text);
+  cursor: pointer;
+}
+
+.pwa-export__check input {
+  margin: 0;
+  cursor: pointer;
+}
+
+.pwa-export__check--all {
+  font-weight: 700;
+  color: var(--corp-navy);
+}
+
+.pwa-export__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.pwa-export__status {
+  font-size: 0.82rem;
+  color: var(--corp-text-muted);
+}
+
+.pwa-export__status--ok {
+  color: #166534;
+  font-weight: 600;
+}
+
+.pwa-export__status--error {
+  color: #b42318;
+  font-weight: 600;
+}
+
 .pwa-grid-scroll {
   overflow: hidden;
   max-width: 100%;
