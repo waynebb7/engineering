@@ -976,6 +976,31 @@ p {
   color: var(--corp-navy);
 }
 
+.pwa-export__awg-group {
+  flex: 1 1 100%;
+  margin-top: 4px;
+}
+
+.pwa-export__awg-label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--corp-navy);
+}
+
+.pwa-export__awg-checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  margin-top: 6px;
+  padding-top: 8px;
+  border-top: 1px solid var(--corp-border);
+}
+
+.pwa-export__check--awg {
+  font-size: 0.78rem;
+}
+
 .pwa-export__actions {
   display: flex;
   flex-wrap: wrap;
@@ -1043,16 +1068,15 @@ p {
   font-size: 0.78rem;
   --pwa-label-b-width: 360px;
   --pwa-label-c-width: 52px;
-  --pwa-eq-width: 28px;
   --pwa-unit-width: 88px;
 }
 
 .pwa-grid--frozen {
-  width: calc(var(--pwa-label-b-width) + var(--pwa-label-c-width) + var(--pwa-eq-width));
+  width: calc(var(--pwa-label-b-width) + var(--pwa-label-c-width));
   table-layout: fixed;
 }
 
-.pwa-grid--frozen .pwa-grid__eq {
+.pwa-grid--frozen .pwa-grid__label-c {
   border-right: none;
 }
 
@@ -1123,14 +1147,6 @@ p {
   font-weight: 600;
 }
 
-.pwa-grid__eq {
-  width: var(--pwa-eq-width);
-  min-width: var(--pwa-eq-width);
-  text-align: center;
-  background: #f8fafc;
-  color: var(--corp-text-muted);
-}
-
 .pwa-grid__awg,
 .pwa-grid__val {
   text-align: center;
@@ -1153,8 +1169,7 @@ p {
 }
 
 .pwa-grid__row:nth-child(even):not(.pwa-grid__row--blank) th.pwa-grid__label-b,
-.pwa-grid__row:nth-child(even):not(.pwa-grid__row--blank) td.pwa-grid__label-c,
-.pwa-grid__row:nth-child(even):not(.pwa-grid__row--blank) td.pwa-grid__eq {
+.pwa-grid__row:nth-child(even):not(.pwa-grid__row--blank) td.pwa-grid__label-c {
   background: #eef2f7;
   color: var(--corp-navy);
 }
@@ -1188,7 +1203,6 @@ p {
 
 .pwa-grid__row--vdrop th.pwa-grid__label-b,
 .pwa-grid__row--vdrop td.pwa-grid__label-c,
-.pwa-grid__row--vdrop td.pwa-grid__eq,
 .pwa-grid__row--vdrop td.pwa-grid__val,
 .pwa-grid__row--vdrop td.pwa-grid__unit {
   background: #f4f7fb;
@@ -1196,7 +1210,6 @@ p {
 
 .pwa-grid__row--vdrop:nth-child(even) th.pwa-grid__label-b,
 .pwa-grid__row--vdrop:nth-child(even) td.pwa-grid__label-c,
-.pwa-grid__row--vdrop:nth-child(even) td.pwa-grid__eq,
 .pwa-grid__row--vdrop:nth-child(even) td.pwa-grid__val,
 .pwa-grid__row--vdrop:nth-child(even) td.pwa-grid__unit {
   background: #eef2f7;
@@ -1204,7 +1217,6 @@ p {
 
 .pwa-grid tr:hover .pwa-grid__label-b,
 .pwa-grid tr:hover .pwa-grid__label-c,
-.pwa-grid tr:hover .pwa-grid__eq,
 .pwa-grid tr:hover .pwa-grid__unit,
 .pwa-grid tr:hover .pwa-grid__val,
 .pwa-grid tr:hover .pwa-grid__awg {

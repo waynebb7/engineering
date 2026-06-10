@@ -104,12 +104,8 @@
                 Symbol
               </label>
               <label class="pwa-export__check">
-                <input type="checkbox" name="exportCol" value="eq" checked>
-                =
-              </label>
-              <label class="pwa-export__check">
-                <input type="checkbox" name="exportCol" value="awg" checked>
-                AWG values
+                <input type="checkbox" id="pwa-export-awg-all" checked>
+                All AWG sizes
               </label>
               <label class="pwa-export__check">
                 <input type="checkbox" name="exportCol" value="unit" checked>
@@ -119,6 +115,10 @@
                 <input type="checkbox" id="pwa-export-all" checked>
                 All columns
               </label>
+            </div>
+            <div class="pwa-export__awg-group">
+              <span class="pwa-export__awg-label">AWG columns</span>
+              <div class="pwa-export__awg-checks" id="pwa-export-awg-checks"></div>
             </div>
           </fieldset>
           <div class="pwa-export__actions">
