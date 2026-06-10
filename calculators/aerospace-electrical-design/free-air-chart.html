@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="../../assets/css/corporate.css">
   <script src="../../assets/js/site-layout.js" defer></script>
   <script src="../../assets/js/pwa-free-air.js" defer></script>
+  <script src="../../assets/js/pwa-conductor-tr-controls.js" defer></script>
   <script src="../../assets/js/pwa-free-air-chart.js" defer></script>
   <title>Free-air ampacity charts (AC 43.13 Fig 11-4) | Engineering Knowledge</title>
 </head>
@@ -154,8 +155,18 @@
         <label>Ambient T<sub>1</sub> (&deg;C)
           <input type="number" id="pwa-free-air-chart-t1" step="0.1" value="50">
         </label>
-        <label>Conductor rating T<sub>R</sub> (&deg;C)
-          <input type="number" id="pwa-free-air-chart-tr" step="1" value="260">
+        <label>Conductor temperature rating T<sub>R</sub> (&deg;C)
+          <select id="pwa-free-air-chart-tr-preset">
+            <option value="135">135 &deg;C</option>
+            <option value="150">150 &deg;C</option>
+            <option value="200">200 &deg;C</option>
+            <option value="260" selected>260 &deg;C</option>
+            <option value="custom">Custom&hellip;</option>
+          </select>
+        </label>
+        <label class="pwa-params__custom-field" id="pwa-free-air-chart-tr-custom-wrap" hidden>
+          Custom T<sub>R</sub> (&deg;C)
+          <input type="number" id="pwa-free-air-chart-tr-custom" step="1" min="1" value="260">
         </label>
         <p class="pwa-bundle-chart-point" id="pwa-free-air-chart-point-value">—</p>
       </div>

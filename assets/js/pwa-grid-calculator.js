@@ -226,35 +226,30 @@
   }
 
   function readConductorTempRating(form) {
-    var presetEl = form.elements.conductorTempRatingPreset;
-    if (presetEl && presetEl.value !== 'custom') {
-      return parseFloat(presetEl.value, 10);
-    }
-    var customEl = form.elements.conductorTempRatingCustom;
-    return customEl ? parseFloat(customEl.value, 10) : 260;
+    if (!window.PwaConductorTrControls) return 260;
+    return PwaConductorTrControls.readConductorTempRating(
+      form.elements.conductorTempRatingPreset,
+      form.elements.conductorTempRatingCustom,
+      260
+    );
   }
 
   function updateConductorTempRatingCustomVisibility(form) {
-    var presetEl = form.elements.conductorTempRatingPreset;
-    var wrap = document.getElementById('pwa-conductor-tr-custom-wrap');
-    var customEl = form.elements.conductorTempRatingCustom;
-    if (!presetEl || !wrap) return;
-
-    var isCustom = presetEl.value === 'custom';
-    wrap.hidden = !isCustom;
-    if (customEl) {
-      customEl.required = isCustom;
-    }
+    if (!window.PwaConductorTrControls) return;
+    PwaConductorTrControls.updateCustomVisibility(
+      form.elements.conductorTempRatingPreset,
+      document.getElementById('pwa-conductor-tr-custom-wrap'),
+      form.elements.conductorTempRatingCustom
+    );
   }
 
   function initConductorTempRatingControls(form) {
-    var presetEl = form.elements.conductorTempRatingPreset;
-    if (!presetEl) return;
-
-    updateConductorTempRatingCustomVisibility(form);
-    presetEl.addEventListener('change', function () {
-      updateConductorTempRatingCustomVisibility(form);
-      recalc();
+    if (!window.PwaConductorTrControls) return;
+    PwaConductorTrControls.initConductorTempRatingControls({
+      presetEl: form.elements.conductorTempRatingPreset,
+      customWrapEl: document.getElementById('pwa-conductor-tr-custom-wrap'),
+      customEl: form.elements.conductorTempRatingCustom,
+      onChange: recalc
     });
   }
 
@@ -292,14 +287,14 @@
     if (!presetEl) return;
 
     var defaultRating = String(wireType.defaultConductorTempRating);
-    var presetValues = ['135', '150', '200', '260'];
-    if (presetValues.indexOf(defaultRating) !== -1) {
-      presetEl.value = defaultRating;
-    } else {
-      presetEl.value = 'custom';
-      if (customEl) customEl.value = defaultRating;
+    if (window.PwaConductorTrControls) {
+      PwaConductorTrControls.setConductorTempRating(
+        presetEl,
+        customEl,
+        document.getElementById('pwa-conductor-tr-custom-wrap'),
+        defaultRating
+      );
     }
-    updateConductorTempRatingCustomVisibility(form);
   }
 
   function initWireTypeControls(form) {

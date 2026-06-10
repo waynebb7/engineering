@@ -322,14 +322,23 @@
   function initControls() {
     var awgEl = document.getElementById('pwa-free-air-chart-awg');
     var t1El = document.getElementById('pwa-free-air-chart-t1');
-    var trEl = document.getElementById('pwa-free-air-chart-tr');
+    var trPresetEl = document.getElementById('pwa-free-air-chart-tr-preset');
+    var trCustomWrapEl = document.getElementById('pwa-free-air-chart-tr-custom-wrap');
+    var trCustomEl = document.getElementById('pwa-free-air-chart-tr-custom');
     var valueEl = document.getElementById('pwa-free-air-chart-point-value');
-    if (!awgEl || !t1El || !trEl || !valueEl) return;
+    if (!awgEl || !t1El || !trPresetEl || !valueEl) return;
+
+    function readConductorRating() {
+      if (window.PwaConductorTrControls) {
+        return PwaConductorTrControls.readConductorTempRating(trPresetEl, trCustomEl, 260);
+      }
+      return 260;
+    }
 
     function refresh() {
       var awg = awgEl.value;
       var t1 = parseFloat(t1El.value, 10);
-      var tr = parseFloat(trEl.value, 10);
+      var tr = readConductorRating();
       var wire = PwaFreeAir.findWire(awg);
       var markerA = updateMarker('11-4a', awg, t1, tr);
       var markerB = updateMarker('11-4b', awg, t1, tr);
@@ -352,9 +361,17 @@
         formatNum(current, 2) + ' A' + rangeNote;
     }
 
+    if (window.PwaConductorTrControls) {
+      PwaConductorTrControls.initConductorTempRatingControls({
+        presetEl: trPresetEl,
+        customWrapEl: trCustomWrapEl,
+        customEl: trCustomEl,
+        onChange: refresh
+      });
+    }
+
     awgEl.addEventListener('change', refresh);
     t1El.addEventListener('input', refresh);
-    trEl.addEventListener('input', refresh);
     refresh();
   }
 

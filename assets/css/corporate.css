@@ -1512,10 +1512,14 @@ p {
 .pwa-bundle-chart-controls input,
 .pwa-bundle-chart-controls select {
   min-width: 120px;
-  padding: 8px 10px;
+  height: 2.375rem;
+  padding: 0 10px;
   border: 1px solid var(--corp-border);
   border-radius: var(--corp-radius);
   font: inherit;
+  line-height: 1.25;
+  box-sizing: border-box;
+  background: #fff;
 }
 
 .pwa-bundle-chart-point {
