@@ -9,6 +9,14 @@
   var WIRE_TYPE_LABEL = '';
   var lastGridColumns = [];
 
+  // AC 43.13-1B Fig 11-5 — see pwa-bundle-derating.js
+  function bundleDeratingFactor(wireCount, loadingPct) {
+    if (window.PwaBundleDerating) {
+      return PwaBundleDerating.bundleDeratingFactor(wireCount, loadingPct);
+    }
+    return 1;
+  }
+
   var ALLOWABLE_DROPS = {
     continuous: [
       { nominal: 14, drop: 0.5 },
@@ -223,6 +231,9 @@
     var circuitCurrent = f('circuitCurrent');
     var altitudeFt = parseInt(form.elements.altitudeFt.value, 10);
     var altitudeDerating = altitudeDeratingFactor(altitudeFt);
+    var bundleWireCount = parseInt(form.elements.bundleWireCount.value, 10);
+    var bundleLoadingPct = parseInt(form.elements.bundleLoadingPct.value, 10);
+    var bundleDerating = bundleDeratingFactor(bundleWireCount, bundleLoadingPct);
 
     return {
       generatorLineVoltage: generatorLineVoltage,
@@ -232,7 +243,9 @@
       conductorTempRating: f('conductorTempRating'),
       altitudeFt: altitudeFt,
       altitudeDerating: altitudeDerating,
-      bundleDerating: f('bundleDerating'),
+      bundleWireCount: bundleWireCount,
+      bundleLoadingPct: bundleLoadingPct,
+      bundleDerating: bundleDerating,
       wireLengthFt: wireLengthFt,
       wireLengthIn: totalIn,
       wireLengthM: wireLengthFt * FT_TO_M
@@ -794,7 +807,19 @@
       dataHtml += '<tr class="' + rowClass + '" data-row="' + excelRow + '">';
       columns.forEach(function (col) {
         var val = col[row.key];
-        dataHtml += '<td class="pwa-grid__val">' + formatCell(row, val) + '</td>';
+        var cellClass = 'pwa-grid__val';
+        if (typeof val === 'number' && isFinite(val)) {
+          if (row.key === 'Vdrop') {
+            cellClass += val <= params.allowableDrop
+              ? ' pwa-grid__val--pass'
+              : ' pwa-grid__val--fail';
+          } else if (row.key === 'T2') {
+            cellClass += val <= params.conductorTempRating
+              ? ' pwa-grid__val--pass'
+              : ' pwa-grid__val--fail';
+          }
+        }
+        dataHtml += '<td class="' + cellClass + '">' + formatCell(row, val) + '</td>';
       });
       dataHtml += '</tr>';
 
@@ -843,9 +868,11 @@
     var ftEl = document.getElementById('pwa-wire-length-ft');
     var mEl = document.getElementById('pwa-wire-length-m');
     var altEl = document.getElementById('pwa-altitude-factor');
+    var bundleEl = document.getElementById('pwa-bundle-factor');
     if (ftEl) ftEl.textContent = num(params.wireLengthFt, 2);
     if (mEl) mEl.textContent = num(params.wireLengthM, 3);
     if (altEl) altEl.textContent = num(params.altitudeDerating, 4);
+    if (bundleEl) bundleEl.textContent = num(params.bundleDerating, 4);
   }
 
   function recalc() {

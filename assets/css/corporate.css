@@ -884,6 +884,21 @@ p {
   margin: 4px 0 0;
 }
 
+.pwa-chart-link {
+  margin: 10px 0 0;
+  font-size: 0.84rem;
+}
+
+.pwa-chart-link a {
+  color: var(--corp-accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.pwa-chart-link a:hover {
+  text-decoration: underline;
+}
+
 .pwa-length-row {
   display: flex;
   gap: 8px;
@@ -1233,6 +1248,32 @@ p {
   background: #eef2f7;
 }
 
+.pwa-grid td.pwa-grid__val--pass,
+.pwa-grid__row--vdrop td.pwa-grid__val--pass,
+.pwa-grid__row--vdrop:nth-child(even) td.pwa-grid__val--pass {
+  color: #047857;
+  background: #bbf7d0;
+  font-weight: 700;
+}
+
+.pwa-grid td.pwa-grid__val--fail,
+.pwa-grid__row--vdrop td.pwa-grid__val--fail,
+.pwa-grid__row--vdrop:nth-child(even) td.pwa-grid__val--fail {
+  color: #b91c1c;
+  background: #fecaca;
+  font-weight: 700;
+}
+
+.pwa-grid tr:hover td.pwa-grid__val--pass {
+  color: #047857;
+  background: #86efac;
+}
+
+.pwa-grid tr:hover td.pwa-grid__val--fail {
+  color: #b91c1c;
+  background: #fca5a5;
+}
+
 .pwa-grid tr:hover .pwa-grid__label-b,
 .pwa-grid tr:hover .pwa-grid__label-c,
 .pwa-grid tr:hover .pwa-grid__unit,
@@ -1249,6 +1290,215 @@ p {
   .pwa-params {
     position: static;
   }
+}
+
+.pwa-bundle-chart-page h1 {
+  margin-bottom: 0.35rem;
+}
+
+.pwa-bundle-chart-formula {
+  margin: 20px 0;
+  background: var(--corp-surface);
+  border: 1px solid var(--corp-border);
+  border-radius: var(--corp-radius-lg);
+  box-shadow: var(--corp-shadow);
+}
+
+.pwa-bundle-chart-formula__summary {
+  padding: 14px 18px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--corp-navy);
+  cursor: pointer;
+  list-style: none;
+}
+
+.pwa-bundle-chart-formula__summary::-webkit-details-marker {
+  display: none;
+}
+
+.pwa-bundle-chart-formula__summary::before {
+  content: '▸';
+  display: inline-block;
+  margin-right: 8px;
+  transition: transform 0.15s ease;
+}
+
+.pwa-bundle-chart-formula[open] > .pwa-bundle-chart-formula__summary::before {
+  transform: rotate(90deg);
+}
+
+.pwa-bundle-chart-formula__summary:hover {
+  color: var(--corp-accent);
+}
+
+.pwa-bundle-chart-formula__body {
+  padding: 14px 18px 16px;
+  border-top: 1px solid var(--corp-border);
+}
+
+.pwa-bundle-chart-formula__subhead {
+  margin: 18px 0 8px;
+  font-size: 0.92rem;
+  color: var(--corp-navy);
+}
+
+.pwa-bundle-chart-formula__eq {
+  margin: 14px 0;
+}
+
+.pwa-bundle-chart-formula__math {
+  font-family: 'Cambria Math', 'Times New Roman', serif;
+  font-size: 1.05rem;
+}
+
+.pwa-bundle-chart-formula__defs {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--corp-text);
+}
+
+.pwa-bundle-chart-formula__defs dt {
+  margin-top: 10px;
+  font-weight: 600;
+  color: var(--corp-navy);
+}
+
+.pwa-bundle-chart-formula__defs dt:first-child {
+  margin-top: 0;
+}
+
+.pwa-bundle-chart-formula__defs dd {
+  margin: 4px 0 0;
+  color: var(--corp-text-muted);
+  line-height: 1.55;
+}
+
+.pwa-bundle-chart-formula__table {
+  width: 100%;
+  max-width: 360px;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  margin-top: 8px;
+}
+
+.pwa-bundle-chart-formula__table th,
+.pwa-bundle-chart-formula__table td {
+  border: 1px solid var(--corp-border);
+  padding: 6px 10px;
+  text-align: left;
+}
+
+.pwa-bundle-chart-formula__table th {
+  background: #eef4fa;
+  color: var(--corp-navy);
+  font-weight: 600;
+}
+
+.pwa-bundle-chart-formula__example {
+  margin: 0;
+  padding: 12px 14px;
+  background: #f8fafc;
+  border-radius: var(--corp-radius);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--corp-text);
+}
+
+.pwa-bundle-chart-panel {
+  background: var(--corp-surface);
+  border: 1px solid var(--corp-border);
+  border-radius: var(--corp-radius-lg);
+  box-shadow: var(--corp-shadow);
+  padding: 18px 20px 24px;
+}
+
+.pwa-bundle-chart-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+  align-items: flex-end;
+  margin-bottom: 16px;
+}
+
+.pwa-bundle-chart-controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--corp-navy);
+}
+
+.pwa-bundle-chart-controls input,
+.pwa-bundle-chart-controls select {
+  min-width: 120px;
+  padding: 8px 10px;
+  border: 1px solid var(--corp-border);
+  border-radius: var(--corp-radius);
+  font: inherit;
+}
+
+.pwa-bundle-chart-point {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--corp-text-muted);
+  align-self: center;
+}
+
+.pwa-bundle-chart-wrap {
+  overflow-x: auto;
+}
+
+.pwa-bundle-chart {
+  display: block;
+  width: 100%;
+  min-width: 640px;
+  height: auto;
+}
+
+.pwa-bundle-chart__title {
+  font-size: 14px;
+  font-weight: 700;
+  fill: var(--corp-navy);
+}
+
+.pwa-bundle-chart__axis {
+  stroke: var(--corp-navy);
+  stroke-width: 1.5;
+}
+
+.pwa-bundle-chart__axis-label {
+  font-size: 11px;
+  font-weight: 700;
+  fill: var(--corp-navy);
+  letter-spacing: 0.04em;
+}
+
+.pwa-bundle-chart__tick {
+  font-size: 10px;
+  fill: var(--corp-text-muted);
+}
+
+.pwa-bundle-chart__grid-major {
+  stroke: #c5d0dc;
+  stroke-width: 1;
+}
+
+.pwa-bundle-chart__grid-minor {
+  stroke: #e3e9ef;
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+}
+
+.pwa-bundle-chart__legend {
+  font-size: 11px;
+  fill: var(--corp-navy);
+}
+
+.pwa-bundle-chart__marker {
+  stroke: #fff;
+  stroke-width: 2;
 }
 
 .documents-page .documents-section:first-child {

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../../assets/css/corporate.css">
   <script src="../../assets/js/site-layout.js" defer></script>
+  <script src="../../assets/js/pwa-bundle-derating.js" defer></script>
   <script src="../../assets/js/pwa-grid-calculator.js" defer></script>
   <title>Power Wire Analysis | Engineering Knowledge</title>
 </head>
@@ -50,9 +51,25 @@
               De-rating factor:
               <strong id="pwa-altitude-factor">—</strong>
             </p>
-            <label>Bundle de-rating (3 wires @ 100% load)
-              <input type="number" name="bundleDerating" step="0.01" min="0" max="1" value="0.75" required>
+            <label>Number of wires in bundle
+              <input type="number" name="bundleWireCount" step="1" min="1" max="41" value="3" required>
             </label>
+            <label>Bundle loading (AC 43.13 Fig 11-5)
+              <select name="bundleLoadingPct" id="pwa-bundle-loading" required>
+                <option value="20">20%</option>
+                <option value="40">40%</option>
+                <option value="60">60%</option>
+                <option value="80">80%</option>
+                <option value="100" selected>100%</option>
+              </select>
+            </label>
+            <p class="pwa-derived">
+              Bundle de-rating factor:
+              <strong id="pwa-bundle-factor">—</strong>
+            </p>
+            <p class="pwa-chart-link">
+              <a href="bundle-derating-chart.html" target="_blank" rel="noopener noreferrer">View bundle derating chart (Fig 11-5)</a>
+            </p>
           </fieldset>
 
           <fieldset class="pwa-fieldset">
