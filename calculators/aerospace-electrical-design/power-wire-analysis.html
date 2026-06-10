@@ -8,6 +8,7 @@
   <script src="../../assets/js/pwa-bundle-derating.js" defer></script>
   <script src="../../assets/js/pwa-altitude-derating.js" defer></script>
   <script src="../../assets/js/pwa-free-air.js" defer></script>
+  <script src="../../assets/js/pwa-wire-catalog.js" defer></script>
   <script src="../../assets/js/pwa-grid-calculator.js" defer></script>
   <title>Power Wire Analysis | Engineering Knowledge</title>
 </head>
@@ -27,15 +28,41 @@
         <form id="pwa-params-form" class="pwa-params__form">
           <fieldset class="pwa-fieldset">
             <legend>Electrical</legend>
+            <label>Wire type
+              <select name="wireType" id="pwa-wire-type" required></select>
+            </label>
+            <p class="pwa-chart-link">
+              <a href="wire-specification.html?wire=kp260" id="pwa-wire-spec-link" target="_blank" rel="noopener noreferrer">View wire specification</a>
+            </p>
             <label>Voltage (V)
-              <input type="number" name="generatorLineVoltage" step="0.01" value="209.95" required>
+              <select name="generatorLineVoltagePreset" id="pwa-voltage-preset" required>
+                <option value="5">5 V</option>
+                <option value="26">26 V</option>
+                <option value="28">28 V</option>
+                <option value="115">115 V</option>
+                <option value="200" selected>200 V</option>
+                <option value="custom">Custom&hellip;</option>
+              </select>
+            </label>
+            <label class="pwa-params__custom-field" id="pwa-voltage-custom-wrap" hidden>
+              Custom voltage (V)
+              <input type="number" name="generatorLineVoltageCustom" id="pwa-voltage-custom" step="0.01" min="0" value="200">
             </label>
             <label>Circuit current (A)
               <input type="number" name="circuitCurrent" step="0.01" min="0" value="72" required>
             </label>
-            <label>Allowable voltage drop U (V)
-              <select name="allowableDrop" id="pwa-allowable-drop" required></select>
-            </label>
+            <div class="pwa-params__group" role="group" aria-labelledby="pwa-vdrop-group-label">
+              <span class="pwa-params__group-label" id="pwa-vdrop-group-label">Allowable voltage drop</span>
+              <label>Operation basis
+                <select name="operationType" id="pwa-operation-type">
+                  <option value="continuous" selected>Continuous operation</option>
+                  <option value="intermittent">Intermittent operation</option>
+                </select>
+              </label>
+              <label>Limit U (V)
+                <select name="allowableDrop" id="pwa-allowable-drop" required></select>
+              </label>
+            </div>
             <label>Ambient temperature T<sub>1</sub> (&deg;C)
               <input type="number" name="ambientTemp" step="0.1" value="50" required>
             </label>
@@ -48,7 +75,7 @@
                 <option value="custom">Custom&hellip;</option>
               </select>
             </label>
-            <label class="pwa-params__custom-tr" id="pwa-conductor-tr-custom-wrap" hidden>
+            <label class="pwa-params__custom-field" id="pwa-conductor-tr-custom-wrap" hidden>
               Custom T<sub>R</sub> (&deg;C)
               <input type="number" name="conductorTempRatingCustom" id="pwa-conductor-tr-custom" step="1" min="1" value="260">
             </label>
@@ -121,16 +148,6 @@
               <strong id="pwa-wire-length-ft">—</strong> ft
               (<span id="pwa-wire-length-m">—</span> m)
             </p>
-          </fieldset>
-
-          <fieldset class="pwa-fieldset">
-            <legend>Operation</legend>
-            <label>Allowable voltage drop basis
-              <select name="operationType" id="pwa-operation-type">
-                <option value="continuous" selected>Continuous operation</option>
-                <option value="intermittent">Intermittent operation</option>
-              </select>
-            </label>
           </fieldset>
         </form>
       </aside>

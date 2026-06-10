@@ -7,6 +7,7 @@
   var IN_TO_M = 0.0254;
 
   var WIRE_TYPE_LABEL = '';
+  var currentWireTypeId = 'kp260';
   var lastGridColumns = [];
 
   // AC 43.13-1B Fig 11-5 — see pwa-bundle-derating.js
@@ -34,24 +35,8 @@
 
   // AC 43.13-1B Fig 11-6 — see pwa-altitude-derating.js
 
-  var WIRES = [
-    { label: '22', ohm1000ft: 17.92223997275819 },
-    { label: '20', ohm1000ft: 9.99743998480389 },
-    { label: '18', ohm1000ft: 6.339839990363444 },
-    { label: '16', ohm1000ft: 4.389119993328538 },
-    { label: '14', ohm1000ft: 3.230879995089062 },
-    { label: '12', ohm1000ft: 2.0116799969422465 },
-    { label: '10', ohm1000ft: 1.2588239980865876 },
-    { label: '8', ohm1000ft: 0.7315199988880896 },
-    { label: '6', ohm1000ft: 0.4785359992726253 },
-    { label: '4', ohm1000ft: 0.2959607995501396 },
-    { label: '2', ohm1000ft: 0.18470879971924264 },
-    { label: '1', ohm1000ft: 0.152399999768352 },
-    { label: '0', ohm1000ft: 0.11612879982348423 },
-    { label: '00', ohm1000ft: 0.08839199986564415 },
-    { label: '000', ohm1000ft: 0.07223759989019884 },
-    { label: '0000', ohm1000ft: 0.057911999911973766 }
-  ];
+  // Resistance per AWG from manufacturer datasheet — see pwa-wire-catalog.js
+  var WIRES = [];
 
   var GRID_ROWS = [
     { key: 'awg', labelB: 'Cable size (AWG)', labelC: 'AWG', unit: '', fmt: 'awg' },
@@ -207,6 +192,39 @@
     return 'T<sub>1</sub> + (T<sub>R</sub> &minus; T<sub>1</sub>) &times; (I/I<sub>max</sub>)&sup2;';
   }
 
+  function readGeneratorLineVoltage(form) {
+    var presetEl = form.elements.generatorLineVoltagePreset;
+    if (presetEl && presetEl.value !== 'custom') {
+      return parseFloat(presetEl.value, 10);
+    }
+    var customEl = form.elements.generatorLineVoltageCustom;
+    return customEl ? parseFloat(customEl.value, 10) : 200;
+  }
+
+  function updateGeneratorLineVoltageCustomVisibility(form) {
+    var presetEl = form.elements.generatorLineVoltagePreset;
+    var wrap = document.getElementById('pwa-voltage-custom-wrap');
+    var customEl = form.elements.generatorLineVoltageCustom;
+    if (!presetEl || !wrap) return;
+
+    var isCustom = presetEl.value === 'custom';
+    wrap.hidden = !isCustom;
+    if (customEl) {
+      customEl.required = isCustom;
+    }
+  }
+
+  function initGeneratorLineVoltageControls(form) {
+    var presetEl = form.elements.generatorLineVoltagePreset;
+    if (!presetEl) return;
+
+    updateGeneratorLineVoltageCustomVisibility(form);
+    presetEl.addEventListener('change', function () {
+      updateGeneratorLineVoltageCustomVisibility(form);
+      recalc();
+    });
+  }
+
   function readConductorTempRating(form) {
     var presetEl = form.elements.conductorTempRatingPreset;
     if (presetEl && presetEl.value !== 'custom') {
@@ -240,6 +258,77 @@
     });
   }
 
+  function applyWireType(wireTypeId) {
+    if (!window.PwaWireCatalog) return false;
+
+    var wireType = PwaWireCatalog.getWireType(wireTypeId);
+    if (!wireType) return false;
+
+    currentWireTypeId = wireTypeId;
+    WIRE_TYPE_LABEL = wireType.label;
+    WIRES = PwaWireCatalog.getWireRows(wireTypeId);
+    return true;
+  }
+
+  function updateWireSpecLink(wireTypeId) {
+    var linkEl = document.getElementById('pwa-wire-spec-link');
+    if (!linkEl || !window.PwaWireCatalog) return;
+
+    var wireType = PwaWireCatalog.getWireType(wireTypeId);
+    if (!wireType) return;
+
+    linkEl.href = wireType.specPage;
+    linkEl.textContent = 'View ' + wireType.label + ' specification';
+  }
+
+  function syncConductorTempRatingForWireType(form, wireTypeId) {
+    if (!window.PwaWireCatalog || !form) return;
+
+    var wireType = PwaWireCatalog.getWireType(wireTypeId);
+    if (!wireType || typeof wireType.defaultConductorTempRating !== 'number') return;
+
+    var presetEl = form.elements.conductorTempRatingPreset;
+    var customEl = form.elements.conductorTempRatingCustom;
+    if (!presetEl) return;
+
+    var defaultRating = String(wireType.defaultConductorTempRating);
+    var presetValues = ['135', '150', '200', '260'];
+    if (presetValues.indexOf(defaultRating) !== -1) {
+      presetEl.value = defaultRating;
+    } else {
+      presetEl.value = 'custom';
+      if (customEl) customEl.value = defaultRating;
+    }
+    updateConductorTempRatingCustomVisibility(form);
+  }
+
+  function initWireTypeControls(form) {
+    var selectEl = form.elements.wireType;
+    if (!selectEl || !window.PwaWireCatalog) return;
+
+    var html = '';
+    PwaWireCatalog.listWireTypes().forEach(function (entry) {
+      html +=
+        '<option value="' + escapeHtml(entry.id) + '">' +
+        escapeHtml(entry.label) +
+        '</option>';
+    });
+    selectEl.innerHTML = html;
+    selectEl.value = currentWireTypeId;
+    applyWireType(currentWireTypeId);
+    updateWireSpecLink(currentWireTypeId);
+    syncConductorTempRatingForWireType(form, currentWireTypeId);
+
+    selectEl.addEventListener('change', function () {
+      if (!applyWireType(selectEl.value)) return;
+      updateWireSpecLink(selectEl.value);
+      syncConductorTempRatingForWireType(form, selectEl.value);
+      updateGridTitle();
+      initExportAwgChecks();
+      recalc();
+    });
+  }
+
   function readParams(form) {
     function f(name) {
       return parseFloat(form.elements[name].value, 10);
@@ -251,7 +340,7 @@
     var totalIn = baseIn * (1 + routingPct / 100);
     var wireLengthFt = totalIn / 12;
 
-    var generatorLineVoltage = f('generatorLineVoltage');
+    var generatorLineVoltage = readGeneratorLineVoltage(form);
     var circuitCurrent = f('circuitCurrent');
     var altitudeFt = parseInt(form.elements.altitudeFt.value, 10);
     var altitudeDerating = altitudeDeratingFactor(altitudeFt);
@@ -274,6 +363,7 @@
       bundleLoadingPct: bundleLoadingPct,
       bundleDerating: bundleDerating,
       t2Standard: t2Standard,
+      wireTypeId: form.elements.wireType ? form.elements.wireType.value : currentWireTypeId,
       wireLengthFt: wireLengthFt,
       wireLengthIn: totalIn,
       wireLengthM: wireLengthFt * FT_TO_M
@@ -936,9 +1026,11 @@
     var form = document.getElementById('pwa-params-form');
     if (!form) return;
 
+    initWireTypeControls(form);
     updateGridTitle();
     initExportControls();
     initAllowableDropControls(form);
+    initGeneratorLineVoltageControls(form);
     initConductorTempRatingControls(form);
     initAltitudeSelect(form);
 

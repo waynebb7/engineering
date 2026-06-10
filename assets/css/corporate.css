@@ -878,12 +878,29 @@ p {
   letter-spacing: 0.04em;
 }
 
-.pwa-params__custom-tr {
+.pwa-params__custom-field {
   margin-top: -6px;
 }
 
-.pwa-params__custom-tr[hidden] {
+.pwa-params__custom-field[hidden] {
   display: none;
+}
+
+.pwa-params__group {
+  border: 1px solid var(--corp-border);
+  border-radius: var(--corp-radius);
+  padding: 10px 12px 2px;
+  margin-bottom: 12px;
+}
+
+.pwa-params__group-label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--corp-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
 }
 
 .pwa-derived {
@@ -905,6 +922,60 @@ p {
 
 .pwa-chart-link a:hover {
   text-decoration: underline;
+}
+
+.pwa-wire-spec-page .pwa-wire-spec__meta {
+  display: grid;
+  grid-template-columns: minmax(140px, 220px) 1fr;
+  gap: 8px 16px;
+  margin: 0 0 20px;
+  padding: 16px;
+  border: 1px solid var(--corp-border);
+  border-radius: var(--corp-radius);
+  background: #fff;
+}
+
+.pwa-wire-spec-page .pwa-wire-spec__meta dt {
+  margin: 0;
+  font-weight: 700;
+  color: var(--corp-navy);
+}
+
+.pwa-wire-spec-page .pwa-wire-spec__meta dd {
+  margin: 0;
+  color: var(--corp-text);
+}
+
+.pwa-wire-spec-page .pwa-wire-spec__table-wrap {
+  overflow-x: auto;
+  margin-top: 12px;
+}
+
+.pwa-wire-spec-page .pwa-wire-spec__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.pwa-wire-spec-page .pwa-wire-spec__table th,
+.pwa-wire-spec-page .pwa-wire-spec__table td {
+  border: 1px solid var(--corp-border);
+  padding: 8px 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.pwa-wire-spec-page .pwa-wire-spec__table th {
+  background: var(--corp-accent-muted);
+  color: var(--corp-navy);
+  font-weight: 700;
+}
+
+.pwa-wire-spec-page .pwa-wire-spec__sub {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--corp-text-muted);
+  margin-top: 2px;
 }
 
 .pwa-length-row {

@@ -13,6 +13,10 @@
       "title": "RTCA — Certification Standards"
     },
     {
+      "id": "wire-cables",
+      "title": "Wire & Cable — Manufacturer Data"
+    },
+    {
       "id": "easa-certification",
       "title": "EASA — Certification Specifications"
     }
@@ -583,6 +587,28 @@
           "revision": "Amendment 4",
           "file": "files/easa-cs-23-easy-access-amendment-04.pdf"
         }
+      ]
+    },
+    {
+      "id": "klacey-kp260",
+      "group": "wire-cables",
+      "title": "KP260 — Nickel Plated Copper Wire (K.Lacey)",
+      "file": "files/klacey-kp260-wire-specification.pdf",
+      "type": "pdf",
+      "standard": "Brand-Rex HPECM44",
+      "summary": "Manufacturer datasheet for KP260 high-temperature wire: construction, ampacity, and resistance @ 20 °C used in Power Wire Analysis.",
+      "sections": [
+        "Resistance @ 20 °C (Ω/km)",
+        "Construction and insulation",
+        "Operating temperature -65 °C to +260 °C"
+      ],
+      "tags": [
+        "wire",
+        "cable",
+        "KP260",
+        "manufacturer data",
+        "resistance",
+        "aerospace"
       ]
     },
     {
