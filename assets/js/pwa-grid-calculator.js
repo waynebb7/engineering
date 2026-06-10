@@ -718,15 +718,194 @@
     });
   }
 
+  function collectParameterSnapshot(form) {
+    var projectEl = document.getElementById('pwa-project-name');
+    return {
+      exportedAt: new Date().toISOString(),
+      projectName: projectEl ? projectEl.value.trim() : '',
+      wireType: form.elements.wireType.value,
+      generatorLineVoltagePreset: form.elements.generatorLineVoltagePreset.value,
+      generatorLineVoltageCustom: form.elements.generatorLineVoltageCustom.value,
+      circuitCurrent: form.elements.circuitCurrent.value,
+      operationType: form.elements.operationType.value,
+      allowableDrop: form.elements.allowableDrop.value,
+      ambientTemp: form.elements.ambientTemp.value,
+      conductorTempRatingPreset: form.elements.conductorTempRatingPreset.value,
+      conductorTempRatingCustom: form.elements.conductorTempRatingCustom.value,
+      t2Standard: form.elements.t2Standard.value,
+      altitudeFt: form.elements.altitudeFt.value,
+      bundleWireCount: form.elements.bundleWireCount.value,
+      bundleLoadingPct: form.elements.bundleLoadingPct.value,
+      wireLength: form.elements.wireLength.value,
+      wireLengthUnit: form.elements.wireLengthUnit.value,
+      routingPct: form.elements.routingPct.value
+    };
+  }
+
+  function applyParameterSnapshot(form, snapshot) {
+    if (!form || !snapshot) return;
+
+    var projectEl = document.getElementById('pwa-project-name');
+    if (projectEl && snapshot.projectName != null) {
+      projectEl.value = snapshot.projectName;
+    }
+
+    if (snapshot.wireType && form.elements.wireType) {
+      form.elements.wireType.value = snapshot.wireType;
+      applyWireType(snapshot.wireType);
+      updateWireSpecLink(snapshot.wireType);
+    }
+
+    if (form.elements.generatorLineVoltagePreset && snapshot.generatorLineVoltagePreset) {
+      form.elements.generatorLineVoltagePreset.value = snapshot.generatorLineVoltagePreset;
+    }
+    if (form.elements.generatorLineVoltageCustom && snapshot.generatorLineVoltageCustom != null) {
+      form.elements.generatorLineVoltageCustom.value = snapshot.generatorLineVoltageCustom;
+    }
+    updateGeneratorLineVoltageCustomVisibility(form);
+
+    if (form.elements.circuitCurrent != null && snapshot.circuitCurrent != null) {
+      form.elements.circuitCurrent.value = snapshot.circuitCurrent;
+    }
+
+    if (form.elements.operationType && snapshot.operationType) {
+      form.elements.operationType.value = snapshot.operationType;
+    }
+    updateAllowableDropOptions(form);
+    if (form.elements.allowableDrop && snapshot.allowableDrop != null) {
+      var dropValue = String(snapshot.allowableDrop);
+      if (form.elements.allowableDrop.querySelector('option[value="' + dropValue + '"]')) {
+        form.elements.allowableDrop.value = dropValue;
+      }
+    }
+
+    if (form.elements.ambientTemp != null && snapshot.ambientTemp != null) {
+      form.elements.ambientTemp.value = snapshot.ambientTemp;
+    }
+
+    if (form.elements.conductorTempRatingPreset && snapshot.conductorTempRatingPreset) {
+      form.elements.conductorTempRatingPreset.value = snapshot.conductorTempRatingPreset;
+    }
+    if (form.elements.conductorTempRatingCustom && snapshot.conductorTempRatingCustom != null) {
+      form.elements.conductorTempRatingCustom.value = snapshot.conductorTempRatingCustom;
+    }
+    updateConductorTempRatingCustomVisibility(form);
+
+    if (form.elements.t2Standard && snapshot.t2Standard) {
+      form.elements.t2Standard.value = snapshot.t2Standard;
+    }
+    if (form.elements.altitudeFt && snapshot.altitudeFt != null) {
+      form.elements.altitudeFt.value = String(snapshot.altitudeFt);
+    }
+    if (form.elements.bundleWireCount != null && snapshot.bundleWireCount != null) {
+      form.elements.bundleWireCount.value = snapshot.bundleWireCount;
+    }
+    if (form.elements.bundleLoadingPct && snapshot.bundleLoadingPct != null) {
+      form.elements.bundleLoadingPct.value = String(snapshot.bundleLoadingPct);
+    }
+    if (form.elements.wireLength != null && snapshot.wireLength != null) {
+      form.elements.wireLength.value = snapshot.wireLength;
+    }
+    if (form.elements.wireLengthUnit && snapshot.wireLengthUnit) {
+      form.elements.wireLengthUnit.value = snapshot.wireLengthUnit;
+    }
+    if (form.elements.routingPct != null && snapshot.routingPct != null) {
+      form.elements.routingPct.value = snapshot.routingPct;
+    }
+
+    updateGridTitle();
+    initExportAwgChecks();
+    recalc();
+  }
+
+  function setExportStatus(message, kind) {
+    var statusEl = document.getElementById('pwa-export-status');
+    if (!statusEl) return;
+    statusEl.textContent = message;
+    statusEl.className = 'pwa-export__status' + (kind ? ' pwa-export__status--' + kind : '');
+  }
+
+  function buildWorkbookTableRows(settings) {
+    var form = document.getElementById('pwa-params-form');
+    var rows = buildExportRows(settings, lastGridColumns, {
+      params: form ? readParams(form) : null
+    });
+    rows.forEach(function (row) {
+      if (row.divider) {
+        row.colspan = rows[0] && rows[0].cells ? rows[0].cells.length : 1;
+      }
+    });
+    return rows;
+  }
+
+  function exportWorkbookToExcel(exportAll) {
+    if (!window.PwaWorkbook) {
+      setExportStatus('Workbook export is unavailable.', 'error');
+      return;
+    }
+
+    var form = document.getElementById('pwa-params-form');
+    if (!form || !lastGridColumns.length) {
+      setExportStatus('Grid is not ready yet. Try again in a moment.', 'error');
+      return;
+    }
+
+    var settings = exportAll
+      ? { awgLabels: WIRES.map(function (wire) { return wire.label; }) }
+      : getSelectedExportSettings();
+
+    if (!settings.awgLabels.length) {
+      setExportStatus('Select at least one AWG column to export.', 'error');
+      return;
+    }
+
+    try {
+      var snapshot = collectParameterSnapshot(form);
+      var tableRows = buildWorkbookTableRows(settings);
+      var gridTitleEl = document.getElementById('pwa-grid-title');
+      PwaWorkbook.exportWorkbook(snapshot, tableRows, {
+        includeParameters: exportAll,
+        gridTitle: gridTitleEl ? gridTitleEl.textContent : '',
+        filename: PwaWorkbook.defaultFilename(snapshot)
+      });
+      setExportStatus(
+        exportAll
+          ? 'Exported all settings and analysis table to Excel.'
+          : 'Exported analysis table to Excel.',
+        'ok'
+      );
+    } catch (err) {
+      setExportStatus(err && err.message ? err.message : 'Export failed.', 'error');
+    }
+  }
+
+  function importWorkbookFromFile(file) {
+    if (!window.PwaWorkbook) {
+      setExportStatus('Workbook import is unavailable.', 'error');
+      return;
+    }
+
+    var form = document.getElementById('pwa-params-form');
+    if (!form || !file) return;
+
+    PwaWorkbook.importWorkbook(file).then(function (result) {
+      applyParameterSnapshot(form, result.parameters);
+      setExportStatus('Imported project settings from Excel.', 'ok');
+    }).catch(function (err) {
+      var message = err && err.message ? err.message : 'Import failed.';
+      if (message === 'Failed to fetch') {
+        message = 'Could not read the Excel file. If it is stored in OneDrive, copy it to a local folder and try again.';
+      }
+      setExportStatus(message, 'error');
+    });
+  }
+
   function copyTableToClipboard(useFormulas) {
     var settings = getSelectedExportSettings();
-    var statusEl = document.getElementById('pwa-copy-status');
     var form = document.getElementById('pwa-params-form');
 
     function setStatus(message, kind) {
-      if (!statusEl) return;
-      statusEl.textContent = message;
-      statusEl.className = 'pwa-export__status' + (kind ? ' pwa-export__status--' + kind : '');
+      setExportStatus(message, kind);
     }
 
     if (!settings.awgLabels.length) {
@@ -827,11 +1006,36 @@
   }
 
   function initExportControls() {
+    var exportTableBtn = document.getElementById('pwa-export-table');
+    var exportAllBtn = document.getElementById('pwa-export-all');
+    var importInput = document.getElementById('pwa-import-workbook');
     var copyTableBtn = document.getElementById('pwa-copy-table');
     var copyFormulasBtn = document.getElementById('pwa-copy-table-formulas');
     var awgAllEl = document.getElementById('pwa-export-awg-all');
 
     initExportAwgChecks();
+
+    if (exportTableBtn) {
+      exportTableBtn.addEventListener('click', function () {
+        exportWorkbookToExcel(false);
+      });
+    }
+
+    if (exportAllBtn) {
+      exportAllBtn.addEventListener('click', function () {
+        exportWorkbookToExcel(true);
+      });
+    }
+
+    if (importInput) {
+      importInput.addEventListener('change', function () {
+        var file = importInput.files && importInput.files[0];
+        if (file) {
+          importWorkbookFromFile(file);
+        }
+        importInput.value = '';
+      });
+    }
 
     if (copyTableBtn) {
       copyTableBtn.addEventListener('click', function () {

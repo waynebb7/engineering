@@ -1290,6 +1290,58 @@ p {
   border-top: 1px solid var(--corp-border);
 }
 
+.pwa-export__project {
+  display: block;
+  margin: 0 0 12px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--corp-navy);
+}
+
+.pwa-export__project input {
+  width: 100%;
+  margin-top: 4px;
+  height: 2.375rem;
+  padding: 0 10px;
+  border: 1px solid var(--corp-border);
+  border-radius: var(--corp-radius);
+  font-size: 0.9rem;
+  font-family: var(--corp-font);
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.pwa-export__import-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 0;
+}
+
+.pwa-export__import-btn input {
+  display: none;
+}
+
+.pwa-export__clipboard {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--corp-border);
+  font-size: 0.84rem;
+}
+
+.pwa-export__clipboard summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--corp-navy);
+}
+
+.pwa-export__actions--secondary {
+  margin-top: 10px;
+  padding-top: 0;
+  border-top: none;
+}
+
 .pwa-export__note {
   margin: 0 0 10px;
   font-size: 0.82rem;
