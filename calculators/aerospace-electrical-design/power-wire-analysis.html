@@ -30,9 +30,8 @@
             <label>Post-conditioning ELA voltage (V)
               <input type="number" name="postConditioningVoltage" step="0.01" value="200" required>
             </label>
-            <label>Regulated phase current (A)
-              <span class="hint">Converted to generator current using voltage ratio</span>
-              <input type="number" name="regulatedPhaseCurrent" step="0.0001" value="75.5805" required>
+            <label>Circuit current (A)
+              <input type="number" name="circuitCurrent" step="0.01" min="0" value="72" required>
             </label>
             <label>Allowable voltage drop U (V)
               <input type="number" name="allowableDrop" step="0.01" value="7" required>

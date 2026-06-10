@@ -36,7 +36,7 @@
     { key: 'L1', labelB: 'Maximum wire length (NOT DE-RATED)', labelC: 'L1', unit: 'FEET', fmt: 'num', digits: 3 },
     { key: 'V', labelB: 'System Voltage', labelC: 'V', unit: 'VOLTS', fmt: 'num', digits: 2 },
     { key: 'U', labelB: 'Allowable voltage drop', labelC: 'U', unit: 'VOLTS', fmt: 'num' },
-    { key: 'I', labelB: 'Circuit current', labelC: 'I', unit: 'AMPS', fmt: 'num' },
+    { key: 'I', labelB: 'Circuit current', labelC: 'I', unit: 'AMPS', fmt: 'num', digits: 2 },
     { key: 'Rft', labelB: 'Resistance of wire per feet @ 20\u00B0C', labelC: 'R', unit: '\u03A9/ft', fmt: 'sci' },
     { key: 'R1000', labelB: 'Resistance of wire per 1000 feet @ 20\u00B0C', labelC: '', unit: '\u03A9/1000ft', fmt: 'num', digits: 3 },
     { key: 'T1', labelB: 'Ambient temperature', labelC: 'T1', unit: '\u00B0C', fmt: 'num' },
@@ -85,14 +85,11 @@
 
     var generatorLineVoltage = f('generatorLineVoltage');
     var postConditioningVoltage = f('postConditioningVoltage');
-    var voltageRatio = postConditioningVoltage / generatorLineVoltage;
-    var regulatedPhaseCurrent = f('regulatedPhaseCurrent');
-    var circuitCurrent = regulatedPhaseCurrent * voltageRatio;
+    var circuitCurrent = f('circuitCurrent');
 
     return {
       generatorLineVoltage: generatorLineVoltage,
       postConditioningVoltage: postConditioningVoltage,
-      voltageRatio: voltageRatio,
       circuitCurrent: circuitCurrent,
       allowableDrop: f('allowableDrop'),
       ambientTemp: f('ambientTemp'),
