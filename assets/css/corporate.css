@@ -1123,6 +1123,10 @@ p {
   text-align: center;
 }
 
+.pwa-grid__head th.pwa-grid__label-b {
+  text-align: left;
+}
+
 .pwa-grid__label-b {
   width: var(--pwa-label-b-width);
   min-width: var(--pwa-label-b-width);

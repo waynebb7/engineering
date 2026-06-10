@@ -71,7 +71,7 @@
   ];
 
   var GRID_ROWS = [
-    { key: 'awg', labelB: 'Cable size (AWG)', labelC: '', unit: '', fmt: 'awg' },
+    { key: 'awg', labelB: 'Cable size (AWG)', labelC: 'AWG', unit: '', fmt: 'awg' },
     { key: 'L1', labelB: 'Maximum wire length (NOT DE-RATED)', labelC: 'L1', unit: 'ft', fmt: 'num', digits: 3 },
     { key: 'V', labelB: 'System Voltage', labelC: 'V', unit: 'V', fmt: 'num', digits: 2 },
     { key: 'U', labelB: 'Allowable voltage drop', labelC: 'U', unit: 'V', fmt: 'num' },
@@ -353,7 +353,7 @@
     }
     if (settings.baseCols.indexOf('labelC') >= 0) {
       cells.push({
-        text: isAwgHeaderRow ? '' : row.labelC,
+        text: row.labelC,
         align: 'center'
       });
     }
@@ -644,7 +644,7 @@
     frozenHead.innerHTML =
       '<tr class="pwa-grid__head">' +
         '<th class="pwa-grid__label-b">Cable size (AWG)</th>' +
-        '<th class="pwa-grid__label-c"></th>' +
+        '<th class="pwa-grid__label-c">AWG</th>' +
       '</tr>';
 
     var dataHeadHtml = '<tr class="pwa-grid__head">';
