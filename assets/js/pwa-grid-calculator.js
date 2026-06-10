@@ -71,7 +71,7 @@
   ];
 
   var GRID_ROWS = [
-    { key: 'awg', labelB: '', labelC: 'AWG', unit: '', fmt: 'awg' },
+    { key: 'awg', labelB: 'Cable size (AWG)', labelC: '', unit: '', fmt: 'awg' },
     { key: 'L1', labelB: 'Maximum wire length (NOT DE-RATED)', labelC: 'L1', unit: 'ft', fmt: 'num', digits: 3 },
     { key: 'V', labelB: 'System Voltage', labelC: 'V', unit: 'V', fmt: 'num', digits: 2 },
     { key: 'U', labelB: 'Allowable voltage drop', labelC: 'U', unit: 'V', fmt: 'num' },
@@ -91,10 +91,10 @@
     { key: 'L2in', labelB: 'Maximum wire length (DE-RATED) (MOST SEVERE) (in)', labelC: 'L2', unit: 'in', fmt: 'num', digits: 3 },
     { key: 'L2ft', labelB: 'Maximum wire length (DE-RATED) (MOST SEVERE) (ft)', labelC: 'L2', unit: 'ft', fmt: 'num', digits: 3 },
     { key: 'L2m', labelB: 'Maximum wire length (DE-RATED) (MOST SEVERE) (m)', labelC: 'L2', unit: 'm', fmt: 'num', digits: 3 },
-    { key: 'Vdrop', labelB: 'Voltage drop (volts)', labelC: '', unit: 'V', fmt: 'num', digits: 3, section: 'vdrop' },
-    { key: 'wireLenIn', labelB: 'Wire Length for purposes of Voltage Drop (in)', labelC: '', unit: 'in', fmt: 'num', digits: 3, section: 'vdrop' },
-    { key: 'wireLenFt', labelB: 'Wire Length for purposes of Voltage Drop (ft)', labelC: '', unit: 'ft', fmt: 'num', digits: 3, section: 'vdrop' },
-    { key: 'wireLenM', labelB: 'Wire Length for purposes of Voltage Drop (m)', labelC: '', unit: 'm', fmt: 'num', digits: 3, section: 'vdrop' }
+    { key: 'Vdrop', labelB: 'Voltage drop (volts)', labelC: 'U', unit: 'V', fmt: 'num', digits: 3, section: 'vdrop' },
+    { key: 'wireLenIn', labelB: 'Wire Length for purposes of Voltage Drop (in)', labelC: 'L', unit: 'in', fmt: 'num', digits: 3, section: 'vdrop' },
+    { key: 'wireLenFt', labelB: 'Wire Length for purposes of Voltage Drop (ft)', labelC: 'L', unit: 'ft', fmt: 'num', digits: 3, section: 'vdrop' },
+    { key: 'wireLenM', labelB: 'Wire Length for purposes of Voltage Drop (m)', labelC: 'L', unit: 'm', fmt: 'num', digits: 3, section: 'vdrop' }
   ];
 
   function num(val, digits) {
@@ -347,13 +347,13 @@
 
     if (settings.baseCols.indexOf('labelB') >= 0) {
       cells.push({
-        text: isAwgHeaderRow ? '' : row.labelB,
+        text: row.labelB,
         align: 'left'
       });
     }
     if (settings.baseCols.indexOf('labelC') >= 0) {
       cells.push({
-        text: isAwgHeaderRow ? 'AWG' : row.labelC,
+        text: isAwgHeaderRow ? '' : row.labelC,
         align: 'center'
       });
     }
@@ -643,8 +643,8 @@
 
     frozenHead.innerHTML =
       '<tr class="pwa-grid__head">' +
-        '<th class="pwa-grid__label-b"></th>' +
-        '<th class="pwa-grid__label-c">AWG</th>' +
+        '<th class="pwa-grid__label-b">Cable size (AWG)</th>' +
+        '<th class="pwa-grid__label-c"></th>' +
       '</tr>';
 
     var dataHeadHtml = '<tr class="pwa-grid__head">';
