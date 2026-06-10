@@ -93,27 +93,12 @@
         <p class="text-muted pwa-grid-note">Label and unit columns stay fixed while you scroll AWG values horizontally.</p>
         <div class="pwa-export" id="pwa-export">
           <fieldset class="pwa-export__options">
-            <legend>Copy columns for Word</legend>
+            <legend>Copy table</legend>
+            <p class="pwa-export__note">Description, symbol, and units are always included. Paste into Word or Excel.</p>
             <div class="pwa-export__checks">
-              <label class="pwa-export__check">
-                <input type="checkbox" name="exportCol" value="labelB" checked>
-                Description
-              </label>
-              <label class="pwa-export__check">
-                <input type="checkbox" name="exportCol" value="labelC" checked>
-                Symbol
-              </label>
               <label class="pwa-export__check">
                 <input type="checkbox" id="pwa-export-awg-all" checked>
                 All AWG sizes
-              </label>
-              <label class="pwa-export__check">
-                <input type="checkbox" name="exportCol" value="unit" checked>
-                Units
-              </label>
-              <label class="pwa-export__check pwa-export__check--all">
-                <input type="checkbox" id="pwa-export-all" checked>
-                All columns
               </label>
             </div>
             <div class="pwa-export__awg-group">
@@ -122,7 +107,8 @@
             </div>
           </fieldset>
           <div class="pwa-export__actions">
-            <button type="button" class="btn btn--small" id="pwa-copy-grid">Copy grid for Word</button>
+            <button type="button" class="btn btn--small" id="pwa-copy-table">Copy table</button>
+            <button type="button" class="btn btn--small pwa-export__btn-secondary" id="pwa-copy-table-formulas">Copy table with formulas</button>
             <span class="pwa-export__status" id="pwa-copy-status" aria-live="polite"></span>
           </div>
         </div>

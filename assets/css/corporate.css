@@ -922,10 +922,6 @@ p {
 }
 
 .pwa-export {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  gap: 12px 20px;
   margin: 0 0 14px;
   padding: 12px 14px;
   border: 1px solid var(--corp-border);
@@ -933,9 +929,14 @@ p {
   background: #f8fafc;
 }
 
+.pwa-export__note {
+  margin: 0 0 10px;
+  font-size: 0.82rem;
+  color: var(--corp-text-muted);
+}
+
 .pwa-export__options {
-  flex: 1 1 280px;
-  min-width: 0;
+  width: 100%;
   margin: 0;
   padding: 0;
   border: none;
@@ -1006,6 +1007,19 @@ p {
   flex-wrap: wrap;
   align-items: center;
   gap: 10px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--corp-border);
+}
+
+.pwa-export__btn-secondary {
+  background: #fff;
+  color: var(--corp-navy);
+  border: 1px solid var(--corp-border);
+}
+
+.pwa-export__btn-secondary:hover {
+  background: #eef4fa;
 }
 
 .pwa-export__status {

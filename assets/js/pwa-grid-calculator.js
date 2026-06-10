@@ -9,8 +9,6 @@
   var WIRE_TYPE_LABEL = '';
   var lastGridColumns = [];
 
-  var EXPORT_COLUMN_IDS = ['labelB', 'labelC', 'unit'];
-
   var ALLOWABLE_DROPS = {
     continuous: [
       { nominal: 14, drop: 0.5 },
@@ -313,25 +311,104 @@
   }
 
   function getSelectedExportSettings() {
-    var allEl = document.getElementById('pwa-export-all');
-    if (allEl && allEl.checked) {
+    var awgAllEl = document.getElementById('pwa-export-awg-all');
+    if (awgAllEl && awgAllEl.checked) {
       return {
-        baseCols: EXPORT_COLUMN_IDS.slice(),
         awgLabels: WIRES.map(function (wire) { return wire.label; })
       };
     }
-
-    var baseCols = [];
-    document.querySelectorAll('input[name="exportCol"]:checked').forEach(function (el) {
-      baseCols.push(el.value);
-    });
 
     var awgLabels = [];
     document.querySelectorAll('input[name="exportAwg"]:checked').forEach(function (el) {
       awgLabels.push(el.value);
     });
 
-    return { baseCols: baseCols, awgLabels: awgLabels };
+    return { awgLabels: awgLabels };
+  }
+
+  function findWire(awgLabel) {
+    for (var i = 0; i < WIRES.length; i += 1) {
+      if (WIRES[i].label === awgLabel) return WIRES[i];
+    }
+    return null;
+  }
+
+  function excelColumnLetter(colIndex) {
+    var n = colIndex + 1;
+    var letters = '';
+    while (n > 0) {
+      var rem = (n - 1) % 26;
+      letters = String.fromCharCode(65 + rem) + letters;
+      n = Math.floor((n - 1) / 26);
+    }
+    return letters;
+  }
+
+  function excelRawValue(val) {
+    if (typeof val !== 'number' || !isFinite(val)) return '';
+    return String(val);
+  }
+
+  function excelCellRef(rowMap, rowKey, colIndex) {
+    return excelColumnLetter(colIndex) + rowMap[rowKey];
+  }
+
+  function getExportCellContent(row, col, wire, params, rowMap, colIndex) {
+    function ref(key) {
+      return excelCellRef(rowMap, key, colIndex);
+    }
+
+    switch (row.key) {
+      case 'L1':
+        return '=' + ref('U') + '/(' + ref('I') + '*' + ref('Rft') + ')';
+      case 'V':
+        return excelRawValue(params.generatorLineVoltage);
+      case 'U':
+        return excelRawValue(params.allowableDrop);
+      case 'I':
+        return excelRawValue(params.circuitCurrent);
+      case 'Rft':
+        return '=' + ref('R1000') + '/1000';
+      case 'R1000':
+        return excelRawValue(wire.ohm1000ft);
+      case 'T1':
+        return excelRawValue(params.ambientTemp);
+      case 'TR':
+        return excelRawValue(params.conductorTempRating);
+      case 'T2':
+        return '=' + ref('T1') + '+(' + ref('TR') + '-' + ref('T1') + ')*' + ref('sqrtIImax');
+      case 'Imax':
+        return '=' + ref('freeAir') + '*' + ref('bundle') + '*' + ref('altitude');
+      case 'IfreePct':
+        return '=' + ref('I') + '/' + ref('freeAir') + '*100';
+      case 'freeAir':
+        return excelRawValue(wire.freeAirA);
+      case 'bundle':
+        return excelRawValue(params.bundleDerating);
+      case 'altitude':
+        return excelRawValue(params.altitudeDerating);
+      case 'IImax':
+        return '=' + ref('I') + '/' + ref('Imax');
+      case 'sqrtIImax':
+        return '=SQRT(' + ref('IImax') + ')';
+      case 'L2ft':
+        return '=' + COPPER_REF + '*' + ref('L1') + '/(' + COPPER_COEF + '+' + ref('T2') + ')';
+      case 'L2in':
+        return '=' + ref('L2ft') + '*12';
+      case 'L2m':
+        return '=' + ref('L2ft') + '*' + FT_TO_M;
+      case 'Vdrop':
+        return '=' + ref('I') + '*' + ref('Rft') + '*' + ref('wireLenFt') +
+          '*(' + COPPER_COEF + '+' + ref('T2') + ')/' + COPPER_REF;
+      case 'wireLenIn':
+        return excelRawValue(params.wireLengthIn);
+      case 'wireLenFt':
+        return excelRawValue(params.wireLengthFt);
+      case 'wireLenM':
+        return excelRawValue(params.wireLengthM);
+      default:
+        return excelRawValue(col[row.key]);
+    }
   }
 
   function filterExportColumns(gridColumns, awgLabels) {
@@ -341,56 +418,81 @@
     });
   }
 
-  function buildExportRowCells(row, gridColumns, settings, isAwgHeaderRow) {
+  function buildExportRowCells(row, gridColumns, settings, isAwgHeaderRow, options) {
     var cells = [];
     var exportColumns = filterExportColumns(gridColumns, settings.awgLabels);
+    var useFormulas = options && options.useFormulas;
+    var params = options && options.params;
+    var rowMap = options && options.rowMap;
 
-    if (settings.baseCols.indexOf('labelB') >= 0) {
-      cells.push({
-        text: row.labelB,
-        align: 'left'
-      });
-    }
-    if (settings.baseCols.indexOf('labelC') >= 0) {
-      cells.push({
-        text: row.labelC,
-        align: 'center'
-      });
-    }
-    exportColumns.forEach(function (col) {
-      var text = isAwgHeaderRow ? col.awg : formatCell(row, col[row.key]);
+    cells.push({
+      text: row.labelB,
+      align: 'left'
+    });
+    cells.push({
+      text: row.labelC,
+      align: 'center'
+    });
+    exportColumns.forEach(function (col, awgIdx) {
+      var text;
+      if (isAwgHeaderRow) {
+        text = col.awg;
+      } else if (useFormulas && rowMap && params) {
+        var wire = findWire(col.awg);
+        text = wire
+          ? getExportCellContent(row, col, wire, params, rowMap, 2 + awgIdx)
+          : formatCell(row, col[row.key]);
+      } else {
+        text = formatCell(row, col[row.key]);
+      }
       cells.push({ text: text, align: 'center' });
     });
-    if (settings.baseCols.indexOf('unit') >= 0) {
-      cells.push({
-        text: isAwgHeaderRow ? '' : row.unit,
-        align: 'center'
-      });
-    }
+    cells.push({
+      text: isAwgHeaderRow ? '' : row.unit,
+      align: 'center'
+    });
 
     return cells;
   }
 
-  function buildExportRows(settings, gridColumns) {
+  function buildExportRows(settings, gridColumns, options) {
+    options = options || {};
     var rows = [];
+    var rowMap = {};
+    var excelRow = 2;
     var dividerShown = false;
-    var awgRow = GRID_ROWS[0];
-
-    rows.push({
-      cells: buildExportRowCells(awgRow, gridColumns, settings, true),
-      isHeader: true
-    });
+    var bodyEntries = [];
 
     GRID_ROWS.forEach(function (row) {
       if (row.key === 'awg') return;
 
       if (row.section === 'vdrop' && !dividerShown) {
         dividerShown = true;
-        rows.push({ divider: true });
+        bodyEntries.push({ divider: true });
+        excelRow += 1;
       }
 
+      rowMap[row.key] = excelRow;
+      bodyEntries.push({ row: row });
+      excelRow += 1;
+    });
+
+    if (options.useFormulas) {
+      options.rowMap = rowMap;
+    }
+
+    rows.push({
+      cells: buildExportRowCells(GRID_ROWS[0], gridColumns, settings, true, options),
+      isHeader: true
+    });
+
+    bodyEntries.forEach(function (entry) {
+      if (entry.divider) {
+        rows.push({ divider: true });
+        return;
+      }
       rows.push({
-        cells: buildExportRowCells(row, gridColumns, settings, false),
+        cells: buildExportRowCells(entry.row, gridColumns, settings, false, options),
         isHeader: false
       });
     });
@@ -485,9 +587,10 @@
     });
   }
 
-  function copyGridToClipboard() {
+  function copyTableToClipboard(useFormulas) {
     var settings = getSelectedExportSettings();
     var statusEl = document.getElementById('pwa-copy-status');
+    var form = document.getElementById('pwa-params-form');
 
     function setStatus(message, kind) {
       if (!statusEl) return;
@@ -495,8 +598,8 @@
       statusEl.className = 'pwa-export__status' + (kind ? ' pwa-export__status--' + kind : '');
     }
 
-    if (!settings.baseCols.length && !settings.awgLabels.length) {
-      setStatus('Select at least one column to copy.', 'error');
+    if (!settings.awgLabels.length) {
+      setStatus('Select at least one AWG column to copy.', 'error');
       return;
     }
     if (!lastGridColumns.length) {
@@ -504,24 +607,40 @@
       return;
     }
 
-    var rows = buildExportRows(settings, lastGridColumns);
+    var exportOptions = {
+      useFormulas: useFormulas,
+      params: form ? readParams(form) : null
+    };
+    var rows = buildExportRows(settings, lastGridColumns, exportOptions);
     rows.forEach(function (row) {
       if (row.divider) {
         row.colspan = rows[0] && rows[0].cells ? rows[0].cells.length : 1;
       }
     });
 
-    var tableHtml = buildExportHtml(rows);
     var plainText = buildExportPlainText(rows);
-    var wordHtml = buildWordClipboardHtml(tableHtml);
 
-    function onSuccess() {
-      setStatus('Copied — paste into Word with Ctrl+V.', 'ok');
+    function onSuccess(message) {
+      setStatus(message, 'ok');
     }
 
     function onFailure() {
       setStatus('Copy failed. Select the grid manually or try another browser.', 'error');
     }
+
+    if (useFormulas) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(plainText).then(function () {
+          onSuccess('Copied with formulas — paste into Excel with Ctrl+V.');
+        }).catch(onFailure);
+        return;
+      }
+      onFailure();
+      return;
+    }
+
+    var tableHtml = buildExportHtml(rows);
+    var wordHtml = buildWordClipboardHtml(tableHtml);
 
     if (navigator.clipboard && window.ClipboardItem) {
       navigator.clipboard.write([
@@ -529,17 +648,19 @@
           'text/html': new Blob([wordHtml], { type: 'text/html' }),
           'text/plain': new Blob([plainText], { type: 'text/plain' })
         })
-      ]).then(onSuccess).catch(function () {
-        copyHtmlFallback(tableHtml, plainText).then(onSuccess).catch(onFailure);
+      ]).then(function () {
+        onSuccess('Copied — paste into Word or Excel with Ctrl+V.');
+      }).catch(function () {
+        copyHtmlFallback(tableHtml, plainText).then(function () {
+          onSuccess('Copied — paste into Word or Excel with Ctrl+V.');
+        }).catch(onFailure);
       });
       return;
     }
 
-    copyHtmlFallback(tableHtml, plainText).then(onSuccess).catch(onFailure);
-  }
-
-  function getAllExportCheckboxes() {
-    return document.querySelectorAll('input[name="exportCol"], input[name="exportAwg"]');
+    copyHtmlFallback(tableHtml, plainText).then(function () {
+      onSuccess('Copied — paste into Word or Excel with Ctrl+V.');
+    }).catch(onFailure);
   }
 
   function syncExportAwgAllCheckbox() {
@@ -553,30 +674,10 @@
     awgAllEl.checked = awgBoxes.length > 0 && checkedCount === awgBoxes.length;
   }
 
-  function syncExportAllCheckbox() {
-    var allEl = document.getElementById('pwa-export-all');
-    if (!allEl) return;
-    var boxes = getAllExportCheckboxes();
-    var checkedCount = 0;
-    boxes.forEach(function (box) {
-      if (box.checked) checkedCount += 1;
-    });
-    allEl.checked = boxes.length > 0 && checkedCount === boxes.length;
-    syncExportAwgAllCheckbox();
-  }
-
   function setAllExportAwgColumns(checked) {
     document.querySelectorAll('input[name="exportAwg"]').forEach(function (box) {
       box.checked = checked;
     });
-  }
-
-  function setAllExportColumns(checked) {
-    document.querySelectorAll('input[name="exportCol"]').forEach(function (box) {
-      box.checked = checked;
-    });
-    setAllExportAwgColumns(checked);
-    syncExportAllCheckbox();
   }
 
   function initExportAwgChecks() {
@@ -595,35 +696,32 @@
   }
 
   function initExportControls() {
-    var copyBtn = document.getElementById('pwa-copy-grid');
-    var allEl = document.getElementById('pwa-export-all');
+    var copyTableBtn = document.getElementById('pwa-copy-table');
+    var copyFormulasBtn = document.getElementById('pwa-copy-table-formulas');
     var awgAllEl = document.getElementById('pwa-export-awg-all');
 
     initExportAwgChecks();
 
-    if (copyBtn) {
-      copyBtn.addEventListener('click', copyGridToClipboard);
+    if (copyTableBtn) {
+      copyTableBtn.addEventListener('click', function () {
+        copyTableToClipboard(false);
+      });
     }
 
-    if (allEl) {
-      allEl.addEventListener('change', function () {
-        setAllExportColumns(allEl.checked);
+    if (copyFormulasBtn) {
+      copyFormulasBtn.addEventListener('click', function () {
+        copyTableToClipboard(true);
       });
     }
 
     if (awgAllEl) {
       awgAllEl.addEventListener('change', function () {
         setAllExportAwgColumns(awgAllEl.checked);
-        syncExportAllCheckbox();
       });
     }
 
-    document.querySelectorAll('input[name="exportCol"]').forEach(function (box) {
-      box.addEventListener('change', syncExportAllCheckbox);
-    });
-
     document.querySelectorAll('input[name="exportAwg"]').forEach(function (box) {
-      box.addEventListener('change', syncExportAllCheckbox);
+      box.addEventListener('change', syncExportAwgAllCheckbox);
     });
   }
 
