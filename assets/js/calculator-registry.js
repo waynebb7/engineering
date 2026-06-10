@@ -1176,6 +1176,139 @@
         }
       ]
     },
+    "tru_sizing_calculator.html": {
+      "title": "TRU Sizing Calculator",
+      "lead": "Size a Transformer Rectifier Unit from AC bus current: rated input kVA, DC output kW, and DC load current.",
+      "formula": "$$ \\begin{aligned} S_{in} &= \\frac{k \\, V_L \\, I_L}{1000} \\quad \\text{(kVA)} \\\\[0.5em] P_{out} &= \\eta \\, S_{in} \\quad \\text{(kW)} \\\\[0.5em] I_{DC} &= \\frac{P_{out} \\times 1000}{V_{DC}} \\end{aligned} $$",
+      "buttonLabel": "Calculate",
+      "fields": [
+        {
+          "id": "phaseType",
+          "label": "AC Input",
+          "type": "select",
+          "value": "three_phase",
+          "unit": "-",
+          "step": null,
+          "options": [
+            {
+              "value": "three_phase",
+              "label": "Three-phase (200 V line)"
+            },
+            {
+              "value": "single_phase",
+              "label": "Single-phase (115 V)"
+            }
+          ]
+        },
+        {
+          "id": "inputVoltage",
+          "label": "AC Line Voltage (VL)",
+          "type": "number",
+          "value": "200",
+          "unit": "V",
+          "step": "0.1",
+          "options": []
+        },
+        {
+          "id": "inputCurrent",
+          "label": "AC Input Current (IL)",
+          "type": "number",
+          "value": "13.21",
+          "unit": "A",
+          "step": "0.01",
+          "options": []
+        },
+        {
+          "id": "efficiency",
+          "label": "TRU Efficiency (η)",
+          "type": "number",
+          "value": "0.875",
+          "unit": "-",
+          "step": "0.001",
+          "options": []
+        },
+        {
+          "id": "dcVoltage",
+          "label": "DC Output Voltage (VDC)",
+          "type": "number",
+          "value": "28",
+          "unit": "V",
+          "step": "0.1",
+          "options": []
+        },
+        {
+          "id": "dcCurrentLimit",
+          "label": "DC Current Limit (optional)",
+          "type": "number",
+          "value": "143",
+          "unit": "A",
+          "step": "1",
+          "options": []
+        }
+      ]
+    },
+    "battery_endurance_calculator.html": {
+      "title": "Battery Endurance Calculator",
+      "lead": "Estimate battery endurance in minutes from ampere-hour capacity and DC bus load — matches the ELA/PWA workbook ARP4404C method.",
+      "formula": "$$ t_{\\min} = \\frac{C_{Ah} \\times 60 \\times f_{usable}}{I_{load}} $$",
+      "buttonLabel": "Calculate",
+      "fields": [
+        {
+          "id": "batteryCapacity",
+          "label": "Battery Capacity",
+          "type": "number",
+          "value": "25",
+          "unit": "Ah",
+          "step": "0.1",
+          "options": []
+        },
+        {
+          "id": "calcMethod",
+          "label": "Capacity Method",
+          "type": "select",
+          "value": "arp4404",
+          "unit": "-",
+          "step": null,
+          "options": [
+            {
+              "value": "arp4404",
+              "label": "ARP4404C (72% usable — workbook default)"
+            },
+            {
+              "value": "nameplate",
+              "label": "Full nameplate Ah"
+            }
+          ]
+        },
+        {
+          "id": "load1",
+          "label": "Load scenario 1 (e.g. FC21)",
+          "type": "number",
+          "value": "30.38",
+          "unit": "A",
+          "step": "0.01",
+          "options": []
+        },
+        {
+          "id": "load2",
+          "label": "Load scenario 2 (e.g. FC22)",
+          "type": "number",
+          "value": "22.57",
+          "unit": "A",
+          "step": "0.01",
+          "options": []
+        },
+        {
+          "id": "load3",
+          "label": "Load scenario 3 (e.g. FC23)",
+          "type": "number",
+          "value": "24.04",
+          "unit": "A",
+          "step": "0.01",
+          "options": []
+        }
+      ]
+    },
     "force_calculator.html": {
       "title": "Force Calculator",
       "lead": "Calculate force from mass and acceleration.",
@@ -1905,6 +2038,31 @@
       ],
       "example": "500 W on 115 V AC at PF 0.9 → I = 500/(115×0.9) ≈ 4.83 A."
     },
+    "tru_sizing_calculator.html": {
+      "title": "TRU Sizing Calculator",
+      "what": "Calculates TRU rated AC input kVA, DC output power, and DC output current from line voltage, line current, efficiency, and DC bus voltage.",
+      "when": "Use when sizing or checking Transformer Rectifier Units on 200 V 3φ or 115 V AC feeds — the same chain as the MAX TRU CALC sheet in the ELA/PWA workbook.",
+      "steps": [
+        "Select three-phase (200 V) or single-phase (115 V) AC input.",
+        "Enter AC line voltage and line current drawn by the TRU input.",
+        "Enter TRU efficiency (typical ≈ 0.875) and DC output voltage (typically 28 V).",
+        "Optionally enter a DC current limit to flag overload.",
+        "Results update automatically: input kVA, output kW, and DC amps."
+      ],
+      "example": "200 V 3φ, 13.21 A in, η = 0.875, 28 V DC out → S ≈ 4.58 kVA, P ≈ 4.00 kW, I ≈ 143 A."
+    },
+    "battery_endurance_calculator.html": {
+      "title": "Battery Endurance Calculator",
+      "what": "Estimates how long a battery can supply a DC load before depletion, using ampere-hour capacity and total bus current.",
+      "when": "Use for loss-of-generator or loss-of-TRU flight conditions — matches the BATT ENDURANCE tab in the ELA/PWA workbook.",
+      "steps": [
+        "Enter battery nameplate capacity in ampere-hours.",
+        "Select ARP4404C method (72% usable capacity) or full nameplate Ah.",
+        "Enter one or more DC load scenarios in amps (leave unused scenarios blank).",
+        "Endurance appears in minutes and hours for each scenario entered."
+      ],
+      "example": "25 Ah, ARP4404C method, 30.38 A load → t ≈ 35.6 min (0.59 h)."
+    },
     "force_calculator.html": {
       "title": "Force Calculator",
       "what": "Calculates force using Newton's second law: force equals mass times acceleration.",
@@ -2291,6 +2449,28 @@
         { sym: 'P', desc: 'load power' },
         { sym: 'V', desc: 'bus voltage' },
         { sym: 'PF', desc: 'power factor' }
+      ]
+    },
+    'tru_sizing_calculator.html': {
+      summary: 'TRU input kVA, DC output kW, and DC output current from AC line quantities and efficiency.',
+      variables: [
+        { sym: 'k', desc: 'phase factor (√3 for 3φ, 1 for 1φ)' },
+        { sym: 'V_L', desc: 'AC line voltage' },
+        { sym: 'I_L', desc: 'AC line current' },
+        { sym: 'S_{in}', desc: 'rated AC input apparent power' },
+        { sym: 'η', desc: 'TRU efficiency' },
+        { sym: 'P_{out}', desc: 'DC output power' },
+        { sym: 'V_{DC}', desc: 'DC output voltage' },
+        { sym: 'I_{DC}', desc: 'DC output current' }
+      ]
+    },
+    'battery_endurance_calculator.html': {
+      summary: 'Battery endurance from ampere-hour capacity, usable factor, and DC load current.',
+      variables: [
+        { sym: 'C_{Ah}', desc: 'battery nameplate capacity' },
+        { sym: 'f_{usable}', desc: 'usable fraction of nameplate (0.72 per workbook ARP4404C method)' },
+        { sym: 'I_{load}', desc: 'total DC bus load' },
+        { sym: 't_{min}', desc: 'endurance in minutes' }
       ]
     },
     'power_wire_analysis_calculator.html': {
@@ -2840,6 +3020,105 @@
           f.line('Bus Voltage', V, 'V'),
           f.line('Bus Current', f.num(I, 3), 'A')
         ]));
+      };
+
+  defs['tru_sizing'].compute = function (ctx) {
+        var u = ctx.util;
+        var f = ctx.fmt;
+        var phaseEl = document.getElementById('phaseType');
+        var phase = phaseEl ? phaseEl.value : 'three_phase';
+        var Vline = u.parsePositive('inputVoltage', 'AC line voltage');
+        var Iline = u.parsePositive('inputCurrent', 'AC input current');
+        var eta = u.parseEfficiency('efficiency', 'TRU efficiency');
+        var Vdc = u.parsePositive('dcVoltage', 'DC output voltage');
+        var err = u.firstError(Vline, Iline, eta, Vdc);
+        if (err) return ctx.fail(err.msg);
+
+        var phaseFactor = phase === 'three_phase' ? Math.sqrt(3) : 1;
+        var kva = (phaseFactor * Iline.value * Vline.value) / 1000;
+        var kwOut = kva * eta.value;
+        var iDc = (kwOut * 1000) / Vdc.value;
+
+        var lines = [
+          f.line('Phase factor', phase === 'three_phase' ? '√3 (three-phase)' : '1 (single-phase)', ''),
+          f.line('Rated AC input power', f.num(kva, 3), 'kVA'),
+          f.line('DC output power', f.num(kwOut, 3), 'kW'),
+          f.line('DC output current', f.num(iDc, 2), 'A')
+        ];
+
+        var limitEl = document.getElementById('dcCurrentLimit');
+        if (limitEl && String(limitEl.value).trim() !== '') {
+          var limit = u.parsePositive('dcCurrentLimit', 'DC current limit');
+          if (!limit.ok) return ctx.fail(limit.msg);
+          var margin = limit.value - iDc;
+          lines.push(f.line('Margin to limit', f.num(margin, 2), 'A'));
+          if (iDc > limit.value + 0.01) {
+            lines.push('<span class="calc-note">DC output exceeds the TRU current limit — reduce load or add capacity.</span>');
+          }
+        }
+
+        return ctx.ok(f.lines(lines));
+      };
+
+  defs['battery_endurance'].compute = function (ctx) {
+        var u = ctx.util;
+        var f = ctx.fmt;
+        var capacity = u.parsePositive('batteryCapacity', 'Battery capacity');
+        if (!capacity.ok) return ctx.fail(capacity.msg);
+
+        var methodEl = document.getElementById('calcMethod');
+        var factor = methodEl && methodEl.value === 'nameplate' ? 1 : 0.72;
+        var scenarios = [
+          { id: 'load1', label: 'Scenario 1' },
+          { id: 'load2', label: 'Scenario 2' },
+          { id: 'load3', label: 'Scenario 3' }
+        ];
+        var lines = [
+          f.line('Nameplate capacity', f.num(capacity.value, 2), 'Ah'),
+          f.line('Usable factor', f.num(factor, 2), '× nameplate'),
+          f.line('Usable charge', f.num(capacity.value * factor, 2), 'Ah')
+        ];
+        var anyLoad = false;
+
+        scenarios.forEach(function (scenario) {
+          var el = document.getElementById(scenario.id);
+          if (!el || String(el.value).trim() === '') {
+            return;
+          }
+          var load = u.parsePositive(scenario.id, scenario.label + ' load');
+          if (!load.ok) {
+            return;
+          }
+          anyLoad = true;
+          var minutes = (capacity.value * 60 * factor) / load.value;
+          var hours = minutes / 60;
+          lines.push(f.line(scenario.label + ' endurance', f.num(minutes, 1) + ' min (' + f.num(hours, 2) + ' h)', 'at ' + f.num(load.value, 2) + ' A'));
+        });
+
+        if (!anyLoad) {
+          return ctx.fail('Enter at least one load scenario in amps.');
+        }
+
+        return ctx.ok(f.lines(lines));
+      };
+
+  defs['tru_sizing'].onInit = function () {
+        var phaseEl = document.getElementById('phaseType');
+        var voltageEl = document.getElementById('inputVoltage');
+        if (!phaseEl || !voltageEl) return;
+
+        function syncVoltagePreset() {
+          var current = String(voltageEl.value).trim();
+          if (phaseEl.value === 'single_phase') {
+            if (current === '' || current === '200') {
+              voltageEl.value = '115';
+            }
+          } else if (current === '' || current === '115') {
+            voltageEl.value = '200';
+          }
+        }
+
+        phaseEl.addEventListener('change', syncVoltagePreset);
       };
 
   defs['power_wire_analysis'].compute = function (ctx) {
