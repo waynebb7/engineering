@@ -11,6 +11,21 @@
 
   var EXPORT_COLUMN_IDS = ['labelB', 'labelC', 'eq', 'awg', 'unit'];
 
+  var ALLOWABLE_DROPS = {
+    continuous: [
+      { nominal: 14, drop: 0.5 },
+      { nominal: 28, drop: 1 },
+      { nominal: 115, drop: 4 },
+      { nominal: 200, drop: 7 }
+    ],
+    intermittent: [
+      { nominal: 14, drop: 1 },
+      { nominal: 28, drop: 2 },
+      { nominal: 115, drop: 8 },
+      { nominal: 200, drop: 14 }
+    ]
+  };
+
   var WIRES = [
     { label: '24', ohm1000ft: 34.96055994685995, freeAirA: 16 },
     { label: '22', ohm1000ft: 17.92223997275819, freeAirA: 21 },
@@ -70,6 +85,66 @@
     if (val === 0) return '0';
     if (val >= 0.001) return num(val, 6);
     return val.toExponential(4);
+  }
+
+  function getAllowableDropEntries(operationType) {
+    return ALLOWABLE_DROPS[operationType] || ALLOWABLE_DROPS.continuous;
+  }
+
+  function formatAllowableDropOption(entry) {
+    return entry.nominal + ' V nominal — ' + num(entry.drop, entry.drop % 1 ? 1 : 0) + ' V drop';
+  }
+
+  function getSelectedAllowableNominal(selectEl) {
+    if (!selectEl || !selectEl.selectedOptions.length) return null;
+    var nominal = parseInt(selectEl.selectedOptions[0].dataset.nominal, 10);
+    return isFinite(nominal) ? nominal : null;
+  }
+
+  function updateAllowableDropOptions(form, preferredNominal) {
+    var operationEl = form.elements.operationType;
+    var selectEl = form.elements.allowableDrop;
+    if (!operationEl || !selectEl) return;
+
+    var entries = getAllowableDropEntries(operationEl.value);
+    var currentNominal = preferredNominal || getSelectedAllowableNominal(selectEl);
+    var html = '';
+
+    entries.forEach(function (entry) {
+      html +=
+        '<option value="' + entry.drop + '" data-nominal="' + entry.nominal + '">' +
+        formatAllowableDropOption(entry) +
+        '</option>';
+    });
+    selectEl.innerHTML = html;
+
+    var match = null;
+    entries.forEach(function (entry) {
+      if (entry.nominal === currentNominal) match = entry;
+    });
+    if (!match && currentNominal) {
+      entries.forEach(function (entry) {
+        if (!match || Math.abs(entry.nominal - currentNominal) < Math.abs(match.nominal - currentNominal)) {
+          match = entry;
+        }
+      });
+    }
+    if (!match) {
+      match = entries[entries.length - 1];
+    }
+    selectEl.value = String(match.drop);
+  }
+
+  function initAllowableDropControls(form) {
+    updateAllowableDropOptions(form, 200);
+
+    var operationEl = form.elements.operationType;
+    if (operationEl) {
+      operationEl.addEventListener('change', function () {
+        updateAllowableDropOptions(form);
+        recalc();
+      });
+    }
   }
 
   function readParams(form) {
@@ -564,6 +639,7 @@
 
     updateGridTitle();
     initExportControls();
+    initAllowableDropControls(form);
 
     var unitEl = form.elements.wireLengthUnit;
     var lengthEl = form.elements.wireLength;

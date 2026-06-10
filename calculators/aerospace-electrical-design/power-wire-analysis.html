@@ -34,7 +34,7 @@
               <input type="number" name="circuitCurrent" step="0.01" min="0" value="72" required>
             </label>
             <label>Allowable voltage drop U (V)
-              <input type="number" name="allowableDrop" step="0.01" value="7" required>
+              <select name="allowableDrop" id="pwa-allowable-drop" required></select>
             </label>
             <label>Ambient temperature T<sub>1</sub> (&deg;C)
               <input type="number" name="ambientTemp" step="0.1" value="50" required>
@@ -73,6 +73,16 @@
               <strong id="pwa-wire-length-ft">—</strong> ft
               (<span id="pwa-wire-length-m">—</span> m)
             </p>
+          </fieldset>
+
+          <fieldset class="pwa-fieldset">
+            <legend>Operation</legend>
+            <label>Allowable voltage drop basis
+              <select name="operationType" id="pwa-operation-type">
+                <option value="continuous" selected>Continuous operation</option>
+                <option value="intermittent">Intermittent operation</option>
+              </select>
+            </label>
           </fieldset>
         </form>
       </aside>

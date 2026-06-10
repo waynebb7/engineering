@@ -848,13 +848,16 @@ p {
   margin: 2px 0 4px;
 }
 
-.pwa-params__form input {
+.pwa-params__form input,
+.pwa-params__form select {
   width: 100%;
   margin-top: 4px;
   padding: 8px 10px;
   border: 1px solid var(--corp-border);
   border-radius: var(--corp-radius);
   font-size: 0.92rem;
+  font-family: var(--corp-font);
+  background: #fff;
 }
 
 .pwa-fieldset {
