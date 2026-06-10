@@ -2879,7 +2879,8 @@
         }
 
         var L1 = U.value / (I.value * Rft);
-        var T2 = T1.value + (TR.value - T1.value) * (I.value / Imax.value);
+        var iImax = I.value / Imax.value;
+        var T2 = T1.value + (TR.value - T1.value) * (iImax * iImax);
         var L2 = (COPPER_REF * L1) / (COPPER_COEF + T2);
         var tempFactor = (COPPER_COEF + T2) / COPPER_REF;
         var Vdrop = I.value * Rft * Lwire.value * tempFactor;

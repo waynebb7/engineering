@@ -32,30 +32,7 @@
     ]
   };
 
-  // AC 43.13-1B Fig 11-6 altitude derating curve (altitude in thousands of feet).
-  var ALTITUDE_CURVE = [
-    { kft: 0, factor: 1.00 },
-    { kft: 5, factor: 0.98 },
-    { kft: 10, factor: 0.96 },
-    { kft: 15, factor: 0.94 },
-    { kft: 20, factor: 0.92 },
-    { kft: 25, factor: 0.90 },
-    { kft: 30, factor: 0.88 },
-    { kft: 35, factor: 0.86 },
-    { kft: 40, factor: 0.84 },
-    { kft: 45, factor: 0.82 },
-    { kft: 50, factor: 0.80 },
-    { kft: 55, factor: 0.785 },
-    { kft: 60, factor: 0.77 },
-    { kft: 65, factor: 0.76 },
-    { kft: 70, factor: 0.75 },
-    { kft: 75, factor: 0.74 },
-    { kft: 80, factor: 0.73 },
-    { kft: 85, factor: 0.72 },
-    { kft: 90, factor: 0.71 },
-    { kft: 95, factor: 0.705 },
-    { kft: 100, factor: 0.70 }
-  ];
+  // AC 43.13-1B Fig 11-6 — see pwa-altitude-derating.js
 
   var WIRES = [
     { label: '22', ohm1000ft: 17.92223997275819, freeAirA: 21 },
@@ -93,7 +70,7 @@
     { key: 'bundle', labelB: 'De-rating (Bundle)', labelC: 'y', unit: '', fmt: 'factor', digits: 2 },
     { key: 'altitude', labelB: 'De-rating (Altitude)', labelC: 'z', unit: '', fmt: 'factor' },
     { key: 'IImax', labelB: 'I/IMAX', labelC: '', unit: '', fmt: 'num', digits: 3 },
-    { key: 'sqrtIImax', labelB: 'SQRT I/IMAX', labelC: '', unit: '', fmt: 'num', digits: 3 },
+    { key: 't2Factor', labelB: 'I/IMAX squared', labelC: '', unit: '', fmt: 'num', digits: 3 },
     { key: 'L2in', labelB: 'Maximum wire length (DE-RATED) (MOST SEVERE) (in)', labelC: 'L2', unit: 'in', fmt: 'num', digits: 3 },
     { key: 'L2ft', labelB: 'Maximum wire length (DE-RATED) (MOST SEVERE) (ft)', labelC: 'L2', unit: 'ft', fmt: 'num', digits: 3 },
     { key: 'L2m', labelB: 'Maximum wire length (DE-RATED) (MOST SEVERE) (m)', labelC: 'L2', unit: 'm', fmt: 'num', digits: 3 },
@@ -120,20 +97,10 @@
   }
 
   function altitudeDeratingFactor(altitudeFt) {
-    var kft = altitudeFt / 1000;
-    if (kft <= ALTITUDE_CURVE[0].kft) return ALTITUDE_CURVE[0].factor;
-    if (kft >= ALTITUDE_CURVE[ALTITUDE_CURVE.length - 1].kft) {
-      return ALTITUDE_CURVE[ALTITUDE_CURVE.length - 1].factor;
+    if (window.PwaAltitudeDerating) {
+      return PwaAltitudeDerating.altitudeDeratingFactor(altitudeFt);
     }
-    for (var i = 0; i < ALTITUDE_CURVE.length - 1; i += 1) {
-      var start = ALTITUDE_CURVE[i];
-      var end = ALTITUDE_CURVE[i + 1];
-      if (kft >= start.kft && kft <= end.kft) {
-        var t = (kft - start.kft) / (end.kft - start.kft);
-        return start.factor + t * (end.factor - start.factor);
-      }
-    }
-    return ALTITUDE_CURVE[ALTITUDE_CURVE.length - 1].factor;
+    return 1;
   }
 
   function formatAltitudeLabel(altitudeFt) {
@@ -216,6 +183,21 @@
     }
   }
 
+  function t2FactorRowLabel(standard) {
+    return standard === 'ac43' ? 'SQRT I/IMAX' : 'I/IMAX squared';
+  }
+
+  function t2FactorValue(IImax, standard) {
+    return standard === 'ac43' ? Math.sqrt(IImax) : IImax * IImax;
+  }
+
+  function t2StandardNote(standard) {
+    if (standard === 'ac43') {
+      return 'T<sub>1</sub> + (T<sub>R</sub> &minus; T<sub>1</sub>) &times; &radic;(I/I<sub>max</sub>)';
+    }
+    return 'T<sub>1</sub> + (T<sub>R</sub> &minus; T<sub>1</sub>) &times; (I/I<sub>max</sub>)&sup2;';
+  }
+
   function readParams(form) {
     function f(name) {
       return parseFloat(form.elements[name].value, 10);
@@ -234,6 +216,9 @@
     var bundleWireCount = parseInt(form.elements.bundleWireCount.value, 10);
     var bundleLoadingPct = parseInt(form.elements.bundleLoadingPct.value, 10);
     var bundleDerating = bundleDeratingFactor(bundleWireCount, bundleLoadingPct);
+    var t2Standard = form.elements.t2Standard
+      ? form.elements.t2Standard.value
+      : 'arp4404';
 
     return {
       generatorLineVoltage: generatorLineVoltage,
@@ -246,6 +231,7 @@
       bundleWireCount: bundleWireCount,
       bundleLoadingPct: bundleLoadingPct,
       bundleDerating: bundleDerating,
+      t2Standard: t2Standard,
       wireLengthFt: wireLengthFt,
       wireLengthIn: totalIn,
       wireLengthM: wireLengthFt * FT_TO_M
@@ -265,8 +251,8 @@
     var altitude = params.altitudeDerating;
     var Imax = freeAir * bundle * altitude;
     var IImax = I / Imax;
-    var sqrtIImax = Math.sqrt(IImax);
-    var T2 = T1 + (TR - T1) * sqrtIImax;
+    var t2Factor = t2FactorValue(IImax, params.t2Standard);
+    var T2 = T1 + (TR - T1) * t2Factor;
     var L2ft = (COPPER_REF * L1) / (COPPER_COEF + T2);
     var L2in = L2ft * 12;
     var L2m = L2ft * FT_TO_M;
@@ -290,7 +276,7 @@
       bundle: bundle,
       altitude: altitude,
       IImax: IImax,
-      sqrtIImax: sqrtIImax,
+      t2Factor: t2Factor,
       L2in: L2in,
       L2ft: L2ft,
       L2m: L2m,
@@ -389,7 +375,7 @@
       case 'TR':
         return excelRawValue(params.conductorTempRating);
       case 'T2':
-        return '=' + ref('T1') + '+(' + ref('TR') + '-' + ref('T1') + ')*' + ref('sqrtIImax');
+        return '=' + ref('T1') + '+(' + ref('TR') + '-' + ref('T1') + ')*' + ref('t2Factor');
       case 'Imax':
         return '=' + ref('freeAir') + '*' + ref('bundle') + '*' + ref('altitude');
       case 'IfreePct':
@@ -402,8 +388,11 @@
         return excelRawValue(params.altitudeDerating);
       case 'IImax':
         return '=' + ref('I') + '/' + ref('Imax');
-      case 'sqrtIImax':
-        return '=SQRT(' + ref('IImax') + ')';
+      case 't2Factor':
+        if (params.t2Standard === 'ac43') {
+          return '=SQRT(' + ref('IImax') + ')';
+        }
+        return '=' + ref('IImax') + '*' + ref('IImax');
       case 'L2ft':
         return '=' + COPPER_REF + '*' + ref('L1') + '/(' + COPPER_COEF + '+' + ref('T2') + ')';
       case 'L2in':
@@ -439,7 +428,9 @@
     var rowMap = options && options.rowMap;
 
     cells.push({
-      text: row.labelB,
+      text: row.key === 't2Factor' && params
+        ? t2FactorRowLabel(params.t2Standard)
+        : row.labelB,
       align: 'left'
     });
     cells.push({
@@ -798,9 +789,13 @@
       if (row.fmt === 'blank') rowClass += ' pwa-grid__row--blank';
       if (row.section === 'vdrop') rowClass += ' pwa-grid__row--vdrop';
 
+      var rowLabelB = row.key === 't2Factor'
+        ? t2FactorRowLabel(params.t2Standard)
+        : row.labelB;
+
       frozenHtml +=
         '<tr class="' + rowClass + '" data-row="' + excelRow + '">' +
-          '<th class="pwa-grid__label-b" scope="row">' + row.labelB + '</th>' +
+          '<th class="pwa-grid__label-b" scope="row">' + rowLabelB + '</th>' +
           '<td class="pwa-grid__label-c">' + row.labelC + '</td>' +
         '</tr>';
 
@@ -869,10 +864,14 @@
     var mEl = document.getElementById('pwa-wire-length-m');
     var altEl = document.getElementById('pwa-altitude-factor');
     var bundleEl = document.getElementById('pwa-bundle-factor');
+    var t2NoteEl = document.getElementById('pwa-t2-standard-note');
     if (ftEl) ftEl.textContent = num(params.wireLengthFt, 2);
     if (mEl) mEl.textContent = num(params.wireLengthM, 3);
     if (altEl) altEl.textContent = num(params.altitudeDerating, 4);
     if (bundleEl) bundleEl.textContent = num(params.bundleDerating, 4);
+    if (t2NoteEl) {
+      t2NoteEl.innerHTML = 'T<sub>2</sub> = ' + t2StandardNote(params.t2Standard);
+    }
   }
 
   function recalc() {

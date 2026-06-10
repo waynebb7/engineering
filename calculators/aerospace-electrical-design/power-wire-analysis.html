@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="../../assets/css/corporate.css">
   <script src="../../assets/js/site-layout.js" defer></script>
   <script src="../../assets/js/pwa-bundle-derating.js" defer></script>
+  <script src="../../assets/js/pwa-altitude-derating.js" defer></script>
   <script src="../../assets/js/pwa-grid-calculator.js" defer></script>
   <title>Power Wire Analysis | Engineering Knowledge</title>
 </head>
@@ -40,6 +41,15 @@
             <label>Conductor temperature rating T<sub>R</sub> (&deg;C)
               <input type="number" name="conductorTempRating" step="1" value="260" required>
             </label>
+            <label>T<sub>2</sub> calculation standard
+              <select name="t2Standard" id="pwa-t2-standard">
+                <option value="arp4404" selected>SAE ARP4404C &sect;9.3.4.2</option>
+                <option value="ac43">AC 43.13-1B</option>
+              </select>
+            </label>
+            <p class="pwa-derived pwa-derived--note" id="pwa-t2-standard-note">
+              T<sub>2</sub> = T<sub>1</sub> + (T<sub>R</sub> &minus; T<sub>1</sub>) &times; (I/I<sub>max</sub>)&sup2;
+            </p>
           </fieldset>
 
           <fieldset class="pwa-fieldset">
@@ -50,6 +60,9 @@
             <p class="pwa-derived">
               De-rating factor:
               <strong id="pwa-altitude-factor">—</strong>
+            </p>
+            <p class="pwa-chart-link">
+              <a href="altitude-derating-chart.html" target="_blank" rel="noopener noreferrer">View altitude derating chart (Fig 11-6)</a>
             </p>
             <label>Number of wires in bundle
               <input type="number" name="bundleWireCount" step="1" min="1" max="41" value="3" required>
