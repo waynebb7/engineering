@@ -1,7 +1,7 @@
 (function (global) {
   'use strict';
 
-  var WORKBOOK_VERSION = '1.5.0';
+  var WORKBOOK_VERSION = '2.0.0';
   var REPORT_TITLE = 'Power Wire Analysis Report';
   var REPORT_STANDARDS =
     'Reference standards: SAE ARP4404C §9.3.4.2 (T₂, allowable voltage drop U) · ' +
@@ -54,10 +54,10 @@
     { key: 'ambientTemp', label: 'Ambient temperature T1 (°C)' },
     { key: 'conductorTempRatingPreset', label: 'Conductor rating TR preset' },
     { key: 'conductorTempRatingCustom', label: 'Custom TR (°C)' },
-    { key: 'applyInstallationTempLimit', label: 'Apply installation temperature limit' },
-    { key: 'aircraftZone', label: 'Aircraft zone' },
+    { key: 'applyInstallationTempLimit', label: 'Apply installation temperature assessment' },
+    { key: 'installationGuidancePreset', label: 'Engineering guidance preset (optional)' },
     { key: 'installationTempLimit', label: 'Installation temperature limit (°C)' },
-    { key: 'tempDesignMargin', label: 'Temperature design margin (°C)' },
+    { key: 'tSafe', label: 'Assessment limit T_SAFE (°C)' },
     { key: 't2Standard', label: 'T2 calculation standard' },
     { key: 'altitudeFt', label: 'Altitude (ft)' },
     { key: 'bundleWireCount', label: 'Wires in bundle' },
@@ -70,7 +70,7 @@
   function isApplyInstallationTempLimitEnabled(snapshot) {
     var val = snapshot && snapshot.applyInstallationTempLimit;
     if (val == null || val === '') {
-      return true;
+      return false;
     }
     if (val === true) {
       return true;
@@ -85,7 +85,7 @@
     if (normalized === 'yes' || normalized === '1' || normalized === 'on' || normalized === 'true') {
       return true;
     }
-    return true;
+    return false;
   }
 
   function formatApplyInstallationTempLimitDisplay(val) {
@@ -94,13 +94,12 @@
 
   function buildTemperatureStatusLegend(snapshot) {
     if (isApplyInstallationTempLimitEnabled(snapshot)) {
-      return 'Apply installation temperature limit: Yes. Status: green (PASS) = T₂ ≤ 80% T_SAFE or V_drop ≤ U; ' +
+      return 'Apply installation temperature assessment: Yes. Grid status: green (PASS) = T₂ ≤ 80% T_SAFE or V_drop ≤ U; ' +
         'amber (CAUTION) = 80% T_SAFE < T₂ ≤ T_SAFE; red (FAIL) = exceeds limit. ' +
-        'T_SAFE = MIN(T_R, installation limit − margin). Installation temperature pass/fail applies.';
+        'T_SAFE = MIN(T_R, installation temperature limit). Installation assessment applies.';
     }
-    return 'Apply installation temperature limit: No. Installation temperature assessment disabled. ' +
-      'Status: green (PASS) = T₂ ≤ 80% T_R or V_drop ≤ U; amber (CAUTION) = 80% T_R < T₂ ≤ T_R; ' +
-      'red (FAIL) = exceeds T_R. Cable rating temperature pass/fail applies.';
+    return 'Apply installation temperature assessment: No. Grid status: green (PASS) = T₂ ≤ 80% T_R or V_drop ≤ U; ' +
+      'amber (CAUTION) = 80% T_R < T₂ ≤ T_R; red (FAIL) = exceeds T_R. Cable rating assessment applies.';
   }
 
   function buildTemperatureAssessmentNote(snapshot) {
@@ -108,6 +107,92 @@
       return '';
     }
     return 'Note: Installation temperature assessment disabled. Temperature pass/fail assessed against cable rating T_R only.';
+  }
+
+  function getGlobalDisclaimer() {
+    if (global.PwaGridCalculator && PwaGridCalculator.GLOBAL_DISCLAIMER) {
+      return PwaGridCalculator.GLOBAL_DISCLAIMER;
+    }
+    return 'The calculator determines conductor temperature using SAE ARP4404 methodology. ' +
+      'Installation acceptance criteria are project-specific and shall be established by the Design Authority.';
+  }
+
+  function buildEngineeringAssessmentRows(assessment, colCount) {
+    if (!assessment) {
+      return [];
+    }
+    colCount = colCount || 3;
+    var rows = [
+      { spacer: true, height: 8 },
+      {
+        cells: [{ text: 'ENGINEERING ASSESSMENT', span: colCount }],
+        styleKey: 'sectionHeader',
+        height: 20
+      },
+      {
+        cells: [
+          { text: 'Apply installation temperature assessment', styleKey: 'tableLabel' },
+          { text: assessment.applyInstallationTempLimit ? 'Yes' : 'No', styleKey: 'tableData', span: colCount - 1 }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Assessment basis', styleKey: 'tableLabel' },
+          { text: assessment.assessmentBasis, styleKey: 'tableData', span: colCount - 1 }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Cable rating T_R (°C)', styleKey: 'tableLabel' },
+          { text: String(assessment.cableRatingTr), styleKey: 'tableNum3', span: colCount - 1 }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Installation temperature limit (°C)', styleKey: 'tableLabel' },
+          {
+            text: assessment.installationTempLimit != null ? String(assessment.installationTempLimit) : '—',
+            styleKey: 'tableData',
+            span: colCount - 1
+          }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Assessment limit T_SAFE (°C)', styleKey: 'tableLabel' },
+          { text: String(assessment.tSafe), styleKey: 'tableNum3', span: colCount - 1 }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Calculated T₂ (°C) — AWG ' + assessment.worstAwg, styleKey: 'tableLabel' },
+          { text: String(Math.round(assessment.calculatedT2 * 10) / 10), styleKey: 'tableNum3', span: colCount - 1 }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Assessment result', styleKey: 'tableLabel' },
+          {
+            text: assessment.result,
+            styleKey: assessment.result === 'PASS' ? 'pass' : 'fail',
+            span: colCount - 1
+          }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Reason', styleKey: 'tableLabel' },
+          { text: assessment.reason, styleKey: 'tableData', span: colCount - 1 }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Engineering notes', styleKey: 'tableLabel' },
+          { text: assessment.engineeringNotes, styleKey: 'paramNotes', span: colCount - 1 }
+        ]
+      }
+    ];
+    return rows;
   }
 
   function escapeXml(text) {
@@ -779,6 +864,17 @@
         styleKey: 'reportMeta',
         height: REPORT_HEADER_ROW_HEIGHT
       },
+      {
+        cells: [{
+          text: getGlobalDisclaimer(),
+          span: colCount
+        }],
+        styleKey: 'footerNote',
+        height: REPORT_HEADER_ROW_HEIGHT
+      }
+    ]).concat(
+      buildEngineeringAssessmentRows(meta.engineeringAssessment, colCount)
+    ).concat([
       { spacer: true, height: 6 },
       {
         cells: [{ text: 'AWG ANALYSIS GRID', span: colCount }],
@@ -987,9 +1083,13 @@
       rowByKey[def.key] = excelRow;
       var notes = '';
       if (def.key === 'applyInstallationTempLimit') {
-        notes = 'Yes = check T₂ against installation limit (T_SAFE); No = check against cable rating T_R only';
+        notes = 'Yes = T₂ assessed against installation limit (T_SAFE); No = assessed against cable rating T_R only';
+      } else if (def.key === 'installationGuidancePreset' || def.key === 'aircraftZone') {
+        notes = 'Optional engineering guidance preset — not a certification limit';
+      } else if (def.key === 'tSafe') {
+        notes = 'Computed: MIN(T_R, installation limit) when assessment enabled; otherwise T_R';
       } else if (!isApplyInstallationTempLimitEnabled(snapshot) &&
-          (def.key === 'aircraftZone' || def.key === 'installationTempLimit' || def.key === 'tempDesignMargin')) {
+          (def.key === 'installationTempLimit')) {
         notes = 'Stored for re-import; not used when installation assessment is disabled';
       } else if (optionRanges[def.key]) {
         notes = 'Dropdown in column B';
@@ -1027,12 +1127,11 @@
     rows.push({ spacer: true, height: 8 });
     rows.push({
       cells: [{
-        text: 'Disclaimer: This report is generated by the Power Wire Analysis calculator for engineering review. ' +
-          'Verify results against applicable airworthiness requirements and approved data before certification submission.',
+        text: getGlobalDisclaimer(),
         span: colCount,
         styleKey: 'footerNote'
       }],
-      height: 36
+      height: 48
     });
 
     Object.keys(optionRanges).forEach(function (key) {
@@ -1102,7 +1201,8 @@
     var decoratedAnalysis = decorateAnalysisSheet(tableRows, {
       snapshot: snapshot,
       gridTitle: meta.gridTitle,
-      projectName: snapshot.projectName
+      projectName: snapshot.projectName,
+      engineeringAssessment: meta.engineeringAssessment
     });
     var analysisHeaderRow = 9;
     var tableColWidths = [analysisLabelColumnWidth(tableRows), 9];
@@ -1578,7 +1678,9 @@
       if (cells.A === 'Key' && cells.B === 'Value') {
         hasKeyHeader = true;
       }
-      if (cells.A && knownKeys[cells.A]) {
+      if (cells.A === 'aircraftZone' && !parameters.installationGuidancePreset) {
+        parameters.installationGuidancePreset = cells.B == null ? '' : String(cells.B);
+      } else if (cells.A && knownKeys[cells.A]) {
         parameters[cells.A] = cells.B == null ? '' : String(cells.B);
       }
     }
@@ -1618,6 +1720,8 @@
     isApplyInstallationTempLimitEnabled: isApplyInstallationTempLimitEnabled,
     formatApplyInstallationTempLimitDisplay: formatApplyInstallationTempLimitDisplay,
     buildTemperatureStatusLegend: buildTemperatureStatusLegend,
-    buildTemperatureAssessmentNote: buildTemperatureAssessmentNote
+    buildTemperatureAssessmentNote: buildTemperatureAssessmentNote,
+    buildEngineeringAssessmentRows: buildEngineeringAssessmentRows,
+    getGlobalDisclaimer: getGlobalDisclaimer
   };
 })(typeof window !== 'undefined' ? window : this);
