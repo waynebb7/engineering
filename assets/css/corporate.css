@@ -1625,6 +1625,24 @@ p {
   margin-bottom: 0;
 }
 
+.pwa-export__filename-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--corp-navy);
+  cursor: pointer;
+}
+
+.pwa-export__filename-option input {
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+  flex: 0 0 auto;
+}
+
 .pwa-export__hint--filename {
   margin-top: 0;
   margin-bottom: 14px;
@@ -1798,47 +1816,261 @@ p {
   padding-bottom: 16px;
 }
 
-.pwa-folder__toolbar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 10px;
+.pwa-folder__step-title {
+  margin: 14px 0 4px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--corp-navy);
 }
 
-.pwa-folder__fallback-btn {
-  margin: 0;
-}
-
-.pwa-folder__path {
+.pwa-folder__step-intro {
   margin: 0 0 10px;
-  padding: 8px 12px;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   color: var(--corp-text-muted);
-  background: var(--corp-surface-alt, #f8fafc);
-  border: 1px solid var(--corp-border);
-  border-radius: var(--corp-radius);
+  line-height: 1.45;
 }
 
-.pwa-folder__table-wrap {
-  overflow-x: auto;
+.pwa-folder__connect {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 10px;
+  align-items: stretch;
+  margin-bottom: 12px;
+}
+
+.pwa-folder__option {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
   border: 1px solid var(--corp-border);
   border-radius: var(--corp-radius);
   background: var(--corp-surface);
 }
 
+.pwa-folder__option--recommended {
+  border-color: #1e5a8a;
+  box-shadow: 0 0 0 1px rgba(30, 90, 138, 0.15);
+  background: rgba(232, 241, 248, 0.45);
+}
+
+.pwa-folder__connect--fallback .pwa-folder__option:first-child {
+  opacity: 0.72;
+}
+
+.pwa-folder__connect--picker .pwa-folder__option:last-child {
+  opacity: 0.88;
+}
+
+.pwa-folder__option-badge {
+  margin: 0;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #1e5a8a;
+}
+
+.pwa-folder__option-badge--alt {
+  color: var(--corp-text-muted);
+}
+
+.pwa-folder__option-title {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--corp-navy);
+}
+
+.pwa-folder__option-desc {
+  flex: 1 1 auto;
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--corp-text-muted);
+}
+
+.pwa-folder__or {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--corp-text-muted);
+}
+
+.pwa-folder__or span {
+  padding: 4px 6px;
+  border-radius: 999px;
+  background: var(--corp-surface-alt, #f1f5f9);
+  border: 1px solid var(--corp-border);
+}
+
+.pwa-folder__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  min-height: 2rem;
+  padding: 6px 14px;
+  margin: 4px 0 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  width: auto;
+  max-width: 100%;
+}
+
+.pwa-folder__btn--secondary {
+  background: #fff;
+  color: var(--corp-navy);
+  border: 1px solid var(--corp-border);
+}
+
+.pwa-folder__btn--secondary:hover {
+  background: var(--corp-surface-alt, #f8fafc);
+}
+
+.pwa-folder__btn--refresh {
+  flex: 0 0 auto;
+  min-width: 5.5rem;
+}
+
+.pwa-folder__btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.pwa-folder__status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--corp-border);
+  border-radius: var(--corp-radius);
+  background: var(--corp-surface-alt, #f8fafc);
+}
+
+.pwa-folder__status-text {
+  flex: 1 1 12rem;
+  min-width: 0;
+}
+
+.pwa-folder__path {
+  margin: 0;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--corp-navy);
+}
+
+.pwa-folder__status-detail {
+  margin: 4px 0 0;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--corp-text-muted);
+}
+
+.pwa-folder__list-panel {
+  border: 1px solid var(--corp-border);
+  border-radius: var(--corp-radius);
+  background: var(--corp-surface);
+  overflow: hidden;
+}
+
+.pwa-folder__filter {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--corp-border);
+  background: var(--corp-surface-alt, #f8fafc);
+}
+
+.pwa-folder__filter-label {
+  display: block;
+  margin: 0 0 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--corp-navy);
+}
+
+.pwa-folder__filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.pwa-folder__filter-input {
+  flex: 1 1 12rem;
+  min-width: 0;
+  height: 2.125rem;
+  padding: 0 10px;
+  border: 1px solid var(--corp-border);
+  border-radius: var(--corp-radius);
+  font-size: 0.84rem;
+  font-family: var(--corp-font);
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.pwa-folder__filter-input:focus {
+  outline: 2px solid rgba(30, 90, 138, 0.35);
+  outline-offset: 1px;
+}
+
+.pwa-folder__filter-clear {
+  flex: 0 0 auto;
+}
+
+.pwa-folder__list-summary {
+  min-height: 1.1rem;
+  margin: 8px 0 0;
+  font-size: 0.76rem;
+  line-height: 1.4;
+  color: var(--corp-text-muted);
+}
+
+.pwa-folder__list-summary:empty {
+  display: none;
+}
+
+.pwa-folder__list-summary--warn {
+  color: #92400e;
+  font-weight: 600;
+}
+
+.pwa-folder__table-scroll {
+  max-height: min(28rem, 52vh);
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+
+.pwa-folder__table-wrap,
+.pwa-folder__table-scroll {
+  background: var(--corp-surface);
+}
+
 .pwa-folder__table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   font-size: 0.82rem;
 }
 
-.pwa-folder__table th {
+.pwa-folder__table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
   padding: 8px 12px;
   text-align: left;
   font-weight: 600;
-  color: var(--corp-text);
   background: #0f2942;
   color: #fff;
+  box-shadow: 0 1px 0 rgba(15, 41, 66, 0.15);
 }
 
 .pwa-folder__table td {
@@ -2135,6 +2367,14 @@ p {
 
   .pwa-export__ident-row {
     grid-template-columns: 1fr;
+  }
+
+  .pwa-folder__connect {
+    grid-template-columns: 1fr;
+  }
+
+  .pwa-folder__or {
+    padding: 2px 0;
   }
 
   .pwa-export__btn-row,

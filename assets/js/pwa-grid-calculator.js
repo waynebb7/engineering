@@ -766,6 +766,11 @@
     });
   }
 
+  function getFilenameIncludeTimestamp() {
+    var el = document.getElementById('pwa-filename-include-timestamp');
+    return el ? el.checked : true;
+  }
+
   function getWireNumber() {
     var el = document.getElementById('pwa-wire-number');
     return el ? el.value.trim() : '';
@@ -801,6 +806,7 @@
       projectNumber: getProjectNumber(),
       projectName: projectEl ? projectEl.value.trim() : '',
       wireNumber: getWireNumber(),
+      filenameIncludeTimestamp: getFilenameIncludeTimestamp() ? 'yes' : 'no',
       wireType: form.elements.wireType.value,
       generatorLineVoltagePreset: form.elements.generatorLineVoltagePreset.value,
       generatorLineVoltageCustom: form.elements.generatorLineVoltageCustom.value,
@@ -895,6 +901,11 @@
       options.wireLengthUnit = selectOptions(form.elements.wireLengthUnit);
     }
 
+    options.filenameIncludeTimestamp = [
+      { value: 'yes', label: 'Yes — append date and time to export filenames' },
+      { value: 'no', label: 'No — stable filename without date/time' }
+    ];
+
     return options;
   }
 
@@ -914,6 +925,11 @@
     var wireEl = document.getElementById('pwa-wire-number');
     if (wireEl && snapshot.wireNumber != null) {
       wireEl.value = snapshot.wireNumber;
+    }
+
+    var timestampEl = document.getElementById('pwa-filename-include-timestamp');
+    if (timestampEl && snapshot.filenameIncludeTimestamp != null) {
+      timestampEl.checked = String(snapshot.filenameIncludeTimestamp).toLowerCase() !== 'no';
     }
 
     if (snapshot.wireType && form.elements.wireType) {
@@ -1004,6 +1020,94 @@
     return rows;
   }
 
+  async function deliverExportBlob(blob, filename) {
+    if (window.PwaProjectFolder && PwaProjectFolder.deliverExportBlob) {
+      return PwaProjectFolder.deliverExportBlob(filename, blob);
+    }
+    if (window.PwaWorkbook && PwaWorkbook.downloadBlob) {
+      PwaWorkbook.downloadBlob(blob, filename);
+    }
+    return { method: 'download', filename: filename };
+  }
+
+  function formatExportDeliveryMessage(baseMsg, delivery) {
+    if (!delivery) {
+      return baseMsg;
+    }
+    if (delivery.method === 'folder') {
+      return baseMsg + ' Saved to project folder “' + delivery.folderLabel + '”: ' + delivery.filename + '.';
+    }
+    var msg = baseMsg + ' Downloaded ' + delivery.filename + '.';
+    if (delivery.folderError) {
+      msg += ' Could not save to the linked folder (' + delivery.folderError + ').';
+    } else {
+      msg += ' Use Choose folder (Chrome/Edge) to save directly into your project folder.';
+    }
+    return msg;
+  }
+
+  function buildExportLogFilename(reportFilename) {
+    if (reportFilename) {
+      return String(reportFilename).replace(/\.docx$/i, '-export-log.txt');
+    }
+    var stamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+    return 'power-wire-analysis-export-log-' + stamp + '.txt';
+  }
+
+  function buildExportErrorLogText(meta) {
+    meta = meta || {};
+    var lines = [
+      'Power Wire Analysis — Word project report export log',
+      'Generated: ' + new Date().toLocaleString(),
+      ''
+    ];
+    if (meta.reportFilename) {
+      lines.push('Report file: ' + meta.reportFilename);
+    }
+    if (meta.includedCount != null) {
+      lines.push('Wires included: ' + meta.includedCount);
+    }
+    if (meta.errors && meta.errors.length) {
+      lines.push('');
+      lines.push('Skipped workbooks (' + meta.errors.length + '):');
+      meta.errors.forEach(function (entry, idx) {
+        var colon = entry.indexOf(': ');
+        if (colon >= 0) {
+          lines.push('');
+          lines.push((idx + 1) + '. ' + entry.slice(0, colon));
+          lines.push('   ' + entry.slice(colon + 2));
+        } else {
+          lines.push('');
+          lines.push((idx + 1) + '. ' + entry);
+        }
+      });
+    }
+    if (meta.folderError) {
+      lines.push('');
+      lines.push('Folder write error: ' + meta.folderError);
+    }
+    lines.push('');
+    return lines.join('\r\n');
+  }
+
+  async function saveExportErrorLog(reportFilename, meta) {
+    if (!window.PwaProjectFolder || !PwaProjectFolder.saveBlobToFolder) {
+      return null;
+    }
+    var folderState = PwaProjectFolder.getState();
+    if (!folderState.canWrite) {
+      return null;
+    }
+    var logFilename = buildExportLogFilename(reportFilename);
+    var blob = new Blob([buildExportErrorLogText(meta)], { type: 'text/plain;charset=utf-8' });
+    try {
+      await PwaProjectFolder.saveBlobToFolder(logFilename, blob);
+      return logFilename;
+    } catch (err) {
+      return null;
+    }
+  }
+
   function exportWorkbookToExcel(exportAll) {
     if (!window.PwaWorkbook) {
       setExportStatus('Workbook export is unavailable.', 'error');
@@ -1035,18 +1139,29 @@
         gridTitle: gridTitleEl ? gridTitleEl.textContent : '',
         filename: PwaWorkbook.buildExportFilename(snapshot, {
           awgLabels: settings.awgLabels,
-          extension: 'xlsx'
+          extension: 'xlsx',
+          includeTimestamp: getFilenameIncludeTimestamp()
         })
       };
-      PwaWorkbook.exportWorkbook(snapshot, tableRows, exportMeta);
-      var statusMsg = exportAll
-        ? 'Exported Excel report workbook (Analysis, Parameters, and option lists).'
-        : 'Exported Excel analysis grid.';
-      statusMsg += ' Saved as ' + exportMeta.filename + '.';
-      if (!snapshot.wireNumber || !snapshot.projectNumber) {
-        statusMsg += ' Tip: set Project number and Wire number for clearer filenames.';
-      }
-      setExportStatus(statusMsg, 'ok');
+      var out = PwaWorkbook.buildWorkbookBlob(snapshot, tableRows, exportMeta);
+      deliverExportBlob(out.blob, out.filename).then(function (delivery) {
+        if (delivery.method === 'folder' && window.PwaProjectFolder) {
+          PwaProjectFolder.setActiveFile(out.filename);
+          renderProjectFileList();
+        }
+        var statusMsg = formatExportDeliveryMessage(
+          exportAll
+            ? 'Exported Excel report workbook (Analysis, Parameters, and option lists).'
+            : 'Exported Excel analysis grid.',
+          delivery
+        );
+        if (!snapshot.wireNumber || !snapshot.projectNumber) {
+          statusMsg += ' Tip: set Project number and Wire number for clearer filenames.';
+        }
+        setExportStatus(statusMsg, delivery.folderError ? 'error' : 'ok');
+      }).catch(function (err) {
+        setExportStatus(err && err.message ? err.message : 'Export failed.', 'error');
+      });
     } catch (err) {
       setExportStatus(err && err.message ? err.message : 'Export failed.', 'error');
     }
@@ -1072,22 +1187,29 @@
       });
       var wireNumber = getWireNumber();
       var folderState = window.PwaProjectFolder ? PwaProjectFolder.getState() : {};
-      var out = PwaWordReport.exportReport(snapshot, tableRows, {
+      var out = PwaWordReport.buildReportBlob([{
+        snapshot: snapshot,
+        tableRows: tableRows,
+        wireId: wireNumber,
+        filename: folderState.activeFileName || ''
+      }], {
         wireId: wireNumber,
         wireNumber: wireNumber,
         awgLabels: exportSettings.awgLabels,
         sourceFilename: folderState.activeFileName || '',
         projectName: snapshot.projectName,
-        exportedAt: snapshot.exportedAt
+        exportedAt: snapshot.exportedAt,
+        includeTimestamp: getFilenameIncludeTimestamp()
       });
-      var statusMsg = 'Exported Word report.';
-      if (out && out.filename) {
-        statusMsg += ' Saved as ' + out.filename + '.';
-      }
-      if (!wireNumber || !snapshot.projectNumber) {
-        statusMsg += ' Tip: set Project number and Wire number for clearer filenames.';
-      }
-      setExportStatus(statusMsg, 'ok');
+      deliverExportBlob(out.blob, out.filename).then(function (delivery) {
+        var statusMsg = formatExportDeliveryMessage('Exported Word report.', delivery);
+        if (!wireNumber || !snapshot.projectNumber) {
+          statusMsg += ' Tip: set Project number and Wire number for clearer filenames.';
+        }
+        setExportStatus(statusMsg, delivery.folderError ? 'error' : 'ok');
+      }).catch(function (err) {
+        setExportStatus(err && err.message ? err.message : 'Word export failed.', 'error');
+      });
     } catch (err) {
       setExportStatus(err && err.message ? err.message : 'Word export failed.', 'error');
     }
@@ -1154,67 +1276,298 @@
     recalc();
 
     if (!sections.length) {
-      setExportStatus(
+      var failMsg =
         'Could not read any workbooks from the folder.' +
-          (errors.length ? ' ' + errors.join('; ') : ''),
-        'error'
-      );
+        (errors.length ? ' Skipped: ' + errors.join('; ') : '');
+      var failLogName = await saveExportErrorLog(null, {
+        includedCount: 0,
+        errors: errors
+      });
+      if (failLogName) {
+        failMsg += ' Error log saved as ' + failLogName + '.';
+      }
+      setExportStatus(failMsg, 'error');
       return;
     }
 
     try {
       var projectName = savedSnapshot.projectName || folderState.folderLabel;
-      var out = PwaWordReport.exportProjectReport(sections, {
+      var out = PwaWordReport.buildReportBlob(sections, {
         projectNumber: savedSnapshot.projectNumber,
         projectName: projectName,
         projectTitle: buildProjectReportTitle(savedSnapshot, projectName),
-        exportedAt: new Date().toISOString()
+        exportedAt: new Date().toISOString(),
+        includeTimestamp: getFilenameIncludeTimestamp()
       });
-      var msg = 'Exported Word project report (' + sections.length + ' wire' +
-        (sections.length === 1 ? '' : 's') + ').';
-      if (out && out.filename) {
-        msg += ' Saved as ' + out.filename + '.';
-      }
+      var delivery = await deliverExportBlob(out.blob, out.filename);
+      var msg = formatExportDeliveryMessage(
+        'Exported Word project report (' + sections.length + ' wire' +
+          (sections.length === 1 ? '' : 's') + ').',
+        delivery
+      );
       if (errors.length) {
         msg += ' Skipped: ' + errors.join('; ');
+        if (delivery.method === 'folder') {
+          var logName = await saveExportErrorLog(out.filename, {
+            reportFilename: out.filename,
+            includedCount: sections.length,
+            errors: errors
+          });
+          if (logName) {
+            msg += ' Error log saved as ' + logName + '.';
+          }
+        }
       }
-      setExportStatus(msg, errors.length ? 'error' : 'ok');
+      setExportStatus(msg, errors.length || delivery.folderError ? 'error' : 'ok');
     } catch (err) {
       setExportStatus(err && err.message ? err.message : 'Word export failed.', 'error');
     }
   }
 
-  function renderProjectFileList() {
-    var tbody = document.getElementById('pwa-folder-files');
+  var FOLDER_LIST_RENDER_LIMIT = 500;
+  var FOLDER_LIST_LARGE_THRESHOLD = 200;
+  var folderFilterTimer = null;
+
+  function getFolderFilterQuery() {
+    var el = document.getElementById('pwa-folder-filter');
+    return el ? el.value.trim().toLowerCase() : '';
+  }
+
+  function resolveWireLabel(fileEntry, state) {
+    if (fileEntry.name === state.activeFileName && getWireNumber()) {
+      return getWireNumber();
+    }
+    if (window.PwaWorkbook && PwaWorkbook.parseExportFilenameMetadata) {
+      var meta = PwaWorkbook.parseExportFilenameMetadata(fileEntry.name);
+      if (meta.wireNumber) {
+        return meta.wireNumber;
+      }
+    }
+    if (fileEntry.wireId && fileEntry.wireId !== '—') {
+      return fileEntry.wireId;
+    }
+    return '—';
+  }
+
+  function fileEntrySearchText(fileEntry, state) {
+    var parts = [fileEntry.name, resolveWireLabel(fileEntry, state)];
+    if (window.PwaWorkbook && PwaWorkbook.parseExportFilenameMetadata) {
+      var meta = PwaWorkbook.parseExportFilenameMetadata(fileEntry.name);
+      parts.push(meta.projectNumber, meta.projectName, meta.wireNumber);
+    }
+    return parts.join(' ').toLowerCase();
+  }
+
+  function fileEntryMatchesFilter(fileEntry, query, state) {
+    if (!query) {
+      return true;
+    }
+    return fileEntrySearchText(fileEntry, state).indexOf(query) >= 0;
+  }
+
+  function updateFolderListSummary(options) {
+    var summaryEl = document.getElementById('pwa-folder-list-summary');
+    var clearBtn = document.getElementById('pwa-folder-filter-clear');
+    if (!summaryEl) {
+      return;
+    }
+
+    options = options || {};
+    var total = options.total || 0;
+    var filtered = options.filtered != null ? options.filtered : total;
+    var shown = options.shown || 0;
+    var query = options.query || '';
+    var capped = !!options.capped;
+
+    if (clearBtn) {
+      clearBtn.hidden = !query;
+    }
+
+    if (!total) {
+      summaryEl.textContent = '';
+      summaryEl.className = 'pwa-folder__list-summary';
+      return;
+    }
+
+    var msg = '';
+    if (query) {
+      msg = filtered === 0
+        ? 'No workbooks match “' + query + '”.'
+        : 'Showing ' + shown + ' of ' + filtered + ' match' + (filtered === 1 ? '' : 'es') +
+          ' (' + total + ' total in folder).';
+      if (capped) {
+        msg += ' Refine the filter to see more.';
+      }
+    } else if (total > FOLDER_LIST_LARGE_THRESHOLD) {
+      msg = total.toLocaleString() + ' workbooks in folder — showing first ' + shown +
+        '. Type in the filter to find a wire (required for very large projects).';
+    } else {
+      msg = 'Showing ' + shown + ' workbook' + (shown === 1 ? '' : 's') + '.';
+    }
+
+    summaryEl.textContent = msg;
+    summaryEl.className = 'pwa-folder__list-summary' +
+      ((!query && total > FOLDER_LIST_LARGE_THRESHOLD) || (query && filtered === 0) ? ' pwa-folder__list-summary--warn' : '');
+  }
+
+  function getFolderFilesToRender(state) {
+    var query = getFolderFilterQuery();
+    var filtered = query
+      ? state.files.filter(function (fileEntry) {
+        return fileEntryMatchesFilter(fileEntry, query, state);
+      })
+      : state.files.slice();
+
+    var capped = false;
+    var visible = filtered;
+    if (!query && filtered.length > FOLDER_LIST_RENDER_LIMIT) {
+      visible = filtered.slice(0, FOLDER_LIST_RENDER_LIMIT);
+      capped = true;
+    } else if (query && filtered.length > FOLDER_LIST_RENDER_LIMIT) {
+      visible = filtered.slice(0, FOLDER_LIST_RENDER_LIMIT);
+      capped = true;
+    }
+
+    return {
+      query: query,
+      total: state.files.length,
+      filtered: filtered.length,
+      shown: visible.length,
+      capped: capped,
+      visible: visible
+    };
+  }
+
+  function supportsFolderPicker() {
+    return typeof window.showDirectoryPicker === 'function';
+  }
+
+  function updateFolderBrowserHints() {
+    var connectEl = document.getElementById('pwa-folder-connect');
+    var pickerOption = document.getElementById('pwa-folder-option-picker');
+    var uploadOption = document.getElementById('pwa-folder-option-upload');
+    var pickerBadge = document.getElementById('pwa-folder-picker-badge');
+    var uploadBadge = document.getElementById('pwa-folder-upload-badge');
+
+    if (connectEl) {
+      if (supportsFolderPicker()) {
+        connectEl.classList.add('pwa-folder__connect--picker');
+        connectEl.classList.remove('pwa-folder__connect--fallback');
+      } else {
+        connectEl.classList.add('pwa-folder__connect--fallback');
+        connectEl.classList.remove('pwa-folder__connect--picker');
+      }
+    }
+
+    if (pickerOption && uploadOption) {
+      if (supportsFolderPicker()) {
+        pickerOption.classList.add('pwa-folder__option--recommended');
+        uploadOption.classList.remove('pwa-folder__option--recommended');
+      } else {
+        uploadOption.classList.add('pwa-folder__option--recommended');
+        pickerOption.classList.remove('pwa-folder__option--recommended');
+      }
+    }
+
+    if (pickerBadge) {
+      pickerBadge.textContent = supportsFolderPicker()
+        ? 'Recommended in Chrome / Edge'
+        : 'Not supported in this browser';
+    }
+    if (uploadBadge) {
+      uploadBadge.textContent = supportsFolderPicker()
+        ? 'Alternative option'
+        : 'Use this option in your browser';
+    }
+
+    var chooseBtn = document.getElementById('pwa-folder-choose');
+    if (chooseBtn) {
+      chooseBtn.disabled = !supportsFolderPicker();
+      chooseBtn.title = supportsFolderPicker()
+        ? 'Connect a project folder on your computer.'
+        : 'Not available in this browser — use Load folder instead.';
+    }
+  }
+
+  function updateFolderStatusPanel() {
     var pathEl = document.getElementById('pwa-folder-path');
-    if (!tbody || !window.PwaProjectFolder) {
+    var detailEl = document.getElementById('pwa-folder-status-detail');
+    var refreshBtn = document.getElementById('pwa-folder-refresh');
+    if (!window.PwaProjectFolder || !pathEl) {
       return;
     }
 
     var state = PwaProjectFolder.getState();
-    if (pathEl) {
-      if (state.hasFolder) {
-        pathEl.textContent = state.folderLabel +
-          (state.canWrite ? ' — read/write access' : ' — read-only access') +
-          ' · ' + state.files.length + ' workbook' + (state.files.length === 1 ? '' : 's');
+    if (!state.hasFolder) {
+      pathEl.textContent = 'No folder connected yet.';
+      if (detailEl) {
+        detailEl.textContent = supportsFolderPicker()
+          ? 'Pick one option above (Choose folder is best in Chrome or Edge). Nothing is uploaded to this website.'
+          : 'Your browser cannot use Choose folder — click Load folder on the right instead.';
+      }
+      if (refreshBtn) {
+        refreshBtn.disabled = true;
+        refreshBtn.title = 'Connect a folder with Choose folder first.';
+      }
+      return;
+    }
+
+    pathEl.textContent = 'Connected: ' + state.folderLabel + ' (' + state.files.length +
+      ' workbook' + (state.files.length === 1 ? '' : 's') + ')';
+
+    if (detailEl) {
+      if (state.canWrite) {
+        detailEl.textContent =
+          'Full access — exports save directly into this folder. Click Refresh after you add or rename workbooks on disk.';
       } else {
-        pathEl.textContent =
-          'No folder connected. Choose a folder (Chrome/Edge) or use Load folder in other browsers.';
+        detailEl.textContent =
+          'Read-only snapshot — to see new or changed files, use Load folder again (Choose folder needs Chrome or Edge).';
       }
     }
 
+    if (refreshBtn) {
+      refreshBtn.disabled = !state.canWrite;
+      refreshBtn.title = state.canWrite
+        ? 'Rescan the connected folder for new or changed workbooks.'
+        : 'Refresh only works after Choose folder in Chrome or Edge.';
+    }
+  }
+
+  function renderProjectFileList() {
+    var tbody = document.getElementById('pwa-folder-files');
+    var scrollEl = document.getElementById('pwa-folder-table-scroll');
+    if (!tbody || !window.PwaProjectFolder) {
+      return;
+    }
+
+    updateFolderStatusPanel();
+
+    var state = PwaProjectFolder.getState();
+
     if (!state.files.length) {
       tbody.innerHTML =
-        '<tr><td colspan="3" class="pwa-folder__empty">No Excel workbooks (.xlsx) in this folder.</td></tr>';
+        '<tr><td colspan="3" class="pwa-folder__empty">' +
+          (state.hasFolder
+            ? 'No Excel workbooks (.xlsx) in this folder.'
+            : 'Connect a folder above to list wire workbooks here.') +
+        '</td></tr>';
+      updateFolderListSummary({ total: 0 });
+      return;
+    }
+
+    var list = getFolderFilesToRender(state);
+    updateFolderListSummary(list);
+
+    if (!list.visible.length) {
+      tbody.innerHTML =
+        '<tr><td colspan="3" class="pwa-folder__empty">No workbooks match your filter.</td></tr>';
       return;
     }
 
     var html = '';
-    state.files.forEach(function (fileEntry) {
+    list.visible.forEach(function (fileEntry) {
       var activeClass = fileEntry.name === state.activeFileName ? ' pwa-folder__row--active' : '';
-      var wireLabel = fileEntry.name === state.activeFileName && getWireNumber()
-        ? getWireNumber()
-        : (fileEntry.wireId || '—');
+      var wireLabel = resolveWireLabel(fileEntry, state);
       html +=
         '<tr class="pwa-folder__row' + activeClass + '">' +
           '<td class="pwa-folder__wire">' + escapeHtml(wireLabel) + '</td>' +
@@ -1227,11 +1580,9 @@
     });
     tbody.innerHTML = html;
 
-    tbody.querySelectorAll('.pwa-folder__load').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        loadWireFromFolder(btn.getAttribute('data-filename'));
-      });
-    });
+    if (scrollEl && list.query) {
+      scrollEl.scrollTop = 0;
+    }
   }
 
   async function loadWireFromFolder(filename) {
@@ -1261,6 +1612,13 @@
     }
   }
 
+  function focusFolderFilterIfLarge(fileCount) {
+    var filterInput = document.getElementById('pwa-folder-filter');
+    if (fileCount > FOLDER_LIST_LARGE_THRESHOLD && filterInput) {
+      filterInput.focus();
+    }
+  }
+
   async function connectProjectFolder() {
     if (!window.PwaProjectFolder) {
       setExportStatus('Project folder support is unavailable.', 'error');
@@ -1271,7 +1629,7 @@
       var result = await PwaProjectFolder.chooseFolder();
       if (!result) {
         setExportStatus(
-          'Folder picker is not supported here. Use Load folder below, or Chrome/Edge for full access.',
+          'Choose folder is not supported in this browser. Use Load folder on the right instead.',
           'error'
         );
         return;
@@ -1282,6 +1640,7 @@
           (result.files.length === 1 ? '' : 's') + ').',
         'ok'
       );
+      focusFolderFilterIfLarge(result.files.length);
     } catch (err) {
       if (err && err.name === 'AbortError') {
         return;
@@ -1310,8 +1669,41 @@
     var chooseBtn = document.getElementById('pwa-folder-choose');
     var refreshBtn = document.getElementById('pwa-folder-refresh');
     var fallbackInput = document.getElementById('pwa-folder-fallback');
+    var filterInput = document.getElementById('pwa-folder-filter');
+    var filterClearBtn = document.getElementById('pwa-folder-filter-clear');
+    var fileListBody = document.getElementById('pwa-folder-files');
 
+    updateFolderBrowserHints();
     renderProjectFileList();
+
+    if (fileListBody && !fileListBody.dataset.loadBound) {
+      fileListBody.dataset.loadBound = '1';
+      fileListBody.addEventListener('click', function (event) {
+        var btn = event.target.closest('.pwa-folder__load');
+        if (btn) {
+          loadWireFromFolder(btn.getAttribute('data-filename'));
+        }
+      });
+    }
+
+    if (filterInput) {
+      filterInput.addEventListener('input', function () {
+        if (folderFilterTimer) {
+          clearTimeout(folderFilterTimer);
+        }
+        folderFilterTimer = setTimeout(function () {
+          renderProjectFileList();
+        }, 150);
+      });
+    }
+
+    if (filterClearBtn && filterInput) {
+      filterClearBtn.addEventListener('click', function () {
+        filterInput.value = '';
+        renderProjectFileList();
+        filterInput.focus();
+      });
+    }
 
     if (chooseBtn) {
       chooseBtn.addEventListener('click', function () {
@@ -1337,6 +1729,7 @@
             (result.files.length === 1 ? '' : 's') + ', read-only).',
           'ok'
         );
+        focusFolderFilterIfLarge(result.files.length);
         fallbackInput.value = '';
       });
     }

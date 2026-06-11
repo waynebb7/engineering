@@ -1,7 +1,7 @@
 (function (global) {
   'use strict';
 
-  var WORKBOOK_VERSION = '1.3.3';
+  var WORKBOOK_VERSION = '1.3.4';
   var REPORT_TITLE = 'Power Wire Analysis Report';
   var REPORT_STANDARDS =
     'Reference standards: SAE ARP4404C §9.3.4.2 (T₂, allowable voltage drop U) · ' +
@@ -43,6 +43,7 @@
     { key: 'projectNumber', label: 'Project number' },
     { key: 'projectName', label: 'Project / system name' },
     { key: 'wireNumber', label: 'Wire number / identifier' },
+    { key: 'filenameIncludeTimestamp', label: 'Include date/time in export filename' },
     { key: 'wireType', label: 'Wire type' },
     { key: 'generatorLineVoltagePreset', label: 'Voltage preset' },
     { key: 'generatorLineVoltageCustom', label: 'Custom voltage (V)' },
@@ -1154,48 +1155,24 @@
     return !!text && (/^W?\d+$/i.test(text) || /^\d{1,6}$/.test(text));
   }
 
-  function parseExportFilenameMetadata(filename) {
+  function parseMiddleFilenameSegments(middle) {
     var empty = { projectNumber: '', projectName: '', wireNumber: '' };
-    var base = String(filename || '').replace(/\.[^.]+$/i, '');
-    var parts = base.split('-');
-
-    if (parts.length < 9 || parts[0] !== 'power' || parts[1] !== 'wire' || parts[2] !== 'analysis') {
-      return {
-        projectNumber: '',
-        projectName: '',
-        wireNumber: parseLegacyWireNumber(base)
-      };
+    if (!middle || !middle.length) {
+      return empty;
     }
 
-    if (!looksLikeDateSegment(parts, parts.length - 6)) {
-      return {
-        projectNumber: '',
-        projectName: '',
-        wireNumber: parseLegacyWireNumber(base)
-      };
-    }
-
-    var middle = parts.slice(3, -6);
-    if (middle.length >= 1 && middle[middle.length - 1] === 'project') {
+    if (middle[middle.length - 1] === 'project') {
       middle = middle.slice(0, -1);
-      var projectNumber = '';
-      var projectName = '';
-      var idx = 0;
-      if (middle.length > 0 && /^\d{4,6}$/.test(middle[0])) {
-        projectNumber = middle[0];
-        idx = 1;
+      if (!middle.length) {
+        return empty;
       }
-      if (middle.length > idx) {
-        projectName = middle.slice(idx).join('-');
-      }
-      return { projectNumber: projectNumber, projectName: projectName, wireNumber: '' };
     }
 
     if (middle.length >= 2 && middle[middle.length - 2].toUpperCase() === 'AWG') {
       middle = middle.slice(0, -2);
     }
 
-    if (middle.length === 0) {
+    if (!middle.length) {
       return empty;
     }
 
@@ -1228,8 +1205,49 @@
     };
   }
 
+  function parseExportFilenameMetadata(filename) {
+    var base = String(filename || '').replace(/\.[^.]+$/i, '');
+    var parts = base.split('-');
+
+    if (parts.length < 4 || parts[0] !== 'power' || parts[1] !== 'wire' || parts[2] !== 'analysis') {
+      return {
+        projectNumber: '',
+        projectName: '',
+        wireNumber: parseLegacyWireNumber(base)
+      };
+    }
+
+    var middleEnd = parts.length;
+    if (parts.length >= 9 && looksLikeDateSegment(parts, parts.length - 6)) {
+      middleEnd = parts.length - 6;
+    }
+
+    var parsed = parseMiddleFilenameSegments(parts.slice(3, middleEnd));
+    if (parsed.wireNumber || parsed.projectNumber || parsed.projectName) {
+      return parsed;
+    }
+
+    return {
+      projectNumber: '',
+      projectName: '',
+      wireNumber: parseLegacyWireNumber(base)
+    };
+  }
+
   function parseWireNumberFromFilename(filename) {
     return parseExportFilenameMetadata(filename).wireNumber;
+  }
+
+  function resolveIncludeTimestamp(snapshot, meta) {
+    if (meta && meta.includeTimestamp != null) {
+      return !!meta.includeTimestamp;
+    }
+    var value = snapshot && snapshot.filenameIncludeTimestamp;
+    if (value == null || value === '') {
+      return true;
+    }
+    var text = String(value).toLowerCase();
+    return text !== 'no' && text !== '0' && text !== 'false';
   }
 
   function buildExportFilename(snapshot, meta) {
@@ -1257,9 +1275,11 @@
     if (meta.awgLabels && meta.awgLabels.length === 1) {
       parts.push('AWG-' + sanitizeFilename(meta.awgLabels[0]));
     }
-    var when = formatExportTimestamp(meta.exportedAt || snapshot.exportedAt);
-    parts.push(when.date);
-    parts.push(when.time);
+    if (resolveIncludeTimestamp(snapshot, meta)) {
+      var when = formatExportTimestamp(meta.exportedAt || snapshot.exportedAt);
+      parts.push(when.date);
+      parts.push(when.time);
+    }
     var ext = String(meta.extension || 'xlsx').replace(/^\./, '');
     return parts.join('-') + '.' + ext;
   }
@@ -1283,9 +1303,11 @@
       parts.push('project');
     }
     parts.push('project');
-    var when = formatExportTimestamp(meta.exportedAt || snapshot.exportedAt);
-    parts.push(when.date);
-    parts.push(when.time);
+    if (resolveIncludeTimestamp(snapshot, meta)) {
+      var when = formatExportTimestamp(meta.exportedAt || snapshot.exportedAt);
+      parts.push(when.date);
+      parts.push(when.time);
+    }
     return parts.join('-') + '.docx';
   }
 

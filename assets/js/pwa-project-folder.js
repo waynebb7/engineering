@@ -14,12 +14,6 @@
         return metadata.wireNumber;
       }
     }
-    if (global.PwaWorkbook && typeof PwaWorkbook.parseWireNumberFromFilename === 'function') {
-      var parsed = PwaWorkbook.parseWireNumberFromFilename(filename);
-      if (parsed) {
-        return parsed;
-      }
-    }
 
     var base = String(filename || '').replace(/\.xlsx$/i, '');
     var patterns = [
@@ -129,6 +123,42 @@
     return true;
   }
 
+  async function deliverExportBlob(filename, blob) {
+    if (folderHandle && canWrite) {
+      try {
+        await saveBlobToFolder(filename, blob);
+        return {
+          method: 'folder',
+          filename: filename,
+          folderLabel: folderLabel
+        };
+      } catch (err) {
+        if (global.PwaWorkbook && PwaWorkbook.downloadBlob) {
+          PwaWorkbook.downloadBlob(blob, filename);
+        }
+        return {
+          method: 'download',
+          filename: filename,
+          folderError: err && err.message ? err.message : 'Could not write to the linked folder.'
+        };
+      }
+    }
+
+    if (global.PwaWorkbook && PwaWorkbook.downloadBlob) {
+      PwaWorkbook.downloadBlob(blob, filename);
+    } else {
+      var url = URL.createObjectURL(blob);
+      var link = document.createElement('a');
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    }
+    return { method: 'download', filename: filename };
+  }
+
   function setActiveFile(name) {
     activeFileName = name || '';
   }
@@ -150,6 +180,7 @@
     refreshFolder: refreshFolder,
     getFile: getFile,
     saveBlobToFolder: saveBlobToFolder,
+    deliverExportBlob: deliverExportBlob,
     setActiveFile: setActiveFile,
     getState: getState
   };
