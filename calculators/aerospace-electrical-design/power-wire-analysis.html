@@ -11,6 +11,8 @@
   <script src="../../assets/js/pwa-wire-catalog.js" defer></script>
   <script src="../../assets/js/pwa-conductor-tr-controls.js" defer></script>
   <script src="../../assets/js/pwa-workbook.js" defer></script>
+  <script src="../../assets/js/pwa-project-folder.js" defer></script>
+  <script src="../../assets/js/pwa-word-report.js" defer></script>
   <script src="../../assets/js/pwa-grid-calculator.js" defer></script>
   <script type="text/javascript" async
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -41,7 +43,7 @@
           <li>Set <strong>wire run length</strong> and routing allowance for the voltage-drop section at the bottom of the grid.</li>
           <li>Scroll the grid horizontally and find the smallest AWG where <strong>T<sub>2</sub> ≤ T<sub>R</sub></strong> (green) and <strong>voltage drop ≤ U</strong> (green).</li>
           <li>Check <strong>L<sub>2</sub></strong> against your total run if length is the limiting factor.</li>
-          <li>Use <strong>Save &amp; restore project</strong> to export settings and the table to Excel for offline records.</li>
+          <li>Use <strong>Project folder &amp; reports</strong> to connect a folder of wire workbooks, export Excel or Word reports, and restore settings from Excel.</li>
         </ol>
 
         <h3 class="pwa-guide__subhead">Parameters panel (left)</h3>
@@ -408,18 +410,50 @@
           </div>
         </div>
         <details class="pwa-export" id="pwa-export">
-          <summary class="pwa-export__summary">Save &amp; restore project</summary>
+          <summary class="pwa-export__summary">Project folder &amp; reports</summary>
           <div class="pwa-export__body">
-            <label class="pwa-export__project">Project / circuit name
-              <input type="text" id="pwa-project-name" name="projectName" placeholder="Optional — used in the filename">
+            <label class="pwa-export__project">Project / system name
+              <input type="text" id="pwa-project-name" name="projectName" placeholder="Optional — used in filenames and reports">
             </label>
+
+            <div class="pwa-export__section pwa-export__section--folder">
+              <h3 class="pwa-export__heading">Project folder</h3>
+              <p class="pwa-export__hint">
+                Connect a folder on your computer that represents one project or electrical system.
+                Store one Excel workbook per wire (e.g. <code>W001-circuit-name-PWA-2026-06-05.xlsx</code>).
+                Files stay on your machine — nothing is uploaded to this website.
+              </p>
+              <div class="pwa-folder__toolbar">
+                <button type="button" class="btn pwa-export__btn" id="pwa-folder-choose">Choose folder</button>
+                <button type="button" class="btn pwa-export__btn pwa-export__btn-secondary" id="pwa-folder-refresh">Refresh</button>
+                <label class="btn pwa-export__btn pwa-export__import-btn pwa-folder__fallback-btn">
+                  Load folder
+                  <input type="file" id="pwa-folder-fallback" webkitdirectory directory multiple hidden>
+                </label>
+              </div>
+              <p class="pwa-folder__path" id="pwa-folder-path">No folder connected.</p>
+              <div class="pwa-folder__table-wrap">
+                <table class="pwa-folder__table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Wire</th>
+                      <th scope="col">Workbook</th>
+                      <th scope="col"><span class="visually-hidden">Actions</span></th>
+                    </tr>
+                  </thead>
+                  <tbody id="pwa-folder-files">
+                    <tr><td colspan="3" class="pwa-folder__empty">Connect a folder to list wire workbooks.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
 
             <div class="pwa-export__section">
               <h3 class="pwa-export__heading">Export to Excel</h3>
               <p class="pwa-export__hint">
-                <strong>Export all</strong> saves a formatted report workbook: Analysis grid (pass/fail highlighting),
+                <strong>Export Excel report</strong> saves a formatted workbook: Analysis grid (pass/fail highlighting),
                 input parameters with dropdowns, and hidden option lists for re-import.
-                <strong>Export table</strong> saves the formatted analysis grid only.
+                <strong>Export analysis grid</strong> saves the formatted grid only.
               </p>
               <fieldset class="pwa-export__options">
                 <legend class="pwa-export__options-legend">Table export columns</legend>
@@ -435,16 +469,29 @@
                 </div>
               </fieldset>
               <div class="pwa-export__btn-row">
-                <button type="button" class="btn pwa-export__btn" id="pwa-export-table">Export table</button>
-                <button type="button" class="btn pwa-export__btn" id="pwa-export-all">Export all</button>
+                <button type="button" class="btn pwa-export__btn" id="pwa-export-excel-grid">Export analysis grid</button>
+                <button type="button" class="btn pwa-export__btn" id="pwa-export-excel-report">Export Excel report</button>
+              </div>
+            </div>
+
+            <div class="pwa-export__section">
+              <h3 class="pwa-export__heading">Export to Word</h3>
+              <p class="pwa-export__hint">
+                Generate authority-ready Word reports with parameters, the full AWG analysis grid, pass/fail markers,
+                and reference standards. Use <strong>Export Word report</strong> for the wire currently loaded in the calculator.
+                Use <strong>Export Word project report</strong> to compile every workbook in the connected folder into one document.
+              </p>
+              <div class="pwa-export__btn-row">
+                <button type="button" class="btn pwa-export__btn" id="pwa-export-word-report">Export Word report</button>
+                <button type="button" class="btn pwa-export__btn" id="pwa-export-word-project">Export Word project report</button>
               </div>
             </div>
 
             <div class="pwa-export__section">
               <h3 class="pwa-export__heading">Import from Excel</h3>
               <p class="pwa-export__hint">
-                Use a workbook created with <strong>Export all</strong>. Click column B on the
-                <em>Parameters</em> sheet to pick from dropdown lists, then import to restore settings here.
+                Use a workbook created with <strong>Export Excel report</strong>, or click <strong>Load</strong> in the folder table above.
+                On the <em>Parameters</em> sheet, use column B dropdowns to edit values, then import to restore settings here.
               </p>
               <div class="pwa-export__btn-row pwa-export__btn-row--import">
                 <label class="btn pwa-export__btn pwa-export__import-btn">

@@ -1114,14 +1114,23 @@
     setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
   }
 
-  function exportWorkbook(snapshot, tableRows, meta) {
+  function buildWorkbookBlob(snapshot, tableRows, meta) {
     meta = meta || {};
     var files = buildWorkbookFiles(snapshot, tableRows, meta);
     var zip = buildZip(files);
-    var blob = new Blob([zip], {
-      type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-    });
-    downloadBlob(blob, meta.filename || defaultFilename(snapshot));
+    return {
+      blob: new Blob([zip], {
+        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+      }),
+      filename: meta.filename || defaultFilename(snapshot)
+    };
+  }
+
+  function exportWorkbook(snapshot, tableRows, meta) {
+    meta = meta || {};
+    var out = buildWorkbookBlob(snapshot, tableRows, meta);
+    downloadBlob(out.blob, out.filename);
+    return out;
   }
 
   function findParametersSheetPath(entries) {
@@ -1241,7 +1250,7 @@
     var entries = await extractZipEntries(buffer);
     var sheetPath = findParametersSheetPath(entries);
     if (!sheetPath) {
-      throw new Error('Parameters sheet not found. Use Export all to create an importable workbook.');
+      throw new Error('Parameters sheet not found. Use Export Excel report to create an importable workbook.');
     }
     var sheetXml = new TextDecoder().decode(entries[sheetPath]);
     var sharedStrings = parseSharedStrings(entries);
@@ -1268,7 +1277,7 @@
     if (!parameters.wireType) {
       if (!hasKeyHeader) {
         throw new Error(
-          'This workbook does not have a Parameters sheet from the web calculator. Use Export all on the Power Wire Analysis page.'
+          'This workbook does not have a Parameters sheet from the web calculator. Use Export Excel report on the Power Wire Analysis page.'
         );
       }
       throw new Error(
@@ -1286,8 +1295,10 @@
     WORKBOOK_VERSION: WORKBOOK_VERSION,
     PARAM_DEFINITIONS: PARAM_DEFINITIONS,
     exportWorkbook: exportWorkbook,
+    buildWorkbookBlob: buildWorkbookBlob,
     importWorkbook: importWorkbook,
     sanitizeFilename: sanitizeFilename,
-    defaultFilename: defaultFilename
+    defaultFilename: defaultFilename,
+    downloadBlob: downloadBlob
   };
 })(typeof window !== 'undefined' ? window : this);
