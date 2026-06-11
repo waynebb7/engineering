@@ -38,6 +38,28 @@
   // Resistance per AWG from manufacturer datasheet — see pwa-wire-catalog.js
   var WIRES = [];
 
+  var AIRCRAFT_ZONES = [
+    { id: 'cockpit', label: 'Cockpit / Flight Deck', limit: 70 },
+    { id: 'cabin', label: 'Cabin / Passenger Area', limit: 70 },
+    { id: 'avionics', label: 'Avionics Bay', limit: 70 },
+    { id: 'fuselage', label: 'General Fuselage', limit: 85 },
+    { id: 'wing', label: 'Wing / Empennage', limit: 105 },
+    { id: 'engine', label: 'Engine Adjacent Area', limit: 135 },
+    { id: 'custom', label: 'Custom', limit: null }
+  ];
+
+  var GRID_ROW_TOOLTIPS = {
+    TR: 'Cable insulation temperature capability',
+    Tsafe: 'Maximum permitted conductor temperature for this installation after application of design margin'
+  };
+
+  var INSTALL_ASSESSMENT_ROW_KEYS = {
+    aircraftZone: true,
+    installTempLimit: true,
+    tempDesignMargin: true,
+    Tsafe: true
+  };
+
   var GRID_ROWS = [
     { key: 'awg', labelB: 'Cable size (AWG)', labelC: 'AWG', unit: '', fmt: 'awg' },
     { key: 'L1', labelB: 'Maximum wire length (NOT DE-RATED)', labelC: 'L1', unit: 'ft', fmt: 'num', digits: 3 },
@@ -47,7 +69,11 @@
     { key: 'Rft', labelB: 'Resistance of wire per feet @ 20\u00B0C', labelC: 'R', unit: '\u03A9/ft', fmt: 'sci' },
     { key: 'R1000', labelB: 'Resistance of wire per 1000 feet @ 20\u00B0C', labelC: '', unit: '\u03A9/1000ft', fmt: 'num', digits: 3 },
     { key: 'T1', labelB: 'Ambient temperature', labelC: 'T1', unit: '\u00B0C', fmt: 'num' },
-    { key: 'TR', labelB: 'Conductor temperature rating', labelC: 'TR', unit: '\u00B0C', fmt: 'num' },
+    { key: 'TR', labelB: 'Cable rating (insulation T_R)', labelC: 'TR', unit: '\u00B0C', fmt: 'num' },
+    { key: 'aircraftZone', labelB: 'Aircraft zone', labelC: '', unit: '', fmt: 'text' },
+    { key: 'installTempLimit', labelB: 'Installation temperature limit', labelC: 'T_INST', unit: '\u00B0C', fmt: 'num' },
+    { key: 'tempDesignMargin', labelB: 'Temperature design margin', labelC: 'M', unit: '\u00B0C', fmt: 'num' },
+    { key: 'Tsafe', labelB: 'Safe temperature limit', labelC: 'T_SAFE', unit: '\u00B0C', fmt: 'num' },
     { key: 'T2', labelB: 'Estimated conductor temperature', labelC: 'T2', unit: '\u00B0C', fmt: 'num', digits: 3 },
     { key: 'Imax', labelB: 'Maximum allowable current @ TR', labelC: 'IMAX', unit: 'A', fmt: 'num', digits: 3 },
     { key: 'IfreePct', labelB: 'Actual % of current against free air current', labelC: '%', unit: '%', fmt: 'pct' },
@@ -190,6 +216,112 @@
       return 'T<sub>1</sub> + (T<sub>R</sub> &minus; T<sub>1</sub>) &times; &radic;(I/I<sub>max</sub>)';
     }
     return 'T<sub>1</sub> + (T<sub>R</sub> &minus; T<sub>1</sub>) &times; (I/I<sub>max</sub>)&sup2;';
+  }
+
+  function getAircraftZoneConfig(zoneId) {
+    var i;
+    for (i = 0; i < AIRCRAFT_ZONES.length; i += 1) {
+      if (AIRCRAFT_ZONES[i].id === zoneId) {
+        return AIRCRAFT_ZONES[i];
+      }
+    }
+    return AIRCRAFT_ZONES[3];
+  }
+
+  function getAircraftZoneLabel(zoneId) {
+    return getAircraftZoneConfig(zoneId).label;
+  }
+
+  function getDefaultInstallationLimit(zoneId) {
+    var config = getAircraftZoneConfig(zoneId);
+    return config.limit == null ? 85 : config.limit;
+  }
+
+  function readInstallationTempLimit(form) {
+    var el = form.elements.installationTempLimit;
+    var val = el ? parseFloat(el.value, 10) : NaN;
+    if (!isFinite(val)) {
+      var zoneEl = form.elements.aircraftZone;
+      return getDefaultInstallationLimit(zoneEl ? zoneEl.value : 'fuselage');
+    }
+    return val;
+  }
+
+  function readTempDesignMargin(form) {
+    var el = form.elements.tempDesignMargin;
+    var val = el ? parseFloat(el.value, 10) : NaN;
+    return isFinite(val) ? val : 10;
+  }
+
+  function readAircraftZone(form) {
+    var el = form.elements.aircraftZone;
+    return el && el.value ? el.value : 'fuselage';
+  }
+
+  function computeTSafe(conductorRating, installationLimit, designMargin) {
+    return Math.min(conductorRating, installationLimit - designMargin);
+  }
+
+  function readApplyInstallationTempLimit(form) {
+    var el = form.elements.applyInstallationTempLimit;
+    if (!el) {
+      return true;
+    }
+    return el.checked;
+  }
+
+  function parseApplyInstallationTempLimitValue(value) {
+    if (value == null || value === '') {
+      return true;
+    }
+    if (value === true) {
+      return true;
+    }
+    if (value === false) {
+      return false;
+    }
+    var normalized = String(value).trim().toLowerCase();
+    if (normalized === 'no' || normalized === '0' || normalized === 'off' || normalized === 'false') {
+      return false;
+    }
+    if (normalized === 'yes' || normalized === '1' || normalized === 'on' || normalized === 'true') {
+      return true;
+    }
+    return true;
+  }
+
+  function formatApplyInstallationTempLimit(value) {
+    return parseApplyInstallationTempLimitValue(value) ? 'Yes' : 'No';
+  }
+
+  function shouldShowInstallAssessmentRow(rowKey, params) {
+    if (!INSTALL_ASSESSMENT_ROW_KEYS[rowKey]) {
+      return true;
+    }
+    return params && params.applyInstallationTempLimit;
+  }
+
+  function getT2TempLimit(params) {
+    return params.tTempLimit;
+  }
+
+  function temperatureBasisLabel(params) {
+    return params.applyInstallationTempLimit ? 'Installation limit' : 'Cable rating only';
+  }
+
+  function initAircraftZoneControls(form) {
+    var zoneEl = form.elements.aircraftZone;
+    var limitEl = form.elements.installationTempLimit;
+    if (!zoneEl || !limitEl) {
+      return;
+    }
+
+    zoneEl.addEventListener('change', function () {
+      if (zoneEl.value !== 'custom') {
+        limitEl.value = String(getDefaultInstallationLimit(zoneEl.value));
+      }
+      recalc();
+    });
   }
 
   function readGeneratorLineVoltage(form) {
@@ -345,13 +477,29 @@
     var t2Standard = form.elements.t2Standard
       ? form.elements.t2Standard.value
       : 'arp4404';
+    var aircraftZone = readAircraftZone(form);
+    var installationTempLimit = readInstallationTempLimit(form);
+    var tempDesignMargin = readTempDesignMargin(form);
+    var conductorTempRating = readConductorTempRating(form);
+    var applyInstallationTempLimit = readApplyInstallationTempLimit(form);
+    var tSafe = applyInstallationTempLimit
+      ? computeTSafe(conductorTempRating, installationTempLimit, tempDesignMargin)
+      : conductorTempRating;
+    var tTempLimit = tSafe;
 
     return {
       generatorLineVoltage: generatorLineVoltage,
       circuitCurrent: circuitCurrent,
       allowableDrop: f('allowableDrop'),
       ambientTemp: f('ambientTemp'),
-      conductorTempRating: readConductorTempRating(form),
+      conductorTempRating: conductorTempRating,
+      applyInstallationTempLimit: applyInstallationTempLimit,
+      aircraftZone: aircraftZone,
+      aircraftZoneLabel: getAircraftZoneLabel(aircraftZone),
+      installationTempLimit: installationTempLimit,
+      tempDesignMargin: tempDesignMargin,
+      tSafe: tSafe,
+      tTempLimit: tTempLimit,
       altitudeFt: altitudeFt,
       altitudeDerating: altitudeDerating,
       bundleWireCount: bundleWireCount,
@@ -380,6 +528,7 @@
     var IImax = I / Imax;
     var t2Factor = t2FactorValue(IImax, params.t2Standard);
     var T2 = T1 + (TR - T1) * t2Factor;
+    var Tsafe = params.tSafe;
     var L2ft = (COPPER_REF * L1) / (COPPER_COEF + T2);
     var L2in = L2ft * 12;
     var L2m = L2ft * FT_TO_M;
@@ -396,6 +545,10 @@
       R1000: R1000,
       T1: T1,
       TR: TR,
+      aircraftZone: params.aircraftZoneLabel,
+      installTempLimit: params.installationTempLimit,
+      tempDesignMargin: params.tempDesignMargin,
+      Tsafe: Tsafe,
       T2: T2,
       Imax: Imax,
       IfreePct: I / freeAir,
@@ -416,6 +569,7 @@
 
   function formatCell(row, value) {
     if (row.fmt === 'blank') return '';
+    if (row.fmt === 'text') return value == null ? '' : String(value);
     if (row.fmt === 'awg') return value;
     if (row.fmt === 'factor') {
       return num(value, typeof row.digits === 'number' ? row.digits : 4);
@@ -501,6 +655,14 @@
         return excelRawValue(params.ambientTemp);
       case 'TR':
         return excelRawValue(params.conductorTempRating);
+      case 'aircraftZone':
+        return params.aircraftZoneLabel || '';
+      case 'installTempLimit':
+        return excelRawValue(params.installationTempLimit);
+      case 'tempDesignMargin':
+        return excelRawValue(params.tempDesignMargin);
+      case 'Tsafe':
+        return excelRawValue(params.tSafe);
       case 'T2':
         return '=' + ref('T1') + '+(' + ref('TR') + '-' + ref('T1') + ')*' + ref('t2Factor');
       case 'Imax':
@@ -565,13 +727,26 @@
     return 'tableNum3';
   }
 
+  function t2StatusKey(t2, tSafe) {
+    if (typeof t2 !== 'number' || !isFinite(t2) || typeof tSafe !== 'number' || !isFinite(tSafe)) {
+      return null;
+    }
+    if (t2 > tSafe) {
+      return 'fail';
+    }
+    if (t2 > 0.8 * tSafe) {
+      return 'caution';
+    }
+    return 'pass';
+  }
+
   function exportCellStyleKey(row, rawVal, params) {
     if (params && typeof rawVal === 'number' && isFinite(rawVal)) {
       if (row.key === 'Vdrop') {
         return rawVal <= params.allowableDrop ? 'pass' : 'fail';
       }
       if (row.key === 'T2') {
-        return rawVal <= params.conductorTempRating ? 'pass' : 'fail';
+        return t2StatusKey(rawVal, getT2TempLimit(params));
       }
     }
     return null;
@@ -640,6 +815,9 @@
 
     GRID_ROWS.forEach(function (row) {
       if (row.key === 'awg') return;
+      if (options.params && !shouldShowInstallAssessmentRow(row.key, options.params)) {
+        return;
+      }
 
       if (row.section === 'vdrop' && !dividerShown) {
         dividerShown = true;
@@ -816,6 +994,16 @@
       ambientTemp: form.elements.ambientTemp.value,
       conductorTempRatingPreset: form.elements.conductorTempRatingPreset.value,
       conductorTempRatingCustom: form.elements.conductorTempRatingCustom.value,
+      applyInstallationTempLimit: form.elements.applyInstallationTempLimit
+        ? (form.elements.applyInstallationTempLimit.checked ? 'yes' : 'no')
+        : 'yes',
+      aircraftZone: readAircraftZone(form),
+      installationTempLimit: form.elements.installationTempLimit
+        ? form.elements.installationTempLimit.value
+        : String(getDefaultInstallationLimit('fuselage')),
+      tempDesignMargin: form.elements.tempDesignMargin
+        ? form.elements.tempDesignMargin.value
+        : '10',
       t2Standard: form.elements.t2Standard.value,
       altitudeFt: form.elements.altitudeFt.value,
       bundleWireCount: form.elements.bundleWireCount.value,
@@ -876,6 +1064,11 @@
 
     if (form.elements.conductorTempRatingPreset) {
       options.conductorTempRatingPreset = selectOptions(form.elements.conductorTempRatingPreset);
+    }
+    if (form.elements.aircraftZone) {
+      options.aircraftZone = AIRCRAFT_ZONES.map(function (zone) {
+        return { value: zone.id, label: zone.label };
+      });
     }
     if (form.elements.t2Standard) {
       options.t2Standard = selectOptions(form.elements.t2Standard);
@@ -972,6 +1165,25 @@
       form.elements.conductorTempRatingCustom.value = snapshot.conductorTempRatingCustom;
     }
     updateConductorTempRatingCustomVisibility(form);
+
+    if (form.elements.applyInstallationTempLimit) {
+      form.elements.applyInstallationTempLimit.checked =
+        parseApplyInstallationTempLimitValue(snapshot.applyInstallationTempLimit);
+    }
+
+    if (form.elements.aircraftZone) {
+      form.elements.aircraftZone.value = snapshot.aircraftZone || 'fuselage';
+    }
+    if (form.elements.installationTempLimit) {
+      form.elements.installationTempLimit.value = snapshot.installationTempLimit != null
+        ? String(snapshot.installationTempLimit)
+        : String(getDefaultInstallationLimit(snapshot.aircraftZone || 'fuselage'));
+    }
+    if (form.elements.tempDesignMargin) {
+      form.elements.tempDesignMargin.value = snapshot.tempDesignMargin != null
+        ? String(snapshot.tempDesignMargin)
+        : '10';
+    }
 
     if (form.elements.t2Standard && snapshot.t2Standard) {
       form.elements.t2Standard.value = snapshot.t2Standard;
@@ -1998,6 +2210,9 @@
     var vdropDividerShown = false;
     GRID_ROWS.forEach(function (row, idx) {
       if (row.key === 'awg') return;
+      if (!shouldShowInstallAssessmentRow(row.key, params)) {
+        return;
+      }
 
       if (row.section === 'vdrop' && !vdropDividerShown) {
         vdropDividerShown = true;
@@ -2023,10 +2238,14 @@
       var rowLabelB = row.key === 't2Factor'
         ? t2FactorRowLabel(params.t2Standard)
         : row.labelB;
+      var rowTooltip = GRID_ROW_TOOLTIPS[row.key] || '';
 
       frozenHtml +=
         '<tr class="' + rowClass + '" data-row="' + excelRow + '">' +
-          '<th class="pwa-grid__label-b" scope="row">' + rowLabelB + '</th>' +
+          '<th class="pwa-grid__label-b" scope="row"' +
+            (rowTooltip ? ' title="' + escapeHtml(rowTooltip) + '"' : '') + '>' +
+            rowLabelB +
+          '</th>' +
           '<td class="pwa-grid__label-c">' + row.labelC + '</td>' +
         '</tr>';
 
@@ -2040,9 +2259,10 @@
               ? ' pwa-grid__val--pass'
               : ' pwa-grid__val--fail';
           } else if (row.key === 'T2') {
-            cellClass += val <= params.conductorTempRating
-              ? ' pwa-grid__val--pass'
-              : ' pwa-grid__val--fail';
+            var t2Status = t2StatusKey(val, getT2TempLimit(params));
+            if (t2Status) {
+              cellClass += ' pwa-grid__val--' + t2Status;
+            }
           }
         }
         dataHtml += '<td class="' + cellClass + '">' + formatCell(row, val) + '</td>';
@@ -2059,6 +2279,7 @@
     dataBody.innerHTML = dataHtml;
     unitsBody.innerHTML = unitsHtml;
     syncGridRowHeights();
+    updateInstallationWarnings(params, columns);
   }
 
   function syncGridRowHeights() {
@@ -2090,19 +2311,104 @@
     }
   }
 
+  function updateInstallationWarnings(params, columns) {
+    var panel = document.getElementById('pwa-install-temp-warnings');
+    if (!panel) {
+      return;
+    }
+
+    var limit = getT2TempLimit(params);
+    var failAwgs = [];
+    var cautionAwgs = [];
+    columns.forEach(function (col) {
+      if (typeof col.T2 !== 'number' || !isFinite(col.T2)) {
+        return;
+      }
+      if (col.T2 > limit) {
+        failAwgs.push(col.awg);
+      } else if (col.T2 > 0.8 * limit) {
+        cautionAwgs.push(col.awg);
+      }
+    });
+
+    var failTitle = params.applyInstallationTempLimit
+      ? 'Installation Temperature FAIL'
+      : 'Cable Rating Temperature FAIL';
+    var cautionTitle = params.applyInstallationTempLimit
+      ? 'Installation Temperature CAUTION'
+      : 'Cable Rating Temperature CAUTION';
+    var failMessage = params.applyInstallationTempLimit
+      ? 'Conductor temperature exceeds installation temperature limit. ' +
+        'Cable insulation may remain within rating, however aircraft installation temperature ' +
+        'requirements are exceeded.'
+      : 'Conductor temperature exceeds cable rating T<sub>R</sub>.';
+    var cautionMessage = params.applyInstallationTempLimit
+      ? 'Conductor temperature exceeds 80% of installation limit. Consider increasing conductor size.'
+      : 'Conductor temperature exceeds 80% of cable rating T<sub>R</sub>. Consider increasing conductor size.';
+
+    var html = '';
+    if (failAwgs.length) {
+      html +=
+        '<p class="pwa-install-warn pwa-install-warn--fail">' +
+        '<strong>' + failTitle + ':</strong> ' + failMessage +
+        (failAwgs.length ? ' AWG: ' + failAwgs.join(', ') + '.' : '') +
+        '</p>';
+    }
+    if (cautionAwgs.length) {
+      html +=
+        '<p class="pwa-install-warn pwa-install-warn--caution">' +
+        '<strong>' + cautionTitle + ':</strong> ' + cautionMessage +
+        (cautionAwgs.length ? ' AWG: ' + cautionAwgs.join(', ') + '.' : '') +
+        '</p>';
+    }
+
+    panel.innerHTML = html;
+    panel.hidden = !html;
+  }
+
+  function updateInstallationAssessmentUI(params) {
+    var enabled = params.applyInstallationTempLimit;
+    var fieldsEl = document.getElementById('pwa-install-assessment-fields');
+    var disabledNoteEl = document.getElementById('pwa-install-disabled-note');
+    var basisEl = document.getElementById('pwa-temp-basis');
+    var gridBasisEl = document.getElementById('pwa-grid-temp-basis');
+    var basisText = 'Temperature basis: ' + temperatureBasisLabel(params);
+
+    if (fieldsEl) {
+      fieldsEl.classList.toggle('pwa-install-assessment-fields--disabled', !enabled);
+      fieldsEl.setAttribute('aria-hidden', enabled ? 'false' : 'true');
+    }
+    if (disabledNoteEl) {
+      disabledNoteEl.hidden = enabled;
+    }
+    if (basisEl) {
+      basisEl.innerHTML = 'Temperature basis: <strong>' + temperatureBasisLabel(params) + '</strong>';
+    }
+    if (gridBasisEl) {
+      gridBasisEl.textContent = basisText;
+    }
+  }
+
   function updateDerived(params) {
     var ftEl = document.getElementById('pwa-wire-length-ft');
     var mEl = document.getElementById('pwa-wire-length-m');
     var altEl = document.getElementById('pwa-altitude-factor');
     var bundleEl = document.getElementById('pwa-bundle-factor');
     var t2NoteEl = document.getElementById('pwa-t2-standard-note');
+    var trEl = document.getElementById('pwa-tr-display');
+    var installLimitEl = document.getElementById('pwa-install-limit-display');
+    var tsafeEl = document.getElementById('pwa-tsafe-display');
     if (ftEl) ftEl.textContent = num(params.wireLengthFt, 2);
     if (mEl) mEl.textContent = num(params.wireLengthM, 3);
     if (altEl) altEl.textContent = num(params.altitudeDerating, 4);
     if (bundleEl) bundleEl.textContent = num(params.bundleDerating, 4);
+    if (trEl) trEl.textContent = num(params.conductorTempRating, 0);
+    if (installLimitEl) installLimitEl.textContent = num(params.installationTempLimit, 0);
+    if (tsafeEl) tsafeEl.textContent = num(params.tSafe, 0);
     if (t2NoteEl) {
       t2NoteEl.innerHTML = 'T<sub>2</sub> = ' + t2StandardNote(params.t2Standard);
     }
+    updateInstallationAssessmentUI(params);
   }
 
   function recalc() {
@@ -2132,6 +2438,7 @@
     initAllowableDropControls(form);
     initGeneratorLineVoltageControls(form);
     initConductorTempRatingControls(form);
+    initAircraftZoneControls(form);
     initAltitudeSelect(form);
 
     var unitEl = form.elements.wireLengthUnit;

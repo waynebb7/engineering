@@ -199,6 +199,8 @@
     var color = opts.header ? 'FFFFFF' : '1E293B';
     if (opts.passFail === 'pass') {
       color = '166534';
+    } else if (opts.passFail === 'caution') {
+      color = 'B45309';
     } else if (opts.passFail === 'fail') {
       color = '991B1B';
     }
@@ -210,7 +212,7 @@
     if (opts.header || opts.bold) {
       props += '<w:b/>';
     }
-    if (opts.passFail === 'pass' || opts.passFail === 'fail') {
+    if (opts.passFail === 'pass' || opts.passFail === 'caution' || opts.passFail === 'fail') {
       props += '<w:b/>';
     }
     return '<w:rPr>' + props + '</w:rPr>';
@@ -350,6 +352,9 @@
           if (cell.styleKey === 'pass') {
             text += ' (PASS)';
             passFail = 'pass';
+          } else if (cell.styleKey === 'caution') {
+            text += ' (CAUTION)';
+            passFail = 'caution';
           } else if (cell.styleKey === 'fail') {
             text += ' (FAIL)';
             passFail = 'fail';
@@ -374,6 +379,10 @@
     }];
     defs.forEach(function (def) {
       var val = snapshot[def.key];
+      if (def.key === 'applyInstallationTempLimit' && global.PwaWorkbook &&
+          PwaWorkbook.formatApplyInstallationTempLimitDisplay) {
+        val = PwaWorkbook.formatApplyInstallationTempLimitDisplay(val);
+      }
       rows.push({
         cells: [def.label, val == null ? '' : String(val)]
       });
@@ -434,11 +443,16 @@
     parts.push(buildParameterTable(snapshot));
     parts.push(paragraph('2. AWG analysis grid', 'Heading2', { spacing: '80' }));
     parts.push(buildAnalysisTable(section.tableRows));
-    parts.push(paragraph(
-      'Note: All values marked (PASS) meet T₂ ≤ T_R or V_drop ≤ U; (FAIL) exceeds the limit.',
-      'BodyText',
-      { spacing: '80' }
-    ));
+    var legend = global.PwaWorkbook && PwaWorkbook.buildTemperatureStatusLegend
+      ? PwaWorkbook.buildTemperatureStatusLegend(snapshot)
+      : 'Note: (PASS) = T₂ ≤ 80% of active limit or V_drop ≤ U; (CAUTION) = 80%–100% of limit; (FAIL) exceeds limit.';
+    parts.push(paragraph(legend, 'BodyText', { spacing: '80' }));
+    if (global.PwaWorkbook && PwaWorkbook.buildTemperatureAssessmentNote) {
+      var assessmentNote = PwaWorkbook.buildTemperatureAssessmentNote(snapshot);
+      if (assessmentNote) {
+        parts.push(paragraph(assessmentNote, 'BodyText', { spacing: '80' }));
+      }
+    }
     return parts.join('');
   }
 

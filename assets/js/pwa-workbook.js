@@ -1,7 +1,7 @@
 (function (global) {
   'use strict';
 
-  var WORKBOOK_VERSION = '1.3.4';
+  var WORKBOOK_VERSION = '1.5.0';
   var REPORT_TITLE = 'Power Wire Analysis Report';
   var REPORT_STANDARDS =
     'Reference standards: SAE ARP4404C §9.3.4.2 (T₂, allowable voltage drop U) · ' +
@@ -23,6 +23,7 @@
     tableUnit: 12,
     pass: 13,
     fail: 14,
+    caution: 24,
     paramHeader: 15,
     paramKey: 16,
     paramValue: 17,
@@ -53,6 +54,10 @@
     { key: 'ambientTemp', label: 'Ambient temperature T1 (°C)' },
     { key: 'conductorTempRatingPreset', label: 'Conductor rating TR preset' },
     { key: 'conductorTempRatingCustom', label: 'Custom TR (°C)' },
+    { key: 'applyInstallationTempLimit', label: 'Apply installation temperature limit' },
+    { key: 'aircraftZone', label: 'Aircraft zone' },
+    { key: 'installationTempLimit', label: 'Installation temperature limit (°C)' },
+    { key: 'tempDesignMargin', label: 'Temperature design margin (°C)' },
     { key: 't2Standard', label: 'T2 calculation standard' },
     { key: 'altitudeFt', label: 'Altitude (ft)' },
     { key: 'bundleWireCount', label: 'Wires in bundle' },
@@ -61,6 +66,49 @@
     { key: 'wireLengthUnit', label: 'Voltage drop — run length unit' },
     { key: 'routingPct', label: 'Routing allowance (%)' }
   ];
+
+  function isApplyInstallationTempLimitEnabled(snapshot) {
+    var val = snapshot && snapshot.applyInstallationTempLimit;
+    if (val == null || val === '') {
+      return true;
+    }
+    if (val === true) {
+      return true;
+    }
+    if (val === false) {
+      return false;
+    }
+    var normalized = String(val).trim().toLowerCase();
+    if (normalized === 'no' || normalized === '0' || normalized === 'off' || normalized === 'false') {
+      return false;
+    }
+    if (normalized === 'yes' || normalized === '1' || normalized === 'on' || normalized === 'true') {
+      return true;
+    }
+    return true;
+  }
+
+  function formatApplyInstallationTempLimitDisplay(val) {
+    return isApplyInstallationTempLimitEnabled({ applyInstallationTempLimit: val }) ? 'Yes' : 'No';
+  }
+
+  function buildTemperatureStatusLegend(snapshot) {
+    if (isApplyInstallationTempLimitEnabled(snapshot)) {
+      return 'Apply installation temperature limit: Yes. Status: green (PASS) = T₂ ≤ 80% T_SAFE or V_drop ≤ U; ' +
+        'amber (CAUTION) = 80% T_SAFE < T₂ ≤ T_SAFE; red (FAIL) = exceeds limit. ' +
+        'T_SAFE = MIN(T_R, installation limit − margin). Installation temperature pass/fail applies.';
+    }
+    return 'Apply installation temperature limit: No. Installation temperature assessment disabled. ' +
+      'Status: green (PASS) = T₂ ≤ 80% T_R or V_drop ≤ U; amber (CAUTION) = 80% T_R < T₂ ≤ T_R; ' +
+      'red (FAIL) = exceeds T_R. Cable rating temperature pass/fail applies.';
+  }
+
+  function buildTemperatureAssessmentNote(snapshot) {
+    if (isApplyInstallationTempLimitEnabled(snapshot)) {
+      return '';
+    }
+    return 'Note: Installation temperature assessment disabled. Temperature pass/fail assessed against cable rating T_R only.';
+  }
 
   function escapeXml(text) {
     return String(text)
@@ -556,7 +604,7 @@
       '<font><b/><sz val="14"/><color rgb="FF0F2942"/><name val="Calibri"/><family val="2"/></font>' +
       '<font><b/><sz val="16"/><color rgb="FFFFFFFF"/><name val="Calibri"/><family val="2"/></font>' +
       '</fonts>' +
-      '<fills count="9">' +
+      '<fills count="10">' +
       '<fill><patternFill patternType="none"/></fill>' +
       '<fill><patternFill patternType="gray125"/></fill>' +
       '<fill><patternFill patternType="solid"><fgColor rgb="FF0F2942"/><bgColor indexed="64"/></patternFill></fill>' +
@@ -566,6 +614,7 @@
       '<fill><patternFill patternType="solid"><fgColor rgb="FFFECACA"/><bgColor indexed="64"/></patternFill></fill>' +
       '<fill><patternFill patternType="solid"><fgColor rgb="FFFFFBEB"/><bgColor indexed="64"/></patternFill></fill>' +
       '<fill><patternFill patternType="solid"><fgColor rgb="FFE2E8F0"/><bgColor indexed="64"/></patternFill></fill>' +
+      '<fill><patternFill patternType="solid"><fgColor rgb="FFFEF3C7"/><bgColor indexed="64"/></patternFill></fill>' +
       '</fills>' +
       '<borders count="4">' +
       '<border/>' +
@@ -576,7 +625,7 @@
       '<top style="thin"><color rgb="FFCBD5E1"/></top><bottom style="medium"><color rgb="FF0F2942"/></bottom></border>' +
       '</borders>' +
       '<cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs>' +
-      '<cellXfs count="24">' +
+      '<cellXfs count="25">' +
       xf(0, 0, 0, 1, { applyBorder: true, align: { h: 'left', v: 'center' } }) +
       xf(0, 1, 2, 0, { applyFont: true, applyFill: true, align: { h: 'center', v: 'center' } }) +
       xf(0, 2, 3, 2, { applyFont: true, applyFill: true, applyBorder: true, align: { h: 'left', v: 'center' } }) +
@@ -601,6 +650,7 @@
       xf(0, 5, 7, 1, { applyFont: true, applyFill: true, align: { h: 'left', v: 'center', wrap: true } }) +
       xf(0, 6, 3, 2, { applyFont: true, applyFill: true, applyBorder: true, align: { h: 'left', v: 'center' } }) +
       xf(0, 7, 2, 3, { applyFont: true, applyFill: true, applyBorder: true, align: { h: 'left', v: 'center' } }) +
+      xf(166, 0, 9, 1, { applyNumber: true, applyFill: true, applyBorder: true, align: { h: 'center', v: 'center' } }) +
       '</cellXfs>' +
       '<cellStyles count="1">' +
       '<cellStyle name="Normal" xfId="0" builtinId="0"/>' +
@@ -723,7 +773,7 @@
     ).concat([
       {
         cells: [{
-          text: 'Pass/fail: green = T₂ ≤ T_R or V_drop ≤ U; red = exceeds limit. Inputs on Parameters sheet (re-import supported).',
+          text: buildTemperatureStatusLegend(snapshot),
           span: colCount
         }],
         styleKey: 'reportMeta',
@@ -761,7 +811,7 @@
           out.styleKey = out.styleKey || 'tableSymbol';
         } else if (colIdx === row.cells.length - 1) {
           out.styleKey = out.styleKey || 'tableUnit';
-        } else if (out.styleKey !== 'pass' && out.styleKey !== 'fail') {
+        } else if (out.styleKey !== 'pass' && out.styleKey !== 'fail' && out.styleKey !== 'caution') {
           out.styleKey = out.styleKey || (out.value != null ? (cell.numStyle || 'tableNum3') : 'tableData');
         }
         return out;
@@ -936,7 +986,12 @@
       var excelRow = rows.length + 1;
       rowByKey[def.key] = excelRow;
       var notes = '';
-      if (optionRanges[def.key]) {
+      if (def.key === 'applyInstallationTempLimit') {
+        notes = 'Yes = check T₂ against installation limit (T_SAFE); No = check against cable rating T_R only';
+      } else if (!isApplyInstallationTempLimitEnabled(snapshot) &&
+          (def.key === 'aircraftZone' || def.key === 'installationTempLimit' || def.key === 'tempDesignMargin')) {
+        notes = 'Stored for re-import; not used when installation assessment is disabled';
+      } else if (optionRanges[def.key]) {
         notes = 'Dropdown in column B';
       } else if (def.key === 'generatorLineVoltageCustom' || def.key === 'conductorTempRatingCustom') {
         notes = 'Numeric — only when preset is custom';
@@ -945,10 +1000,13 @@
       }
       var rawVal = snapshot[def.key];
       var valueCell = {
-        text: rawVal == null ? '' : String(rawVal),
+        text: def.key === 'applyInstallationTempLimit'
+          ? formatApplyInstallationTempLimitDisplay(rawVal)
+          : (rawVal == null ? '' : String(rawVal)),
         styleKey: 'paramValue'
       };
-      if (rawVal != null && rawVal !== '' && !isNaN(parseFloat(rawVal)) &&
+      if (rawVal != null && rawVal !== '' && def.key !== 'applyInstallationTempLimit' &&
+          !isNaN(parseFloat(rawVal)) &&
           def.key !== 'projectNumber' && def.key !== 'projectName' && def.key !== 'wireNumber' &&
           def.key !== 'wireType' &&
           def.key !== 'operationType' && def.key !== 't2Standard' &&
@@ -1556,6 +1614,10 @@
     buildExportFilename: buildExportFilename,
     buildProjectReportFilename: buildProjectReportFilename,
     defaultFilename: defaultFilename,
-    downloadBlob: downloadBlob
+    downloadBlob: downloadBlob,
+    isApplyInstallationTempLimitEnabled: isApplyInstallationTempLimitEnabled,
+    formatApplyInstallationTempLimitDisplay: formatApplyInstallationTempLimitDisplay,
+    buildTemperatureStatusLegend: buildTemperatureStatusLegend,
+    buildTemperatureAssessmentNote: buildTemperatureAssessmentNote
   };
 })(typeof window !== 'undefined' ? window : this);

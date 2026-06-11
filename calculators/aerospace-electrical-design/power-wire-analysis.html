@@ -5,17 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
   <link rel="canonical" href="https://waynebb7.github.io/engineering/calculators/aerospace-electrical-design/power-wire-analysis.html">
-  <link rel="stylesheet" href="../../assets/css/corporate.css?v=1.3.6">
+  <link rel="stylesheet" href="../../assets/css/corporate.css?v=1.5.2">
   <script src="../../assets/js/site-layout.js" defer></script>
   <script src="../../assets/js/pwa-bundle-derating.js" defer></script>
   <script src="../../assets/js/pwa-altitude-derating.js" defer></script>
   <script src="../../assets/js/pwa-free-air.js" defer></script>
   <script src="../../assets/js/pwa-wire-catalog.js" defer></script>
   <script src="../../assets/js/pwa-conductor-tr-controls.js" defer></script>
-  <script src="../../assets/js/pwa-workbook.js?v=1.3.6" defer></script>
-  <script src="../../assets/js/pwa-project-folder.js?v=1.3.6" defer></script>
-  <script src="../../assets/js/pwa-word-report.js?v=1.3.6" defer></script>
-  <script src="../../assets/js/pwa-grid-calculator.js?v=1.3.6" defer></script>
+  <script src="../../assets/js/pwa-workbook.js?v=1.5.0" defer></script>
+  <script src="../../assets/js/pwa-project-folder.js?v=1.5.0" defer></script>
+  <script src="../../assets/js/pwa-word-report.js?v=1.5.0" defer></script>
+  <script src="../../assets/js/pwa-grid-calculator.js?v=1.5.0" defer></script>
   <script type="text/javascript" async
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
   <title>Power Wire Analysis | Engineering Knowledge</title>
@@ -43,7 +43,7 @@
         <ol class="pwa-guide__steps">
           <li>Select <strong>wire type</strong> (resistance from the manufacturer datasheet), <strong>voltage</strong>, <strong>current</strong>, and de-rating inputs.</li>
           <li>Set <strong>wire run length</strong> and routing allowance for the voltage-drop section at the bottom of the grid.</li>
-          <li>Scroll the grid horizontally and find the smallest AWG where <strong>T<sub>2</sub> ≤ T<sub>R</sub></strong> (green) and <strong>voltage drop ≤ U</strong> (green).</li>
+          <li>Scroll the grid horizontally and find the smallest AWG where <strong>T<sub>2</sub> ≤ T<sub>SAFE</sub></strong> (green) and <strong>voltage drop ≤ U</strong> (green).</li>
           <li>Check <strong>L<sub>2</sub></strong> against your total run if length is the limiting factor.</li>
           <li>Use <strong>Project folder &amp; reports</strong> to connect a folder of wire workbooks, export Excel or Word reports, and restore settings from Excel.</li>
         </ol>
@@ -59,7 +59,9 @@
           <dt>Operation basis &amp; limit U</dt>
           <dd>Continuous or intermittent operation selects allowable voltage drop <strong>U</strong> per SAE ARP4404C Table 3 (e.g. 200 V nominal → 7 V continuous, 14 V intermittent).</dd>
           <dt>Ambient T<sub>1</sub> and conductor T<sub>R</sub></dt>
-          <dd>Ambient temperature and insulation rating. T<sub>R</sub> defaults from the wire spec; override with Custom if needed.</dd>
+          <dd>Ambient temperature and cable insulation rating. T<sub>R</sub> defaults from the wire spec; override with Custom if needed.</dd>
+          <dt>Installation environment</dt>
+          <dd>Aircraft zone, installation temperature limit, and design margin. T<sub>SAFE</sub> = MIN(T<sub>R</sub>, limit &minus; margin) is the primary T<sub>2</sub> acceptance criterion.</dd>
           <dt>T<sub>2</sub> calculation standard</dt>
           <dd><strong>SAE ARP4404C §9.3.4.2</strong> (default, matches <code>ELA_PWA (new).xlsx</code>) or <strong>AC 43.13-1B</strong> (legacy <code>ELA_PWA.xlsx</code>). Only the T<sub>2</sub> factor changes.</dd>
           <dt>Altitude &amp; bundle</dt>
@@ -74,8 +76,10 @@
           A divider separates the <strong>length / temperature</strong> block from the <strong>voltage drop at run length</strong> block.
         </p>
         <ul class="pwa-guide__list">
-          <li><span class="pwa-guide__chip pwa-guide__chip--pass">Green</span> — T<sub>2</sub> ≤ T<sub>R</sub>, or voltage drop ≤ U.</li>
-          <li><span class="pwa-guide__chip pwa-guide__chip--fail">Red</span> — conductor exceeds insulation rating, or drop exceeds limit.</li>
+          <li><span class="pwa-guide__chip pwa-guide__chip--pass">Green (PASS)</span> — T<sub>2</sub> ≤ 80% of limit, or voltage drop ≤ U.</li>
+          <li><span class="pwa-guide__chip pwa-guide__chip--caution">Amber (CAUTION)</span> — 80% of limit &lt; T<sub>2</sub> ≤ limit.</li>
+          <li><span class="pwa-guide__chip pwa-guide__chip--fail">Red (FAIL)</span> — T<sub>2</sub> exceeds limit, or drop exceeds U.</li>
+          <li>With <strong>Apply installation temperature limit</strong> enabled, limit = T<sub>SAFE</sub> = MIN(T<sub>R</sub>, installation limit &minus; margin). When disabled, limit = T<sub>R</sub> (cable rating only).</li>
           <li>Other rows are informational (same across columns except R, L<sub>1</sub>, T<sub>2</sub>, I<sub>max</sub>, L<sub>2</sub>, V<sub>drop</sub>).</li>
         </ul>
 
@@ -122,7 +126,7 @@
         <h3 class="pwa-guide__subhead">Calculation sequence</h3>
         <p>
           For <strong>each AWG column</strong>, the calculator runs four phases in order. Symbols match the analysis grid.
-          You are checking two things: <strong>(1)</strong> conductor temperature T<sub>2</sub> stays at or below the rating T<sub>R</sub>, and
+          You are checking two things: <strong>(1)</strong> conductor temperature T<sub>2</sub> stays at or below the installation limit T<sub>SAFE</sub>, and
           <strong>(2)</strong> voltage drop at your entered run length stays at or below the limit U.
         </p>
 
@@ -168,7 +172,7 @@
             <p class="pwa-guide__step-grid">Grid: row <strong>I / I<sub>MAX</sub> squared</strong> (ARP4404) or <strong>√</strong> (AC 43).</p>
           </li>
           <li class="pwa-guide__calc-step">
-            <strong>Estimated conductor temperature <span class="pwa-guide__sym">T<sub>2</sub></span></strong> — interpolated between ambient T<sub>1</sub> and rating T<sub>R</sub>. Highlighted <span class="pwa-guide__chip pwa-guide__chip--pass">green</span> when T<sub>2</sub> ≤ T<sub>R</sub>, <span class="pwa-guide__chip pwa-guide__chip--fail">red</span> when it exceeds the rating.
+            <strong>Estimated conductor temperature <span class="pwa-guide__sym">T<sub>2</sub></span></strong> — interpolated between ambient T<sub>1</sub> and rating T<sub>R</sub>. Pass/fail uses the active temperature limit (T<sub>SAFE</sub> when installation assessment is on, T<sub>R</sub> when off).
             <div class="pwa-guide__math">$$T_2 = T_1 + (T_R - T_1) \times f_{T2}$$</div>
             <p class="pwa-guide__step-grid">Grid: row <strong>T<sub>2</sub></strong>.</p>
           </li>
@@ -229,8 +233,9 @@
               <tr><td>U</td><td>Allowable drop</td><td>Maximum permitted drop (V) — ARP4404C Table 3</td></tr>
               <tr><td>I</td><td>Circuit current</td><td>Load current (A)</td></tr>
               <tr><td>R (Ω/ft), Ω/1000 ft</td><td>Wire catalog</td><td>Manufacturer resistance at 20 °C</td></tr>
-              <tr><td>T<sub>1</sub>, T<sub>R</sub></td><td>Parameters</td><td>Ambient and conductor rating (°C)</td></tr>
-              <tr><td>T<sub>2</sub></td><td>Calculated</td><td>Estimated conductor temperature — highlighted vs T<sub>R</sub></td></tr>
+              <tr><td>T<sub>1</sub>, T<sub>R</sub></td><td>Parameters</td><td>Ambient and cable insulation rating (°C)</td></tr>
+              <tr><td>Aircraft zone, T<sub>INST</sub>, M, T<sub>SAFE</sub></td><td>Installation environment</td><td>Zone, installation limit, design margin, and safe limit MIN(T<sub>R</sub>, T<sub>INST</sub> &minus; M)</td></tr>
+              <tr><td>T<sub>2</sub></td><td>Calculated</td><td>Estimated conductor temperature — highlighted vs T<sub>SAFE</sub> (installation acceptance)</td></tr>
               <tr><td>I<sub>MAX</sub></td><td>Calculated</td><td>I<sub>max</sub> = x · y · z</td></tr>
               <tr><td>%</td><td>Calculated</td><td>100 × I / x</td></tr>
               <tr><td>x</td><td>Fig 11-4 formula</td><td>Free-air ampacity at T<sub>1</sub>, T<sub>R</sub></td></tr>
@@ -317,7 +322,7 @@
                 <option value="260" selected>260 &deg;C</option>
                 <option value="custom">Custom&hellip;</option>
               </select>
-              <span class="pwa-params__field-hint">Insulation class per wire spec (AS50881 / datasheet)</span>
+              <span class="pwa-params__field-hint" title="Cable insulation temperature capability">Cable rating (T<sub>R</sub>) — insulation survival limit</span>
             </label>
             <label class="pwa-params__custom-field" id="pwa-conductor-tr-custom-wrap" hidden>
               Custom T<sub>R</sub> (&deg;C)
@@ -335,6 +340,66 @@
                 T<sub>2</sub> = T<sub>1</sub> + (T<sub>R</sub> &minus; T<sub>1</sub>) &times; (I/I<sub>max</sub>)&sup2;
               </p>
             </details>
+          </fieldset>
+
+          <fieldset class="pwa-fieldset" id="pwa-install-fieldset">
+            <legend>Installation environment</legend>
+            <div class="pwa-params__toggle">
+              <input type="checkbox" name="applyInstallationTempLimit" id="pwa-apply-install-temp" checked>
+              <label for="pwa-apply-install-temp" class="pwa-params__toggle-title">
+                Apply installation temperature limit
+              </label>
+              <p class="pwa-params__field-hint pwa-params__toggle-hint">
+                When enabled, conductor temperature is checked against the selected aircraft installation temperature limit after margin.
+                When disabled, conductor temperature is checked only against the cable temperature rating.
+              </p>
+            </div>
+            <p class="pwa-derived pwa-derived--note" id="pwa-temp-basis" aria-live="polite">
+              Temperature basis: <strong>Installation limit</strong>
+            </p>
+            <div id="pwa-install-assessment-fields">
+              <p class="pwa-fieldset__intro">
+                Aircraft installation temperature limits are independent of cable insulation rating T<sub>R</sub>.
+                T<sub>2</sub> status uses T<sub>SAFE</sub> = MIN(T<sub>R</sub>, installation limit &minus; margin): green ≤ 80%, amber &gt; 80%–100%, red &gt; T<sub>SAFE</sub>.
+              </p>
+              <label>Aircraft zone
+                <select name="aircraftZone" id="pwa-aircraft-zone">
+                  <option value="cockpit">Cockpit / Flight Deck</option>
+                  <option value="cabin">Cabin / Passenger Area</option>
+                  <option value="avionics">Avionics Bay</option>
+                  <option value="fuselage" selected>General Fuselage</option>
+                  <option value="wing">Wing / Empennage</option>
+                  <option value="engine">Engine Adjacent Area</option>
+                  <option value="custom">Custom</option>
+                </select>
+              </label>
+              <label>Installation temperature limit (&deg;C)
+                <input type="number" name="installationTempLimit" id="pwa-installation-temp-limit"
+                  step="1" min="1" value="85">
+                <span class="pwa-params__field-hint">Auto-filled from zone; editable for all zones</span>
+              </label>
+              <label>Temperature design margin (&deg;C)
+                <input type="number" name="tempDesignMargin" id="pwa-temp-design-margin"
+                  step="1" min="0" value="10">
+              </label>
+              <p class="pwa-derived">
+                Installation limit: <strong id="pwa-install-limit-display">—</strong> &deg;C
+              </p>
+              <p class="pwa-derived pwa-derived--total">
+                Safe temperature limit T<sub>SAFE</sub>:
+                <strong id="pwa-tsafe-display">—</strong> &deg;C
+                <span class="pwa-params__field-hint" title="Maximum permitted conductor temperature for this installation after application of design margin">installation acceptance limit</span>
+              </p>
+            </div>
+            <p id="pwa-install-disabled-note" class="pwa-derived pwa-derived--note" hidden>
+              Installation temperature assessment disabled. Temperature pass/fail assessed against cable rating T<sub>R</sub> only.
+            </p>
+            <div class="pwa-params__limits-summary" aria-live="polite">
+              <p class="pwa-derived">
+                Cable rating T<sub>R</sub>: <strong id="pwa-tr-display">—</strong> &deg;C
+                <span class="pwa-params__field-hint" title="Cable insulation temperature capability">insulation capability</span>
+              </p>
+            </div>
           </fieldset>
 
           <fieldset class="pwa-fieldset">
@@ -408,9 +473,11 @@
         <div class="pwa-grid-header">
           <div>
             <h2 id="pwa-grid-title">Analysis grid</h2>
-            <p class="pwa-grid-note">Row labels stay fixed while you scroll AWG columns.</p>
+            <p class="pwa-grid-note">Row labels stay fixed while you scroll AWG columns. T<sub>2</sub> status compares against the active limit (T<sub>SAFE</sub> or T<sub>R</sub>).</p>
+            <p class="pwa-grid-note pwa-grid-note--basis" id="pwa-grid-temp-basis" aria-live="polite">Temperature basis: Installation limit</p>
           </div>
         </div>
+        <div id="pwa-install-temp-warnings" class="pwa-install-warn-panel" hidden aria-live="polite"></div>
         <details class="pwa-export" id="pwa-export">
           <summary class="pwa-export__summary">Project folder &amp; reports</summary>
           <div class="pwa-export__body">
