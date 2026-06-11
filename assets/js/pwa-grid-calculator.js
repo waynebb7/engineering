@@ -547,6 +547,36 @@
     });
   }
 
+  function exportNumStyle(row) {
+    if (row.fmt === 'sci') {
+      return 'tableNum6';
+    }
+    if (row.fmt === 'factor') {
+      return 'tableNum2';
+    }
+    if (typeof row.digits === 'number') {
+      if (row.digits <= 2) {
+        return 'tableNum2';
+      }
+      if (row.digits === 3) {
+        return 'tableNum3';
+      }
+    }
+    return 'tableNum3';
+  }
+
+  function exportCellStyleKey(row, rawVal, params) {
+    if (params && typeof rawVal === 'number' && isFinite(rawVal)) {
+      if (row.key === 'Vdrop') {
+        return rawVal <= params.allowableDrop ? 'pass' : 'fail';
+      }
+      if (row.key === 'T2') {
+        return rawVal <= params.conductorTempRating ? 'pass' : 'fail';
+      }
+    }
+    return null;
+  }
+
   function buildExportRowCells(row, gridColumns, settings, isAwgHeaderRow, options) {
     var cells = [];
     var exportColumns = filterExportColumns(gridColumns, settings.awgLabels);
@@ -558,13 +588,16 @@
       text: row.key === 't2Factor' && params
         ? t2FactorRowLabel(params.t2Standard)
         : row.labelB,
-      align: 'left'
+      align: 'left',
+      styleKey: isAwgHeaderRow ? 'tableHeader' : 'tableLabel'
     });
     cells.push({
       text: row.labelC,
-      align: 'center'
+      align: 'center',
+      styleKey: isAwgHeaderRow ? 'tableHeader' : 'tableSymbol'
     });
     exportColumns.forEach(function (col, awgIdx) {
+      var rawVal = isAwgHeaderRow ? col.awg : col[row.key];
       var text;
       if (isAwgHeaderRow) {
         text = col.awg;
@@ -572,15 +605,26 @@
         var wire = findWire(col.awg);
         text = wire
           ? getExportCellContent(row, col, wire, params, rowMap, 2 + awgIdx)
-          : formatCell(row, col[row.key]);
+          : formatCell(row, rawVal);
       } else {
-        text = formatCell(row, col[row.key]);
+        text = formatCell(row, rawVal);
       }
-      cells.push({ text: text, align: 'center' });
+      var cell = {
+        text: text,
+        align: 'center',
+        styleKey: isAwgHeaderRow ? 'tableHeader' : exportCellStyleKey(row, rawVal, params)
+      };
+      if (!isAwgHeaderRow && typeof rawVal === 'number' && isFinite(rawVal) &&
+          row.fmt !== 'pct' && row.fmt !== 'awg' && row.fmt !== 'blank') {
+        cell.value = rawVal;
+        cell.numStyle = exportNumStyle(row);
+      }
+      cells.push(cell);
     });
     cells.push({
       text: isAwgHeaderRow ? '' : row.unit,
-      align: 'center'
+      align: 'center',
+      styleKey: isAwgHeaderRow ? 'tableHeader' : 'tableUnit'
     });
 
     return cells;
@@ -619,12 +663,16 @@
 
     bodyEntries.forEach(function (entry) {
       if (entry.divider) {
-        rows.push({ divider: true });
+        rows.push({
+          divider: true,
+          label: 'Voltage drop at entered run length'
+        });
         return;
       }
       rows.push({
         cells: buildExportRowCells(entry.row, gridColumns, settings, false, options),
-        isHeader: false
+        isHeader: false,
+        section: entry.row.section
       });
     });
 
@@ -949,8 +997,8 @@
       });
       setExportStatus(
         exportAll
-          ? 'Exported all settings, parameter dropdown lists, and analysis table to Excel.'
-          : 'Exported analysis table to Excel.',
+          ? 'Exported formatted report (Analysis, Parameters, and hidden option lists) to Excel.'
+          : 'Exported formatted analysis report to Excel.',
         'ok'
       );
     } catch (err) {
