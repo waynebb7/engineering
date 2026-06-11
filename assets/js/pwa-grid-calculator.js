@@ -1255,6 +1255,25 @@
     form.addEventListener('input', recalc);
     form.addEventListener('change', recalc);
     window.addEventListener('resize', syncGridRowHeights);
+
+    var guideEl = document.getElementById('pwa-how-to');
+    if (guideEl) {
+      function typesetGuide() {
+        if (!guideEl.open || !window.MathJax || !MathJax.Hub) return;
+        MathJax.Hub.Queue(['Typeset', MathJax.Hub, guideEl]);
+      }
+      guideEl.addEventListener('toggle', typesetGuide);
+      if (window.MathJax && MathJax.Hub) {
+        MathJax.Hub.Register.StartupHook('End', typesetGuide);
+      }
+
+      document.querySelectorAll('a[href="#pwa-how-to"]').forEach(function (link) {
+        link.addEventListener('click', function () {
+          guideEl.open = true;
+        });
+      });
+    }
+
     recalc();
   }
 

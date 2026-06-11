@@ -1,6 +1,7 @@
 # Exported Conversation
 
-_Exported: 2026-06-09T05:53:15.414022+00:00_
+_Exported: 2026-06-10T18:16:17.884330+00:00_  
+_Last updated with Key differences reference: 2026-06-05_
 
 <span style="font-size:2em; color:blue; font-weight:bold;">User</span>
 
@@ -7624,3 +7625,3508 @@ It’s a single-file tile (title links straight to the PDF). The manifest now ha
 Reading the extractor script and checking what conversation source is available.
 
 [REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Updating the export script to match the JS formatter, then generating `prompts.md` from the full chat transcript.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Re-exporting to include this exchange in `prompts.md`.
+
+[REDACTED]
+
+`prompts.md` is at the repo root with the full chat session exported from the Cursor transcript.
+
+**Format** (matching `extract_chat_gpt.js`):
+- `# Exported Conversation` header with ISO export timestamp
+- **User** headings in blue, **Assistant** in green (HTML spans)
+- User/assistant text preserved as markdown (lists, tables, code, links)
+
+**Content:**
+- **294 conversation turns** (~276 KB)
+- User prompts cleaned (stripped `<user_query>` wrappers; image attachments noted as `[Image attached]`)
+- Tool call JSON omitted so it reads like the chat window, not the raw agent log
+- `[REDACTED]` markers kept where the source transcript redacted tool internals
+
+**Regenerate anytime:**
+```bash
+python scripts/export-cursor-transcript.py prompts.md
+```
+
+For the full verbose export including tool calls, use `--full`:
+```bash
+python scripts/export-cursor-transcript.py --full docs/chat_export_full.md
+```
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+Move the prompts.md file into docs folder
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+[REDACTED]
+
+Updating the export script default output path to match.
+
+[REDACTED]
+
+[REDACTED]
+
+`prompts.md` is now at `docs/prompts.md`. The export script default output path was updated to match, so rerunning `python scripts/export-cursor-transcript.py` writes to the new location.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+Is there a way to clean up this project so that it is easier to navigate and more user friendly with regards to the actual folder structure and how the files are grouped.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Reviewing the project layout and how pages link together so I can suggest a clearer structure.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Yes — and a lot of that work is **already done**. The mismatch is between how the site is **organized for users** (good) and how the **repo looks on disk** (still noisy).
+
+## What you already have
+
+A June 2026 reorganization put real content into a clear layout, documented in [PROJECT-STRUCTURE.md](PROJECT-STRUCTURE.md):
+
+| Folder | Purpose |
+|--------|---------|
+| `index.html`, `progress.html`, `feedback.html` | Site entry points (root) |
+| `calculators/` | All calculator shells by category |
+| `learn/` | Teaching pages (math, physics, quantum, digital logic) |
+| `reference/` | Variables, equations, document library, industry refs |
+| `maps/` | Prerequisite maps + topic JSON |
+| `assets/` | Shared CSS/JS |
+| `scripts/` | Build, link check, migration tools |
+| `docs/` | Transcripts, exports |
+| `legacy/` | Older drill-down explorers |
+| `meta/` | Generated subject tree |
+
+The hub, nav bar, `calculators/index.html`, and `learn/index.html` already route users through this structure. **Browsing the live site is much cleaner than browsing the repo root.**
+
+## Why the folder tree still feels messy
+
+There are **283 redirect stub HTML files at the repo root** (plus stub folders like `basic_physics/`, `quantum/`, `logic_and_digital_math/` that contain only redirects). Each stub looks like this:
+
+```1:12:d:\git\engineering\dc_power_calculator.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="refresh" content="0; url=calculators/power/dc-power.html" />
+  ...
+  <!-- ek-redirect-stub -->
+```
+
+Those exist so old bookmarks and GitHub Pages URLs like `dc_power_calculator.html` still work. **Real pages at root:** only `index.html`, `progress.html`, and `feedback.html`.
+
+So the clutter is mostly **compatibility layer**, not duplicate content.
+
+```mermaid
+flowchart LR
+  subgraph root [Repo root - looks messy]
+    stubs[283 redirect stubs]
+    entry[3 real pages]
+  end
+  subgraph clean [Actual content]
+    calc[calculators/]
+    learn[learn/]
+    ref[reference/]
+    maps[maps/]
+  end
+  stubs -->|meta refresh| clean
+  entry --> clean
+```
+
+## Recommended mental model
+
+**Ignore the root HTML files when developing.** Start from:
+
+1. **Home** → `index.html`
+2. **Calculators** → `calculators/`
+3. **Learning** → `learn/`
+4. **Reference / PDFs** → `reference/`
+5. **Maps** → `maps/`
+6. **Maintenance** → `scripts/` + `PROJECT-STRUCTURE.md`
+
+## Ways to make it easier (by trade-off)
+
+### 1. Hide stubs in the IDE (low risk, immediate)
+Add VS Code/Cursor `files.exclude` patterns so redirect stubs don’t fill the file tree. Stubs stay for URL compatibility; you just stop seeing them day to day.
+
+### 2. Lean on site navigation, not the file tree (zero risk)
+Use the hub cards and header nav as the map. Add a “Start here for contributors” section to the README pointing at the six folders above.
+
+### 3. Collapse old stub directories (medium risk)
+Folders like `quantum/` and `basic_physics/` are **100% stubs** — they could be removed only if every stub inside is also represented at root or you accept breaking old nested URLs (e.g. `quantum/qubits-and-bloch-sphere.html`). Worth auditing against `scripts/path-relocation-map.json` first.
+
+### 4. Remove root stubs entirely (high risk)
+Deletes 283 files and **breaks old links** unless you add server-level redirects. GitHub Pages static hosting doesn’t give you `.htaccess`; you’d need something like a custom `404.html` redirect map or a different host. Only do this after a deprecation period.
+
+### 5. Further structural polish (medium effort, low user risk)
+Small wins that don’t depend on stubs:
+
+- Link **Learn** in the main nav (hub exists at `learn/index.html` but nav jumps straight to subject indexes).
+- Move `to_do_list.html` / `tree.html` stubs awareness — real pages already live at `calculators/tools/to-do-list.html` and `meta/tree.html`.
+- Add a one-page **contributor map** in `docs/` with the folder tree and “where to add X”.
+
+## Practical recommendation
+
+**Phase 1 (now):** Treat `PROJECT-STRUCTURE.md` as the source of truth; hide redirect stubs in the IDE; use hub + nav for browsing.
+
+**Phase 2 (optional):** Tighten contributor docs and nav (Learn hub link, clearer README entry point).
+
+**Phase 3 (later):** Decide whether old bookmark compatibility still matters. If not, remove stubs in one batch using `scripts/path-relocation-map.json` as the checklist.
+
+---
+
+If you want this implemented, the highest-value next step is **Phase 1 + 2**: IDE exclude rules for stubs, README contributor section, and a **Learn** nav item. Say which phases you want and I can do them.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+Do 1 and 2
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Implementing IDE stub hiding and contributor navigation improvements. Checking existing config and nav setup.
+
+[REDACTED]
+
+[REDACTED]
+
+Creating the stub-hiding script, updating navigation and contributor docs, and wiring the build into the redirect-stub workflow.
+
+[REDACTED]
+
+Fixing the import — hyphenated script names can't be imported directly.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Phase 1 and 2 are in place.
+
+### Phase 1 — Hide redirect stubs in the IDE
+- Added `scripts/build-vscode-excludes.py`, which scans for `<!-- ek-redirect-stub -->` pages and writes `.vscode/settings.json`.
+- **363 redirect stubs** are hidden from the file tree and search (root HTML plus folders like `quantum/`, `basic_physics/`, etc.).
+- Real root pages stay visible: `index.html`, `progress.html`, `feedback.html`.
+- `ensure-redirect-stubs.py` runs the exclude builder automatically after creating stubs.
+
+**Reload the Cursor window** (`Developer: Reload Window`) if the tree doesn’t update right away.
+
+Regenerate manually anytime:
+```bash
+python scripts/build-vscode-excludes.py
+```
+
+### Phase 2 — Contributor navigation
+- **README** — new “Start here for contributors” section with a folder map and stub explanation.
+- **`docs/CONTRIBUTOR-MAP.md`** — one-page guide: where to add calculators, lessons, PDFs, and which scripts to run.
+- **Main nav** — added **Learn** → `learn/index.html` (active only on that hub, not on subject subpages).
+- **`PROJECT-STRUCTURE.md`** — updated nav docs and script table.
+
+The repo should now be much easier to browse in the IDE, with clear entry points for both contributors and site users.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+The links on the header seem to be a bit messy, can you fix this
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Reviewing header nav markup and styles to fix cramped links and the Feedback wrap.
+
+[REDACTED]
+
+[REDACTED]
+
+Too many top-level nav items are causing wrap. Simplifying the nav to six primary links and tightening header CSS so everything stays on one row.
+
+[REDACTED]
+
+[REDACTED]
+
+The header had **10 links** competing for space, which caused wrapping and pushed Feedback onto a second line.
+
+**Changes made:**
+
+1. **Simplified navigation to 6 items:** Home · Calculators · Learn · Documents · Progress · Feedback  
+   Mathematics, Physics, Quantum, and Digital Logic are still available from the **Learn** hub (`learn/index.html`).
+
+2. **CSS tweaks:**
+   - Single-row layout (`flex-wrap: nowrap`) so links don’t break onto a second line
+   - Slightly tighter padding and gaps
+   - Tagline hidden below 1080px width to free horizontal space
+   - Slightly smaller link text on narrower desktops
+
+3. **Active states:** **Learn** highlights on any `learn/` page; **Documents** highlights on any `reference/` page.
+
+Refresh the page to see the updated header — all links should sit on one clean row.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+That is much better. Thank you.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Good to hear it’s working better. If you want to refine anything else on the site, just say the word.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+On the document library page is it possible to have a function to add a document
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Reviewing the document library implementation to determine what's feasible on this static site.
+
+[REDACTED]
+
+[REDACTED]
+
+Adding an in-page wizard that generates manifest JSON and step-by-step instructions. The static site can't upload files or edit the manifest directly, so this guides the existing workflow.
+
+[REDACTED]
+
+[REDACTED]
+
+Adding the add-document wizard to `documents-library.js`.
+
+[REDACTED]
+
+[REDACTED]
+
+Yes — with one important constraint: this is a **static site**, so the browser can’t upload files or edit `manifest.json` directly. What I added is an **Add a document** wizard on the Document Library page that walks you through the same workflow you’ve been using manually.
+
+### What it does
+Expand **Add a document** on the Document Library page and you can:
+
+1. **Pick a source file** (optional) — suggests a stored filename under `reference/documents/files/`
+2. **Fill in metadata** — title, category, ID, standard, revision, summary, sections, tags
+3. **Generate manifest JSON** — ready to paste into `manifest.json`
+4. **Copy JSON** — one-click clipboard copy
+5. **Follow the 3 steps** shown — copy file → paste JSON → run `python scripts/build-documents-manifest.py`
+
+The form auto-suggests a **catalogue ID** and **stored filename** from the title (and file picker when used), and checks for duplicate IDs.
+
+### What you still do locally
+- Copy the PDF/Word/Excel into `reference/documents/files/`
+- Paste the generated JSON into the `documents` array in `manifest.json`
+- Run the build script
+
+For **multi-edition tiles** (like CS-25 with many amendments), you’ll still edit `versions[]` in the manifest by hand — the wizard is aimed at single-document entries.
+
+If you want, we could extend it next to generate multi-edition entries or a small local Python helper that appends to the manifest automatically.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+@excel/ELA_PWA.xlsx I have attached an electrical load and power wire calculator. I need you to look at tabs 'PWA Global Parameters' and 'KP260 Actual kVA'.
+The first is all the parameters that a user would input and the second is the calculations in a grid format. I need you to create a page that allows a user to input the global parameters and instantly see the changes on the grid of wire AWG from 24 to 0000. I specifically need you to follow the format of cells B7 to V30 on the grid page. I need one grid that the users can manipulate and see instantaneous changes. Build one and then we'll test it together and adjust as necessary. FYI I did build the Excel spread sheet so I can probably answer your questions.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Examining the Excel workbook and any existing PWA calculator code to map parameters and the wire grid.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Building the interactive PWA grid page from the Excel formulas.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Built an interactive **Power Wire Analysis — KP260 Grid** page from your `ELA_PWA.xlsx` workbook.
+
+**Page:** `calculators/aerospace-electrical-design/power-wire-analysis.html`  
+(Open via **Calculators → Aerospace Electrical Design → Power Wire Analysis — KP260 Grid**)
+
+### What it does
+- **Left panel — Global parameters** (from *PWA Global Parameters*):
+  - Generator line voltage, post-conditioning ELA voltage, regulated phase current
+  - Allowable voltage drop, ambient & conductor temperature ratings
+  - Altitude & bundle de-rating
+  - Wire length segments (fuselage, wing, transition, routing %) with live total in ft/m
+
+- **Right panel — Grid** (from *KP260 Actual kVA*, cells **B7:V30**):
+  - Columns: **AWG 24 → 0000** (17 wires, KP260 resistance & AC-43 free-air chart values from your sheet)
+  - Rows: L1, V, U, I, R/ft, R/1000ft, T1, TR, T2, Imax, I/I_free, de-ratings, I/Imax, √I/Imax, L2 (ft & m), voltage drop, wire length (ft & m)
+  - Sticky row labels + `=` column like Excel; horizontal scroll for all AWG columns
+
+### Formulas (matching your spreadsheet)
+- Circuit current: `regulated phase current × (ELA voltage / generator line voltage)`
+- L1 = U / (I × R/ft)
+- T2 = T1 + (TR − T1) × √(I/Imax)
+- Imax = free-air chart × bundle × altitude
+- L2 = 254.5 × L1 / (234.5 + T2)
+- Vdrop = I × R/ft × wire length × (234.5 + T2) / 254.5
+
+Default values match your workbook (e.g. AWG 24 L1 ≈ **2.781 ft**, wire length **65.39 ft**).
+
+### How to test
+1. Open the page locally (`python -m http.server 8080` from the repo root).
+2. Compare the grid to *KP260 Actual kVA* with the same global parameters.
+3. Change a parameter (e.g. allowable drop or phase current) and confirm the grid updates instantly.
+
+When you’re ready, tell me which cells or rows don’t match Excel and we can adjust formatting, extra inputs, or highlighting (e.g. pass/fail on L2 vs wire length).
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+I cannot read the white text on white background
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Global table header styles are forcing white text on the grid's sticky label column. Fixing the contrast.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+The row labels were inheriting the site-wide table header style (`th { color: #fff; background: navy }`), which clashed with the grid’s light sticky column backgrounds.
+
+That’s fixed: the PWA grid now sets dark navy text on light backgrounds for the label columns, and overrides the global uppercase/white header styling inside `.pwa-grid`.
+
+Refresh the page — the first column should be readable. If anything still looks off after a hard refresh, say which column and we’ll tweak it.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+Change this section so that it just has one box for length with the ability to select metres or inches, inches being the default and then one box for Additional Routing Allowance.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Simplifying the wire length section to a single length field with an inches/metres unit selector plus routing allowance.
+
+[REDACTED]
+
+[REDACTED]
+
+Converting the length value when the unit dropdown changes so the total stays consistent.
+
+[REDACTED]
+
+[REDACTED]
+
+The wire length section is simplified to two inputs:
+
+1. **Wire run length** — one value with a unit dropdown (**Inches** default, or **Metres**)
+2. **Additional routing allowance (%)** — unchanged
+
+The total still uses the same formula as before: `length × (1 + routing%)`, then converted to feet for the grid. The default **603.6 in** with **30%** routing still gives **65.39 ft**, matching your spreadsheet.
+
+Switching between inches and metres converts the length value so the total stays the same. Refresh the page to see the update.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+What is the C-43? Is this an error?
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Checking the grid row label and layout — likely label overflow, not a calculation error.
+
+[REDACTED]
+
+AC-43 refers to FAA Advisory Circular 43.13 (wire ampacity chart). The visible `.C-43)` is label text bleeding into the data column — fixing the overflow.
+
+[REDACTED]
+
+Not a calculation error. **AC-43** is a reference to **FAA Advisory Circular 43.13** (Aircraft Maintenance) — specifically **Figure 11-4a**, the chart for maximum conductor current in free air. Your Excel row uses the same wording: *“De-rating (Max conductor current in free air) From fig. 11-4b (AC-43)”*.
+
+The **16** in that column is correct: it’s the free-air ampacity for **AWG 24** from your KP260 wire table (used with bundle and altitude de-rating to get Imax).
+
+What you saw (**`.C-43)`** next to **16**) was a **display bug**: the long row label was wrapping/overflowing from the first column into the data column. It looked like stray formula text, but it was just the tail end of **“…AC-43)”** from the label.
+
+I’ve:
+1. **Shortened the row label** to *“Max conductor current in free air (AC 43.13 Fig 11-4a)”*
+2. **Clipped overflow** on the sticky label columns so text can’t bleed into the value cells
+
+Refresh the page — you should only see **16** (and the other AWG values) in that row.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+There are 3 cells that have an overflow problem, can we extend the cells. Also This was originally for wire type KP260 but I'm building this one for multiple wire types so please just change the grid title to something generic because eventually when we select the wire type it will also change the title to reflect it.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Setting the title to generic for now; wire type will update it when a selector is added.
+
+[REDACTED]
+
+Two changes:
+
+### Wider label column (overflow fix)
+The first column is now **360px** wide (was 280px max with `overflow: hidden`, which clipped long labels). Text wraps fully, including:
+- Max conductor current in free air (AC 43.13 Fig 11-4a)
+- Maximum wire length (DE-RATED) (MOST SEVERE) — both ft and m rows
+
+Sticky column positions were updated to match.
+
+### Generic grid title
+- Grid heading is now **“Wire analysis grid”** (via `id="pwa-grid-title"`).
+- Page title and intro copy no longer mention KP260.
+- When you add a wire-type selector, set `WIRE_TYPE_LABEL` in `pwa-grid-calculator.js` (e.g. `'KP260'`) and the title will become **“KP260 — wire analysis grid”** automatically.
+
+Refresh the page to see the updates. If any label still truncates, we can widen the column a bit more.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+When we scroll horizontally I need the columns up to the '=' to not move so that I can read those columns when the furthest columns are viewed.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Checking why horizontal sticky columns aren't holding — likely a table/CSS issue.
+
+[REDACTED]
+
+Fixing sticky columns: `border-collapse: collapse` breaks `position: sticky` in tables. Switching to `border-collapse: separate` and correcting z-index stacking.
+
+[REDACTED]
+
+[REDACTED]
+
+Fixed. Sticky columns weren’t holding because **`border-collapse: collapse`** on the table breaks `position: sticky` in most browsers.
+
+**Changes:**
+- Switched the grid to **`border-collapse: separate`** (with `border-spacing: 0`)
+- Kept the first three columns frozen: **description**, **symbol (AWG/L1/V…)**, and **=**
+- Adjusted **z-index** so stacked sticky columns layer correctly when scrolling
+- Added a light **shadow** on the `=` column so the frozen section is visually separated from scrolling AWG data
+- Header row sticky cells use the same freeze behaviour
+
+Hard-refresh the page, then scroll horizontally — the label, symbol, and `=` columns should stay fixed while AWG 24 through 0000 scroll underneath. If anything still moves in your browser, tell me which one (Chrome, Edge, etc.) and we can tune further.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+I don't think that last change worked because the first 3 columns still move.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Sticky table cells are unreliable here — switching to a split frozen-panel + scrollable data panel layout.
+
+[REDACTED]
+
+Implementing a split-table layout so the label columns stay fixed while AWG data scrolls.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+I don't think that last change worked because the first 3 columns still move.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+[REDACTED]
+
+[REDACTED]
+
+Verifying the HTML and JS split-table structure is wired correctly.
+
+[REDACTED]
+
+[REDACTED]
+
+The sticky-column approach wasn’t reliable here — `position: sticky` often fails when the scroll container, table layout, and borders don’t line up exactly. I finished the **split-table layout** instead, which keeps the first three columns truly fixed.
+
+**What changed**
+
+The grid is now two side-by-side tables:
+
+1. **Left (fixed):** description, symbol (AWG), and `=` — this panel does not scroll.
+2. **Right (scrollable):** AWG value columns only — horizontal scroll is limited to this panel.
+
+CSS updates in `corporate.css`:
+
+- `.pwa-grid-split` — flex row layout
+- `.pwa-grid-frozen` — fixed-width left panel with a light shadow at the edge
+- `.pwa-grid-data-scroll` — `overflow-x: auto` on the data side only
+- Removed all `position: sticky` rules on label/eq columns
+
+Row heights stay aligned via `syncGridRowHeights()` in the JS (already wired up).
+
+**What you should see**
+
+After a hard refresh (`Ctrl+F5`), scrolling horizontally should move only the AWG columns. The description, symbol, and `=` columns stay put, and the cut-off text on the left (like “Fig 11-4a)”) should no longer clip because those cells aren’t moving under the scroll area.
+
+If anything still shifts after refresh, tell me which browser you’re using and I’ll dig in.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+I need the last column to be locked too.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Adding a right-frozen units column alongside the left labels. Checking the current grid structure and styles.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Implementing a third frozen panel for the units column and updating HTML, JS, and CSS.
+
+[REDACTED]
+
+[REDACTED]
+
+Fixing zebra striping I accidentally changed for the value columns.
+
+[REDACTED]
+
+The units column is now frozen on the right, using the same split-table approach as the label columns on the left.
+
+**Layout:** three panels side by side
+- **Left (fixed):** description, symbol, `=`
+- **Middle (scrolls):** AWG value columns only
+- **Right (fixed):** units (FEET, VOLTS, Ω/ft, etc.)
+
+Row heights are synced across all three tables so rows stay aligned when you scroll. Hard refresh (`Ctrl+F5`) and scroll horizontally — only the AWG numbers in the middle should move; labels and units stay put.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+Change I_max to IMAX
+Change I/I_free to the % sign
+Change the word RATIO to the % sign
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Updated the grid labels in `pwa-grid-calculator.js`:
+
+| Row | Symbol column | Unit column |
+|-----|---------------|-------------|
+| Maximum allowable current @ TR | `I_max` → **IMAX** | (unchanged: AMPS) |
+| Actual % of current against free air current | `I/I_free` → **%** | RATIO → **%** |
+
+I also changed the **I/IMAX** row unit from RATIO to **%** so it matches. Refresh the page to see the updates.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+Change Max conductor current in free air (AC 43.13 Fig 11-4a) to De-rating (Max conductor current in free air) assign x
+De-rating (Bundle) should have a y in the cell to the right
+De-rating (Altitude) should have a z in the cell to the right
+The two words FACTOR in the screen shot are to be removed.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+[REDACTED]
+
+[REDACTED]
+
+Updated the de-rating rows in `pwa-grid-calculator.js`:
+
+| Row | Description | Symbol | Unit |
+|-----|-------------|--------|------|
+| Free air current | De-rating (Max conductor current in free air) | **x** | AMPS |
+| Bundle | De-rating (Bundle) | **y** | *(blank)* |
+| Altitude | De-rating (Altitude) | **z** | *(blank)* |
+
+Refresh the page to see the changes.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+Remove the I/IMAX % sign in the last column
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+[REDACTED]
+
+Removed the `%` from the **I/IMAX** row’s unit column — it’s blank now. Refresh the page to see the update.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+Change the cell formatting for 'Actual % of current against free air current' row so that the cells are to 0 decimal places and hace a % sign appended to the number
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+[REDACTED]
+
+Checking how Excel formats this value.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Excel stores the ratio as a decimal and uses a `0%` format (multiplies by 100). Adding a `pct` formatter to match that.
+
+[REDACTED]
+
+Updated the **Actual % of current against free air current** row to use a percentage format that matches Excel:
+
+- Values are multiplied by 100 (same as Excel’s `0%` format)
+- Rounded to **0 decimal places**
+- **`%` appended** in the data cells (e.g. `4.500007` → `450%`)
+
+Refresh the page to see the change.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+There are two rows that are empty. These can be removed.
+Set the following rows to 3 decimal places:|
+Maximum wire length (NOT DE-RATED) 
+Resistance of wire per 1000 feet @ 20°C
+Estimated conductor temperature
+Maximum allowable current @ TR
+I/IMAX
+SQRT I/IMAX
+Maximum wire length (DE-RATED) (MOST SEVERE)
+Maximum wire length (DE-RATED) (MOST SEVERE)
+
+Set the following rows to 2 decimal places:
+System Voltage
+De-rating (Bundle)
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+[REDACTED]
+
+Removing the spacer rows and adding per-row decimal precision.
+
+[REDACTED]
+
+[REDACTED]
+
+Changes applied in `pwa-grid-calculator.js`:
+
+**Removed:** the two blank spacer rows above Voltage drop.
+
+**3 decimal places:**
+- Maximum wire length (NOT DE-RATED)
+- Resistance of wire per 1000 feet @ 20°C
+- Estimated conductor temperature
+- Maximum allowable current @ TR
+- I/IMAX
+- SQRT I/IMAX
+- Both Maximum wire length (DE-RATED) rows (FEET and METRES)
+
+**2 decimal places:**
+- System Voltage
+- De-rating (Bundle)
+
+Other rows keep their existing formatting (6 decimals by default, percentage row unchanged, etc.). Refresh the page to see the updates.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+Change these to 3 decimal places too
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+[REDACTED]
+
+Updated **Voltage drop**, **Wire Length (FEET)**, and **Wire Length (METRES)** to 3 decimal places. Refresh the page to see the change.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+On the table please centre justify all the numbers
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+All AWG header and data values are now center-aligned in the grid. Refresh the page to see the change.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+Centre justify the last column
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+[REDACTED]
+
+[REDACTED]
+
+The units column is now center-aligned. Refresh the page to see the update.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+The last 3 rows are specifically to do with voltage drop whereas all the other rows are to do with the wire de-rating under load in a particular environment etc. Is there a way whereby we can show a little bit of separation so that there is no confusion.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Adding a visual divider before the voltage-drop rows. Checking how rows are rendered and styled.
+
+[REDACTED]
+
+[REDACTED]
+
+Adding a divider row and subtle styling to separate the voltage-drop section.
+
+[REDACTED]
+
+[REDACTED]
+
+Added a visual break between the de-rating rows and the voltage-drop section:
+
+1. **Divider line** — a navy horizontal rule spans the full grid width above “Voltage drop”.
+2. **Section tint** — the last three rows use a slightly different background (`#f4f7fb`) so they read as one group.
+
+The divider is synced across all three table panels (labels, AWG data, units), so alignment stays correct when you scroll.
+
+Refresh the page to see it. If you want a section heading (e.g. “Voltage drop analysis”) in that gap, say the word and we can add it.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+I need a button that copies the grid so that I can paste it into MS Word in the correct format. I must have options on which columns to export and an option to export all.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Adding a copy-to-Word export with column selection. Reviewing the page structure and grid rendering.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Implementing the export toolbar and Word clipboard copy logic.
+
+[REDACTED]
+
+[REDACTED]
+
+Added a **Copy grid for Word** toolbar above the grid.
+
+**Column options**
+- Description
+- Symbol
+- `=`
+- AWG values
+- Units
+- **All columns** — checks everything; uncheck it to pick individual columns
+
+**How it works**
+1. Choose the columns you want (or leave **All columns** checked).
+2. Click **Copy grid for Word**.
+3. Paste into Word with **Ctrl+V**.
+
+The clipboard uses an HTML table with borders and alignment so Word keeps the table layout. It also includes a plain-text fallback if HTML copy isn’t supported. The voltage-drop divider line is included when those rows are exported.
+
+A status message confirms success or reports errors (e.g. if no columns are selected).
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+Make circuit current 2 decimal places
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+[REDACTED]
+
+Circuit current is now formatted to **2 decimal places** (e.g. `72.00` instead of `72.000114`). Refresh the page to see the change.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+I noticed that circuit current is set at 72. This is incorrect as it needs to also be one of the global parameters. Please change it to a user changeable variable.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Reviewing how circuit current is computed and wired into the form.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Replacing the derived circuit current with a direct global parameter input.
+
+[REDACTED]
+
+[REDACTED]
+
+Circuit current is now a direct global parameter instead of being derived from regulated phase current and the voltage ratio.
+
+**Changes:**
+- Removed **Regulated phase current** from the sidebar
+- Added **Circuit current (A)** — editable, default `72`, step `0.01`
+- The grid **Circuit current** row uses this value directly
+
+Refresh the page and change **Circuit current (A)** in Global parameters; the grid updates immediately.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+Allowable voltage drop must be a dropdown list menu type that reflects the uploaded image plus there should be an option at the very bottom for choosing whether it is continuous or intermittent operation and the allowable voltage drop options should reflect which has been selected.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Implementing operation-type selection and a dynamic allowable voltage-drop dropdown from the reference table.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Allowable voltage drop is now driven by the reference table and operation type.
+
+**Allowable voltage drop U (V)** — dropdown with options keyed to nominal system voltage:
+
+| Nominal | Continuous | Intermittent |
+|---------|------------|--------------|
+| 14 V | 0.5 V | 1 V |
+| 28 V | 1 V | 2 V |
+| 115 V | 4 V | 8 V |
+| 200 V | 7 V | 14 V |
+
+Each option is labeled like **“200 V nominal — 7 V drop”**.
+
+**Operation** (at the bottom of Global parameters) — choose **Continuous operation** or **Intermittent operation**. The allowable drop list updates to match.
+
+Default: continuous operation, **200 V nominal — 7 V drop** (same as before). Switching operation keeps the same nominal voltage when possible (e.g. 200 V continuous 7 V → intermittent 14 V).
+
+Refresh the page to use the new controls.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+I don't think that post conditioning ELA Voltage is required.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+[REDACTED]
+
+[REDACTED]
+
+Post-conditioning voltage isn't used in calculations—only generator line voltage is. Removing it from the form and params.
+
+[REDACTED]
+
+Removed **Post-conditioning ELA voltage** from the form. It wasn’t used in the grid calculations — **System Voltage** already comes from **Generator line voltage** only. Refresh the page to see the simplified form.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+Change Generator Line Voltage to just Voltage
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+[REDACTED]
+
+Renamed the field label from **Generator line voltage (V)** to **Voltage (V)**. Refresh the page to see the update.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+Something has happened to the Wire Length section. Please fix this.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Global `width: 100%` on form inputs broke the flex layout in the wire length row. Overriding it for that row.
+
+[REDACTED]
+
+The wire length field broke when `width: 100%` was added to all form inputs and selects for the allowable voltage drop dropdown. In the flex row, that made the numeric input shrink to almost nothing next to the unit selector.
+
+**Fix:** set `width: auto` on the wire length input and unit dropdown so the input expands again and the dropdown stays compact.
+
+Refresh the page — the wire run length field should display and accept values normally.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+Something is still not right.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Investigating the layout overlap—the dropdown content matches grid row labels, so the frozen grid panel may be bleeding into the sidebar.
+
+[REDACTED]
+
+[REDACTED]
+
+Grid label text is likely bleeding into the sticky sidebar. Fixing overflow/stacking and the wire-length flex layout.
+
+[REDACTED]
+
+[REDACTED]
+
+Two separate issues were causing the problem:
+
+**1. Grid labels bleeding into the sidebar**  
+The overlapping list (SQRT I/IMAX, Voltage drop, etc.) was grid row text painting over the sticky parameter panel. Fixes:
+- Raised the sidebar above the grid (`z-index` + `isolation`)
+- Clipped overflow on the frozen grid panels and label cells
+
+**2. Wire length input still too narrow**  
+The global `width: 100%` on form fields was still fighting the flex row. The wire length input now uses a stronger flex rule (`flex: 1 1 0` with a minimum width) so it shares space properly with the Inches/Metres dropdown.
+
+Hard refresh (`Ctrl+F5`) and check the Wire Length section again. If anything still looks off, say which browser you’re using.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+In the voltage drop section we have Feet and Metres but could you add inches above feet and also could you add the units to the ends of each description.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Updated the voltage drop section:
+
+**New row:** Wire Length for purposes of Voltage Drop **(inches)** — placed above FEET, using total wire length including routing allowance (e.g. 603.6 in with the default inputs).
+
+**Descriptions now include units:**
+- Voltage drop **(volts drop)**
+- Wire Length for purposes of Voltage Drop **(inches)**
+- Wire Length for purposes of Voltage Drop **(FEET)**
+- Wire Length for purposes of Voltage Drop **(METRES)**
+
+The separate units column is blank for these rows since the unit is in the description. Refresh the page to see the changes.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+Change the inches to in, the FEET to ft and the METRES to m. Plus add the units back to the last column.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+[REDACTED]
+
+Updated the voltage drop section:
+
+**Descriptions:** `(inches)` → `(in)`, `(FEET)` → `(ft)`, `(METRES)` → `(m)`
+
+**Units column restored:**
+- volts drop
+- in
+- ft
+- m
+
+Refresh the page to see the changes.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+On volts drop the units are volts
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+[REDACTED]
+
+Updated the voltage drop row: **(volts drop)** → **(volts)** in the description, and the units column now shows **volts** instead of **volts drop**. Refresh the page to see the change.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+In the last column change FEET to ft, VOLTS to V, volts to V, AMPS to A
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+[REDACTED]
+
+[REDACTED]
+
+Updated the units column:
+
+| Was | Now |
+|-----|-----|
+| FEET | **ft** |
+| VOLTS | **V** |
+| volts | **V** |
+| AMPS | **A** |
+
+**METRES** on the de-rated length row is unchanged. Say if you want that as **m** too. Refresh the page to see the updates.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+In the last column change METRES to m.
+Also add a row so that there is in, ft and m. Similar to the voltage drop section.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Updated the de-rated maximum wire length section to match the voltage drop layout:
+
+**Three rows (in order):**
+1. Maximum wire length (DE-RATED) (MOST SEVERE) **(in)** — unit: **in** (L2 × 12)
+2. Maximum wire length (DE-RATED) (MOST SEVERE) **(ft)** — unit: **ft**
+3. Maximum wire length (DE-RATED) (MOST SEVERE) **(m)** — unit: **m** (was METRES)
+
+Refresh the page to see the changes.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+Make Voltage increment and decrement down to 2 decimal places only not 4
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+[REDACTED]
+
+[REDACTED]
+
+Updated the **Voltage (V)** field: `step` is now **0.01** (was 0.0001), so the spinner moves in hundredths. The default is **209.95** to match the 2-decimal grid display. Refresh the page to see the change.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+Altitude de-rating is currently 35,000ft but this needs to be changeable by the user in line with the altitude de-rating curve graph.  Change the input type to a dropdown list with 1000ft increments unless you can think of a better more user friendly way to do it.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Checking how altitude de-rating is implemented and what values Excel uses.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Implementing altitude dropdown from the AC 43.13 Fig 11-6 curve with derived de-rating factor display.
+
+[REDACTED]
+
+[REDACTED]
+
+Fixing a corrupted section in the JS file.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Altitude de-rating is now driven by **AC 43.13 Fig 11-6** instead of a fixed 35,000 ft value.
+
+**What changed**
+- Replaced the numeric factor input with an **altitude dropdown** from **0 ft to 100,000 ft** in **1,000 ft** steps
+- Each option shows altitude and the matching factor, e.g. **35,000 ft — 0.86**
+- A **De-rating factor** readout below updates when you change altitude
+- The grid **De-rating (Altitude)** row uses the selected factor automatically
+
+**Default:** 35,000 ft → factor **0.86** (from the chart; previously 0.8625 was entered manually)
+
+Factors between chart points are **linearly interpolated** (linear 0–50k ft, then flattening toward 0.70 at 100k ft per the curve).
+
+Refresh the page to use the new control. If you want a different default altitude or finer steps (e.g. 5,000 ft), say what you prefer.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+With regards to the Copy grid for Word functionality. I need to be able to select the individual AWG size columns too. Please add this functionality.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+[REDACTED]
+
+[REDACTED]
+
+Adding per-AWG column selection to the Word export controls.
+
+[REDACTED]
+
+[REDACTED]
+
+Added individual AWG column selection to **Copy grid for Word**.
+
+**How it works**
+- **All AWG sizes** — toggles every AWG column (24 through 0000)
+- **AWG columns** — checkboxes for each gauge (AWG 24, AWG 22, … AWG 0000)
+- **All columns** — still selects everything, including every AWG column
+
+You can export a subset, e.g. only AWG 18 and AWG 14 with Description and Units, by unchecking **All columns** and picking what you need.
+
+Refresh the page to see the new AWG checkboxes under the main export options.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+Remove the column with the '=' sign
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Removing the `=` column from the grid, export, and related styles.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Removed the **=** column from the grid, Word export, and copy options. The frozen panel now has only **Description** and **Symbol** before the AWG data columns.
+
+Refresh the page to see the update.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+Top left cell should contain Cable size (AWG)
+Voltage Drop (volts) symbol in cell to the right should be U
+Wire length for purposes of voltage drop should all have the symbol L in the next column too.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Updated the grid labels and symbols:
+
+- **Top-left header:** **Cable size (AWG)** (symbol column header is blank; AWG numbers stay in the data columns)
+- **Voltage drop (volts):** symbol **U**
+- **Wire Length for purposes of Voltage Drop** (in, ft, m): symbol **L** on all three rows
+
+Refresh the page to see the changes. Word export uses the same labels and symbols.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+Cable size (AWG) should be left justified and in the cell to the right should be AWG
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Updated the header row:
+
+- **Cable size (AWG)** is now **left-aligned** in the top-left cell
+- **AWG** appears in the symbol column header to the right
+
+Refresh the page to see the change. Word export uses the same header layout.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+When using the copy grid for word functionality I want the Description, symbol and units to be copied every time regardless of which wire sizes are selected so please remove those options. Also please put the copy grid for word on a line below the options.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Updated the **Copy grid for Word** controls:
+
+**Always included:** Description, Symbol, and Units — no checkboxes for these anymore. A note under the legend states they’re always copied.
+
+**Your choices:** Only AWG columns — use **All AWG sizes**, **All columns**, or pick individual AWG checkboxes.
+
+**Layout:** **Copy grid for Word** is on its own row below the AWG options, separated by a divider line.
+
+Refresh the page to see the changes.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+Change copy grid for word to Copy table as I can use this to copy / paste into word and excel.
+Is it possible to create a copy so that when I paste it into excel it has the formulae to do the calculations too this will be a separate button.
+Also the check boxes All AWG sizes and All columns do the same thing so please just keep All AWG sizes
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Reviewing calculation logic and export code to implement the rename, remove the duplicate checkbox, and add an Excel-formula export.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Implementing the export UI changes and Excel formula copy functionality.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Fixing `buildExportRows` — removing broken code and implementing a clean two-phase build.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+Change copy grid for word to Copy table as I can use this to copy / paste into word and excel.
+Is it possible to create a copy so that when I paste it into excel it has the formulae to do the calculations too this will be a separate button.
+Also the check boxes All AWG sizes and All columns do the same thing so please just keep All AWG sizes
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+All three changes are in place:
+
+### Copy table
+- The section is labeled **Copy table** (not “Copy columns for Word”).
+- **Copy table** copies formatted HTML plus tab-separated values, so you can paste into Word or Excel.
+- Status text: “Copied — paste into Word or Excel with Ctrl+V.”
+
+### Copy table with formulas
+- A second button, **Copy table with formulas**, copies tab-separated data where calculated cells are Excel formulas (e.g. `=D7/(D9*D10)`).
+- Global inputs (voltage, current, wire length, etc.) stay as numeric values so you can change them in Excel and the sheet recalculates.
+- Status text: “Copied with formulas — paste into Excel with Ctrl+V.”
+
+### All AWG sizes only
+- The duplicate **All columns** checkbox is removed; only **All AWG sizes** remains to toggle AWG column selection.
+
+**How to use:** Run **Copy table** for a formatted paste into Word or Excel values. Use **Copy table with formulas** when you want a live Excel model — paste with Ctrl+V into Excel and edit the input cells (V, U, I, T1, wire lengths, etc.) to see updated results.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+On the voltage drop row change the colour of the number text depending on the allowable voltage drop that has been selected. So make all numbers that are below the allowable voltage drop green text and all others that are above the allowable voltage drop to red.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+I'll find where the voltage drop row is rendered and wire in green/red text based on the selected allowable voltage drop.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Adding pass/fail classes on the voltage drop row when rendering the grid, using the existing green/red palette from the export status styles.
+
+[REDACTED]
+
+[REDACTED]
+
+The **Voltage drop (volts)** row now colors each AWG value against the selected allowable voltage drop:
+
+- **Green** — voltage drop is at or below the allowable limit  
+- **Red** — voltage drop is above the allowable limit  
+
+Colors update automatically when you change the allowable voltage drop or any other parameter that affects the calculation. Refresh the page if you already had it open to pick up the change.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+I don't believe the colours are working.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Investigating why the voltage-drop pass/fail colors aren't showing — likely CSS specificity or how the classes are applied.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+The pass/fail classes lose to `.pwa-grid td { color: ... }` on specificity. Raising their selector specificity so the colors apply.
+
+[REDACTED]
+
+The logic was fine — the CSS wasn’t winning. A general rule on all grid cells (`.pwa-grid td { color: ... }`) had higher specificity than `.pwa-grid__val--pass` / `--fail`, so the green and red never showed.
+
+That’s fixed by targeting `td.pwa-grid__val--pass` and `td.pwa-grid__val--fail` instead, including on row hover.
+
+After a refresh, with allowable voltage drop **7 V** you should see:
+- **AWG 10** (11.818 V) → red  
+- **AWG 8 and larger** (6.224 V and below) → green  
+
+If it still looks wrong after a hard refresh (Ctrl+F5), say so and we can dig further.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+It is working although the colours are not very vibrant. Not very obvious.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Making pass/fail colors more vivid and adding light background tints so they stand out against the vdrop row styling.
+
+[REDACTED]
+
+[REDACTED]
+
+The general row hover rule may override pass/fail colors — checking rule order and fixing it.
+
+[REDACTED]
+
+Updated the styling so pass/fail stands out more clearly:
+
+- **Within limit (green):** bold emerald text on a light green cell background  
+- **Over limit (red):** bold red text on a light red cell background  
+
+Hover brightens the cell tint slightly without washing out the color. Refresh the page to see the change — the voltage drop row should read at a glance now.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+Bundle de-rating should also reflect the bundle de-rating chart from ac43. Add an option for bundle loading in percent and then modify the bundle de-rating factor in line with the chart.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+I'll trace how bundle de-rating is implemented today and align it with the AC 43.13 Figure 11-5 chart using a new bundle loading percent input.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Implementing AC 43.13 Fig 11-5 bundle de-rating: wire count, loading percent, and a computed factor.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Bundle de-rating now follows **AC 43.13-1B Figure 11-5** instead of a fixed manual value.
+
+### New inputs (De-rating section)
+- **Number of wires in bundle** — 1 to 41 (default **3**, matching your Excel setup)
+- **Bundle loading** — 20%, 40%, 60%, 80%, or 100% (default **100%**)
+
+### Computed output
+- **Bundle de-rating factor** — shown below the inputs and used in the grid (De-rating Bundle / y row), same pattern as altitude de-rating
+
+### Defaults
+With **3 wires @ 100% load**, the factor is **0.75**, matching your previous Excel value.
+
+The lookup uses the Fig 11-5 curves for wire counts 1–41, calibrated to AC 43.13 worked examples (e.g. 8 wires @ 60% → 0.60, 12 wires @ 100% → 0.43, 35 wires @ 20% → 0.52).
+
+Refresh the page and change wire count or loading percent — the factor and grid update immediately.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+Briefly inform the user about the task result and perform any follow-up actions (if needed). If there's no follow-ups needed, don't explicitly say that.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+[REDACTED]
+
+The Excel search didn’t turn up a Fig 11-5 lookup table in `ELA_PWA.xlsx` — only a **“Bundle Derating”** label on the PWA Global Parameters sheet, plus unrelated drawing refs like `211-50-30`. The workbook uses a fixed **0.75** for “3 wires @ 100% load,” not a chart-driven calculation.
+
+The calculator already implements bundle de-rating from **AC 43.13 Fig 11-5** (wire count + loading %), which matches that default and updates when those inputs change.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+I have uploaded a screen shot of the bundle de-rating chart. Could you please review this and adjust the Bundle de-rating factor you use as I don't think you are accurate enough. For instance 26 wires @ 100% loading is on the 0.3 line not 0.366. Please review and upgrade the accuracy.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Reviewing the chart screenshot and updating bundle de-rating data for better accuracy.
+
+[REDACTED]
+
+Rebuilding the curve data from your chart screenshot, using your anchor points including 26 wires @ 100% = 0.30.
+
+[REDACTED]
+
+[REDACTED]
+
+The bundle de-rating lookup has been rebuilt from your Fig 11-5 screenshot, with denser knot points and linear interpolation between them.
+
+**Key corrections (100% loading):**
+
+| Wires | Old factor | New factor |
+|-------|------------|------------|
+| 3     | 0.75       | 0.75       |
+| 12    | 0.43       | 0.43       |
+| 26    | **0.366**  | **0.30**   |
+| 40    | 0.32       | 0.24       |
+
+All five loading curves (20%, 40%, 60%, 80%, 100%) were re-digitized from the chart, not just the 100% curve. The previous data was too shallow at higher wire counts, which is why 26 wires @ 100% read 0.366 instead of 0.30.
+
+Refresh the page and try **26 wires @ 100%** — the bundle de-rating factor should show **0.3**. Other combinations should track the chart more closely as well.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+4 wires @ 20% is also not accurate as it should be 0.9 not 0.925
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Fixing the 20% curve — 4 wires should read 0.9 — and rechecking early wire-count anchors against the chart.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Updated the 20% loading curve with an explicit chart anchor at **4 wires = 0.9**. The old value (0.925) came from interpolating between knot points that were too high at 2 and 3 wires.
+
+Verified anchors still hold:
+- **4 wires @ 20%** → **0.9**
+- **3 wires @ 100%** → **0.75**
+- **26 wires @ 100%** → **0.30**
+
+Refresh and try **4 wires @ 20% loading** — the bundle de-rating factor should read **0.9**.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+Is it possible to create a formulae that will very accurately draw the correct lines depending on loading. If so can we create that so that we can get our answers directly from that.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Exploring curve-fit models against the chart so we can replace the lookup tables with accurate formulas.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Replacing lookup tables with a fitted formula that matches the chart anchors.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Yes. AC 43.13 doesn’t publish an official equation for Fig 11-5 — the chart is graphical — but the five loading curves fit a single parametric form very well. The calculator now uses that instead of lookup tables.
+
+### Formula
+
+For **w** wires (w ≥ 2) and a selected loading curve (20%, 40%, 60%, 80%, or 100%):
+
+**factor = ((w + c) / (1 + c))^(−k)**
+
+- **w = 1** always gives **1.0** (no bundle derating)
+- **c** and **k** depend on the loading percentage
+
+### Calibrated constants (from your chart)
+
+| Loading | c | k |
+|--------|---|---|
+| 20% | 9.23 | 0.4165 |
+| 40% | 6.26 | 0.4907 |
+| 60% | 3.838 | 0.4733 |
+| 80% | 3.204 | 0.5037 |
+| 100% | 1.679 | 0.5143 |
+
+### Accuracy (vs chart anchors you checked)
+
+| Case | Chart | Formula |
+|------|-------|---------|
+| 4 wires @ 20% | 0.90 | 0.898 |
+| 3 wires @ 100% | 0.75 | 0.751 |
+| 12 wires @ 100% | 0.43 | 0.432 |
+| 26 wires @ 100% | 0.30 | 0.301 |
+
+Typical error across all wire counts and loadings is about **±0.03** — better than a simple power law `w^(−k)` and much closer to the chart than the old interpolated tables.
+
+Refresh the page and the bundle de-rating factor is computed directly from this formula for any wire count (values below 0.1 are capped at 0.1, matching the chart floor).
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+Briefly inform the user about the task result and perform any follow-up actions (if needed). If there's no follow-ups needed, don't explicitly say that.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+The curve-fitting work confirmed that a simple `w^(-k)` power law wasn’t accurate enough for Fig 11-5 — it read too low at small wire counts (e.g. 4 wires @ 20% ≈ 0.81 vs 0.90 on the chart).
+
+The better fit is the **shifted power formula** now in the calculator:
+
+**factor = ((w + c) / (1 + c))^(-k)**
+
+with **c** and **k** calibrated per loading curve (20%–100%). That matches your checked points closely (4 @ 20% → 0.898, 26 @ 100% → 0.301, etc.) and replaces the old lookup tables in `pwa-grid-calculator.js`. Refresh the page to use it.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+Take this formula and also create a page that shows the graph drawn using this formula and have a link in the same section that opens the graph in a new page.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Creating a bundle de-rating chart page from the formula and adding a link in the De-rating section. Exploring the project structure and current implementation.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Extracting the shared formula module and adding the chart page plus link.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Added a dedicated chart page and wired it into the De-rating section.
+
+### New page
+**`calculators/aerospace-electrical-design/bundle-derating-chart.html`**
+- Plots all five AC 43.13 Fig 11-5 curves (20%–100% loading) using the same formula as the calculator
+- Shows the formula: **((w + c) / (1 + c))^(−k)**
+- Includes wire count / loading controls with a highlighted point on the chart
+
+### Link (De-rating section)
+In the Power Wire Analysis sidebar, under the bundle de-rating factor:
+
+**View bundle derating chart (Fig 11-5)** — opens the chart in a new tab
+
+### Shared formula module
+**`assets/js/pwa-bundle-derating.js`** — single source for the formula, used by both the calculator and the chart page.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+With regards to the formula here. Could you explain it better so that there is now confusion.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Reviewing the formula text on the chart page and clarifying it.
+
+[REDACTED]
+
+Rewriting the formula section with clearer definitions, a constants table, and a worked example.
+
+[REDACTED]
+
+The chart page formula section is rewritten to spell out what each part means and how to use it. Here is the same explanation in plain language:
+
+### What you are calculating
+The **current derating factor** is a multiplier (0.1 to 1.0) from AC 43.13 Fig 11-5. You multiply it by a wire’s **free-air** current rating to get the **in-harness** rating for that bundle. **1.0** = no bundle penalty; lower = more derating.
+
+### The formula
+**Factor = ((w + c) / (1 + c))^(−k)**
+
+### What you enter
+- **w** — total number of wires in the bundle (use the chart for 1–41 wires).
+  - **One wire only:** use **1.0** directly; do not use the formula.
+  - **Two or more wires:** put the count in **w**.
+
+- **Bundle loading** — which of the five Fig 11-5 curves applies. This is AC 43.13’s estimate of how heavily the bundle is loaded: what share of wires are carrying power at or near capacity (20%, 40%, 60%, 80%, or 100%).
+  - Few wires heavily loaded → lower loading (e.g. **20%**).
+  - Most wires near full current → **100%**.
+
+### What you do *not* enter
+**c** and **k** are fixed constants for each loading curve (they shape the line on the chart). Look them up from the table on the page — they are not values you measure on the aircraft.
+
+| Loading | c | k |
+|--------|---|---|
+| 20% | 9.23 | 0.4165 |
+| 40% | 6.26 | 0.4907 |
+| 60% | 3.838 | 0.4733 |
+| 80% | 3.204 | 0.5037 |
+| 100% | 1.679 | 0.5143 |
+
+### Example
+**3 wires @ 100% loading:** c = 1.679, k = 0.5143  
+((3 + 1.679) / (1 + 1.679))^(−0.5143) ≈ **0.751**
+
+Refresh the chart page to see the full structured version with the constants table and worked example.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+Now make the How the factor is calculated expandable with default collapsed.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+The **How the factor is calculated** block is now a collapsible `<details>` section. It starts **collapsed**; click the heading (or the ▸ arrow) to expand or collapse it. The chart and controls below are unchanged. Refresh the page to see it.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+Voltage drop has red and gree formatting on the row depending on the allowable volt drop selected. I would like similar formatting for the T2 temperature row against the conductor temperature rating
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+The **Estimated conductor temperature (T2)** row now uses the same green/red formatting as voltage drop:
+
+- **Green** — T2 is at or below the conductor temperature rating **T<sub>R</sub>** (260 °C in your example)
+- **Red** — T2 exceeds **T<sub>R</sub>**
+
+With TR = 260 °C and your current values, AWG 8 and larger should show green; AWG 14, 12, and 10 should show red (371 °C, 335 °C, 292 °C). Colors update when you change **T<sub>R</sub>** or any input that affects T2. Refresh the page to see the change.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+Briefly inform the user about the task result and perform any follow-up actions (if needed). If there's no follow-ups needed, don't explicitly say that.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+[REDACTED]
+
+The curve-fitting run compared bundle derating models against the digitized Fig 11-5 data. A simple **w^(−k)** power law was too inaccurate at low wire counts; the **shifted power** form **((w + c) / (1 + c))^(−k)** fit much better (typical error about ±0.03 per curve).
+
+That formula is already in **`pwa-bundle-derating.js`**, used by the calculator and the chart page. The constants there use a later weighted fit tuned to your chart checkpoints (e.g. 4 wires @ 20% → 0.898, 26 @ 100% → 0.301), which is slightly closer than this run’s unweighted fit (4 @ 20% was 0.882 in this task). No further action needed from this background job.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+Briefly inform the user about the task result and perform any follow-up actions (if needed). If there's no follow-ups needed, don't explicitly say that.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+[REDACTED]
+
+The grid-search run finished most of its work but exited with an error on the last line: a tuple-unpacking bug when printing anchor checks for the variable-exponent model (`best3[1]` has 4 values, not 5). That only broke the summary printout — the search results themselves were already computed.
+
+**Findings (all curves combined):**
+
+| Model | RMSE | Max error |
+|-------|------|-----------|
+| Rational `(1 + ((w−1)/s)^p)^−1` | ~0.116 | ~0.27 |
+| Stretched exponential | ~0.017 | ~0.04 |
+| Variable-exponent power | ~0.021 | ~0.05 |
+| **Shifted power (in use)** | ~0.02 | ~0.03 |
+
+The rational form fit poorly. Stretched exponential was slightly better on overall RMSE, but the **shifted power formula** already in `pwa-bundle-derating.js` is simpler, matches your chart checkpoints well, and is competitive with these alternatives — so there’s no reason to change the implementation based on this run.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+@excel/ELA_PWA (new).xlsx @excel/ELA_PWA.xlsx ELA_PWA uses AC43 to calculate T2 and ELA_PWA (new) uses ARP4404 to calculate T2. As can be seen in the two excel files uploaded. Please make the change to the webpage for T2 calculation so that it aligns with ARP4404.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+I'll compare the two Excel files for the T2 formula difference and locate where the webpage calculates T2.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Checking the new Excel file for T2 values matching the screenshot and confirming the ARP4404 formula.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+ARP4404 uses `(I/Imax)²`, not `√(I/Imax)`. I'll update the calculator and verify against the new Excel file.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Updating the T2 calculation to ARP4404: `T2 = T1 + (TR − T1) × (I/Imax)²`, matching the new Excel file.
+
+[REDACTED]
+
+[REDACTED]
+
+Updated the Power Wire Analysis calculator to use the **ARP4404** T₂ formula from `ELA_PWA (new).xlsx`.
+
+**Change:** AC 43 used √(I/I<sub>max</sub>); ARP4404 §9.3.4.2 uses **(I/I<sub>max</sub>)²**:
+
+\[
+T_2 = T_1 + (T_R - T_1) \times \left(\frac{I}{I_{max}}\right)^2
+\]
+
+**Updates in `pwa-grid-calculator.js`:**
+- Grid row renamed from **SQRT I/IMAX** → **I/IMAX squared**
+- T₂ calculation and Excel formula export updated to match the new workbook (`=(I/IMAX)*(I/IMAX)`)
+
+**Also updated** the related compute function in `calculator-registry.js` for consistency.
+
+With your screenshot inputs (72 A, T₁=50 °C, T<sub>R</sub>=260 °C), T₂ will be **higher** when I ≫ I<sub>max</sub> (e.g. AWG 22: ~5973 °C vs ~534 °C under the old AC 43 formula). For loads below I<sub>max</sub>, T₂ will be **lower** than AC 43 — matching the new ELA workbook behavior.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+Can I have a button somewhere so that I can select which standard to use. either the AC43 version or the ARP4404 version.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Adding a standard selector to the PWA calculator. Reviewing the current UI and calculation flow.
+
+[REDACTED]
+
+[REDACTED]
+
+Adding a T₂ standard selector in the sidebar and wiring it through the calculation, grid labels, and formula export.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Added a **T₂ calculation standard** selector in the **Global parameters → Electrical** section.
+
+**Selector options:**
+- **SAE ARP4404C §9.3.4.2** (default) — uses (I/I<sub>max</sub>)²  
+- **AC 43.13-1B** — uses √(I/I<sub>max</sub>)
+
+Switching the standard updates:
+- The **T₂** row and all dependent values (L₂, voltage drop)
+- The intermediate grid row label (**I/IMAX squared** vs **SQRT I/IMAX**)
+- The formula note under the selector
+- **Copy table with formulas** export (SQRT vs squared formulas)
+
+Default remains ARP4404 to match `ELA_PWA (new).xlsx`. Choose AC 43 to reproduce the original ELA behavior.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+Can you confirm whether my calculations are correct as per arp4404 and ac43
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+I'll verify the calculator against both Excel workbooks and the standard formulas.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Yes — for both standards, the maths in your ELA workbooks and on the webpage are consistent. Here is the breakdown.
+
+## T₂ formulas (the only difference between standards)
+
+| Standard | Formula | Your ELA source |
+|----------|---------|-----------------|
+| **AC 43.13-1B** (legacy ELA) | \(T_2 = T_1 + (T_R - T_1) \times \sqrt{I/I_{max}}\) | `ELA_PWA.xlsx` — row **SQRT I/IMAX** |
+| **SAE ARP4404C §9.3.4.2** | \(T_2 = T_1 + (T_R - T_1) \times (I/I_{max})^2\) | `ELA_PWA (new).xlsx` — row **I/IMAX squared** |
+
+Both Excel files use the same structure:
+
+```text
+T2 = T1 + ((TR - T1) × factor)
+```
+
+where `factor` is either `SQRT(I/Imax)` or `(I/Imax)²`.
+
+I checked this against the **KP260 Actual kVA** sheet for 72 A, T₁ = 50 °C, T_R = 260 °C — all T₂ values match to several decimal places in both workbooks.
+
+### Your screenshot (~533.953 °C on AWG 22)
+
+That aligns with the **AC 43** formula, not ARP4404:
+
+- AC 43: **~533.95 °C** (matches your screenshot)
+- ARP4404: **~5,949 °C** for the same inputs in `ELA_PWA (new).xlsx`
+
+So the screenshot reflects the old AC 43 method. With the webpage set to **ARP4404**, T₂ will be much higher when I ≫ I_max.
+
+---
+
+## Rest of the calculation chain (same for both standards)
+
+These match both Excel files and ARP4404 §9.3.4.2:
+
+| Step | Formula |
+|------|---------|
+| **I_max** | free-air current × bundle factor × altitude factor |
+| **L₁** | \(U / (I \times R_{ft})\) |
+| **L₂** | \(254.5 \times L_1 / (234.5 + T_2)\) |
+| **Vdrop** | \(I \times R_{ft} \times L \times (234.5 + T_2) / 254.5\) |
+
+Example (AWG 20, same global inputs): L₁, L₂, and Vdrop match Excel for both AC 43 and ARP4404; only T₂ (and therefore L₂/Vdrop) changes with the standard.
+
+---
+
+## Web calculator vs Excel
+
+The webpage implements both standards correctly via the **T₂ calculation standard** selector. Inputs align with your ELA:
+
+- Free-air currents (21 A for AWG 22, 28 A for AWG 20, etc.)
+- Copper constants 234.5 / 254.5
+- I_max = x × y × z
+
+**Small differences you might still see vs Excel:**
+
+1. **Altitude factor** — Excel uses **0.8625** at 35,000 ft; the webpage curve uses **0.86** at that point (tiny effect on I_max and T₂).
+2. **Bundle factor** — Excel can use a fixed **0.75**; the webpage computes it from wire count and loading (should match for 3 wires @ 100%).
+3. **AWG range** — Excel includes AWG 24; the grid starts at AWG 22.
+
+---
+
+## Practical interpretation (your 72 A case)
+
+For every AWG in your screenshot, **I > I_max**, so:
+
+- **AC 43** gives T₂ above T_R (red highlighting is correct).
+- **ARP4404** gives even higher T₂ because \((I/I_{max})^2\) grows faster than \(\sqrt{I/I_{max}}\) when overloaded.
+
+That is expected from the formulas — not a bug. ARP4404 is the standard your updated ELA adopted; AC 43 matches the legacy spreadsheet behaviour.
+
+**Bottom line:** Your calculations are correct for each standard. Use **AC 43** to match `ELA_PWA.xlsx`; use **ARP4404** to match `ELA_PWA (new).xlsx` and SAE ARP4404C §9.3.4.2.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+I have attached the altitude de-rating curve from ac43 as a reference. Since we have a View Bundle derating chart link can you do the same thing with the altitude derating so that it is calculated from a formula and it draws the graph. Use same formatting as the bundle derating page.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+I'll mirror the bundle derating chart: review that page's structure, then add a shared altitude formula module and chart page.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Using a power-law fit to Fig 11-6: `0.7 + 0.3 × (1 − h/100)^1.5`. Creating the shared module, chart page, and calculator integration.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Added an altitude derating chart page matching the bundle chart layout and switched the calculator from a lookup table to a shared formula module.
+
+### New files
+- **`altitude-derating-chart.html`** — interactive Fig 11-6 chart with collapsible formula docs
+- **`pwa-altitude-derating.js`** — shared formula used by calculator and chart
+- **`pwa-altitude-chart.js`** — SVG plot (same styling as bundle chart)
+
+### Formula (curve-fit to Fig 11-6)
+
+\[
+\text{factor} = 0.7 + 0.3 \times \left(1 - \frac{h}{100}\right)^{1.5}
+\]
+
+where **h** = altitude in thousands of feet (0–100). Clamped to **[0.7, 1.0]**; at ≥100,000 ft the factor stays at **0.7**.
+
+Accuracy vs chart anchor points: about **±0.006** (endpoints exact at 0 and 100 kft).
+
+### Calculator updates
+- Replaced the old stepwise interpolation table with the formula module
+- Added **View altitude derating chart (Fig 11-6)** link under the altitude de-rating factor (opens in a new tab, like bundle)
+
+### Example
+35,000 ft → factor ≈ **0.857** (was **0.86** with the old table; your Excel uses **0.8625** at that altitude)
+
+The new formula tracks the Fig 11-6 curve shape more closely overall; small differences at individual altitudes are expected when fitting a single equation to a graphical chart.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+Briefly inform the user about the task result and perform any follow-up actions (if needed). If there's no follow-ups needed, don't explicitly say that.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+[REDACTED]
+
+The altitude formula grid search finished successfully. It compared quadratic, cubic, and power-law fits against Fig 11-6 anchor points (including 35,000 ft at 0.8625).
+
+**Best simple fit:** power law with exponent **1.5** — RMSE ~0.004, max error ~0.006, exact at 0 and 100 kft:
+
+`factor = 0.7 + 0.3 × (1 − h/100)^1.5`
+
+A cubic polynomial fit slightly tighter overall (~0.002 RMSE) but is harder to document and misses the 100 kft endpoint. That’s why the power law is what’s in `pwa-altitude-derating.js`, the calculator, and the new altitude chart page.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+I have uploaded the Single copper wire in free air charts. Is it possible to do the same as the bundle derating and altitude derating with these two Single copper wire in free air charts and explain in detail on the page.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Reviewing how free-air ampacity is used and what the charts define, then building chart pages and a shared formula module like bundle and altitude derating.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Building a shared free-air module with a log-log formula fit to the charts, dual chart page, and calculator integration.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Yes — this follows the same pattern as bundle and altitude derating. Here is what was added:
+
+### New page: [free-air-chart.html](calculators/aerospace-electrical-design/free-air-chart.html)
+- **Fig 11-4a** (AWG 26–10, 4–100 A) and **Fig 11-4b** (AWG 8–4/0, 40–1,000 A) on log-log axes
+- Collapsible **“How free-air ampacity is calculated”** section covering:
+  - How to read the FAA charts
+  - The formula and symbols
+  - Full **I_ref** table at ΔT = 210 °C
+  - Worked examples
+  - Link to **I_max = I_free air × f_bundle × f_altitude**
+  - Accuracy limitations
+- Interactive highlight: pick **AWG**, **T₁**, **T_R** → marks the operating point on the correct chart
+
+### Formula (shared module `pwa-free-air.js`)
+
+**Max free-air current:**  
+`I = I_ref × (ΔT / 210)^(1/2.0)`
+
+**Chart curves:**  
+`ΔT = 210 × (I / I_ref)^2.0`
+
+- **I_ref** = tabulated ampacity per AWG at ΔT = 210 °C (ELA defaults: T_R = 260 °C, T₁ = 50 °C)
+- **2.0** = log-log slope from AC 43.13 parallel lines
+
+### Calculator update
+- Free-air current (**x** in the grid) is now computed from **T₁** and **T_R** via the formula (static values unchanged at the ELA default temperatures)
+- Link added in the De-rating sidebar: **View free-air ampacity charts (Fig 11-4a & 11-4b)**
+
+At T₁ = 50 °C and T_R = 260 °C, results match your ELA table (e.g. AWG 22 → 21 A). Changing ambient or rating updates free-air current automatically, as on the AC 43 charts.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+Both graphs have a problem at the top
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Fixing top clipping: lines are clamped to ΔT=300 and run flat along the top; labels overlap there. Updating path building and label placement.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Fixed both issues at the top of the charts:
+
+1. **Flat lines along the top** — Curves were clamped to ΔT = 300 and kept drawing, which made them run horizontally along the ceiling. Lines now **stop at the point where they reach 300 °C** (or at the right edge if they stay below that).
+
+2. **Overlapping AWG labels** — Labels were all placed near the top-right at max current, where many curves pile up. Each label is now placed at the **natural end of its curve** (where it meets the top or right boundary), with a small vertical stagger when several wires hit the ceiling at the same level.
+
+A **clip region** was also added so nothing draws outside the plot area. Refresh the free-air chart page to see the update.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+I noticed that the lines do not touch the 30 degree line. I think that they should. Also there are no visible labels for the wire AWG.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Fixing both issues: extending curves to ΔT=30 and moving AWG labels outside the clip path so they remain visible.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Fixed both issues:
+
+**Lines now meet the 30 °C axis** — Each curve starts at the point where it crosses ΔT = 30 °C (computed from the formula), instead of skipping the first segment below that threshold.
+
+**AWG labels are visible again** — Labels were inside the clipped plot group and getting cut off. They’re now drawn in a separate layer above the curves, placed on each line at **100 °C** with a white halo and colour matching the wire line (like the FAA chart style).
+
+Refresh the free-air chart page to see the update.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+What would be standard Conductor temperature ratings that could be in a dropdown box. I'm thinking about 135 deg, 150, 200, 260. Are there any other aerospace wires that have different temp ratings. Plus I'm thinking that if custom is selected then another box expands so that the user can fill it in
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Checking how conductor temperature rating is used in the project and what the standards reference.
+
+[REDACTED]
+
+Your list matches the most common aerospace wire **insulation / conductor temperature ratings** used with AC 43.13 Fig 11-4 and AS50881-style ampacity work. Here is a practical breakdown.
+
+## Ratings worth including in a dropdown
+
+| Rating (°C) | Typical wire families | Notes |
+|---------------|----------------------|--------|
+| **105** | MIL-W-5086 (PVC/nylon), some legacy | Still seen; less common on modern transport |
+| **135** | PTFE (Teflon), many **AS22759 / MIL-W-22759** types | Very common general-purpose aerospace wire |
+| **150** | ETFE (Tefzel), many **22759** variants, lots of **AS50881** data | Probably the most common “default” on many aircraft |
+| **200** | Polyimide (Kapton), cross-linked ETFE, higher-temp 22759 | Common for hotter zones and engine-adjacent routing |
+| **260** | Nickel-coated copper + high-temp insulation (e.g. your **KP260** / ELA default) | Matches your current ELA_PWA setup |
+| **250** | Some high-temp catalogues | Less common as a round number; sometimes grouped with 260 |
+| **300** | Specialty (MI, some fire/survivability wire) | Niche; usually project-specific |
+| **400** | Inconel / extreme environment | Rare; almost always custom engineering |
+
+For a **first-pass dropdown**, a solid set is:
+
+**105 · 135 · 150 · 200 · 260 · Custom**
+
+If you want to keep it shorter (as you suggested):
+
+**135 · 150 · 200 · 260 · Custom**
+
+That covers the vast majority of copper aircraft wire used with Fig 11-4. **150** and **200** are the ones I would not omit if you only have four presets.
+
+## Other ratings you might see (usually “Custom”)
+
+- **115°C**, **125°C**, **180°C**, **230°C** — occasional in specs or OEM data  
+- **450°C+** — sensor/fire wire, not typical power wiring  
+
+AC 43.13 Fig 11-4 is for **copper in free air**; the chart’s vertical axis is **T_R − T₁**. So any valid insulation rating can be used — the formula doesn’t care about wire part number, only **ΔT = T_R − T₁**.
+
+## Custom + expandable field — good pattern
+
+A common UX:
+
+1. **Dropdown:** `135 | 150 | 200 | 260 | Custom`
+2. When **Custom** is selected, show a number input (e.g. 50–400 °C, step 1).
+3. Default **260 °C** to stay aligned with your ELA workbook (KP260, T_R = 260, T₁ = 50).
+4. Optionally show a short hint under the control, e.g. “Insulation temperature class per wire spec (AS50881 / wire datasheet).”
+
+Implementation-wise, the calculator should always use one numeric **T_R** internally — either from the preset or from the custom field — so free-air current, T₂, and pass/fail colouring all update when T_R changes.
+
+If you want this wired into the Power Wire Analysis sidebar, say the word and I can add the dropdown + conditional custom input (default 260, same behaviour as the ELA at that setting).
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+Yes do it
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Implementing the conductor temperature rating dropdown with preset values and a custom option.
+
+[REDACTED]
+
+[REDACTED]
+
+The conductor temperature rating dropdown is in place on the Power Wire Analysis page.
+
+**UI (`power-wire-analysis.html`)**
+- Preset options: **135, 150, 200, 260 °C** (default **260 °C**)
+- **Custom…** reveals a numeric input for other insulation ratings
+- Short note referencing AS50881 / wire datasheet
+
+**Logic (`pwa-grid-calculator.js`)**
+- `readConductorTempRating()` reads the preset or custom value
+- Custom field is shown/hidden when the preset changes
+- `I_max`, `T₂`, and formula export all use the selected `T_R`
+
+Changing the preset or custom value recalculates the grid immediately (including free-air ampacity, which depends on `T_R`).
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+Only expand to the custom box when custom is selected. Until then keep it hidden.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Checking why the custom field stays visible — likely CSS overriding the `hidden` attribute.
+
+[REDACTED]
+
+[REDACTED]
+
+`.pwa-params__form label { display: block }` overrides the browser's `[hidden]` styling. Adding an explicit rule to hide the custom field when it has `hidden`.
+
+[REDACTED]
+
+The custom field was still showing because `.pwa-params__form label { display: block }` overrides the browser’s default `[hidden]` styling.
+
+Added an explicit rule so the custom row stays hidden until **Custom…** is selected:
+
+```css
+.pwa-params__custom-tr[hidden] {
+  display: none;
+}
+```
+
+After a refresh, only the preset dropdown should show by default; the custom input appears when you pick **Custom…**.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+Do something similar with the voltage. Have a drop down list with 5, 26, 28, 115, 200, custom
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Implementing a voltage preset dropdown matching the conductor temperature rating pattern. Checking how voltage is used in the form and calculator.
+
+[REDACTED]
+
+[REDACTED]
+
+Implementing the voltage preset dropdown and generalizing the shared custom-field CSS class.
+
+[REDACTED]
+
+[REDACTED]
+
+Voltage now uses the same preset/custom pattern as conductor temperature rating.
+
+**Voltage dropdown:** 5, 26, 28, 115, 200 V, plus **Custom…**  
+**Default:** 200 V (replacing the old free-text default of 209.95)  
+**Custom field:** Hidden until **Custom…** is selected; then a numeric input appears for any voltage (e.g. 209.95)
+
+The shared `.pwa-params__custom-field` CSS class handles hiding for both voltage and T_R custom inputs. The grid recalculates on preset or custom value change.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+Move continuous operation/ intermittent operation to be above the allowable voltage drop or combine it some how. Which ever you feel is the better user experience.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Reviewing the form layout and how operation type ties into allowable voltage drop.
+
+[REDACTED]
+
+Combining operation type and allowable voltage drop into one grouped control in the Electrical section, since operation type drives the drop limits.
+
+[REDACTED]
+
+Combined them into a single **Allowable voltage drop** group in the Electrical section, placed right after circuit current.
+
+**Layout**
+1. **Operation basis** — Continuous / Intermittent (drives which AC 43.13 limits apply)
+2. **Limit U (V)** — the allowable drop dropdown (updates when operation changes)
+
+The separate **Operation** fieldset at the bottom is removed. The two controls sit in a bordered group so the relationship is clear: pick operation first, then the limit. Existing JS behavior is unchanged — switching operation still refreshes the drop options automatically.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+The resistance of wire is set by the various manufacturer data sheets. @e:\__UKAD FULL BACKUP\UKAD Document Library\Components & Equipment\Wire and Wiring practices\KP260 (K.Lacey).pdf I have uploaded the spec for KP260. I need a function that will allow the user to select the wire and then the resistances are populated and used in the calculations. I also need to be able to view the specification for the wire on another page too.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Exploring the calculator structure and locating KP260 resistance data from the uploaded spec.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Implementing the wire catalog module, calculator integration, spec page, and document library entry.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Wire type selection is wired up end-to-end, starting with **KP260 (K.Lacey)** from your datasheet.
+
+### Wire type selector (calculator)
+- New **Wire type** dropdown at the top of the Electrical parameters
+- **KP260** is the default; resistance values come from the manufacturer table (Ω/km @ 20 °C → Ω/1000 ft for the grid)
+- Grid title updates to **“KP260 (K.Lacey) — wire analysis grid”**
+- **T_R** auto-sets to **260 °C** when KP260 is selected
+- Link below the dropdown opens the spec page
+
+### Shared catalogue (`assets/js/pwa-wire-catalog.js`)
+- Central module for wire types and resistance data
+- KP260 includes **AWG 24–0000** (grid now includes AWG 24, which was missing before)
+- Easy to add more wire types later — add another entry to `WIRE_TYPES`
+
+### Specification page
+- **`calculators/aerospace-electrical-design/wire-specification.html?wire=kp260`**
+- Shows construction, ratings, full resistance table (Ω/km and Ω/1000 ft), and a link to the PDF
+
+### Document library
+- PDF stored at `reference/documents/files/klacey-kp260-wire-specification.pdf`
+- Listed under **Wire & Cable — Manufacturer Data** in the Document Library
+
+Resistance values match your existing grid (they were already KP260 data); they’re now sourced explicitly from the datasheet rather than hard-coded. To add another wire type later, extend `pwa-wire-catalog.js` and it will appear in the dropdown automatically.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+For conductor rating please align these with the conductor ratings from the main Power Wire Analysis page and also have the same option with custom.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Searching for conductor rating inputs across the PWA pages to align them with the main calculator.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Creating a shared conductor-rating control module and applying it to the free-air chart and main calculator so they stay aligned.
+
+[REDACTED]
+
+[REDACTED]
+
+The free-air chart page now uses the same conductor rating control as the main Power Wire Analysis page.
+
+**Free-air chart (`free-air-chart.html`)**
+- Replaced the plain numeric input with a preset dropdown: **135, 150, 200, 260 °C**
+- **Custom…** reveals a numeric field (hidden until selected)
+- Label matches the main page: **Conductor temperature rating T_R**
+
+**Shared module (`pwa-conductor-tr-controls.js`)**
+- Both pages use the same logic for presets, custom visibility, and reading the value
+- Keeps the two pages in sync if presets change later
+
+The highlight point calculation (ΔT and max free-air current) updates when you change the preset or enter a custom value.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+I noticed that the box sizes are all heights. Can we fix this.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Checking chart control styles to align input and select heights.
+
+[REDACTED]
+
+Setting a fixed height and `box-sizing: border-box` so selects and number inputs match.
+
+[REDACTED]
+
+Fixed the inconsistent control heights on the free-air chart (and the other derating chart pages that share the same control row).
+
+Dropdowns and number inputs now use the same fixed height (`2.375rem`), `box-sizing: border-box`, and vertical padding so they line up evenly in the control row. Refresh the page to see the change.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+Can we improve on the user experience for the Power Wire Analysis page as it is looking a bit messy.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Reviewing the Power Wire Analysis page structure and styles to identify UX improvements.
+
+[REDACTED]
+
+[REDACTED]
+
+Implementing a cleaner sidebar layout: consolidating links, inline derived values, lighter sections, collapsible export, and consistent control styling.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+I've cleaned up the Power Wire Analysis page layout and styling. Here’s what changed:
+
+### Sidebar (parameters)
+- **Clearer sections:** Wire & circuit → Temperature & T₂ → De-rating → Wire length (removed the extra “Global parameters” heading and nested boxes)
+- **Lighter fieldsets:** Divider lines instead of boxed-in groups
+- **Inline results:** Altitude factor (`z`) and bundle factor (`y`) sit on the same line as their labels
+- **Bundle controls:** Wire count and loading side-by-side in one row
+- **Chart links:** One compact “Reference charts” list at the bottom of de-rating (replacing three scattered links)
+- **Hints tucked in:** Wire spec link under wire type; T_R note under its dropdown; T₂ formula in a collapsible **T₂ formula** section
+- **Scrollable sidebar:** Sticky panel with max height so long forms don’t push off-screen
+- **Uniform control heights:** All inputs and selects aligned
+
+### Grid area
+- **Export collapsed by default:** “Copy table” is in a fold-out panel so the grid is the focus
+- **Shorter grid header:** Cleaner title and scroll hint
+
+Refresh the page to see the updated layout. If you want to go further, we could add section collapse (e.g. keep Wire length closed until needed) or move export below the grid.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+We have KP260 wire. Can you add Raychem 55A wire and do the same with the specification. All same as KP260. You might have to come up with a better cleaner solution for accessing the specifications although if by selecting a different specification it then changes the link underneath then that would be good also.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Adding Raychem 55A to the wire catalog. Searching for specification data and reviewing the current wire-catalog implementation.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Adding Raychem 55A0811 from the TE datasheet and UKAD report PDF, and improving the wire-type + spec link layout.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Adding a wire-type selector on the specification page for easier navigation between wire datasheets.
+
+[REDACTED]
+
+Added **Raychem 55A0811** alongside KP260, with the same catalog → calculator → specification flow.
+
+### Raychem 55A0811
+- **Resistance:** From TE Raychem SCD 55A0811 (Ω/1000 ft @ 20 °C), converted for the grid — AWG 24–0000
+- **Default T_R:** **150 °C** (wire rating); switches when you select this wire type
+- **Specification page:** `wire-specification.html?wire=raychem-55a0811`
+- **PDF:** Copied from your PWA reports into the Document Library as `raychem-55a0811-wire-specification.pdf`
+
+*(Raychem “55A” is a product family; 55A0811 is the tin-coated copper part from your UKAD reports. If you need **55A0813** nickel / 200 °C instead, that can be added the same way.)*
+
+### Cleaner specification access
+1. **Calculator:** Wire dropdown and a **Specification ↗** button on the same row — same height, no link between fields. The button URL updates when you change wire type (KP260 ↔ Raychem).
+2. **Specification page:** Wire type dropdown at the top to switch datasheets without going back to the calculator.
+
+Selecting a different wire still reloads resistance values, grid title, T_R default, and the spec link automatically.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+Move the reference charts below the wire length section.
+Remove the scroll bar from global parameters section
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Two updates:
+
+1. **Reference charts** — Moved below the **Wire length** section at the bottom of the parameters panel (after total length).
+
+2. **Scrollbar** — Removed `max-height` and `overflow-y: auto` from the parameters sidebar so the full form shows without an internal scroll bar. The sidebar still sticks as you scroll the page.
+
+Refresh the page to see the changes.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+Alignment problem
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+[REDACTED]
+
+Fixing alignment by placing the label on its own row so the dropdown and Specification button sit on the same row.
+
+[REDACTED]
+
+Fixed. The **Wire type** label was wrapping the dropdown, so `align-items: end` lined the Specification button up with the bottom of that whole block instead of the select.
+
+The layout is now:
+- **Row 1:** “Wire type” label (full width)
+- **Row 2:** Dropdown and **Specification ↗** side by side, same height
+
+Refresh the page and they should line up cleanly.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+In copy table I need to call this Export as I need an option to Export all which will include all settings in the user parameters and the entire table. I need it to export to an excel sheet and be formatted correctly. I also need to be able to do this so that someone can export an excel spread sheet and then modify the excel sheet and load it back into the page. This needs to be seemless so that we can save all of our settings for each new project or new circuit. This is so that we can keep everything offline and safe and stored for future reference and so that anyone can load a set of data if they want.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Exploring the current export implementation and project dependencies to design Excel export/import for settings and the full table.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Implementing a self-contained Excel workbook module (no external CDN) and integrating export/import into the calculator.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+The **Copy table** section is now **Export / Import** with full Excel round-trip support.
+
+### Export / Import panel
+- **Project / circuit name** — optional; used in the downloaded filename (e.g. `My-Circuit-PWA-2026-06-05.xlsx`)
+- **Export table** — Analysis sheet only, using selected AWG columns
+- **Export all** — **Parameters** sheet (all form settings) + **Analysis** sheet (all AWG sizes)
+- **Import workbook** — load a previously exported `.xlsx` and restore settings
+
+### Excel workbook layout
+**Parameters sheet**
+- Key / Value / Description columns
+- All settings: wire type, voltage, current, operation, T₁, T_R, de-rating, wire length, etc.
+- Edit values in column **B**, then import to reload
+
+**Analysis sheet**
+- Same grid as the calculator (description, symbol, AWG columns, units)
+- Bold header row, column widths, frozen top row
+
+### Workflow
+1. Configure the circuit → **Export all**
+2. Store the `.xlsx` offline for the project
+3. Edit parameters in Excel if needed
+4. **Import workbook** → form and grid recalculate automatically
+
+### Notes
+- Import reads the **Parameters** sheet only (the grid is recalculated from settings)
+- Clipboard copy is still available under **Copy to clipboard** (collapsed)
+- Uses a built-in `.xlsx` writer (no external CDN dependency)
+
+New file: `assets/js/pwa-workbook.js` — handles Excel read/write in the browser.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+When I try to import I get Failed to fetch.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Investigating the import flow — "Failed to fetch" often comes from decompression or stream handling when reading Excel files.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+When I try to import I get Failed to fetch.
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Fixing import: "Failed to fetch" likely comes from decompression (ZIP uses raw deflate) or from `file.arrayBuffer()` on cloud-backed files. Implementing fixes.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+The import failure came from two issues in the workbook reader. Both are fixed now.
+
+**What was wrong**
+
+1. **ZIP decompression** — Excel re-saves exports with compressed ZIP entries. The code used `DecompressionStream('deflate')`, but ZIP uses **raw deflate**. That often surfaces in Chrome as the generic **"Failed to fetch"** error.
+2. **File reading** — On some setups (notably OneDrive or other cloud-backed folders), `file.arrayBuffer()` can fail the same way. There is now a **FileReader** fallback.
+
+**What changed**
+
+- Try `deflate-raw` first, then fall back to `deflate`
+- Read the file via FileReader if `arrayBuffer()` fails
+- Locate the **Parameters** sheet by name in `workbook.xml` (not a hardcoded `sheet1.xml`)
+- Parse more Excel cell formats (`<v>` values, not only inline strings)
+- Show clearer error messages instead of raw "Failed to fetch"
+
+**Try again**
+
+1. Hard-refresh the page (Ctrl+F5)
+2. Use **Export all** (not Export table — table-only exports have no Parameters sheet)
+3. Click **Import workbook** and select that file
+
+If it still fails, copy the `.xlsx` to a local folder (not OneDrive) and import from there. If you opened the file in Excel and saved it, that should work now with the decompression fix.
+
+Tell me what error message you see if it still does not import.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+I now get this error
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Investigating how import parses the Parameters sheet and what format the workbook uses.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+The issue isn't number formatting — Excel converts text keys in column A to shared strings, which our parser didn't resolve. Adding shared-string support and clearer error messages.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+No — it is not because the numbers are not formatted as numbers.
+
+**Column B values** (current, voltage, length, etc.) import fine whether Excel stores them as numbers (`<v>72</v>`) or text. The import converts them to strings either way.
+
+**What was actually wrong:** when Excel opens and saves an exported workbook, it often converts **text** in column A (keys like `wireType`) and sometimes column B (values like `kp260`) into **shared strings** — the cell stores an index (`<v>6</v>` with `t="s"`) instead of the literal text. The importer was reading `"6"` instead of `"wireType"`, so it never found any parameters.
+
+That is now fixed: the importer reads `sharedStrings.xml` and resolves those indices.
+
+**Important:** Import only works with workbooks created via **Export all** on the Power Wire Analysis page (they have a **Parameters** sheet with Key / Value columns). The legacy `ELA_PWA.xlsx` template uses a completely different layout and cannot be imported.
+
+**Try again:**
+1. Hard-refresh the page (Ctrl+F5)
+2. Click **Export all**
+3. Import that file — it should work even if you open it in Excel and save first
+
+If you were importing `ELA_PWA.xlsx` directly, that file will not work with this import feature.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+[Image attached]
+
+Can we make the Power Wire Analysis page a bit clearer. Also the export / import buttons need resizing
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Reviewing the Power Wire Analysis page layout and export/import button styling.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Improving page structure and export/import layout: clearer sections and equal-width action buttons.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Fixing secondary button hover specificity so global button styles don't override it.
+
+[REDACTED]
+
+The page layout and export/import controls are updated for clarity and consistent sizing.
+
+**Page clarity**
+- Shorter intro text explaining left = parameters, right = grid
+- Quick “how to use” hints at the top (parameters, scrolling, save/restore)
+- **Parameters** header in the sidebar with a one-line explanation
+- Grid title simplified to **Analysis grid**
+- Export panel renamed **Save & restore project**, split into **Export to Excel** and **Import from Excel** with clearer guidance
+
+**Button sizing**
+- Export buttons use a fixed **2-column grid** (equal width, same height)
+- Import is a single button at half that width so it matches one export button
+- All use consistent padding and font size (`0.8125rem`, `2.375rem` height)
+- Status message sits on its own line below the buttons instead of crowding the row
+- Clipboard copy buttons use the same equal-width grid
+
+Refresh the page to see the changes. If you want the import button full width or all three actions on one row, say the word and we can adjust.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+@excel/ELA_PWA (new).xlsx Regarding this upload. What other calculators would you recommend we build
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Reviewing the workbook structure and calculations to recommend complementary calculators.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+`ELA_PWA (new).xlsx` is much more than wire sizing — it is an integrated **ELA → bus loading → conversion equipment → wire sizing → endurance** workbook. You have already built the hardest and most distinctive part (the PWA grid + derating charts). The tabs below suggest where to go next.
+
+## What the workbook already covers
+
+| Workbook area | Tabs | Web status |
+|---|---|---|
+| Wire sizing / T₂ / voltage drop | PWA Global Parameters, KP260 (40/50/90 kVA), ANA scenarios | **Built** (Power Wire Analysis) |
+| Derating references | Embedded in PWA params | **Built** (Fig 11-4/11-5/11-6 charts) |
+| Basic P, Q, S, I | Calculations | Partially covered by general power calculators |
+| Bus loading by flight condition | BUS TOTALS, DATA ENTRY, FLT COND EQUIP LIST | **Gap** — existing Aircraft Bus Load is a single load → current tool |
+| TRU sizing | MAX TRU CALC, TRU CALCS (ALL) | **Gap** — TRU Efficiency is only η = Pout/Pin |
+| Transformers | TRANSFORMER CALCS (ALL) | **Gap** |
+| Cooling rig loads | COOLING CALCS (ALL) | **Gap** |
+| Battery endurance | BATT ENDURANCE | **Gap** (includes ARP4404 vs AC 43.13 comparison) |
+| Circuit protection | CIRCUIT BREAKERS | **Gap** |
+| Generator limits / assumptions | IDG INFO | Reference data, not yet a calculator |
+| Wire test scenarios | WIRE CIRCUIT TESTING | Overlaps PWA with different flight-condition presets |
+
+---
+
+## Recommended calculators (prioritised)
+
+### Tier 1 — Highest value, closest to what you already built
+
+**1. TRU sizing calculator** (from `MAX TRU CALC` + `TRU CALCS (ALL)`)
+
+- Inputs: 3φ line voltage (200 V), TRU efficiency (~0.875), target DC output (28 V), load current or kVA.
+- Outputs: rated input kVA, output kW, DC amps, comparison against TRU limits.
+- Why first: feeds directly into PWA (you already use generator line voltage and current). Replaces a tab engineers use constantly; your existing TRU Efficiency calculator is too thin for this.
+
+**2. Flight-condition bus load summary** (from `BUS TOTALS` + `DATA ENTRY`)
+
+- Not a full ELA replacement — start with a **single flight condition**: pick bus (115 AC / 28 DC / 270 DC), enter loads or import a small table, get total I, P, VA per upstream busbar.
+- Why: PWA assumes you already know circuit current; this is upstream of wire sizing in the real workflow.
+- Note: `DATA ENTRY` is a full BOM/ELA matrix — that is a large product on its own; phase 1 should be a **bus rollup tool**, not full ELA.
+
+**3. Battery endurance calculator** (from `BATT ENDURANCE`)
+
+- Inputs: battery Ah capacity, total DC load per flight condition (or manual entry), optional standard (ARP4404 vs AC 43.13).
+- Outputs: endurance in minutes for loss-of-generators / loss-of-TRU scenarios.
+- Why: self-contained, high engineering value, and you already have the T₂ / standards logic in PWA.
+
+---
+
+### Tier 2 — Strong complements to PWA
+
+**4. Transformer / feed circuit checker** (from `TRANSFORMER CALCS (ALL)`)
+
+- Per transformer: VA, voltage, phase current, suggested AWG, CB rating check.
+- Natural extension: “size the wire **to** the TRU/transformer” using the same wire catalog and derating modules you already have.
+
+**5. Circuit breaker / wire ampacity checker** (from `CIRCUIT BREAKERS`)
+
+- Inputs: breaker rating, circuit current, wire type/AWG, continuous vs intermittent.
+- Outputs: pass/fail against breaker curve assumptions and wire ampacity (using your free-air + bundle + altitude factors).
+- Bridges protection design and PWA.
+
+**6. Cooling rig electrical load calculator** (from `COOLING CALCS (ALL)`)
+
+- AC 3φ and DC loads from P, V, η, pf → phase/DC current.
+- Smaller scope than bus totals, but useful for equipment teams and reuses your three-phase current patterns.
+
+---
+
+### Tier 3 — Nice to have / longer term
+
+**7. IDG / generator limit checker** (from `IDG INFO` + `KP260 Actual kVA`)
+
+- Compare total bus kVA/current against IDG limits (40/50/90 kVA scenarios already in the workbook).
+- Mostly lookup + sum logic; good after bus totals exist.
+
+**8. Wire circuit scenario presets** (from `WIRE CIRCUIT TESTING PARAMETERS`)
+
+- Pre-configured PWA parameter sets for conditions 22/23, APU generator, Raychem vs KP260, etc.
+- Could be **presets inside PWA** rather than a separate calculator — lower effort, good UX win.
+
+**9. Full ELA / DATA ENTRY web module**
+
+- The `DATA ENTRY` tab is essentially a structured equipment database with mods, flight conditions, true/reactive power, efficiency chains (5 V, 28 V loads, etc.).
+- High value but **large** — only worth it if you want to replace Excel entirely, not just augment it.
+
+---
+
+## Suggested build order
+
+```mermaid
+flowchart LR
+  A[Bus load rollup] --> B[TRU sizing]
+  B --> C[Power Wire Analysis]
+  C --> D[Breaker / wire check]
+  A --> E[Battery endurance]
+  B --> F[Transformer feed check]
+```
+
+1. **TRU sizing** — immediate payoff, reuses voltage/current concepts from PWA  
+2. **Bus load summary** — answers “what current do I put into PWA?”  
+3. **Battery endurance** — standalone, clearly missing from the web suite  
+4. **Transformer + breaker tools** — close the loop from source to wire  
+5. **PWA scenario presets** — quick win from `WIRE CIRCUIT TESTING` without new math  
+
+---
+
+## What I would not prioritise
+
+- Rebuilding **Calculations** (single/3φ P/Q/S/I) — you already have general power calculators.
+- Duplicating **PWA Conclusion / kVA extract sheets** — those are reporting views; export from the web PWA covers most of this.
+- **Drawing linking tabs** (`dwg linking BUSBARS/LRUS`) — documentation workflow, not calculation.
+
+---
+
+## Practical note on the upload
+
+Import on the web app is designed for workbooks **exported from Export all** (Parameters sheet with keys like `wireType`, `circuitCurrent`, etc.). `ELA_PWA (new).xlsx` uses the legacy **PWA Global Parameters** layout — different structure, different purpose. A future “legacy ELA import” would be a separate feature; for now the web tools and the Excel master workbook serve different roles.
+
+If you want to pick one next build, **TRU sizing** or **battery endurance** would give the best return for effort and fit naturally beside the PWA work you have already done. I can outline inputs/outputs for either in the same style as the current PWA page.
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+Let's do TRU sizing or battery endurance first then come back to this list
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Building the first calculator from that shortlist. Reviewing workbook formulas and how calculators are structured in the codebase.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Implementing both calculators using the registry pattern, starting with TRU sizing, then battery endurance.
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+[REDACTED]
+
+Both calculators from the workbook are live, modeled on the **MAX TRU CALC** and **BATT ENDURANCE** sheets in `ELA_PWA (new).xlsx`.
+
+## New calculators
+
+### [TRU Sizing](calculators/aerospace-electrical-design/tru-sizing.html)
+Matches the workbook’s three-step chain:
+
+- **Input kVA** = k × V<sub>L</sub> × I<sub>L</sub> / 1000 (k = √3 for 3φ, 1 for 1φ)
+- **Output kW** = η × kVA
+- **DC amps** = P<sub>out</sub> × 1000 / V<sub>DC</sub>
+
+Defaults match the workbook example: 200 V 3φ, 13.21 A, η = 0.875, 28 V DC → **≈ 4.58 kVA, 4.00 kW, 143 A**. Optional DC current limit (default 143 A) shows margin and an overload warning.
+
+### [Battery Endurance](calculators/aerospace-electrical-design/battery-endurance.html)
+Matches the **ARP4404C** method from the workbook (the sheet marks this as correct vs the simpler AC 43.13 approach):
+
+- **Endurance (min)** = C<sub>Ah</sub> × 60 × 0.72 / I<sub>load</sub>
+
+Three load scenarios (defaults from FC21–23: 30.38 A, 22.57 A, 24.04 A). You can leave unused scenarios blank. “Full nameplate Ah” is available if you want the non-derated method.
+
+## Where to find them
+- Aerospace section: [Aerospace Electrical Design](calculators/aerospace-electrical-design/index.html) → new **TRU & battery** card
+- Also linked from the main [calculators index](calculators/index.html)
+
+## Next on the list (when you’re ready)
+1. Flight-condition **bus load summary** (BUS TOTALS)
+2. **Transformer feed** checker
+3. **Circuit breaker / wire ampacity** checker
+4. PWA **scenario presets** from WIRE CIRCUIT TESTING
+
+Say which one you want next, or if you’d like tweaks to either calculator (e.g. a TRU loading table like the Excel side panel).
+
+[REDACTED]
+
+<span style="font-size:2em; color:blue; font-weight:bold;">User</span>
+
+Add the differences to prompts.md
+
+<span style="font-size:2em; color:green; font-weight:bold;">Assistant</span>
+
+Added a consolidated **Key differences** reference below (for future prompts and AI context). Re-exported the full conversation with `python scripts/export-cursor-transcript.py`.
+
+---
+
+## Key differences (reference)
+
+Quick reference for ELA/PWA workbook vs web calculators, standards, and import/export.
+
+### T₂ calculation standard (only formula difference in PWA chain)
+
+| Standard | Formula | Excel file |
+|----------|---------|------------|
+| **AC 43.13-1B** (legacy) | \(T_2 = T_1 + (T_R - T_1) \times \sqrt{I/I_{max}}\) | `ELA_PWA.xlsx` — row **SQRT I/IMAX** |
+| **SAE ARP4404C §9.3.4.2** (default on web) | \(T_2 = T_1 + (T_R - T_1) \times (I/I_{max})^2\) | `ELA_PWA (new).xlsx` — row **I/IMAX squared** |
+
+L₁, L₂, Vdrop, I_max (free air × bundle × altitude) are the same chain for both; only T₂ changes with the standard selector on the Power Wire Analysis page.
+
+**Practical:** Use **AC 43** to match legacy `ELA_PWA.xlsx`; use **ARP4404** to match `ELA_PWA (new).xlsx`.
+
+---
+
+### Web PWA export/import vs legacy ELA workbooks
+
+| | Web **Export all** | Legacy `ELA_PWA.xlsx` / `(new).xlsx` |
+|--|-------------------|--------------------------------------|
+| Parameters layout | **Parameters** sheet: Key / Value / Description (`wireType`, `circuitCurrent`, …) | **PWA Global Parameters** sheet: labelled rows, different structure |
+| Import support | **Yes** — use **Export all**, then **Import workbook** | **No** — different sheet names and cell layout |
+| Analysis grid | **Analysis** sheet from web export; grid recalculates on import | Many linked tabs (KP260 kVA, ANA scenarios, etc.) |
+| Excel re-save | Supported (shared strings + deflate-raw zip) | N/A for web import |
+
+**Export table** saves the grid only (no Parameters sheet) — not importable.
+
+---
+
+### Battery endurance methods (BATT ENDURANCE sheet)
+
+| Method | Formula | Workbook label |
+|--------|---------|----------------|
+| **ARP4404C** (web default) | \(t_{min} = C_{Ah} \times 60 \times 0.72 / I_{load}\) | Row marked **ARP4404 CALCULATION CORRECT** |
+| Full nameplate | \(t_{min} = C_{Ah} \times 60 / I_{load}\) | Simpler; no 0.72 factor |
+| AC 43.13-style (legacy) | Same as nameplate in workbook | Row marked **AC43 CALCULATION INCORRECT** in `(new).xlsx` |
+
+Web calculator: [Battery Endurance](calculators/aerospace-electrical-design/battery-endurance.html) — ARP4404C vs nameplate selector; up to three load scenarios.
+
+---
+
+### TRU calculators
+
+| Tool | Purpose | Formula |
+|------|---------|---------|
+| **TRU Sizing** (new) | Size TRU from AC line current | \(S_{in} = k V_L I_L / 1000\) kVA → \(P_{out} = \eta S_{in}\) kW → \(I_{DC} = P_{out} \times 1000 / V_{DC}\) |
+| **TRU Efficiency** (existing) | Check η only | \(\eta = P_{out} / P_{in}\) |
+
+Matches **MAX TRU CALC** sheet (200 V 3φ, η ≈ 0.875, 28 V DC example → ~4.58 kVA, ~143 A).
+
+---
+
+### Web calculator vs Excel (minor numeric differences)
+
+1. **Altitude factor** — Excel may use **0.8625** at 35,000 ft; web curve-fit uses **~0.86** (small I_max effect).
+2. **Bundle factor** — Excel sometimes fixed **0.75**; web computes from wire count + loading % (Fig 11-5 formula).
+3. **AWG range** — Legacy Excel includes AWG 24; web grid starts at AWG 22.
+
+---
+
+### ELA workbook tabs vs web tools (built vs pending)
+
+| Workbook tab | Web status |
+|--------------|------------|
+| PWA Global Parameters / KP260 kVA sheets | **Built** — Power Wire Analysis grid + charts |
+| MAX TRU CALC / TRU CALCS | **Built** — TRU Sizing |
+| BATT ENDURANCE | **Built** — Battery Endurance |
+| BUS TOTALS / DATA ENTRY | **Pending** — bus load summary |
+| TRANSFORMER CALCS | **Pending** |
+| CIRCUIT BREAKERS | **Pending** |
+| COOLING CALCS | **Pending** |
+| Calculations (P/Q/S/I) | Covered by general power calculators |
+
+**Suggested next builds:** bus load summary → transformer feed → breaker/wire check → PWA scenario presets.
+
+---
+
+### PWA import troubleshooting (fixed)
+
+| Symptom | Cause | Fix |
+|---------|-------|-----|
+| **Failed to fetch** | ZIP raw deflate + OneDrive `arrayBuffer()` | `deflate-raw` decompression + FileReader fallback |
+| **No valid parameter data** | Legacy ELA file or Export table only | Use **Export all** from web calculator |
+| **Could not read parameter values** | Excel shared strings for Key column | `sharedStrings.xml` resolution (fixed) |
+
+Number formatting in column B is **not** the issue — numeric `<v>` cells import correctly.
+
