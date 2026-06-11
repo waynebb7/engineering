@@ -1,8 +1,9 @@
 (function (global) {
   'use strict';
 
-  var WORKBOOK_VERSION = '1.0';
+  var WORKBOOK_VERSION = '1.2';
   var PARAMETERS_SHEET = 'Parameters';
+  var OPTIONS_SHEET = 'Parameter options';
   var ANALYSIS_SHEET = 'Analysis';
   var META_KEYS = ['pwa_workbook_version', 'pwa_exported_at', 'pwa_grid_title'];
 
@@ -21,8 +22,8 @@
     { key: 'altitudeFt', label: 'Altitude (ft)' },
     { key: 'bundleWireCount', label: 'Wires in bundle' },
     { key: 'bundleLoadingPct', label: 'Bundle loading (%)' },
-    { key: 'wireLength', label: 'Wire run length' },
-    { key: 'wireLengthUnit', label: 'Wire length unit' },
+    { key: 'wireLength', label: 'Voltage drop — run length (one-way)' },
+    { key: 'wireLengthUnit', label: 'Voltage drop — run length unit' },
     { key: 'routingPct', label: 'Routing allowance (%)' }
   ];
 
@@ -320,34 +321,210 @@
         '</sheetView></sheetViews>'
       : '';
 
+    var dataValidationsXml = '';
+    if (options.dataValidations && options.dataValidations.length) {
+      dataValidationsXml = '<dataValidations count="' + options.dataValidations.length + '">';
+      options.dataValidations.forEach(function (dv) {
+        // OOXML showDropDown is inverted: 0 = show in-cell dropdown arrow, 1 = hide it.
+        dataValidationsXml +=
+          '<dataValidation type="list" allowBlank="1" showInputMessage="1" showErrorMessage="1" ' +
+          'showDropDown="0" errorStyle="stop" sqref="' + escapeXml(dv.sqref) + '">';
+        if (dv.promptTitle) {
+          dataValidationsXml += '<promptTitle>' + escapeXml(dv.promptTitle) + '</promptTitle>';
+        }
+        if (dv.prompt) {
+          dataValidationsXml += '<prompt>' + escapeXml(dv.prompt) + '</prompt>';
+        }
+        dataValidationsXml +=
+          '<formula1>' + escapeXml(dv.formula1) + '</formula1></dataValidation>';
+      });
+      dataValidationsXml += '</dataValidations>';
+    }
+
     return '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
       '<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">' +
       freezeXml + colsXml +
       '<sheetData>' + xmlRows.join('') + '</sheetData>' +
+      dataValidationsXml +
       '</worksheet>';
   }
 
+  function optionsSheetRange(col, startRow, endRow) {
+    var sheetRef = OPTIONS_SHEET.replace(/'/g, "''");
+    return "'" + sheetRef + "'!$" + col + '$' + startRow + ':$' + col + '$' + endRow;
+  }
+
+  function buildDropdownFormula1(options, rangeRef) {
+    if (!options || !options.length) {
+      return rangeRef;
+    }
+    var parts = options.map(function (opt) {
+      return String(opt.value).replace(/"/g, '""');
+    });
+    var inline = '"' + parts.join(',') + '"';
+    if (inline.length <= 255) {
+      return inline;
+    }
+    return rangeRef;
+  }
+
+  function buildOptionsSheetData(parameterOptions) {
+    if (!parameterOptions) {
+      return null;
+    }
+
+    var columns = [];
+    PARAM_DEFINITIONS.forEach(function (def) {
+      var opts = parameterOptions[def.key];
+      if (opts && opts.length) {
+        columns.push({ key: def.key, label: def.label, options: opts });
+      }
+    });
+    if (!columns.length) {
+      return null;
+    }
+
+    var rows = [
+      { cells: [{ text: 'Parameter option lists — values for Parameters sheet column B' }] },
+      {
+        cells: [{
+          text: 'Each column lists allowed values for one parameter key. Use the Value rows when editing Parameters; labels below are for reference only.'
+        }]
+      },
+      { divider: true },
+      {
+        cells: columns.map(function (col) {
+          return { text: col.key };
+        }),
+        isHeader: true
+      },
+      {
+        cells: columns.map(function (col) {
+          return { text: col.label };
+        })
+      }
+    ];
+
+    var maxLen = 0;
+    columns.forEach(function (col) {
+      maxLen = Math.max(maxLen, col.options.length);
+    });
+
+    var valueStartRow = rows.length + 1;
+    var ranges = {};
+
+    for (var r = 0; r < maxLen; r += 1) {
+      rows.push({
+        cells: columns.map(function (col) {
+          var opt = col.options[r];
+          if (!opt) {
+            return { text: '' };
+          }
+          return { text: String(opt.value) };
+        })
+      });
+    }
+
+    columns.forEach(function (col, colIdx) {
+      if (!col.options.length) {
+        return;
+      }
+      var startRow = valueStartRow;
+      var endRow = valueStartRow + col.options.length - 1;
+      ranges[col.key] = optionsSheetRange(colName(colIdx), startRow, endRow);
+    });
+
+    rows.push({ divider: true });
+    rows.push({
+      cells: [{ text: 'Option labels (reference only — import reads Value rows above)' }]
+    });
+    rows.push({
+      cells: columns.map(function () {
+        return { text: 'Label' };
+      }),
+      isHeader: true
+    });
+
+    for (var labelRow = 0; labelRow < maxLen; labelRow += 1) {
+      rows.push({
+        cells: columns.map(function (col) {
+          var opt = col.options[labelRow];
+          if (!opt) {
+            return { text: '' };
+          }
+          return { text: opt.label || String(opt.value) };
+        })
+      });
+    }
+
+    var colWidths = columns.map(function (col) {
+      return Math.min(32, Math.max(12, col.key.length + 6));
+    });
+
+    return { rows: rows, ranges: ranges, colWidths: colWidths };
+  }
+
   function buildParametersRows(snapshot, meta) {
+    meta = meta || {};
+    var optionRanges = meta.optionRanges || {};
+    var parameterOptions = meta.parameterOptions || {};
     var rows = [
       { cells: [{ text: 'Power Wire Analysis — Project settings' }] },
+      {
+        cells: [{
+          text: 'Click column B cells to use in-cell dropdown lists, then re-import this file. The Parameter options sheet lists labels for reference.'
+        }]
+      },
       { cells: [{ text: 'Workbook version' }, { text: WORKBOOK_VERSION }] },
       { cells: [{ text: 'Exported at' }, { text: snapshot.exportedAt || '' }] },
       { cells: [{ text: 'Grid title' }, { text: meta.gridTitle || '' }] },
       { divider: true },
-      { cells: [{ text: 'Key' }, { text: 'Value' }, { text: 'Description' }], isHeader: true }
+      {
+        cells: [
+          { text: 'Key' },
+          { text: 'Value' },
+          { text: 'Description' },
+          { text: 'Notes' }
+        ],
+        isHeader: true
+      }
     ];
+    var rowByKey = {};
+    var dataValidations = [];
 
     PARAM_DEFINITIONS.forEach(function (def) {
+      var excelRow = rows.length + 1;
+      rowByKey[def.key] = excelRow;
+      var notes = '';
+      if (optionRanges[def.key]) {
+        notes = 'Dropdown in column B';
+      } else if (def.key === 'generatorLineVoltageCustom' || def.key === 'conductorTempRatingCustom') {
+        notes = 'Numeric — only when preset is custom';
+      } else {
+        notes = 'Free entry (number or text)';
+      }
       rows.push({
         cells: [
           { text: def.key },
           { text: snapshot[def.key] == null ? '' : String(snapshot[def.key]) },
-          { text: def.label }
+          { text: def.label },
+          { text: notes }
         ]
       });
     });
 
-    return rows;
+    Object.keys(optionRanges).forEach(function (key) {
+      if (rowByKey[key] && optionRanges[key]) {
+        dataValidations.push({
+          sqref: 'B' + rowByKey[key],
+          formula1: buildDropdownFormula1(parameterOptions[key], optionRanges[key]),
+          promptTitle: 'Select a value',
+          prompt: 'Choose from the dropdown list.'
+        });
+      }
+    });
+
+    return { rows: rows, dataValidations: dataValidations };
   }
 
   function buildWorkbookFiles(snapshot, tableRows, meta) {
@@ -370,10 +547,18 @@
     var relId = 1;
 
     if (includeParameters) {
-      var parameterRows = buildParametersRows(snapshot, meta);
-      var paramXml = buildWorksheetXml(parameterRows, {
-        colWidths: [28, 24, 36],
-        freezeHeader: true
+      var optionSheetData = meta.parameterOptions
+        ? buildOptionsSheetData(meta.parameterOptions)
+        : null;
+      var parameterBuild = buildParametersRows(snapshot, {
+        gridTitle: meta.gridTitle,
+        parameterOptions: meta.parameterOptions || {},
+        optionRanges: optionSheetData ? optionSheetData.ranges : {}
+      });
+      var paramXml = buildWorksheetXml(parameterBuild.rows, {
+        colWidths: [28, 24, 36, 40],
+        freezeHeader: true,
+        dataValidations: parameterBuild.dataValidations
       });
       files.push({ name: 'xl/worksheets/sheet' + sheetId + '.xml', data: paramXml });
       contentTypes +=
@@ -385,6 +570,22 @@
         '<sheet name="' + escapeXml(PARAMETERS_SHEET) + '" sheetId="' + sheetId + '" r:id="rId' + relId + '"/>';
       sheetId += 1;
       relId += 1;
+
+      if (optionSheetData) {
+        var optionsXml = buildWorksheetXml(optionSheetData.rows, {
+          colWidths: optionSheetData.colWidths
+        });
+        files.push({ name: 'xl/worksheets/sheet' + sheetId + '.xml', data: optionsXml });
+        contentTypes +=
+          '<Override PartName="/xl/worksheets/sheet' + sheetId + '.xml" ' +
+          'ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>';
+        workbookRels +=
+          '<Relationship Id="rId' + relId + '" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet' + sheetId + '.xml"/>';
+        workbookSheets +=
+          '<sheet name="' + escapeXml(OPTIONS_SHEET) + '" sheetId="' + sheetId + '" r:id="rId' + relId + '"/>';
+        sheetId += 1;
+        relId += 1;
+      }
     }
 
     var tableColWidths = [42, 8];

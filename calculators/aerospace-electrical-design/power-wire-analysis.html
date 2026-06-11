@@ -25,17 +25,8 @@
       Size and compare wire gauges (AWG 24–0000) for conductor temperature and voltage drop.
       Set circuit parameters on the left; results update in the grid on the right.
     </p>
-    <div class="pwa-page-intro">
-      <ul class="pwa-page-hints" aria-label="Quick start">
-        <li>Set parameters on the left — the AWG grid updates instantly.</li>
-      </ul>
-      <p class="pwa-page-intro__guide">
-        <a href="#pwa-how-to" class="pwa-guide-jump" id="pwa-guide-jump">How to use this calculator</a>
-        <span class="pwa-page-intro__guide-note">Standards, full equations, document references, and grid row map</span>
-      </p>
-    </div>
 
-    <details class="pwa-guide" id="pwa-how-to" open>
+    <details class="pwa-guide" id="pwa-how-to">
       <summary class="pwa-guide__summary">How to use this calculator</summary>
       <div class="pwa-guide__body">
 
@@ -69,8 +60,8 @@
           <dd><strong>SAE ARP4404C §9.3.4.2</strong> (default, matches <code>ELA_PWA (new).xlsx</code>) or <strong>AC 43.13-1B</strong> (legacy <code>ELA_PWA.xlsx</code>). Only the T<sub>2</sub> factor changes.</dd>
           <dt>Altitude &amp; bundle</dt>
           <dd>Fig 11-6 altitude factor <strong>z</strong> and Fig 11-5 bundle factor <strong>y</strong>. Displayed inline next to each control; feed into I<sub>max</sub>.</dd>
-          <dt>Wire length</dt>
-          <dd>One-way run plus routing allowance → total length <strong>L</strong> used in the voltage-drop rows (includes ground return path in the entered length, per ARP4404C §9.3.4.2).</dd>
+          <dt>Wire run (voltage drop)</dt>
+          <dd>One-way run plus routing allowance → total length <strong>L</strong> for the V<sub>drop</sub> rows only (not L<sub>1</sub> or L<sub>2</sub>). Includes ground return path in the entered length, per ARP4404C §9.3.4.2.</dd>
         </dl>
 
         <h3 class="pwa-guide__subhead">Analysis grid (right)</h3>
@@ -125,39 +116,97 @@
         </p>
 
         <h3 class="pwa-guide__subhead">Calculation sequence</h3>
-        <p>For each AWG column the calculator runs these steps in order (symbols match the grid):</p>
-        <div class="pwa-guide__math">
-          $$\Delta T = T_R - T_1$$
-          $$I_x = I_{\mathrm{ref}} \left(\frac{\Delta T}{210}\right)^{1/2}$$
-          $$I_{\max} = x \cdot y \cdot z$$
-          $$\frac{I}{I_{\max}} \text{ and T}_2 \text{ factor (see below)}$$
-          $$T_2 = T_1 + (T_R - T_1) \times f_{T2}$$
-          $$L_1 = \frac{U}{I \cdot R_L}$$
-          $$L_2 = \frac{254.5 \times L_1}{234.5 + T_2}$$
-          $$R_2 = R_L \times \frac{234.5 + T_2}{254.5}$$
-          $$V_{\mathrm{drop}} = I \cdot R_L \cdot L \times \frac{234.5 + T_2}{254.5}$$
-        </div>
+        <p>
+          For <strong>each AWG column</strong>, the calculator runs four phases in order. Symbols match the analysis grid.
+          You are checking two things: <strong>(1)</strong> conductor temperature T<sub>2</sub> stays at or below the rating T<sub>R</sub>, and
+          <strong>(2)</strong> voltage drop at your entered run length stays at or below the limit U.
+        </p>
+
+        <h4 class="pwa-guide__phase">Phase 1 — De-rated ampacity (<em>can this gauge carry the load current I?</em>)</h4>
+        <ol class="pwa-guide__calc-steps">
+          <li class="pwa-guide__calc-step">
+            <strong>Free-air current <span class="pwa-guide__sym">x</span></strong> — ampacity in still air at your T<sub>1</sub> and T<sub>R</sub>, from AC 43.13 Fig 11-4 (scaled from tabulated I<sub>ref</sub> at a 210&nbsp;°C rise).
+            <div class="pwa-guide__math">
+              $$\Delta T = T_R - T_1$$
+              $$I_x = I_{\mathrm{ref}} \left(\frac{\Delta T}{210}\right)^{1/2}$$
+            </div>
+            <p class="pwa-guide__step-grid">Grid: row <strong>x</strong>; row <strong>%</strong> = 100 × I / x.</p>
+          </li>
+          <li class="pwa-guide__calc-step">
+            <strong>Bundle factor <span class="pwa-guide__sym">y</span></strong> — reduces ampacity for wires packed together (Fig 11-5; wire count n and loading % set curve constants c and k).
+            <div class="pwa-guide__math">
+              $$y = \left(\frac{n + c}{1 + c}\right)^{-k}$$
+            </div>
+            <p class="pwa-guide__step-grid">Grid: row <strong>y</strong> (shown next to bundle controls in the parameter panel).</p>
+          </li>
+          <li class="pwa-guide__calc-step">
+            <strong>Altitude factor <span class="pwa-guide__sym">z</span></strong> — reduces ampacity in thin air (Fig 11-6; h = altitude in thousands of feet, 0–100 kft, minimum 0.7).
+            <div class="pwa-guide__math">
+              $$z = 0.7 + 0.3 \left(1 - \frac{h}{100}\right)^{1.5}$$
+            </div>
+            <p class="pwa-guide__step-grid">Grid: row <strong>z</strong> (shown next to altitude in the parameter panel).</p>
+          </li>
+          <li class="pwa-guide__calc-step">
+            <strong>Maximum allowable current <span class="pwa-guide__sym">I<sub>max</sub></span></strong> — the highest current this AWG can carry after all de-rating. If I &gt; I<sub>max</sub>, the wire is overloaded before temperature is even estimated.
+            <div class="pwa-guide__math">$$I_{\max} = x \cdot y \cdot z$$</div>
+            <p class="pwa-guide__step-grid">Grid: row <strong>I<sub>MAX</sub></strong>; row <strong>I / I<sub>MAX</sub></strong> = I / I<sub>max</sub>.</p>
+          </li>
+        </ol>
+
+        <h4 class="pwa-guide__phase">Phase 2 — Conductor temperature (<em>how hot does the wire get?</em>)</h4>
+        <ol class="pwa-guide__calc-steps" start="5">
+          <li class="pwa-guide__calc-step">
+            <strong>T<sub>2</sub> factor <span class="pwa-guide__sym">f<sub>T2</sub></span></strong> — how much of the allowed temperature rise is used, based on how close I is to I<sub>max</sub>. Standard is selectable (ARP4404 default; AC 43 legacy).
+            <div class="pwa-guide__math">
+              $$f_{T2} = \left(\frac{I}{I_{\max}}\right)^2 \quad \text{(SAE ARP4404C §9.3.4.2 — default)}$$
+              $$f_{T2} = \sqrt{\frac{I}{I_{\max}}} \quad \text{(AC 43.13-1B — legacy ELA)}$$
+            </div>
+            <p class="pwa-guide__step-grid">Grid: row <strong>I / I<sub>MAX</sub> squared</strong> (ARP4404) or <strong>√</strong> (AC 43).</p>
+          </li>
+          <li class="pwa-guide__calc-step">
+            <strong>Estimated conductor temperature <span class="pwa-guide__sym">T<sub>2</sub></span></strong> — interpolated between ambient T<sub>1</sub> and rating T<sub>R</sub>. Highlighted <span class="pwa-guide__chip pwa-guide__chip--pass">green</span> when T<sub>2</sub> ≤ T<sub>R</sub>, <span class="pwa-guide__chip pwa-guide__chip--fail">red</span> when it exceeds the rating.
+            <div class="pwa-guide__math">$$T_2 = T_1 + (T_R - T_1) \times f_{T2}$$</div>
+            <p class="pwa-guide__step-grid">Grid: row <strong>T<sub>2</sub></strong>.</p>
+          </li>
+        </ol>
+
+        <h4 class="pwa-guide__phase">Phase 3 — Maximum length at drop limit U (<em>informational — not your actual run</em>)</h4>
+        <p class="pwa-guide__phase-intro">
+          These rows answer: “How long could this wire be before V<sub>drop</sub> reaches U?” They use the allowable drop U from parameters — <em>not</em> the wire run you enter for voltage drop.
+        </p>
+        <ol class="pwa-guide__calc-steps" start="7">
+          <li class="pwa-guide__calc-step">
+            <strong>Max length at 20&nbsp;°C <span class="pwa-guide__sym">L<sub>1</sub></span></strong> — length limit if resistance stayed at catalog R<sub>L</sub> (Ω/ft at 20&nbsp;°C) and drop equalled U.
+            <div class="pwa-guide__math">$$L_1 = \frac{U}{I \cdot R_L}$$</div>
+            <p class="pwa-guide__step-grid">Grid: row <strong>L<sub>1</sub></strong> (ft).</p>
+          </li>
+          <li class="pwa-guide__calc-step">
+            <strong>De-rated max length <span class="pwa-guide__sym">L<sub>2</sub></span></strong> — same limit adjusted for copper heating to T<sub>2</sub> (higher temperature → higher resistance → shorter allowable length).
+            <div class="pwa-guide__math">$$L_2 = \frac{254.5 \times L_1}{234.5 + T_2}$$</div>
+            <p class="pwa-guide__step-grid">Grid: rows <strong>L<sub>2</sub></strong> (in, ft, m).</p>
+          </li>
+          <li class="pwa-guide__calc-step">
+            <strong>Resistance at T<sub>2</sub> <span class="pwa-guide__sym">R<sub>2</sub></span></strong> — copper R at operating temperature (used in Phase 4).
+            <div class="pwa-guide__math">$$R_2 = R_L \times \frac{234.5 + T_2}{254.5}$$</div>
+            <p class="pwa-guide__step-grid">Grid: not shown separately; embedded in the V<sub>drop</sub> formula below.</p>
+          </li>
+        </ol>
         <p class="pwa-guide__note">
           <strong>Constants 234.5 and 254.5</strong> — copper resistance temperature correction per ARP4404C §9.3.4.2
-          (234.5 + 20 °C reference → 254.5). R<sub>L</sub> is resistance per foot at 20 °C; R<sub>1000</sub> = 1000 × R<sub>L</sub>.
+          (234.5 + 20&nbsp;°C reference → 254.5). R<sub>L</sub> is resistance per foot at 20&nbsp;°C; R<sub>1000</sub> = 1000 × R<sub>L</sub>.
         </p>
-        <p><strong>T<sub>2</sub> factor f<sub>T2</sub></strong> (selectable standard):</p>
-        <div class="pwa-guide__math">
-          $$f_{T2} = \left(\frac{I}{I_{\max}}\right)^2 \quad \text{(SAE ARP4404C §9.3.4.2 — default)}$$
-          $$f_{T2} = \sqrt{\frac{I}{I_{\max}}} \quad \text{(AC 43.13-1B — legacy ELA)}$$
-        </div>
 
-        <h3 class="pwa-guide__subhead">De-rating factors (rows x, y, z)</h3>
-        <div class="pwa-guide__math">
-          $$y = \left(\frac{n + c}{1 + c}\right)^{-k}$$
-          <span class="pwa-guide__math-note">Bundle Fig 11-5 — wire count n, loading curve sets c and k (20–100%)</span>
-          $$z = 0.7 + 0.3 \left(1 - \frac{h}{100}\right)^{1.5}$$
-          <span class="pwa-guide__math-note">Altitude Fig 11-6 — h = altitude in thousands of feet (0–100 kft, floor 0.7)</span>
-        </div>
-        <p>
-          Free-air current <strong>x</strong> uses tabulated I<sub>ref</sub> at ΔT = 210 °C (T<sub>R</sub> = 260 °C, T<sub>1</sub> = 50 °C) from Fig 11-4a/11-4b, scaled for your T<sub>1</sub> and T<sub>R</sub>.
-          Row <strong>%</strong> = 100 × I / x (actual load as a percentage of free-air capacity).
+        <h4 class="pwa-guide__phase">Phase 4 — Voltage drop at your run (<em>does your actual installation exceed U?</em>)</h4>
+        <p class="pwa-guide__phase-intro">
+          Below the divider in the grid. Uses total run length <strong>L</strong> from <strong>Voltage drop — wire run</strong> in the parameter panel (one-way run + routing allowance).
         </p>
+        <ol class="pwa-guide__calc-steps" start="10">
+          <li class="pwa-guide__calc-step">
+            <strong>Calculated drop <span class="pwa-guide__sym">V<sub>drop</sub></span></strong> — I through heated copper over your entered length L. Highlighted <span class="pwa-guide__chip pwa-guide__chip--pass">green</span> when V<sub>drop</sub> ≤ U, <span class="pwa-guide__chip pwa-guide__chip--fail">red</span> when it exceeds the limit.
+            <div class="pwa-guide__math">$$V_{\mathrm{drop}} = I \cdot R_L \cdot L \times \frac{234.5 + T_2}{254.5}$$</div>
+            <p class="pwa-guide__step-grid">Grid: row <strong>U (V<sub>drop</sub>)</strong> compared to parameter <strong>U</strong>; row <strong>L</strong> shows the total run used.</p>
+          </li>
+        </ol>
 
         <h3 class="pwa-guide__subhead">Grid rows — how each line maps to the maths</h3>
         <div class="pwa-guide__table-wrap">
@@ -188,7 +237,7 @@
               <tr><td>L<sub>2</sub> (in, ft, m)</td><td>Calculated</td><td>Derated max length at T<sub>2</sub>: L<sub>2</sub> = 254.5 L<sub>1</sub> / (234.5 + T<sub>2</sub>)</td></tr>
               <tr><td colspan="3" class="pwa-guide__table-divider"><em>Voltage drop at entered run length</em> (below divider)</td></tr>
               <tr><td>U (V<sub>drop</sub>)</td><td>Calculated</td><td>I · R<sub>L</sub> · L · (234.5 + T<sub>2</sub>) / 254.5 — compared to U</td></tr>
-              <tr><td>L (in, ft, m)</td><td>Wire length + routing</td><td>Total run used for V<sub>drop</sub></td></tr>
+              <tr><td>L (in, ft, m)</td><td>Voltage drop — wire run</td><td>Total run used for V<sub>drop</sub> (not L<sub>1</sub> / L<sub>2</sub>)</td></tr>
             </tbody>
           </table>
         </div>
@@ -316,11 +365,15 @@
           </fieldset>
 
           <fieldset class="pwa-fieldset">
-            <legend>Wire length</legend>
-            <label>Run length
+            <legend>Voltage drop — wire run</legend>
+            <p class="pwa-fieldset__intro">
+              One-way run plus routing allowance → total <strong>L</strong> for the V<sub>drop</sub> rows in the analysis grid.
+              Not used for L<sub>1</sub> or L<sub>2</sub> maximum-length calculations.
+            </p>
+            <label>Run length (one-way)
               <span class="pwa-length-row">
                 <input type="number" name="wireLength" step="0.01" min="0" value="603.6" required>
-                <select name="wireLengthUnit" aria-label="Length unit">
+                <select name="wireLengthUnit" aria-label="Length unit for voltage drop run">
                   <option value="in" selected>Inches</option>
                   <option value="m">Metres</option>
                 </select>
@@ -330,7 +383,7 @@
               <input type="number" name="routingPct" step="0.1" min="0" value="30" required>
             </label>
             <p class="pwa-derived pwa-derived--total">
-              Total length:
+              Total run for V<sub>drop</sub>:
               <strong id="pwa-wire-length-ft">—</strong> ft
               (<span id="pwa-wire-length-m">—</span> m)
             </p>
@@ -364,7 +417,8 @@
             <div class="pwa-export__section">
               <h3 class="pwa-export__heading">Export to Excel</h3>
               <p class="pwa-export__hint">
-                <strong>Export all</strong> saves every parameter plus the full AWG table.
+                <strong>Export all</strong> saves every parameter with in-cell Excel dropdowns in column B, a
+                <strong>Parameter options</strong> label reference sheet, and the full AWG table.
                 <strong>Export table</strong> saves the grid only (use the AWG options below).
               </p>
               <fieldset class="pwa-export__options">
@@ -389,8 +443,8 @@
             <div class="pwa-export__section">
               <h3 class="pwa-export__heading">Import from Excel</h3>
               <p class="pwa-export__hint">
-                Use a workbook created with <strong>Export all</strong>. Edit values on the
-                <em>Parameters</em> sheet, then import to restore settings here.
+                Use a workbook created with <strong>Export all</strong>. Click column B on the
+                <em>Parameters</em> sheet to pick from dropdown lists, then import to restore settings here.
               </p>
               <div class="pwa-export__btn-row pwa-export__btn-row--import">
                 <label class="btn pwa-export__btn pwa-export__import-btn">

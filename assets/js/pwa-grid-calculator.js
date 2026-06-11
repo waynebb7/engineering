@@ -742,6 +742,84 @@
     };
   }
 
+  function selectOptions(selectEl) {
+    var out = [];
+    if (!selectEl || !selectEl.options) {
+      return out;
+    }
+    Array.prototype.forEach.call(selectEl.options, function (opt) {
+      out.push({ value: opt.value, label: opt.textContent.trim() });
+    });
+    return out;
+  }
+
+  function collectParameterOptions(form) {
+    if (!form) {
+      return {};
+    }
+
+    var options = {};
+
+    if (window.PwaWireCatalog && typeof PwaWireCatalog.listWireTypes === 'function') {
+      options.wireType = PwaWireCatalog.listWireTypes().map(function (wire) {
+        return { value: wire.id, label: wire.label };
+      });
+    } else if (form.elements.wireType) {
+      options.wireType = selectOptions(form.elements.wireType);
+    }
+
+    if (form.elements.generatorLineVoltagePreset) {
+      options.generatorLineVoltagePreset = selectOptions(form.elements.generatorLineVoltagePreset);
+    }
+    if (form.elements.operationType) {
+      options.operationType = selectOptions(form.elements.operationType);
+    }
+
+    var dropMap = {};
+    ['continuous', 'intermittent'].forEach(function (op) {
+      (ALLOWABLE_DROPS[op] || []).forEach(function (entry) {
+        var key = String(entry.drop);
+        if (!dropMap[key]) {
+          dropMap[key] = entry.nominal + ' V nominal — ' + entry.drop + ' V drop';
+        }
+      });
+    });
+    options.allowableDrop = Object.keys(dropMap).sort(function (a, b) {
+      return parseFloat(a) - parseFloat(b);
+    }).map(function (key) {
+      return { value: key, label: dropMap[key] };
+    });
+
+    if (form.elements.conductorTempRatingPreset) {
+      options.conductorTempRatingPreset = selectOptions(form.elements.conductorTempRatingPreset);
+    }
+    if (form.elements.t2Standard) {
+      options.t2Standard = selectOptions(form.elements.t2Standard);
+    }
+    if (form.elements.altitudeFt) {
+      options.altitudeFt = selectOptions(form.elements.altitudeFt);
+    } else {
+      options.altitudeFt = [];
+      for (var ft = 0; ft <= 100000; ft += 1000) {
+        options.altitudeFt.push({ value: String(ft), label: ft + ' ft' });
+      }
+    }
+
+    options.bundleWireCount = [];
+    for (var n = 1; n <= 41; n += 1) {
+      options.bundleWireCount.push({ value: String(n), label: String(n) });
+    }
+
+    if (form.elements.bundleLoadingPct) {
+      options.bundleLoadingPct = selectOptions(form.elements.bundleLoadingPct);
+    }
+    if (form.elements.wireLengthUnit) {
+      options.wireLengthUnit = selectOptions(form.elements.wireLengthUnit);
+    }
+
+    return options;
+  }
+
   function applyParameterSnapshot(form, snapshot) {
     if (!form || !snapshot) return;
 
@@ -865,12 +943,13 @@
       var gridTitleEl = document.getElementById('pwa-grid-title');
       PwaWorkbook.exportWorkbook(snapshot, tableRows, {
         includeParameters: exportAll,
+        parameterOptions: exportAll ? collectParameterOptions(form) : null,
         gridTitle: gridTitleEl ? gridTitleEl.textContent : '',
         filename: PwaWorkbook.defaultFilename(snapshot)
       });
       setExportStatus(
         exportAll
-          ? 'Exported all settings and analysis table to Excel.'
+          ? 'Exported all settings, parameter dropdown lists, and analysis table to Excel.'
           : 'Exported analysis table to Excel.',
         'ok'
       );
@@ -1266,12 +1345,6 @@
       if (window.MathJax && MathJax.Hub) {
         MathJax.Hub.Register.StartupHook('End', typesetGuide);
       }
-
-      document.querySelectorAll('a[href="#pwa-how-to"]').forEach(function (link) {
-        link.addEventListener('click', function () {
-          guideEl.open = true;
-        });
-      });
     }
 
     recalc();
