@@ -412,15 +412,29 @@
         <details class="pwa-export" id="pwa-export">
           <summary class="pwa-export__summary">Project folder &amp; reports</summary>
           <div class="pwa-export__body">
-            <label class="pwa-export__project">Project / system name
-              <input type="text" id="pwa-project-name" name="projectName" placeholder="Optional — used in filenames and reports">
-            </label>
+            <div class="pwa-export__ident-row">
+              <label class="pwa-export__project pwa-export__project-number">Project number
+                <input type="text" id="pwa-project-number" name="projectNumber" placeholder="e.g. 06167" autocomplete="off" inputmode="numeric">
+              </label>
+              <label class="pwa-export__project">Project / system name
+                <input type="text" id="pwa-project-name" name="projectName" placeholder="e.g. Flight control system">
+              </label>
+              <label class="pwa-export__project pwa-export__wire-number">Wire number
+                <input type="text" id="pwa-wire-number" name="wireNumber" placeholder="e.g. 9001" autocomplete="off">
+              </label>
+            </div>
+            <p class="pwa-export__hint pwa-export__hint--filename">
+              Export filenames follow:
+              <code>power-wire-analysis-[project number]-[project/system name]-[wire number]-[AWG if one column selected]-[date]-[time]</code>
+              (e.g. <code>power-wire-analysis-06167-Flight-Control-9001-2026-06-11-14-30-00.xlsx</code>).
+            </p>
 
             <div class="pwa-export__section pwa-export__section--folder">
               <h3 class="pwa-export__heading">Project folder</h3>
               <p class="pwa-export__hint">
                 Connect a folder on your computer that represents one project or electrical system.
-                Store one Excel workbook per wire (e.g. <code>W001-circuit-name-PWA-2026-06-05.xlsx</code>).
+                Store one Excel workbook per wire using the export filename pattern above.
+                Set <strong>Project number</strong>, <strong>Project / system name</strong>, and <strong>Wire number</strong> before exporting.
                 Files stay on your machine — nothing is uploaded to this website.
               </p>
               <div class="pwa-folder__toolbar">

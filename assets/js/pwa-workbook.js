@@ -1,7 +1,7 @@
 (function (global) {
   'use strict';
 
-  var WORKBOOK_VERSION = '1.3.1';
+  var WORKBOOK_VERSION = '1.3.3';
   var REPORT_TITLE = 'Power Wire Analysis Report';
   var REPORT_STANDARDS =
     'Reference standards: SAE ARP4404C §9.3.4.2 (T₂, allowable voltage drop U) · ' +
@@ -29,15 +29,20 @@
     paramDesc: 18,
     paramNotes: 19,
     sectionDivider: 20,
-    footerNote: 21
+    footerNote: 21,
+    reportProjectBanner: 22,
+    reportWireBanner: 23
   };
+  var REPORT_HEADER_ROW_HEIGHT = 33;
   var PARAMETERS_SHEET = 'Parameters';
   var OPTIONS_SHEET = 'Parameter options';
   var ANALYSIS_SHEET = 'Analysis';
   var META_KEYS = ['pwa_workbook_version', 'pwa_exported_at', 'pwa_grid_title'];
 
   var PARAM_DEFINITIONS = [
-    { key: 'projectName', label: 'Project / circuit name' },
+    { key: 'projectNumber', label: 'Project number' },
+    { key: 'projectName', label: 'Project / system name' },
+    { key: 'wireNumber', label: 'Wire number / identifier' },
     { key: 'wireType', label: 'Wire type' },
     { key: 'generatorLineVoltagePreset', label: 'Voltage preset' },
     { key: 'generatorLineVoltageCustom', label: 'Custom voltage (V)' },
@@ -540,13 +545,15 @@
       '<numFmt numFmtId="166" formatCode="0.00"/>' +
       '<numFmt numFmtId="167" formatCode="0.0"/>' +
       '</numFmts>' +
-      '<fonts count="6">' +
+      '<fonts count="8">' +
       '<font><sz val="11"/><color rgb="FF000000"/><name val="Calibri"/><family val="2"/></font>' +
       '<font><b/><sz val="18"/><color rgb="FFFFFFFF"/><name val="Calibri"/><family val="2"/></font>' +
       '<font><b/><sz val="12"/><color rgb="FF0F2942"/><name val="Calibri"/><family val="2"/></font>' +
       '<font><sz val="10"/><color rgb="FF475569"/><name val="Calibri"/><family val="2"/></font>' +
       '<font><b/><sz val="11"/><color rgb="FFFFFFFF"/><name val="Calibri"/><family val="2"/></font>' +
       '<font><i/><sz val="9"/><color rgb="FF64748B"/><name val="Calibri"/><family val="2"/></font>' +
+      '<font><b/><sz val="14"/><color rgb="FF0F2942"/><name val="Calibri"/><family val="2"/></font>' +
+      '<font><b/><sz val="16"/><color rgb="FFFFFFFF"/><name val="Calibri"/><family val="2"/></font>' +
       '</fonts>' +
       '<fills count="9">' +
       '<fill><patternFill patternType="none"/></fill>' +
@@ -568,11 +575,11 @@
       '<top style="thin"><color rgb="FFCBD5E1"/></top><bottom style="medium"><color rgb="FF0F2942"/></bottom></border>' +
       '</borders>' +
       '<cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs>' +
-      '<cellXfs count="22">' +
+      '<cellXfs count="24">' +
       xf(0, 0, 0, 1, { applyBorder: true, align: { h: 'left', v: 'center' } }) +
       xf(0, 1, 2, 0, { applyFont: true, applyFill: true, align: { h: 'center', v: 'center' } }) +
       xf(0, 2, 3, 2, { applyFont: true, applyFill: true, applyBorder: true, align: { h: 'left', v: 'center' } }) +
-      xf(0, 3, 0, 0, { applyFont: true, align: { h: 'left', v: 'top', wrap: true } }) +
+      xf(0, 3, 0, 0, { applyFont: true, align: { h: 'left', v: 'center', wrap: true } }) +
       xf(0, 2, 0, 2, { applyFont: true, applyBorder: true, align: { h: 'left', v: 'center' } }) +
       xf(0, 4, 2, 3, { applyFont: true, applyFill: true, applyBorder: true, align: { h: 'center', v: 'center', wrap: true } }) +
       xf(0, 0, 3, 1, { applyFill: true, applyBorder: true, align: { h: 'left', v: 'center', wrap: true } }) +
@@ -589,8 +596,10 @@
       xf(0, 0, 0, 1, { applyBorder: true, align: { h: 'left', v: 'center' } }) +
       xf(0, 0, 0, 1, { applyBorder: true, align: { h: 'left', v: 'center' } }) +
       xf(0, 5, 0, 1, { applyFont: true, applyBorder: true, align: { h: 'left', v: 'center', wrap: true } }) +
-      xf(0, 4, 8, 1, { applyFont: true, applyFill: true, applyBorder: true, align: { h: 'center', v: 'center' } }) +
+      xf(0, 4, 2, 3, { applyFont: true, applyFill: true, applyBorder: true, align: { h: 'left', v: 'center', wrap: true } }) +
       xf(0, 5, 7, 1, { applyFont: true, applyFill: true, align: { h: 'left', v: 'center', wrap: true } }) +
+      xf(0, 6, 3, 2, { applyFont: true, applyFill: true, applyBorder: true, align: { h: 'left', v: 'center' } }) +
+      xf(0, 7, 2, 3, { applyFont: true, applyFill: true, applyBorder: true, align: { h: 'left', v: 'center' } }) +
       '</cellXfs>' +
       '<cellStyles count="1">' +
       '<cellStyle name="Normal" xfId="0" builtinId="0"/>' +
@@ -609,8 +618,71 @@
     }
   }
 
+  function buildProjectBannerText(snapshot) {
+    snapshot = snapshot || {};
+    var parts = [];
+    if (snapshot.projectNumber) {
+      parts.push('Project No. ' + snapshot.projectNumber);
+    }
+    if (snapshot.projectName) {
+      parts.push(snapshot.projectName);
+    }
+    if (parts.length) {
+      return parts.join('  ·  ');
+    }
+    return 'PROJECT NOT SET — enter Project number and Project / system name in the calculator';
+  }
+
+  function buildWireBannerText(snapshot) {
+    snapshot = snapshot || {};
+    if (snapshot.wireNumber) {
+      return 'Wire No. ' + snapshot.wireNumber;
+    }
+    return 'WIRE NUMBER NOT SET — enter Wire number in the calculator';
+  }
+
+  function buildReportIdentificationRows(snapshot, colCount, row4Text, row5Text) {
+    return [
+      {
+        cells: [{ text: REPORT_TITLE.toUpperCase(), span: colCount }],
+        styleKey: 'reportTitle',
+        height: REPORT_HEADER_ROW_HEIGHT
+      },
+      {
+        cells: [{ text: buildProjectBannerText(snapshot), span: colCount }],
+        styleKey: 'reportProjectBanner',
+        height: REPORT_HEADER_ROW_HEIGHT
+      },
+      {
+        cells: [{ text: buildWireBannerText(snapshot), span: colCount }],
+        styleKey: 'reportWireBanner',
+        height: REPORT_HEADER_ROW_HEIGHT
+      },
+      {
+        cells: [{ text: row4Text, span: colCount }],
+        styleKey: 'reportMeta',
+        height: REPORT_HEADER_ROW_HEIGHT
+      },
+      {
+        cells: [{ text: row5Text, span: colCount }],
+        styleKey: 'reportMeta',
+        height: REPORT_HEADER_ROW_HEIGHT
+      }
+    ];
+  }
+
   function buildDocProps(snapshot) {
-    var project = snapshot && snapshot.projectName ? snapshot.projectName : 'Power Wire Analysis';
+    snapshot = snapshot || {};
+    var titleParts = [REPORT_TITLE];
+    if (snapshot.projectNumber) {
+      titleParts.push('Project ' + snapshot.projectNumber);
+    }
+    if (snapshot.projectName) {
+      titleParts.push(snapshot.projectName);
+    }
+    if (snapshot.wireNumber) {
+      titleParts.push('Wire ' + snapshot.wireNumber);
+    }
     var created = snapshot && snapshot.exportedAt ? snapshot.exportedAt : new Date().toISOString();
     return {
       core:
@@ -620,7 +692,7 @@
         'xmlns:dc="http://purl.org/dc/elements/1.1/" ' +
         'xmlns:dcterms="http://purl.org/dc/terms/" ' +
         'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">' +
-        '<dc:title>' + escapeXml(REPORT_TITLE + ' — ' + project) + '</dc:title>' +
+        '<dc:title>' + escapeXml(titleParts.join(' — ')) + '</dc:title>' +
         '<dc:subject>' + escapeXml(REPORT_STANDARDS) + '</dc:subject>' +
         '<dc:creator>Power Wire Analysis Calculator</dc:creator>' +
         '<cp:lastModifiedBy>Power Wire Analysis Calculator</cp:lastModifiedBy>' +
@@ -638,47 +710,23 @@
 
   function decorateAnalysisSheet(tableRows, meta) {
     meta = meta || {};
+    var snapshot = meta.snapshot || {};
     var colCount = (tableRows[0] && tableRows[0].cells) ? tableRows[0].cells.length : 3;
-    var project = meta.projectName ||
-      (meta.snapshot && meta.snapshot.projectName) || '';
-    var dateStr = formatReportDate(meta.snapshot && meta.snapshot.exportedAt);
-    var prefix = [
-      {
-        cells: [{ text: REPORT_TITLE.toUpperCase(), span: colCount }],
-        styleKey: 'reportTitle',
-        height: 34
-      },
-      {
-        cells: [{
-          text: project
-            ? 'Project / circuit: ' + project
-            : 'Wire sizing and verification worksheet',
-          span: colCount
-        }],
-        styleKey: 'reportSubtitle',
-        height: 22
-      },
-      {
-        cells: [{
-          text: (meta.gridTitle || 'AWG comparison grid') + '  |  Generated ' + dateStr +
-            '  |  Workbook v' + WORKBOOK_VERSION,
-          span: colCount
-        }],
-        styleKey: 'reportMeta',
-        height: 22
-      },
-      {
-        cells: [{ text: REPORT_STANDARDS, span: colCount }],
-        styleKey: 'reportMeta',
-        height: 22
-      },
+    var dateStr = formatReportDate(snapshot.exportedAt);
+    var prefix = buildReportIdentificationRows(
+      snapshot,
+      colCount,
+      (meta.gridTitle || 'AWG comparison grid') + '  |  Generated ' + dateStr +
+        '  |  Workbook v' + WORKBOOK_VERSION,
+      REPORT_STANDARDS
+    ).concat([
       {
         cells: [{
           text: 'Pass/fail: green = T₂ ≤ T_R or V_drop ≤ U; red = exceeds limit. Inputs on Parameters sheet (re-import supported).',
           span: colCount
         }],
         styleKey: 'reportMeta',
-        height: 22
+        height: REPORT_HEADER_ROW_HEIGHT
       },
       { spacer: true, height: 6 },
       {
@@ -686,7 +734,7 @@
         styleKey: 'sectionHeader',
         height: 20
       }
-    ];
+    ]);
 
     var body = tableRows.map(function (row) {
       if (row.divider) {
@@ -848,40 +896,21 @@
     var optionRanges = meta.optionRanges || {};
     var parameterOptions = meta.parameterOptions || {};
     var colCount = 4;
-    var project = snapshot.projectName || 'Unnamed project / circuit';
     var dateStr = formatReportDate(snapshot.exportedAt);
-    var rows = [
-      {
-        cells: [{ text: REPORT_TITLE.toUpperCase(), span: colCount }],
-        styleKey: 'reportTitle',
-        height: 34
-      },
-      {
-        cells: [{ text: 'Project / circuit: ' + project, span: colCount }],
-        styleKey: 'reportSubtitle',
-        height: 22
-      },
-      {
-        cells: [{
-          text: 'Generated ' + dateStr + '  |  Workbook v' + WORKBOOK_VERSION +
-            '  |  ' + (meta.gridTitle || 'Wire analysis grid'),
-          span: colCount
-        }],
-        styleKey: 'reportMeta',
-        height: 22
-      },
-      {
-        cells: [{ text: REPORT_STANDARDS, span: colCount }],
-        styleKey: 'reportMeta',
-        height: 22
-      },
+    var rows = buildReportIdentificationRows(
+      snapshot,
+      colCount,
+      'Generated ' + dateStr + '  |  Workbook v' + WORKBOOK_VERSION +
+        '  |  ' + (meta.gridTitle || 'Wire analysis grid'),
+      REPORT_STANDARDS
+    ).concat([
       {
         cells: [{
           text: 'Section 1 — Input parameters. Edit column B (dropdown where provided) and re-import to restore settings in the calculator.',
           span: colCount
         }],
         styleKey: 'reportMeta',
-        height: 22
+        height: REPORT_HEADER_ROW_HEIGHT
       },
       { spacer: true, height: 6 },
       {
@@ -898,7 +927,7 @@
         ],
         isHeader: true
       }
-    ];
+    ]);
     var rowByKey = {};
     var dataValidations = [];
 
@@ -919,7 +948,8 @@
         styleKey: 'paramValue'
       };
       if (rawVal != null && rawVal !== '' && !isNaN(parseFloat(rawVal)) &&
-          def.key !== 'projectName' && def.key !== 'wireType' &&
+          def.key !== 'projectNumber' && def.key !== 'projectName' && def.key !== 'wireNumber' &&
+          def.key !== 'wireType' &&
           def.key !== 'operationType' && def.key !== 't2Standard' &&
           def.key !== 'wireLengthUnit' && def.key !== 'generatorLineVoltagePreset' &&
           def.key !== 'conductorTempRatingPreset') {
@@ -976,6 +1006,20 @@
     ctx.relId += 1;
   }
 
+  function analysisLabelColumnWidth(tableRows) {
+    var maxLen = 48;
+    (tableRows || []).forEach(function (row) {
+      if (row.divider || !row.cells || !row.cells[0]) {
+        return;
+      }
+      var text = String(row.cells[0].text || '');
+      if (text.length > maxLen) {
+        maxLen = text.length;
+      }
+    });
+    return Math.min(Math.max(maxLen + 6, 48), 80);
+  }
+
   function buildWorkbookFiles(snapshot, tableRows, meta) {
     meta = meta || {};
     var includeParameters = meta.includeParameters !== false;
@@ -1001,8 +1045,8 @@
       gridTitle: meta.gridTitle,
       projectName: snapshot.projectName
     });
-    var analysisHeaderRow = 8;
-    var tableColWidths = [44, 9];
+    var analysisHeaderRow = 9;
+    var tableColWidths = [analysisLabelColumnWidth(tableRows), 9];
     if (tableRows[0] && tableRows[0].cells) {
       for (var i = 2; i < tableRows[0].cells.length; i += 1) {
         tableColWidths.push(i === tableRows[0].cells.length - 1 ? 11 : 13);
@@ -1029,7 +1073,7 @@
         parameterOptions: meta.parameterOptions || {},
         optionRanges: optionSheetData ? optionSheetData.ranges : {}
       });
-      var paramHeaderRow = 8;
+      var paramHeaderRow = 9;
       var paramXml = buildWorksheetXml(parameterBuild.rows, {
         colWidths: [32, 26, 50, 48],
         sheetView: {
@@ -1089,17 +1133,202 @@
   }
 
   function sanitizeFilename(name) {
-    var base = String(name || 'power-wire-analysis')
+    var base = String(name || '')
       .replace(/[<>:"/\\|?*\u0000-\u001F]/g, '')
       .replace(/\s+/g, '-')
       .replace(/-+/g, '-')
       .replace(/^-|-$/g, '');
-    return base || 'power-wire-analysis';
+    return base || '';
   }
 
-  function defaultFilename(snapshot) {
-    var date = new Date().toISOString().slice(0, 10);
-    return sanitizeFilename(snapshot.projectName) + '-PWA-' + date + '.xlsx';
+  function normalizeWireNumber(value) {
+    return String(value || '').trim().replace(/\s+/g, '-');
+  }
+
+  function normalizeProjectNumber(value) {
+    return String(value || '').trim().replace(/\s+/g, '');
+  }
+
+  function looksLikeWireToken(value) {
+    var text = normalizeWireNumber(value);
+    return !!text && (/^W?\d+$/i.test(text) || /^\d{1,6}$/.test(text));
+  }
+
+  function parseExportFilenameMetadata(filename) {
+    var empty = { projectNumber: '', projectName: '', wireNumber: '' };
+    var base = String(filename || '').replace(/\.[^.]+$/i, '');
+    var parts = base.split('-');
+
+    if (parts.length < 9 || parts[0] !== 'power' || parts[1] !== 'wire' || parts[2] !== 'analysis') {
+      return {
+        projectNumber: '',
+        projectName: '',
+        wireNumber: parseLegacyWireNumber(base)
+      };
+    }
+
+    if (!looksLikeDateSegment(parts, parts.length - 6)) {
+      return {
+        projectNumber: '',
+        projectName: '',
+        wireNumber: parseLegacyWireNumber(base)
+      };
+    }
+
+    var middle = parts.slice(3, -6);
+    if (middle.length >= 1 && middle[middle.length - 1] === 'project') {
+      middle = middle.slice(0, -1);
+      var projectNumber = '';
+      var projectName = '';
+      var idx = 0;
+      if (middle.length > 0 && /^\d{4,6}$/.test(middle[0])) {
+        projectNumber = middle[0];
+        idx = 1;
+      }
+      if (middle.length > idx) {
+        projectName = middle.slice(idx).join('-');
+      }
+      return { projectNumber: projectNumber, projectName: projectName, wireNumber: '' };
+    }
+
+    if (middle.length >= 2 && middle[middle.length - 2].toUpperCase() === 'AWG') {
+      middle = middle.slice(0, -2);
+    }
+
+    if (middle.length === 0) {
+      return empty;
+    }
+
+    var projectNumberOut = '';
+    var projectNameOut = '';
+    var wireNumberOut = '';
+    var startIdx = 0;
+
+    if (/^\d{4,6}$/.test(middle[0])) {
+      projectNumberOut = middle[0];
+      startIdx = 1;
+    }
+
+    var tail = middle.slice(startIdx);
+    if (tail.length >= 2) {
+      wireNumberOut = normalizeWireNumber(tail[tail.length - 1]);
+      projectNameOut = tail.slice(0, -1).join('-');
+    } else if (tail.length === 1) {
+      if (looksLikeWireToken(tail[0])) {
+        wireNumberOut = normalizeWireNumber(tail[0]);
+      } else {
+        projectNameOut = tail[0];
+      }
+    }
+
+    return {
+      projectNumber: projectNumberOut,
+      projectName: projectNameOut,
+      wireNumber: wireNumberOut
+    };
+  }
+
+  function parseWireNumberFromFilename(filename) {
+    return parseExportFilenameMetadata(filename).wireNumber;
+  }
+
+  function buildExportFilename(snapshot, meta) {
+    meta = meta || {};
+    snapshot = snapshot || {};
+    var parts = ['power-wire-analysis'];
+    var projectNumber = normalizeProjectNumber(
+      meta.projectNumber != null ? meta.projectNumber : snapshot.projectNumber
+    );
+    var projectName = sanitizeFilename(
+      meta.projectName != null ? meta.projectName : snapshot.projectName
+    );
+    var wireNumber = normalizeWireNumber(
+      meta.wireNumber != null ? meta.wireNumber : snapshot.wireNumber
+    );
+    if (projectNumber) {
+      parts.push(sanitizeFilename(projectNumber));
+    }
+    if (projectName) {
+      parts.push(projectName);
+    }
+    if (wireNumber) {
+      parts.push(sanitizeFilename(wireNumber));
+    }
+    if (meta.awgLabels && meta.awgLabels.length === 1) {
+      parts.push('AWG-' + sanitizeFilename(meta.awgLabels[0]));
+    }
+    var when = formatExportTimestamp(meta.exportedAt || snapshot.exportedAt);
+    parts.push(when.date);
+    parts.push(when.time);
+    var ext = String(meta.extension || 'xlsx').replace(/^\./, '');
+    return parts.join('-') + '.' + ext;
+  }
+
+  function buildProjectReportFilename(snapshot, meta) {
+    meta = meta || {};
+    snapshot = snapshot || {};
+    var parts = ['power-wire-analysis'];
+    var projectNumber = normalizeProjectNumber(
+      meta.projectNumber != null ? meta.projectNumber : snapshot.projectNumber
+    );
+    var projectName = sanitizeFilename(
+      meta.projectName != null ? meta.projectName : snapshot.projectName
+    );
+    if (projectNumber) {
+      parts.push(sanitizeFilename(projectNumber));
+    }
+    if (projectName) {
+      parts.push(projectName);
+    } else if (!projectNumber) {
+      parts.push('project');
+    }
+    parts.push('project');
+    var when = formatExportTimestamp(meta.exportedAt || snapshot.exportedAt);
+    parts.push(when.date);
+    parts.push(when.time);
+    return parts.join('-') + '.docx';
+  }
+
+  function formatExportTimestamp(isoOrDate) {
+    var d = isoOrDate ? new Date(isoOrDate) : new Date();
+    if (isNaN(d.getTime())) {
+      d = new Date();
+    }
+    function pad(n) {
+      return String(n).padStart(2, '0');
+    }
+    return {
+      date: d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()),
+      time: pad(d.getHours()) + '-' + pad(d.getMinutes()) + '-' + pad(d.getSeconds())
+    };
+  }
+
+  function looksLikeDateSegment(parts, idx) {
+    var year = parts[idx];
+    var month = parts[idx + 1];
+    var day = parts[idx + 2];
+    return /^(19|20)\d{2}$/.test(year) && /^\d{2}$/.test(month) && /^\d{2}$/.test(day);
+  }
+
+  function parseLegacyWireNumber(base) {
+    var patterns = [
+      /(?:^|[-_\s])W(\d{1,4})\b/i,
+      /(?:^|[-_\s])wire[-_\s#]*(\d{1,4})\b/i,
+      /PWA[-_](\d{1,4})/i
+    ];
+    var i;
+    var match;
+    for (i = 0; i < patterns.length; i += 1) {
+      match = base.match(patterns[i]);
+      if (match && match[1]) {
+        return 'W' + String(parseInt(match[1], 10)).padStart(3, '0');
+      }
+    }
+    return '';
+  }
+
+  function defaultFilename(snapshot, meta) {
+    return buildExportFilename(snapshot, Object.assign({ extension: 'xlsx' }, meta || {}));
   }
 
   function downloadBlob(blob, filename) {
@@ -1298,6 +1527,12 @@
     buildWorkbookBlob: buildWorkbookBlob,
     importWorkbook: importWorkbook,
     sanitizeFilename: sanitizeFilename,
+    normalizeWireNumber: normalizeWireNumber,
+    normalizeProjectNumber: normalizeProjectNumber,
+    parseExportFilenameMetadata: parseExportFilenameMetadata,
+    parseWireNumberFromFilename: parseWireNumberFromFilename,
+    buildExportFilename: buildExportFilename,
+    buildProjectReportFilename: buildProjectReportFilename,
     defaultFilename: defaultFilename,
     downloadBlob: downloadBlob
   };

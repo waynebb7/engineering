@@ -8,12 +8,24 @@
   var canWrite = false;
 
   function parseWireId(filename) {
+    if (global.PwaWorkbook && typeof PwaWorkbook.parseExportFilenameMetadata === 'function') {
+      var metadata = PwaWorkbook.parseExportFilenameMetadata(filename);
+      if (metadata.wireNumber) {
+        return metadata.wireNumber;
+      }
+    }
+    if (global.PwaWorkbook && typeof PwaWorkbook.parseWireNumberFromFilename === 'function') {
+      var parsed = PwaWorkbook.parseWireNumberFromFilename(filename);
+      if (parsed) {
+        return parsed;
+      }
+    }
+
     var base = String(filename || '').replace(/\.xlsx$/i, '');
     var patterns = [
       /(?:^|[-_\s])W(\d{1,4})\b/i,
       /(?:^|[-_\s])wire[-_\s#]*(\d{1,4})\b/i,
-      /PWA[-_](\d{1,4})/i,
-      /(?:^|[-_\s])(\d{1,4})(?:[-_\s]|$)/
+      /PWA[-_](\d{1,4})/i
     ];
     var i;
     var match;
@@ -23,7 +35,7 @@
         return 'W' + String(parseInt(match[1], 10)).padStart(3, '0');
       }
     }
-    return base.slice(0, 32);
+    return '—';
   }
 
   function sortFiles(list) {

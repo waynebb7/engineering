@@ -766,11 +766,41 @@
     });
   }
 
+  function getWireNumber() {
+    var el = document.getElementById('pwa-wire-number');
+    return el ? el.value.trim() : '';
+  }
+
+  function getProjectNumber() {
+    var el = document.getElementById('pwa-project-number');
+    return el ? el.value.trim() : '';
+  }
+
+  function applyFilenameMetadataToFields(metadata) {
+    if (!metadata) {
+      return;
+    }
+    var projectNumberEl = document.getElementById('pwa-project-number');
+    var projectEl = document.getElementById('pwa-project-name');
+    var wireEl = document.getElementById('pwa-wire-number');
+    if (projectNumberEl && metadata.projectNumber && !getProjectNumber()) {
+      projectNumberEl.value = metadata.projectNumber;
+    }
+    if (projectEl && metadata.projectName && !projectEl.value.trim()) {
+      projectEl.value = metadata.projectName.replace(/-/g, ' ');
+    }
+    if (wireEl && metadata.wireNumber && !getWireNumber()) {
+      wireEl.value = metadata.wireNumber;
+    }
+  }
+
   function collectParameterSnapshot(form) {
     var projectEl = document.getElementById('pwa-project-name');
     return {
       exportedAt: new Date().toISOString(),
+      projectNumber: getProjectNumber(),
       projectName: projectEl ? projectEl.value.trim() : '',
+      wireNumber: getWireNumber(),
       wireType: form.elements.wireType.value,
       generatorLineVoltagePreset: form.elements.generatorLineVoltagePreset.value,
       generatorLineVoltageCustom: form.elements.generatorLineVoltageCustom.value,
@@ -874,6 +904,16 @@
     var projectEl = document.getElementById('pwa-project-name');
     if (projectEl && snapshot.projectName != null) {
       projectEl.value = snapshot.projectName;
+    }
+
+    var projectNumberEl = document.getElementById('pwa-project-number');
+    if (projectNumberEl && snapshot.projectNumber != null) {
+      projectNumberEl.value = snapshot.projectNumber;
+    }
+
+    var wireEl = document.getElementById('pwa-wire-number');
+    if (wireEl && snapshot.wireNumber != null) {
+      wireEl.value = snapshot.wireNumber;
     }
 
     if (snapshot.wireType && form.elements.wireType) {
@@ -989,18 +1029,24 @@
       var snapshot = collectParameterSnapshot(form);
       var tableRows = buildWorkbookTableRows(settings);
       var gridTitleEl = document.getElementById('pwa-grid-title');
-      PwaWorkbook.exportWorkbook(snapshot, tableRows, {
+      var exportMeta = {
         includeParameters: exportAll,
         parameterOptions: exportAll ? collectParameterOptions(form) : null,
         gridTitle: gridTitleEl ? gridTitleEl.textContent : '',
-        filename: PwaWorkbook.defaultFilename(snapshot)
-      });
-      setExportStatus(
-        exportAll
-          ? 'Exported Excel report workbook (Analysis, Parameters, and option lists).'
-          : 'Exported Excel analysis grid.',
-        'ok'
-      );
+        filename: PwaWorkbook.buildExportFilename(snapshot, {
+          awgLabels: settings.awgLabels,
+          extension: 'xlsx'
+        })
+      };
+      PwaWorkbook.exportWorkbook(snapshot, tableRows, exportMeta);
+      var statusMsg = exportAll
+        ? 'Exported Excel report workbook (Analysis, Parameters, and option lists).'
+        : 'Exported Excel analysis grid.';
+      statusMsg += ' Saved as ' + exportMeta.filename + '.';
+      if (!snapshot.wireNumber || !snapshot.projectNumber) {
+        statusMsg += ' Tip: set Project number and Wire number for clearer filenames.';
+      }
+      setExportStatus(statusMsg, 'ok');
     } catch (err) {
       setExportStatus(err && err.message ? err.message : 'Export failed.', 'error');
     }
@@ -1020,20 +1066,28 @@
 
     try {
       var snapshot = collectParameterSnapshot(form);
+      var exportSettings = getSelectedExportSettings();
       var tableRows = buildWorkbookTableRows({
         awgLabels: WIRES.map(function (wire) { return wire.label; })
       });
+      var wireNumber = getWireNumber();
       var folderState = window.PwaProjectFolder ? PwaProjectFolder.getState() : {};
-      var wireId = folderState.activeFileName
-        ? PwaProjectFolder.parseWireId(folderState.activeFileName)
-        : '';
-      PwaWordReport.exportReport(snapshot, tableRows, {
-        wireId: wireId,
+      var out = PwaWordReport.exportReport(snapshot, tableRows, {
+        wireId: wireNumber,
+        wireNumber: wireNumber,
+        awgLabels: exportSettings.awgLabels,
         sourceFilename: folderState.activeFileName || '',
         projectName: snapshot.projectName,
-        filename: PwaWordReport.defaultFilename(snapshot, '-report.docx')
+        exportedAt: snapshot.exportedAt
       });
-      setExportStatus('Exported Word report for the current wire.', 'ok');
+      var statusMsg = 'Exported Word report.';
+      if (out && out.filename) {
+        statusMsg += ' Saved as ' + out.filename + '.';
+      }
+      if (!wireNumber || !snapshot.projectNumber) {
+        statusMsg += ' Tip: set Project number and Wire number for clearer filenames.';
+      }
+      setExportStatus(statusMsg, 'ok');
     } catch (err) {
       setExportStatus(err && err.message ? err.message : 'Word export failed.', 'error');
     }
@@ -1079,13 +1133,16 @@
         if (!snapshot.projectName && savedSnapshot.projectName) {
           snapshot.projectName = savedSnapshot.projectName;
         }
+        if (!snapshot.projectNumber && savedSnapshot.projectNumber) {
+          snapshot.projectNumber = savedSnapshot.projectNumber;
+        }
         tableRows = buildWorkbookTableRows({
           awgLabels: WIRES.map(function (wire) { return wire.label; })
         });
         sections.push({
           snapshot: snapshot,
           tableRows: tableRows,
-          wireId: entry.wireId,
+          wireId: snapshot.wireNumber || entry.wireId,
           filename: entry.name
         });
       } catch (err) {
@@ -1107,14 +1164,17 @@
 
     try {
       var projectName = savedSnapshot.projectName || folderState.folderLabel;
-      PwaWordReport.exportProjectReport(sections, {
+      var out = PwaWordReport.exportProjectReport(sections, {
+        projectNumber: savedSnapshot.projectNumber,
         projectName: projectName,
-        projectTitle: 'Project / system: ' + projectName,
-        exportedAt: new Date().toISOString(),
-        filename: PwaWordReport.defaultFilename({ projectName: projectName }, '-project-report.docx')
+        projectTitle: buildProjectReportTitle(savedSnapshot, projectName),
+        exportedAt: new Date().toISOString()
       });
       var msg = 'Exported Word project report (' + sections.length + ' wire' +
         (sections.length === 1 ? '' : 's') + ').';
+      if (out && out.filename) {
+        msg += ' Saved as ' + out.filename + '.';
+      }
       if (errors.length) {
         msg += ' Skipped: ' + errors.join('; ');
       }
@@ -1152,9 +1212,12 @@
     var html = '';
     state.files.forEach(function (fileEntry) {
       var activeClass = fileEntry.name === state.activeFileName ? ' pwa-folder__row--active' : '';
+      var wireLabel = fileEntry.name === state.activeFileName && getWireNumber()
+        ? getWireNumber()
+        : (fileEntry.wireId || '—');
       html +=
         '<tr class="pwa-folder__row' + activeClass + '">' +
-          '<td class="pwa-folder__wire">' + escapeHtml(fileEntry.wireId) + '</td>' +
+          '<td class="pwa-folder__wire">' + escapeHtml(wireLabel) + '</td>' +
           '<td class="pwa-folder__name">' + escapeHtml(fileEntry.name) + '</td>' +
           '<td class="pwa-folder__actions">' +
             '<button type="button" class="btn pwa-folder__load" data-filename="' +
@@ -1277,6 +1340,32 @@
         fallbackInput.value = '';
       });
     }
+
+    var wireNumberEl = document.getElementById('pwa-wire-number');
+    var projectNumberEl = document.getElementById('pwa-project-number');
+    var projectNameEl = document.getElementById('pwa-project-name');
+    if (wireNumberEl) {
+      wireNumberEl.addEventListener('input', renderProjectFileList);
+    }
+    if (projectNumberEl) {
+      projectNumberEl.addEventListener('input', renderProjectFileList);
+    }
+    if (projectNameEl) {
+      projectNameEl.addEventListener('input', renderProjectFileList);
+    }
+  }
+
+  function buildProjectReportTitle(snapshot, fallbackName) {
+    var parts = [];
+    if (snapshot && snapshot.projectNumber) {
+      parts.push('Project ' + snapshot.projectNumber);
+    }
+    if (snapshot && snapshot.projectName) {
+      parts.push(snapshot.projectName);
+    } else if (fallbackName) {
+      parts.push(fallbackName);
+    }
+    return parts.length ? parts.join(' — ') : 'Power wire analysis project';
   }
 
   function importWorkbookFromFile(file) {
@@ -1290,6 +1379,10 @@
 
     PwaWorkbook.importWorkbook(file).then(function (result) {
       applyParameterSnapshot(form, result.parameters);
+      if (window.PwaWorkbook && PwaWorkbook.parseExportFilenameMetadata && file.name) {
+        applyFilenameMetadataToFields(PwaWorkbook.parseExportFilenameMetadata(file.name));
+      }
+      renderProjectFileList();
       setExportStatus('Imported project settings from Excel.', 'ok');
     }).catch(function (err) {
       var message = err && err.message ? err.message : 'Import failed.';

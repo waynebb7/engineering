@@ -219,13 +219,17 @@
 
   function buildSectionBody(section, meta) {
     var snapshot = section.snapshot || {};
-    var project = snapshot.projectName || meta.projectName || 'Unnamed project / circuit';
-    var wireId = section.wireId || meta.wireId || '';
+    var projectNumber = snapshot.projectNumber || meta.projectNumber || '';
+    var project = snapshot.projectName || meta.projectName || 'Unnamed project / system';
+    var wireId = section.wireId || meta.wireId || snapshot.wireNumber || '';
     var dateStr = formatReportDate(snapshot.exportedAt || meta.exportedAt);
     var parts = [];
 
     if (section.sectionTitle) {
       parts.push(paragraph(section.sectionTitle, 'Heading1'));
+    }
+    if (projectNumber) {
+      parts.push(paragraph('Project number: ' + projectNumber, 'BodyText'));
     }
     parts.push(paragraph('Project / system: ' + project, 'BodyText'));
     if (wireId) {
@@ -253,7 +257,7 @@
     var body = [];
     body.push(paragraph(REPORT_TITLE, 'Title'));
     body.push(paragraph(
-      meta.projectTitle || ('Project / system: ' + (meta.projectName || 'Power wire analysis')),
+      meta.projectTitle || buildDocumentSubtitle(meta, sections),
       'Subtitle'
     ));
     body.push(paragraph('Document generated: ' + formatReportDate(meta.exportedAt), 'BodyText'));
@@ -281,6 +285,20 @@
     return '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
       '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">' +
       '<w:body>' + body.join('') + '</w:body></w:document>';
+  }
+
+  function buildDocumentSubtitle(meta, sections) {
+    var snapshot = sections && sections[0] ? sections[0].snapshot : {};
+    var parts = [];
+    var projectNumber = meta.projectNumber || (snapshot && snapshot.projectNumber);
+    var projectName = meta.projectName || (snapshot && snapshot.projectName);
+    if (projectNumber) {
+      parts.push('Project ' + projectNumber);
+    }
+    if (projectName) {
+      parts.push(projectName);
+    }
+    return parts.length ? parts.join(' — ') : 'Power wire analysis';
   }
 
   function buildStylesXml() {
@@ -365,20 +383,49 @@
     return base || 'power-wire-analysis';
   }
 
-  function defaultFilename(snapshot, suffix) {
+  function defaultFilename(snapshot, meta) {
+    meta = meta || {};
+    if (typeof meta === 'string') {
+      meta = { extension: meta.replace(/^[-.]/, '').replace(/^report\.docx$/, 'docx') };
+    }
+    if (global.PwaWorkbook && PwaWorkbook.buildExportFilename) {
+      return PwaWorkbook.buildExportFilename(snapshot, Object.assign({ extension: 'docx' }, meta));
+    }
     var date = new Date().toISOString().slice(0, 10);
-    return sanitizeFilename(snapshot.projectName) + '-PWA-' + date + suffix;
+    return sanitizeFilename(snapshot.projectName) + '-PWA-' + date + '.docx';
+  }
+
+  function resolveReportFilename(sections, meta) {
+    meta = meta || {};
+    if (meta.filename) {
+      return meta.filename;
+    }
+    if (global.PwaWorkbook) {
+      if (sections.length > 1 && PwaWorkbook.buildProjectReportFilename) {
+        return PwaWorkbook.buildProjectReportFilename(sections[0] && sections[0].snapshot, meta);
+      }
+      if (PwaWorkbook.buildExportFilename) {
+        return PwaWorkbook.buildExportFilename(sections[0] && sections[0].snapshot, {
+          wireNumber: meta.wireNumber,
+          projectNumber: meta.projectNumber,
+          projectName: meta.projectName,
+          awgLabels: meta.awgLabels,
+          exportedAt: meta.exportedAt,
+          extension: 'docx'
+        });
+      }
+    }
+    return defaultFilename(sections[0] && sections[0].snapshot, meta);
   }
 
   function buildReportBlob(sections, meta) {
     meta = meta || {};
     var zip = buildZip(buildDocxFiles(sections, meta));
-    var suffix = sections.length > 1 ? '-project-report.docx' : '-report.docx';
     return {
       blob: new Blob([zip], {
         type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
       }),
-      filename: meta.filename || defaultFilename(sections[0] && sections[0].snapshot, suffix)
+      filename: resolveReportFilename(sections, meta)
     };
   }
 

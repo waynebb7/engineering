@@ -1614,6 +1614,27 @@ p {
   background: #fff;
 }
 
+.pwa-export__ident-row {
+  display: grid;
+  grid-template-columns: 7rem minmax(0, 1fr) 9rem;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.pwa-export__ident-row .pwa-export__project {
+  margin-bottom: 0;
+}
+
+.pwa-export__hint--filename {
+  margin-top: 0;
+  margin-bottom: 14px;
+}
+
+.pwa-export__hint--filename code {
+  font-size: 0.78rem;
+  word-break: break-all;
+}
+
 .pwa-export__btn-row {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2110,6 +2131,10 @@ p {
 
   .pwa-params {
     position: static;
+  }
+
+  .pwa-export__ident-row {
+    grid-template-columns: 1fr;
   }
 
   .pwa-export__btn-row,
