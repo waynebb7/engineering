@@ -385,6 +385,65 @@
     return rows;
   }
 
+  function buildTraceabilityRows(traceability, colCount) {
+    if (!traceability || !traceability.rows || !traceability.rows.length) {
+      return [];
+    }
+    colCount = colCount || 3;
+    var rows = [
+      { spacer: true, height: 8 },
+      {
+        cells: [{ text: 'STANDARDS TRACEABILITY MATRIX', span: colCount }],
+        styleKey: 'sectionHeader',
+        height: 20
+      },
+      {
+        cells: [{ text: traceability.intro, styleKey: 'paramNotes', span: colCount }]
+      },
+      {
+        cells: [{ text: traceability.warning, styleKey: 'paramNotes', span: colCount }]
+      },
+      {
+        cells: [
+          { text: 'Function', styleKey: 'tableHeader' },
+          { text: 'What the tool does', styleKey: 'tableHeader' },
+          { text: 'Primary reference', styleKey: 'tableHeader' },
+          { text: 'Type / Level', styleKey: 'tableHeader' },
+          { text: 'Evidence / user action', styleKey: 'tableHeader', span: Math.max(colCount - 4, 1) }
+        ],
+        height: 18
+      }
+    ];
+
+    traceability.rows.forEach(function (item) {
+      rows.push({
+        cells: [
+          { text: item.functionName, styleKey: 'tableLabel' },
+          { text: item.toolAction, styleKey: 'tableData' },
+          { text: item.primaryReference, styleKey: 'tableData' },
+          {
+            text: item.referenceType + ' / ' + item.traceabilityLevel,
+            styleKey: 'tableData'
+          },
+          {
+            text: item.evidenceNotes + ' | Action: ' + item.userAction,
+            styleKey: 'tableData',
+            span: Math.max(colCount - 4, 1)
+          }
+        ]
+      });
+    });
+
+    rows.push({
+      cells: [{ text: traceability.legend, styleKey: 'paramNotes', span: colCount }]
+    });
+    rows.push({
+      cells: [{ text: traceability.legendDisclaimer, styleKey: 'paramNotes', span: colCount }]
+    });
+
+    return rows;
+  }
+
   function buildTransientThermalRows(transientThermal, colCount) {
     if (!transientThermal || !transientThermal.enabled || !transientThermal.summary) {
       return [];
@@ -1167,6 +1226,8 @@
     ]    ).concat(
       buildEngineeringAssessmentRows(meta.engineeringAssessment, colCount)
     ).concat(
+      buildTraceabilityRows(meta.standardsTraceability, colCount)
+    ).concat(
       buildAdvancedThermalRows(meta.advancedThermal, colCount)
     ).concat(
       buildTransientThermalRows(meta.transientThermal, colCount)
@@ -1499,6 +1560,7 @@
       gridTitle: meta.gridTitle,
       projectName: snapshot.projectName,
       engineeringAssessment: meta.engineeringAssessment,
+      standardsTraceability: meta.standardsTraceability,
       advancedThermal: meta.advancedThermal,
       transientThermal: meta.transientThermal
     });
@@ -2021,6 +2083,7 @@
     buildTemperatureAssessmentNote: buildTemperatureAssessmentNote,
     buildEngineeringAssessmentRows: buildEngineeringAssessmentRows,
     buildAdvancedThermalRows: buildAdvancedThermalRows,
+    buildTraceabilityRows: buildTraceabilityRows,
     buildTransientThermalRows: buildTransientThermalRows,
     getGlobalDisclaimer: getGlobalDisclaimer
   };

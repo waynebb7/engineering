@@ -1711,6 +1711,7 @@
         engineeringAssessment: buildInstallationAssessment(readParams(form), lastGridColumns),
         advancedThermal: window.PwaAdvancedThermalUI ? PwaAdvancedThermalUI.getExportData() : null,
         transientThermal: window.PwaTransientThermalUI ? PwaTransientThermalUI.getExportData() : null,
+        standardsTraceability: window.PwaStandardsTraceability ? PwaStandardsTraceability.getExportData() : null,
         filename: PwaWorkbook.buildExportFilename(snapshot, {
           awgLabels: settings.awgLabels,
           extension: 'xlsx',
@@ -1774,7 +1775,8 @@
         filename: folderState.activeFileName || '',
         engineeringAssessment: buildInstallationAssessment(readParams(form), lastGridColumns),
         advancedThermal: window.PwaAdvancedThermalUI ? PwaAdvancedThermalUI.getExportData() : null,
-        transientThermal: window.PwaTransientThermalUI ? PwaTransientThermalUI.getExportData() : null
+        transientThermal: window.PwaTransientThermalUI ? PwaTransientThermalUI.getExportData() : null,
+        standardsTraceability: window.PwaStandardsTraceability ? PwaStandardsTraceability.getExportData() : null
       }], {
         wireId: wireNumber,
         wireNumber: wireNumber,
@@ -1857,7 +1859,8 @@
           filename: entry.name,
           engineeringAssessment: buildInstallationAssessment(readParams(form), lastGridColumns),
           advancedThermal: window.PwaAdvancedThermalUI ? PwaAdvancedThermalUI.getExportData() : null,
-          transientThermal: window.PwaTransientThermalUI ? PwaTransientThermalUI.getExportData() : null
+          transientThermal: window.PwaTransientThermalUI ? PwaTransientThermalUI.getExportData() : null,
+          standardsTraceability: window.PwaStandardsTraceability ? PwaStandardsTraceability.getExportData() : null
         });
       } catch (err) {
         errors.push(entry.name + ': ' + (err && err.message ? err.message : 'failed'));

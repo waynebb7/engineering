@@ -5,16 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
   <link rel="canonical" href="https://waynebb7.github.io/engineering/calculators/aerospace-electrical-design/power-wire-analysis.html">
-  <link rel="stylesheet" href="../../assets/css/corporate.css?v=2.1.0">
+  <link rel="stylesheet" href="../../assets/css/corporate.css?v=2.1.1">
   <script src="../../assets/js/site-layout.js" defer></script>
   <script src="../../assets/js/pwa-bundle-derating.js" defer></script>
   <script src="../../assets/js/pwa-altitude-derating.js" defer></script>
   <script src="../../assets/js/pwa-free-air.js" defer></script>
   <script src="../../assets/js/pwa-wire-catalog.js" defer></script>
   <script src="../../assets/js/pwa-conductor-tr-controls.js" defer></script>
-  <script src="../../assets/js/pwa-workbook.js?v=2.0.3" defer></script>
+  <script src="../../assets/js/pwa-workbook.js?v=2.0.4" defer></script>
   <script src="../../assets/js/pwa-project-folder.js?v=2.0.0" defer></script>
-  <script src="../../assets/js/pwa-word-report.js?v=2.0.3" defer></script>
+  <script src="../../assets/js/pwa-word-report.js?v=2.0.4" defer></script>
   <script src="../../assets/js/pwa-info-help.js?v=1.0.2" defer></script>
   <script src="../../assets/js/pwa-advanced-thermal-help.js?v=1.0.0" defer></script>
   <script src="../../assets/js/pwa-advanced-thermal.js?v=1.1.1" defer></script>
@@ -22,7 +22,8 @@
   <script src="../../assets/js/pwa-transient-thermal.js?v=1.0.0" defer></script>
   <script src="../../assets/js/pwa-transient-thermal-help.js?v=1.0.1" defer></script>
   <script src="../../assets/js/pwa-transient-thermal-ui.js?v=1.1.1" defer></script>
-  <script src="../../assets/js/pwa-grid-calculator.js?v=2.0.3" defer></script>
+  <script src="../../assets/js/pwa-standards-traceability.js?v=1.0.0" defer></script>
+  <script src="../../assets/js/pwa-grid-calculator.js?v=2.0.4" defer></script>
   <script type="text/javascript" async
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
   <title>Power Wire Analysis | Engineering Knowledge</title>
@@ -721,6 +722,92 @@
             </div>
           </div>
         </div>
+
+        <details class="pwa-standards-traceability" id="pwa-standards-traceability">
+          <summary class="pwa-standards-traceability__summary">
+            <span class="pwa-standards-traceability__title">Standards Traceability Matrix</span>
+            <span class="pwa-standards-traceability__subtitle">Function-to-Standard Mapping for Aerospace Wire Analysis</span>
+          </summary>
+          <div class="pwa-standards-traceability__body">
+            <p class="pwa-standards-traceability__intro">
+              This matrix maps each major calculator function, assumption and output to the relevant aerospace standard, advisory document or engineering basis. It is intended to improve reviewability, auditability and Design Authority traceability. It does not replace the applicable certification basis or formal compliance documentation.
+            </p>
+            <p class="pwa-standards-traceability__warning" role="note">
+              Standards references are provided for engineering traceability. Clause applicability depends on aircraft category, modification status, certification basis, customer requirements and Design Authority interpretation.
+            </p>
+
+            <div class="pwa-trace-summary" id="pwa-trace-summary-cards" aria-live="polite"></div>
+
+            <div class="pwa-trace-filters" aria-label="Standards traceability filters">
+              <label class="pwa-trace-filter">
+                Traceability level
+                <select id="pwa-trace-filter-level">
+                  <option value="all" selected>All</option>
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                  <option value="D">D</option>
+                  <option value="E">E</option>
+                </select>
+              </label>
+              <label class="pwa-trace-filter">
+                Reference type
+                <select id="pwa-trace-filter-type">
+                  <option value="all" selected>All</option>
+                  <option value="Standard">Standard</option>
+                  <option value="Advisory Material">Advisory Material</option>
+                  <option value="Engineering Model">Engineering Model</option>
+                  <option value="Project Assumption">Project Assumption</option>
+                  <option value="Documentation Control">Documentation Control</option>
+                </select>
+              </label>
+              <label class="pwa-trace-filter pwa-trace-filter--search">
+                Search
+                <input type="search" id="pwa-trace-search" placeholder="Function, reference, notes, action…" autocomplete="off">
+              </label>
+            </div>
+
+            <div class="pwa-trace-legend">
+              <h3 class="pwa-trace-legend__title">Traceability legend</h3>
+              <ul class="pwa-trace-legend__list">
+                <li><span class="pwa-trace-badge pwa-trace-badge--level-a">A</span> Directly standards-based</li>
+                <li><span class="pwa-trace-badge pwa-trace-badge--level-b">B</span> Derived from recognised aerospace practice</li>
+                <li><span class="pwa-trace-badge pwa-trace-badge--level-c">C</span> Engineering model / physics-based estimate</li>
+                <li><span class="pwa-trace-badge pwa-trace-badge--level-d">D</span> Conservative assumption requiring Design Authority acceptance</li>
+                <li><span class="pwa-trace-badge pwa-trace-badge--level-e">E</span> Requires test, inspection or project-specific validation</li>
+              </ul>
+              <p class="pwa-trace-legend__note">
+                This traceability matrix supports engineering review and auditability. It is not a declaration of compliance unless accepted under the applicable aircraft certification basis and Design Authority process.
+              </p>
+            </div>
+
+            <p class="pwa-trace-empty" id="pwa-trace-empty" hidden>No traceability items match the current filters.</p>
+
+            <div class="pwa-trace-table-wrap">
+              <table class="pwa-trace-table" aria-describedby="pwa-trace-filter-level">
+                <thead>
+                  <tr>
+                    <th scope="col">Calculator function</th>
+                    <th scope="col">What the tool does</th>
+                    <th scope="col">Primary reference</th>
+                    <th scope="col">Reference type</th>
+                    <th scope="col">Traceability level</th>
+                    <th scope="col">Evidence / notes</th>
+                    <th scope="col">User action required</th>
+                  </tr>
+                </thead>
+                <tbody id="pwa-trace-table-body"></tbody>
+              </table>
+            </div>
+
+            <div class="pwa-trace-cards" id="pwa-trace-cards"></div>
+
+            <label class="pwa-trace-report-option">
+              <input type="checkbox" id="pwa-trace-include-report" checked>
+              Include Standards Traceability Matrix in report
+            </label>
+          </div>
+        </details>
 
         <details class="pwa-advanced-thermal" id="pwa-advanced-thermal">
           <summary class="pwa-advanced-thermal__summary">

@@ -446,6 +446,57 @@
     return buildTable(rows, [labelWidth, CONTENT_WIDTH - labelWidth]);
   }
 
+  function buildTraceabilityTable(traceability) {
+    if (!traceability || !traceability.rows || !traceability.rows.length) {
+      return '';
+    }
+    var labelWidth = Math.floor(CONTENT_WIDTH * 0.22);
+    var rows = [{
+      header: true,
+      cells: ['Calculator function', 'What the tool does', 'Primary reference', 'Type', 'Level', 'Evidence / notes', 'User action']
+    }];
+
+    traceability.rows.forEach(function (item) {
+      rows.push({
+        cells: [
+          item.functionName,
+          item.toolAction,
+          item.primaryReference,
+          item.referenceType,
+          item.traceabilityLevel,
+          item.evidenceNotes,
+          item.userAction
+        ]
+      });
+    });
+
+    var tableWidth = CONTENT_WIDTH;
+    var colWidths = [
+      Math.floor(tableWidth * 0.14),
+      Math.floor(tableWidth * 0.16),
+      Math.floor(tableWidth * 0.16),
+      Math.floor(tableWidth * 0.1),
+      Math.floor(tableWidth * 0.06),
+      Math.floor(tableWidth * 0.19),
+      tableWidth -
+        Math.floor(tableWidth * 0.14) -
+        Math.floor(tableWidth * 0.16) -
+        Math.floor(tableWidth * 0.16) -
+        Math.floor(tableWidth * 0.1) -
+        Math.floor(tableWidth * 0.06) -
+        Math.floor(tableWidth * 0.19)
+    ];
+
+    var parts = [];
+    parts.push(paragraph(traceability.intro, 'BodyText', { spacing: '80' }));
+    parts.push(paragraph(traceability.warning, 'BodyText', { spacing: '80' }));
+    parts.push(buildTable(rows, colWidths));
+    parts.push(paragraph('Traceability legend', 'Heading3', { spacing: '80' }));
+    parts.push(paragraph(traceability.legend.replace(/\n/g, ' '), 'BodyText', { spacing: '80' }));
+    parts.push(paragraph(traceability.legendDisclaimer, 'Disclaimer', { spacing: '80' }));
+    return parts.join('');
+  }
+
   function buildAdvancedThermalTable(advancedThermal) {
     if (!advancedThermal || !advancedThermal.enabled) {
       return '';
@@ -611,16 +662,20 @@
     parts.push(buildEngineeringAssessmentTable(section.engineeringAssessment));
     parts.push(paragraph('3. AWG analysis grid', 'Heading2', { spacing: '80' }));
     parts.push(buildAnalysisTable(section.tableRows));
+
+    var sectionNum = 4;
+    if (section.standardsTraceability) {
+      parts.push(paragraph(sectionNum + '. Standards Traceability Matrix', 'Heading2', { spacing: '80' }));
+      parts.push(buildTraceabilityTable(section.standardsTraceability));
+      sectionNum += 1;
+    }
     if (section.advancedThermal) {
-      parts.push(paragraph('4. Advanced Heat-Balance Model', 'Heading2', { spacing: '80' }));
+      parts.push(paragraph(sectionNum + '. Advanced Heat-Balance Model', 'Heading2', { spacing: '80' }));
       parts.push(buildAdvancedThermalTable(section.advancedThermal));
+      sectionNum += 1;
     }
     if (section.transientThermal) {
-      parts.push(paragraph(
-        section.advancedThermal ? '5. Transient thermal analysis' : '4. Transient thermal analysis',
-        'Heading2',
-        { spacing: '80' }
-      ));
+      parts.push(paragraph(sectionNum + '. Transient thermal analysis', 'Heading2', { spacing: '80' }));
       parts.push(buildTransientThermalTable(section.transientThermal));
     }
     var legend = global.PwaWorkbook && PwaWorkbook.buildTemperatureStatusLegend
