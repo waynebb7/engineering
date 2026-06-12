@@ -385,6 +385,84 @@
     return rows;
   }
 
+  function buildConfidenceRows(confidenceRating, colCount) {
+    if (!confidenceRating || !confidenceRating.rows || !confidenceRating.rows.length) {
+      return [];
+    }
+    colCount = colCount || 3;
+    var rows = [
+      { spacer: true, height: 8 },
+      {
+        cells: [{ text: 'CONFIDENCE RATING SYSTEM', span: colCount }],
+        styleKey: 'sectionHeader',
+        height: 20
+      },
+      {
+        cells: [{ text: confidenceRating.intro, styleKey: 'paramNotes', span: colCount }]
+      },
+      {
+        cells: [{ text: confidenceRating.crossReference, styleKey: 'paramNotes', span: colCount }]
+      },
+      {
+        cells: [{
+          text: 'Overall classification: ' + confidenceRating.overallClassification +
+            ' | Lowest rating: ' + confidenceRating.lowestRating,
+          styleKey: 'paramNotes',
+          span: colCount
+        }]
+      }
+    ];
+
+    if (confidenceRating.warnings && confidenceRating.warnings.length) {
+      confidenceRating.warnings.forEach(function (warning) {
+        rows.push({
+          cells: [{ text: warning, styleKey: 'paramNotes', span: colCount }]
+        });
+      });
+    }
+
+    rows.push({
+      cells: [
+        { text: 'Item', styleKey: 'tableHeader' },
+        { text: 'Category / value', styleKey: 'tableHeader' },
+        { text: 'Evidence / rating', styleKey: 'tableHeader' },
+        { text: 'Basis / risk / action', styleKey: 'tableHeader', span: Math.max(colCount - 3, 1) }
+      ],
+      height: 18
+    });
+
+    confidenceRating.rows.forEach(function (item) {
+      var overrideNote = item.manuallyOverridden ? ' (manual override)' : '';
+      rows.push({
+        cells: [
+          { text: item.item, styleKey: 'tableLabel' },
+          {
+            text: item.category + ' | ' + item.currentValue,
+            styleKey: 'tableData'
+          },
+          {
+            text: item.evidenceSource + ' / ' + item.confidenceRating + overrideNote,
+            styleKey: 'tableData'
+          },
+          {
+            text: item.basis + ' | Risk: ' + item.riskIfIncorrect + ' | Action: ' + item.recommendedAction,
+            styleKey: 'tableData',
+            span: Math.max(colCount - 3, 1)
+          }
+        ]
+      });
+    });
+
+    rows.push({
+      cells: [{ text: confidenceRating.legend, styleKey: 'paramNotes', span: colCount }]
+    });
+    rows.push({
+      cells: [{ text: confidenceRating.disclaimer, styleKey: 'paramNotes', span: colCount }]
+    });
+
+    return rows;
+  }
+
   function buildTraceabilityRows(traceability, colCount) {
     if (!traceability || !traceability.rows || !traceability.rows.length) {
       return [];
@@ -1228,6 +1306,8 @@
     ).concat(
       buildTraceabilityRows(meta.standardsTraceability, colCount)
     ).concat(
+      buildConfidenceRows(meta.confidenceRating, colCount)
+    ).concat(
       buildAdvancedThermalRows(meta.advancedThermal, colCount)
     ).concat(
       buildTransientThermalRows(meta.transientThermal, colCount)
@@ -1561,6 +1641,7 @@
       projectName: snapshot.projectName,
       engineeringAssessment: meta.engineeringAssessment,
       standardsTraceability: meta.standardsTraceability,
+      confidenceRating: meta.confidenceRating,
       advancedThermal: meta.advancedThermal,
       transientThermal: meta.transientThermal
     });
@@ -2084,6 +2165,7 @@
     buildEngineeringAssessmentRows: buildEngineeringAssessmentRows,
     buildAdvancedThermalRows: buildAdvancedThermalRows,
     buildTraceabilityRows: buildTraceabilityRows,
+    buildConfidenceRows: buildConfidenceRows,
     buildTransientThermalRows: buildTransientThermalRows,
     getGlobalDisclaimer: getGlobalDisclaimer
   };

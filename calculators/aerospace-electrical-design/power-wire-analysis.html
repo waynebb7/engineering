@@ -5,16 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
   <link rel="canonical" href="https://waynebb7.github.io/engineering/calculators/aerospace-electrical-design/power-wire-analysis.html">
-  <link rel="stylesheet" href="../../assets/css/corporate.css?v=2.1.1">
+  <link rel="stylesheet" href="../../assets/css/corporate.css?v=2.1.2">
   <script src="../../assets/js/site-layout.js" defer></script>
   <script src="../../assets/js/pwa-bundle-derating.js" defer></script>
   <script src="../../assets/js/pwa-altitude-derating.js" defer></script>
   <script src="../../assets/js/pwa-free-air.js" defer></script>
   <script src="../../assets/js/pwa-wire-catalog.js" defer></script>
   <script src="../../assets/js/pwa-conductor-tr-controls.js" defer></script>
-  <script src="../../assets/js/pwa-workbook.js?v=2.0.4" defer></script>
+  <script src="../../assets/js/pwa-workbook.js?v=2.0.5" defer></script>
   <script src="../../assets/js/pwa-project-folder.js?v=2.0.0" defer></script>
-  <script src="../../assets/js/pwa-word-report.js?v=2.0.4" defer></script>
+  <script src="../../assets/js/pwa-word-report.js?v=2.0.5" defer></script>
   <script src="../../assets/js/pwa-info-help.js?v=1.0.2" defer></script>
   <script src="../../assets/js/pwa-advanced-thermal-help.js?v=1.0.0" defer></script>
   <script src="../../assets/js/pwa-advanced-thermal.js?v=1.1.1" defer></script>
@@ -23,7 +23,8 @@
   <script src="../../assets/js/pwa-transient-thermal-help.js?v=1.0.1" defer></script>
   <script src="../../assets/js/pwa-transient-thermal-ui.js?v=1.1.1" defer></script>
   <script src="../../assets/js/pwa-standards-traceability.js?v=1.0.1" defer></script>
-  <script src="../../assets/js/pwa-grid-calculator.js?v=2.0.4" defer></script>
+  <script src="../../assets/js/pwa-confidence-rating.js?v=1.0.0" defer></script>
+  <script src="../../assets/js/pwa-grid-calculator.js?v=2.0.5" defer></script>
   <script type="text/javascript" async
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
   <title>Power Wire Analysis | Engineering Knowledge</title>
@@ -1112,6 +1113,118 @@
               <input type="checkbox" id="pwa-trace-include-report" checked>
               Include Standards Traceability Matrix in report
             </label>
+          </div>
+        </details>
+
+        <details class="pwa-confidence-rating" id="pwa-confidence-rating">
+          <summary class="pwa-confidence-rating__summary">
+            <span class="pwa-confidence-rating__title">Confidence Rating System</span>
+            <span class="pwa-confidence-rating__subtitle">Evidence Strength and Assumption Quality Assessment</span>
+          </summary>
+          <div class="pwa-confidence-rating__body">
+            <p class="pwa-confidence-rating__intro">
+              This section rates the confidence level of the calculator inputs, assumptions and outputs. It helps identify which results are directly supported by standards, which are derived from recognised engineering practice, and which require validation or Design Authority acceptance.
+            </p>
+            <p class="pwa-confidence-rating__crossref" role="note">
+              Confidence ratings complement the Standards Traceability Matrix. The traceability matrix identifies the reference basis; this section identifies evidence strength and assumption quality.
+            </p>
+
+            <div class="pwa-conf-overall" id="pwa-conf-overall" aria-live="polite"></div>
+            <div class="pwa-conf-summary" id="pwa-conf-summary" aria-live="polite"></div>
+
+            <p class="pwa-conf-warning pwa-conf-warning--low" id="pwa-conf-warning-low" hidden role="alert">
+              Some inputs or assumptions have low confidence. Results may be suitable for preliminary assessment only until evidence is improved.
+            </p>
+            <p class="pwa-conf-warning pwa-conf-warning--safety" id="pwa-conf-warning-safety" hidden role="alert">
+              Safety-critical inputs or assumptions require review before formal engineering use.
+            </p>
+
+            <div class="pwa-conf-filters" aria-label="Confidence rating filters">
+              <label class="pwa-conf-filter">
+                Category
+                <select id="pwa-conf-filter-category">
+                  <option value="all" selected>All</option>
+                  <option value="Input">Input</option>
+                  <option value="Assumption">Assumption</option>
+                  <option value="Calculation">Calculation</option>
+                  <option value="Output">Output</option>
+                  <option value="Advanced Thermal">Advanced Thermal</option>
+                  <option value="Transient Thermal">Transient Thermal</option>
+                  <option value="Documentation">Documentation</option>
+                </select>
+              </label>
+              <label class="pwa-conf-filter">
+                Confidence rating
+                <select id="pwa-conf-filter-rating">
+                  <option value="all" selected>All</option>
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                  <option value="D">D</option>
+                  <option value="E">E</option>
+                </select>
+              </label>
+              <label class="pwa-conf-filter">
+                Evidence source
+                <select id="pwa-conf-filter-evidence">
+                  <option value="all" selected>All</option>
+                  <option value="User Estimate">User Estimate</option>
+                  <option value="Conservative Default">Conservative Default</option>
+                  <option value="Engineering Calculation">Engineering Calculation</option>
+                  <option value="Manufacturer Datasheet">Manufacturer Datasheet</option>
+                  <option value="Approved Load Analysis">Approved Load Analysis</option>
+                  <option value="Aircraft Zone Data">Aircraft Zone Data</option>
+                  <option value="Test / Measured Data">Test / Measured Data</option>
+                  <option value="Design Authority Approved">Design Authority Approved</option>
+                </select>
+              </label>
+              <label class="pwa-conf-filter pwa-conf-filter--search">
+                Search
+                <input type="search" id="pwa-conf-search" placeholder="Item, basis, risk, action…" autocomplete="off">
+              </label>
+              <button type="button" class="pwa-conf-reset btn" id="pwa-conf-reset">Reset Confidence Ratings to Defaults</button>
+            </div>
+
+            <div class="pwa-conf-legend">
+              <h3 class="pwa-conf-legend__title">Confidence rating scale</h3>
+              <ul class="pwa-conf-legend__list">
+                <li><span class="pwa-trace-badge pwa-trace-badge--level-a">A</span> Strong Evidence — directly standards-based, datasheet-based, or measured</li>
+                <li><span class="pwa-trace-badge pwa-trace-badge--level-b">B</span> Recognised Practice — derived from recognised aerospace engineering practice</li>
+                <li><span class="pwa-trace-badge pwa-trace-badge--level-c">C</span> Engineering Estimate — physics-based engineering model or calculated estimate</li>
+                <li><span class="pwa-trace-badge pwa-trace-badge--level-d">D</span> Assumption — conservative assumption requiring Design Authority acceptance</li>
+                <li><span class="pwa-trace-badge pwa-trace-badge--level-e">E</span> Validation Required — requires test, inspection, validation, or project-specific evidence</li>
+              </ul>
+            </div>
+
+            <p class="pwa-conf-empty" id="pwa-conf-empty" hidden>No confidence items match the current filters.</p>
+
+            <div class="pwa-conf-table-wrap">
+              <table class="pwa-conf-table" aria-describedby="pwa-conf-filter-category">
+                <thead>
+                  <tr>
+                    <th scope="col">Item</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Current value</th>
+                    <th scope="col">Evidence / confidence</th>
+                    <th scope="col">Basis</th>
+                    <th scope="col">Risk if incorrect</th>
+                    <th scope="col">Recommended action</th>
+                  </tr>
+                </thead>
+                <tbody id="pwa-conf-table-body"></tbody>
+              </table>
+            </div>
+
+            <div class="pwa-conf-cards" id="pwa-conf-cards"></div>
+
+            <label class="pwa-conf-report-option">
+              <input type="checkbox" id="pwa-conf-include-report" checked>
+              Include Confidence Rating System in report
+            </label>
+
+            <p class="pwa-confidence-rating__disclaimer">
+              Confidence ratings are an engineering aid. They do not constitute certification approval, compliance finding, or Design Authority acceptance. Formal use requires confirmation against the applicable aircraft certification basis, approved data and project procedures.
+            </p>
           </div>
         </details>
 

@@ -1712,6 +1712,7 @@
         advancedThermal: window.PwaAdvancedThermalUI ? PwaAdvancedThermalUI.getExportData() : null,
         transientThermal: window.PwaTransientThermalUI ? PwaTransientThermalUI.getExportData() : null,
         standardsTraceability: window.PwaStandardsTraceability ? PwaStandardsTraceability.getExportData() : null,
+        confidenceRating: window.PwaConfidenceRating ? PwaConfidenceRating.getExportData() : null,
         filename: PwaWorkbook.buildExportFilename(snapshot, {
           awgLabels: settings.awgLabels,
           extension: 'xlsx',
@@ -1776,7 +1777,8 @@
         engineeringAssessment: buildInstallationAssessment(readParams(form), lastGridColumns),
         advancedThermal: window.PwaAdvancedThermalUI ? PwaAdvancedThermalUI.getExportData() : null,
         transientThermal: window.PwaTransientThermalUI ? PwaTransientThermalUI.getExportData() : null,
-        standardsTraceability: window.PwaStandardsTraceability ? PwaStandardsTraceability.getExportData() : null
+        standardsTraceability: window.PwaStandardsTraceability ? PwaStandardsTraceability.getExportData() : null,
+        confidenceRating: window.PwaConfidenceRating ? PwaConfidenceRating.getExportData() : null
       }], {
         wireId: wireNumber,
         wireNumber: wireNumber,
@@ -1860,7 +1862,8 @@
           engineeringAssessment: buildInstallationAssessment(readParams(form), lastGridColumns),
           advancedThermal: window.PwaAdvancedThermalUI ? PwaAdvancedThermalUI.getExportData() : null,
           transientThermal: window.PwaTransientThermalUI ? PwaTransientThermalUI.getExportData() : null,
-          standardsTraceability: window.PwaStandardsTraceability ? PwaStandardsTraceability.getExportData() : null
+          standardsTraceability: window.PwaStandardsTraceability ? PwaStandardsTraceability.getExportData() : null,
+        confidenceRating: window.PwaConfidenceRating ? PwaConfidenceRating.getExportData() : null
         });
       } catch (err) {
         errors.push(entry.name + ': ' + (err && err.message ? err.message : 'failed'));
@@ -2867,7 +2870,36 @@
     buildEngineeringAssessment: buildInstallationAssessment,
     GLOBAL_DISCLAIMER: PWA_GLOBAL_DISCLAIMER,
     GUIDANCE_PRESET_DISCLAIMER: GUIDANCE_PRESET_DISCLAIMER,
-    triggerRecalc: recalc
+    triggerRecalc: recalc,
+    getConfidenceSnapshot: function () {
+      var form = document.getElementById('pwa-params-form');
+      if (!form) {
+        return null;
+      }
+      var params = readParams(form);
+      var assessment = buildInstallationAssessment(params, lastGridColumns);
+      var worstColumn = null;
+      var i;
+      if (assessment && lastGridColumns.length) {
+        for (i = 0; i < lastGridColumns.length; i += 1) {
+          if (lastGridColumns[i].awg === assessment.worstAwg) {
+            worstColumn = lastGridColumns[i];
+            break;
+          }
+        }
+      }
+      var wireTypeLabel = '';
+      if (form.elements.wireType) {
+        var wireOpt = form.elements.wireType.options[form.elements.wireType.selectedIndex];
+        wireTypeLabel = wireOpt ? wireOpt.text : form.elements.wireType.value;
+      }
+      return {
+        params: params,
+        assessment: assessment,
+        worstColumn: worstColumn,
+        wireTypeLabel: wireTypeLabel
+      };
+    }
   };
 
   if (document.readyState === 'loading') {

@@ -497,6 +497,68 @@
     return parts.join('');
   }
 
+  function buildConfidenceTable(confidenceRating) {
+    if (!confidenceRating || !confidenceRating.rows || !confidenceRating.rows.length) {
+      return '';
+    }
+    var tableWidth = CONTENT_WIDTH;
+    var colWidths = [
+      Math.floor(tableWidth * 0.14),
+      Math.floor(tableWidth * 0.1),
+      Math.floor(tableWidth * 0.14),
+      Math.floor(tableWidth * 0.14),
+      Math.floor(tableWidth * 0.06),
+      Math.floor(tableWidth * 0.16),
+      Math.floor(tableWidth * 0.12),
+      tableWidth -
+        Math.floor(tableWidth * 0.14) -
+        Math.floor(tableWidth * 0.1) -
+        Math.floor(tableWidth * 0.14) -
+        Math.floor(tableWidth * 0.14) -
+        Math.floor(tableWidth * 0.06) -
+        Math.floor(tableWidth * 0.16) -
+        Math.floor(tableWidth * 0.12)
+    ];
+    var rows = [{
+      header: true,
+      cells: ['Item', 'Category', 'Current value', 'Evidence source', 'Rating', 'Basis', 'Risk if incorrect', 'Recommended action']
+    }];
+
+    confidenceRating.rows.forEach(function (item) {
+      rows.push({
+        cells: [
+          item.item,
+          item.category,
+          item.currentValue,
+          item.evidenceSource + (item.manuallyOverridden ? ' (override)' : ''),
+          item.confidenceRating,
+          item.basis,
+          item.riskIfIncorrect,
+          item.recommendedAction
+        ]
+      });
+    });
+
+    var parts = [];
+    parts.push(paragraph(confidenceRating.intro, 'BodyText', { spacing: '80' }));
+    parts.push(paragraph(confidenceRating.crossReference, 'BodyText', { spacing: '80' }));
+    parts.push(paragraph(
+      'Overall confidence classification: ' + confidenceRating.overallClassification + '. ' + confidenceRating.overallDetail,
+      'BodyText',
+      { spacing: '80' }
+    ));
+    if (confidenceRating.warnings && confidenceRating.warnings.length) {
+      confidenceRating.warnings.forEach(function (warning) {
+        parts.push(paragraph(warning, 'BodyText', { spacing: '80' }));
+      });
+    }
+    parts.push(buildTable(rows, colWidths));
+    parts.push(paragraph('Confidence rating legend', 'Heading3', { spacing: '80' }));
+    parts.push(paragraph(confidenceRating.legend.replace(/\n/g, ' '), 'BodyText', { spacing: '80' }));
+    parts.push(paragraph(confidenceRating.disclaimer, 'Disclaimer', { spacing: '80' }));
+    return parts.join('');
+  }
+
   function buildAdvancedThermalTable(advancedThermal) {
     if (!advancedThermal || !advancedThermal.enabled) {
       return '';
@@ -667,6 +729,11 @@
     if (section.standardsTraceability) {
       parts.push(paragraph(sectionNum + '. Standards Traceability Matrix', 'Heading2', { spacing: '80' }));
       parts.push(buildTraceabilityTable(section.standardsTraceability));
+      sectionNum += 1;
+    }
+    if (section.confidenceRating) {
+      parts.push(paragraph(sectionNum + '. Confidence Rating System', 'Heading2', { spacing: '80' }));
+      parts.push(buildConfidenceTable(section.confidenceRating));
       sectionNum += 1;
     }
     if (section.advancedThermal) {
