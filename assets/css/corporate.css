@@ -3649,6 +3649,68 @@ p {
   font-style: italic;
 }
 
+.pwa-validation-library__template-note {
+  margin: 0 0 12px;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--corp-text-muted);
+}
+
+.pwa-val-static-detail {
+  margin: 14px 0 0;
+}
+
+.pwa-val-static-detail__heading {
+  margin: 14px 0 8px;
+  font-size: 0.88rem;
+  color: var(--corp-navy);
+}
+
+.pwa-val-static-detail__list {
+  margin: 0 0 10px;
+  padding-left: 1.2rem;
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.pwa-val-static-detail__cases {
+  display: grid;
+  gap: 10px;
+}
+
+.pwa-val-static-detail__case {
+  padding: 10px 12px;
+  border: 1px solid var(--corp-border);
+  border-radius: var(--corp-radius);
+  background: #fff;
+}
+
+.pwa-val-static-detail__case-title {
+  margin: 0 0 8px;
+  font-size: 0.88rem;
+}
+
+.pwa-val-static-detail__case-grid {
+  margin: 0;
+}
+
+.pwa-val-static-detail__case-grid > div {
+  margin-bottom: 6px;
+}
+
+.pwa-val-static-detail__case-grid dt {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--corp-text-muted);
+  text-transform: uppercase;
+}
+
+.pwa-val-static-detail__case-grid dd {
+  margin: 2px 0 0;
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
 .pwa-grid-split {
   display: flex;
   align-items: stretch;

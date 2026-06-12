@@ -4,16 +4,21 @@ var fs = require('fs');
 var path = require('path');
 
 var htmlPath = path.join(__dirname, '../calculators/aerospace-electrical-design/power-wire-analysis.html');
-var sectionPath = path.join(__dirname, 'validation-section.fragment.html');
 var jsonPath = path.join(__dirname, 'validation-json.fragment.html');
 var tbodyPath = path.join(__dirname, 'validation-static-tbody.fragment.html');
+var detailPath = path.join(__dirname, 'validation-static-detail.fragment.html');
 
 var html = fs.readFileSync(htmlPath, 'utf8');
-var section = fs.readFileSync(sectionPath, 'utf8');
 var json = fs.readFileSync(jsonPath, 'utf8');
 var tbody = fs.readFileSync(tbodyPath, 'utf8');
+var staticDetail = fs.readFileSync(detailPath, 'utf8');
 
-section = section.replace('<!-- STATIC_TBODY -->', tbody);
+var earlyBlockRe =
+  /    <!-- Static validation templates sync with assets\/js\/pwa-validation-library-data\.json -->[\s\S]*?<section id="validation-library-static-index"[\s\S]*?<\/section>\r?\n\r?\n/;
+
+if (earlyBlockRe.test(html)) {
+  html = html.replace(earlyBlockRe, '');
+}
 
 var jsonBlock =
   '        <!-- Static validation templates sync with assets/js/pwa-validation-library-data.json -->\n' +
@@ -21,50 +26,62 @@ var jsonBlock =
   json + '\n' +
   '        </script>\n\n';
 
-if (html.indexOf('id="pwa-validation-library"') === -1) {
-  html = html.replace(
-    '        <details class="pwa-advanced-thermal" id="pwa-advanced-thermal">',
-    jsonBlock + section + '\n        <details class="pwa-advanced-thermal" id="pwa-advanced-thermal">'
-  );
+var validationDetailsOpen = '        <details class="pwa-validation-library" id="pwa-validation-library">';
+
+if (html.indexOf('id="pwa-validation-library-data"') === -1) {
+  html = html.replace(validationDetailsOpen, jsonBlock + validationDetailsOpen);
+} else if (html.indexOf('id="validation-library-static-index"') !== -1) {
+  html = html.replace(validationDetailsOpen, jsonBlock + validationDetailsOpen);
 } else {
   html = html.replace(
     /<!-- Static validation templates sync with assets\/js\/pwa-validation-library-data\.json -->\s*<script type="application\/json" id="pwa-validation-library-data">[\s\S]*?<\/script>\s*/,
     jsonBlock
   );
+}
+
+html = html.replace(
+  /<tbody id="pwa-val-static-templates-body">[\s\S]*?<\/tbody>/,
+  '<tbody id="pwa-val-static-templates-body">\n' + tbody + '\n                  </tbody>'
+);
+
+var detailWrapStart = '            <div class="pwa-val-static-detail" id="pwa-val-static-detail">\n';
+var detailWrapEnd = '            </div>\n\n            <div class="pwa-val-controls">';
+
+if (html.indexOf('id="pwa-val-static-detail"') !== -1) {
   html = html.replace(
-    /<tbody id="pwa-val-static-templates-body">[\s\S]*?<\/tbody>/,
-    '<tbody id="pwa-val-static-templates-body">\n' + tbody + '\n                  </tbody>'
+    /<div class="pwa-val-static-detail" id="pwa-val-static-detail">[\s\S]*?<\/div>\r?\n\r?\n            <div class="pwa-val-controls">/,
+    detailWrapStart + staticDetail + detailWrapEnd
+  );
+} else {
+  html = html.replace(
+    /            <\/div>\r?\n\r?\n            <div class="pwa-val-controls">/,
+    '            </div>\n\n' + detailWrapStart + staticDetail + detailWrapEnd,
+    1
+  );
+}
+
+if (html.indexOf('pwa-validation-library__template-note') === -1) {
+  html = html.replace(
+    /            <p class="pwa-validation-library__conf-note" role="note">[\s\S]*?<\/p>\r?\n\r?\n            <noscript>/,
+    function (match) {
+      return match.replace(
+        /<\/p>\r?\n\r?\n            <noscript>/,
+        '</p>\n            <p class="pwa-validation-library__template-note" role="note">\n' +
+          '              Built-in templates below contain no fabricated test results — populate reference values from approved data before formal comparison.\n' +
+          '            </p>\n\n            <noscript>'
+      );
+    }
   );
 }
 
 html = html.replace(
   /pwa-validation-library\.js\?v=[\d.]+/,
-  'pwa-validation-library.js?v=1.0.0'
+  'pwa-validation-library.js?v=1.0.1'
 );
 
-if (html.indexOf('pwa-validation-library.js') === -1) {
-  html = html.replace(
-    '  <script src="../../assets/js/pwa-confidence-rating.js?v=1.0.1" defer></script>',
-    '  <script src="../../assets/js/pwa-confidence-rating.js?v=1.0.1" defer></script>\n' +
-    '  <script src="../../assets/js/pwa-validation-library.js?v=1.0.0" defer></script>'
-  );
-}
-
 html = html.replace(
-  /pwa-grid-calculator\.js\?v=[\d.]+/,
-  'pwa-grid-calculator.js?v=2.0.6'
-);
-html = html.replace(
-  /pwa-workbook\.js\?v=[\d.]+/,
-  'pwa-workbook.js?v=2.0.6'
-);
-html = html.replace(
-  /pwa-word-report\.js\?v=[\d.]+/,
-  'pwa-word-report.js?v=2.0.6'
-);
-html = html.replace(
-  /pwa-confidence-rating\.js\?v=[\d.]+/,
-  'pwa-confidence-rating.js?v=1.0.2'
+  /href="\.\.\/\.\.\/assets\/css\/corporate\.css\?v=[\d.]+"/,
+  'href="../../assets/css/corporate.css?v=2.1.5"'
 );
 
 fs.writeFileSync(htmlPath, html);
