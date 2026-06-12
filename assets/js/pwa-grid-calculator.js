@@ -1702,6 +1702,9 @@
       if (window.PwaTransientThermalUI) {
         PwaTransientThermalUI.extendSnapshot(snapshot);
       }
+      if (window.PwaAdvancedTcVoltageDrop) {
+        PwaAdvancedTcVoltageDrop.extendSnapshot(snapshot);
+      }
       var tableRows = buildWorkbookTableRows(settings);
       var gridTitleEl = document.getElementById('pwa-grid-title');
       var exportMeta = {
@@ -1714,6 +1717,7 @@
         standardsTraceability: window.PwaStandardsTraceability ? PwaStandardsTraceability.getExportData() : null,
         confidenceRating: window.PwaConfidenceRating ? PwaConfidenceRating.getExportData() : null,
         validationLibrary: window.PwaValidationLibrary ? PwaValidationLibrary.getExportData() : null,
+        advancedTcVoltageDrop: window.PwaAdvancedTcVoltageDrop ? PwaAdvancedTcVoltageDrop.getExportData() : null,
         filename: PwaWorkbook.buildExportFilename(snapshot, {
           awgLabels: settings.awgLabels,
           extension: 'xlsx',
@@ -1764,6 +1768,9 @@
       if (window.PwaTransientThermalUI) {
         PwaTransientThermalUI.extendSnapshot(snapshot);
       }
+      if (window.PwaAdvancedTcVoltageDrop) {
+        PwaAdvancedTcVoltageDrop.extendSnapshot(snapshot);
+      }
       var exportSettings = getSelectedExportSettings();
       var tableRows = buildWorkbookTableRows({
         awgLabels: WIRES.map(function (wire) { return wire.label; })
@@ -1780,7 +1787,8 @@
         transientThermal: window.PwaTransientThermalUI ? PwaTransientThermalUI.getExportData() : null,
         standardsTraceability: window.PwaStandardsTraceability ? PwaStandardsTraceability.getExportData() : null,
         confidenceRating: window.PwaConfidenceRating ? PwaConfidenceRating.getExportData() : null,
-        validationLibrary: window.PwaValidationLibrary ? PwaValidationLibrary.getExportData() : null
+        validationLibrary: window.PwaValidationLibrary ? PwaValidationLibrary.getExportData() : null,
+        advancedTcVoltageDrop: window.PwaAdvancedTcVoltageDrop ? PwaAdvancedTcVoltageDrop.getExportData() : null
       }], {
         wireId: wireNumber,
         wireNumber: wireNumber,
@@ -1847,6 +1855,9 @@
         if (window.PwaTransientThermalUI) {
           PwaTransientThermalUI.extendSnapshot(snapshot);
         }
+        if (window.PwaAdvancedTcVoltageDrop) {
+          PwaAdvancedTcVoltageDrop.extendSnapshot(snapshot);
+        }
         if (!snapshot.projectName && savedSnapshot.projectName) {
           snapshot.projectName = savedSnapshot.projectName;
         }
@@ -1866,7 +1877,8 @@
           transientThermal: window.PwaTransientThermalUI ? PwaTransientThermalUI.getExportData() : null,
           standardsTraceability: window.PwaStandardsTraceability ? PwaStandardsTraceability.getExportData() : null,
         confidenceRating: window.PwaConfidenceRating ? PwaConfidenceRating.getExportData() : null,
-        validationLibrary: window.PwaValidationLibrary ? PwaValidationLibrary.getExportData() : null
+        validationLibrary: window.PwaValidationLibrary ? PwaValidationLibrary.getExportData() : null,
+        advancedTcVoltageDrop: window.PwaAdvancedTcVoltageDrop ? PwaAdvancedTcVoltageDrop.getExportData() : null
         });
       } catch (err) {
         errors.push(entry.name + ': ' + (err && err.message ? err.message : 'failed'));
@@ -2796,6 +2808,9 @@
         getVisibleGridColumns(lastGridColumns)
       );
     }
+    if (window.PwaAdvancedTcVoltageDrop && typeof PwaAdvancedTcVoltageDrop.updateAfterRecalc === 'function') {
+      PwaAdvancedTcVoltageDrop.updateAfterRecalc();
+    }
   }
 
   function updateGridTitle() {
@@ -2828,6 +2843,10 @@
 
     if (window.PwaTransientThermalUI) {
       PwaTransientThermalUI.init();
+    }
+
+    if (window.PwaAdvancedTcVoltageDrop) {
+      PwaAdvancedTcVoltageDrop.init();
     }
 
     var unitEl = form.elements.wireLengthUnit;

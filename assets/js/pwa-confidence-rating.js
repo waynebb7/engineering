@@ -285,6 +285,18 @@
       values.currentCapacity = 'Not available';
     }
 
+    var advTcVdrop = global.PwaAdvancedTcVoltageDrop && PwaAdvancedTcVoltageDrop.getCalculatedValues
+      ? PwaAdvancedTcVoltageDrop.getCalculatedValues()
+      : null;
+    if (advTcVdrop && advTcVdrop.advancedTcVdropV != null) {
+      values.advancedTcVoltageDrop = num(advTcVdrop.advancedTcVdropV, 3) + ' V' +
+        (advTcVdrop.advancedTcVdropPercent != null ? ' (' + num(advTcVdrop.advancedTcVdropPercent, 3) + ' %)' : '');
+    } else if (global.PwaAdvancedTcVoltageDrop && PwaAdvancedTcVoltageDrop.isEnabled && PwaAdvancedTcVoltageDrop.isEnabled()) {
+      values.advancedTcVoltageDrop = 'Enabled — not calculated yet';
+    } else {
+      values.advancedTcVoltageDrop = 'Not enabled';
+    }
+
     var advEnabled = document.getElementById('pwa-advanced-thermal-enable');
     var advResult = global.PwaAdvancedThermalUI && PwaAdvancedThermalUI.getExportData
       ? PwaAdvancedThermalUI.getExportData()
@@ -692,7 +704,7 @@
       form.addEventListener('input', scheduleConfidenceRefresh);
       form.addEventListener('change', scheduleConfidenceRefresh);
     }
-    ['pwa-advanced-thermal-body', 'pwa-transient-body', 'pwa-advanced-thermal-enable', 'pwa-transient-enable'].forEach(function (id) {
+    ['pwa-advanced-thermal-body', 'pwa-transient-body', 'pwa-advanced-thermal-enable', 'pwa-transient-enable', 'pwa-adv-tc-vdrop-panel', 'pwa-adv-tc-vdrop-enable'].forEach(function (id) {
       var el = document.getElementById(id);
       if (el) {
         el.addEventListener('input', scheduleConfidenceRefresh);

@@ -1,7 +1,7 @@
 (function (global) {
   'use strict';
 
-  var WORKBOOK_VERSION = '2.0.0';
+  var WORKBOOK_VERSION = '2.1.0';
   var REPORT_TITLE = 'Power Wire Analysis Report';
   var REPORT_STANDARDS =
     'Reference standards: SAE ARP4404C §9.3.4.2 (T₂, allowable voltage drop U) · ' +
@@ -38,6 +38,14 @@
   var PARAMETERS_SHEET = 'Parameters';
   var OPTIONS_SHEET = 'Parameter options';
   var ANALYSIS_SHEET = 'Analysis';
+  var ENGINEERING_ASSESSMENT_SHEET = 'Engineering Assessment';
+  var TRACEABILITY_SHEET = 'Standards Traceability';
+  var CONFIDENCE_SHEET = 'Confidence Rating';
+  var VALIDATION_SHEET = 'Validation Library';
+  var ADVANCED_THERMAL_SHEET = 'Advanced Heat-Balance';
+  var ADVANCED_TC_VDROP_SHEET = 'Advanced Tc Vdrop';
+  var TRANSIENT_SHEET = 'Transient Thermal';
+  var SECTION_COL_COUNT = 6;
   var META_KEYS = ['pwa_workbook_version', 'pwa_exported_at', 'pwa_grid_title'];
 
   var PARAM_DEFINITIONS = [
@@ -377,6 +385,129 @@
     rows.push({
       cells: [{
         text: 'Final acceptability remains subject to the applicable certification basis, aircraft Design Authority and installation-specific evidence.',
+        styleKey: 'paramNotes',
+        span: colCount
+      }]
+    });
+
+    return rows;
+  }
+
+  function buildAdvancedTcVoltageDropRows(advancedTcVoltageDrop, colCount) {
+    if (!advancedTcVoltageDrop || !advancedTcVoltageDrop.calculated) {
+      return [];
+    }
+    colCount = colCount || 3;
+    var d = advancedTcVoltageDrop;
+    var disclaimer = global.PwaAdvancedTcVoltageDrop && PwaAdvancedTcVoltageDrop.DISCLAIMER
+      ? PwaAdvancedTcVoltageDrop.DISCLAIMER
+      : 'Supplementary Advanced Tc voltage-drop comparison.';
+    var num = function (v, digits) {
+      return v == null || !isFinite(v) ? '—' : String(Math.round(v * Math.pow(10, digits)) / Math.pow(10, digits));
+    };
+    var rows = [
+      { spacer: true, height: 8 },
+      {
+        cells: [{ text: 'ADVANCED TC VOLTAGE-DROP COMPARISON', span: colCount }],
+        styleKey: 'sectionHeader',
+        height: 20
+      },
+      {
+        cells: [{ text: disclaimer, styleKey: 'paramNotes', span: colCount }]
+      },
+      {
+        cells: [
+          { text: 'Feature enabled', styleKey: 'tableLabel' },
+          { text: 'Yes', styleKey: 'tableData', span: colCount - 1 }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Assessment basis (supplementary)', styleKey: 'tableLabel' },
+          { text: d.temperatureBasisUsed || '—', styleKey: 'tableData', span: colCount - 1 }
+        ]
+      },
+      {
+        cells: [
+          { text: 'AWG column', styleKey: 'tableLabel' },
+          { text: 'AWG ' + d.awg, styleKey: 'tableData', span: colCount - 1 }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Existing T₂ voltage drop (V)', styleKey: 'tableLabel' },
+          { text: num(d.vdropT2V, 3), styleKey: 'tableNum3', span: colCount - 1 }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Existing T₂ voltage drop (%)', styleKey: 'tableLabel' },
+          { text: num(d.vdropT2Percent, 3), styleKey: 'tableNum3', span: colCount - 1 }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Advanced Tc voltage drop (V)', styleKey: 'tableLabel' },
+          { text: num(d.vdropAdvancedTcV, 3), styleKey: 'tableNum3', span: colCount - 1 }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Advanced Tc voltage drop (%)', styleKey: 'tableLabel' },
+          { text: num(d.vdropAdvancedTcPercent, 3), styleKey: 'tableNum3', span: colCount - 1 }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Difference (V / % pts)', styleKey: 'tableLabel' },
+          {
+            text: num(d.differenceV, 3) + ' V / ' + num(d.differencePercentPoints, 3) + ' % pts',
+            styleKey: 'tableData',
+            span: colCount - 1
+          }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Supplementary status (Advanced Tc)', styleKey: 'tableLabel' },
+          {
+            text: d.supplementaryStatus,
+            styleKey: advancedPassFailStyle(d.supplementaryStatus),
+            span: colCount - 1
+          }
+        ]
+      }
+    ];
+
+    if (d.interpretation && d.interpretation.length) {
+      d.interpretation.forEach(function (line) {
+        rows.push({
+          cells: [{ text: line, styleKey: 'paramNotes', span: colCount }]
+        });
+      });
+    }
+
+    if (d.assumptions && d.assumptions.length) {
+      rows.push({
+        cells: [{ text: 'Assumptions', span: colCount }],
+        styleKey: 'sectionHeader',
+        height: 18
+      });
+      d.assumptions.forEach(function (a) {
+        rows.push({
+          cells: [
+            { text: a.parameter, styleKey: 'tableLabel' },
+            { text: a.value, styleKey: 'tableData' },
+            { text: a.source, styleKey: 'tableData' },
+            { text: a.comment, styleKey: 'paramNotes', span: Math.max(colCount - 3, 1) }
+          ]
+        });
+      });
+    }
+
+    rows.push({
+      cells: [{
+        text: 'Traceability: Advanced Tc voltage-drop option (Standards Traceability Matrix). Confidence: Advanced Tc Voltage Drop row.',
         styleKey: 'paramNotes',
         span: colCount
       }]
@@ -1395,20 +1526,7 @@
         }],
         styleKey: 'footerNote',
         height: REPORT_HEADER_ROW_HEIGHT
-      }
-    ]    ).concat(
-      buildEngineeringAssessmentRows(meta.engineeringAssessment, colCount)
-    ).concat(
-      buildTraceabilityRows(meta.standardsTraceability, colCount)
-    ).concat(
-      buildConfidenceRows(meta.confidenceRating, colCount)
-    ).concat(
-      buildValidationRows(meta.validationLibrary, colCount)
-    ).concat(
-      buildAdvancedThermalRows(meta.advancedThermal, colCount)
-    ).concat(
-      buildTransientThermalRows(meta.transientThermal, colCount)
-    ).concat([
+      },
       { spacer: true, height: 6 },
       {
         cells: [{ text: 'AWG ANALYSIS GRID', span: colCount }],
@@ -1712,6 +1830,53 @@
     return Math.min(Math.max(maxLen + 6, 48), 80);
   }
 
+  function trimSectionLeadingSpacer(sectionRows) {
+    if (!sectionRows || !sectionRows.length) {
+      return sectionRows;
+    }
+    if (sectionRows[0] && sectionRows[0].spacer) {
+      return sectionRows.slice(1);
+    }
+    return sectionRows;
+  }
+
+  function buildSectionSheetRows(snapshot, sectionRows, subtitle) {
+    if (!sectionRows || !sectionRows.length) {
+      return null;
+    }
+    var colCount = SECTION_COL_COUNT;
+    var dateStr = formatReportDate(snapshot.exportedAt);
+    var header = buildReportIdentificationRows(
+      snapshot,
+      colCount,
+      subtitle,
+      'Generated ' + dateStr + '  |  Workbook v' + WORKBOOK_VERSION
+    );
+    return header.concat(trimSectionLeadingSpacer(sectionRows));
+  }
+
+  function sectionSheetColWidths() {
+    return [28, 36, 24, 18, 30, 30];
+  }
+
+  function addSectionWorksheet(files, ctRef, relRef, sheetsRef, ctx, sheetName, sectionRows, snapshot, subtitle) {
+    var rows = buildSectionSheetRows(snapshot, sectionRows, subtitle);
+    if (!rows) {
+      return;
+    }
+    var xml = buildWorksheetXml(rows, {
+      colWidths: sectionSheetColWidths(),
+      landscape: true,
+      sheetView: {
+        xSplit: 0,
+        ySplit: 5,
+        topLeftCell: 'A6',
+        activePane: 'bottomLeft'
+      }
+    });
+    addWorksheetFile(files, ctRef, relRef, sheetsRef, ctx, xml, sheetName, false);
+  }
+
   function buildWorkbookFiles(snapshot, tableRows, meta) {
     meta = meta || {};
     var includeParameters = meta.includeParameters !== false;
@@ -1734,14 +1899,7 @@
 
     var decoratedAnalysis = decorateAnalysisSheet(tableRows, {
       snapshot: snapshot,
-      gridTitle: meta.gridTitle,
-      projectName: snapshot.projectName,
-      engineeringAssessment: meta.engineeringAssessment,
-      standardsTraceability: meta.standardsTraceability,
-      confidenceRating: meta.confidenceRating,
-      validationLibrary: meta.validationLibrary,
-      advancedThermal: meta.advancedThermal,
-      transientThermal: meta.transientThermal
+      gridTitle: meta.gridTitle
     });
     var analysisHeaderRow = 9;
     var tableColWidths = [analysisLabelColumnWidth(tableRows), 9];
@@ -1761,6 +1919,56 @@
       }
     });
     addWorksheetFile(files, ctRef, relRef, sheetsRef, sheetCtx, analysisXml, ANALYSIS_SHEET, false);
+
+    addSectionWorksheet(
+      files, ctRef, relRef, sheetsRef, sheetCtx,
+      ENGINEERING_ASSESSMENT_SHEET,
+      buildEngineeringAssessmentRows(meta.engineeringAssessment, SECTION_COL_COUNT),
+      snapshot,
+      'Installation assessment summary'
+    );
+    addSectionWorksheet(
+      files, ctRef, relRef, sheetsRef, sheetCtx,
+      TRACEABILITY_SHEET,
+      buildTraceabilityRows(meta.standardsTraceability, SECTION_COL_COUNT),
+      snapshot,
+      'Standards Traceability Matrix'
+    );
+    addSectionWorksheet(
+      files, ctRef, relRef, sheetsRef, sheetCtx,
+      CONFIDENCE_SHEET,
+      buildConfidenceRows(meta.confidenceRating, SECTION_COL_COUNT),
+      snapshot,
+      'Confidence Rating System'
+    );
+    addSectionWorksheet(
+      files, ctRef, relRef, sheetsRef, sheetCtx,
+      VALIDATION_SHEET,
+      buildValidationRows(meta.validationLibrary, SECTION_COL_COUNT),
+      snapshot,
+      'Validation Library comparison'
+    );
+    addSectionWorksheet(
+      files, ctRef, relRef, sheetsRef, sheetCtx,
+      ADVANCED_THERMAL_SHEET,
+      buildAdvancedThermalRows(meta.advancedThermal, SECTION_COL_COUNT),
+      snapshot,
+      'Advanced Heat-Balance Model (supplementary)'
+    );
+    addSectionWorksheet(
+      files, ctRef, relRef, sheetsRef, sheetCtx,
+      ADVANCED_TC_VDROP_SHEET,
+      buildAdvancedTcVoltageDropRows(meta.advancedTcVoltageDrop, SECTION_COL_COUNT),
+      snapshot,
+      'Advanced Tc Voltage-Drop Comparison (supplementary)'
+    );
+    addSectionWorksheet(
+      files, ctRef, relRef, sheetsRef, sheetCtx,
+      TRANSIENT_SHEET,
+      buildTransientThermalRows(meta.transientThermal, SECTION_COL_COUNT),
+      snapshot,
+      'Transient Thermal Analysis (supplementary)'
+    );
 
     if (includeParameters) {
       var optionSheetData = meta.parameterOptions
@@ -2265,6 +2473,7 @@
     buildTraceabilityRows: buildTraceabilityRows,
     buildConfidenceRows: buildConfidenceRows,
     buildValidationRows: buildValidationRows,
+    buildAdvancedTcVoltageDropRows: buildAdvancedTcVoltageDropRows,
     buildTransientThermalRows: buildTransientThermalRows,
     getGlobalDisclaimer: getGlobalDisclaimer
   };

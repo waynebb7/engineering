@@ -36,6 +36,15 @@
     "userAction": "Confirm material coefficient and conductor operating temperature assumption."
   },
   {
+    "functionName": "Advanced Tc voltage-drop option",
+    "toolAction": "Recalculates supplementary voltage drop using the Advanced Heat-Balance conductor temperature instead of the existing T₂ estimate.",
+    "primaryReference": "Recognised electrical engineering practice / conductor resistance temperature coefficient / manufacturer wire data / SAE ARP4404 design practice",
+    "referenceType": "Engineering Model",
+    "traceabilityLevel": "C",
+    "evidenceNotes": "Voltage drop is recalculated using temperature-corrected conductor resistance. Result depends on the confidence of the Advanced Heat-Balance temperature estimate.",
+    "userAction": "Confirm conductor material coefficient, wire resistance data and acceptability of Advanced Tc basis with Design Authority."
+  },
+  {
     "functionName": "Bundle derating",
     "toolAction": "Reduces allowable current capacity based on declared bundle wire count and grouping.",
     "primaryReference": "SAE ARP4404 / SAE AS50881",

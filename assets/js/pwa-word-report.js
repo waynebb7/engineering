@@ -618,6 +618,74 @@
     return parts.join('');
   }
 
+  function buildAdvancedTcVoltageDropTable(advancedTcVoltageDrop) {
+    if (!advancedTcVoltageDrop || !advancedTcVoltageDrop.calculated) {
+      return '';
+    }
+    var d = advancedTcVoltageDrop;
+    var disclaimer = global.PwaAdvancedTcVoltageDrop && PwaAdvancedTcVoltageDrop.DISCLAIMER
+      ? PwaAdvancedTcVoltageDrop.DISCLAIMER
+      : 'Supplementary Advanced Tc voltage-drop comparison.';
+    var num = function (v, digits) {
+      return v == null || !isFinite(v) ? '—' : String(Math.round(v * Math.pow(10, digits)) / Math.pow(10, digits));
+    };
+    var parts = [];
+    parts.push(paragraph(disclaimer, 'BodyText', { spacing: '80' }));
+    var rows = [{
+      header: true,
+      cells: ['Item', 'Value']
+    }, {
+      cells: ['Feature enabled', 'Yes']
+    }, {
+      cells: ['Supplementary assessment basis', d.temperatureBasisUsed || '—']
+    }, {
+      cells: ['AWG column', 'AWG ' + d.awg]
+    }, {
+      cells: ['Existing T₂ voltage drop (V)', num(d.vdropT2V, 3)]
+    }, {
+      cells: ['Existing T₂ voltage drop (%)', num(d.vdropT2Percent, 3)]
+    }, {
+      cells: ['Advanced Tc voltage drop (V)', num(d.vdropAdvancedTcV, 3)]
+    }, {
+      cells: ['Advanced Tc voltage drop (%)', num(d.vdropAdvancedTcPercent, 3)]
+    }, {
+      cells: ['Difference (V)', num(d.differenceV, 3)]
+    }, {
+      cells: ['Difference (% points)', num(d.differencePercentPoints, 3)]
+    }, {
+      cells: ['Supplementary status', d.supplementaryStatus]
+    }];
+    parts.push(buildTable(rows, [Math.floor(CONTENT_WIDTH * 0.42), CONTENT_WIDTH - Math.floor(CONTENT_WIDTH * 0.42)]));
+
+    if (d.interpretation && d.interpretation.length) {
+      parts.push(paragraph('Interpretation', 'Heading3', { spacing: '80' }));
+      d.interpretation.forEach(function (line) {
+        parts.push(paragraph(line, 'BodyText', { spacing: '80' }));
+      });
+    }
+
+    if (d.assumptions && d.assumptions.length) {
+      parts.push(paragraph('Assumptions', 'Heading3', { spacing: '80' }));
+      var aRows = [{ header: true, cells: ['Parameter', 'Value', 'Source', 'Comment'] }];
+      d.assumptions.forEach(function (a) {
+        aRows.push({ cells: [a.parameter, a.value, a.source, a.comment] });
+      });
+      parts.push(buildTable(aRows, [
+        Math.floor(CONTENT_WIDTH * 0.22),
+        Math.floor(CONTENT_WIDTH * 0.18),
+        Math.floor(CONTENT_WIDTH * 0.22),
+        CONTENT_WIDTH - Math.floor(CONTENT_WIDTH * 0.62)
+      ]));
+    }
+
+    parts.push(paragraph(
+      'Traceability note: see Standards Traceability Matrix — Advanced Tc voltage-drop option. Confidence note: Advanced Tc Voltage Drop row.',
+      'BodyText',
+      { spacing: '80' }
+    ));
+    return parts.join('');
+  }
+
   function buildAdvancedThermalTable(advancedThermal) {
     if (!advancedThermal || !advancedThermal.enabled) {
       return '';
@@ -803,6 +871,11 @@
     if (section.advancedThermal) {
       parts.push(paragraph(sectionNum + '. Advanced Heat-Balance Model', 'Heading2', { spacing: '80' }));
       parts.push(buildAdvancedThermalTable(section.advancedThermal));
+      sectionNum += 1;
+    }
+    if (section.advancedTcVoltageDrop) {
+      parts.push(paragraph(sectionNum + '. Advanced Tc Voltage-Drop Comparison', 'Heading2', { spacing: '80' }));
+      parts.push(buildAdvancedTcVoltageDropTable(section.advancedTcVoltageDrop));
       sectionNum += 1;
     }
     if (section.transientThermal) {

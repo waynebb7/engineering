@@ -162,6 +162,8 @@
       transientPeakC: null,
       voltageDropV: null,
       voltageDropPercent: null,
+      advancedTcVdropV: null,
+      advancedTcVdropPercent: null,
       currentLimitA: null
     };
 
@@ -187,6 +189,14 @@
       if (values.voltageV && values.voltageV > 0) {
         values.voltageDropPercent = (snapshot.worstColumn.Vdrop / values.voltageV) * 100;
       }
+    }
+
+    var advTcVdrop = global.PwaAdvancedTcVoltageDrop && PwaAdvancedTcVoltageDrop.getCalculatedValues
+      ? PwaAdvancedTcVoltageDrop.getCalculatedValues()
+      : null;
+    if (advTcVdrop) {
+      values.advancedTcVdropV = advTcVdrop.advancedTcVdropV;
+      values.advancedTcVdropPercent = advTcVdrop.advancedTcVdropPercent;
     }
 
     var adv = global.PwaAdvancedThermalUI && PwaAdvancedThermalUI.getExportData
@@ -288,6 +298,8 @@
     addRow('Transient peak temperature (°C)', caseObj.referenceTransientPeakC, calc.transientPeakC, 'temperature', true);
     addRow('Voltage drop (V)', caseObj.referenceVoltageDropV, calc.voltageDropV, 'voltage', true);
     addRow('Voltage drop (%)', caseObj.referenceVoltageDropPercent, calc.voltageDropPercent, 'percent', true);
+    addRow('Advanced Tc voltage drop (V)', caseObj.referenceAdvancedTcVdropV, calc.advancedTcVdropV, 'voltage', false);
+    addRow('Advanced Tc voltage drop (%)', caseObj.referenceAdvancedTcVdropPercent, calc.advancedTcVdropPercent, 'percent', false);
     addRow('Current limit / IMAX (A)', caseObj.referenceCurrentLimitA, calc.currentLimitA, 'current', true);
     addRow('Ambient temperature (°C)', caseObj.ambientC, calc.ambientC, 'temperature', false);
     addRow('Circuit current (A)', caseObj.currentA, calc.currentA, 'current', false);
@@ -330,6 +342,8 @@
       caseObj.referenceTransientPeakC,
       caseObj.referenceVoltageDropV,
       caseObj.referenceVoltageDropPercent,
+      caseObj.referenceAdvancedTcVdropV,
+      caseObj.referenceAdvancedTcVdropPercent,
       caseObj.referenceCurrentLimitA
     ].some(hasValue);
   }
@@ -637,6 +651,8 @@
       referenceTransientPeakC: val('pwa-val-form-ref-transient'),
       referenceVoltageDropV: val('pwa-val-form-ref-vdrop'),
       referenceVoltageDropPercent: val('pwa-val-form-ref-vdrop-pct'),
+      referenceAdvancedTcVdropV: val('pwa-val-form-ref-adv-vdrop'),
+      referenceAdvancedTcVdropPercent: val('pwa-val-form-ref-adv-vdrop-pct'),
       referenceCurrentLimitA: val('pwa-val-form-ref-current'),
       notes: val('pwa-val-form-notes') || '',
       limitations: val('pwa-val-form-limitations') || '',
@@ -677,6 +693,8 @@
     set('pwa-val-form-ref-transient', caseObj.referenceTransientPeakC);
     set('pwa-val-form-ref-vdrop', caseObj.referenceVoltageDropV);
     set('pwa-val-form-ref-vdrop-pct', caseObj.referenceVoltageDropPercent);
+    set('pwa-val-form-ref-adv-vdrop', caseObj.referenceAdvancedTcVdropV);
+    set('pwa-val-form-ref-adv-vdrop-pct', caseObj.referenceAdvancedTcVdropPercent);
     set('pwa-val-form-ref-current', caseObj.referenceCurrentLimitA);
     set('pwa-val-form-notes', caseObj.notes);
     set('pwa-val-form-limitations', caseObj.limitations);

@@ -26,6 +26,7 @@ var CURRENT_VALUE_HINTS = {
   t2Estimate: 'Calculated T₂ from installation assessment',
   voltageDrop: 'Calculated voltage drop (worst-case AWG column)',
   tempVoltageDrop: 'Temperature-corrected voltage drop at T₂',
+  advancedTcVoltageDrop: 'Advanced Tc voltage drop when comparison enabled',
   currentCapacity: 'Circuit current vs derated IMAX (worst-case AWG)',
   installationLimit: 'From installation temperature limit when enabled',
   advancedTc: 'Advanced Heat-Balance Model result when enabled',
