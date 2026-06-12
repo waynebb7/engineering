@@ -1696,6 +1696,12 @@
 
     try {
       var snapshot = collectParameterSnapshot(form);
+      if (window.PwaAdvancedThermalUI) {
+        PwaAdvancedThermalUI.extendSnapshot(snapshot);
+      }
+      if (window.PwaTransientThermalUI) {
+        PwaTransientThermalUI.extendSnapshot(snapshot);
+      }
       var tableRows = buildWorkbookTableRows(settings);
       var gridTitleEl = document.getElementById('pwa-grid-title');
       var exportMeta = {
@@ -1703,6 +1709,8 @@
         parameterOptions: exportAll ? collectParameterOptions(form) : null,
         gridTitle: gridTitleEl ? gridTitleEl.textContent : '',
         engineeringAssessment: buildInstallationAssessment(readParams(form), lastGridColumns),
+        advancedThermal: window.PwaAdvancedThermalUI ? PwaAdvancedThermalUI.getExportData() : null,
+        transientThermal: window.PwaTransientThermalUI ? PwaTransientThermalUI.getExportData() : null,
         filename: PwaWorkbook.buildExportFilename(snapshot, {
           awgLabels: settings.awgLabels,
           extension: 'xlsx',
@@ -1747,6 +1755,12 @@
 
     try {
       var snapshot = collectParameterSnapshot(form);
+      if (window.PwaAdvancedThermalUI) {
+        PwaAdvancedThermalUI.extendSnapshot(snapshot);
+      }
+      if (window.PwaTransientThermalUI) {
+        PwaTransientThermalUI.extendSnapshot(snapshot);
+      }
       var exportSettings = getSelectedExportSettings();
       var tableRows = buildWorkbookTableRows({
         awgLabels: WIRES.map(function (wire) { return wire.label; })
@@ -1758,7 +1772,9 @@
         tableRows: tableRows,
         wireId: wireNumber,
         filename: folderState.activeFileName || '',
-        engineeringAssessment: buildInstallationAssessment(readParams(form), lastGridColumns)
+        engineeringAssessment: buildInstallationAssessment(readParams(form), lastGridColumns),
+        advancedThermal: window.PwaAdvancedThermalUI ? PwaAdvancedThermalUI.getExportData() : null,
+        transientThermal: window.PwaTransientThermalUI ? PwaTransientThermalUI.getExportData() : null
       }], {
         wireId: wireNumber,
         wireNumber: wireNumber,
@@ -1819,6 +1835,12 @@
         applyParameterSnapshot(form, result.parameters);
         recalc();
         snapshot = collectParameterSnapshot(form);
+        if (window.PwaAdvancedThermalUI) {
+          PwaAdvancedThermalUI.extendSnapshot(snapshot);
+        }
+        if (window.PwaTransientThermalUI) {
+          PwaTransientThermalUI.extendSnapshot(snapshot);
+        }
         if (!snapshot.projectName && savedSnapshot.projectName) {
           snapshot.projectName = savedSnapshot.projectName;
         }
@@ -1833,7 +1855,9 @@
           tableRows: tableRows,
           wireId: snapshot.wireNumber || entry.wireId,
           filename: entry.name,
-          engineeringAssessment: buildInstallationAssessment(readParams(form), lastGridColumns)
+          engineeringAssessment: buildInstallationAssessment(readParams(form), lastGridColumns),
+          advancedThermal: window.PwaAdvancedThermalUI ? PwaAdvancedThermalUI.getExportData() : null,
+          transientThermal: window.PwaTransientThermalUI ? PwaTransientThermalUI.getExportData() : null
         });
       } catch (err) {
         errors.push(entry.name + ': ' + (err && err.message ? err.message : 'failed'));
@@ -2748,6 +2772,21 @@
     var params = readParams(form);
     updateDerived(params);
     renderGrid(params);
+    if (window.PwaAdvancedThermalUI && PwaAdvancedThermalUI.isEnabled()) {
+      PwaAdvancedThermalUI.syncHotSurfaceDefault(params);
+      PwaAdvancedThermalUI.updateAfterRecalc(
+        params,
+        lastGridColumns,
+        getVisibleGridColumns(lastGridColumns)
+      );
+    }
+    if (window.PwaTransientThermalUI && PwaTransientThermalUI.isEnabled()) {
+      PwaTransientThermalUI.updateAfterRecalc(
+        params,
+        lastGridColumns,
+        getVisibleGridColumns(lastGridColumns)
+      );
+    }
   }
 
   function updateGridTitle() {
@@ -2773,6 +2812,14 @@
     initConductorTempRatingControls(form);
     initInstallationGuidanceControls(form);
     initAltitudeSelect(form);
+
+    if (window.PwaAdvancedThermalUI) {
+      PwaAdvancedThermalUI.init();
+    }
+
+    if (window.PwaTransientThermalUI) {
+      PwaTransientThermalUI.init();
+    }
 
     var unitEl = form.elements.wireLengthUnit;
     var lengthEl = form.elements.wireLength;
@@ -2816,7 +2863,8 @@
   window.PwaGridCalculator = {
     buildEngineeringAssessment: buildInstallationAssessment,
     GLOBAL_DISCLAIMER: PWA_GLOBAL_DISCLAIMER,
-    GUIDANCE_PRESET_DISCLAIMER: GUIDANCE_PRESET_DISCLAIMER
+    GUIDANCE_PRESET_DISCLAIMER: GUIDANCE_PRESET_DISCLAIMER,
+    triggerRecalc: recalc
   };
 
   if (document.readyState === 'loading') {

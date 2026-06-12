@@ -446,6 +446,118 @@
     return buildTable(rows, [labelWidth, CONTENT_WIDTH - labelWidth]);
   }
 
+  function buildAdvancedThermalTable(advancedThermal) {
+    if (!advancedThermal || !advancedThermal.enabled) {
+      return '';
+    }
+    var labelWidth = Math.floor(CONTENT_WIDTH * 0.38);
+    var disclaimer = global.PwaAdvancedThermal && PwaAdvancedThermal.DISCLAIMER
+      ? PwaAdvancedThermal.DISCLAIMER
+      : 'Supplementary thermal analysis.';
+    var rows = [{
+      header: true,
+      cells: ['Advanced thermal analysis', 'Value']
+    }, {
+      cells: ['Disclaimer', disclaimer]
+    }, {
+      cells: ['Analysis AWG', advancedThermal.awg]
+    }, {
+      cells: ['Advanced conductor temperature Tc (°C)', String(advancedThermal.tcAdvanced)]
+    }, {
+      cells: ['Existing T₂ estimate (°C)', String(advancedThermal.existingT2)]
+    }, {
+      cells: ['Difference (°C)', String(advancedThermal.differenceC)]
+    }, {
+      cells: ['Percentage difference', String(advancedThermal.differencePct) + '%']
+    }, {
+      cells: ['Comparison status', advancedThermal.comparisonStatus]
+    }, {
+      cells: ['Temperature margin to T_R (°C)', String(advancedThermal.ratingMarginC)]
+    }, {
+      cells: ['Installation margin (°C)',
+        advancedThermal.installMarginC != null ? String(advancedThermal.installMarginC) : '—']
+    }, {
+      cells: ['Thermal utilisation (%)', String(advancedThermal.thermalUtilisationPct)]
+    }, {
+      cells: ['Dominant heat transfer', advancedThermal.dominantMechanism]
+    }, {
+      cells: ['Advanced pass/fail', advancedThermal.passFail]
+    }, {
+      cells: ['Generated heat (W)', String(advancedThermal.heatBalance.qGenW)]
+    }, {
+      cells: ['Convection loss (W)', String(advancedThermal.heatBalance.qConvW)]
+    }, {
+      cells: ['Radiation loss (W)', String(advancedThermal.heatBalance.qRadW)]
+    }, {
+      cells: ['Conduction loss (W)', String(advancedThermal.heatBalance.qCondW)]
+    }, {
+      cells: ['Residual error (W)', String(advancedThermal.heatBalance.residualW)]
+    }, {
+      cells: ['ISA density (kg/m³) / pressure (kPa)',
+        advancedThermal.atmosphere.densityKgM3 + ' / ' + advancedThermal.atmosphere.pressureKPa]
+    }];
+
+    if (advancedThermal.assumptions && advancedThermal.assumptions.length) {
+      rows.push({
+        header: true,
+        cells: ['Assumption', 'Value / Source']
+      });
+      advancedThermal.assumptions.forEach(function (item) {
+        rows.push({
+          cells: [item.parameter, item.value + ' (' + item.source + ')']
+        });
+      });
+    }
+
+    return buildTable(rows, [labelWidth, CONTENT_WIDTH - labelWidth]);
+  }
+
+  function buildTransientThermalTable(transientThermal) {
+    if (!transientThermal || !transientThermal.enabled || !transientThermal.summary) {
+      return '';
+    }
+    var s = transientThermal.summary;
+    var disclaimer = global.PwaTransientThermal && PwaTransientThermal.DISCLAIMER
+      ? PwaTransientThermal.DISCLAIMER
+      : 'Supplementary transient thermal analysis.';
+    var labelWidth = Math.floor(CONTENT_WIDTH * 0.38);
+    var rows = [{
+      header: true,
+      cells: ['Transient thermal analysis', 'Value']
+    }, {
+      cells: ['Disclaimer', disclaimer]
+    }, {
+      cells: ['Integrator / timestep', transientThermal.integrator + ' @ ' + transientThermal.timestepSec + ' s']
+    }, {
+      cells: ['Peak temperature (°C)', String(s.peakTempC)]
+    }, {
+      cells: ['Time to peak', s.peakTimeFormatted]
+    }, {
+      cells: ['Time to rating limit', s.timeToRatingFormatted]
+    }, {
+      cells: ['Time to installation limit', s.timeToInstallFormatted]
+    }, {
+      cells: ['Degree-hours', String(s.thermalExposure.degreeHours)]
+    }, {
+      cells: ['Max thermal utilisation (%)', String(s.maxUtilisationPct)]
+    }, {
+      cells: ['Min safety margin (°C)', String(s.minSafetyMarginC)]
+    }, {
+      cells: ['Engineering status', s.engineeringStatus]
+    }];
+
+    if (transientThermal.sensitivity && transientThermal.sensitivity.length) {
+      rows.push({ header: true, cells: ['Sensitivity', 'Peak T / ΔT'] });
+      transientThermal.sensitivity.forEach(function (row) {
+        rows.push({
+          cells: [row.variable + ' ' + row.changePct + '%', row.peakTempC + ' / ' + row.differenceC + ' °C']
+        });
+      });
+    }
+
+    return buildTable(rows, [labelWidth, CONTENT_WIDTH - labelWidth]);
+  }
+
   function buildSectionBody(section, meta) {
     var snapshot = section.snapshot || {};
     var projectNumber = snapshot.projectNumber || meta.projectNumber || '';
@@ -477,6 +589,18 @@
     parts.push(buildEngineeringAssessmentTable(section.engineeringAssessment));
     parts.push(paragraph('3. AWG analysis grid', 'Heading2', { spacing: '80' }));
     parts.push(buildAnalysisTable(section.tableRows));
+    if (section.advancedThermal) {
+      parts.push(paragraph('4. Advanced thermal analysis', 'Heading2', { spacing: '80' }));
+      parts.push(buildAdvancedThermalTable(section.advancedThermal));
+    }
+    if (section.transientThermal) {
+      parts.push(paragraph(
+        section.advancedThermal ? '5. Transient thermal analysis' : '4. Transient thermal analysis',
+        'Heading2',
+        { spacing: '80' }
+      ));
+      parts.push(buildTransientThermalTable(section.transientThermal));
+    }
     var legend = global.PwaWorkbook && PwaWorkbook.buildTemperatureStatusLegend
       ? PwaWorkbook.buildTemperatureStatusLegend(snapshot)
       : 'Grid legend: (PASS) = within limit; (CAUTION) = 80%–100% of limit; (FAIL) exceeds limit.';

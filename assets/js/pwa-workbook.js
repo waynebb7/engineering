@@ -195,6 +195,245 @@
     return rows;
   }
 
+  function buildAdvancedThermalRows(advancedThermal, colCount) {
+    if (!advancedThermal || !advancedThermal.enabled) {
+      return [];
+    }
+    colCount = colCount || 3;
+    var rows = [
+      { spacer: true, height: 8 },
+      {
+        cells: [{ text: 'ADVANCED THERMAL ANALYSIS', span: colCount }],
+        styleKey: 'sectionHeader',
+        height: 20
+      },
+      {
+        cells: [
+          { text: (global.PwaAdvancedThermal ? global.PwaAdvancedThermal.DISCLAIMER : 'Supplementary thermal analysis.'), styleKey: 'paramNotes', span: colCount }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Analysis AWG', styleKey: 'tableLabel' },
+          { text: advancedThermal.awg, styleKey: 'tableData', span: colCount - 1 }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Advanced conductor temperature Tc (°C)', styleKey: 'tableLabel' },
+          { text: String(advancedThermal.tcAdvanced), styleKey: 'tableNum3', span: colCount - 1 }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Existing T₂ estimate (°C)', styleKey: 'tableLabel' },
+          { text: String(advancedThermal.existingT2), styleKey: 'tableNum3', span: colCount - 1 }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Difference (°C / %)', styleKey: 'tableLabel' },
+          {
+            text: String(advancedThermal.differenceC) + ' / ' + String(advancedThermal.differencePct) + '%',
+            styleKey: 'tableData',
+            span: colCount - 1
+          }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Comparison status', styleKey: 'tableLabel' },
+          { text: advancedThermal.comparisonStatus, styleKey: 'tableData', span: colCount - 1 }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Temperature margin to T_R (°C)', styleKey: 'tableLabel' },
+          { text: String(advancedThermal.ratingMarginC), styleKey: 'tableNum3', span: colCount - 1 }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Installation margin (°C)', styleKey: 'tableLabel' },
+          {
+            text: advancedThermal.installMarginC != null ? String(advancedThermal.installMarginC) : '—',
+            styleKey: 'tableData',
+            span: colCount - 1
+          }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Thermal utilisation (%)', styleKey: 'tableLabel' },
+          { text: String(advancedThermal.thermalUtilisationPct), styleKey: 'tableNum3', span: colCount - 1 }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Dominant heat transfer', styleKey: 'tableLabel' },
+          { text: advancedThermal.dominantMechanism, styleKey: 'tableData', span: colCount - 1 }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Advanced pass/fail', styleKey: 'tableLabel' },
+          {
+            text: advancedThermal.passFail,
+            styleKey: advancedThermal.passFail === 'PASS' ? 'pass' : 'fail',
+            span: colCount - 1
+          }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Heat balance (W): Q_gen / Q_conv / Q_rad / Q_cond / residual', styleKey: 'tableLabel' },
+          {
+            text: [
+              advancedThermal.heatBalance.qGenW,
+              advancedThermal.heatBalance.qConvW,
+              advancedThermal.heatBalance.qRadW,
+              advancedThermal.heatBalance.qCondW,
+              advancedThermal.heatBalance.residualW
+            ].join(' / '),
+            styleKey: 'tableData',
+            span: colCount - 1
+          }
+        ]
+      },
+      {
+        cells: [
+          { text: 'ISA atmosphere: density (kg/m³) / pressure (kPa)', styleKey: 'tableLabel' },
+          {
+            text: advancedThermal.atmosphere.densityKgM3 + ' / ' + advancedThermal.atmosphere.pressureKPa,
+            styleKey: 'tableData',
+            span: colCount - 1
+          }
+        ]
+      }
+    ];
+
+    if (advancedThermal.assumptions && advancedThermal.assumptions.length) {
+      rows.push({
+        cells: [{ text: 'Assumptions', span: colCount }],
+        styleKey: 'tableHeader',
+        height: 18
+      });
+      advancedThermal.assumptions.forEach(function (item) {
+        rows.push({
+          cells: [
+            { text: item.parameter, styleKey: 'tableLabel' },
+            { text: item.value, styleKey: 'tableData' },
+            { text: item.source, styleKey: 'tableData', span: Math.max(colCount - 2, 1) }
+          ]
+        });
+      });
+    }
+
+    return rows;
+  }
+
+  function buildTransientThermalRows(transientThermal, colCount) {
+    if (!transientThermal || !transientThermal.enabled || !transientThermal.summary) {
+      return [];
+    }
+    colCount = colCount || 3;
+    var s = transientThermal.summary;
+    var disclaimer = global.PwaTransientThermal
+      ? global.PwaTransientThermal.DISCLAIMER
+      : 'Supplementary transient thermal analysis.';
+    var rows = [
+      { spacer: true, height: 8 },
+      {
+        cells: [{ text: 'TRANSIENT THERMAL ANALYSIS', span: colCount }],
+        styleKey: 'sectionHeader',
+        height: 20
+      },
+      {
+        cells: [{ text: disclaimer, styleKey: 'paramNotes', span: colCount }]
+      },
+      {
+        cells: [
+          { text: 'Integrator / timestep', styleKey: 'tableLabel' },
+          {
+            text: transientThermal.integrator + ' @ ' + transientThermal.timestepSec + ' s',
+            styleKey: 'tableData',
+            span: colCount - 1
+          }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Peak temperature (°C)', styleKey: 'tableLabel' },
+          { text: String(s.peakTempC), styleKey: 'tableNum3', span: colCount - 1 }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Time to peak', styleKey: 'tableLabel' },
+          { text: s.peakTimeFormatted, styleKey: 'tableData', span: colCount - 1 }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Time to rating limit', styleKey: 'tableLabel' },
+          { text: s.timeToRatingFormatted, styleKey: 'tableData', span: colCount - 1 }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Time to installation limit', styleKey: 'tableLabel' },
+          { text: s.timeToInstallFormatted, styleKey: 'tableData', span: colCount - 1 }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Degree-hours exposure', styleKey: 'tableLabel' },
+          { text: String(s.thermalExposure.degreeHours), styleKey: 'tableNum3', span: colCount - 1 }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Max thermal utilisation (%)', styleKey: 'tableLabel' },
+          { text: String(s.maxUtilisationPct), styleKey: 'tableNum3', span: colCount - 1 }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Min safety margin (°C)', styleKey: 'tableLabel' },
+          { text: String(s.minSafetyMarginC), styleKey: 'tableNum3', span: colCount - 1 }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Engineering status', styleKey: 'tableLabel' },
+          {
+            text: s.engineeringStatus,
+            styleKey: s.engineeringStatus === 'PASS' ? 'pass' : (s.engineeringStatus === 'WARNING' ? 'caution' : 'fail'),
+            span: colCount - 1
+          }
+        ]
+      }
+    ];
+
+    if (transientThermal.sensitivity && transientThermal.sensitivity.length) {
+      rows.push({
+        cells: [{ text: 'Sensitivity analysis', span: colCount }],
+        styleKey: 'tableHeader',
+        height: 18
+      });
+      transientThermal.sensitivity.forEach(function (row) {
+        rows.push({
+          cells: [
+            { text: row.variable + ' (' + row.changePct + '%)', styleKey: 'tableLabel' },
+            { text: String(row.peakTempC) + ' (Δ ' + row.differenceC + ' °C)', styleKey: 'tableData', span: colCount - 1 }
+          ]
+        });
+      });
+    }
+
+    return rows;
+  }
+
   function escapeXml(text) {
     return String(text)
       .replace(/&/g, '&amp;')
@@ -872,8 +1111,12 @@
         styleKey: 'footerNote',
         height: REPORT_HEADER_ROW_HEIGHT
       }
-    ]).concat(
+    ]    ).concat(
       buildEngineeringAssessmentRows(meta.engineeringAssessment, colCount)
+    ).concat(
+      buildAdvancedThermalRows(meta.advancedThermal, colCount)
+    ).concat(
+      buildTransientThermalRows(meta.transientThermal, colCount)
     ).concat([
       { spacer: true, height: 6 },
       {
@@ -1202,7 +1445,9 @@
       snapshot: snapshot,
       gridTitle: meta.gridTitle,
       projectName: snapshot.projectName,
-      engineeringAssessment: meta.engineeringAssessment
+      engineeringAssessment: meta.engineeringAssessment,
+      advancedThermal: meta.advancedThermal,
+      transientThermal: meta.transientThermal
     });
     var analysisHeaderRow = 9;
     var tableColWidths = [analysisLabelColumnWidth(tableRows), 9];
@@ -1722,6 +1967,8 @@
     buildTemperatureStatusLegend: buildTemperatureStatusLegend,
     buildTemperatureAssessmentNote: buildTemperatureAssessmentNote,
     buildEngineeringAssessmentRows: buildEngineeringAssessmentRows,
+    buildAdvancedThermalRows: buildAdvancedThermalRows,
+    buildTransientThermalRows: buildTransientThermalRows,
     getGlobalDisclaimer: getGlobalDisclaimer
   };
 })(typeof window !== 'undefined' ? window : this);
