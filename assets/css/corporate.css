@@ -1069,7 +1069,11 @@ p {
   border: 1px solid var(--corp-border);
   border-radius: var(--corp-radius-lg);
   box-shadow: var(--corp-shadow);
-  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - var(--corp-header-height) - 32px);
+  padding: 0;
+  overflow: hidden;
   position: sticky;
   top: calc(var(--corp-header-height) + 16px);
   z-index: 5;
@@ -1077,9 +1081,20 @@ p {
 }
 
 .pwa-params__header {
-  margin: 0 0 12px;
-  padding-bottom: 12px;
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 16px 18px 12px;
   border-bottom: 1px solid var(--corp-border);
+}
+
+.pwa-params__form {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 12px 18px 16px;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
 
 .pwa-params__header h2 {
@@ -2594,7 +2609,7 @@ p {
   border-spacing: 0;
   font-size: 0.78rem;
   --pwa-label-b-width: 360px;
-  --pwa-label-c-width: 52px;
+  --pwa-label-c-width: 68px;
   --pwa-unit-width: 88px;
 }
 
@@ -2672,10 +2687,25 @@ p {
 .pwa-grid__label-c {
   width: var(--pwa-label-c-width);
   min-width: var(--pwa-label-c-width);
+  max-width: var(--pwa-label-c-width);
+  padding-left: 4px;
+  padding-right: 4px;
   text-align: center;
   background: #f8fafc;
   color: var(--corp-navy);
   font-weight: 600;
+  font-size: 0.72rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+  box-sizing: border-box;
+}
+
+.pwa-grid__head th.pwa-grid__label-c {
+  text-align: center;
+  vertical-align: middle;
 }
 
 .pwa-grid__awg,
@@ -3024,6 +3054,7 @@ p {
 
   .pwa-params {
     position: static;
+    max-height: min(70vh, calc(100vh - var(--corp-header-height) - 48px));
   }
 
   .pwa-export__ident-row {
