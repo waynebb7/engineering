@@ -385,6 +385,101 @@
     return rows;
   }
 
+  function buildValidationRows(validationLibrary, colCount) {
+    if (!validationLibrary) {
+      return [];
+    }
+    colCount = colCount || 3;
+    var rows = [
+      { spacer: true, height: 8 },
+      {
+        cells: [{ text: 'VALIDATION LIBRARY', span: colCount }],
+        styleKey: 'sectionHeader',
+        height: 20
+      },
+      {
+        cells: [{ text: validationLibrary.intro, styleKey: 'paramNotes', span: colCount }]
+      }
+    ];
+
+    if (validationLibrary.noCaseSelected) {
+      rows.push({
+        cells: [{ text: validationLibrary.message, styleKey: 'paramNotes', span: colCount }]
+      });
+    } else {
+      var c = validationLibrary.case;
+      rows.push({
+        cells: [{
+          text: 'Case: ' + c.caseName + ' | Type: ' + c.caseType + ' | Evidence: ' + c.evidenceQuality,
+          styleKey: 'paramNotes',
+          span: colCount
+        }]
+      });
+      rows.push({
+        cells: [{ text: 'Source: ' + c.sourceReference, styleKey: 'paramNotes', span: colCount }]
+      });
+      if (validationLibrary.warnings && validationLibrary.warnings.length) {
+        validationLibrary.warnings.forEach(function (w) {
+          rows.push({ cells: [{ text: w, styleKey: 'paramNotes', span: colCount }] });
+        });
+      }
+      rows.push({
+        cells: [{
+          text: 'Validation confidence: ' + validationLibrary.confidence.label + ' — ' + validationLibrary.confidence.detail,
+          styleKey: 'paramNotes',
+          span: colCount
+        }]
+      });
+      rows.push({
+        cells: [
+          { text: 'Parameter', styleKey: 'tableHeader' },
+          { text: 'Reference / Calculator / Error / Status', styleKey: 'tableHeader', span: Math.max(colCount - 1, 1) }
+        ],
+        height: 18
+      });
+      (validationLibrary.rows || []).forEach(function (row) {
+        rows.push({
+          cells: [
+            { text: row.parameter, styleKey: 'tableLabel' },
+            {
+              text: [
+                row.referenceValue != null ? row.referenceValue : '—',
+                row.calculatorValue != null ? row.calculatorValue : '—',
+                row.difference != null ? row.difference : '—',
+                row.status
+              ].join(' | '),
+              styleKey: 'tableData',
+              span: Math.max(colCount - 1, 1)
+            }
+          ]
+        });
+      });
+      var m = validationLibrary.metrics;
+      if (m) {
+        rows.push({
+          cells: [{
+            text: 'MAE: ' + (m.meanAbsoluteError != null ? m.meanAbsoluteError : '—') +
+              ' | Max AE: ' + (m.maxAbsoluteError != null ? m.maxAbsoluteError : '—') +
+              ' | Comparable: ' + m.comparableCount + ' | Outside tolerance: ' + m.outsideCount,
+            styleKey: 'paramNotes',
+            span: colCount
+          }]
+        });
+      }
+      if (c.notes) {
+        rows.push({ cells: [{ text: 'Notes: ' + c.notes, styleKey: 'paramNotes', span: colCount }] });
+      }
+      if (c.limitations) {
+        rows.push({ cells: [{ text: 'Limitations: ' + c.limitations, styleKey: 'paramNotes', span: colCount }] });
+      }
+    }
+
+    rows.push({
+      cells: [{ text: validationLibrary.disclaimer, styleKey: 'paramNotes', span: colCount }]
+    });
+    return rows;
+  }
+
   function buildConfidenceRows(confidenceRating, colCount) {
     if (!confidenceRating || !confidenceRating.rows || !confidenceRating.rows.length) {
       return [];
@@ -1308,6 +1403,8 @@
     ).concat(
       buildConfidenceRows(meta.confidenceRating, colCount)
     ).concat(
+      buildValidationRows(meta.validationLibrary, colCount)
+    ).concat(
       buildAdvancedThermalRows(meta.advancedThermal, colCount)
     ).concat(
       buildTransientThermalRows(meta.transientThermal, colCount)
@@ -1642,6 +1739,7 @@
       engineeringAssessment: meta.engineeringAssessment,
       standardsTraceability: meta.standardsTraceability,
       confidenceRating: meta.confidenceRating,
+      validationLibrary: meta.validationLibrary,
       advancedThermal: meta.advancedThermal,
       transientThermal: meta.transientThermal
     });
@@ -2166,6 +2264,7 @@
     buildAdvancedThermalRows: buildAdvancedThermalRows,
     buildTraceabilityRows: buildTraceabilityRows,
     buildConfidenceRows: buildConfidenceRows,
+    buildValidationRows: buildValidationRows,
     buildTransientThermalRows: buildTransientThermalRows,
     getGlobalDisclaimer: getGlobalDisclaimer
   };

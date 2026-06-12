@@ -1713,6 +1713,7 @@
         transientThermal: window.PwaTransientThermalUI ? PwaTransientThermalUI.getExportData() : null,
         standardsTraceability: window.PwaStandardsTraceability ? PwaStandardsTraceability.getExportData() : null,
         confidenceRating: window.PwaConfidenceRating ? PwaConfidenceRating.getExportData() : null,
+        validationLibrary: window.PwaValidationLibrary ? PwaValidationLibrary.getExportData() : null,
         filename: PwaWorkbook.buildExportFilename(snapshot, {
           awgLabels: settings.awgLabels,
           extension: 'xlsx',
@@ -1778,7 +1779,8 @@
         advancedThermal: window.PwaAdvancedThermalUI ? PwaAdvancedThermalUI.getExportData() : null,
         transientThermal: window.PwaTransientThermalUI ? PwaTransientThermalUI.getExportData() : null,
         standardsTraceability: window.PwaStandardsTraceability ? PwaStandardsTraceability.getExportData() : null,
-        confidenceRating: window.PwaConfidenceRating ? PwaConfidenceRating.getExportData() : null
+        confidenceRating: window.PwaConfidenceRating ? PwaConfidenceRating.getExportData() : null,
+        validationLibrary: window.PwaValidationLibrary ? PwaValidationLibrary.getExportData() : null
       }], {
         wireId: wireNumber,
         wireNumber: wireNumber,
@@ -1863,7 +1865,8 @@
           advancedThermal: window.PwaAdvancedThermalUI ? PwaAdvancedThermalUI.getExportData() : null,
           transientThermal: window.PwaTransientThermalUI ? PwaTransientThermalUI.getExportData() : null,
           standardsTraceability: window.PwaStandardsTraceability ? PwaStandardsTraceability.getExportData() : null,
-        confidenceRating: window.PwaConfidenceRating ? PwaConfidenceRating.getExportData() : null
+        confidenceRating: window.PwaConfidenceRating ? PwaConfidenceRating.getExportData() : null,
+        validationLibrary: window.PwaValidationLibrary ? PwaValidationLibrary.getExportData() : null
         });
       } catch (err) {
         errors.push(entry.name + ': ' + (err && err.message ? err.message : 'failed'));

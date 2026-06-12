@@ -180,6 +180,22 @@
     renderConfidenceRatingSystem();
   }
 
+  function applyConfidenceSuggestion(rowId, rating, evidenceSource) {
+    if (!rowState[rowId]) {
+      return false;
+    }
+    if (evidenceSource && EVIDENCE_SOURCES.indexOf(evidenceSource) !== -1) {
+      rowState[rowId].evidenceSource = evidenceSource;
+    }
+    if (validRating(rating)) {
+      rowState[rowId].confidenceRating = rating;
+      rowState[rowId].manuallyOverridden = true;
+    }
+    saveStoredState();
+    renderConfidenceRatingSystem();
+    return true;
+  }
+
   function handleConfidenceManualOverride(rowId, rating) {
     if (!rowState[rowId] || !validRating(rating)) {
       return;
@@ -719,6 +735,7 @@
     buildConfidenceReportSection: buildConfidenceReportSection,
     getExportData: buildConfidenceReportSection,
     isIncludeInReport: isIncludeInReport,
-    resetConfidenceRatingsToDefaults: resetConfidenceRatingsToDefaults
+    resetConfidenceRatingsToDefaults: resetConfidenceRatingsToDefaults,
+    applyConfidenceSuggestion: applyConfidenceSuggestion
   };
 })(typeof window !== 'undefined' ? window : this);

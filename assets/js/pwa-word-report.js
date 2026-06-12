@@ -559,6 +559,65 @@
     return parts.join('');
   }
 
+  function buildValidationTable(validationLibrary) {
+    if (!validationLibrary) {
+      return '';
+    }
+    var parts = [];
+    parts.push(paragraph(validationLibrary.intro, 'BodyText', { spacing: '80' }));
+    if (validationLibrary.noCaseSelected) {
+      parts.push(paragraph(validationLibrary.message, 'BodyText', { spacing: '80' }));
+    } else {
+      var c = validationLibrary.case;
+      parts.push(paragraph(
+        'Selected case: ' + c.caseName + ' (' + c.caseType + '). Evidence quality: ' + c.evidenceQuality + '.',
+        'BodyText',
+        { spacing: '80' }
+      ));
+      parts.push(paragraph('Source reference: ' + c.sourceReference, 'BodyText', { spacing: '80' }));
+      if (validationLibrary.warnings && validationLibrary.warnings.length) {
+        validationLibrary.warnings.forEach(function (w) {
+          parts.push(paragraph(w, 'BodyText', { spacing: '80' }));
+        });
+      }
+      parts.push(paragraph(
+        'Validation confidence: ' + validationLibrary.confidence.label + '. ' + validationLibrary.confidence.detail,
+        'BodyText',
+        { spacing: '80' }
+      ));
+      var rows = [{
+        header: true,
+        cells: ['Parameter', 'Reference', 'Calculator', 'Difference', 'Error %', 'Status']
+      }];
+      (validationLibrary.rows || []).forEach(function (row) {
+        rows.push({
+          cells: [
+            row.parameter,
+            row.referenceValue != null ? String(row.referenceValue) : '—',
+            row.calculatorValue != null ? String(row.calculatorValue) : '—',
+            row.difference != null ? String(row.difference) : '—',
+            row.percentError != null ? String(row.percentError) + '%' : '—',
+            row.status
+          ]
+        });
+      });
+      var tableWidth = CONTENT_WIDTH;
+      var colWidths = [0.18, 0.14, 0.14, 0.12, 0.12, 0.14].map(function (f) {
+        return Math.floor(tableWidth * f);
+      });
+      colWidths[5] = tableWidth - colWidths[0] - colWidths[1] - colWidths[2] - colWidths[3] - colWidths[4];
+      parts.push(buildTable(rows, colWidths));
+      if (c.notes) {
+        parts.push(paragraph('Notes: ' + c.notes, 'BodyText', { spacing: '80' }));
+      }
+      if (c.limitations) {
+        parts.push(paragraph('Limitations: ' + c.limitations, 'BodyText', { spacing: '80' }));
+      }
+    }
+    parts.push(paragraph(validationLibrary.disclaimer, 'Disclaimer', { spacing: '80' }));
+    return parts.join('');
+  }
+
   function buildAdvancedThermalTable(advancedThermal) {
     if (!advancedThermal || !advancedThermal.enabled) {
       return '';
@@ -734,6 +793,11 @@
     if (section.confidenceRating) {
       parts.push(paragraph(sectionNum + '. Confidence Rating System', 'Heading2', { spacing: '80' }));
       parts.push(buildConfidenceTable(section.confidenceRating));
+      sectionNum += 1;
+    }
+    if (section.validationLibrary) {
+      parts.push(paragraph(sectionNum + '. Validation Library', 'Heading2', { spacing: '80' }));
+      parts.push(buildValidationTable(section.validationLibrary));
       sectionNum += 1;
     }
     if (section.advancedThermal) {
