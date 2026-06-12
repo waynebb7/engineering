@@ -5,20 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
   <link rel="canonical" href="https://waynebb7.github.io/engineering/calculators/aerospace-electrical-design/power-wire-analysis.html">
-  <link rel="stylesheet" href="../../assets/css/corporate.css?v=2.0.6">
+  <link rel="stylesheet" href="../../assets/css/corporate.css?v=2.1.0">
   <script src="../../assets/js/site-layout.js" defer></script>
   <script src="../../assets/js/pwa-bundle-derating.js" defer></script>
   <script src="../../assets/js/pwa-altitude-derating.js" defer></script>
   <script src="../../assets/js/pwa-free-air.js" defer></script>
   <script src="../../assets/js/pwa-wire-catalog.js" defer></script>
   <script src="../../assets/js/pwa-conductor-tr-controls.js" defer></script>
-  <script src="../../assets/js/pwa-workbook.js?v=2.0.2" defer></script>
+  <script src="../../assets/js/pwa-workbook.js?v=2.0.3" defer></script>
   <script src="../../assets/js/pwa-project-folder.js?v=2.0.0" defer></script>
-  <script src="../../assets/js/pwa-word-report.js?v=2.0.2" defer></script>
-  <script src="../../assets/js/pwa-advanced-thermal.js?v=1.0.0" defer></script>
-  <script src="../../assets/js/pwa-advanced-thermal-ui.js?v=1.0.0" defer></script>
+  <script src="../../assets/js/pwa-word-report.js?v=2.0.3" defer></script>
+  <script src="../../assets/js/pwa-info-help.js?v=1.0.2" defer></script>
+  <script src="../../assets/js/pwa-advanced-thermal-help.js?v=1.0.0" defer></script>
+  <script src="../../assets/js/pwa-advanced-thermal.js?v=1.1.1" defer></script>
+  <script src="../../assets/js/pwa-advanced-thermal-ui.js?v=1.1.1" defer></script>
   <script src="../../assets/js/pwa-transient-thermal.js?v=1.0.0" defer></script>
-  <script src="../../assets/js/pwa-transient-thermal-ui.js?v=1.0.0" defer></script>
+  <script src="../../assets/js/pwa-transient-thermal-help.js?v=1.0.1" defer></script>
+  <script src="../../assets/js/pwa-transient-thermal-ui.js?v=1.1.1" defer></script>
   <script src="../../assets/js/pwa-grid-calculator.js?v=2.0.3" defer></script>
   <script type="text/javascript" async
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -721,16 +724,16 @@
 
         <details class="pwa-advanced-thermal" id="pwa-advanced-thermal">
           <summary class="pwa-advanced-thermal__summary">
-            <span class="pwa-advanced-thermal__title">Advanced Thermal Heat-Balance Model</span>
-            <span class="pwa-advanced-thermal__subtitle">Physics-Based Conductor Temperature Estimation (Supplementary Analysis)</span>
+            <span class="pwa-advanced-thermal__title">Advanced Heat-Balance Model</span>
+            <span class="pwa-advanced-thermal__subtitle">Physics-Based Conductor Temperature Estimation</span>
           </summary>
           <div class="pwa-advanced-thermal__intro">
             <p class="pwa-advanced-thermal__disclaimer">
-              This model is a supplementary engineering substantiation tool and does not replace the primary ARP4404 / AC43.13 / AS50881 based sizing methodology used elsewhere in this calculator.
+              This supplementary model estimates conductor temperature using electrical heat generation balanced against convection, radiation and conduction heat rejection. It provides a traceable physics-based engineering estimate for substantiation and sensitivity assessment, including installation-specific analysis. It does not replace the primary standards-based wire sizing calculation above or Design Authority approval.
             </p>
             <label class="pwa-advanced-thermal__enable">
               <input type="checkbox" id="pwa-advanced-thermal-enable" name="advancedThermalEnabled">
-              Enable Advanced Thermal Model
+              Enable Advanced Heat-Balance Model
             </label>
           </div>
 
@@ -738,10 +741,19 @@
             <div class="pwa-at-warnings" id="pwa-at-warnings" hidden aria-live="polite"></div>
 
             <fieldset class="pwa-fieldset pwa-at-fieldset">
-              <legend>Advanced thermal inputs</legend>
-              <p class="pwa-fieldset__intro">Values from the main calculator (current, wire size, ambient, altitude, bundle, run length, ratings) are reused automatically.</p>
+              <legend>Advanced Thermal Inputs</legend>
+              <p class="pwa-fieldset__intro">Circuit current, wire size, wire type, resistance, ambient temperature, conductor rating, installation limit, altitude, bundle data, run length and existing T₂ are reused from the primary calculator automatically.</p>
 
-              <label class="pwa-at-field">Installation type
+              <label class="pwa-at-field">
+                <span class="pwa-label-with-help" data-pwa-help-key="at-material">Conductor material</span>
+                <select id="pwa-at-material" name="advancedThermalMaterial">
+                  <option value="copper" selected>Copper</option>
+                  <option value="aluminium">Aluminium</option>
+                </select>
+              </label>
+
+              <label class="pwa-at-field">
+                <span class="pwa-label-with-help" data-pwa-help-key="at-installation-type">Installation type</span>
                 <select id="pwa-at-installation-type" name="advancedThermalInstallationType">
                   <option value="freeAir">Free Air</option>
                   <option value="openHarness">Open Harness</option>
@@ -752,173 +764,214 @@
                 </select>
               </label>
 
-              <label class="pwa-at-field">Conductor material
-                <select id="pwa-at-material" name="advancedThermalMaterial">
-                  <option value="copper" selected>Copper</option>
-                  <option value="aluminium">Aluminium</option>
+              <label class="pwa-at-field">
+                <span class="pwa-label-with-help" data-pwa-help-key="at-wire-position">Wire position in bundle</span>
+                <select id="pwa-at-wire-position" name="advancedThermalWirePosition">
+                  <option value="outer">Outer</option>
+                  <option value="mid">Mid</option>
+                  <option value="centre" selected>Centre</option>
                 </select>
               </label>
 
-              <label class="pwa-at-field" title="0 m/s represents natural convection and is the recommended conservative assumption where airflow data is unavailable.">Airflow velocity (m/s)
+              <label class="pwa-at-field">
+                <span class="pwa-label-with-help" data-pwa-help-key="at-air-velocity">Air velocity (m/s)</span>
                 <input type="number" id="pwa-at-air-velocity" step="0.1" min="0" value="0">
               </label>
 
-              <label class="pwa-at-field">Wire position
-                <select id="pwa-at-wire-position" name="advancedThermalWirePosition">
-                  <option value="outer">Outer Bundle</option>
-                  <option value="mid">Mid Bundle</option>
-                  <option value="centre" selected>Centre Bundle</option>
-                </select>
-              </label>
-
-              <div class="pwa-at-field pwa-at-field--group">
-                <span class="pwa-at-field__label">Adjacent loaded wires</span>
-                <p class="pwa-at-field__hint">Default: Bundle count × Bundle loading %</p>
-                <label class="pwa-at-inline-check">
-                  <input type="checkbox" id="pwa-at-adjacent-override">
-                  Manual override
-                </label>
-                <input type="number" id="pwa-at-adjacent-manual" min="0" step="1" value="1" disabled>
-              </div>
-
-              <label class="pwa-at-field">Surface emissivity
+              <label class="pwa-at-field">
+                <span class="pwa-label-with-help" data-pwa-help-key="at-emissivity">Surface emissivity</span>
                 <select id="pwa-at-emissivity-preset">
-                  <option value="conservative" selected>Conservative Aerospace Default (0.80)</option>
+                  <option value="conservative" selected>Conservative Default (0.80)</option>
                   <option value="ptfe">PTFE (0.85)</option>
                   <option value="etfe">ETFE (0.90)</option>
                   <option value="xletfe">XL-ETFE (0.90)</option>
                   <option value="custom">Custom</option>
                 </select>
               </label>
-              <label class="pwa-at-field" id="pwa-at-emissivity-custom-wrap" hidden>Custom emissivity (0–1)
-                <input type="number" id="pwa-at-emissivity-custom" step="0.01" min="0" max="1" value="0.80">
+              <label class="pwa-at-field" id="pwa-at-emissivity-custom-wrap" hidden>
+                <span class="pwa-label-with-help" data-pwa-help-key="at-emissivity-custom">Custom emissivity (0–1)</span>
+                <input type="number" id="pwa-at-emissivity-custom" step="0.01" min="0.01" max="1" value="0.80">
               </label>
 
-              <label class="pwa-at-field">Insulation thermal conductivity
+              <label class="pwa-at-field">
+                <span class="pwa-label-with-help" data-pwa-help-key="at-insulation-k">Insulation thermal conductivity</span>
                 <select id="pwa-at-insulation-k-preset">
-                  <option value="conservative" selected>Conservative Default</option>
-                  <option value="ptfe">PTFE</option>
-                  <option value="etfe">ETFE</option>
-                  <option value="xletfe">XL-ETFE</option>
+                  <option value="conservative" selected>Conservative Default (0.20 W/m·K)</option>
+                  <option value="ptfe">PTFE (0.25 W/m·K)</option>
+                  <option value="etfe">ETFE (0.24 W/m·K)</option>
+                  <option value="xletfe">XL-ETFE (0.24 W/m·K)</option>
                   <option value="custom">Custom</option>
                 </select>
               </label>
-              <label class="pwa-at-field" id="pwa-at-insulation-k-custom-wrap" hidden>Custom k (W/m·K)
-                <input type="number" id="pwa-at-insulation-k-custom" step="0.01" min="0" value="0.20">
+              <label class="pwa-at-field" id="pwa-at-insulation-k-custom-wrap" hidden>
+                <span class="pwa-label-with-help" data-pwa-help-key="at-insulation-k-custom">Custom k (W/m·K)</span>
+                <input type="number" id="pwa-at-insulation-k-custom" step="0.01" min="0.01" value="0.20">
               </label>
 
-              <label class="pwa-at-field">Duty cycle
-                <select id="pwa-at-duty-preset">
-                  <option value="continuous" selected>Continuous</option>
-                  <option value="duty75">75%</option>
-                  <option value="duty50">50%</option>
-                  <option value="duty25">25%</option>
-                  <option value="custom">Custom</option>
-                </select>
-              </label>
-              <label class="pwa-at-field" id="pwa-at-duty-custom-wrap" hidden>Custom duty cycle (%)
-                <input type="number" id="pwa-at-duty-custom" step="1" min="1" max="100" value="100">
-              </label>
+              <div class="pwa-at-field pwa-at-field--group">
+                <span class="pwa-at-field__label pwa-label-with-help" data-pwa-help-key="at-insulation-thickness">Insulation thickness (mm)</span>
+                <p class="pwa-at-field__hint" id="pwa-at-insulation-auto-hint">Auto: (wire OD − conductor diameter) / 2</p>
+                <label class="pwa-at-inline-check">
+                  <input type="checkbox" id="pwa-at-insulation-override">
+                  Manual override
+                </label>
+                <input type="number" id="pwa-at-insulation-manual" step="0.01" min="0.01" value="0.25" disabled>
+              </div>
 
-              <label class="pwa-at-field">Nearby hot surface temperature (°C)
+              <div class="pwa-at-field pwa-at-field--group">
+                <span class="pwa-at-field__label pwa-label-with-help" data-pwa-help-key="at-wire-od">Wire outside diameter (mm)</span>
+                <p class="pwa-at-field__hint" id="pwa-at-od-auto-hint">Auto-estimate from AWG wire catalog</p>
+                <label class="pwa-at-inline-check">
+                  <input type="checkbox" id="pwa-at-od-override">
+                  Manual override
+                </label>
+                <input type="number" id="pwa-at-od-manual" step="0.01" min="0.1" disabled>
+              </div>
+
+              <div class="pwa-at-field pwa-at-field--group">
+                <span class="pwa-at-field__label pwa-label-with-help" data-pwa-help-key="at-adjacent-wires">Adjacent loaded wires</span>
+                <p class="pwa-at-field__hint">Default: round(bundle count × bundle loading % / 100)</p>
+                <label class="pwa-at-inline-check">
+                  <input type="checkbox" id="pwa-at-adjacent-override">
+                  Manual override
+                </label>
+                <input type="number" id="pwa-at-adjacent-manual" min="0" step="1" value="0" disabled>
+              </div>
+
+              <label class="pwa-at-field">
+                <span class="pwa-label-with-help" data-pwa-help-key="at-hot-surface">Nearby hot surface temperature (°C)</span>
                 <input type="number" id="pwa-at-hot-surface" step="0.1" value="50">
               </label>
 
-              <label class="pwa-at-field">Thermal contact to structure
+              <label class="pwa-at-field">
+                <span class="pwa-label-with-help" data-pwa-help-key="at-thermal-contact">Thermal contact to structure</span>
                 <select id="pwa-at-thermal-contact">
                   <option value="none" selected>None</option>
-                  <option value="light">Light Contact</option>
-                  <option value="moderate">Moderate Contact</option>
-                  <option value="strong">Strong Contact</option>
+                  <option value="light">Light</option>
+                  <option value="moderate">Moderate</option>
+                  <option value="strong">Strong</option>
                 </select>
               </label>
 
               <label class="pwa-at-conservative-check">
                 <input type="checkbox" id="pwa-at-conservative" checked>
-                Use Conservative Certification Assumptions
+                <span class="pwa-label-with-help" data-pwa-help-key="at-conservative-mode">Use Conservative Authority Mode</span>
               </label>
               <p class="pwa-at-conservative-note" id="pwa-at-conservative-note">
-                Conservative assumptions enabled. Results represent worst-case engineering estimate.
+                Conservative Authority Mode is enabled. The model uses worst-case assumptions where installation-specific data is unavailable.
               </p>
             </fieldset>
 
             <section class="pwa-at-results" aria-labelledby="pwa-at-results-heading">
-              <h3 id="pwa-at-results-heading">Advanced thermal results</h3>
+              <h3 id="pwa-at-results-heading">Advanced Heat-Balance Results</h3>
               <p class="pwa-at-awg-note" id="pwa-at-awg-note" aria-live="polite"></p>
               <dl class="pwa-assessment-panel__grid pwa-at-results__grid">
                 <div class="pwa-assessment-panel__row">
-                  <dt>Advanced conductor temperature T<sub>c</sub></dt>
+                  <dt><span class="pwa-label-with-help" data-pwa-help-key="at-res-tc">Advanced conductor temperature</span></dt>
                   <dd><span id="pwa-at-tc">—</span> °C</dd>
                 </div>
                 <div class="pwa-assessment-panel__row">
-                  <dt>Temperature margin (to T<sub>R</sub>)</dt>
+                  <dt><span class="pwa-label-with-help" data-pwa-help-key="at-res-existing-t2">Existing T₂ estimate</span></dt>
+                  <dd><span id="pwa-at-existing-t2">—</span> °C</dd>
+                </div>
+                <div class="pwa-assessment-panel__row">
+                  <dt><span class="pwa-label-with-help" data-pwa-help-key="at-res-diff">Difference (advanced − T₂)</span></dt>
+                  <dd><span id="pwa-at-diff">—</span> °C</dd>
+                </div>
+                <div class="pwa-assessment-panel__row">
+                  <dt><span class="pwa-label-with-help" data-pwa-help-key="at-res-diff-pct">Percentage difference</span></dt>
+                  <dd id="pwa-at-diff-pct">—</dd>
+                </div>
+                <div class="pwa-assessment-panel__row">
+                  <dt><span class="pwa-label-with-help" data-pwa-help-key="at-res-rating-margin">Margin to conductor rating</span></dt>
                   <dd><span id="pwa-at-rating-margin">—</span> °C</dd>
                 </div>
                 <div class="pwa-assessment-panel__row">
-                  <dt>Installation margin</dt>
+                  <dt><span class="pwa-label-with-help" data-pwa-help-key="at-res-install-margin">Margin to installation limit</span></dt>
                   <dd><span id="pwa-at-install-margin">—</span> °C</dd>
                 </div>
-                <div class="pwa-assessment-panel__row">
-                  <dt>Thermal utilisation</dt>
-                  <dd id="pwa-at-utilisation">—</dd>
-                </div>
-                <div class="pwa-assessment-panel__row">
-                  <dt>Dominant heat transfer</dt>
-                  <dd id="pwa-at-mechanism">—</dd>
-                </div>
                 <div class="pwa-assessment-panel__row pwa-assessment-panel__row--result">
-                  <dt>Advanced pass/fail</dt>
+                  <dt><span class="pwa-label-with-help" data-pwa-help-key="at-res-status">Advanced result status</span></dt>
                   <dd id="pwa-at-passfail" class="pwa-at-result__passfail">—</dd>
                 </div>
               </dl>
 
               <h4 class="pwa-at-subhead">Heat balance summary</h4>
               <dl class="pwa-assessment-panel__grid pwa-at-results__grid">
-                <div class="pwa-assessment-panel__row"><dt>Generated heat</dt><dd><span id="pwa-at-qgen">—</span> W</dd></div>
-                <div class="pwa-assessment-panel__row"><dt>Convection loss</dt><dd><span id="pwa-at-qconv">—</span> W</dd></div>
-                <div class="pwa-assessment-panel__row"><dt>Radiation loss</dt><dd><span id="pwa-at-qrad">—</span> W</dd></div>
-                <div class="pwa-assessment-panel__row"><dt>Conduction loss</dt><dd><span id="pwa-at-qcond">—</span> W</dd></div>
-                <div class="pwa-assessment-panel__row"><dt>Residual error</dt><dd><span id="pwa-at-residual">—</span> W</dd></div>
-              </dl>
-
-              <h4 class="pwa-at-subhead">ISA atmosphere (read-only)</h4>
-              <dl class="pwa-assessment-panel__grid pwa-at-results__grid">
-                <div class="pwa-assessment-panel__row"><dt>Air density</dt><dd><span id="pwa-at-density">—</span> kg/m³</dd></div>
-                <div class="pwa-assessment-panel__row"><dt>Air pressure</dt><dd><span id="pwa-at-pressure">—</span> kPa</dd></div>
+                <div class="pwa-assessment-panel__row"><dt><span class="pwa-label-with-help" data-pwa-help-key="at-res-qgen">Generated heat</span></dt><dd><span id="pwa-at-qgen">—</span> W</dd></div>
+                <div class="pwa-assessment-panel__row"><dt><span class="pwa-label-with-help" data-pwa-help-key="at-res-qconv">Convective heat rejection</span></dt><dd><span id="pwa-at-qconv">—</span> W</dd></div>
+                <div class="pwa-assessment-panel__row"><dt><span class="pwa-label-with-help" data-pwa-help-key="at-res-qrad">Radiative heat rejection</span></dt><dd><span id="pwa-at-qrad">—</span> W</dd></div>
+                <div class="pwa-assessment-panel__row"><dt><span class="pwa-label-with-help" data-pwa-help-key="at-res-qcond">Conductive heat rejection</span></dt><dd><span id="pwa-at-qcond">—</span> W</dd></div>
+                <div class="pwa-assessment-panel__row"><dt><span class="pwa-label-with-help" data-pwa-help-key="at-res-mechanism">Dominant heat transfer mechanism</span></dt><dd id="pwa-at-mechanism">—</dd></div>
+                <div class="pwa-assessment-panel__row"><dt><span class="pwa-label-with-help" data-pwa-help-key="at-res-residual">Solver residual error</span></dt><dd><span id="pwa-at-residual">—</span> W</dd></div>
+                <div class="pwa-assessment-panel__row"><dt><span class="pwa-label-with-help" data-pwa-help-key="at-res-iterations">Solver iteration count</span></dt><dd id="pwa-at-iterations">—</dd></div>
               </dl>
             </section>
 
             <section class="pwa-at-compare" aria-labelledby="pwa-at-compare-heading">
-              <h3 id="pwa-at-compare-heading">Comparison against existing method</h3>
-              <dl class="pwa-assessment-panel__grid pwa-at-results__grid">
-                <div class="pwa-assessment-panel__row"><dt>Existing T₂ estimate</dt><dd><span id="pwa-at-existing-t2">—</span> °C</dd></div>
-                <div class="pwa-assessment-panel__row"><dt>Advanced T<sub>c</sub> estimate</dt><dd><span id="pwa-at-tc-compare">—</span> °C</dd></div>
-                <div class="pwa-assessment-panel__row"><dt>Difference</dt><dd><span id="pwa-at-diff">—</span> °C</dd></div>
-                <div class="pwa-assessment-panel__row"><dt>Percentage difference</dt><dd id="pwa-at-diff-pct">—</dd></div>
-                <div class="pwa-assessment-panel__row"><dt>Status</dt><dd id="pwa-at-compare-status" class="pwa-at-compare__status">—</dd></div>
-              </dl>
+              <h3 id="pwa-at-compare-heading">Comparison with existing T₂ method</h3>
+              <div class="pwa-at-assumptions__scroll">
+                <table class="pwa-at-assumptions__table pwa-at-compare__table">
+                  <thead>
+                    <tr>
+                      <th>Parameter</th>
+                      <th class="pwa-at-compare__num">Existing Method</th>
+                      <th class="pwa-at-compare__num">Advanced Heat-Balance</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span class="pwa-label-with-help" data-pwa-help-key="at-cmp-tc">Conductor temperature</span></td>
+                      <td class="pwa-at-compare__num" id="pwa-at-compare-existing-tc">—</td>
+                      <td class="pwa-at-compare__num" id="pwa-at-compare-advanced-tc">—</td>
+                    </tr>
+                    <tr>
+                      <td><span class="pwa-label-with-help" data-pwa-help-key="at-cmp-rating-margin">Margin to rating</span></td>
+                      <td class="pwa-at-compare__num" id="pwa-at-compare-existing-rating-margin">—</td>
+                      <td class="pwa-at-compare__num" id="pwa-at-compare-advanced-rating-margin">—</td>
+                    </tr>
+                    <tr>
+                      <td><span class="pwa-label-with-help" data-pwa-help-key="at-cmp-install-margin">Installation margin</span></td>
+                      <td class="pwa-at-compare__num" id="pwa-at-compare-existing-install-margin">—</td>
+                      <td class="pwa-at-compare__num" id="pwa-at-compare-advanced-install-margin">—</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="pwa-at-compare__note">
+                <span class="pwa-label-with-help" data-pwa-help-key="at-cmp-classification">Difference classification</span>:
+                <span id="pwa-at-compare-status" class="pwa-at-compare__status">—</span>.
+                Differences are expected because the existing method is standards/derating based, while the advanced model estimates heat generation and heat rejection directly.
+              </p>
             </section>
 
             <details class="pwa-at-assumptions">
-              <summary>Assumptions report</summary>
+              <summary>Advanced Model Assumptions</summary>
               <div class="pwa-at-assumptions__scroll">
                 <table class="pwa-at-assumptions__table">
-                  <thead><tr><th>Parameter</th><th>Value</th><th>Source</th></tr></thead>
+                  <thead><tr><th>Parameter</th><th>Value</th><th>Source</th><th>Comment</th></tr></thead>
                   <tbody id="pwa-at-assumptions-body"></tbody>
                 </table>
               </div>
             </details>
 
             <details class="pwa-at-references">
-              <summary>Engineering references</summary>
+              <summary>Engineering Basis and References</summary>
+              <p class="pwa-at-references__intro">
+                This model is based on steady-state thermal equilibrium where electrical heat generated by conductor resistance is balanced against heat rejected by convection, radiation and conduction. It is intended for supplementary engineering assessment and sensitivity analysis.
+              </p>
               <ul class="pwa-at-references__list">
                 <li><strong>SAE ARP4404</strong> — Aircraft Electrical Installations</li>
-                <li><strong>FAA AC43.13-1B</strong> — Acceptable Methods, Techniques and Practices</li>
-                <li><strong>FAA AC25.1701</strong> — EWIS Certification Guidance</li>
                 <li><strong>SAE AS50881</strong> — Wiring Aerospace Vehicle</li>
-                <li><strong>NASA</strong> — Aerospace Wiring Thermal Modelling Publications</li>
-                <li><strong>International Standard Atmosphere (ISA)</strong></li>
+                <li><strong>FAA AC 43.13-1B</strong> — Acceptable Methods, Techniques and Practices</li>
+                <li><strong>FAA AC 25.1701-1</strong> — EWIS Certification Guidance</li>
+                <li><strong>NASA</strong> — Aerospace wiring thermal modelling and wire derating research</li>
+                <li><strong>International Standard Atmosphere</strong> — Altitude density correction</li>
+                <li><strong>Manufacturer wire datasheets</strong> — Diameter, insulation and resistance data</li>
               </ul>
+              <p class="pwa-at-references__footer">
+                Final acceptability remains subject to the applicable certification basis, aircraft Design Authority and installation-specific evidence.
+              </p>
             </details>
           </div>
         </details>
@@ -944,10 +997,12 @@
 
             <fieldset class="pwa-fieldset pwa-at-fieldset">
               <legend>Simulation settings</legend>
-              <label class="pwa-at-field">Simulation duration (min)
+              <label class="pwa-at-field">
+                <span class="pwa-label-with-help" data-pwa-help-key="tt-duration">Simulation duration (min)</span>
                 <input type="number" id="pwa-tt-duration" min="1" max="1440" step="1" value="60">
               </label>
-              <label class="pwa-at-field">Integration timestep
+              <label class="pwa-at-field">
+                <span class="pwa-label-with-help" data-pwa-help-key="tt-timestep">Integration timestep</span>
                 <select id="pwa-tt-timestep">
                   <option value="1" selected>1 s (RK4)</option>
                   <option value="5">5 s</option>
@@ -956,17 +1011,20 @@
                   <option value="60">60 s</option>
                 </select>
               </label>
-              <label class="pwa-at-field">Initial conductor temperature
+              <label class="pwa-at-field">
+                <span class="pwa-label-with-help" data-pwa-help-key="tt-initial-mode">Initial conductor temperature</span>
                 <select id="pwa-tt-initial-mode">
                   <option value="ambient" selected>Ambient</option>
                   <option value="steady">Steady-State Value</option>
                   <option value="custom">Custom</option>
                 </select>
               </label>
-              <label class="pwa-at-field" id="pwa-tt-initial-custom-wrap" hidden>Custom initial T (°C)
+              <label class="pwa-at-field" id="pwa-tt-initial-custom-wrap" hidden>
+                <span class="pwa-label-with-help" data-pwa-help-key="tt-initial-custom">Custom initial T (°C)</span>
                 <input type="number" id="pwa-tt-initial-custom" step="0.1" value="50">
               </label>
-              <label class="pwa-at-field">Current profile type
+              <label class="pwa-at-field">
+                <span class="pwa-label-with-help" data-pwa-help-key="tt-profile-type">Current profile type</span>
                 <select id="pwa-tt-profile-type">
                   <option value="constant" selected>Constant Current</option>
                   <option value="singlePulse">Single Pulse</option>
@@ -978,23 +1036,54 @@
               </label>
 
               <div id="pwa-tt-profile-single" class="pwa-tt-profile-panel" hidden>
-                <label class="pwa-at-field">Pulse current (A) <input type="number" id="pwa-tt-pulse-current" step="0.1" value="72"></label>
-                <label class="pwa-at-field">Pulse duration (min) <input type="number" id="pwa-tt-pulse-duration" step="0.1" value="5"></label>
-                <label class="pwa-at-field">Start time (min) <input type="number" id="pwa-tt-pulse-start" step="0.1" value="0"></label>
+                <label class="pwa-at-field">
+                  <span class="pwa-label-with-help" data-pwa-help-key="tt-pulse-current">Pulse current (A)</span>
+                  <input type="number" id="pwa-tt-pulse-current" step="0.1" value="72">
+                </label>
+                <label class="pwa-at-field">
+                  <span class="pwa-label-with-help" data-pwa-help-key="tt-pulse-duration">Pulse duration (s)</span>
+                  <input type="number" id="pwa-tt-pulse-duration" step="0.001" min="0.001" value="5">
+                </label>
+                <label class="pwa-at-field">
+                  <span class="pwa-label-with-help" data-pwa-help-key="tt-pulse-start">Start time (min)</span>
+                  <input type="number" id="pwa-tt-pulse-start" step="0.1" value="0">
+                </label>
               </div>
               <div id="pwa-tt-profile-repeating" class="pwa-tt-profile-panel" hidden>
-                <label class="pwa-at-field">Pulse current (A) <input type="number" id="pwa-tt-rp-current" step="0.1" value="72"></label>
-                <label class="pwa-at-field">Pulse duration (min) <input type="number" id="pwa-tt-rp-duration" step="0.1" value="2"></label>
-                <label class="pwa-at-field">Pulse period (min) <input type="number" id="pwa-tt-rp-period" step="0.1" value="10"></label>
-                <label class="pwa-at-field">Number of cycles <input type="number" id="pwa-tt-rp-cycles" min="1" step="1" value="5"></label>
+                <label class="pwa-at-field">
+                  <span class="pwa-label-with-help" data-pwa-help-key="tt-rp-current">Pulse current (A)</span>
+                  <input type="number" id="pwa-tt-rp-current" step="0.1" value="72">
+                </label>
+                <label class="pwa-at-field">
+                  <span class="pwa-label-with-help" data-pwa-help-key="tt-rp-duration">Pulse duration (s)</span>
+                  <input type="number" id="pwa-tt-rp-duration" step="0.001" min="0.001" value="2">
+                </label>
+                <label class="pwa-at-field">
+                  <span class="pwa-label-with-help" data-pwa-help-key="tt-rp-period">Pulse period (min)</span>
+                  <input type="number" id="pwa-tt-rp-period" step="0.1" value="10">
+                </label>
+                <label class="pwa-at-field">
+                  <span class="pwa-label-with-help" data-pwa-help-key="tt-rp-cycles">Number of cycles</span>
+                  <input type="number" id="pwa-tt-rp-cycles" min="1" step="1" value="5">
+                </label>
               </div>
               <div id="pwa-tt-profile-duty" class="pwa-tt-profile-panel" hidden>
-                <label class="pwa-at-field">Peak current (A) <input type="number" id="pwa-tt-dc-peak" step="0.1" value="72"></label>
-                <label class="pwa-at-field">Duty cycle (%) <input type="number" id="pwa-tt-dc-duty" min="1" max="100" value="50"></label>
-                <label class="pwa-at-field">Cycle period (min) <input type="number" id="pwa-tt-dc-period" step="0.1" value="10"></label>
+                <label class="pwa-at-field">
+                  <span class="pwa-label-with-help" data-pwa-help-key="tt-dc-peak">Peak current (A)</span>
+                  <input type="number" id="pwa-tt-dc-peak" step="0.1" value="72">
+                </label>
+                <label class="pwa-at-field">
+                  <span class="pwa-label-with-help" data-pwa-help-key="tt-dc-duty">Duty cycle (%)</span>
+                  <input type="number" id="pwa-tt-dc-duty" min="1" max="100" value="50">
+                </label>
+                <label class="pwa-at-field">
+                  <span class="pwa-label-with-help" data-pwa-help-key="tt-dc-period">Cycle period (min)</span>
+                  <input type="number" id="pwa-tt-dc-period" step="0.1" value="10">
+                </label>
               </div>
               <div id="pwa-tt-profile-mission" class="pwa-tt-profile-panel" hidden>
-                <label class="pwa-at-field">Mission profile
+                <label class="pwa-at-field">
+                  <span class="pwa-label-with-help" data-pwa-help-key="tt-mission-profile">Mission profile</span>
                   <select id="pwa-tt-mission-profile">
                     <option value="taxi">Taxi</option>
                     <option value="takeOff">Take-Off</option>
@@ -1007,14 +1096,21 @@
                 </label>
               </div>
               <div id="pwa-tt-profile-custom" class="pwa-tt-profile-panel" hidden>
-                <p class="pwa-at-field__hint">Times in minutes; current in amperes.</p>
+                <p class="pwa-at-field__hint">
+                  <span class="pwa-label-with-help" data-pwa-help-key="tt-custom-schedule">Custom load schedule</span> — times in minutes; current in amperes.
+                </p>
                 <div class="pwa-tt-schedule__toolbar">
                   <button type="button" class="pwa-grid-column-picker__btn" id="pwa-tt-schedule-add">Add row</button>
                   <button type="button" class="pwa-grid-column-picker__btn" id="pwa-tt-schedule-export">Export CSV</button>
                   <label class="pwa-tt-import-label">Import CSV<input type="file" id="pwa-tt-schedule-import" accept=".csv,text/csv" hidden></label>
                 </div>
                 <table class="pwa-at-assumptions__table">
-                  <thead><tr><th>Start (min)</th><th>End (min)</th><th>Current (A)</th><th></th></tr></thead>
+                  <thead><tr>
+                    <th><span class="pwa-label-with-help" data-pwa-help-key="tt-schedule-start">Start (min)</span></th>
+                    <th><span class="pwa-label-with-help" data-pwa-help-key="tt-schedule-end">End (min)</span></th>
+                    <th><span class="pwa-label-with-help" data-pwa-help-key="tt-schedule-current">Current (A)</span></th>
+                    <th></th>
+                  </tr></thead>
                   <tbody id="pwa-tt-schedule-body"></tbody>
                 </table>
               </div>
@@ -1023,64 +1119,77 @@
             <fieldset class="pwa-fieldset pwa-at-fieldset">
               <legend>Material properties (conductor thermal mass)</legend>
               <p class="pwa-fieldset__intro">Inherited from advanced thermal inputs where applicable. Override for sensitivity studies.</p>
-              <label class="pwa-at-inline-check"><input type="checkbox" id="pwa-tt-density-override"> Override density (kg/m³)</label>
-              <input type="number" id="pwa-tt-density" step="1" value="8960">
-              <label class="pwa-at-inline-check"><input type="checkbox" id="pwa-tt-cp-override"> Override C<sub>p</sub> (J/kg·K)</label>
-              <input type="number" id="pwa-tt-cp" step="1" value="385">
+              <div class="pwa-tt-material-field">
+                <label class="pwa-at-inline-check">
+                  <input type="checkbox" id="pwa-tt-density-override">
+                  <span class="pwa-label-with-help" data-pwa-help-key="tt-density-override">Override density (kg/m³)</span>
+                </label>
+                <input type="number" id="pwa-tt-density" step="1" value="8960">
+              </div>
+              <div class="pwa-tt-material-field">
+                <label class="pwa-at-inline-check">
+                  <input type="checkbox" id="pwa-tt-cp-override">
+                  <span class="pwa-label-with-help" data-pwa-help-key="tt-cp-override">Override C<sub>p</sub> (J/kg·K)</span>
+                </label>
+                <input type="number" id="pwa-tt-cp" step="1" value="385">
+              </div>
             </fieldset>
 
             <label class="pwa-at-conservative-check">
               <input type="checkbox" id="pwa-tt-cert-mode" checked>
-              Conservative Certification Mode
+              <span class="pwa-label-with-help" data-pwa-help-key="tt-cert-mode">Conservative Certification Mode</span>
             </label>
             <p class="pwa-at-conservative-note" id="pwa-tt-cert-note">Conservative assumptions active.</p>
 
             <div class="pwa-tt-actions">
-              <button type="button" class="btn pwa-export__btn pwa-export__btn-secondary" id="pwa-tt-worst-case">Generate Worst Case</button>
+              <div class="pwa-tt-action-row">
+                <button type="button" class="btn pwa-export__btn pwa-export__btn-secondary" id="pwa-tt-worst-case">Generate Worst Case</button>
+                <span class="pwa-label-with-help pwa-tt-action-help" data-pwa-help-key="tt-worst-case" data-pwa-help-label="Generate Worst Case" data-pwa-help-icon-only="true"></span>
+              </div>
               <p class="pwa-at-awg-note" id="pwa-tt-worst-note"></p>
             </div>
 
-            <label class="pwa-at-inline-check">
+            <label class="pwa-at-inline-check pwa-tt-sensitivity-check">
               <input type="checkbox" id="pwa-tt-sensitivity-enable">
-              Enable Sensitivity Analysis (±10/20/30%)
+              <span class="pwa-label-with-help" data-pwa-help-key="tt-sensitivity-enable">Enable Sensitivity Analysis (±10/20/30%)</span>
             </label>
 
             <section class="pwa-at-results" aria-labelledby="pwa-tt-results-heading">
               <h3 id="pwa-tt-results-heading">Transient results</h3>
               <dl class="pwa-assessment-panel__grid pwa-at-results__grid">
-                <div class="pwa-assessment-panel__row"><dt>Conductor volume</dt><dd><span id="pwa-tt-volume">—</span> mm³</dd></div>
-                <div class="pwa-assessment-panel__row"><dt>Conductor mass</dt><dd><span id="pwa-tt-mass">—</span> g</dd></div>
-                <div class="pwa-assessment-panel__row"><dt>Heat capacity mC<sub>p</sub></dt><dd><span id="pwa-tt-heat-capacity">—</span> J/K</dd></div>
-                <div class="pwa-assessment-panel__row"><dt>Peak temperature</dt><dd><span id="pwa-tt-peak-temp">—</span> °C</dd></div>
-                <div class="pwa-assessment-panel__row"><dt>Time to peak</dt><dd id="pwa-tt-peak-time">—</dd></div>
-                <div class="pwa-assessment-panel__row"><dt>Time to rating limit</dt><dd id="pwa-tt-time-rating">—</dd></div>
-                <div class="pwa-assessment-panel__row"><dt>Time to installation limit</dt><dd id="pwa-tt-time-install">—</dd></div>
-                <div class="pwa-assessment-panel__row"><dt>Cool-down (90% of rise)</dt><dd id="pwa-tt-cool-90">—</dd></div>
-                <div class="pwa-assessment-panel__row"><dt>Cool-down (75% of rise)</dt><dd id="pwa-tt-cool-75">—</dd></div>
-                <div class="pwa-assessment-panel__row"><dt>Cool-down (50% of rise)</dt><dd id="pwa-tt-cool-50">—</dd></div>
-                <div class="pwa-assessment-panel__row"><dt>Cool-down (10% of rise)</dt><dd id="pwa-tt-cool-10">—</dd></div>
-                <div class="pwa-assessment-panel__row"><dt>Degree-hours</dt><dd id="pwa-tt-degree-hours">—</dd></div>
-                <div class="pwa-assessment-panel__row"><dt>Degree-minutes</dt><dd id="pwa-tt-degree-minutes">—</dd></div>
-                <div class="pwa-assessment-panel__row"><dt>Max thermal utilisation</dt><dd id="pwa-tt-utilisation">—</dd></div>
-                <div class="pwa-assessment-panel__row"><dt>Min safety margin</dt><dd><span id="pwa-tt-min-margin">—</span> °C</dd></div>
+                <div class="pwa-assessment-panel__row"><dt><span class="pwa-label-with-help" data-pwa-help-key="tt-res-volume">Conductor volume</span></dt><dd><span id="pwa-tt-volume">—</span> mm³</dd></div>
+                <div class="pwa-assessment-panel__row"><dt><span class="pwa-label-with-help" data-pwa-help-key="tt-res-mass">Conductor mass</span></dt><dd><span id="pwa-tt-mass">—</span> g</dd></div>
+                <div class="pwa-assessment-panel__row"><dt><span class="pwa-label-with-help" data-pwa-help-key="tt-res-heat-capacity">Heat capacity mC<sub>p</sub></span></dt><dd><span id="pwa-tt-heat-capacity">—</span> J/K</dd></div>
+                <div class="pwa-assessment-panel__row"><dt><span class="pwa-label-with-help" data-pwa-help-key="tt-res-peak-temp">Peak temperature</span></dt><dd><span id="pwa-tt-peak-temp">—</span> °C</dd></div>
+                <div class="pwa-assessment-panel__row"><dt><span class="pwa-label-with-help" data-pwa-help-key="tt-res-peak-time">Time to peak</span></dt><dd id="pwa-tt-peak-time">—</dd></div>
+                <div class="pwa-assessment-panel__row"><dt><span class="pwa-label-with-help" data-pwa-help-key="tt-res-time-rating">Time to rating limit</span></dt><dd id="pwa-tt-time-rating">—</dd></div>
+                <div class="pwa-assessment-panel__row"><dt><span class="pwa-label-with-help" data-pwa-help-key="tt-res-time-install">Time to installation limit</span></dt><dd id="pwa-tt-time-install">—</dd></div>
+                <div class="pwa-assessment-panel__row"><dt><span class="pwa-label-with-help" data-pwa-help-key="tt-res-cool-90">Cool-down (90% of rise)</span></dt><dd id="pwa-tt-cool-90">—</dd></div>
+                <div class="pwa-assessment-panel__row"><dt><span class="pwa-label-with-help" data-pwa-help-key="tt-res-cool-75">Cool-down (75% of rise)</span></dt><dd id="pwa-tt-cool-75">—</dd></div>
+                <div class="pwa-assessment-panel__row"><dt><span class="pwa-label-with-help" data-pwa-help-key="tt-res-cool-50">Cool-down (50% of rise)</span></dt><dd id="pwa-tt-cool-50">—</dd></div>
+                <div class="pwa-assessment-panel__row"><dt><span class="pwa-label-with-help" data-pwa-help-key="tt-res-cool-10">Cool-down (10% of rise)</span></dt><dd id="pwa-tt-cool-10">—</dd></div>
+                <div class="pwa-assessment-panel__row"><dt><span class="pwa-label-with-help" data-pwa-help-key="tt-res-degree-hours">Degree-hours</span></dt><dd id="pwa-tt-degree-hours">—</dd></div>
+                <div class="pwa-assessment-panel__row"><dt><span class="pwa-label-with-help" data-pwa-help-key="tt-res-degree-minutes">Degree-minutes</span></dt><dd id="pwa-tt-degree-minutes">—</dd></div>
+                <div class="pwa-assessment-panel__row"><dt><span class="pwa-label-with-help" data-pwa-help-key="tt-res-utilisation">Max thermal utilisation</span></dt><dd id="pwa-tt-utilisation">—</dd></div>
+                <div class="pwa-assessment-panel__row"><dt><span class="pwa-label-with-help" data-pwa-help-key="tt-res-min-margin">Min safety margin</span></dt><dd><span id="pwa-tt-min-margin">—</span> °C</dd></div>
                 <div class="pwa-assessment-panel__row pwa-assessment-panel__row--result">
-                  <dt>Engineering status</dt>
+                  <dt><span class="pwa-label-with-help" data-pwa-help-key="tt-res-status">Engineering status</span></dt>
                   <dd id="pwa-tt-status" class="pwa-at-result__passfail">—</dd>
                 </div>
               </dl>
             </section>
 
             <section class="pwa-tt-charts" aria-label="Transient thermal charts">
-              <h3 class="pwa-at-subhead">Temperature vs time</h3>
+              <h3 class="pwa-at-subhead"><span class="pwa-label-with-help" data-pwa-help-key="tt-chart-temp">Temperature vs time</span></h3>
               <canvas class="pwa-tt-chart" id="pwa-tt-chart-temp" height="200"></canvas>
-              <h3 class="pwa-at-subhead">Heat flow vs time</h3>
+              <h3 class="pwa-at-subhead"><span class="pwa-label-with-help" data-pwa-help-key="tt-chart-heat">Heat flow vs time</span></h3>
               <canvas class="pwa-tt-chart" id="pwa-tt-chart-heat" height="200"></canvas>
-              <h3 class="pwa-at-subhead">Current vs time</h3>
+              <h3 class="pwa-at-subhead"><span class="pwa-label-with-help" data-pwa-help-key="tt-chart-current">Current vs time</span></h3>
               <canvas class="pwa-tt-chart" id="pwa-tt-chart-current" height="200"></canvas>
             </section>
 
             <div id="pwa-tt-sensitivity-wrap" hidden>
-              <h3 class="pwa-at-subhead">Sensitivity analysis</h3>
+              <h3 class="pwa-at-subhead"><span class="pwa-label-with-help" data-pwa-help-key="tt-sensitivity-table">Sensitivity analysis</span></h3>
               <div class="pwa-at-assumptions__scroll">
                 <table class="pwa-at-assumptions__table">
                   <thead><tr><th>Variable</th><th>Change</th><th>Peak T (°C)</th><th>ΔT (°C)</th></tr></thead>

@@ -132,7 +132,7 @@
       return {
         type: type,
         pulseCurrentA: parseFloat($('pwa-tt-pulse-current').value, 10),
-        durationSec: parseFloat($('pwa-tt-pulse-duration').value, 10) * 60,
+        durationSec: parseFloat($('pwa-tt-pulse-duration').value, 10),
         startSec: parseFloat($('pwa-tt-pulse-start').value, 10) * 60
       };
     }
@@ -140,7 +140,7 @@
       return {
         type: type,
         pulseCurrentA: parseFloat($('pwa-tt-rp-current').value, 10),
-        durationSec: parseFloat($('pwa-tt-rp-duration').value, 10) * 60,
+        durationSec: parseFloat($('pwa-tt-rp-duration').value, 10),
         periodSec: parseFloat($('pwa-tt-rp-period').value, 10) * 60,
         cycles: parseInt($('pwa-tt-rp-cycles').value, 10)
       };
@@ -537,6 +537,9 @@
     var mat = PwaTransientThermal.MATERIAL_PROPERTIES.copper;
     if ($('pwa-tt-density')) $('pwa-tt-density').value = String(mat.densityKgM3);
     if ($('pwa-tt-cp')) $('pwa-tt-cp').value = String(mat.specificHeatJkgK);
+    if (global.PwaTransientThermalHelp) {
+      PwaTransientThermalHelp.init();
+    }
   }
 
   global.PwaTransientThermalUI = {

@@ -453,16 +453,19 @@
     var labelWidth = Math.floor(CONTENT_WIDTH * 0.38);
     var disclaimer = global.PwaAdvancedThermal && PwaAdvancedThermal.DISCLAIMER
       ? PwaAdvancedThermal.DISCLAIMER
-      : 'Supplementary thermal analysis.';
+      : 'Supplementary heat-balance analysis.';
+    var passStyle = advancedThermal.passFail;
     var rows = [{
       header: true,
-      cells: ['Advanced thermal analysis', 'Value']
+      cells: ['Advanced Heat-Balance Model', 'Value']
     }, {
       cells: ['Disclaimer', disclaimer]
     }, {
+      cells: ['Conservative Authority Mode', advancedThermal.conservativeAuthorityMode ? 'Enabled' : 'Disabled']
+    }, {
       cells: ['Analysis AWG', advancedThermal.awg]
     }, {
-      cells: ['Advanced conductor temperature Tc (°C)', String(advancedThermal.tcAdvanced)]
+      cells: ['Advanced conductor temperature (°C)', String(advancedThermal.tcAdvanced)]
     }, {
       cells: ['Existing T₂ estimate (°C)', String(advancedThermal.existingT2)]
     }, {
@@ -470,28 +473,42 @@
     }, {
       cells: ['Percentage difference', String(advancedThermal.differencePct) + '%']
     }, {
-      cells: ['Comparison status', advancedThermal.comparisonStatus]
+      cells: ['Comparison classification', advancedThermal.comparisonStatus]
     }, {
-      cells: ['Temperature margin to T_R (°C)', String(advancedThermal.ratingMarginC)]
+      cells: ['Margin to conductor rating (°C)', String(advancedThermal.ratingMarginC)]
     }, {
-      cells: ['Installation margin (°C)',
+      cells: ['Margin to installation limit (°C)',
         advancedThermal.installMarginC != null ? String(advancedThermal.installMarginC) : '—']
     }, {
-      cells: ['Thermal utilisation (%)', String(advancedThermal.thermalUtilisationPct)]
+      cells: ['Existing method — margin to rating (°C)', String(advancedThermal.existingRatingMarginC)]
     }, {
-      cells: ['Dominant heat transfer', advancedThermal.dominantMechanism]
+      cells: ['Existing method — installation margin (°C)',
+        advancedThermal.existingInstallMarginC != null ? String(advancedThermal.existingInstallMarginC) : '—']
     }, {
-      cells: ['Advanced pass/fail', advancedThermal.passFail]
+      cells: ['Dominant heat transfer mechanism', advancedThermal.dominantMechanism]
+    }, {
+      cells: ['Advanced result status', passStyle]
     }, {
       cells: ['Generated heat (W)', String(advancedThermal.heatBalance.qGenW)]
     }, {
-      cells: ['Convection loss (W)', String(advancedThermal.heatBalance.qConvW)]
+      cells: ['Convective heat rejection (W)', String(advancedThermal.heatBalance.qConvW)]
     }, {
-      cells: ['Radiation loss (W)', String(advancedThermal.heatBalance.qRadW)]
+      cells: ['Radiative heat rejection (W)', String(advancedThermal.heatBalance.qRadW)]
     }, {
-      cells: ['Conduction loss (W)', String(advancedThermal.heatBalance.qCondW)]
+      cells: ['Conductive heat rejection (W)', String(advancedThermal.heatBalance.qCondW)]
     }, {
-      cells: ['Residual error (W)', String(advancedThermal.heatBalance.residualW)]
+      cells: ['Effective heat rejection total (W)', String(advancedThermal.heatBalance.qLossTotalW)]
+    }, {
+      cells: ['Solver residual error (W)', String(advancedThermal.heatBalance.residualW)]
+    }, {
+      cells: ['Solver iteration count',
+        String(advancedThermal.solver ? advancedThermal.solver.iterations : advancedThermal.iterations)]
+    }, {
+      cells: ['Convection coefficient h (W/m²·K)',
+        advancedThermal.solver ? String(advancedThermal.solver.convectionCoeff) : '—']
+    }, {
+      cells: ['Combined heat rejection penalty',
+        advancedThermal.solver ? String(advancedThermal.solver.combinedPenalty) : '—']
     }, {
       cells: ['ISA density (kg/m³) / pressure (kPa)',
         advancedThermal.atmosphere.densityKgM3 + ' / ' + advancedThermal.atmosphere.pressureKPa]
@@ -500,14 +517,19 @@
     if (advancedThermal.assumptions && advancedThermal.assumptions.length) {
       rows.push({
         header: true,
-        cells: ['Assumption', 'Value / Source']
+        cells: ['Assumption', 'Value / Source / Comment']
       });
       advancedThermal.assumptions.forEach(function (item) {
         rows.push({
-          cells: [item.parameter, item.value + ' (' + item.source + ')']
+          cells: [item.parameter, item.value + ' (' + item.source + ' — ' + (item.comment || '') + ')']
         });
       });
     }
+
+    rows.push({
+      cells: ['References statement',
+        'Final acceptability remains subject to the applicable certification basis, aircraft Design Authority and installation-specific evidence.']
+    });
 
     return buildTable(rows, [labelWidth, CONTENT_WIDTH - labelWidth]);
   }
@@ -590,7 +612,7 @@
     parts.push(paragraph('3. AWG analysis grid', 'Heading2', { spacing: '80' }));
     parts.push(buildAnalysisTable(section.tableRows));
     if (section.advancedThermal) {
-      parts.push(paragraph('4. Advanced thermal analysis', 'Heading2', { spacing: '80' }));
+      parts.push(paragraph('4. Advanced Heat-Balance Model', 'Heading2', { spacing: '80' }));
       parts.push(buildAdvancedThermalTable(section.advancedThermal));
     }
     if (section.transientThermal) {

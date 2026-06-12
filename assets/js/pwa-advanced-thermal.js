@@ -24,23 +24,25 @@
     aluminium: 0.00403
   };
 
+  var SEA_LEVEL_DENSITY = 1.225;
+
   var INSTALLATION_TYPES = {
-    freeAir: { label: 'Free Air', hBase: 18, exposure: 1.0 },
-    openHarness: { label: 'Open Harness', hBase: 14, exposure: 0.85 },
-    bundledHarness: { label: 'Bundled Harness', hBase: 10, exposure: 0.55 },
-    conduit: { label: 'Conduit', hBase: 8, exposure: 0.40 },
-    cableTray: { label: 'Cable Tray', hBase: 12, exposure: 0.70 },
-    structureClamped: { label: 'Structure Clamped', hBase: 6, exposure: 0.35 }
+    freeAir: { label: 'Free Air', penalty: 1.00, hBase: 18, exposure: 1.0 },
+    openHarness: { label: 'Open Harness', penalty: 1.05, hBase: 14, exposure: 0.85 },
+    bundledHarness: { label: 'Bundled Harness', penalty: 1.15, hBase: 10, exposure: 0.55 },
+    conduit: { label: 'Conduit', penalty: 1.25, hBase: 8, exposure: 0.40 },
+    cableTray: { label: 'Cable Tray', penalty: 1.10, hBase: 12, exposure: 0.70 },
+    structureClamped: { label: 'Structure Clamped', penalty: 0.95, hBase: 6, exposure: 0.35 }
   };
 
   var WIRE_POSITIONS = {
-    outer: { label: 'Outer Bundle', factor: 1.0 },
-    mid: { label: 'Mid Bundle', factor: 1.10 },
-    centre: { label: 'Centre Bundle', factor: 1.20 }
+    outer: { label: 'Outer', factor: 1.00 },
+    mid: { label: 'Mid', factor: 1.10 },
+    centre: { label: 'Centre', factor: 1.20 }
   };
 
   var EMISSIVITY_PRESETS = {
-    conservative: { label: 'Conservative Aerospace Default (0.80)', value: 0.80 },
+    conservative: { label: 'Conservative Default (0.80)', value: 0.80 },
     ptfe: { label: 'PTFE (0.85)', value: 0.85 },
     etfe: { label: 'ETFE (0.90)', value: 0.90 },
     xletfe: { label: 'XL-ETFE (0.90)', value: 0.90 },
@@ -48,31 +50,26 @@
   };
 
   var INSULATION_K_PRESETS = {
-    conservative: { label: 'Conservative Default', value: 0.20 },
-    ptfe: { label: 'PTFE', value: 0.25 },
-    etfe: { label: 'ETFE', value: 0.23 },
-    xletfe: { label: 'XL-ETFE', value: 0.22 },
-    custom: { label: 'Custom', value: null }
-  };
-
-  var DUTY_CYCLE_PRESETS = {
-    continuous: { label: 'Continuous', value: 100 },
-    duty75: { label: '75%', value: 75 },
-    duty50: { label: '50%', value: 50 },
-    duty25: { label: '25%', value: 25 },
+    conservative: { label: 'Conservative Default (0.20 W/m·K)', value: 0.20 },
+    ptfe: { label: 'PTFE (0.25 W/m·K)', value: 0.25 },
+    etfe: { label: 'ETFE (0.24 W/m·K)', value: 0.24 },
+    xletfe: { label: 'XL-ETFE (0.24 W/m·K)', value: 0.24 },
     custom: { label: 'Custom', value: null }
   };
 
   var THERMAL_CONTACT = {
-    none: { label: 'None', gCondPerM: 0 },
-    light: { label: 'Light Contact', gCondPerM: 0.8 },
-    moderate: { label: 'Moderate Contact', gCondPerM: 2.0 },
-    strong: { label: 'Strong Contact', gCondPerM: 4.5 }
+    none: { label: 'None', kContactW: 0, gCondPerM: 0 },
+    light: { label: 'Light', kContactW: 0.02, gCondPerM: 0.8 },
+    moderate: { label: 'Moderate', kContactW: 0.05, gCondPerM: 2.0 },
+    strong: { label: 'Strong', kContactW: 0.10, gCondPerM: 4.5 }
   };
 
   var DISCLAIMER =
-    'This model is a supplementary engineering substantiation tool and does not replace ' +
-    'the primary ARP4404 / AC43.13 / AS50881 based sizing methodology used elsewhere in this calculator.';
+    'This supplementary model estimates conductor temperature using electrical heat generation ' +
+    'balanced against convection, radiation and conduction heat rejection. It provides a traceable ' +
+    'physics-based engineering estimate for substantiation and sensitivity assessment, including ' +
+    'installation-specific analysis. It does not replace the primary standards-based wire sizing ' +
+    'calculation above or Design Authority approval.';
 
   function kelvin(celsius) {
     return celsius + 273.15;
@@ -124,16 +121,51 @@
   }
 
   function estimateAdjacentLoadedWires(bundleWireCount, bundleLoadingPct) {
-    var count = Math.max(1, bundleWireCount || 1);
+    var count = Math.max(0, bundleWireCount || 0);
     var loading = Math.max(0, Math.min(100, bundleLoadingPct || 0)) / 100;
-    return Math.max(1, Math.round(count * loading));
+    return Math.max(0, Math.round(count * loading));
   }
 
-  function effectiveConvectionCoeff(hBase, airVelocityMs, densityKgM3) {
-    var densityFactor = Math.sqrt(Math.max(densityKgM3, 0.4) / 1.225);
-    var natural = hBase * densityFactor;
-    var forced = 0.8 * Math.max(0, airVelocityMs) * densityFactor;
-    return natural + forced;
+  function calculateAirDensityFromAltitude(altitudeFt) {
+    return computeIsaAtmosphere(altitudeFt);
+  }
+
+  function calculateTemperatureCorrectedResistance(r20Ohms, alpha, tempC) {
+    return resistanceAtTemp(r20Ohms, alpha, tempC);
+  }
+
+  function calculateWireSurfaceArea(odMm, lengthM) {
+    return wireSurfaceAreaM2(odMm, lengthM, 1.0);
+  }
+
+  /** h = (5 + 10·√v) × √(ρ/ρ₀) — conservative natural/forced convection model. */
+  function calculateConvectionCoeff(airVelocityMs, densityKgM3) {
+    var hBase = 5 + 10 * Math.sqrt(Math.max(0, airVelocityMs));
+    return hBase * Math.sqrt(Math.max(densityKgM3, 0.4) / SEA_LEVEL_DENSITY);
+  }
+
+  function calculateConvectionLoss(h, areaM2, tc, tamb) {
+    return heatConvectionW(h, areaM2, tc, tamb);
+  }
+
+  function calculateRadiationLoss(emissivity, areaM2, tc, tSurC) {
+    var tcK = kelvin(tc);
+    var tSurK = kelvin(tSurC);
+    return emissivity * STEFAN_BOLTZMANN * areaM2 * (Math.pow(tcK, 4) - Math.pow(tSurK, 4));
+  }
+
+  function calculateConductionLoss(kContactW, tc, tamb) {
+    if (!kContactW || kContactW <= 0) {
+      return 0;
+    }
+    return kContactW * Math.max(tc - tamb, 0);
+  }
+
+  function effectiveCombinedPenalty(inputs) {
+    var install = INSTALLATION_TYPES[inputs.installationType] || INSTALLATION_TYPES.bundledHarness;
+    var position = WIRE_POSITIONS[inputs.wirePosition] || WIRE_POSITIONS.centre;
+    var adjacentPenalty = Math.min(1.5, 1 + 0.01 * Math.max(0, inputs.adjacentLoadedWires || 0));
+    return install.penalty * position.factor * adjacentPenalty;
   }
 
   function wireSurfaceAreaM2(odAvgMm, lengthM, exposure) {
@@ -154,15 +186,12 @@
     return h * areaM2 * Math.max(delta, 0);
   }
 
-  function heatRadiationW(emissivity, areaM2, tc, tamb) {
-    var tcK = kelvin(tc);
-    var tambK = kelvin(tamb);
-    return emissivity * STEFAN_BOLTZMANN * areaM2 * (Math.pow(tcK, 4) - Math.pow(tambK, 4));
+  function heatRadiationW(emissivity, areaM2, tc, tSurC) {
+    return calculateRadiationLoss(emissivity, areaM2, tc, tSurC);
   }
 
-  function heatConductionW(gCond, tc, tSurface) {
-    var delta = tc - tSurface;
-    return gCond * Math.max(delta, 0);
+  function heatConductionW(kContactW, tc, tamb) {
+    return calculateConductionLoss(kContactW, tc, tamb);
   }
 
   function dominantMechanism(qConv, qRad, qCond) {
@@ -189,73 +218,99 @@
       return 'Comparable';
     }
     if (absPct <= 15) {
-      return 'Moderately Different';
+      return 'Moderate difference';
     }
-    return 'Significantly Different';
+    return 'Significant difference';
+  }
+
+  function advancedResultStatus(tc, conductorRatingC, installationLimitC) {
+    var ratingMargin = conductorRatingC - tc;
+    var installMargin = installationLimitC != null ? installationLimitC - tc : Infinity;
+    var minMargin = Math.min(ratingMargin, installMargin);
+    var passRating = tc <= conductorRatingC;
+    var passInstall = installationLimitC == null || tc <= installationLimitC;
+    if (!passRating || !passInstall) {
+      return 'FAIL';
+    }
+    if (minMargin < 10) {
+      return 'WARNING';
+    }
+    return 'PASS';
   }
 
   function validateInputs(inputs) {
     var warnings = [];
-    if (inputs.ambientTempC < 0) {
-      warnings.push('Ambient temperature is below 0 °C — verify model applicability.');
+    if (inputs.currentA <= 0) {
+      warnings.push('Circuit current must be positive for advanced heat-balance analysis.');
+    }
+    if (inputs.r20Ohms <= 0) {
+      warnings.push('Wire resistance is unavailable — check wire type and run length.');
     }
     if (inputs.airVelocityMs < 0) {
       warnings.push('Air velocity cannot be negative.');
     }
-    if (inputs.emissivity < 0 || inputs.emissivity > 1) {
-      warnings.push('Emissivity must be between 0 and 1.');
+    if (inputs.emissivity <= 0 || inputs.emissivity > 1) {
+      warnings.push('Emissivity must be greater than 0 and less than or equal to 1.');
     }
-    if (inputs.dutyCyclePct <= 0 || inputs.dutyCyclePct > 100) {
-      warnings.push('Duty cycle must be between 0 and 100%.');
+    if (inputs.insulationK <= 0) {
+      warnings.push('Insulation thermal conductivity must be greater than 0.');
+    }
+    if (inputs.insulationThicknessMm <= 0) {
+      warnings.push('Insulation thickness must be greater than 0.');
+    }
+    if (inputs.odAvgMm <= 0) {
+      warnings.push('Wire outside diameter must be greater than 0.');
+    }
+    if (inputs.adjacentLoadedWires < 0) {
+      warnings.push('Adjacent loaded wires must be zero or greater.');
     }
     if (inputs.altitudeFt > MAX_ALTITUDE_FT) {
       warnings.push('Altitude exceeds supported ISA model range (' + MAX_ALTITUDE_FT + ' ft).');
     }
-    if (inputs.currentA <= 0) {
-      warnings.push('Circuit current must be positive for thermal analysis.');
-    }
-    if (inputs.r20Ohms <= 0) {
-      warnings.push('Wire resistance is invalid for thermal analysis.');
-    }
     return warnings;
   }
 
+  function calculateHeatBalanceResidual(tempC, inputs, ctx) {
+    var r = calculateTemperatureCorrectedResistance(inputs.r20Ohms, ctx.alpha, tempC);
+    var qGen = heatGeneratedW(inputs.currentA, r);
+    var losses = ctx.lossesAt(tempC);
+    return qGen - losses.total;
+  }
+
   /**
-   * Solve steady-state conductor temperature by bisection on Tc.
-   * Finds Tc where Q_gen(Tc) = Q_conv + Q_rad + Q_cond within 0.01 °C.
+   * Bisection solver: find Tc where Q_gen = Q_loss_effective within 0.01 °C.
    */
+  function solveAdvancedConductorTemperature(inputs) {
+    return solveHeatBalance(inputs);
+  }
+
   function solveHeatBalance(inputs) {
     var warnings = validateInputs(inputs);
     var alpha = MATERIAL_ALPHA[inputs.material] || MATERIAL_ALPHA.copper;
-    var install = INSTALLATION_TYPES[inputs.installationType] || INSTALLATION_TYPES.freeAir;
-    var position = WIRE_POSITIONS[inputs.wirePosition] || WIRE_POSITIONS.centre;
     var contact = THERMAL_CONTACT[inputs.thermalContact] || THERMAL_CONTACT.none;
-    var atmosphere = computeIsaAtmosphere(inputs.altitudeFt);
+    var atmosphere = calculateAirDensityFromAltitude(inputs.altitudeFt);
     var lengthM = Math.max(inputs.runLengthM, 0.01);
-    var areaM2 = wireSurfaceAreaM2(inputs.odAvgMm, lengthM, install.exposure);
-    var h = effectiveConvectionCoeff(install.hBase, inputs.airVelocityMs, atmosphere.densityKgM3);
-    var dutyFactor = Math.sqrt(Math.max(inputs.dutyCyclePct, 0) / 100);
-    var currentEff = inputs.currentA * dutyFactor;
-    var neighborPenalty = 1 + 0.025 * Math.max(0, inputs.adjacentLoadedWires - 1);
-    var positionPenalty = position.factor;
-    var gCond = contact.gCondPerM * lengthM;
+    var areaM2 = calculateWireSurfaceArea(inputs.odAvgMm, lengthM);
+    var h = calculateConvectionCoeff(inputs.airVelocityMs, atmosphere.densityKgM3);
+    var kContactW = inputs.conservativeMode ? 0 : contact.kContactW;
+    var combinedPenalty = effectiveCombinedPenalty(inputs);
 
     function lossesAt(tempC) {
-      var qConv = heatConvectionW(h, areaM2, tempC, inputs.ambientTempC);
-      var qRad = heatRadiationW(inputs.emissivity, areaM2, tempC, inputs.ambientTempC);
-      var qCond = heatConductionW(gCond, tempC, inputs.hotSurfaceTempC);
-      var total = (qConv + qRad + qCond) / (positionPenalty * neighborPenalty);
+      var qConv = calculateConvectionLoss(h, areaM2, tempC, inputs.ambientTempC);
+      var qRad = calculateRadiationLoss(inputs.emissivity, areaM2, tempC, inputs.hotSurfaceTempC);
+      var qCond = calculateConductionLoss(kContactW, tempC, inputs.ambientTempC);
+      var rawTotal = qConv + qRad + qCond;
       return {
         qConv: qConv,
         qRad: qRad,
         qCond: qCond,
-        total: total
+        total: rawTotal / combinedPenalty
       };
     }
 
     function balanceAt(tempC) {
-      var r = resistanceAtTemp(inputs.r20Ohms, alpha, tempC);
-      var qGen = heatGeneratedW(currentEff, r);
+      var r = calculateTemperatureCorrectedResistance(inputs.r20Ohms, alpha, tempC);
+      var qGen = heatGeneratedW(inputs.currentA, r);
       var losses = lossesAt(tempC);
       return {
         qGen: qGen,
@@ -264,8 +319,9 @@
       };
     }
 
+    var ctx = { alpha: alpha, lossesAt: lossesAt };
     var tLow = inputs.ambientTempC;
-    var tHigh = Math.max(inputs.conductorRatingC, inputs.ambientTempC + 50);
+    var tHigh = Math.max(300, inputs.conductorRatingC + 100, inputs.ambientTempC + 50);
     var lowBal = balanceAt(tLow);
     var highBal = balanceAt(tHigh);
     var converged = false;
@@ -290,20 +346,20 @@
       tc = (tLow + tHigh) / 2;
     } else {
       tc = tHigh;
-      warnings.push('Heat generation exceeds rejection across the analysis range — result capped at conductor rating.');
+      warnings.push('Advanced heat-balance model did not converge. Check inputs.');
     }
 
-    if (!converged) {
-      warnings.push('Advanced thermal model did not converge within ' + MAX_ITERATIONS + ' iterations.');
+    if (!converged && iterations >= MAX_ITERATIONS) {
+      warnings.push('Advanced heat-balance model did not converge within ' + MAX_ITERATIONS + ' iterations.');
     }
 
     var finalBal = balanceAt(tc);
     var ratingMargin = inputs.conductorRatingC - tc;
     var installLimit = inputs.installationLimitC;
     var installMargin = installLimit != null ? installLimit - tc : null;
-    var utilisation = (tc / inputs.conductorRatingC) * 100;
-    var passRating = tc <= inputs.conductorRatingC;
-    var passInstall = installLimit == null || tc <= installLimit;
+    var existingRatingMargin = inputs.conductorRatingC - inputs.existingT2C;
+    var existingInstallMargin = installLimit != null ? installLimit - inputs.existingT2C : null;
+    var passFail = advancedResultStatus(tc, inputs.conductorRatingC, installLimit);
 
     return {
       enabled: true,
@@ -323,7 +379,9 @@
         : '—',
       ratingMarginC: round(ratingMargin, 3),
       installMarginC: installMargin != null ? round(installMargin, 3) : null,
-      thermalUtilisationPct: round(utilisation, 2),
+      existingRatingMarginC: round(existingRatingMargin, 3),
+      existingInstallMarginC: existingInstallMargin != null ? round(existingInstallMargin, 3) : null,
+      thermalUtilisationPct: round((tc / inputs.conductorRatingC) * 100, 2),
       dominantMechanism: dominantMechanism(
         finalBal.losses.qConv,
         finalBal.losses.qRad,
@@ -337,14 +395,19 @@
         qLossTotalW: round(finalBal.losses.total, 4),
         residualW: round(finalBal.residual, 4)
       },
+      solver: {
+        convectionCoeff: round(h, 3),
+        combinedPenalty: round(combinedPenalty, 3),
+        iterations: iterations,
+        residualW: round(finalBal.residual, 4)
+      },
       atmosphere: {
         densityKgM3: round(atmosphere.densityKgM3, 5),
         pressurePa: round(atmosphere.pressurePa, 1),
         pressureKPa: round(atmosphere.pressurePa / 1000, 3)
       },
-      passRating: passRating,
-      passInstall: passInstall,
-      passFail: passRating && passInstall ? 'PASS' : 'FAIL',
+      conservativeAuthorityMode: !!inputs.conservativeMode,
+      passFail: passFail,
       inputs: inputs,
       assumptions: inputs.assumptions || []
     };
@@ -356,13 +419,14 @@
     WIRE_POSITIONS: WIRE_POSITIONS,
     EMISSIVITY_PRESETS: EMISSIVITY_PRESETS,
     INSULATION_K_PRESETS: INSULATION_K_PRESETS,
-    DUTY_CYCLE_PRESETS: DUTY_CYCLE_PRESETS,
     THERMAL_CONTACT: THERMAL_CONTACT,
     MATERIAL_ALPHA: MATERIAL_ALPHA,
     MAX_ALTITUDE_FT: MAX_ALTITUDE_FT,
     computeIsaAtmosphere: computeIsaAtmosphere,
+    calculateAirDensityFromAltitude: calculateAirDensityFromAltitude,
     estimateAdjacentLoadedWires: estimateAdjacentLoadedWires,
     solveHeatBalance: solveHeatBalance,
+    solveAdvancedConductorTemperature: solveAdvancedConductorTemperature,
     comparisonStatus: comparisonStatus,
     round: round
   };

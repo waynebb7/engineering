@@ -195,21 +195,44 @@
     return rows;
   }
 
+  function advancedPassFailStyle(passFail) {
+    if (passFail === 'PASS') {
+      return 'pass';
+    }
+    if (passFail === 'WARNING') {
+      return 'caution';
+    }
+    return 'fail';
+  }
+
   function buildAdvancedThermalRows(advancedThermal, colCount) {
     if (!advancedThermal || !advancedThermal.enabled) {
       return [];
     }
     colCount = colCount || 3;
+    var disclaimer = global.PwaAdvancedThermal && global.PwaAdvancedThermal.DISCLAIMER
+      ? global.PwaAdvancedThermal.DISCLAIMER
+      : 'Supplementary heat-balance analysis.';
     var rows = [
       { spacer: true, height: 8 },
       {
-        cells: [{ text: 'ADVANCED THERMAL ANALYSIS', span: colCount }],
+        cells: [{ text: 'ADVANCED HEAT-BALANCE MODEL', span: colCount }],
         styleKey: 'sectionHeader',
         height: 20
       },
       {
         cells: [
-          { text: (global.PwaAdvancedThermal ? global.PwaAdvancedThermal.DISCLAIMER : 'Supplementary thermal analysis.'), styleKey: 'paramNotes', span: colCount }
+          { text: disclaimer, styleKey: 'paramNotes', span: colCount }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Conservative Authority Mode', styleKey: 'tableLabel' },
+          {
+            text: advancedThermal.conservativeAuthorityMode ? 'Enabled' : 'Disabled',
+            styleKey: 'tableData',
+            span: colCount - 1
+          }
         ]
       },
       {
@@ -220,7 +243,7 @@
       },
       {
         cells: [
-          { text: 'Advanced conductor temperature Tc (°C)', styleKey: 'tableLabel' },
+          { text: 'Advanced conductor temperature (°C)', styleKey: 'tableLabel' },
           { text: String(advancedThermal.tcAdvanced), styleKey: 'tableNum3', span: colCount - 1 }
         ]
       },
@@ -242,19 +265,19 @@
       },
       {
         cells: [
-          { text: 'Comparison status', styleKey: 'tableLabel' },
+          { text: 'Comparison classification', styleKey: 'tableLabel' },
           { text: advancedThermal.comparisonStatus, styleKey: 'tableData', span: colCount - 1 }
         ]
       },
       {
         cells: [
-          { text: 'Temperature margin to T_R (°C)', styleKey: 'tableLabel' },
+          { text: 'Margin to conductor rating (°C)', styleKey: 'tableLabel' },
           { text: String(advancedThermal.ratingMarginC), styleKey: 'tableNum3', span: colCount - 1 }
         ]
       },
       {
         cells: [
-          { text: 'Installation margin (°C)', styleKey: 'tableLabel' },
+          { text: 'Margin to installation limit (°C)', styleKey: 'tableLabel' },
           {
             text: advancedThermal.installMarginC != null ? String(advancedThermal.installMarginC) : '—',
             styleKey: 'tableData',
@@ -264,37 +287,55 @@
       },
       {
         cells: [
-          { text: 'Thermal utilisation (%)', styleKey: 'tableLabel' },
-          { text: String(advancedThermal.thermalUtilisationPct), styleKey: 'tableNum3', span: colCount - 1 }
-        ]
-      },
-      {
-        cells: [
-          { text: 'Dominant heat transfer', styleKey: 'tableLabel' },
-          { text: advancedThermal.dominantMechanism, styleKey: 'tableData', span: colCount - 1 }
-        ]
-      },
-      {
-        cells: [
-          { text: 'Advanced pass/fail', styleKey: 'tableLabel' },
+          { text: 'Existing method — margin to rating / install (°C)', styleKey: 'tableLabel' },
           {
-            text: advancedThermal.passFail,
-            styleKey: advancedThermal.passFail === 'PASS' ? 'pass' : 'fail',
+            text: String(advancedThermal.existingRatingMarginC) + ' / ' +
+              (advancedThermal.existingInstallMarginC != null ? String(advancedThermal.existingInstallMarginC) : '—'),
+            styleKey: 'tableData',
             span: colCount - 1
           }
         ]
       },
       {
         cells: [
-          { text: 'Heat balance (W): Q_gen / Q_conv / Q_rad / Q_cond / residual', styleKey: 'tableLabel' },
+          { text: 'Dominant heat transfer mechanism', styleKey: 'tableLabel' },
+          { text: advancedThermal.dominantMechanism, styleKey: 'tableData', span: colCount - 1 }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Advanced result status', styleKey: 'tableLabel' },
+          {
+            text: advancedThermal.passFail,
+            styleKey: advancedPassFailStyle(advancedThermal.passFail),
+            span: colCount - 1
+          }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Heat balance (W): Q_gen / Q_conv / Q_rad / Q_cond / effective total / residual', styleKey: 'tableLabel' },
           {
             text: [
               advancedThermal.heatBalance.qGenW,
               advancedThermal.heatBalance.qConvW,
               advancedThermal.heatBalance.qRadW,
               advancedThermal.heatBalance.qCondW,
+              advancedThermal.heatBalance.qLossTotalW,
               advancedThermal.heatBalance.residualW
             ].join(' / '),
+            styleKey: 'tableData',
+            span: colCount - 1
+          }
+        ]
+      },
+      {
+        cells: [
+          { text: 'Solver iterations / h / combined penalty', styleKey: 'tableLabel' },
+          {
+            text: (advancedThermal.solver ? advancedThermal.solver.iterations : advancedThermal.iterations) + ' / ' +
+              (advancedThermal.solver ? advancedThermal.solver.convectionCoeff : '—') + ' / ' +
+              (advancedThermal.solver ? advancedThermal.solver.combinedPenalty : '—'),
             styleKey: 'tableData',
             span: colCount - 1
           }
@@ -314,7 +355,7 @@
 
     if (advancedThermal.assumptions && advancedThermal.assumptions.length) {
       rows.push({
-        cells: [{ text: 'Assumptions', span: colCount }],
+        cells: [{ text: 'Advanced Model Assumptions', span: colCount }],
         styleKey: 'tableHeader',
         height: 18
       });
@@ -323,11 +364,23 @@
           cells: [
             { text: item.parameter, styleKey: 'tableLabel' },
             { text: item.value, styleKey: 'tableData' },
-            { text: item.source, styleKey: 'tableData', span: Math.max(colCount - 2, 1) }
+            {
+              text: item.source + (item.comment ? ' — ' + item.comment : ''),
+              styleKey: 'tableData',
+              span: Math.max(colCount - 2, 1)
+            }
           ]
         });
       });
     }
+
+    rows.push({
+      cells: [{
+        text: 'Final acceptability remains subject to the applicable certification basis, aircraft Design Authority and installation-specific evidence.',
+        styleKey: 'paramNotes',
+        span: colCount
+      }]
+    });
 
     return rows;
   }
